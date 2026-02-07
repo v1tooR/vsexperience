@@ -7,34 +7,38 @@
   <meta name="description" content="Experiências digitais premium — pensadas para validar, converter e escalar. UX/UI e execução técnica para SaaS, dashboards e produtos digitais.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Header -->
   <header class="header" id="header">
     <div class="header-container">
-      <a href="#" class="logo">
-        <div class="logo-icon">VS</div>
-        <span class="logo-text">VS Experience</span>
-      </a>
-      
-      <nav class="nav-desktop">
-        <a href="#servicos" class="nav-link">Serviços</a>
-        <a href="#processo" class="nav-link">Processo</a>
-        <a href="#portfolio" class="nav-link">Cases</a>
-        <a href="#sobre" class="nav-link">Sobre</a>
+      <nav class="nav-surface">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <img src="vslogo.webp" alt="VS Experience logo">
+          </div>
+          <span class="logo-text">VS Experience</span>
+        </a>
+
+        <div class="nav-desktop">
+          <a href="#servicos" class="nav-link">Serviços</a>
+          <a href="#processo" class="nav-link">Processo</a>
+          <a href="#portfolio" class="nav-link">Cases</a>
+          <a href="#sobre" class="nav-link">Sobre</a>
+        </div>
+
+        <a href="#contato" class="btn-primary btn-sm">Conversar</a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
-      
-      <a href="#contato" class="btn-primary btn-sm">Conversar</a>
-      
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
-    
+
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
       <nav class="mobile-nav">
@@ -250,7 +254,7 @@
 
     <!-- Process Section -->
     <section class="section" id="processo">
-      <div class="container-wide">
+      <div class="container-tight">
         <div class="section-header">
           <h2 class="section-title animate-fade-up">
             Processo <span class="text-gradient-primary">enxuto, profundo e sem surpresa</span>
@@ -265,6 +269,7 @@
               <p class="step-subtitle">(objetivo e contexto real)</p>
               <p>O que precisa acontecer: leads? vendas? ativação? retenção? confiança?</p>
             </div>
+            <div class="process-spacer hidden md:block"></div>
           </div>
           
           <div class="process-step animate-fade-up delay-100">
@@ -274,6 +279,7 @@
               <p class="step-subtitle">(UX)</p>
               <p>Hierarquia, fluxos, estrutura e "história" que guia o usuário.</p>
             </div>
+            <div class="process-spacer hidden md:block"></div>
           </div>
           
           <div class="process-step animate-fade-up delay-200">
@@ -283,6 +289,7 @@
               <p class="step-subtitle">(sistema de componentes)</p>
               <p>Visual consistente, microdecisões e componentes reaproveitáveis.</p>
             </div>
+            <div class="process-spacer hidden md:block"></div>
           </div>
           
           <div class="process-step animate-fade-up delay-300">
@@ -291,6 +298,7 @@
               <h3>Construção e refinamento</h3>
               <p>Implementação com padrão, performance e fidelidade ao design.</p>
             </div>
+            <div class="process-spacer hidden md:block"></div>
           </div>
           
           <div class="process-step animate-fade-up delay-400">
@@ -299,6 +307,7 @@
               <h3>Ajustes e validação</h3>
               <p>Evolução orientada por uso real: cliques, funil, feedback e melhoria contínua.</p>
             </div>
+            <div class="process-spacer hidden md:block"></div>
           </div>
         </div>
         
@@ -563,7 +572,9 @@
       <div class="footer-content">
         <div class="footer-brand">
           <a href="#" class="logo">
-            <div class="logo-icon">VS</div>
+            <div class="logo-icon">
+              <img src="vslogo.webp" alt="VS Experience logo">
+            </div>
             <span class="logo-text">VS Experience</span>
           </a>
           <p class="footer-copyright">© 2025 Victor Santos. Todos os direitos reservados.</p>
