@@ -1,0 +1,21 @@
+# VS Experience - robots.txt
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: *.css
+Allow: *.js
+Allow: *.webp
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.svg
+
+# Disallow crawling of unnecessary files
+Disallow: /node_modules/
+Disallow: /*.json
+
+# Sitemap
+Sitemap: https://vsexperience.com/sitemap.xml
+
+# Crawl delay (in seconds)
+Crawl-delay: 1

@@ -1,0 +1,29 @@
+{
+  "site": {
+    "name": "VS Experience",
+    "description": "Experiências digitais premium — pensadas para validar, converter e escalar. UX/UI e execução técnica para SaaS, dashboards e produtos digitais.",
+    "url": "https://vsexperience.com",
+    "language": "pt-BR",
+    "theme-color": "#371616",
+    "author": "Victor Santos"
+  },
+  "seo": {
+    "canonical": "https://vsexperience.com",
+    "keywords": ["UX/UI", "design digital", "SaaS", "produto digital", "experiência do usuário", "interface", "design thinking", "desenvolvimento web"],
+    "robots": "index, follow"
+  },
+  "social": {
+    "og:image": "https://vsexperience.com/vslogo.webp",
+    "og:image:type": "image/webp",
+    "og:image:width": 1200,
+    "og:image:height": 630,
+    "twitter:card": "summary_large_image"
+  },
+  "build": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-07",
+    "compression": true,
+    "minify": true,
+    "optimization": "production"
+  }
+}

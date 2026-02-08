@@ -1,0 +1,160 @@
+{
+  "preDeploymentChecklist": {
+    "files": {
+      "index.html": {
+        "description": "Página principal com todas as seções",
+        "size": "~50KB",
+        "essencial": true
+      },
+      "styles.css": {
+        "description": "Estilos compilados e otimizados",
+        "size": "~60KB",
+        "essencial": true
+      },
+      "script.js": {
+        "description": "JavaScript com interatividade",
+        "size": "~20KB",
+        "essencial": true
+      },
+      "vslogo.webp": {
+        "description": "Logo do site (favicon + branding)",
+        "size": "~5KB",
+        "essencial": true
+      }
+    },
+    "assetImages": {
+      "g4.webp": "Case G4 Business",
+      "costaflores.webp": "Case Costa Flores",
+      "ocasafloresta.webp": "Case Casa Floresta",
+      "victor2.webp": "Foto vítor - seções Positioning e About",
+      "vs-victor-1.webp": "Foto vítor - seção Hero",
+      "victorsemfundo.webp": "Foto vítor sem fundo - seção Hero",
+      "vslanding.webp": "Imagem complementar (se usada)"
+    },
+    "seoFiles": {
+      "robots.txt": {
+        "description": "Instruções para crawlers e referência ao sitemap",
+        "essencial": true,
+        "location": "Raiz do domínio (/robots.txt)"
+      },
+      "sitemap.xml": {
+        "description": "Mapa do site para SEO",
+        "essencial": true,
+        "location": "Raiz do domínio (/sitemap.xml)"
+      },
+      ".htaccess": {
+        "description": "Configurações Apache (gzip, cache, security headers)",
+        "essencial": true,
+        "location": "Raiz do domínio /.htaccess",
+        "requires": "Apache com mod_rewrite habilitado"
+      }
+    },
+    "configurations": {
+      "https": {
+        "status": "REQUERIDO",
+        "description": "Certificado SSL/TLS válido",
+        "impact": "SEO e segurança"
+      },
+      "domainSetup": {
+        "status": "REQUERIDO",
+        "description": "Apontar domínio para servidor",
+        "steps": [
+          "Configurar DNS A record para IP do servidor",
+          "Aguardar propagação DNS (até 48h)",
+          "Verificar acesso via navegador"
+        ]
+      },
+      "gzipCompression": {
+        "status": "ATIVO",
+        "description": "Compressão automática via .htaccess",
+        "formats": ["html", "css", "js", "json", "svg"]
+      },
+      "browserCache": {
+        "status": "ATIVO",
+        "description": "Cache configurado via .htaccess",
+        "rules": {
+          "images": "1 year",
+          "fonts": "1 year",
+          "css_js": "1 month",
+          "html": "1 day"
+        }
+      },
+      "securityHeaders": {
+        "status": "ATIVO",
+        "headers": [
+          "X-Frame-Options: SAMEORIGIN",
+          "X-Content-Type-Options: nosniff",
+          "X-XSS-Protection: 1; mode=block",
+          "Referrer-Policy: no-referrer-when-downgrade",
+          "Permissions-Policy: geolocation=(), microphone=(), camera=()"
+        ]
+      }
+    },
+    "testing": {
+      "responsiveness": {
+        "mobile": "Testar em iPhone, Android",
+        "tablet": "iPad e Android tablets",
+        "desktop": "Chrome, Firefox, Safari"
+      },
+      "performance": {
+        "pagespeed": "Executar Google PageSpeed Insights",
+        "webvitals": "Verificar Core Web Vitals (LCP, FID, CLS)",
+        "lighthouse": "Rodar Lighthouse Audit"
+      },
+      "seo": {
+        "robots": "Verificar /robots.txt acessível",
+        "sitemap": "Verificar /sitemap.xml válido",
+        "metas": "Validar todas as meta tags",
+        "favicon": "Confirmar favicon carregando",
+        "canonical": "Verificar canonical URL"
+      },
+      "functionality": {
+        "links": "Testar todos os navegação e CTAs",
+        "whatsapp": "Verificar links WhatsApp em mobile",
+        "cursor": "Testar cursor customizado em desktop",
+        "animations": "Verificar animações e efeitos",
+        "forms": "Testar envio de formulários (se existir)",
+        "redirects": "Testar redirects (se houver)"
+      }
+    },
+    "googleServices": {
+      "searchConsole": {
+        "action": "Verificar domínio",
+        "steps": [
+          "Acessar Google Search Console",
+          "Adicionar propriedade",
+          "Verificar propriedade",
+          "Submeter sitemap.xml"
+        ]
+      },
+      "analytics": {
+        "action": "Configurar GA4",
+        "tracking": "Adicionar código de rastreamento"
+      },
+      "mobileTest": {
+        "action": "Rodar Mobile-Friendly Test",
+        "url": "https://search.google.com/test/mobile-friendly"
+      }
+    },
+    "postLaunchMonitoring": {
+      "uptime": "Configurar monitoramento 24/7",
+      "alerts": "Receber notificações de problemas",
+      "logs": "Acompanhar error logs",
+      "performance": "Monitorar Core Web Vitals",
+      "rankings": "Acompanhar posições no Google"
+    }
+  },
+  "deploymentNotes": {
+    "timezone": "UTC",
+    "encoding": "UTF-8",
+    "mimeTypes": {
+      "html": "text/html; charset=utf-8",
+      "css": "text/css; charset=utf-8",
+      "js": "application/javascript; charset=utf-8",
+      "json": "application/json; charset=utf-8",
+      "xml": "application/xml; charset=utf-8",
+      "webp": "image/webp",
+      "svg": "image/svg+xml; charset=utf-8"
+    }
+  }
+}

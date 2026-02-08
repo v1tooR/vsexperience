@@ -3,11 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VS Experience - Experiências Digitais Premium</title>
+  <meta name="theme-color" content="#371616">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- SEO & Meta Tags -->
+  <title>VS Experience - Experiências Digitais Premium | UX/UI e Desenvolvimento</title>
   <meta name="description" content="Experiências digitais premium — pensadas para validar, converter e escalar. UX/UI e execução técnica para SaaS, dashboards e produtos digitais.">
+  <meta name="keywords" content="UX/UI, design digital, SaaS, produto digital, experiência do usuário, interface, design thinking, desenvolvimento web">
+  <meta name="author" content="Victor Santos">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Portuguese">
+  <link rel="canonical" href="https://vsexperience.com">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vsexperience.com">
+  <meta property="og:title" content="VS Experience - Experiências Digitais Premium">
+  <meta property="og:description" content="UX/UI e execução técnica para SaaS, dashboards e produtos digitais.">
+  <meta property="og:image" content="https://vsexperience.com/vslogo.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://vsexperience.com">
+  <meta property="twitter:title" content="VS Experience - Experiências Digitais Premium">
+  <meta property="twitter:description" content="UX/UI e execução técnica premium para produtos digitais.">
+  <meta property="twitter:image" content="https://vsexperience.com/vslogo.webp">
+  
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/webp" href="vslogo.webp">
+  <link rel="shortcut icon" type="image/webp" href="vslogo.webp">
+  <link rel="apple-touch-icon" href="vslogo.webp">
+  
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,7 +66,7 @@
           <a href="#sobre" class="nav-link">Sobre</a>
         </div>
 
-        <a href="#contato" class="btn-primary btn-sm">Conversar</a>
+        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Conversar</a>
 
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
           <span></span>
@@ -46,60 +83,96 @@
         <a href="#processo" class="mobile-nav-link">Processo</a>
         <a href="#portfolio" class="mobile-nav-link">Cases</a>
         <a href="#sobre" class="mobile-nav-link">Sobre</a>
-        <a href="#contato" class="btn-primary">Conversar</a>
+        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-primary" target="_blank" rel="noopener noreferrer">Conversar</a>
       </nav>
     </div>
   </header>
 
   <main>
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-glow"></div>
-      
-      <div class="container-tight">
-        <div class="hero-content">
-          <h1 class="hero-title animate-fade-up">
-            Experiências digitais premium —
-            <br>
-            <span class="text-gradient-primary">pensadas para validar, converter e escalar.</span>
-          </h1>
-          
-          <p class="hero-subtitle animate-fade-up delay-100">
-            Eu uno estratégia, UX/UI e execução técnica para transformar ideias em interfaces claras, consistentes e orientadas a resultado.
-          </p>
-          
-          <ul class="hero-bullets animate-fade-up delay-200">
-            <li>
-              <span class="bullet-icon">✓</span>
-              <span>Clareza de proposta em segundos (sem ruído)</span>
-            </li>
-            <li>
-              <span class="bullet-icon">✓</span>
-              <span>Interface com padrão de produto "grande"</span>
-            </li>
-            <li>
-              <span class="bullet-icon">✓</span>
-              <span>Decisões guiadas por objetivo e mensuração</span>
-            </li>
-          </ul>
-          
-          <div class="hero-ctas animate-fade-up delay-300">
-            <a href="#portfolio" class="btn-primary">
-              Ver Cases
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-            <a href="#contato" class="btn-secondary">Conversar sobre um projeto</a>
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-glow"></div>
+
+        <div class="container-tight">
+          <div class="hero-grid">
+            <!-- Left column: content -->
+            <div class="hero-left">
+              <div class="hero-content">
+                <h1 class="hero-title animate-fade-up">
+                  Experiências digitais premium —
+                  <br>
+                  <span class="text-gradient-primary">pensadas para validar, converter e escalar.</span>
+                </h1>
+
+                <p class="hero-subtitle animate-fade-up delay-100">
+                  Eu uno estratégia, UX/UI e execução técnica para transformar ideias em interfaces claras, consistentes e orientadas a resultado.
+                </p>
+
+                <ul class="hero-bullets animate-fade-up delay-200">
+                  <li>
+                    <span class="bullet-icon">✓</span>
+                    <span>Clareza de proposta em segundos (sem ruído)</span>
+                  </li>
+                
+                  <li>
+                    <span class="bullet-icon">✓</span>
+                    <span>Decisões guiadas por objetivo e mensuração</span>
+                  </li>
+                </ul>
+
+                <div class="hero-ctas animate-fade-up delay-300">
+                  <a href="#portfolio" class="btn-primary">
+                    Ver Cases
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                  <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-secondary" target="_blank" rel="noopener noreferrer">Conversar sobre um projeto</a>
+                </div>
+
+                <p class="hero-microcopy animate-fade-up delay-400">
+                  Sem achismo. Sem estética vazia. Só experiência que funciona.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right column: image + floating boxes -->
+            <div class="hero-right">
+              <div class="hero-image">
+                <img src="victorsemfundo.webp" alt="Victor Santos" />
+
+                <div class="floating-box floating-figma">
+                  <div class="floating-icon">
+                    <!-- Simple Figma-like mark -->
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g fill="currentColor">
+                        <circle cx="7" cy="6" r="2" />
+                        <circle cx="11" cy="6" r="2" />
+                        <circle cx="7" cy="10" r="2" />
+                        <circle cx="11" cy="10" r="2" />
+                        <circle cx="11" cy="14" r="2" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="floating-label">Experiência de Usuário</div>
+                </div>
+
+                <div class="floating-box floating-dev">
+                  <div class="floating-icon">
+                    <!-- simple code icon -->
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 18l6-6-6-6" />
+                      <path d="M8 6l-6 6 6 6" />
+                    </svg>
+                  </div>
+                  <div class="floating-label">Sites, SaaS e Aplicações</div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <p class="hero-microcopy animate-fade-up delay-400">
-            Sem achismo. Sem estética vazia. Só experiência que funciona.
-          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- Positioning Section -->
     <section class="section positioning">
@@ -120,12 +193,6 @@
             <span class="text-highlight">vender, captar e fortalecer sua marca.</span>
           </p>
           
-          <div class="liquid-glass positioning-card animate-fade-up delay-200">
-            <div class="positioning-icon">
-              <span>VS</span>
-            </div>
-            <p>Victor Santos — Product Designer & Full Stack Developer</p>
-          </div>
         </div>
       </div>
     </section>
@@ -332,52 +399,70 @@
         <div class="cases-grid">
           <article class="case-card animate-fade-up delay-200">
             <div class="case-image">
-              <div class="case-placeholder">G4</div>
+              <img src="g4.webp" alt="G4 Business" class="case-img" />
             </div>
             <div class="case-content">
               <span class="case-tag">Educação</span>
-              <h3>G4 Educação</h3>
+              <h3>G4 Business</h3>
               <p class="case-focus"><strong>Foco:</strong> experiência, consistência e conversão em páginas e jornadas.</p>
               <p class="case-deliverables"><strong>Entregas:</strong> estrutura de navegação/UX, UI e implementação com ajuste fino e responsividade.</p>
               <p class="case-impact"><strong>Impacto:</strong> comunicação mais clara e base sólida para aquisição e escala.</p>
+              <a href="https://g4business.com/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+                Ver projeto
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
           </article>
           
           <article class="case-card animate-fade-up delay-300">
             <div class="case-image">
-              <div class="case-placeholder">CF</div>
+              <img src="costaflores.webp" alt="Costa Flores" class="case-img" />
             </div>
             <div class="case-content">
-              <span class="case-tag">Paisagismo</span>
+              <span class="case-tag">Design de interiores</span>
               <h3>Costa Flores</h3>
               <p class="case-focus"><strong>Foco:</strong> elevar percepção premium e guiar o usuário até a ação com menos atrito.</p>
               <p class="case-deliverables"><strong>Entregas:</strong> narrativa, organização de seções, UI consistente e CTAs bem posicionados.</p>
               <p class="case-impact"><strong>Impacto:</strong> mais autoridade na apresentação e jornada mais objetiva até o contato.</p>
+              <a href="https://costaflores.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+                Ver projeto
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
           </article>
           
           <article class="case-card animate-fade-up delay-400">
             <div class="case-image">
-              <div class="case-placeholder">CF</div>
+              <img src="ocasafloresta.webp" alt="Casa Floresta" class="case-img" />
             </div>
             <div class="case-content">
-              <span class="case-tag">Arquitetura</span>
+              <span class="case-tag">Restaurante</span>
               <h3>Casa Floresta</h3>
               <p class="case-focus"><strong>Foco:</strong> presença digital memorável, com refinamento e fluidez.</p>
               <p class="case-deliverables"><strong>Entregas:</strong> hierarquia de informação, UI premium e experiência focada em confiança.</p>
               <p class="case-impact"><strong>Impacto:</strong> site com "cara de marca forte" e intenção clara de conversão.</p>
+              <a href="https://ocasafloresta.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+                Ver projeto
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
           </article>
         </div>
         
-        <div class="section-cta animate-fade-up">
+        <!--<div class="section-cta animate-fade-up">
           <a href="#" class="btn-secondary">
             Ver todos os projetos
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -440,9 +525,6 @@
           </div>
         </div>
         
-        <p class="section-microcopy animate-fade-up">
-          Sem texto genérico — preferencialmente prints reais.
-        </p>
       </div>
     </section>
 
@@ -451,7 +533,7 @@
       <div class="container-tight">
         <div class="about-grid">
           <div class="about-image animate-fade-up">
-            <div class="about-placeholder">VS</div>
+            <img src="victor2.webp" alt="Victor Santos" class="about-photo">
           </div>
           
           <div class="about-content">
@@ -493,7 +575,7 @@
       </div>
     </section>
 
-    <!-- Blog CTA Section -->
+    <!-- Blog CTA Section 
     <section class="section blog-cta">
       <div class="blog-cta-bg"></div>
       
@@ -522,7 +604,7 @@
           </a>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Final CTA Section -->
     <section class="section final-cta" id="contato">
@@ -555,7 +637,7 @@
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </a>
-            <a href="#portfolio" class="btn-secondary">Ver todos os projetos</a>
+            <a href="#portfolio" class="btn-secondary">Ver projetos em destaques</a>
           </div>
           
           <p class="section-microcopy animate-fade-up delay-400">
@@ -577,7 +659,7 @@
             </div>
             <span class="logo-text">VS Experience</span>
           </a>
-          <p class="footer-copyright">© 2025 Victor Santos. Todos os direitos reservados.</p>
+          <p class="footer-copyright">© 2026 Victor Santos. Todos os direitos reservados.</p>
         </div>
         
         <nav class="footer-links">
@@ -588,13 +670,7 @@
             </svg>
           </a>
           <a href="#" class="footer-link">
-            Behance
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </a>
-          <a href="#" class="footer-link">
-            Dribbble
+            Instagram
             <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M7 17L17 7M17 7H7M17 7v10"/>
             </svg>
@@ -611,5 +687,8 @@
   </footer>
 
   <script src="script.js"></script>
+  <div id="cursor">
+    <div class="cursor__circle"></div>
+  </div>
 </body>
 </html>

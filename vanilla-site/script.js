@@ -293,3 +293,83 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
   document.body.classList.add('loaded');
 });
+
+// ================================
+// Custom Cursor
+// ================================
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    const cursor = document.getElementById('cursor');
+    const cursorCircle = cursor.querySelector('.cursor__circle');
+
+    const mouse = { x: -100, y: -100 };
+    const pos = { x: 0, y: 0 };
+    const speed = 0.35;
+
+    const updateCoordinates = e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    }
+
+    window.addEventListener('mousemove', updateCoordinates);
+
+    function getAngle(diffX, diffY) {
+      return Math.atan2(diffY, diffX) * 180 / Math.PI;
+    }
+
+    function getSqueeze(diffX, diffY) {
+      const distance = Math.sqrt(
+        Math.pow(diffX, 2) + Math.pow(diffY, 2)
+      );
+      const maxSqueeze = 0.15;
+      const accelerator = 1500;
+      return Math.min(distance / accelerator, maxSqueeze);
+    }
+
+    const updateCursor = () => {
+      const diffX = Math.round(mouse.x - pos.x);
+      const diffY = Math.round(mouse.y - pos.y);
+
+      pos.x += diffX * speed;
+      pos.y += diffY * speed;
+
+      const squeeze = getSqueeze(diffX, diffY);
+
+      const scale = 'scale(' + (1 + squeeze) + ', ' + (1 - squeeze) +')';
+      const translate = 'translate3d(' + pos.x + 'px ,' + pos.y + 'px, 0)';
+
+      cursor.style.transform = translate;
+      cursorCircle.style.transform = scale;
+    };
+
+    function loop() {
+      updateCursor();
+      requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+
+    // Add hover modifiers to common interactive elements
+    const autoAdd = document.querySelectorAll('a, button, .btn-primary, .btn-secondary');
+    autoAdd.forEach(el => el.classList.add('cursor-hover'));
+
+    const cursorModifiers = document.querySelectorAll('.cursor-hover');
+
+    cursorModifiers.forEach(cursorModifier => {
+      cursorModifier.addEventListener('mouseenter', function() {
+        cursorCircle.style.width = "100px";
+        cursorCircle.style.height = "100px";
+        cursorCircle.style.color = "#000";
+      });
+
+      cursorModifier.addEventListener('mouseleave', function() {
+        cursorCircle.style.width = "16px";
+        cursorCircle.style.height = "16px";
+        cursorCircle.style.color = "transparent";
+      });
+    });
+  } catch (err) {
+    // if cursor element not present, fail silently
+    // console.warn('Custom cursor not initialized', err);
+  }
+});
