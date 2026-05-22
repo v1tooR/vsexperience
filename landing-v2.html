@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <title>VS Experience V2 - Experiências digitais com intenção real</title>
+  <meta name="description" content="Estratégia, UX/UI e execução técnica — construídas para validar, converter e escalar.">
+  <link rel="icon" type="image/webp" href="assets/images/logo/vslogo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    /* ================================================
+       LANDING V2 — HERO OVERRIDE & EXTENSIONS
+       ================================================ */
+
+    :root {
+      --font-mono: 'DM Mono', 'JetBrains Mono', monospace;
+      --fg-subtle: hsl(0, 0%, 32%);
+      --primary-bright: hsl(5, 42%, 62%);
+      --primary-glow: hsla(5, 50%, 28%, 0.55);
+    }
+
+    /* ------------------------------------------------
+       HERO V2 BASE
+       ------------------------------------------------ */
+
+    .hero-v2 {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: hsl(0, 0%, 5%);
+      isolation: isolate;
+    }
+
+    /* DOT GRID BACKGROUND */
+    .hv2-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, hsla(0, 0%, 100%, 0.022) 1px, transparent 0);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* LEFT AMBIENT GLOW */
+    .hv2-bg-glow-l {
+      position: absolute;
+      left: -220px;
+      top: 15%;
+      width: 750px;
+      height: 600px;
+      background: radial-gradient(ellipse, hsla(5, 55%, 26%, 0.55) 0%, transparent 68%);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      animation: hv2-breathe 9s ease-in-out infinite;
+    }
+
+    /* TOP CENTER GLOW */
+    .hv2-bg-glow-t {
+      position: absolute;
+      top: -180px;
+      left: 38%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(ellipse, hsla(5, 38%, 20%, 0.32) 0%, transparent 68%);
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* RIGHT ACCENT GLOW (subtle) */
+    .hv2-bg-glow-r {
+      position: absolute;
+      right: -100px;
+      bottom: 10%;
+      width: 500px;
+      height: 400px;
+      background: radial-gradient(ellipse, hsla(5, 40%, 22%, 0.25) 0%, transparent 65%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: hv2-breathe 12s ease-in-out 3s infinite;
+    }
+
+    @keyframes hv2-breathe {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    /* MAIN GRID */
+    .hv2-grid {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 56fr 44fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 88rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 8rem 4rem 5rem;
+    }
+
+    /* ------------------------------------------------
+       LEFT — CONTENT
+       ------------------------------------------------ */
+
+    .hv2-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    /* EYEBROW */
+    .hv2-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: 999px;
+      border: 1px solid hsla(0, 0%, 100%, 0.07);
+      background: hsla(0, 0%, 100%, 0.03);
+      backdrop-filter: blur(12px);
+      margin-bottom: 2.25rem;
+      opacity: 0;
+      animation: hv2-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    }
+
+    .hv2-eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: hsl(40, 75%, 55%);
+      box-shadow: 0 0 0 3px hsla(40, 75%, 55%, 0.22);
+      flex-shrink: 0;
+      animation: hv2-ping 2.4s ease-in-out infinite;
+    }
+
+    @keyframes hv2-ping {
+      0%, 100% { box-shadow: 0 0 0 3px hsla(40, 75%, 55%, 0.22); }
+      50% { box-shadow: 0 0 0 7px hsla(40, 75%, 55%, 0); }
+    }
+
+    .hv2-eyebrow-text {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+    }
+
+    /* HEADLINE */
+    .hv2-headline {
+      font-family: var(--font-family);
+      font-size: clamp(3rem, 6.5vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: var(--foreground);
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: hv2-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    }
+
+    .hv2-headline .hv2-grad {
+      background: linear-gradient(
+        135deg,
+        hsl(5, 42%, 52%) 0%,
+        hsl(5, 48%, 68%) 50%,
+        hsl(5, 42%, 56%) 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* SEPARATOR */
+    .hv2-sep {
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, hsl(5, 42%, 45%), transparent);
+      margin-bottom: 1.5rem;
+      border-radius: 2px;
+      animation: hv2-sep-grow 0.5s ease-out 0.9s forwards;
+    }
+
+    @keyframes hv2-sep-grow {
+      to { width: 2.75rem; }
+    }
+
+    /* SUBTITLE */
+    .hv2-sub {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      font-weight: 400;
+      color: var(--muted-foreground);
+      line-height: 1.72;
+      max-width: 44ch;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: hv2-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.0s forwards;
+    }
+
+    /* STATS ROW */
+    .hv2-stats {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: hv2-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.15s forwards;
+    }
+
+    .hv2-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hv2-stat-num {
+      font-family: var(--font-mono);
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--foreground);
+      line-height: 1;
+    }
+
+    .hv2-stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--muted-foreground);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .hv2-stat-sep {
+      color: var(--fg-subtle);
+      font-size: 1.25rem;
+      line-height: 1;
+      user-select: none;
+      opacity: 0.4;
+    }
+
+    /* CTAS */
+    .hv2-ctas {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: hv2-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
+    }
+
+    .hv2-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.625rem;
+      background: linear-gradient(135deg, hsl(5, 38%, 21%) 0%, hsl(5, 42%, 29%) 100%);
+      color: var(--foreground);
+      border-radius: 12px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      font-family: var(--font-family);
+      text-decoration: none;
+      border: 1px solid hsla(5, 38%, 50%, 0.18);
+      box-shadow:
+        0 4px 16px hsla(5, 38%, 22%, 0.32),
+        inset 0 1px 0 hsla(0, 0%, 100%, 0.07);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hv2-cta-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, hsla(0,0%,100%,0.06), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .hv2-cta-primary:hover::before { opacity: 1; }
+
+    .hv2-cta-primary:hover {
+      box-shadow:
+        0 8px 28px hsla(5, 38%, 22%, 0.5),
+        inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .hv2-cta-primary svg {
+      width: 1rem;
+      height: 1rem;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s ease;
+    }
+
+    .hv2-cta-primary:hover svg { transform: translateX(3px); }
+
+    .hv2-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.25rem;
+      color: var(--muted-foreground);
+      border-radius: 12px;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      font-family: var(--font-family);
+      text-decoration: none;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .hv2-cta-secondary:hover {
+      color: var(--foreground);
+      border-color: hsla(5, 38%, 42%, 0.28);
+      background: hsla(0, 0%, 100%, 0.055);
+    }
+
+    /* MICROCOPY */
+    .hv2-micro {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--fg-subtle);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: hv2-fade 0.8s ease 1.5s forwards;
+    }
+
+    /* ------------------------------------------------
+       RIGHT — VISUAL
+       ------------------------------------------------ */
+
+    .hv2-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100%;
+    }
+
+    .hv2-img-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      z-index: 2;
+      opacity: 0;
+      transform: scale(0.97) translateY(12px);
+      animation: hv2-img-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+    }
+
+    @keyframes hv2-img-in {
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .hv2-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+    }
+
+    /* Subtle warm glow around image */
+    .hv2-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at 50% 60%, hsla(5, 40%, 22%, 0.2) 0%, transparent 65%);
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* FLOATING CARDS */
+    .hv2-float {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1.05rem;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        hsla(0, 0%, 100%, 0.065) 0%,
+        hsla(0, 0%, 100%, 0.025) 100%
+      );
+      border: 1px solid hsla(0, 0%, 100%, 0.09);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      box-shadow:
+        0 8px 32px hsla(0, 0%, 0%, 0.28),
+        inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+      z-index: 10;
+      white-space: nowrap;
+      min-width: 175px;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .hv2-float-1 {
+      left: -8%;
+      top: 28%;
+    }
+
+    .hv2-float-2 {
+      right: -6%;
+      bottom: 20%;
+    }
+
+    .hv2-float-icon {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 9px;
+      background: linear-gradient(
+        135deg,
+        hsla(5, 38%, 22%, 0.5),
+        hsla(5, 38%, 22%, 0.18)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid hsla(5, 38%, 50%, 0.12);
+    }
+
+    .hv2-float-icon svg {
+      width: 0.9375rem;
+      height: 0.9375rem;
+      stroke: hsl(5, 42%, 65%);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hv2-float-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hv2-float-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--foreground);
+      line-height: 1;
+      font-family: var(--font-family);
+    }
+
+    .hv2-float-sub {
+      font-size: 0.625rem;
+      color: var(--muted-foreground);
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+    }
+
+    /* Float animation states */
+    .hv2-float.float-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hv2-float.float-animated {
+      animation: hv2-floaty 4.8s ease-in-out infinite;
+    }
+
+    .hv2-float.hv2-float-2.float-animated {
+      animation-duration: 5.4s;
+      animation-delay: 1.1s;
+    }
+
+    @keyframes hv2-floaty {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      33% { transform: translateY(-7px) translateX(-2px); }
+      66% { transform: translateY(4px) translateX(2px); }
+    }
+
+    /* ------------------------------------------------
+       SCROLL CUE
+       ------------------------------------------------ */
+
+    .hv2-scroll-cue {
+      position: absolute;
+      bottom: 2.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 10;
+      opacity: 0;
+      animation: hv2-fade 1s ease 2.2s forwards;
+    }
+
+    .hv2-scroll-label {
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+
+    .hv2-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--fg-subtle), transparent);
+      transform-origin: top;
+      animation: hv2-scroll-drop 1.8s cubic-bezier(0.4, 0, 0.2, 1) 2.5s infinite;
+    }
+
+    @keyframes hv2-scroll-drop {
+      0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      40% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      60% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ------------------------------------------------
+       ENTRANCE KEYFRAMES
+       ------------------------------------------------ */
+
+    @keyframes hv2-rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes hv2-fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ------------------------------------------------
+       RESPONSIVE
+       ------------------------------------------------ */
+
+    @media (max-width: 1023px) {
+      .hv2-grid {
+        grid-template-columns: 1fr;
+        padding: 7rem 2rem 4rem;
+        gap: 3rem;
+      }
+
+      .hv2-visual {
+        order: -1;
+        height: auto;
+      }
+
+      .hv2-img-wrap {
+        max-width: 240px;
+        margin: 0 auto;
+      }
+
+      .hv2-float { display: none; }
+
+      .hv2-headline {
+        font-size: clamp(2.5rem, 8vw, 3.75rem);
+      }
+
+      .hv2-scroll-cue { display: none; }
+
+      .hv2-stats {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hv2-grid {
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .hv2-sub {
+        max-width: 100%;
+      }
+
+      .hv2-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .hv2-cta-primary,
+      .hv2-cta-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hv2-stats {
+        flex-wrap: wrap;
+        row-gap: 0.875rem;
+      }
+
+      .hv2-stat-sep {
+        display: none;
+      }
+    }
+
+    /* ------------------------------------------------
+       NAV ACTIVE LINK STATE
+       ------------------------------------------------ */
+
+    .nav-link.active {
+      color: var(--foreground);
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <nav class="nav-surface">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <img src="assets/images/logo/vslogo.webp" alt="VS Experience logo">
+          </div>
+          <span class="logo-text">VS Experience</span>
+        </a>
+
+        <div class="nav-desktop">
+          <a href="#servicos" class="nav-link">Serviços</a>
+          <a href="#processo" class="nav-link">Processo</a>
+          <a href="#portfolio" class="nav-link">Cases</a>
+          <a href="#sobre" class="nav-link">Sobre</a>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience"
+           class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Conversar</a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="#servicos" class="mobile-nav-link">Serviços</a>
+        <a href="#processo" class="mobile-nav-link">Processo</a>
+        <a href="#portfolio" class="mobile-nav-link">Cases</a>
+        <a href="#sobre" class="mobile-nav-link">Sobre</a>
+        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience"
+           class="btn-primary" target="_blank" rel="noopener noreferrer">Conversar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================
+         HERO V2
+         =================================================== -->
+    <section class="hero-v2" id="hero" aria-label="Hero">
+
+      <!-- Background layers -->
+      <div class="hv2-bg-grid" aria-hidden="true"></div>
+      <div class="hv2-bg-glow-l" aria-hidden="true"></div>
+      <div class="hv2-bg-glow-t" aria-hidden="true"></div>
+      <div class="hv2-bg-glow-r" aria-hidden="true"></div>
+
+      <!-- Main grid -->
+      <div class="hv2-grid">
+
+        <!-- LEFT: Content -->
+        <div class="hv2-content">
+
+          <!-- Eyebrow badge -->
+          <div class="hv2-eyebrow" role="note">
+            <span class="hv2-eyebrow-dot" aria-hidden="true"></span>
+            <span class="hv2-eyebrow-text">Disponível para novos projetos</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="hv2-headline">
+            Experiências<br>
+            digitais com<br>
+            <span class="hv2-grad">intenção real.</span>
+          </h1>
+
+          <!-- Decorative separator -->
+          <div class="hv2-sep" aria-hidden="true"></div>
+
+          <!-- Value prop -->
+          <p class="hv2-sub">
+            Estratégia, UX/UI e execução técnica — construídas
+            para validar, converter e escalar. Sem achismo, sem estética vazia.
+          </p>
+
+          <!-- Trust stats -->
+          <div class="hv2-stats" aria-label="Credenciais">
+            <div class="hv2-stat">
+              <span class="hv2-stat-num">1º</span>
+              <span class="hv2-stat-label">UI/UX · SPSKILLS</span>
+            </div>
+            <span class="hv2-stat-sep" aria-hidden="true">/</span>
+            <div class="hv2-stat">
+              <span class="hv2-stat-num">G4</span>
+              <span class="hv2-stat-label">Educação · Banco Inter</span>
+            </div>
+            <span class="hv2-stat-sep" aria-hidden="true">/</span>
+            <div class="hv2-stat">
+              <span class="hv2-stat-num">10+</span>
+              <span class="hv2-stat-label">Projetos entregues</span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="hv2-ctas">
+            <a href="#portfolio" class="hv2-cta-primary">
+              Ver projetos
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience"
+               class="hv2-cta-secondary" target="_blank" rel="noopener noreferrer">
+              Conversar sobre seu projeto
+            </a>
+          </div>
+
+          <!-- Microcopy -->
+          <p class="hv2-micro">Sem enrolação. Decisão bem feita + entrega de verdade.</p>
+        </div>
+
+        <!-- RIGHT: Visual -->
+        <div class="hv2-visual">
+          <div class="hv2-img-wrap">
+            <img
+              src="assets/images/hero/victorsemfundo.webp"
+              alt="Victor Santos — Product Designer e Dev Full Stack"
+              width="400"
+            >
+
+            <!-- Floating card 1: UX/UI -->
+            <div class="hv2-float hv2-float-1" aria-hidden="true">
+              <div class="hv2-float-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M9 21V9"/>
+                </svg>
+              </div>
+              <div class="hv2-float-body">
+                <span class="hv2-float-label">UX/UI · Produto</span>
+                <span class="hv2-float-sub">Experiência com intenção</span>
+              </div>
+            </div>
+
+            <!-- Floating card 2: Dev -->
+            <div class="hv2-float hv2-float-2" aria-hidden="true">
+              <div class="hv2-float-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                </svg>
+              </div>
+              <div class="hv2-float-body">
+                <span class="hv2-float-label">Execução técnica</span>
+                <span class="hv2-float-sub">Do Figma ao produto real</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="hv2-scroll-cue" aria-hidden="true">
+        <span class="hv2-scroll-label">scroll</span>
+        <div class="hv2-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         POSITIONING SECTION (V1)
+         =================================================== -->
+    <section class="section positioning">
+      <div class="positioning-bg"></div>
+      <div class="container-tight">
+        <div class="positioning-content">
+          <h2 class="section-title animate-fade-up">
+            Não é sobre "fazer tela".
+            <br>
+            <span class="text-gradient-primary">É sobre construir confiança.</span>
+          </h2>
+          <p class="section-text animate-fade-up delay-100">
+            Quando a experiência é bem desenhada, o usuário entende, acredita e avança.
+            <br>
+            Meu foco é fazer seu site/app não ser só bonito, mas
+            <span class="text-highlight">vender, captar e fortalecer sua marca.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         SERVICES SECTION (V1)
+         =================================================== -->
+    <section class="section" id="servicos">
+      <div class="container-wide">
+        <div class="section-header">
+          <h2 class="section-title animate-fade-up">
+            O que eu entrego <span class="text-gradient-primary">na prática</span>
+          </h2>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-item bento-lg animate-fade-up">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            <h3>Produto digital (SaaS / MVP / Plataforma)</h3>
+            <p>Fluxos, UI e estrutura para lançar com clareza e evoluir com consistência.</p>
+          </div>
+
+          <div class="bento-item bento-md animate-fade-up delay-100">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            <h3>Dashboards e sistemas internos</h3>
+            <p>Interfaces que organizam dados, reduzem atrito e aceleram decisões.</p>
+          </div>
+
+          <div class="bento-item bento-md animate-fade-up delay-200">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+            <h3>Experiências de conversão</h3>
+            <p>Narrativa + prova + CTA no timing certo — sem "página bonita que não move".</p>
+          </div>
+
+          <div class="bento-item bento-sm animate-fade-up delay-300">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <path d="M12 12h.01M17 12h.01M7 12h.01"/>
+              </svg>
+            </div>
+            <h3>Design system leve + componentes</h3>
+            <p>Padrões reaproveitáveis para manter velocidade e coerência no crescimento.</p>
+          </div>
+
+          <div class="bento-item bento-xs animate-fade-up delay-400">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+              </svg>
+            </div>
+            <h3>Execução técnica com padrão</h3>
+            <p>Do protótipo ao produto real — sem perder intenção no caminho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DIFFERENTIALS SECTION (V1)
+         =================================================== -->
+    <section class="section differentials">
+      <div class="differentials-bg"></div>
+      <div class="container-tight">
+        <div class="section-header">
+          <h2 class="section-title animate-fade-up">
+            Design com lógica de negócio.
+            <br>
+            <span class="text-gradient-primary">Execução com padrão de engenharia.</span>
+          </h2>
+          <p class="section-text animate-fade-up delay-100">
+            O problema de muitos projetos é simples: começam pelo visual e terminam com retrabalho.
+            <br>
+            Eu começo pela clareza (objetivo + usuário + oferta), traduzo isso em arquitetura e UX,
+            e só então elevo com um UI premium — pronto para ser construído de verdade.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="liquid-glass pillar-card animate-fade-up delay-200">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18h6M10 22h4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+              </svg>
+            </div>
+            <h3>Clareza</h3>
+            <p>O usuário entende rápido e decide com menos fricção.</p>
+          </div>
+
+          <div class="liquid-glass pillar-card animate-fade-up delay-300">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Consistência</h3>
+            <p>Padrão visual e funcional que transmite autoridade.</p>
+          </div>
+
+          <div class="liquid-glass pillar-card animate-fade-up delay-400">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 6l-9.5 9.5-5-5L1 18"/>
+                <path d="M17 6h6v6"/>
+              </svg>
+            </div>
+            <h3>Resultado</h3>
+            <p>Decisões feitas para melhorar conversão, engajamento e retenção.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PROCESS SECTION (V1)
+         =================================================== -->
+    <section class="section" id="processo">
+      <div class="container-tight">
+        <div class="section-header">
+          <h2 class="section-title animate-fade-up">
+            Processo <span class="text-gradient-primary">enxuto, profundo e sem surpresa</span>
+          </h2>
+        </div>
+
+        <div class="process-timeline">
+          <div class="process-step animate-fade-up">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3>Diagnóstico</h3>
+              <p class="step-subtitle">(objetivo e contexto real)</p>
+              <p>O que precisa acontecer: leads? vendas? ativação? retenção? confiança?</p>
+            </div>
+            <div class="process-spacer hidden md:block"></div>
+          </div>
+
+          <div class="process-step animate-fade-up delay-100">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3>Arquitetura e narrativa</h3>
+              <p class="step-subtitle">(UX)</p>
+              <p>Hierarquia, fluxos, estrutura e "história" que guia o usuário.</p>
+            </div>
+            <div class="process-spacer hidden md:block"></div>
+          </div>
+
+          <div class="process-step animate-fade-up delay-200">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3>UI premium</h3>
+              <p class="step-subtitle">(sistema de componentes)</p>
+              <p>Visual consistente, microdecisões e componentes reaproveitáveis.</p>
+            </div>
+            <div class="process-spacer hidden md:block"></div>
+          </div>
+
+          <div class="process-step animate-fade-up delay-300">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3>Construção e refinamento</h3>
+              <p>Implementação com padrão, performance e fidelidade ao design.</p>
+            </div>
+            <div class="process-spacer hidden md:block"></div>
+          </div>
+
+          <div class="process-step animate-fade-up delay-400">
+            <div class="step-number">05</div>
+            <div class="step-content">
+              <h3>Ajustes e validação</h3>
+              <p>Evolução orientada por uso real: cliques, funil, feedback e melhoria contínua.</p>
+            </div>
+            <div class="process-spacer hidden md:block"></div>
+          </div>
+        </div>
+
+        <p class="section-microcopy animate-fade-up">
+          Checkpoints claros do início ao fim. Você sabe o que está acontecendo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CASES SECTION (V1)
+         =================================================== -->
+    <section class="section cases" id="portfolio">
+      <div class="container-wide">
+        <div class="section-header">
+          <h2 class="section-title animate-fade-up">
+            Cases <span class="text-gradient-primary">em destaque</span>
+          </h2>
+          <p class="section-subtitle animate-fade-up delay-100">
+            Três projetos para mostrar padrão, direção e entrega — não só "print bonito".
+          </p>
+        </div>
+
+        <div class="cases-grid">
+          <article class="case-card animate-fade-up delay-200">
+            <div class="case-image">
+              <img src="assets/images/cases/g4.webp" alt="G4 Business" class="case-img">
+            </div>
+            <div class="case-content">
+              <span class="case-tag">Institucional - Com Falcotec</span>
+              <h3>G4 Business</h3>
+              <p class="case-focus"><strong>Foco:</strong> experiência, consistência e conversão em páginas e jornadas.</p>
+              <p class="case-deliverables"><strong>Entregas:</strong> estrutura de navegação/UX, UI e implementação com ajuste fino e responsividade.</p>
+              <p class="case-impact"><strong>Impacto:</strong> comunicação mais clara e base sólida para aquisição e escala.</p>
+              <a href="https://g4business.com/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+                Ver projeto
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="case-card animate-fade-up delay-300">
+            <div class="case-image">
+              <img src="assets/images/cases/costaflores.webp" alt="Costa Flores" class="case-img">
+            </div>
+            <div class="case-content">
+              <span class="case-tag">Institucional - VS Experience</span>
+              <h3>Costa Flores</h3>
+              <p class="case-focus"><strong>Foco:</strong> elevar percepção premium e guiar o usuário até a ação com menos atrito.</p>
+              <p class="case-deliverables"><strong>Entregas:</strong> narrativa, organização de seções, UI consistente e CTAs bem posicionados.</p>
+              <p class="case-impact"><strong>Impacto:</strong> mais autoridade na apresentação e jornada mais objetiva até o contato.</p>
+              <a href="https://costaflores.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+                Ver projeto
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="case-card animate-fade-up delay-400">
+            <div class="case-image">
+              <img src="assets/images/cases/ocasafloresta.webp" alt="Casa Floresta" class="case-img">
+            </div>
+            <div class="case-content">
+              <span class="case-tag">Landing Page - com Voia Agency</span>
+              <h3>Casa Floresta</h3>
+              <p class="case-focus"><strong>Foco:</strong> presença digital memorável, com refinamento e fluidez.</p>
+              <p class="case-deliverables"><strong>Entregas:</strong> hierarquia de informação, UI premium e experiência focada em confiança.</p>
+              <p class="case-impact"><strong>Impacto:</strong> site com "cara de marca forte" e intenção clara de conversão.</p>
+              <a href="https://ocasafloresta.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+                Ver projeto
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         TESTIMONIALS SECTION (V1)
+         =================================================== -->
+    <section class="section testimonials">
+      <div class="container-tight">
+        <div class="section-header">
+          <h2 class="section-title animate-fade-up">
+            O que clientes dizem <span class="text-gradient-primary">(na prática)</span>
+          </h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="glass-card testimonial-card animate-fade-up delay-100">
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="testimonial-text">
+              "Victor entregou exatamente o que precisávamos: clareza na proposta e execução impecável. O resultado foi um produto que nossos usuários amam."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">G</div>
+              <div>
+                <p class="author-name">Cliente G4</p>
+                <p class="author-segment">Educação</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card testimonial-card animate-fade-up delay-200">
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="testimonial-text">
+              "Profissionalismo e atenção aos detalhes impressionantes. Cada entrega superou as expectativas e o impacto na conversão foi imediato."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">C</div>
+              <div>
+                <p class="author-name">Cliente Costa Flores</p>
+                <p class="author-segment">Paisagismo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card testimonial-card animate-fade-up delay-300">
+            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="testimonial-text">
+              "Finalmente encontrei alguém que entende de negócio e de design. Victor transformou nossa ideia em um produto real com qualidade premium."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">C</div>
+              <div>
+                <p class="author-name">Cliente Casa Floresta</p>
+                <p class="author-segment">Arquitetura</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         ABOUT SECTION (V1)
+         =================================================== -->
+    <section class="section about" id="sobre">
+      <div class="container-tight">
+        <div class="about-grid">
+          <div class="about-image animate-fade-up">
+            <img src="assets/images/about/victor2.webp" alt="Victor Santos" class="about-photo">
+          </div>
+
+          <div class="about-content">
+            <h2 class="section-title animate-fade-up">
+              Quem é o <span class="text-gradient-primary">Victor</span>
+            </h2>
+
+            <p class="about-text animate-fade-up delay-100">
+              Sou Product Designer focado em Web e Apps, com atuação ponta a ponta: discovery, protótipo e entrega. Meu objetivo é simples: construir experiências que vendem, captam e fortalecem marca — com clareza, consistência e execução técnica.
+            </p>
+
+            <p class="about-text animate-fade-up delay-200">
+              Hoje atuo como CEO na VS Experience, e também como Desenvolvedor Full Stack, trabalhando com evolução de páginas, performance, SEO técnico e integrações orientadas à conversão quando aplicável.
+            </p>
+
+            <ul class="about-highlights animate-fade-up delay-300">
+              <li>
+                <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 15l-2 5l9-11h-5l2-5l-9 11h5z"/>
+                </svg>
+                <span>1º lugar em UI/UX Design (SPSKILLS) — interface para app bancário.</span>
+              </li>
+              <li>
+                <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <path d="M22 4L12 14.01l-3-3"/>
+                </svg>
+                <span>Experiência em projetos para G4 Educação e Banco Inter.</span>
+              </li>
+              <li>
+                <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                </svg>
+                <span>Base técnica: HTML/CSS/JS, Tailwind, React/Next, Figma, MySQL.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         FINAL CTA SECTION (V1)
+         =================================================== -->
+    <section class="section final-cta" id="contato">
+      <div class="final-cta-bg"></div>
+      <div class="final-cta-glow"></div>
+
+      <div class="container-tight">
+        <div class="final-cta-content">
+          <h2 class="section-title animate-fade-up">
+            Quer elevar o padrão do seu produto
+            <br>
+            <span class="text-gradient-primary">e transformar isso em resultado?</span>
+          </h2>
+
+          <p class="final-cta-text animate-fade-up delay-100">
+            Me mande: <span class="text-highlight">o que você vende, pra quem e qual o objetivo.</span>
+          </p>
+
+          <p class="final-cta-subtext animate-fade-up delay-200">
+            Eu te respondo com um caminho claro do que faria primeiro — e como conduziria a construção.
+          </p>
+
+          <div class="final-cta-buttons animate-fade-up delay-300">
+            <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience"
+               class="btn-primary btn-glow" target="_blank" rel="noopener noreferrer">
+              <svg class="btn-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+              Conversar agora
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="#portfolio" class="btn-secondary">Ver projetos em destaque</a>
+          </div>
+
+          <p class="section-microcopy animate-fade-up delay-400">
+            Sem achismo. Sem enrolação. Decisão bem feita + execução de verdade.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container-wide">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <img src="assets/images/logo/vslogo.webp" alt="VS Experience logo">
+            </div>
+            <span class="logo-text">VS Experience</span>
+          </a>
+          <p class="footer-copyright">© 2026 Victor Santos. Todos os direitos reservados.</p>
+        </div>
+
+        <nav class="footer-links">
+          <a href="#" class="footer-link">
+            LinkedIn
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-link">
+            Instagram
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-link">
+            GitHub
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <div id="cursor"><div class="cursor__circle"></div></div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Header scroll ──────────────────────────────────
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', function () {
+      header.classList.toggle('scrolled', window.pageYOffset > 50);
+    }, { passive: true });
+
+    // ── Mobile menu ────────────────────────────────────
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', function () {
+        mobileMenuBtn.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenuBtn.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // ── Smooth scroll ──────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // ── Scroll-triggered fade-up (V1 sections) ─────────
+    const fadeEls = document.querySelectorAll('.animate-fade-up');
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.classList.contains('delay-100') ? 100
+                      : el.classList.contains('delay-200') ? 200
+                      : el.classList.contains('delay-300') ? 300
+                      : el.classList.contains('delay-400') ? 400
+                      : el.classList.contains('delay-500') ? 500 : 0;
+          setTimeout(function () {
+            el.style.animationPlayState = 'running';
+          }, delay);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(function (el) {
+      el.style.animationPlayState = 'paused';
+      io.observe(el);
+    });
+
+    // ── Active nav highlight ───────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', function () {
+      const scrollY = window.pageYOffset;
+      sections.forEach(function (section) {
+        const top = section.offsetTop - header.offsetHeight - 120;
+        if (scrollY >= top && scrollY < top + section.offsetHeight) {
+          navLinks.forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + section.id);
+          });
+        }
+      });
+    }, { passive: true });
+
+    // ── Card 3D tilt ───────────────────────────────────
+    document.querySelectorAll('.bento-item, .case-card, .pillar-card, .testimonial-card')
+      .forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          const r = this.getBoundingClientRect();
+          const rx = (e.clientY - r.top - r.height / 2) / 20;
+          const ry = (r.width / 2 - (e.clientX - r.left)) / 20;
+          this.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+        });
+        card.addEventListener('mouseleave', function () {
+          this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+      });
+
+    // ── Hero parallax glow ─────────────────────────────
+    const glowL = document.querySelector('.hv2-bg-glow-l');
+    if (glowL) {
+      window.addEventListener('mousemove', function (e) {
+        const x = (e.clientX / window.innerWidth - 0.5) * 40;
+        const y = (e.clientY / window.innerHeight - 0.5) * 30;
+        glowL.style.transform = `translate(${x}px, ${y}px)`;
+      }, { passive: true });
+    }
+
+    // ── Floating cards entrance + float loop ───────────
+    const floats = document.querySelectorAll('.hv2-float');
+    setTimeout(function () {
+      floats.forEach(function (el, i) {
+        setTimeout(function () {
+          el.classList.add('float-visible');
+          setTimeout(function () {
+            el.classList.add('float-animated');
+          }, 700);
+        }, i * 220);
+      });
+    }, 1200);
+
+    // ── Button ripple ──────────────────────────────────
+    document.querySelectorAll('.btn-primary, .btn-secondary, .hv2-cta-primary').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        const r = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        Object.assign(ripple.style, {
+          position: 'absolute',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          transform: 'scale(0)',
+          animation: 'ripple 0.55s linear',
+          left: (e.clientX - r.left - 50) + 'px',
+          top: (e.clientY - r.top - 50) + 'px',
+          width: '100px',
+          height: '100px',
+          pointerEvents: 'none'
+        });
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        setTimeout(function () { ripple.remove(); }, 560);
+      });
+    });
+
+    const rippleStyle = document.createElement('style');
+    rippleStyle.textContent = '@keyframes ripple { to { transform: scale(4); opacity: 0; } }';
+    document.head.appendChild(rippleStyle);
+
+    // ── Custom cursor ──────────────────────────────────
+    try {
+      const cursor = document.getElementById('cursor');
+      const circle = cursor.querySelector('.cursor__circle');
+      const mouse = { x: -100, y: -100 };
+      const pos = { x: 0, y: 0 };
+      const speed = 0.35;
+
+      window.addEventListener('mousemove', function (e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      function getSqueeze(dx, dy) {
+        return Math.min(Math.sqrt(dx * dx + dy * dy) / 1500, 0.15);
+      }
+
+      (function loop() {
+        const dx = Math.round(mouse.x - pos.x);
+        const dy = Math.round(mouse.y - pos.y);
+        pos.x += dx * speed;
+        pos.y += dy * speed;
+        const sq = getSqueeze(dx, dy);
+        cursor.style.transform = `translate3d(${pos.x}px,${pos.y}px,0)`;
+        circle.style.transform = `scale(${1 + sq},${1 - sq})`;
+        requestAnimationFrame(loop);
+      })();
+
+      document.querySelectorAll('a, button, .hv2-cta-primary, .hv2-cta-secondary').forEach(function (el) {
+        el.addEventListener('mouseenter', function () {
+          circle.style.width = '80px';
+          circle.style.height = '80px';
+        });
+        el.addEventListener('mouseleave', function () {
+          circle.style.width = '16px';
+          circle.style.height = '16px';
+        });
+      });
+    } catch (e) { /* fail silently on mobile */ }
+
+    console.log('%c VS Experience V2 ', 'background:linear-gradient(135deg,#4F2623,#7a3d3a);color:#F8F8F8;font-size:20px;padding:8px 18px;border-radius:8px;font-weight:700;');
+  });
+
+  window.addEventListener('load', function () {
+    document.body.classList.add('loaded');
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1840 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial — Moriah Clinic · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       MORIAH CLINIC · PROPOSTA COMERCIAL INTERATIVA
+       VS Experience · 2026
+    ═══════════════════════════════════════════════════════ */
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ─── VARIABLES ──────────────────────────────────────── */
+    :root {
+      --bg:           hsl(0, 0%, 6%);
+      --bg2:          hsl(0, 0%, 9%);
+      --fg:           hsl(0, 0%, 97%);
+      --fg-muted:     rgba(247,247,247,0.65);
+      --fg-subtle:    rgba(247,247,247,0.36);
+      --nude:         hsl(5, 38%, 55%);
+      --rose:         hsl(5, 38%, 45%);
+      --champagne:    hsl(5, 38%, 68%);
+      --brown:        hsl(5, 38%, 22%);
+      --card-bg:      hsla(0, 0%, 100%, 0.03);
+      --card-border:  hsla(0, 0%, 100%, 0.08);
+      --gradient:     linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+      --radius:       20px;
+      --radius-lg:    28px;
+      --radius-sm:    12px;
+      --shadow:       0 8px 32px rgba(0,0,0,0.30);
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.18);
+    }
+
+    /* ─── BASE ───────────────────────────────────────────── */
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.intro-active { overflow: hidden; }
+
+    /* Ambient background glows */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 15%;
+      left: -300px;
+      width: 600px;
+      height: 700px;
+      background: hsl(5, 60%, 35%);
+      border-radius: 100%;
+      filter: blur(150px);
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      animation: glow-breathe 6s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      top: 55%;
+      right: -400px;
+      width: 800px;
+      height: 400px;
+      background: hsl(5, 65%, 40%);
+      border-radius: 100%;
+      filter: blur(150px);
+      opacity: 0.2;
+      mix-blend-mode: screen;
+      animation: glow-breathe 8s 2s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes glow-breathe {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.35; }
+    }
+
+    /* ─── INTRO OVERLAY ──────────────────────────────────── */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 560px;
+      height: 320px;
+      background: hsl(5, 60%, 35%);
+      border-radius: 100%;
+      filter: blur(120px);
+      opacity: 0.3;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: glow-breathe 6s ease-in-out infinite;
+    }
+    .intro-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .intro-ornament {
+      opacity: 0;
+      animation: fade-in 0.8s ease 0.3s forwards;
+    }
+    .intro-pre {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(247,247,247,0.42);
+      opacity: 0;
+      animation: fade-up 0.6s ease 0.85s forwards;
+    }
+    .intro-title {
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: hsl(0, 0%, 97%);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fade-up 0.7s ease 1.3s forwards;
+    }
+    .intro-clinic {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: fade-up 0.6s ease 1.9s forwards;
+    }
+    .intro-bar-wrap {
+      width: 200px;
+      height: 1px;
+      background: rgba(247,247,247,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: fade-in 0.4s ease 2.4s forwards;
+    }
+    .intro-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, hsl(5,38%,22%), hsl(5,38%,55%));
+      border-radius: 999px;
+      animation: bar-fill 2.3s cubic-bezier(0.4, 0, 0.2, 1) 2.6s forwards;
+    }
+    @keyframes bar-fill { to { width: 100%; } }
+    .intro.exit {
+      animation: intro-slide-out 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes intro-slide-out { to { transform: translateY(-100%); } }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container       { max-width: 82rem; margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .section         { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-alt     { background: rgba(15,15,15,0.5); }
+    .section-header  { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.0625rem;
+      color: var(--fg-muted);
+      line-height: 1.72;
+      max-width: 60ch;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, hsl(5, 38%, 45%) 0%, hsl(5, 38%, 65%) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+    }
+    .eyebrow-line {
+      display: inline-block;
+      width: 1.75rem;
+      height: 1px;
+      background: var(--rose);
+      opacity: 0.6;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 1.125rem 1.5rem;
+      transition: padding 0.3s ease;
+    }
+    .header.scrolled { padding: 0.5rem 1.5rem; }
+    .nav-surface {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.625rem 1.125rem;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+    .header.scrolled .nav-surface {
+      background: rgba(10,10,10,0.88);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--fg);
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    @media (min-width: 900px) { .nav-links { display: flex; } }
+    .nav-link {
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: var(--fg); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      padding: 0.65rem 1.375rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      background: var(--gradient);
+      color: hsl(0, 0%, 97%);
+      border: none;
+      box-shadow: 0 4px 16px hsla(5,38%,45%,0.28);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px hsla(5,38%,45%,0.38);
+    }
+    .btn-secondary {
+      padding: 0.65rem 1.375rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--fg);
+      backdrop-filter: blur(12px);
+    }
+    .btn-secondary:hover {
+      border-color: hsla(5,38%,45%,0.3);
+      background: rgba(255,255,255,0.08);
+    }
+    .btn-lg {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 16px;
+    }
+    .btn svg {
+      width: 1rem;
+      height: 1rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* Mobile menu toggle */
+    .mob-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.4rem;
+      cursor: pointer;
+    }
+    @media (min-width: 900px) { .mob-toggle { display: none; } }
+    .mob-toggle span {
+      width: 22px;
+      height: 1.5px;
+      background: var(--fg);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .mob-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .mob-toggle.open span:nth-child(2) { opacity: 0; }
+    .mob-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .mob-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.97);
+      z-index: 490;
+      padding: 5.5rem 2rem 2rem;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu .nav-link { font-size: 1.375rem; font-weight: 500; }
+    .mob-menu .btn-primary { margin-top: 1rem; justify-content: center; }
+
+    /* ─── HEADER MOBILE FIXES ────────────────────────────── */
+    @media (max-width: 899px) {
+      /* Remove double-padding: header já tem seu próprio padding */
+      .header { padding: 0.75rem 1rem; }
+      .header .container { padding: 0; }
+      /* Pill vira rounded-rect no mobile */
+      .nav-surface { padding: 0.5rem 0.875rem; border-radius: 14px; }
+      /* CTA oculto no mobile (já está no menu fullscreen) */
+      #navCta { display: none !important; }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0.625rem 0.75rem; }
+      .nav-logo span { font-size: 0.8125rem; }
+      .mob-menu { padding: 5rem 1.5rem 2rem; gap: 1.25rem; }
+      .mob-menu .nav-link { font-size: 1.125rem; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 500px at 10% 55%, hsla(5,38%,45%,0.055) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 85% 15%, hsla(5,38%,22%,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 4rem; }
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.875rem;
+      border-radius: 999px;
+      border: 1px solid hsla(5,38%,45%,0.22);
+      background: hsla(5,38%,45%,0.06);
+      font-size: 0.6875rem;
+      color: var(--rose);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+    }
+    .hero-tag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+    .hero-title {
+      font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.0625rem;
+      color: var(--fg-muted);
+      line-height: 1.72;
+      max-width: 48ch;
+      margin-bottom: 2rem;
+    }
+    .hero-bullets { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .hero-bullet { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; color: var(--fg-muted); }
+    .bullet-chk {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: hsla(5,38%,45%,0.12);
+      border: 1px solid hsla(5,38%,45%,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .bullet-chk svg { width: 0.625rem; height: 0.625rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Summary card */
+    .hero-right { position: relative; display: flex; justify-content: center; align-items: center; }
+    .summary-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+    .sc-head {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .sc-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04));
+      border: 1px solid hsla(5,38%,45%,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sc-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.125rem; }
+    .sc-sub { font-size: 0.75rem; color: var(--fg-subtle); }
+    .sc-rows { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
+    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .sc-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .sc-val { font-size: 0.875rem; font-weight: 500; color: var(--fg); text-align: right; }
+    .sc-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
+    .sc-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0.25rem 0; }
+
+    /* Floating pills */
+    .float-pill {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.875rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(16px);
+      font-size: 0.75rem;
+      color: var(--fg);
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+      z-index: 5;
+    }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .fp-dot.green { background: #5cb87a; box-shadow: 0 0 0 3px rgba(92,184,122,0.2); }
+    .fp-dot.rose  { background: var(--rose); box-shadow: 0 0 0 3px hsla(5,38%,45%,0.2); }
+    .float-pill-1 { top: 10%; right: 4%; animation: fp-float 5s ease-in-out infinite; }
+    .float-pill-2 { bottom: 14%; left: 3%; animation: fp-float 6.5s ease-in-out 1.5s infinite; }
+    @keyframes fp-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @media (max-width: 1023px) { .float-pill { display: none; } }
+
+    /* ─── GLASS CARD ─────────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: hsla(5,38%,45%,0.22);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+    }
+    .card-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.14), hsla(5,38%,45%,0.03));
+      border: 1px solid hsla(5,38%,45%,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .card-icon svg { width: 1.375rem; height: 1.375rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .card-title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.65; }
+
+    /* ─── BENTO GRID ─────────────────────────────────────── */
+    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .b12 { grid-column: span 12; }
+    .b7  { grid-column: span 12; }
+    .b5  { grid-column: span 12; }
+    .b4  { grid-column: span 12; }
+    @media (min-width: 768px) {
+      .b7 { grid-column: span 7; }
+      .b5 { grid-column: span 5; }
+      .b4 { grid-column: span 4; }
+    }
+    .card-lg { padding: 2.25rem; }
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: hsla(5,38%,45%,0.1);
+      border: 1px solid hsla(5,38%,45%,0.18);
+      font-size: 0.6875rem;
+      color: var(--rose);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── INTEGRATION CARDS ──────────────────────────────── */
+    .int-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .int-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+    .int-card:hover { border-color: hsla(5,38%,45%,0.2); transform: translateY(-3px); }
+    @media (max-width: 768px) { .int-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .int-grid { grid-template-columns: 1fr; } }
+    .int-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.14), hsla(5,38%,45%,0.04));
+      border: 1px solid hsla(5,38%,45%,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .int-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .int-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .int-desc { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.5; }
+    .obs-card {
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-sm);
+      background: hsla(5,38%,45%,0.06);
+      border: 1px solid hsla(5,38%,45%,0.16);
+      display: flex;
+      gap: 0.875rem;
+      align-items: flex-start;
+    }
+    .obs-icon { flex-shrink: 0; margin-top: 2px; }
+    .obs-icon svg { width: 1rem; height: 1rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .obs-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.62; }
+
+    /* ─── TWO-COLUMN FEATURE SECTION ─────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+    .feat-card {
+      padding: 2rem;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+    }
+    .feat-card-title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.625rem; }
+    .feat-card-title svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .feat-list { display: flex; flex-direction: column; gap: 0.625rem; }
+    .feat-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; }
+    .feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 7px; opacity: 0.7; }
+
+    /* ─── SEO SECTION ────────────────────────────────────── */
+    .seo-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .seo-grid { grid-template-columns: 1fr 1fr; } }
+    .seo-included { border-color: hsla(5,38%,45%,0.2); }
+    .seo-excluded { background: rgba(255,255,255,0.03); }
+    .seo-list { display: flex; flex-direction: column; gap: 0.625rem; margin-top: 1rem; }
+    .seo-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); }
+    .seo-item .icon-ok  svg { stroke: var(--rose); }
+    .seo-item .icon-no  svg { stroke: rgba(247,247,247,0.3); }
+    .seo-item-icon { flex-shrink: 0; margin-top: 1px; }
+    .seo-item-icon svg { width: 1rem; height: 1rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── ACCORDION ──────────────────────────────────────── */
+    .accordion { display: flex; flex-direction: column; gap: 0.75rem; }
+    .acc-item {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .acc-item.open { border-color: hsla(5,38%,45%,0.2); }
+    .acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: none;
+      color: var(--fg);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+    }
+    .acc-trigger-left { display: flex; align-items: center; gap: 0.75rem; }
+    .acc-trigger-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: hsla(5,38%,45%,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .acc-trigger-icon svg { width: 0.9375rem; height: 0.9375rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .acc-chevron { width: 1.125rem; height: 1.125rem; stroke: var(--fg-subtle); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; flex-shrink: 0; }
+    .acc-item.open .acc-chevron { transform: rotate(180deg); }
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .acc-item.open .acc-body { max-height: 500px; }
+    .acc-inner {
+      padding: 0 1.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.125rem;
+    }
+    .acc-sub-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .acc-sub-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; }
+    .acc-x { width: 1rem; height: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .acc-x svg { width: 1rem; height: 1rem; stroke: rgba(247,247,247,0.28); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .acc-note { margin-top: 1rem; padding: 0.875rem 1rem; border-radius: 10px; background: hsla(5,38%,45%,0.06); border: 1px solid hsla(5,38%,45%,0.12); font-size: 0.8125rem; color: var(--fg-muted); font-style: italic; }
+
+    /* ─── REVISIONS ──────────────────────────────────────── */
+    .revision-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .revision-grid { grid-template-columns: 1fr 1fr; } }
+    .rev-card { padding: 2rem; border-radius: var(--radius); background: var(--card-bg); border: 1px solid var(--card-border); }
+    .rev-card.included { border-color: hsla(5,38%,45%,0.22); background: hsla(5,38%,45%,0.04); }
+    .rev-card-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+    .rev-card-title svg { width: 1rem; height: 1rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .rev-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .rev-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); }
+    .rev-ok svg { stroke: var(--rose); }
+    .rev-no svg { stroke: rgba(247,247,247,0.28); }
+    .rev-item-icon { flex-shrink: 0; margin-top: 1px; }
+    .rev-item-icon svg { width: 0.9375rem; height: 0.9375rem; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .rev-note { margin-top: 1.5rem; padding: 1.25rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.65; text-align: center; grid-column: 1 / -1; }
+
+    /* ─── TIMELINE ───────────────────────────────────────── */
+    .timeline { position: relative; display: flex; flex-direction: column; gap: 0; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.5rem;
+      top: 2.5rem;
+      bottom: 2.5rem;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, hsla(5,38%,45%,0.3), transparent);
+    }
+    @media (min-width: 768px) {
+      .timeline::before { left: 50%; transform: translateX(-50%); }
+    }
+    .tl-step {
+      position: relative;
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      padding-left: 4rem;
+    }
+    @media (min-width: 768px) {
+      .tl-step { padding-left: 0; align-items: flex-start; }
+      .tl-step:nth-child(odd)  { flex-direction: row; padding-right: calc(50% + 3rem); }
+      .tl-step:nth-child(even) { flex-direction: row-reverse; padding-left: calc(50% + 3rem); }
+    }
+    .tl-num {
+      position: absolute;
+      left: 0;
+      top: 1.75rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04));
+      border: 1px solid hsla(5,38%,45%,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose);
+      flex-shrink: 0;
+      z-index: 2;
+    }
+    @media (min-width: 768px) {
+      .tl-num {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 2rem;
+      }
+    }
+    .tl-content {
+      flex: 1;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+    }
+    .tl-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .tl-sub { font-size: 0.8125rem; color: var(--rose); margin-bottom: 0.5rem; font-weight: 500; }
+    .tl-desc { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.62; }
+    .tl-footer { margin-top: 2.5rem; text-align: center; font-size: 0.9375rem; color: var(--fg-muted); padding: 1.25rem; border-radius: var(--radius-sm); background: hsla(5,38%,45%,0.05); border: 1px solid hsla(5,38%,45%,0.14); }
+    .tl-footer strong { color: var(--fg); }
+
+    /* ─── CHECKLIST ──────────────────────────────────────── */
+    .checklist { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .checklist { grid-template-columns: 1fr 1fr; } }
+    .chk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1.125rem;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      line-height: 1.5;
+      transition: border-color 0.3s ease;
+    }
+    .chk-item:hover { border-color: hsla(5,38%,45%,0.2); }
+    .chk-mark {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: hsla(5,38%,45%,0.1);
+      border: 1px solid hsla(5,38%,45%,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .chk-mark svg { width: 0.625rem; height: 0.625rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .chk-note { grid-column: 1 / -1; margin-top: 1rem; padding: 1.125rem 1.25rem; border-radius: var(--radius-sm); background: hsla(5,38%,45%,0.05); border: 1px solid hsla(5,38%,45%,0.14); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.62; font-style: italic; }
+
+    /* ─── DEAL CARD ──────────────────────────────────────── */
+    .deal-card {
+      padding: 3rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid hsla(5,38%,45%,0.2);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      backdrop-filter: blur(24px);
+    }
+    .deal-card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, hsla(5,38%,45%,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .deal-amount {
+      display: inline-block;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 1rem 0;
+    }
+    .deal-label { font-size: 0.8125rem; color: var(--fg-subtle); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .deal-text { font-size: 1rem; color: var(--fg-muted); line-height: 1.7; max-width: 56ch; margin: 0 auto 1.5rem; }
+    .deal-text-sm { font-size: 0.875rem; color: var(--fg-subtle); line-height: 1.65; max-width: 52ch; margin: 0 auto; }
+
+    /* ─── FINAL CTA ──────────────────────────────────────── */
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, hsla(5,38%,45%,0.09) 0%, transparent 68%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+    .cta-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+    .cta-sub { font-size: 1rem; color: var(--fg-muted); line-height: 1.7; max-width: 54ch; margin: 0 auto 2.5rem; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-text { font-size: 0.8125rem; color: var(--fg-subtle); line-height: 1.7; }
+    .footer-text a { color: var(--rose); transition: opacity 0.2s; }
+    .footer-text a:hover { opacity: 0.75; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+    .reveal.d4 { transition-delay: 0.4s; }
+
+    /* ─── FOCUS / ACCESSIBILITY ──────────────────────────── */
+    :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ─── SCROLLBAR ──────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: hsla(5,38%,45%,0.3); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: hsla(5,38%,45%,0.5); }
+  </style>
+</head>
+<body class="intro-active">
+
+<!-- ═══════════════════ INTRO OVERLAY ═══════════════════ -->
+<div class="intro" id="intro" role="status" aria-live="polite" aria-label="Carregando proposta">
+  <div class="intro-inner">
+    <svg class="intro-ornament" width="160" height="24" viewBox="0 0 160 24" fill="none" aria-hidden="true">
+      <line x1="0" y1="12" x2="62" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+      <path d="M80 5 L88 12 L80 19 L72 12 Z" stroke="hsl(5,38%,45%)" stroke-width="0.9" opacity="0.75" fill="none"/>
+      <line x1="98" y1="12" x2="160" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+    </svg>
+    <p class="intro-pre">Bem-vindo à</p>
+    <h1 class="intro-title">sua proposta.</h1>
+    <p class="intro-clinic">Moriah Clinic</p>
+    <div class="intro-bar-wrap" aria-hidden="true">
+      <div class="intro-bar" id="introBar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ HEADER ═══════════════════════════ -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav-surface" aria-label="Navegação principal">
+      <!-- Logo -->
+      <a href="#" class="nav-logo" aria-label="VS Experience">
+        <img src="../assets/images/logo/vslogo.webp" alt="VS Experience logo" width="28" height="28" style="border-radius:8px; flex-shrink:0;">
+        <span>VS Experience</span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="nav-links" role="list">
+        <a href="#visao-geral" class="nav-link" role="listitem">Visão Geral</a>
+        <a href="#escopo"      class="nav-link" role="listitem">Escopo</a>
+        <a href="#entregas"    class="nav-link" role="listitem">Entregas</a>
+        <a href="#cronograma"  class="nav-link" role="listitem">Cronograma</a>
+        <a href="#condicoes"   class="nav-link" role="listitem">Condições</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#condicoes" class="btn btn-primary" style="display:none" id="navCta">
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button class="mob-toggle" id="mobToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Menu mobile" aria-modal="true">
+  <a href="#visao-geral" class="nav-link">Visão Geral</a>
+  <a href="#escopo"      class="nav-link">Escopo</a>
+  <a href="#entregas"    class="nav-link">Entregas</a>
+  <a href="#cronograma"  class="nav-link">Cronograma</a>
+  <a href="#condicoes"   class="nav-link">Condições</a>
+  <a href="#condicoes"   class="btn btn-primary">Aprovar proposta</a>
+</div>
+
+<main>
+  <!-- ═══════════════ 1. HERO ═══════════════════════════════ -->
+  <section class="hero" id="visao-geral" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: content -->
+        <div class="hero-left">
+          <div class="hero-tag" aria-label="Proposta exclusiva">
+            <span class="hero-tag-dot" aria-hidden="true"></span>
+            Proposta Comercial Exclusiva
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            Proposta estratégica<br>
+            para o site da<br>
+            <span class="gradient-text">Moriah Clinic.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Uma estrutura digital completa — site, blog, copywriting e SEO estratégico — pensada para posicionar a Moriah Clinic com autoridade e atrair pacientes organicamente.
+          </p>
+
+          <ul class="hero-bullets" aria-label="Destaques da proposta">
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+              </span>
+              Site profissional com copywriting completo para todas as páginas
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+              </span>
+              Blog com estratégia de SEO e pesquisa aprofundada de palavras-chave
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+              </span>
+              Agendamento direto via WhatsApp e Simples Agenda
+            </li>
+          </ul>
+
+          <div class="hero-ctas">
+            <a href="#escopo" class="btn btn-primary btn-lg">
+              Ver escopo
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#condicoes" class="btn btn-secondary btn-lg">
+              Aprovar proposta
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: summary card + floating pills -->
+        <div class="hero-right">
+          <!-- Floating pills -->
+          <div class="float-pill float-pill-1" aria-hidden="true">
+            <span class="fp-dot green"></span>
+            Escopo bem definido
+          </div>
+          <div class="float-pill float-pill-2" aria-hidden="true">
+            <span class="fp-dot rose"></span>
+            Modelo: Permuta
+          </div>
+
+          <!-- Summary card -->
+          <div class="summary-card" role="complementary" aria-label="Resumo da proposta">
+            <div class="sc-head">
+              <div class="sc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+              </div>
+              <div>
+                <p class="sc-title">Resumo da Proposta</p>
+                <p class="sc-sub">VS Experience · 2026</p>
+              </div>
+            </div>
+
+            <div class="sc-rows">
+              <div class="sc-row">
+                <span class="sc-label">Cliente</span>
+                <span class="sc-val">Moriah Clinic</span>
+              </div>
+              <div class="sc-divider" aria-hidden="true"></div>
+              <div class="sc-row">
+                <span class="sc-label">Projeto</span>
+                <span class="sc-val">Site estratégico</span>
+              </div>
+              <div class="sc-row">
+                <span class="sc-label">Modelo</span>
+                <span class="sc-val accent">Permuta</span>
+              </div>
+              <div class="sc-divider" aria-hidden="true"></div>
+              <div class="sc-row">
+                <span class="sc-label">Prazo estimado</span>
+                <span class="sc-val">20 a 30 dias úteis</span>
+              </div>
+            </div>
+
+            <a href="#condicoes" class="btn btn-primary" style="width:100%; justify-content:center;">
+              Aprovar proposta
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 2. OBJETIVO ═══════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="objetivo-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Objetivo do projeto
+          <span class="eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h2 class="section-title reveal d1" id="objetivo-title">
+          O que queremos construir <span class="gradient-text">juntos</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Desenvolver uma presença digital completa para a Moriah Clinic: site estratégico, blog com conteúdo otimizado, copywriting profissional para todas as páginas e SEO estruturado para ranqueamento orgânico.
+        </p>
+      </div>
+
+      <div class="card reveal d3" style="max-width:56rem; margin: 0 auto; text-align:left;">
+        <p style="font-size:1rem; color: var(--fg-muted); line-height:1.75;">
+          A proposta tem como finalidade fortalecer a presença digital da clínica, transmitir autoridade e confiança desde o primeiro acesso, e posicionar a Moriah Clinic nos resultados de busca através de SEO estratégico, blog e conteúdo de qualidade — criando uma estrutura sólida para captação orgânica de pacientes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 3. ENTREGAS (BENTO) ══════════════════ -->
+  <section class="section" id="entregas" aria-labelledby="entregas-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Escopo
+        </div>
+        <h2 class="section-title reveal d1" id="entregas-title">
+          O que será <span class="gradient-text">entregue</span>
+        </h2>
+        <p class="section-sub reveal d2">Páginas, blog, copywriting completo e SEO estratégico — tudo planejado para comunicar, posicionar e converter.</p>
+      </div>
+
+      <div class="bento" id="escopo" aria-label="Páginas do site">
+        <!-- Card grande -->
+        <div class="card card-lg b7 reveal">
+          <div class="card-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Página principal
+          </div>
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3 class="card-title">Página Inicial</h3>
+          <p class="card-text">Apresentação geral da clínica, diferenciais, procedimentos em destaque e chamadas para agendamento. Primeira impressão pensada para comunicar confiança e profissionalismo imediatamente.</p>
+        </div>
+
+        <div class="card b5 reveal d1">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3 class="card-title">Sobre a Clínica</h3>
+          <p class="card-text">Apresentação institucional, proposta de atendimento, estrutura, diferenciais e reforço de confiança com a história e o posicionamento da Moriah Clinic.</p>
+        </div>
+
+        <div class="card b4 reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="card-title">Procedimentos</h3>
+          <p class="card-text">Organização dos principais procedimentos oferecidos em blocos claros e objetivos.</p>
+        </div>
+
+        <div class="card b4 reveal d1">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="card-title">Corpo Clínico</h3>
+          <p class="card-text">Apresentação da Dra. Mayara e/ou demais profissionais, com informações fornecidas pela clínica.</p>
+        </div>
+
+        <div class="card b4 reveal d2">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <h3 class="card-title">Agendamento / Contato</h3>
+          <p class="card-text">Direcionamento para WhatsApp, Simples Agenda, localização e canais de contato da clínica.</p>
+        </div>
+
+        <div class="card b12 reveal d3">
+          <div class="card-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Conteúdo & SEO
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:start;">
+            <div>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <h3 class="card-title">Blog & Copywriting</h3>
+              <p class="card-text">Blog estruturado com criação de artigos otimizados. Copywriting completo para todas as páginas do site — textos persuasivos, claros e alinhados ao posicionamento da clínica.</p>
+            </div>
+            <div>
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              </div>
+              <h3 class="card-title">Estratégia de SEO</h3>
+              <p class="card-text">Pesquisa aprofundada de palavras-chave, estratégia completa de SEO e produção de conteúdo pensado para ranqueamento orgânico desde o lançamento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 4. INTEGRAÇÕES ═══════════════════════ -->
+  <section class="section section-alt" aria-labelledby="int-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Funcionalidades</div>
+        <h2 class="section-title reveal d1" id="int-title">Integrações <span class="gradient-text">previstas</span></h2>
+        <p class="section-sub reveal d2">Conexões planejadas para tornar o site funcional desde o primeiro acesso.</p>
+      </div>
+
+      <div class="int-grid reveal d1" role="list">
+        <div class="int-card" role="listitem">
+          <div class="int-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div><p class="int-name">WhatsApp</p><p class="int-desc">Botão com mensagem pré-configurada para agendamento direto.</p></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <div class="int-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div><p class="int-name">Simples Agenda</p><p class="int-desc">Link ou incorporação simples, caso a plataforma permita.</p></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <div class="int-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div><p class="int-name">Localização</p><p class="int-desc">Botão de rota com abertura direta para o Google Maps.</p></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <div class="int-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <div><p class="int-name">Google Analytics</p><p class="int-desc">Configuração inicial de rastreamento, se houver acesso.</p></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <div class="int-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div><p class="int-name">Meta Pixel</p><p class="int-desc">Instalação do pixel de conversão, se houver acesso à conta.</p></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <div class="int-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div><p class="int-name">Search Console</p><p class="int-desc">Configuração inicial para indexação no Google, se houver acesso.</p></div>
+        </div>
+      </div>
+
+      <div class="obs-card reveal d2" role="note">
+        <div class="obs-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        </div>
+        <p class="obs-text">
+          <strong style="color:var(--fg)">Observação sobre o Simples Agenda:</strong> a integração será feita por link externo ou incorporação simples, caso a plataforma permita. Não está incluso desenvolvimento via API, sistema próprio de agenda ou automações avançadas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 5. DESIGN & DESENVOLVIMENTO ══════════ -->
+  <section class="section" aria-labelledby="dev-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Execução</div>
+        <h2 class="section-title reveal d1" id="dev-title">Design e <span class="gradient-text">desenvolvimento</span></h2>
+        <p class="section-sub reveal d2">Tudo desenvolvido para funcionar bem, parecer bem e representar bem a clínica.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="feat-card reveal d1">
+          <h3 class="feat-card-title">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            Design
+          </h3>
+          <ul class="feat-list" aria-label="Itens de design">
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Design responsivo para desktop, tablet e celular</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Estrutura visual moderna, profissional e compatível com clínica estética</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Organização clara das informações</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Botões de chamada para ação em posições estratégicas</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Navegação simples e objetiva</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Adaptação visual à identidade da clínica, caso exista</li>
+          </ul>
+        </div>
+        <div class="feat-card reveal d2">
+          <h3 class="feat-card-title">
+            <svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+            Desenvolvimento
+          </h3>
+          <ul class="feat-list" aria-label="Itens de desenvolvimento">
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Desenvolvimento em WordPress com Elementor, se esse for o ambiente definido</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Otimização básica de carregamento e performance</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Excelente experiência em dispositivos móveis</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Formulários e botões com links funcionando corretamente</li>
+            <li class="feat-item"><span class="feat-dot" aria-hidden="true"></span>Publicação e testes em ambiente real</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 6. SEO ════════════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="seo-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Visibilidade</div>
+        <h2 class="section-title reveal d1" id="seo-title">SEO & Conteúdo <span class="gradient-text">incluso</span></h2>
+        <p class="section-sub reveal d2">Estratégia completa de SEO, criação de conteúdo para o blog e copywriting profissional para todo o site.</p>
+      </div>
+
+      <div class="seo-grid">
+        <div class="card seo-included reveal d1">
+          <h3 class="card-title" style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;">
+            <svg viewBox="0 0 24 24" style="width:1.1rem;height:1.1rem;stroke:var(--rose);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M5 12l4 4L19 7"/></svg>
+            Incluso
+          </h3>
+          <ul class="seo-list" aria-label="SEO incluso">
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Estratégia completa de SEO</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Pesquisa aprofundada de palavras-chave</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Blog com produção de artigos</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Criação completa de copywriting para todo o site</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Títulos, descrições e URLs amigáveis</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Hierarquia correta de títulos (H1, H2, H3)</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Configuração inicial de indexação</li>
+            <li class="seo-item"><span class="seo-item-icon icon-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Otimização básica de imagens quando possível</li>
+          </ul>
+        </div>
+
+        <div class="card seo-excluded reveal d2">
+          <h3 class="card-title" style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;color:var(--fg-muted);">
+            <svg viewBox="0 0 24 24" style="width:1.1rem;height:1.1rem;stroke:var(--fg-subtle);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Não incluso em SEO
+          </h3>
+          <ul class="seo-list" aria-label="SEO não incluso">
+            <li class="seo-item"><span class="seo-item-icon icon-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Acompanhamento mensal de ranqueamento</li>
+            <li class="seo-item"><span class="seo-item-icon icon-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Produção contínua de conteúdo após entrega</li>
+            <li class="seo-item"><span class="seo-item-icon icon-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Gestão de tráfego pago (Google/Meta Ads)</li>
+            <li class="seo-item"><span class="seo-item-icon icon-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Link building e estratégias off-page</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 7. NÃO INCLUSO (ACCORDION) ═══════════ -->
+  <section class="section" aria-labelledby="nao-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Limites do escopo</div>
+        <h2 class="section-title reveal d1" id="nao-title">O que <span class="gradient-text">não está incluso</span></h2>
+        <p class="section-sub reveal d2">Clareza sobre o escopo garante que a entrega seja bem-sucedida para os dois lados.</p>
+      </div>
+
+      <div class="accordion reveal d1" role="list" id="accordion">
+
+        <!-- Item 1 -->
+        <div class="acc-item" role="listitem">
+          <button class="acc-trigger" aria-expanded="false" aria-controls="acc-1">
+            <span class="acc-trigger-left">
+              <span class="acc-trigger-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </span>
+              Conteúdo e Marketing
+            </span>
+            <svg class="acc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body" id="acc-1">
+            <div class="acc-inner">
+              <ul class="acc-sub-list">
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Gestão de tráfego pago</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Criação de campanhas no Google ou Meta Ads</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Produção contínua de conteúdo após entrega</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Acompanhamento mensal de ranqueamento</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="acc-item" role="listitem">
+          <button class="acc-trigger" aria-expanded="false" aria-controls="acc-2">
+            <span class="acc-trigger-left">
+              <span class="acc-trigger-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </span>
+              Identidade e Mídia
+            </span>
+            <svg class="acc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body" id="acc-2">
+            <div class="acc-inner">
+              <ul class="acc-sub-list">
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Identidade visual completa (logo, paleta, tipografia)</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Produção de fotos ou vídeos</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Edição avançada de imagens</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="acc-item" role="listitem">
+          <button class="acc-trigger" aria-expanded="false" aria-controls="acc-3">
+            <span class="acc-trigger-left">
+              <span class="acc-trigger-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              Funcionalidades Avançadas
+            </span>
+            <svg class="acc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body" id="acc-3">
+            <div class="acc-inner">
+              <ul class="acc-sub-list">
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Sistema próprio de agendamento</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Automações via WhatsApp</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Integração via API</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Área administrativa personalizada</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Páginas individuais para cada procedimento</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="acc-item" role="listitem">
+          <button class="acc-trigger" aria-expanded="false" aria-controls="acc-4">
+            <span class="acc-trigger-left">
+              <span class="acc-trigger-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </span>
+              Infraestrutura e Pós-entrega
+            </span>
+            <svg class="acc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="acc-body" id="acc-4">
+            <div class="acc-inner">
+              <ul class="acc-sub-list">
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Manutenção mensal</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Suporte contínuo após a entrega</li>
+                <li class="acc-sub-item"><span class="acc-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Hospedagem e domínio, caso ainda não existam</li>
+              </ul>
+              <p class="acc-note">Esses itens podem ser orçados separadamente, caso a clínica deseje evoluir o projeto no futuro.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 8. REVISÕES ══════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="rev-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Ajustes</div>
+        <h2 class="section-title reveal d1" id="rev-title">Política de <span class="gradient-text">revisões</span></h2>
+        <p class="section-sub reveal d2">O projeto contempla até 2 rodadas de ajustes após a apresentação da primeira versão do site.</p>
+      </div>
+
+      <div class="revision-grid">
+        <div class="rev-card included reveal d1">
+          <h3 class="rev-card-title">
+            <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+            O que é considerado revisão
+          </h3>
+          <ul class="rev-list">
+            <li class="rev-item"><span class="rev-item-icon rev-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Textos fornecidos pela clínica</li>
+            <li class="rev-item"><span class="rev-item-icon rev-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Imagens e fotos</li>
+            <li class="rev-item"><span class="rev-item-icon rev-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Ordem de seções</li>
+            <li class="rev-item"><span class="rev-item-icon rev-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Botões e links</li>
+            <li class="rev-item"><span class="rev-item-icon rev-ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Pequenos ajustes visuais</li>
+          </ul>
+        </div>
+
+        <div class="rev-card reveal d2">
+          <h3 class="rev-card-title" style="color:var(--fg-muted);">
+            <svg viewBox="0 0 24 24" style="stroke:var(--fg-subtle);"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Não são revisões simples
+          </h3>
+          <ul class="rev-list">
+            <li class="rev-item"><span class="rev-item-icon rev-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Mudança completa de layout</li>
+            <li class="rev-item"><span class="rev-item-icon rev-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Criação de novas páginas</li>
+            <li class="rev-item"><span class="rev-item-icon rev-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Troca total da estrutura aprovada</li>
+            <li class="rev-item"><span class="rev-item-icon rev-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Inclusão de novas funcionalidades</li>
+            <li class="rev-item"><span class="rev-item-icon rev-no" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Reformulação completa após aprovação</li>
+          </ul>
+        </div>
+
+        <p class="rev-note reveal d3">
+          Revisões fora deste escopo poderão ser avaliadas separadamente, garantindo equilíbrio e qualidade em todo o processo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 9. CRONOGRAMA ════════════════════════ -->
+  <section class="section" id="cronograma" aria-labelledby="crono-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Planejamento</div>
+        <h2 class="section-title reveal d1" id="crono-title">Cronograma <span class="gradient-text">de entrega</span></h2>
+        <p class="section-sub reveal d2">Processo organizado em etapas claras, sem surpresas no caminho.</p>
+      </div>
+
+      <div class="timeline" aria-label="Etapas do projeto">
+        <div class="tl-step reveal">
+          <div class="tl-num" aria-label="Etapa 1">01</div>
+          <div class="tl-content">
+            <p class="tl-title">Alinhamento e materiais</p>
+            <p class="tl-sub">Início imediato</p>
+            <p class="tl-desc">Recebimento de informações, imagens, acessos e definição da estrutura. Alinhamento de expectativas e organização do briefing completo.</p>
+          </div>
+        </div>
+        <div class="tl-step reveal d1">
+          <div class="tl-num" aria-label="Etapa 2">02</div>
+          <div class="tl-content">
+            <p class="tl-title">Estrutura e organização</p>
+            <p class="tl-sub">Dias 1–5</p>
+            <p class="tl-desc">Organização das páginas, hierarquia de informações e direcionamento da navegação. Definição da arquitetura do site antes de começar o visual.</p>
+          </div>
+        </div>
+        <div class="tl-step reveal d2">
+          <div class="tl-num" aria-label="Etapa 3">03</div>
+          <div class="tl-content">
+            <p class="tl-title">Design e desenvolvimento</p>
+            <p class="tl-sub">Dias 6–20</p>
+            <p class="tl-desc">Criação visual e desenvolvimento responsivo do site. Construção com padrão e fidelidade ao escopo aprovado.</p>
+          </div>
+        </div>
+        <div class="tl-step reveal d3">
+          <div class="tl-num" aria-label="Etapa 4">04</div>
+          <div class="tl-content">
+            <p class="tl-title">Integrações e ajustes</p>
+            <p class="tl-sub">Dias 20–25</p>
+            <p class="tl-desc">Configuração de WhatsApp, Simples Agenda, SEO básico e ajustes previstos nas rodadas de revisão.</p>
+          </div>
+        </div>
+        <div class="tl-step reveal d4">
+          <div class="tl-num" aria-label="Etapa 5">05</div>
+          <div class="tl-content">
+            <p class="tl-title">Publicação e validação</p>
+            <p class="tl-sub">Dias 25–30</p>
+            <p class="tl-desc">Publicação final, testes de links, botões, responsividade e funcionamento geral. Entrega com validação completa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-footer reveal" role="note">
+        Prazo estimado: <strong>20 a 30 dias úteis</strong>, contados a partir do recebimento completo dos materiais necessários e acessos.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 10. RESPONSABILIDADES ════════════════ -->
+  <section class="section section-alt" aria-labelledby="resp-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Colaboração</div>
+        <h2 class="section-title reveal d1" id="resp-title">Responsabilidades <span class="gradient-text">da clínica</span></h2>
+        <p class="section-sub reveal d2">Para que o projeto avance com qualidade e no prazo, a clínica precisa fornecer:</p>
+      </div>
+
+      <ul class="checklist reveal d1" aria-label="Lista de responsabilidades da clínica">
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Logo e identidade visual, se houver
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Fotos da clínica e profissionais
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Lista oficial de procedimentos
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Textos ou informações institucionais
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Dados de contato e endereço
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Link do Simples Agenda
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Acesso ao domínio/hospedagem, se necessário
+        </li>
+        <li class="chk-item">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Acessos de Analytics, Pixel ou Search Console
+        </li>
+        <li class="chk-item" style="grid-column:1/-1;">
+          <span class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+          Aprovação dos conteúdos e informações antes da publicação
+        </li>
+        <li class="chk-note" role="note">
+          A responsabilidade sobre a veracidade das informações técnicas, profissionais e legais dos procedimentos é inteiramente da clínica.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 11. MODELO DE NEGOCIAÇÃO ═════════════ -->
+  <section class="section" id="condicoes" aria-labelledby="deal-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Condições</div>
+        <h2 class="section-title reveal d1" id="deal-title">Modelo de <span class="gradient-text">negociação</span></h2>
+      </div>
+
+      <div class="deal-card reveal d1">
+        <p class="deal-label">Modelo de pagamento</p>
+        <div class="deal-amount" aria-label="Permuta">Permuta</div>
+
+        <p class="deal-text">
+          Este projeto será realizado em formato de <strong style="color:var(--fg)">permuta</strong> — o investimento no desenvolvimento do site será compensado por procedimento estético a ser acordado entre as partes.
+        </p>
+
+        <div style="width:80px; height:1px; background:hsla(5,38%,45%,0.25); margin:1.5rem auto;"></div>
+
+        <p class="deal-text-sm">
+          A entrega do site será limitada ao escopo descrito nesta proposta. Qualquer solicitação adicional fora dos itens previstos deverá ser avaliada separadamente e poderá gerar novo orçamento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 12. FINAL CTA ════════════════════════ -->
+  <section class="section final-cta section-alt" aria-labelledby="cta-title">
+    <div class="container-tight">
+      <h2 class="cta-title reveal" id="cta-title">
+        Vamos estruturar a presença<br>
+        digital da <span class="gradient-text">Moriah Clinic</span><br>
+        com clareza e profissionalismo?
+      </h2>
+      <p class="cta-sub reveal d1">
+        A proposta foi pensada para entregar uma presença digital completa — site, blog, copywriting e SEO estratégico — com foco em posicionamento de autoridade e captação orgânica de pacientes.
+      </p>
+      <div class="cta-btns reveal d2">
+        <a href="#" class="btn btn-primary btn-lg" aria-label="Aprovar esta proposta">
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Olá%2C%20tenho%20dúvidas%20sobre%20a%20proposta%20da%20Moriah%20Clinic." class="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer" aria-label="Tirar dúvidas pelo WhatsApp">
+          Tirar dúvidas pelo WhatsApp
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <div class="container">
+    <p class="footer-text">
+      Proposta elaborada por <a href="#" aria-label="VS Experience">VS Experience</a> · Victor Santos · 2026<br>
+      <span style="font-size:0.75rem; opacity:0.7;">Este documento é confidencial e destinado exclusivamente à Moriah Clinic.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  /* ═══════════════════════════════════════════════════════
+     MORIAH CLINIC · Proposta Comercial — JavaScript
+  ═══════════════════════════════════════════════════════ */
+
+  /* ── INTRO: remove after 5 seconds ─────────────────── */
+  window.addEventListener('load', function () {
+    var intro = document.getElementById('intro');
+    setTimeout(function () {
+      intro.classList.add('exit');
+      setTimeout(function () {
+        intro.style.display = 'none';
+        document.body.classList.remove('intro-active');
+      }, 700);
+    }, 5000);
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── HEADER scroll behavior ─────────────────────── */
+    var header   = document.getElementById('header');
+    var navCta   = document.getElementById('navCta');
+    window.addEventListener('scroll', function () {
+      var scrolled = window.pageYOffset > 60;
+      header.classList.toggle('scrolled', scrolled);
+      if (navCta) navCta.style.display = scrolled ? 'inline-flex' : 'none';
+    }, { passive: true });
+
+    /* ── MOBILE MENU ────────────────────────────────── */
+    var mobToggle = document.getElementById('mobToggle');
+    var mobMenu   = document.getElementById('mobMenu');
+
+    mobToggle.addEventListener('click', function () {
+      var open = mobMenu.classList.toggle('open');
+      mobToggle.classList.toggle('open', open);
+      mobToggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    mobMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobMenu.classList.remove('open');
+        mobToggle.classList.remove('open');
+        mobToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ── SMOOTH SCROLL ──────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          var top = target.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight - 16;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* ── INTERSECTION OBSERVER (reveal animations) ──── */
+    var revealEls = document.querySelectorAll('.reveal');
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function (el) { revealObs.observe(el); });
+
+    /* ── ACCORDION ──────────────────────────────────── */
+    document.querySelectorAll('.acc-trigger').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        var item    = this.closest('.acc-item');
+        var body    = item.querySelector('.acc-body');
+        var isOpen  = item.classList.contains('open');
+
+        /* Close all */
+        document.querySelectorAll('.acc-item.open').forEach(function (openItem) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
+        });
+
+        /* Toggle clicked */
+        if (!isOpen) {
+          item.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ── CARD HOVER 3D TILT ─────────────────────────── */
+    document.querySelectorAll('.card, .int-card, .feat-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r  = this.getBoundingClientRect();
+        var rx = (e.clientY - r.top  - r.height / 2) / 22;
+        var ry = (r.width  / 2 - (e.clientX - r.left)) / 22;
+        this.style.transform = 'perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        this.style.transform = '';
+      });
+    });
+
+    /* ── BUTTON RIPPLE ──────────────────────────────── */
+    document.querySelectorAll('.btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var r  = this.getBoundingClientRect();
+        var rp = document.createElement('span');
+        Object.assign(rp.style, {
+          position: 'absolute',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.22)',
+          transform: 'scale(0)',
+          animation: 'ripple-anim 0.55s linear',
+          left: (e.clientX - r.left - 50) + 'px',
+          top:  (e.clientY - r.top  - 50) + 'px',
+          width: '100px', height: '100px',
+          pointerEvents: 'none'
+        });
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(rp);
+        setTimeout(function () { rp.remove(); }, 560);
+      });
+    });
+
+    /* Inject ripple keyframe */
+    var style = document.createElement('style');
+    style.textContent = '@keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }';
+    document.head.appendChild(style);
+
+    /* ── CONSOLE ────────────────────────────────────── */
+    console.log('%c VS Experience ', 'background:linear-gradient(135deg,hsl(5,38%,22%),hsl(5,38%,45%));color:hsl(0,0%,97%);font-size:18px;padding:8px 18px;border-radius:8px;font-weight:700;');
+    console.log('%c Proposta Comercial · Moriah Clinic ', 'color:hsl(5,38%,45%);font-size:12px;');
+  });
+</script>
+</body>
+</html>
