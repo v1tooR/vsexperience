@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial — Bello Sebo · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       BELLO SEBO · PROPOSTA COMERCIAL INTERATIVA
+       VS Experience · 2026
+    ═══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --bg:           hsl(25, 14%, 6%);
+      --bg2:          hsl(25, 12%, 9%);
+      --fg:           hsl(35, 25%, 96%);
+      --fg-muted:     rgba(248,240,228,0.65);
+      --fg-subtle:    rgba(248,240,228,0.36);
+      --amber:        hsl(35, 68%, 52%);
+      --amber-dark:   hsl(30, 35%, 16%);
+      --amber-light:  hsl(38, 68%, 68%);
+      --amber-dim:    hsl(32, 42%, 32%);
+      --sepia:        hsl(30, 28%, 12%);
+      --card-bg:      hsla(30, 25%, 100%, 0.03);
+      --card-border:  hsla(30, 25%, 100%, 0.08);
+      --gradient:     linear-gradient(135deg, hsl(30, 35%, 16%) 0%, hsl(35, 68%, 52%) 100%);
+      --radius:       20px;
+      --radius-lg:    28px;
+      --radius-sm:    12px;
+      --shadow:       0 8px 32px rgba(0,0,0,0.40);
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.22);
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.intro-active { overflow: hidden; }
+
+    /* Grain texture overlay — evoca papel envelhecido */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    /* Fonte literária para títulos em destaque */
+    .literary { font-family: 'Playfair Display', Georgia, serif; }
+    .literary-italic { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400; }
+
+    /* Decoração de lombada de livro */
+    .spine-deco {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0.5rem 0.25rem;
+      opacity: 0.22;
+      user-select: none;
+      pointer-events: none;
+    }
+    .spine-deco span {
+      display: block;
+      width: 2px;
+      border-radius: 1px;
+      background: var(--amber);
+    }
+
+    /* Tag de "edição especial" no hero */
+    .edition-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.875rem;
+      border-radius: 4px;
+      border: 1px solid hsla(35,68%,52%,0.3);
+      background: hsla(35,68%,52%,0.06);
+      font-size: 0.6875rem;
+      color: var(--amber-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Ornamento de capítulo nas seções */
+    .chapter-mark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.6875rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: 0.375rem;
+      opacity: 0.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 15%;
+      left: -300px;
+      width: 600px;
+      height: 700px;
+      background: hsl(32, 60%, 36%);
+      border-radius: 100%;
+      filter: blur(160px);
+      opacity: 0.16;
+      mix-blend-mode: screen;
+      animation: glow-breathe 7s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* glow direito via .glow-right span injetado no body */
+    .glow-right {
+      position: fixed;
+      top: 55%;
+      right: -400px;
+      width: 800px;
+      height: 400px;
+      background: hsl(32, 50%, 30%);
+      border-radius: 100%;
+      filter: blur(150px);
+      opacity: 0.12;
+      mix-blend-mode: screen;
+      animation: glow-breathe 9s 2s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes glow-breathe {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.28; }
+    }
+
+    /* ─── INTRO OVERLAY ──────────────────────────────────── */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: hsl(30, 10%, 5%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 560px;
+      height: 320px;
+      background: hsl(35, 65%, 40%);
+      border-radius: 100%;
+      filter: blur(120px);
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: glow-breathe 6s ease-in-out infinite;
+    }
+    .intro-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .intro-ornament {
+      opacity: 0;
+      animation: fade-in 0.8s ease 0.3s forwards;
+    }
+    .intro-pre {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(252,245,235,0.42);
+      opacity: 0;
+      animation: fade-up 0.6s ease 0.85s forwards;
+    }
+    .intro-title {
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: hsl(35, 20%, 97%);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fade-up 0.7s ease 1.3s forwards;
+    }
+    .intro-brand {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: fade-up 0.6s ease 1.9s forwards;
+    }
+    .intro-bar-wrap {
+      width: 200px;
+      height: 1px;
+      background: rgba(252,245,235,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: fade-in 0.4s ease 2.4s forwards;
+    }
+    .intro-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, hsl(35,30%,18%), hsl(35,65%,55%));
+      border-radius: 999px;
+      animation: bar-fill 2.3s cubic-bezier(0.4, 0, 0.2, 1) 2.6s forwards;
+    }
+    @keyframes bar-fill { to { width: 100%; } }
+    .intro.exit {
+      animation: intro-slide-out 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes intro-slide-out { to { transform: translateY(-100%); } }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container       { max-width: 82rem; margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .section         { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-alt     { background: rgba(20,15,10,0.5); }
+    .section-header  { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.0625rem;
+      color: var(--fg-muted);
+      line-height: 1.72;
+      max-width: 60ch;
+    }
+    .gradient-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      background: linear-gradient(135deg, hsl(35, 68%, 52%) 0%, hsl(38, 68%, 68%) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+    }
+    .eyebrow-line {
+      display: inline-block;
+      width: 1.75rem;
+      height: 1px;
+      background: var(--amber);
+      opacity: 0.6;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 1.125rem 1.5rem;
+      transition: padding 0.3s ease;
+    }
+    .header.scrolled { padding: 0.5rem 1.5rem; }
+    .nav-surface {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.625rem 1.125rem;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+    .header.scrolled .nav-surface {
+      background: rgba(12,9,6,0.90);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--fg);
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.75rem;
+    }
+    @media (min-width: 900px) { .nav-links { display: flex; } }
+    .nav-link {
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--amber);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: var(--fg); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      padding: 0.65rem 1.375rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      background: var(--gradient);
+      color: hsl(35, 20%, 97%);
+      border: none;
+      box-shadow: 0 4px 16px hsla(35,65%,50%,0.28);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px hsla(35,65%,50%,0.38);
+    }
+    .btn-secondary {
+      padding: 0.65rem 1.375rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--fg);
+      backdrop-filter: blur(12px);
+    }
+    .btn-secondary:hover {
+      border-color: hsla(35,65%,50%,0.3);
+      background: rgba(255,255,255,0.06);
+    }
+    .btn-lg {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 16px;
+    }
+    .btn svg {
+      width: 1rem;
+      height: 1rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .mob-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.4rem;
+      cursor: pointer;
+    }
+    @media (min-width: 900px) { .mob-toggle { display: none; } }
+    .mob-toggle span {
+      width: 22px;
+      height: 1.5px;
+      background: var(--fg);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .mob-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .mob-toggle.open span:nth-child(2) { opacity: 0; }
+    .mob-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .mob-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(12,9,6,0.97);
+      z-index: 490;
+      padding: 5.5rem 2rem 2rem;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu .nav-link { font-size: 1.375rem; font-weight: 500; }
+    .mob-menu .btn-primary { margin-top: 1rem; justify-content: center; }
+
+    @media (max-width: 899px) {
+      .header { padding: 0.75rem 1rem; }
+      .header .container { padding: 0; }
+      .nav-surface { padding: 0.5rem 0.875rem; border-radius: 14px; }
+      #navCta { display: none !important; }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0.625rem 0.75rem; }
+      .nav-logo span { font-size: 0.8125rem; }
+      .mob-menu { padding: 5rem 1.5rem 2rem; gap: 1.25rem; }
+      .mob-menu .nav-link { font-size: 1.125rem; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 500px at 10% 55%, hsla(35,65%,50%,0.045) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 85% 15%, hsla(35,30%,18%,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 4rem; }
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.875rem;
+      border-radius: 999px;
+      border: 1px solid hsla(35,65%,50%,0.22);
+      background: hsla(35,65%,50%,0.06);
+      font-size: 0.6875rem;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+    }
+    .hero-tag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+    .hero-title {
+      font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.0625rem;
+      color: var(--fg-muted);
+      line-height: 1.72;
+      max-width: 48ch;
+      margin-bottom: 2rem;
+    }
+    .hero-bullets { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .hero-bullet { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; color: var(--fg-muted); }
+    .bullet-chk {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: hsla(35,65%,50%,0.12);
+      border: 1px solid hsla(35,65%,50%,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .bullet-chk svg { width: 0.625rem; height: 0.625rem; stroke: var(--amber); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-right { position: relative; display: flex; justify-content: center; align-items: center; }
+    .summary-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .sc-head {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .sc-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, hsla(35,65%,50%,0.18), hsla(35,65%,50%,0.04));
+      border: 1px solid hsla(35,65%,50%,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sc-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.125rem; }
+    .sc-sub { font-size: 0.75rem; color: var(--fg-subtle); }
+    .sc-rows { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
+    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .sc-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .sc-val { font-size: 0.875rem; font-weight: 500; color: var(--fg); text-align: right; }
+    .sc-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
+    .sc-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0.25rem 0; }
+
+    .float-pill {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.875rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(16px);
+      font-size: 0.75rem;
+      color: var(--fg);
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+      z-index: 5;
+    }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .fp-dot.green  { background: #5cb87a; box-shadow: 0 0 0 3px rgba(92,184,122,0.2); }
+    .fp-dot.amber  { background: var(--amber); box-shadow: 0 0 0 3px hsla(35,65%,50%,0.2); }
+    .float-pill-1 { top: 10%; right: 4%; animation: fp-float 5s ease-in-out infinite; }
+    .float-pill-2 { bottom: 14%; left: 3%; animation: fp-float 6.5s ease-in-out 1.5s infinite; }
+    @keyframes fp-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @media (max-width: 1023px) { .float-pill { display: none; } }
+
+    /* ─── CARDS ──────────────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: hsla(35,65%,50%,0.22);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+    }
+    .card-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, hsla(35,65%,50%,0.14), hsla(35,65%,50%,0.03));
+      border: 1px solid hsla(35,65%,50%,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .card-icon svg { width: 1.375rem; height: 1.375rem; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .card-title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.65; }
+
+    /* ─── PRICING OPTIONS ────────────────────────────────── */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 900px) { .options-grid { grid-template-columns: 1fr 1fr; } }
+
+    .option-card {
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .option-card.featured {
+      background: hsla(35,65%,50%,0.04);
+      border-color: hsla(35,65%,50%,0.28);
+      box-shadow: 0 0 0 1px hsla(35,65%,50%,0.08), 0 16px 48px rgba(0,0,0,0.25);
+    }
+    .option-card.featured::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, hsla(35,65%,50%,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .option-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+    .badge-base {
+      background: hsla(35,65%,50%,0.08);
+      border: 1px solid hsla(35,65%,50%,0.15);
+      color: var(--amber);
+    }
+    .badge-featured {
+      background: var(--gradient);
+      color: hsl(35,20%,97%);
+      box-shadow: 0 2px 12px hsla(35,65%,50%,0.3);
+    }
+    .option-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.5rem; }
+    .option-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.375rem; line-height: 1.3; }
+    .option-price {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 1rem 0 1.5rem;
+    }
+    .option-price.accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .option-divider { height: 1px; background: var(--card-border); margin-bottom: 1.5rem; }
+    .option-features { flex: 1; }
+    .option-features-title { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 1rem; }
+    .option-list { display: flex; flex-direction: column; gap: 0.625rem; }
+    .option-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; }
+    .opt-check {
+      width: 1.125rem;
+      height: 1.125rem;
+      border-radius: 50%;
+      background: hsla(35,65%,50%,0.1);
+      border: 1px solid hsla(35,65%,50%,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .opt-check svg { width: 0.5625rem; height: 0.5625rem; stroke: var(--amber); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .opt-x {
+      width: 1.125rem;
+      height: 1.125rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .opt-x svg { width: 0.875rem; height: 0.875rem; stroke: rgba(252,245,235,0.25); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .option-note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.125rem;
+      border-radius: var(--radius-sm);
+      background: hsla(35,65%,50%,0.06);
+      border: 1px solid hsla(35,65%,50%,0.12);
+      font-size: 0.8125rem;
+      color: var(--fg-muted);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Accordion for "não incluso" */
+    .acc-wrap { margin-top: 1.5rem; }
+    .acc-trigger-simple {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.875rem 1.125rem;
+      border-radius: var(--radius-sm);
+      background: rgba(252,245,235,0.03);
+      border: 1px solid var(--card-border);
+      color: var(--fg-muted);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .acc-trigger-simple:hover { border-color: hsla(35,65%,50%,0.2); color: var(--fg); }
+    .acc-trigger-simple svg { width: 0.875rem; height: 0.875rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; flex-shrink: 0; }
+    .acc-trigger-simple.open svg { transform: rotate(180deg); }
+    .acc-body-simple {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .acc-body-simple.open { max-height: 400px; }
+    .acc-inner-simple {
+      padding: 1rem 1.125rem;
+      border: 1px solid var(--card-border);
+      border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+    .not-included-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .not-included-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.8125rem; color: var(--fg-subtle); }
+
+    /* ─── HOSTING ────────────────────────────────────────── */
+    .hosting-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 900px) { .hosting-grid { grid-template-columns: 1.5fr 1fr; gap: 2rem; } }
+    .hosting-features { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .hosting-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      padding: 0.875rem 1.125rem;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      transition: border-color 0.3s ease;
+    }
+    .hosting-item:hover { border-color: hsla(35,65%,50%,0.18); }
+    .h-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: hsla(35,65%,50%,0.1);
+      border: 1px solid hsla(35,65%,50%,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .h-icon svg { width: 0.9375rem; height: 0.9375rem; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .h-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.125rem; }
+    .h-desc { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.5; }
+    .hosting-price-card {
+      padding: 2.25rem;
+      border-radius: var(--radius-lg);
+      background: hsla(35,65%,50%,0.05);
+      border: 1px solid hsla(35,65%,50%,0.22);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.875rem;
+      position: sticky;
+      top: 6rem;
+    }
+    .hosting-price-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-subtle); }
+    .hosting-price-amount {
+      font-size: clamp(2.25rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hosting-price-period { font-size: 0.875rem; color: var(--fg-subtle); margin-top: -0.5rem; }
+    .hosting-note {
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      background: rgba(252,245,235,0.03);
+      border: 1px solid var(--card-border);
+      font-size: 0.8125rem;
+      color: var(--fg-subtle);
+      line-height: 1.65;
+      font-style: italic;
+      text-align: left;
+    }
+
+    /* ─── TIMELINE ───────────────────────────────────────── */
+    .timeline { position: relative; display: flex; flex-direction: column; gap: 0; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.5rem;
+      top: 2.5rem;
+      bottom: 2.5rem;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, hsla(35,65%,50%,0.3), transparent);
+    }
+    @media (min-width: 768px) {
+      .timeline::before { left: 50%; transform: translateX(-50%); }
+    }
+    .tl-step {
+      position: relative;
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      padding-left: 4rem;
+    }
+    @media (min-width: 768px) {
+      .tl-step { padding-left: 0; align-items: flex-start; }
+      .tl-step:nth-child(odd)  { flex-direction: row; padding-right: calc(50% + 3rem); }
+      .tl-step:nth-child(even) { flex-direction: row-reverse; padding-left: calc(50% + 3rem); }
+    }
+    .tl-num {
+      position: absolute;
+      left: 0;
+      top: 1.75rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, hsla(35,65%,50%,0.18), hsla(35,65%,50%,0.04));
+      border: 1px solid hsla(35,65%,50%,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--amber);
+      flex-shrink: 0;
+      z-index: 2;
+    }
+    @media (min-width: 768px) {
+      .tl-num { left: 50%; transform: translateX(-50%); top: 2rem; }
+    }
+    .tl-content {
+      flex: 1;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      transition: border-color 0.3s ease;
+    }
+    .tl-content:hover { border-color: hsla(35,65%,50%,0.2); }
+    .tl-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .tl-sub { font-size: 0.8125rem; color: var(--amber); margin-bottom: 0.5rem; font-weight: 500; }
+    .tl-desc { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.62; }
+    .tl-footer { margin-top: 2.5rem; text-align: center; font-size: 0.9375rem; color: var(--fg-muted); padding: 1.25rem; border-radius: var(--radius-sm); background: hsla(35,65%,50%,0.05); border: 1px solid hsla(35,65%,50%,0.14); }
+    .tl-footer strong { color: var(--fg); }
+
+    /* ─── DEAL / PRICING SUMMARY ─────────────────────────── */
+    .deal-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 600px) { .deal-row { grid-template-columns: 1fr 1fr 1fr; } }
+    .deal-item {
+      padding: 1.75rem;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      text-align: center;
+    }
+    .deal-item.featured {
+      background: hsla(35,65%,50%,0.05);
+      border-color: hsla(35,65%,50%,0.25);
+    }
+    .deal-item-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.625rem; }
+    .deal-item-name { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .deal-item-price {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .deal-item-suffix { font-size: 0.8125rem; color: var(--fg-subtle); margin-top: 0.25rem; }
+
+    .payment-card {
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid hsla(35,65%,50%,0.18);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .payment-card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 280px;
+      background: radial-gradient(ellipse, hsla(35,65%,50%,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .payment-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 44rem;
+      margin: 1.5rem auto 0;
+    }
+    @media (min-width: 640px) { .payment-opts { flex-direction: row; } }
+    .payment-opt {
+      flex: 1;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      text-align: left;
+    }
+    .payment-opt-title { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .payment-opt-desc { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.55; }
+    .payment-sep { display: flex; align-items: center; font-size: 0.75rem; color: var(--fg-subtle); font-weight: 500; padding: 0 0.5rem; }
+    @media (max-width: 639px) { .payment-sep { justify-content: center; } }
+
+    /* ─── FINAL CTA ──────────────────────────────────────── */
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 350px;
+      background: radial-gradient(ellipse, hsla(35,65%,50%,0.08) 0%, transparent 68%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+    .cta-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+    .cta-sub { font-size: 1rem; color: var(--fg-muted); line-height: 1.7; max-width: 50ch; margin: 0 auto 2.5rem; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1rem 2rem;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+      transition: all 0.3s ease;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+    }
+    .btn-whatsapp svg { width: 1.25rem; height: 1.25rem; fill: #fff; flex-shrink: 0; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-text { font-size: 0.8125rem; color: var(--fg-subtle); line-height: 1.7; }
+    .footer-text a { color: var(--amber); transition: opacity 0.2s; }
+    .footer-text a:hover { opacity: 0.75; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+    .reveal.d4 { transition-delay: 0.4s; }
+
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: hsla(35,65%,50%,0.3); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: hsla(35,65%,50%,0.5); }
+  </style>
+</head>
+<body class="intro-active">
+<div class="glow-right" aria-hidden="true"></div>
+
+<!-- ═══════════════════ INTRO OVERLAY ═══════════════════ -->
+<div class="intro" id="intro" role="status" aria-live="polite" aria-label="Carregando proposta">
+  <div class="intro-inner">
+    <!-- Ornamento: livro aberto estilizado -->
+    <svg class="intro-ornament" width="160" height="48" viewBox="0 0 160 48" fill="none" aria-hidden="true">
+      <line x1="0" y1="24" x2="52" y2="24" stroke="hsl(35,68%,52%)" stroke-width="0.6" opacity="0.35"/>
+      <!-- livro aberto -->
+      <path d="M80 10 C72 12 66 16 64 24 C66 32 72 36 80 38" stroke="hsl(35,68%,52%)" stroke-width="1.1" opacity="0.8" fill="none" stroke-linecap="round"/>
+      <path d="M80 10 C88 12 94 16 96 24 C94 32 88 36 80 38" stroke="hsl(35,68%,52%)" stroke-width="1.1" opacity="0.8" fill="none" stroke-linecap="round"/>
+      <line x1="80" y1="11" x2="80" y2="37" stroke="hsl(35,68%,52%)" stroke-width="0.7" opacity="0.5"/>
+      <!-- linhas de texto -->
+      <line x1="67" y1="20" x2="78" y2="20" stroke="hsl(35,68%,52%)" stroke-width="0.5" opacity="0.35"/>
+      <line x1="67" y1="24" x2="78" y2="24" stroke="hsl(35,68%,52%)" stroke-width="0.5" opacity="0.35"/>
+      <line x1="67" y1="28" x2="75" y2="28" stroke="hsl(35,68%,52%)" stroke-width="0.5" opacity="0.35"/>
+      <line x1="82" y1="20" x2="93" y2="20" stroke="hsl(35,68%,52%)" stroke-width="0.5" opacity="0.35"/>
+      <line x1="82" y1="24" x2="93" y2="24" stroke="hsl(35,68%,52%)" stroke-width="0.5" opacity="0.35"/>
+      <line x1="82" y1="28" x2="90" y2="28" stroke="hsl(35,68%,52%)" stroke-width="0.5" opacity="0.35"/>
+      <line x1="108" y1="24" x2="160" y2="24" stroke="hsl(35,68%,52%)" stroke-width="0.6" opacity="0.35"/>
+    </svg>
+    <p class="intro-pre">Bem-vindo à</p>
+    <h1 class="intro-title">sua proposta.</h1>
+    <p class="intro-brand">Bello Sebo</p>
+    <div class="intro-bar-wrap" aria-hidden="true">
+      <div class="intro-bar" id="introBar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ HEADER ═══════════════════════════ -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav-surface" aria-label="Navegação principal">
+      <a href="#" class="nav-logo" aria-label="VS Experience">
+        <img src="../assets/images/logo/vslogo.webp" alt="VS Experience logo" width="28" height="28" style="border-radius:8px; flex-shrink:0;">
+        <span>VS Experience</span>
+      </a>
+
+      <div class="nav-links" role="list">
+        <a href="#visao-geral" class="nav-link" role="listitem">Visão Geral</a>
+        <a href="#opcoes"      class="nav-link" role="listitem">Opções</a>
+        <a href="#hospedagem"  class="nav-link" role="listitem">Hospedagem</a>
+        <a href="#cronograma"  class="nav-link" role="listitem">Cronograma</a>
+        <a href="#condicoes"   class="nav-link" role="listitem">Condições</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#condicoes" class="btn btn-primary" style="display:none" id="navCta">
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button class="mob-toggle" id="mobToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Menu mobile" aria-modal="true">
+  <a href="#visao-geral" class="nav-link">Visão Geral</a>
+  <a href="#opcoes"      class="nav-link">Opções</a>
+  <a href="#hospedagem"  class="nav-link">Hospedagem</a>
+  <a href="#cronograma"  class="nav-link">Cronograma</a>
+  <a href="#condicoes"   class="nav-link">Condições</a>
+  <a href="#condicoes"   class="btn btn-primary">Aprovar proposta</a>
+</div>
+
+<main>
+
+  <!-- ═══════════════ 1. HERO ═══════════════════════════════ -->
+  <section class="hero" id="visao-geral" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <p class="edition-tag" aria-hidden="true">— Proposta personalizada —</p>
+
+          <h1 class="hero-title" id="hero-title">
+            Sistema de controle<br>
+            para o<br>
+            <span class="gradient-text">Bello Sebo.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Uma ferramenta prática e moderna para gerenciar acervo, controlar estoque e registrar vendas — desenvolvida sob medida para a operação do dia a dia do sebo.
+          </p>
+
+          <ul class="hero-bullets" aria-label="Destaques da proposta">
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+              </span>
+              Cadastro ágil por ISBN/código de barras
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+              </span>
+              Controle de estoque e baixa automática por venda
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>
+              </span>
+              Relatórios e histórico de vendas
+            </li>
+          </ul>
+
+          <div class="hero-ctas">
+            <a href="#opcoes" class="btn btn-primary btn-lg">
+              Ver opções
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#condicoes" class="btn btn-secondary btn-lg">
+              Aprovar proposta
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="float-pill float-pill-1" aria-hidden="true">
+            <span class="fp-dot amber"></span>
+            Opção 2 disponível
+          </div>
+          <div class="float-pill float-pill-2" aria-hidden="true">
+            <span class="fp-dot green"></span>
+            30 a 45 dias
+          </div>
+
+          <div class="summary-card" role="complementary" aria-label="Resumo da proposta">
+            <div class="sc-head">
+              <div class="sc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <p class="sc-title">Resumo da Proposta</p>
+                <p class="sc-sub">VS Experience · 2026</p>
+              </div>
+            </div>
+
+            <div class="sc-rows">
+              <div class="sc-row">
+                <span class="sc-label">Cliente</span>
+                <span class="sc-val">Bello Sebo</span>
+              </div>
+              <div class="sc-divider" aria-hidden="true"></div>
+              <div class="sc-row">
+                <span class="sc-label">Projeto</span>
+                <span class="sc-val">Sistema de Controle de Acervo</span>
+              </div>
+              <div class="sc-row">
+                <span class="sc-label">Opções</span>
+                <span class="sc-val accent">2 planos disponíveis</span>
+              </div>
+              <div class="sc-divider" aria-hidden="true"></div>
+              <div class="sc-row">
+                <span class="sc-label">Prazo estimado</span>
+                <span class="sc-val">30 a 45 dias</span>
+              </div>
+            </div>
+
+            <div style="padding:0.75rem 0; margin-bottom:0.875rem; border-top:1px solid var(--card-border); display:flex; align-items:center; gap:0.5rem;">
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--amber)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <a href="https://www.bellosebo.com/" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem; color:var(--fg-subtle); font-style:italic; font-family:'Playfair Display',Georgia,serif; transition:color 0.2s;" onmouseover="this.style.color='var(--amber-light)'" onmouseout="this.style.color='var(--fg-subtle)'">bellosebo.com</a>
+            </div>
+
+            <a href="#condicoes" class="btn btn-primary" style="width:100%; justify-content:center;">
+              Aprovar proposta
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 2. OBJETIVO ═══════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="objetivo-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Objetivo do projeto
+          <span class="eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h2 class="section-title reveal d1" id="objetivo-title">
+          O que queremos construir <span class="gradient-text">juntos</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Desenvolver um sistema interno simples e funcional para auxiliar o sebo no controle de acervo, cadastro de livros, estoque e baixa de vendas por meio de leitura de código ISBN/código de barras.
+        </p>
+      </div>
+
+      <div class="card reveal d3" style="max-width:56rem; margin: 0 auto; text-align:left;">
+        <p style="font-size:1rem; color: var(--fg-muted); line-height:1.75;">
+          A proposta é criar uma ferramenta prática para o dia a dia da operação, permitindo que a equipe cadastre livros com mais agilidade, consulte informações do acervo, controle quantidades disponíveis e registre vendas com baixa automática no estoque. Uma solução pensada de ponta a ponta para o ritmo real de um sebo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 3. OPÇÕES ══════════════════════════════ -->
+  <section class="section" id="opcoes" aria-labelledby="opcoes-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Planos
+        </div>
+        <h2 class="section-title reveal d1" id="opcoes-title">
+          Escolha a opção <span class="gradient-text">ideal</span>
+        </h2>
+        <p class="section-sub reveal d2">Duas propostas com escopo claro — escolha o que faz mais sentido para o momento do Bello Sebo.</p>
+      </div>
+
+      <div class="options-grid">
+
+        <!-- OPÇÃO 1 -->
+        <div class="option-card reveal">
+          <div class="option-badge badge-base" aria-label="Opção 1">
+            <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Opção 1
+          </div>
+          <p class="option-label">Sistema completo</p>
+          <h3 class="option-title">Sistema de Controle para Sebo</h3>
+          <p class="option-price">R$ 6.500<span style="font-size:1.25rem; font-weight:400; opacity:0.6">,00</span></p>
+          <div class="option-divider"></div>
+          <div class="option-features">
+            <p class="option-features-title">Funcionalidades incluídas</p>
+            <ul class="option-list" aria-label="Funcionalidades da Opção 1">
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Cadastro de livros por ISBN/código de barras
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Busca automática de dados em base externa quando disponível
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Cadastro manual quando o livro não for encontrado
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Cadastro de título, autor, editora, ano, capa, categoria e observações
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Controle de quantidade em estoque
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Cadastro de clientes/doadores
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Registro de doações de livros
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Registro da condição do livro (novo, usado, seminovo, danificado)
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Cadastro de preço de venda
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Busca interna por título, autor, ISBN ou categoria
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Tela de venda/baixa por bipagem
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Baixa automática no estoque após venda
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Histórico de vendas
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Relatório simples de estoque
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Relatório de livros vendidos
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Backup/exportação dos dados
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Interface responsiva para computador ou tablet
+              </li>
+            </ul>
+
+            <div class="acc-wrap">
+              <button class="acc-trigger-simple" id="acc1-trigger" aria-expanded="false" aria-controls="acc1-body">
+                Ver o que não está incluso nesta etapa
+                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="acc-body-simple" id="acc1-body" role="region" aria-labelledby="acc1-trigger">
+                <div class="acc-inner-simple">
+                  <ul class="not-included-list">
+                    <li class="not-included-item">
+                      <span class="opt-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                      Integração com Wix
+                    </li>
+                    <li class="not-included-item">
+                      <span class="opt-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                      Venda online
+                    </li>
+                    <li class="not-included-item">
+                      <span class="opt-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                      Emissão fiscal
+                    </li>
+                    <li class="not-included-item">
+                      <span class="opt-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                      Integração com marketplace
+                    </li>
+                    <li class="not-included-item">
+                      <span class="opt-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                      Aplicativo mobile
+                    </li>
+                    <li class="not-included-item">
+                      <span class="opt-x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+                      Sistema de assinatura para outros sebos
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OPÇÃO 2 -->
+        <div class="option-card featured reveal d1">
+          <div class="option-badge badge-featured" aria-label="Opção recomendada">
+            ★ Recomendada
+          </div>
+          <p class="option-label">Sistema completo + fidelização</p>
+          <h3 class="option-title">Sistema de Controle + Programa de Pontos por Doação</h3>
+          <p class="option-price accent">R$ 8.000<span style="font-size:1.25rem; font-weight:400; opacity:0.7; -webkit-text-fill-color: initial; background: none; color: var(--fg-subtle)">,00</span></p>
+          <div class="option-divider"></div>
+          <div class="option-features">
+            <p class="option-features-title">Tudo da Opção 1 + Módulo de Pontos:</p>
+            <ul class="option-list" aria-label="Funcionalidades extras da Opção 2">
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Geração de pontos ou créditos por doação
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Histórico de pontos recebidos e utilizados
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Saldo atual de pontos por cliente
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Uso de pontos como desconto em compras futuras
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Registro do abatimento dos pontos no momento da venda
+              </li>
+              <li class="option-item">
+                <span class="opt-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+                Consulta de clientes com maior participação no programa
+              </li>
+            </ul>
+            <div class="option-note">
+              A regra de pontuação poderá ser definida de forma simples, permitindo que o atendente informe manualmente os pontos/créditos conforme a quantidade, condição e relevância dos livros doados.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 4. HOSPEDAGEM ════════════════════════ -->
+  <section class="section section-alt" id="hospedagem" aria-labelledby="hosting-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Infraestrutura
+        </div>
+        <h2 class="section-title reveal d1" id="hosting-title">
+          Hospedagem e <span class="gradient-text">Suporte Técnico</span>
+        </h2>
+        <p class="section-sub reveal d2">Tudo que o sistema precisa para rodar com segurança, disponibilidade e suporte contínuo.</p>
+      </div>
+
+      <div class="hosting-grid">
+        <div class="reveal">
+          <div class="hosting-features">
+            <div class="hosting-item">
+              <div class="h-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div>
+                <p class="h-name">Hospedagem do sistema</p>
+                <p class="h-desc">Servidor configurado e dedicado para o funcionamento do sistema.</p>
+              </div>
+            </div>
+            <div class="hosting-item">
+              <div class="h-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+              </div>
+              <div>
+                <p class="h-name">Banco de dados</p>
+                <p class="h-desc">Armazenamento seguro de todo o acervo, vendas e clientes.</p>
+              </div>
+            </div>
+            <div class="hosting-item">
+              <div class="h-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <p class="h-name">Monitoramento e backups</p>
+                <p class="h-desc">Monitoramento básico de disponibilidade e backups regulares dos dados.</p>
+              </div>
+            </div>
+            <div class="hosting-item">
+              <div class="h-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div>
+                <p class="h-name">Suporte e ajustes mensais</p>
+                <p class="h-desc">Atendimento para dúvidas, pequenas correções técnicas e ajustes simples.</p>
+              </div>
+            </div>
+            <div class="hosting-item">
+              <div class="h-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </div>
+              <div>
+                <p class="h-name">Configuração técnica inicial</p>
+                <p class="h-desc">Setup completo do ambiente, domínio e acesso para a equipe.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 1.125rem 1.25rem; border-radius: var(--radius-sm); background: hsla(35,65%,50%,0.06); border: 1px solid hsla(35,65%,50%,0.14); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.65; font-style: italic;">
+            Serviços externos de infraestrutura podem sofrer variação de preço conforme consumo, volume de dados, acessos, armazenamento e políticas das plataformas utilizadas. Caso o sistema cresça muito em volume de uso, a hospedagem poderá ser revisada posteriormente.
+          </div>
+        </div>
+
+        <div class="reveal d2">
+          <div class="hosting-price-card">
+            <p class="hosting-price-label">Mensalidade</p>
+            <p class="hosting-price-amount">R$ 297</p>
+            <p class="hosting-price-period">/mês</p>
+            <div style="width:100%; height:1px; background: var(--card-border); margin: 0.5rem 0;"></div>
+            <p style="font-size:0.8125rem; color: var(--fg-muted); line-height:1.6; text-align:left;">
+              Inclui hospedagem, banco de dados, manutenção, monitoramento, backups e suporte mensal para dúvidas e ajustes simples.
+            </p>
+            <a href="#condicoes" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">
+              Ver condições
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 5. CRONOGRAMA ════════════════════════ -->
+  <section class="section" id="cronograma" aria-labelledby="cronograma-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Cronograma
+          <span class="eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h2 class="section-title reveal d1" id="cronograma-title">
+          Do alinhamento à <span class="gradient-text">entrega</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Prazo estimado de 30 a 45 dias para a primeira versão funcional, com entregas progressivas e validação contínua.
+        </p>
+      </div>
+
+      <div class="timeline reveal" aria-label="Etapas do projeto">
+        <div class="tl-step">
+          <div class="tl-num" aria-hidden="true">01</div>
+          <div class="tl-content">
+            <p class="tl-title">Alinhamento</p>
+            <p class="tl-sub">Semana 1</p>
+            <p class="tl-desc">Definição de escopo, fluxos e requisitos finais. Validação das necessidades específicas da operação do Bello Sebo.</p>
+          </div>
+        </div>
+
+        <div class="tl-step">
+          <div class="tl-num" aria-hidden="true">02</div>
+          <div class="tl-content">
+            <p class="tl-title">Desenvolvimento base</p>
+            <p class="tl-sub">Semanas 2–3</p>
+            <p class="tl-desc">Cadastro de livros, busca por ISBN, controle de estoque e interface principal do sistema.</p>
+          </div>
+        </div>
+
+        <div class="tl-step">
+          <div class="tl-num" aria-hidden="true">03</div>
+          <div class="tl-content">
+            <p class="tl-title">Módulo de vendas</p>
+            <p class="tl-sub">Semana 4</p>
+            <p class="tl-desc">Tela de venda/baixa por bipagem, baixa automática no estoque e histórico de vendas.</p>
+          </div>
+        </div>
+
+        <div class="tl-step">
+          <div class="tl-num" aria-hidden="true">04</div>
+          <div class="tl-content">
+            <p class="tl-title">Testes e ajustes</p>
+            <p class="tl-sub">Semanas 5–6</p>
+            <p class="tl-desc">Validação com a equipe do sebo, correções de fluxo e refinamentos antes da entrega.</p>
+          </div>
+        </div>
+
+        <div class="tl-step">
+          <div class="tl-num" aria-hidden="true">05</div>
+          <div class="tl-content">
+            <p class="tl-title">Entrega e treinamento</p>
+            <p class="tl-sub">Semana 6+</p>
+            <p class="tl-desc">Deploy, entrega da versão funcional e orientação de uso para a equipe do Bello Sebo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-footer reveal">
+        Prazo estimado: <strong>30 a 45 dias</strong> · considerando alinhamento do escopo, validação das telas e testes de uso.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 6. CONDIÇÕES ═════════════════════════ -->
+  <section class="section section-alt" id="condicoes" aria-labelledby="condicoes-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Investimento
+          <span class="eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h2 class="section-title reveal d1" id="condicoes-title">
+          Condições e <span class="gradient-text">pagamento</span>
+        </h2>
+        <p class="section-sub reveal d2">Flexibilidade para encaixar o investimento na realidade do projeto.</p>
+      </div>
+
+      <div class="deal-row reveal">
+        <div class="deal-item">
+          <p class="deal-item-label">Opção 1</p>
+          <p class="deal-item-name">Sistema de Controle</p>
+          <p class="deal-item-price">R$ 6.500</p>
+          <p class="deal-item-suffix">pagamento único</p>
+        </div>
+        <div class="deal-item featured">
+          <p class="deal-item-label">Opção 2 · Recomendada</p>
+          <p class="deal-item-name">+ Programa de Pontos</p>
+          <p class="deal-item-price">R$ 8.000</p>
+          <p class="deal-item-suffix">pagamento único</p>
+        </div>
+        <div class="deal-item">
+          <p class="deal-item-label">Mensal</p>
+          <p class="deal-item-name">Hospedagem e Suporte</p>
+          <p class="deal-item-price">R$ 297</p>
+          <p class="deal-item-suffix">por mês</p>
+        </div>
+      </div>
+
+      <div class="payment-card reveal d1">
+        <div class="eyebrow" style="justify-content:center; margin-bottom:0.75rem;">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Forma de pagamento
+          <span class="eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Como fica o pagamento?</h3>
+        <p style="font-size:0.9375rem; color: var(--fg-muted); max-width:44ch; margin:0 auto;">Duas formas para encaixar o investimento na evolução do projeto:</p>
+
+        <div class="payment-opts">
+          <div class="payment-opt">
+            <p class="payment-opt-title">50% + 50%</p>
+            <p class="payment-opt-desc">50% na aprovação do projeto e 50% na entrega da primeira versão funcional.</p>
+          </div>
+          <div class="payment-sep">ou</div>
+          <div class="payment-opt">
+            <p class="payment-opt-title">3 Parcelas</p>
+            <p class="payment-opt-desc">3 parcelas conforme a evolução do projeto — alinhamos os marcos juntos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 7. FINAL CTA ══════════════════════════ -->
+  <section class="section final-cta" aria-labelledby="cta-title">
+    <div class="container-tight">
+      <div class="eyebrow reveal" style="justify-content:center;">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        Próximo passo
+        <span class="eyebrow-line" aria-hidden="true"></span>
+      </div>
+      <h2 class="cta-title reveal d1" id="cta-title">
+        Pronto para modernizar<br>
+        o <span class="gradient-text">Bello Sebo?</span>
+      </h2>
+      <p class="cta-sub reveal d2">
+        Entre em contato pelo WhatsApp para alinhar os detalhes, tirar dúvidas e dar o primeiro passo no desenvolvimento do sistema. O acervo do <a href="https://www.bellosebo.com/" target="_blank" rel="noopener noreferrer" style="color:var(--amber-light); font-family:'Playfair Display',Georgia,serif; font-style:italic;">Bello Sebo</a> merece uma ferramenta à altura.
+      </p>
+      <div class="cta-btns reveal d3">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Contato pelo WhatsApp">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <a href="#condicoes" class="btn btn-secondary btn-lg">
+          Ver condições
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p class="footer-text">
+      Proposta preparada por <a href="#">VS Experience</a> · 2026 · Válida por 30 dias
+    </p>
+  </div>
+</footer>
+
+<script>
+  /* ─── INTRO ────────────────────────────────── */
+  const intro = document.getElementById('intro');
+  const body  = document.body;
+  const INTRO_TOTAL = 5200;
+
+  setTimeout(() => {
+    intro.classList.add('exit');
+    intro.addEventListener('animationend', () => {
+      intro.remove();
+      body.classList.remove('intro-active');
+    }, { once: true });
+  }, INTRO_TOTAL);
+
+  /* ─── HEADER SCROLL ────────────────────────── */
+  const header  = document.getElementById('header');
+  const navCta  = document.getElementById('navCta');
+  let lastY = 0;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 60);
+    if (navCta) navCta.style.display = y > 500 ? 'inline-flex' : 'none';
+    lastY = y;
+  }, { passive: true });
+
+  /* ─── MOBILE MENU ──────────────────────────── */
+  const mobToggle = document.getElementById('mobToggle');
+  const mobMenu   = document.getElementById('mobMenu');
+
+  mobToggle.addEventListener('click', () => {
+    const open = mobMenu.classList.toggle('open');
+    mobToggle.classList.toggle('open', open);
+    mobToggle.setAttribute('aria-expanded', open);
+  });
+
+  mobMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobMenu.classList.remove('open');
+      mobToggle.classList.remove('open');
+      mobToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ─── SCROLL REVEAL ────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ─── ACCORDION (não incluso) ──────────────── */
+  const acc1Trigger = document.getElementById('acc1-trigger');
+  const acc1Body    = document.getElementById('acc1-body');
+
+  acc1Trigger.addEventListener('click', () => {
+    const open = acc1Body.classList.toggle('open');
+    acc1Trigger.classList.toggle('open', open);
+    acc1Trigger.setAttribute('aria-expanded', open);
+  });
+</script>
+</body>
+</html>
