@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Orçamento — E-commerce · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..800;1,300..500&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       PRAADO · ORÇAMENTO E-COMMERCE INTERATIVO
+       VS Experience · 2026
+    ═══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --bg:           #fbe9e9;
+      --bg2:          hsl(0, 42%, 91%);
+      --fg:           hsl(0, 25%, 10%);
+      --fg-muted:     rgba(55, 14, 14, 0.60);
+      --fg-subtle:    rgba(55, 14, 14, 0.38);
+      --rose:         hsl(350, 62%, 42%);
+      --rose-dark:    hsl(350, 62%, 24%);
+      --rose-light:   hsl(350, 62%, 58%);
+      --coral:        hsl(14, 72%, 52%);
+      --coral-dark:   hsl(14, 72%, 32%);
+      --card-bg:      rgba(255, 255, 255, 0.58);
+      --card-border:  hsla(0, 35%, 35%, 0.12);
+      --gradient:     linear-gradient(135deg, hsl(350, 62%, 24%) 0%, hsl(14, 72%, 50%) 100%);
+      --gradient-text:linear-gradient(135deg, hsl(350, 62%, 40%) 0%, hsl(14, 72%, 52%) 100%);
+      --radius:       20px;
+      --radius-lg:    28px;
+      --radius-sm:    12px;
+      --shadow:       0 8px 40px rgba(140, 30, 30, 0.10);
+      --shadow-card:  0 4px 28px rgba(140, 30, 30, 0.08);
+    }
+
+    body {
+      font-family: 'Montserrat', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.intro-active { overflow: hidden; }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 8%;
+      left: -280px;
+      width: 580px;
+      height: 680px;
+      background: hsl(350, 70%, 72%);
+      border-radius: 100%;
+      filter: blur(160px);
+      opacity: 0.18;
+      mix-blend-mode: multiply;
+      animation: glow-breathe 7s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      top: 52%;
+      right: -380px;
+      width: 760px;
+      height: 420px;
+      background: hsl(14, 72%, 68%);
+      border-radius: 100%;
+      filter: blur(160px);
+      opacity: 0.14;
+      mix-blend-mode: multiply;
+      animation: glow-breathe 9s 2.5s infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes glow-breathe {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.28; }
+    }
+
+    /* ─── INTRO ──────────────────────────────────────────── */
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: hsl(350, 45%, 8%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 46%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 520px;
+      height: 300px;
+      background: hsl(350, 62%, 38%);
+      border-radius: 100%;
+      filter: blur(120px);
+      opacity: 0.32;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: glow-breathe 5s ease-in-out infinite;
+    }
+    .intro-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.125rem;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .intro-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, hsla(350,62%,42%,0.25), hsla(14,72%,52%,0.12));
+      border: 1px solid hsla(350,62%,58%,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fade-in 0.6s ease 0.4s forwards;
+    }
+    .intro-icon svg { width: 22px; height: 22px; stroke: var(--rose-light); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .intro-pre {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255, 220, 220, 0.48);
+      opacity: 0;
+      animation: fade-up 0.6s ease 0.9s forwards;
+    }
+    .intro-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: hsl(0, 50%, 97%);
+      opacity: 0;
+      animation: fade-up 0.7s ease 1.35s forwards;
+    }
+    .intro-company {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: fade-up 0.6s ease 1.95s forwards;
+    }
+    .intro-bar-wrap {
+      width: 180px;
+      height: 1px;
+      background: rgba(255, 220, 220, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.375rem;
+      opacity: 0;
+      animation: fade-in 0.4s ease 2.4s forwards;
+    }
+    .intro-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, hsl(350,62%,30%), hsl(14,72%,52%));
+      border-radius: 999px;
+      animation: bar-fill 2.2s cubic-bezier(0.4,0,0.2,1) 2.6s forwards;
+    }
+    @keyframes bar-fill { to { width: 100%; } }
+    .intro.exit { animation: intro-slide-out 0.65s cubic-bezier(0.4,0,0.2,1) forwards; }
+    @keyframes intro-slide-out { to { transform: translateY(-100%); } }
+
+    @keyframes fade-in { to { opacity: 1; } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container       { max-width: 82rem; margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .section         { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-alt     { background: rgba(245, 216, 216, 0.45); }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .display {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.0625rem;
+      color: var(--fg-muted);
+      line-height: 1.72;
+      max-width: 60ch;
+    }
+    .gradient-text {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.375rem;
+    }
+    .eyebrow-line { display: inline-block; width: 1.75rem; height: 1px; background: var(--rose); opacity: 0.55; }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 1.125rem 1.5rem;
+      transition: padding 0.3s ease;
+    }
+    .header.scrolled { padding: 0.5rem 1.5rem; }
+    .nav-surface {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.625rem 1.125rem;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+    .header.scrolled .nav-surface {
+      background: rgba(255, 250, 250, 0.88);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 8px 36px rgba(140, 30, 30, 0.10);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: var(--fg);
+      flex-shrink: 0;
+    }
+    .nav-logo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 2.5px hsla(350,62%,42%,0.22);
+    }
+    .nav-links { display: none; align-items: center; gap: 1.75rem; }
+    @media (min-width: 900px) { .nav-links { display: flex; } }
+    .nav-link {
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: var(--fg); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      padding: 0.65rem 1.375rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 20px hsla(350,62%,42%,0.28);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px hsla(350,62%,42%,0.40);
+    }
+    .btn-secondary {
+      padding: 0.65rem 1.375rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.60);
+      color: var(--fg);
+      backdrop-filter: blur(12px);
+    }
+    .btn-secondary:hover {
+      border-color: hsla(350,62%,42%,0.3);
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .btn-lg { padding: 1rem 2rem; font-size: 1rem; border-radius: 16px; }
+    .btn svg { width: 1rem; height: 1rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s; flex-shrink: 0; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .mob-toggle { display: flex; flex-direction: column; gap: 5px; padding: 0.4rem; cursor: pointer; }
+    @media (min-width: 900px) { .mob-toggle { display: none; } }
+    .mob-toggle span { width: 22px; height: 1.5px; background: var(--fg); border-radius: 2px; transition: all 0.3s ease; display: block; }
+    .mob-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
+    .mob-toggle.open span:nth-child(2) { opacity: 0; }
+    .mob-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4.5px); }
+    .mob-menu { display: none; position: fixed; inset: 0; background: rgba(254, 248, 248, 0.97); z-index: 490; padding: 5.5rem 2rem 2rem; flex-direction: column; gap: 1.75rem; }
+    .mob-menu.open { display: flex; }
+    .mob-menu .nav-link { font-size: 1.375rem; font-weight: 600; }
+    .mob-menu .btn-primary { margin-top: 1rem; justify-content: center; }
+
+    @media (max-width: 899px) {
+      .header { padding: 0.75rem 1rem; }
+      .header .container { padding: 0; }
+      .nav-surface { padding: 0.5rem 0.875rem; border-radius: 14px; }
+      #navCta { display: none !important; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 500px at 8% 60%, hsla(350,62%,60%,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 88% 14%, hsla(14,72%,62%,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-grid { grid-template-columns: 1.2fr 1fr; gap: 4.5rem; }
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.875rem;
+      border-radius: 999px;
+      border: 1px solid hsla(350,62%,42%,0.22);
+      background: hsla(350,62%,42%,0.07);
+      font-size: 0.6875rem;
+      color: var(--rose);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1.75rem;
+    }
+    .hero-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; animation: pulse-dot 2.5s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 hsla(350,62%,42%,0.5)} 50%{box-shadow:0 0 0 5px hsla(350,62%,42%,0)} }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.0625rem;
+      color: var(--fg-muted);
+      line-height: 1.74;
+      max-width: 48ch;
+      margin-bottom: 2rem;
+    }
+    .hero-bullets { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .hero-bullet { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; color: var(--fg-muted); }
+    .bullet-chk {
+      width: 1.25rem; height: 1.25rem;
+      border-radius: 50%;
+      background: hsla(350,62%,42%,0.10);
+      border: 1px solid hsla(350,62%,42%,0.22);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .bullet-chk svg { width: 0.6rem; height: 0.6rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Summary card hero-right */
+    .hero-right { position: relative; display: flex; justify-content: center; align-items: center; }
+    .summary-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid hsla(0, 35%, 35%, 0.10);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .sc-head {
+      display: flex; align-items: center; gap: 0.875rem;
+      padding-bottom: 1.25rem; margin-bottom: 1.25rem;
+      border-bottom: 1px solid hsla(0, 35%, 35%, 0.08);
+    }
+    .sc-icon {
+      width: 2.75rem; height: 2.75rem; border-radius: 12px;
+      background: linear-gradient(135deg, hsla(350,62%,42%,0.15), hsla(350,62%,42%,0.04));
+      border: 1px solid hsla(350,62%,42%,0.16);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sc-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-title { font-family: 'Montserrat', sans-serif; font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.125rem; }
+    .sc-sub { font-size: 0.75rem; color: var(--fg-subtle); }
+    .sc-rows { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
+    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .sc-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .sc-val { font-size: 0.875rem; font-weight: 600; color: var(--fg); text-align: right; }
+    .sc-val.accent { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .sc-divider { height: 1px; background: hsla(0, 35%, 35%, 0.07); margin: 0.25rem 0; }
+    .sc-badge {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      padding: 0.325rem 0.75rem; border-radius: 999px;
+      font-size: 0.75rem; font-weight: 600;
+      background: hsla(350,62%,42%,0.08);
+      border: 1px solid hsla(350,62%,42%,0.18);
+      color: var(--rose);
+    }
+    .sc-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+
+    /* Float pills */
+    .float-pill {
+      position: absolute;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.875rem; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid hsla(0, 35%, 35%, 0.10);
+      backdrop-filter: blur(16px);
+      font-size: 0.75rem; color: var(--fg);
+      white-space: nowrap;
+      box-shadow: 0 4px 22px rgba(140, 30, 30, 0.10);
+      z-index: 5;
+    }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .fp-dot.green { background: #3aab5e; box-shadow: 0 0 0 3px rgba(58,171,94,0.2); }
+    .fp-dot.cyan { background: var(--rose); box-shadow: 0 0 0 3px hsla(350,62%,42%,0.2); }
+    .float-pill-1 { top: 8%; right: 2%; animation: fp-float 5.5s ease-in-out infinite; }
+    .float-pill-2 { bottom: 12%; left: 1%; animation: fp-float 7s ease-in-out 1.5s infinite; }
+    @keyframes fp-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+    @media (max-width: 1023px) { .float-pill { display: none; } }
+
+    /* ─── CARD ───────────────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: hsla(350,62%,42%,0.22);
+      box-shadow: 0 20px 52px rgba(140, 30, 30, 0.12);
+    }
+    .card-icon {
+      width: 3rem; height: 3rem; border-radius: 12px;
+      background: linear-gradient(135deg, hsla(350,62%,42%,0.12), hsla(350,62%,42%,0.03));
+      border: 1px solid hsla(350,62%,42%,0.14);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .card-icon svg { width: 1.375rem; height: 1.375rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── OVERVIEW TABLE ─────────────────────────────────── */
+    .overview-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .overview-table thead tr { background: hsla(350,62%,42%,0.07); }
+    .overview-table thead th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .overview-table tbody tr {
+      background: var(--card-bg);
+      transition: background 0.2s;
+    }
+    .overview-table tbody tr:hover { background: hsla(350,62%,42%,0.04); }
+    .overview-table tbody tr:not(:last-child) td { border-bottom: 1px solid var(--card-border); }
+    .overview-table tbody td {
+      padding: 1.25rem;
+      font-size: 0.9375rem;
+      color: var(--fg-muted);
+      vertical-align: top;
+    }
+    .overview-table tbody td:first-child { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--fg); font-size: 0.9375rem; }
+    .plan-badge {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      padding: 0.2rem 0.625rem; border-radius: 6px;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .plan-badge.starter { background: hsla(350,62%,42%,0.10); color: var(--rose); border: 1px solid hsla(350,62%,42%,0.22); }
+    .plan-badge.standard { background: hsla(14,72%,52%,0.10); color: hsl(14,72%,40%); border: 1px solid hsla(14,72%,52%,0.22); }
+    .plan-badge.pro { background: hsla(350,62%,28%,0.10); color: hsl(350,62%,28%); border: 1px solid hsla(350,62%,28%,0.22); }
+    .price-tag { font-family: 'Montserrat', sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--fg); }
+
+    /* ─── PLAN SECTIONS ──────────────────────────────────── */
+    .plan-section { padding: 5rem 0; position: relative; z-index: 1; }
+    .plan-section:nth-child(even) { background: rgba(245, 216, 216, 0.42); }
+
+    .plan-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .plan-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      opacity: 0.04;
+      position: absolute;
+      top: -1.5rem;
+      left: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+    .plan-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .plan-grid { grid-template-columns: 1fr 1.1fr; gap: 4rem; }
+      .plan-grid.reverse { direction: rtl; }
+      .plan-grid.reverse > * { direction: ltr; }
+    }
+
+    .plan-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .plan-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.125rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0;
+    }
+    .plan-desc { font-size: 1rem; color: var(--fg-muted); line-height: 1.72; }
+    .plan-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.375rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .plan-price-from { font-size: 0.8125rem; color: var(--fg-subtle); font-weight: 400; }
+    .plan-price-val { font-size: 2rem; font-weight: 800; }
+    .plan-price-period { font-size: 0.875rem; color: var(--fg-subtle); }
+
+    .scope-table { width: 100%; }
+    .scope-table tr:not(:last-child) td { padding-bottom: 0.875rem; }
+    .scope-table td { vertical-align: top; font-size: 0.9rem; }
+    .scope-table td:first-child {
+      font-weight: 700; color: var(--fg);
+      padding-right: 1.25rem; white-space: nowrap;
+      width: 40%;
+    }
+    .scope-table td:last-child { color: var(--fg-muted); }
+    .scope-sep { height: 1px; background: var(--card-border); margin: 1rem 0; }
+
+    .plan-meta {
+      display: flex; gap: 1.25rem; flex-wrap: wrap;
+    }
+    .plan-meta-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8125rem; color: var(--fg-subtle);
+    }
+    .plan-meta-item svg { width: 0.875rem; height: 0.875rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* ─── MOCKUPS ────────────────────────────────────────── */
+    .mockup-wrap {
+      position: relative;
+    }
+    @media (min-width: 1024px) {
+      .mockup-wrap {
+        position: sticky;
+        top: 6.5rem;
+        align-self: start;
+      }
+    }
+    .browser-chrome {
+      border-radius: 14px 14px 0 0;
+      background: hsl(0, 15%, 12%);
+      border: 1px solid hsla(0, 20%, 100%, 0.10);
+      border-bottom: none;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .browser-dots { display: flex; gap: 0.375rem; }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+    .browser-bar {
+      flex: 1;
+      height: 24px;
+      border-radius: 6px;
+      background: hsla(0,20%,100%,0.06);
+      border: 1px solid hsla(0,20%,100%,0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 0.625rem;
+      gap: 0.375rem;
+    }
+    .browser-bar-dot { width: 5px; height: 5px; border-radius: 50%; background: hsla(0,20%,100%,0.18); flex-shrink: 0; }
+    .browser-bar-text { font-size: 0.6875rem; color: hsla(0,20%,100%,0.24); letter-spacing: 0.03em; }
+    .browser-body {
+      border: 1px solid hsla(0,20%,100%,0.10);
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(140,30,30,0.18);
+    }
+
+    /* ── Mockup 1: Loja Catálogo ── */
+    .mock-catalog {
+      background: hsl(0,0%,98%);
+      padding: 0;
+      font-size: 12px;
+    }
+    .mock-cat-header {
+      background: white;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid hsl(0,0%,92%);
+    }
+    .mock-cat-logo { font-weight: 800; font-size: 13px; color: hsl(350,62%,28%); font-family: 'Montserrat', sans-serif; letter-spacing: -0.02em; }
+    .mock-cat-nav { display: flex; gap: 12px; }
+    .mock-cat-nav span { font-size: 10px; color: hsl(0,0%,44%); }
+    .mock-cat-wa {
+      display: flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 999px;
+      background: #25d366; color: white;
+      font-size: 10px; font-weight: 700;
+    }
+    .mock-cat-hero {
+      background: linear-gradient(135deg, hsl(0, 60%, 96%) 0%, hsl(14, 50%, 95%) 100%);
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .mock-cat-hero h2 { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; color: hsl(350,62%,18%); margin-bottom: 6px; line-height: 1.2; }
+    .mock-cat-hero p { font-size: 9px; color: hsl(0,20%,44%); margin-bottom: 12px; }
+    .mock-cat-hero-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 16px; border-radius: 999px;
+      background: linear-gradient(135deg, hsl(350,62%,26%), hsl(14,72%,48%));
+      color: white; font-size: 9px; font-weight: 700;
+    }
+    .mock-cat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 8px; padding: 12px;
+    }
+    .mock-cat-card {
+      background: white; border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+    }
+    .mock-cat-img {
+      height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .mock-cat-card-body { padding: 6px 8px 8px; }
+    .mock-cat-card-name { font-size: 9px; font-weight: 600; color: hsl(0,20%,20%); margin-bottom: 2px; }
+    .mock-cat-card-price { font-size: 10px; font-weight: 700; color: hsl(350,62%,32%); margin-bottom: 5px; }
+    .mock-cat-card-btn {
+      width: 100%; padding: 4px 0; border-radius: 5px;
+      background: #25d366; color: white;
+      font-size: 8px; font-weight: 700; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 3px;
+    }
+
+    /* ── Mockup 2: Loja com Checkout ── */
+    .mock-woo {
+      background: hsl(0,0%,97%);
+    }
+    .mock-woo-header {
+      background: white;
+      padding: 0.625rem 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid hsl(0,0%,92%);
+    }
+    .mock-woo-logo { font-weight: 800; font-size: 13px; color: hsl(350,62%,28%); font-family: 'Montserrat', sans-serif; }
+    .mock-woo-nav { display: flex; gap: 10px; align-items: center; }
+    .mock-woo-nav span { font-size: 9px; color: hsl(0,0%,44%); }
+    .mock-woo-cart {
+      display: flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: 999px;
+      background: hsl(350,62%,34%); color: white;
+      font-size: 9px; font-weight: 700; position: relative;
+    }
+    .mock-woo-cart-badge {
+      position: absolute; top: -5px; right: -5px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: hsl(14,72%,48%); color: white;
+      font-size: 7px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mock-woo-body { display: flex; height: 240px; }
+    .mock-woo-sidebar {
+      width: 100px; padding: 10px;
+      border-right: 1px solid hsl(0,0%,92%);
+      background: white;
+    }
+    .mock-woo-sidebar-title { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: hsl(0,0%,50%); margin-bottom: 8px; }
+    .mock-woo-cat-item {
+      font-size: 9px; color: hsl(0,0%,36%);
+      padding: 4px 6px; border-radius: 5px;
+      margin-bottom: 2px; cursor: pointer;
+    }
+    .mock-woo-cat-item.active { background: hsla(350,62%,34%,0.09); color: hsl(350,62%,30%); font-weight: 700; }
+    .mock-woo-products { flex: 1; padding: 10px; overflow: hidden; }
+    .mock-woo-product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .mock-woo-prod {
+      background: white; border-radius: 7px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      border: 1px solid hsl(0,0%,93%);
+    }
+    .mock-woo-prod-img { height: 48px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .mock-woo-prod-body { padding: 5px 6px; }
+    .mock-woo-prod-name { font-size: 8px; font-weight: 600; color: hsl(0,0%,20%); margin-bottom: 3px; }
+    .mock-woo-prod-price { font-size: 10px; font-weight: 700; color: hsl(350,62%,30%); margin-bottom: 4px; }
+    .mock-woo-prod-btn {
+      width: 100%; padding: 3px 0; border-radius: 4px;
+      background: hsl(350,62%,34%); color: white;
+      font-size: 7px; font-weight: 700; text-align: center;
+    }
+    .mock-woo-checkout {
+      background: white; border-top: 1px solid hsl(0,0%,92%);
+      padding: 8px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .mock-woo-steps { display: flex; gap: 4px; align-items: center; }
+    .mock-woo-step {
+      font-size: 7px; padding: 3px 8px; border-radius: 999px;
+      background: hsl(0,0%,94%); color: hsl(0,0%,50%);
+    }
+    .mock-woo-step.done { background: hsla(350,62%,42%,0.10); color: hsl(350,62%,32%); }
+    .mock-woo-step.active { background: hsl(350,62%,34%); color: white; font-weight: 700; }
+    .mock-woo-step-arr { font-size: 8px; color: hsl(0,0%,70%); }
+    .mock-woo-total { font-size: 9px; font-weight: 700; color: hsl(0,0%,20%); }
+
+    /* ── Mockup 3: Operação Avançada ── */
+    .mock-complex {
+      background: hsl(0, 20%, 8%);
+    }
+    .mock-cx-header {
+      padding: 8px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid hsla(0,20%,100%,0.07);
+    }
+    .mock-cx-logo { font-weight: 800; font-size: 12px; color: white; font-family: 'Montserrat', sans-serif; }
+    .mock-cx-nav { display: flex; gap: 12px; align-items: center; }
+    .mock-cx-nav span { font-size: 9px; color: hsla(0,20%,100%,0.45); }
+    .mock-cx-nav span.active { color: hsl(350,62%,68%); }
+    .mock-cx-avatar {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, hsl(350,62%,38%), hsl(14,72%,52%));
+      font-size: 8px; color: white; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mock-cx-body { display: flex; height: 250px; }
+    .mock-cx-sidebar {
+      width: 90px;
+      border-right: 1px solid hsla(0,20%,100%,0.07);
+      padding: 8px 0;
+    }
+    .mock-cx-menu-item {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 10px; font-size: 8px;
+      color: hsla(0,20%,100%,0.4);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .mock-cx-menu-item.active { color: hsl(350,62%,68%); background: hsla(350,62%,52%,0.10); border-right: 2px solid hsl(350,62%,52%); }
+    .mock-cx-menu-icon { width: 12px; height: 12px; flex-shrink: 0; }
+    .mock-cx-main { flex: 1; padding: 10px; overflow: hidden; }
+    .mock-cx-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 8px; }
+    .mock-cx-stat {
+      background: hsla(0,20%,100%,0.04);
+      border: 1px solid hsla(0,20%,100%,0.07);
+      border-radius: 8px; padding: 7px 8px;
+    }
+    .mock-cx-stat-label { font-size: 7px; color: hsla(0,20%,100%,0.36); margin-bottom: 3px; }
+    .mock-cx-stat-val { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; color: white; }
+    .mock-cx-stat-delta { font-size: 7px; color: #5cb87a; margin-top: 2px; }
+    .mock-cx-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 6px; }
+    .mock-cx-chart {
+      background: hsla(0,20%,100%,0.03);
+      border: 1px solid hsla(0,20%,100%,0.07);
+      border-radius: 8px; padding: 8px;
+      height: 90px;
+    }
+    .mock-cx-chart-title { font-size: 7px; font-weight: 600; color: hsla(0,20%,100%,0.45); margin-bottom: 6px; }
+    .mock-cx-bars { display: flex; align-items: flex-end; gap: 3px; height: 52px; }
+    .mock-cx-bar { flex: 1; border-radius: 2px 2px 0 0; background: hsla(350,62%,52%,0.28); transition: background 0.2s; min-width: 0; }
+    .mock-cx-bar:hover,.mock-cx-bar.hl { background: hsla(350,62%,60%,0.72); }
+    .mock-cx-loyalty {
+      background: hsla(0,20%,100%,0.03);
+      border: 1px solid hsla(0,20%,100%,0.07);
+      border-radius: 8px; padding: 8px;
+      height: 90px;
+    }
+    .mock-cx-loyalty-title { font-size: 7px; font-weight: 600; color: hsla(0,20%,100%,0.45); margin-bottom: 5px; }
+    .mock-cx-pts { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; color: hsl(350,62%,68%); line-height: 1; }
+    .mock-cx-pts-label { font-size: 7px; color: hsla(0,20%,100%,0.35); margin-bottom: 6px; }
+    .mock-cx-progress-wrap { height: 5px; background: hsla(0,20%,100%,0.07); border-radius: 999px; overflow: hidden; margin-bottom: 4px; }
+    .mock-cx-progress { height: 100%; background: linear-gradient(to right, hsl(350,62%,38%), hsl(14,72%,56%)); border-radius: 999px; width: 62%; }
+    .mock-cx-pts-next { font-size: 7px; color: hsla(0,20%,100%,0.3); }
+    .mock-cx-integrations {
+      margin-top: 6px;
+      display: flex; gap: 4px; flex-wrap: wrap;
+    }
+    .mock-cx-integration-badge {
+      font-size: 7px; padding: 2px 6px; border-radius: 4px;
+      background: hsla(0,20%,100%,0.05);
+      border: 1px solid hsla(0,20%,100%,0.08);
+      color: hsla(0,20%,100%,0.4);
+    }
+
+    /* ─── SECTION DIVIDER ────────────────────────────────── */
+    .section-divider {
+      height: 1px;
+      background: var(--card-border);
+      margin: 0;
+    }
+
+    /* ─── CTA SECTION ────────────────────────────────────── */
+    .cta-section {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 400px;
+      background: hsl(350,62%,72%);
+      border-radius: 100%;
+      filter: blur(180px);
+      opacity: 0.18;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    .cta-card {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid hsla(0, 35%, 35%, 0.10);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, hsla(350,62%,42%,0.3), transparent);
+    }
+    .cta-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 800; line-height: 1.18; margin-bottom: 1rem; }
+    .cta-sub { font-size: 1rem; color: var(--fg-muted); line-height: 1.68; max-width: 44ch; margin: 0 auto 2rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-footnote { margin-top: 1.25rem; font-size: 0.75rem; color: var(--fg-subtle); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    .footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--card-border);
+      position: relative; z-index: 1;
+    }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-brand { font-family: 'Montserrat', sans-serif; font-size: 0.875rem; font-weight: 800; }
+    .footer-copy { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .footer-badge {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      padding: 0.25rem 0.75rem; border-radius: 999px;
+      font-size: 0.6875rem; font-weight: 700;
+      background: hsla(350,62%,42%,0.08);
+      border: 1px solid hsla(350,62%,42%,0.18);
+      color: var(--rose);
+    }
+
+    /* ─── GRID HELPERS ───────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2,1fr); } }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 640px) { .grid-3 { grid-template-columns: repeat(2,1fr); } }
+    @media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3,1fr); } }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 639px) {
+      .overview-table-wrap { overflow-x: auto; }
+      .overview-table { min-width: 560px; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 4rem 0; }
+      .plan-section { padding: 3.5rem 0; }
+      .cta-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body class="intro-active">
+
+  <!-- INTRO -->
+  <div class="intro" id="intro">
+    <div class="intro-inner">
+      <div class="intro-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+      </div>
+      <p class="intro-pre">VS Experience · 2026</p>
+      <h1 class="intro-title">Orçamento<br>E-commerce</h1>
+      <p class="intro-company">Praado</p>
+      <div class="intro-bar-wrap">
+        <div class="intro-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="nav-surface">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-dot"></div>
+          VS Experience
+        </a>
+        <nav class="nav-links">
+          <a href="#visao-geral" class="nav-link">Visão Geral</a>
+          <a href="#catalogo" class="nav-link">Catálogo</a>
+          <a href="#woo-padrao" class="nav-link">Checkout</a>
+          <a href="#woo-complexo" class="nav-link">Avançado</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="https://wa.me/5511999999999" class="btn btn-primary" id="navCta">
+            Falar agora
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button class="mob-toggle" id="mobToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="mob-menu" id="mobMenu">
+    <a href="#visao-geral" class="nav-link">Visão Geral</a>
+    <a href="#catalogo" class="nav-link">Catálogo</a>
+    <a href="#woo-padrao" class="nav-link">Loja com Checkout</a>
+    <a href="#woo-complexo" class="nav-link">Operação Avançada</a>
+    <a href="https://wa.me/5511999999999" class="btn btn-primary">Falar agora</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            Proposta exclusiva · Praado
+          </div>
+          <h1 class="hero-title display">
+            Seu e-commerce<br>
+            <span class="gradient-text">feito do jeito certo.</span>
+          </h1>
+          <p class="hero-sub">
+            Todos os projetos usam WordPress + WooCommerce como base. O que muda entre os planos é o nível da operação: vitrine, checkout completo ou automações avançadas.
+          </p>
+          <ul class="hero-bullets">
+            <li class="hero-bullet">
+              <span class="bullet-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+              Projetos com prazo definido e escopo fechado
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+              Desenvolvimento em WordPress + WooCommerce
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+              Treinamento e suporte incluídos
+            </li>
+          </ul>
+          <div class="hero-ctas">
+            <a href="#visao-geral" class="btn btn-primary btn-lg">
+              Ver planos
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://wa.me/5511999999999" class="btn btn-secondary btn-lg">Conversar</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="float-pill float-pill-1">
+            <span class="fp-dot green"></span>
+            3 planos disponíveis
+          </div>
+          <div class="float-pill float-pill-2">
+            <span class="fp-dot cyan"></span>
+            Entrega em até 75 dias
+          </div>
+          <div class="summary-card">
+            <div class="sc-head">
+              <div class="sc-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+              </div>
+              <div>
+                <p class="sc-title">Orçamento E-commerce</p>
+                <p class="sc-sub">Praado · VS Experience</p>
+              </div>
+            </div>
+            <div class="sc-rows">
+              <div class="sc-row">
+                <span class="sc-label">Loja Catálogo</span>
+                <span class="sc-val">R$ 3.000 – 4.500</span>
+              </div>
+              <div class="sc-divider"></div>
+              <div class="sc-row">
+                <span class="sc-label">Loja com Checkout</span>
+                <span class="sc-val">R$ 6.000 – 9.000</span>
+              </div>
+              <div class="sc-divider"></div>
+              <div class="sc-row">
+                <span class="sc-label">Operação Avançada</span>
+                <span class="sc-val accent">R$ 10.000 – 18.000+</span>
+              </div>
+            </div>
+            <div class="sc-badge">
+              <span class="sc-badge-dot"></span>
+              Inclui treinamento e cadastro inicial
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISÃO GERAL -->
+  <section class="section section-alt" id="visao-geral">
+    <div class="container-tight">
+      <div class="section-header reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Visão Geral</p>
+        <h2 class="section-title">Comparativo dos planos</h2>
+        <p class="section-sub">Todos os modelos são construídos em WordPress + WooCommerce. Escolha o escopo que combina com o momento da sua operação.</p>
+      </div>
+      <div class="overview-table-wrap reveal">
+        <table class="overview-table">
+          <thead>
+            <tr>
+              <th>Plano</th>
+              <th>Indicado para</th>
+              <th>O que inclui</th>
+              <th>Investimento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="plan-badge starter">01</span><br>
+                Loja Catálogo
+              </td>
+              <td>Empresas que querem expor produtos e vender pelo WhatsApp</td>
+              <td>Vitrine, categorias, página do produto, botão WhatsApp, SEO básico, painel de edição</td>
+              <td><span class="price-tag">R$ 3.000 a 4.500</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="plan-badge standard">02</span><br>
+                Loja com Checkout
+              </td>
+              <td>Empresas que querem vender direto com checkout e pagamento</td>
+              <td>Tudo do catálogo + carrinho, checkout, pagamento, frete, estoque, cupons, e-mails automáticos</td>
+              <td><span class="price-tag">R$ 6.000 a 9.000</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="plan-badge pro">03</span><br>
+                Operação Avançada
+              </td>
+              <td>Operações robustas com automações e regras avançadas</td>
+              <td>Tudo do padrão + pontos/fidelidade, ERP/CRM, recuperação de carrinho, automações, relatórios</td>
+              <td><span class="price-tag">R$ 10.000 a 18.000+</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANO 1: CATÁLOGO -->
+  <section class="plan-section" id="catalogo">
+    <div class="container">
+      <div class="plan-grid">
+        <div class="plan-info reveal">
+          <div>
+            <span class="plan-badge starter" style="margin-bottom:1rem;display:inline-flex;">Plano 01</span>
+            <h2 class="plan-title">Loja<br><span class="gradient-text">Catálogo</span></h2>
+          </div>
+          <p class="plan-desc">
+            Uma vitrine comercial em WooCommerce, sem checkout ativo. O cliente navega, descobre os produtos e finaliza a compra pelo WhatsApp — simples, direto e com uma presença profissional na internet.
+          </p>
+          <div>
+            <p style="font-size:0.75rem;color:var(--fg-subtle);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">A partir de</p>
+            <div class="plan-price">
+              <span class="plan-price-val gradient-text">R$ 3.000</span>
+            </div>
+          </div>
+          <div class="card" style="padding:1.5rem;">
+            <table class="scope-table">
+              <tr>
+                <td>Estrutura</td>
+                <td>Home, produtos, categorias e página individual</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Botão de compra</td>
+                <td>Direcionamento para WhatsApp com mensagem personalizada</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Cadastro</td>
+                <td>Até 30 produtos cadastrados inicialmente</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Responsividade</td>
+                <td>Desktop, tablet e mobile</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>SEO básico</td>
+                <td>Títulos, descrições e estrutura amigável para Google</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Treinamento</td>
+                <td>Orientação para editar produtos e informações</td>
+              </tr>
+            </table>
+          </div>
+          <div class="plan-meta">
+            <div class="plan-meta-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              15 a 25 dias úteis
+            </div>
+            <div class="plan-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Ideal para pequenas lojas e catálogos
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-wrap reveal reveal-delay-2">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+            </div>
+            <div class="browser-bar">
+              <div class="browser-bar-dot"></div>
+              <span class="browser-bar-text">praado.com.br</span>
+            </div>
+          </div>
+          <div class="browser-body">
+            <div class="mock-catalog">
+              <div class="mock-cat-header">
+                <div class="mock-cat-logo">Praado</div>
+                <div class="mock-cat-nav">
+                  <span>Produtos</span>
+                  <span>Sobre</span>
+                  <span>Contato</span>
+                </div>
+                <div class="mock-cat-wa">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  WhatsApp
+                </div>
+              </div>
+              <div class="mock-cat-hero">
+                <h2>Nossa Coleção<br>2026</h2>
+                <p>Produtos selecionados com qualidade e estilo</p>
+                <div class="mock-cat-hero-btn">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+                  Ver produtos
+                </div>
+              </div>
+              <div class="mock-cat-grid">
+                <div class="mock-cat-card">
+                  <div class="mock-cat-img" style="background:hsl(0,60%,96%)">🧢</div>
+                  <div class="mock-cat-card-body">
+                    <div class="mock-cat-card-name">Boné Premium</div>
+                    <div class="mock-cat-card-price">R$ 89</div>
+                    <div class="mock-cat-card-btn">
+                      <svg width="7" height="7" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                      Comprar
+                    </div>
+                  </div>
+                </div>
+                <div class="mock-cat-card">
+                  <div class="mock-cat-img" style="background:hsl(14,50%,95%)">👟</div>
+                  <div class="mock-cat-card-body">
+                    <div class="mock-cat-card-name">Tênis Urban</div>
+                    <div class="mock-cat-card-price">R$ 259</div>
+                    <div class="mock-cat-card-btn">
+                      <svg width="7" height="7" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                      Comprar
+                    </div>
+                  </div>
+                </div>
+                <div class="mock-cat-card">
+                  <div class="mock-cat-img" style="background:hsl(30,50%,94%)">👜</div>
+                  <div class="mock-cat-card-body">
+                    <div class="mock-cat-card-name">Bolsa Couro</div>
+                    <div class="mock-cat-card-price">R$ 189</div>
+                    <div class="mock-cat-card-btn">
+                      <svg width="7" height="7" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                      Comprar
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PLANO 2: CHECKOUT -->
+  <section class="plan-section section-alt" id="woo-padrao">
+    <div class="container">
+      <div class="plan-grid reverse">
+        <div class="plan-info reveal">
+          <div>
+            <span class="plan-badge standard" style="margin-bottom:1rem;display:inline-flex;">Plano 02</span>
+            <h2 class="plan-title">Loja com<br><span style="background:linear-gradient(135deg,hsl(14,72%,48%),hsl(350,62%,52%));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Checkout</span></h2>
+          </div>
+          <p class="plan-desc">
+            Uma loja virtual completa em WooCommerce, com venda direta no site, checkout integrado, controle de estoque e e-mails automáticos. O ponto de entrada para uma operação profissional de e-commerce.
+          </p>
+          <div>
+            <p style="font-size:0.75rem;color:var(--fg-subtle);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">A partir de</p>
+            <div class="plan-price">
+              <span class="plan-price-val" style="background:linear-gradient(135deg,hsl(14,72%,48%),hsl(350,62%,52%));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">R$ 6.000</span>
+            </div>
+          </div>
+          <div class="card" style="padding:1.5rem;">
+            <table class="scope-table">
+              <tr>
+                <td>Estrutura</td>
+                <td>Home, loja, categorias, produto, carrinho, checkout e minha conta</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Pagamentos</td>
+                <td>Mercado Pago, PagSeguro, Pagar.me, Asaas ou similar</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Frete</td>
+                <td>Correios, Melhor Envio, Jadlog ou regra personalizada</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Estoque</td>
+                <td>Controle por produto com alertas</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Cupons</td>
+                <td>Criação e gestão de cupons de desconto</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>E-mails</td>
+                <td>Confirmação, pagamento, envio e status automáticos</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Cadastro</td>
+                <td>Até 50 produtos com variações</td>
+              </tr>
+            </table>
+          </div>
+          <div class="plan-meta">
+            <div class="plan-meta-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              25 a 40 dias úteis
+            </div>
+            <div class="plan-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Operação com checkout próprio
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-wrap reveal reveal-delay-2">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+            </div>
+            <div class="browser-bar">
+              <div class="browser-bar-dot"></div>
+              <span class="browser-bar-text">praado.com.br/loja</span>
+            </div>
+          </div>
+          <div class="browser-body">
+            <div class="mock-woo">
+              <div class="mock-woo-header">
+                <div class="mock-woo-logo">Praado</div>
+                <div class="mock-woo-nav">
+                  <span>Início</span>
+                  <span style="color:hsl(350,62%,30%);font-weight:700;">Loja</span>
+                  <span>Sobre</span>
+                  <div class="mock-woo-cart">
+                    🛒 Carrinho
+                    <div class="mock-woo-cart-badge">3</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-woo-body">
+                <div class="mock-woo-sidebar">
+                  <div class="mock-woo-sidebar-title">Categorias</div>
+                  <div class="mock-woo-cat-item active">Todos</div>
+                  <div class="mock-woo-cat-item">Roupas</div>
+                  <div class="mock-woo-cat-item">Acessórios</div>
+                  <div class="mock-woo-cat-item">Calçados</div>
+                  <div class="mock-woo-cat-item">Bolsas</div>
+                  <div style="height:12px"></div>
+                  <div class="mock-woo-sidebar-title">Filtros</div>
+                  <div style="height:6px;background:hsl(0,0%,93%);border-radius:3px;margin-bottom:4px"></div>
+                  <div style="height:4px;background:hsl(0,0%,93%);border-radius:3px;width:70%;margin-bottom:4px"></div>
+                  <div style="height:4px;background:hsl(0,0%,93%);border-radius:3px;width:85%"></div>
+                </div>
+                <div class="mock-woo-products">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                    <span style="font-size:9px;font-weight:700;color:hsl(0,0%,22%)">24 produtos</span>
+                    <span style="font-size:8px;color:hsl(0,0%,55%);background:hsl(0,0%,95%);padding:2px 8px;border-radius:4px;">Relevância ▾</span>
+                  </div>
+                  <div class="mock-woo-product-grid">
+                    <div class="mock-woo-prod">
+                      <div class="mock-woo-prod-img" style="background:hsl(0,55%,96%)">👗</div>
+                      <div class="mock-woo-prod-body">
+                        <div class="mock-woo-prod-name">Vestido Floral</div>
+                        <div class="mock-woo-prod-price">R$ 149</div>
+                        <div class="mock-woo-prod-btn">Adicionar</div>
+                      </div>
+                    </div>
+                    <div class="mock-woo-prod">
+                      <div class="mock-woo-prod-img" style="background:hsl(30,40%,94%)">👖</div>
+                      <div class="mock-woo-prod-body">
+                        <div class="mock-woo-prod-name">Calça Wide</div>
+                        <div class="mock-woo-prod-price">R$ 199</div>
+                        <div class="mock-woo-prod-btn">Adicionar</div>
+                      </div>
+                    </div>
+                    <div class="mock-woo-prod">
+                      <div class="mock-woo-prod-img" style="background:hsl(14,45%,95%)">🕶️</div>
+                      <div class="mock-woo-prod-body">
+                        <div class="mock-woo-prod-name">Óculos Oval</div>
+                        <div class="mock-woo-prod-price">R$ 89</div>
+                        <div class="mock-woo-prod-btn">Adicionar</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-woo-checkout">
+                <div class="mock-woo-steps">
+                  <div class="mock-woo-step done">✓ Carrinho</div>
+                  <div class="mock-woo-step-arr">›</div>
+                  <div class="mock-woo-step active">Pagamento</div>
+                  <div class="mock-woo-step-arr">›</div>
+                  <div class="mock-woo-step">Confirmação</div>
+                </div>
+                <div class="mock-woo-total">Total: R$ 437,00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PLANO 3: OPERAÇÃO AVANÇADA -->
+  <section class="plan-section" id="woo-complexo">
+    <div class="container">
+      <div class="plan-grid">
+        <div class="plan-info reveal">
+          <div>
+            <span class="plan-badge pro" style="margin-bottom:1rem;display:inline-flex;">Plano 03</span>
+            <h2 class="plan-title">Operação<br><span style="background:linear-gradient(135deg,hsl(350,62%,32%),hsl(14,72%,50%));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Avançada</span></h2>
+          </div>
+          <p class="plan-desc">
+            Uma estrutura comercial completa sobre WooCommerce. Não é só uma loja: é uma operação de vendas com fidelização, automações, integrações com sistemas externos e relatórios para decisão.
+          </p>
+          <div>
+            <p style="font-size:0.75rem;color:var(--fg-subtle);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">A partir de</p>
+            <div class="plan-price">
+              <span class="plan-price-val" style="background:linear-gradient(135deg,hsl(350,62%,32%),hsl(14,72%,50%));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">R$ 10.000</span>
+            </div>
+          </div>
+          <div class="card" style="padding:1.5rem;">
+            <table class="scope-table">
+              <tr>
+                <td>Base completa</td>
+                <td>Tudo da loja com checkout incluso</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Fidelidade</td>
+                <td>Sistema de pontos por compra, acúmulo e resgate</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Integrações</td>
+                <td>ERP, CRM, e-mail marketing, WhatsApp, automações</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Regras</td>
+                <td>Descontos progressivos, frete grátis condicional, combos</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Recuperação</td>
+                <td>Configuração de abandono de carrinho</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Relatórios</td>
+                <td>Acompanhamento de vendas e comportamento</td>
+              </tr>
+              <tr><td colspan="2"><div class="scope-sep"></div></td></tr>
+              <tr>
+                <td>Cadastro</td>
+                <td>Até 100 produtos com variações</td>
+              </tr>
+            </table>
+          </div>
+          <div class="plan-meta">
+            <div class="plan-meta-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              45 a 75 dias úteis
+            </div>
+            <div class="plan-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              Para operações sérias e escaláveis
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-wrap reveal reveal-delay-2">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+            </div>
+            <div class="browser-bar">
+              <div class="browser-bar-dot"></div>
+              <span class="browser-bar-text">praado.com.br/admin</span>
+            </div>
+          </div>
+          <div class="browser-body">
+            <div class="mock-complex">
+              <div class="mock-cx-header">
+                <div class="mock-cx-logo">Praado Admin</div>
+                <div class="mock-cx-nav">
+                  <span class="active">Dashboard</span>
+                  <span>Pedidos</span>
+                  <span>Produtos</span>
+                  <span>Relatórios</span>
+                </div>
+                <div class="mock-cx-avatar">VS</div>
+              </div>
+              <div class="mock-cx-body">
+                <div class="mock-cx-sidebar">
+                  <div class="mock-cx-menu-item active">
+                    <svg class="mock-cx-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Overview
+                  </div>
+                  <div class="mock-cx-menu-item">
+                    <svg class="mock-cx-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/></svg>
+                    Pedidos
+                  </div>
+                  <div class="mock-cx-menu-item">
+                    <svg class="mock-cx-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    Fidelidade
+                  </div>
+                  <div class="mock-cx-menu-item">
+                    <svg class="mock-cx-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Relatórios
+                  </div>
+                  <div class="mock-cx-menu-item">
+                    <svg class="mock-cx-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                    Automações
+                  </div>
+                </div>
+                <div class="mock-cx-main">
+                  <div class="mock-cx-stats">
+                    <div class="mock-cx-stat">
+                      <div class="mock-cx-stat-label">Vendas hoje</div>
+                      <div class="mock-cx-stat-val">R$2.4k</div>
+                      <div class="mock-cx-stat-delta">↑ 18%</div>
+                    </div>
+                    <div class="mock-cx-stat">
+                      <div class="mock-cx-stat-label">Pedidos</div>
+                      <div class="mock-cx-stat-val">38</div>
+                      <div class="mock-cx-stat-delta">↑ 7%</div>
+                    </div>
+                    <div class="mock-cx-stat">
+                      <div class="mock-cx-stat-label">Ticket médio</div>
+                      <div class="mock-cx-stat-val">R$63</div>
+                      <div class="mock-cx-stat-delta">↑ 4%</div>
+                    </div>
+                  </div>
+                  <div class="mock-cx-row">
+                    <div class="mock-cx-chart">
+                      <div class="mock-cx-chart-title">Vendas — últimos 14 dias</div>
+                      <div class="mock-cx-bars">
+                        <div class="mock-cx-bar" style="height:35%"></div>
+                        <div class="mock-cx-bar" style="height:55%"></div>
+                        <div class="mock-cx-bar" style="height:40%"></div>
+                        <div class="mock-cx-bar" style="height:70%"></div>
+                        <div class="mock-cx-bar" style="height:50%"></div>
+                        <div class="mock-cx-bar" style="height:65%"></div>
+                        <div class="mock-cx-bar" style="height:80%"></div>
+                        <div class="mock-cx-bar hl" style="height:95%"></div>
+                        <div class="mock-cx-bar" style="height:60%"></div>
+                        <div class="mock-cx-bar" style="height:75%"></div>
+                        <div class="mock-cx-bar" style="height:88%"></div>
+                        <div class="mock-cx-bar hl" style="height:100%"></div>
+                      </div>
+                    </div>
+                    <div class="mock-cx-loyalty">
+                      <div class="mock-cx-loyalty-title">Programa de Pontos</div>
+                      <div class="mock-cx-pts">1.240</div>
+                      <div class="mock-cx-pts-label">pontos acumulados</div>
+                      <div class="mock-cx-progress-wrap">
+                        <div class="mock-cx-progress"></div>
+                      </div>
+                      <div class="mock-cx-pts-next">560 pts para próximo nível</div>
+                    </div>
+                  </div>
+                  <div class="mock-cx-integrations">
+                    <span class="mock-cx-integration-badge">Mercado Pago</span>
+                    <span class="mock-cx-integration-badge">WhatsApp API</span>
+                    <span class="mock-cx-integration-badge">Mailchimp</span>
+                    <span class="mock-cx-integration-badge">Melhor Envio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card reveal">
+        <p class="eyebrow" style="justify-content:center;"><span class="eyebrow-line"></span> Próximo passo</p>
+        <h2 class="cta-title">Pronto para montar<br><span class="gradient-text">sua loja online?</span></h2>
+        <p class="cta-sub">Vamos conversar sobre qual plano faz mais sentido para o seu negócio e alinhar os detalhes do projeto.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/5511999999999" class="btn btn-primary btn-lg">
+            Falar pelo WhatsApp
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:contato@vsexperience.com.br" class="btn btn-secondary btn-lg">Enviar e-mail</a>
+        </div>
+        <p class="cta-footnote">Resposta em até 24h · Sem compromisso</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand gradient-text">VS Experience</span>
+        <span class="footer-copy">© 2026 · Orçamento confidencial para Praado</span>
+        <span class="footer-badge">
+          <span class="sc-badge-dot"></span>
+          Documento exclusivo
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intro
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const intro = document.getElementById('intro');
+        intro.classList.add('exit');
+        intro.addEventListener('animationend', () => {
+          intro.style.display = 'none';
+          document.body.classList.remove('intro-active');
+        }, { once: true });
+      }, 5200);
+    });
+
+    // Header scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Mobile menu
+    const mobToggle = document.getElementById('mobToggle');
+    const mobMenu = document.getElementById('mobMenu');
+    mobToggle.addEventListener('click', () => {
+      mobToggle.classList.toggle('open');
+      mobMenu.classList.toggle('open');
+    });
+    mobMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobToggle.classList.remove('open');
+        mobMenu.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
