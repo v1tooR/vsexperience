@@ -157,6 +157,29 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', updateActiveNav, { passive: true });
   
   // ================================
+  // FAQ Accordion
+  // ================================
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(function(item) {
+    const question = item.querySelector('.faq-question');
+
+    question.addEventListener('click', function() {
+      const isOpen = item.classList.contains('faq-open');
+
+      faqItems.forEach(function(i) {
+        i.classList.remove('faq-open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('faq-open');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ================================
   // Hover Effects for Cards
   // ================================
   const cards = document.querySelectorAll('.bento-item, .case-card, .pillar-card, .testimonial-card');
