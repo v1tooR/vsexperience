@@ -1945,6 +1945,37 @@ button {
   padding-top: 0.75rem;
 }
 
+.pricing-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: var(--shadow-button);
+  transition: all 0.3s ease;
+}
+
+.pricing-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px hsla(5, 38%, 22%, 0.45);
+}
+
+.pricing-cta svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
 /* ================================
    FAQ Section
    ================================ */

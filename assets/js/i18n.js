@@ -188,6 +188,7 @@ var translations = {
       p5i5: 'Desenvolvimento com padrão',
       p5i6: 'Iteração orientada a dados',
       note: 'Projetos com escopos customizados são orçados individualmente. Me conte o que você precisa.',
+      cta: 'Falar sobre esse projeto',
     },
     faq: {
       title: 'Perguntas <span class="text-gradient-primary">frequentes</span>',
@@ -400,6 +401,7 @@ var translations = {
       p5i5: 'Standard-grade development',
       p5i6: 'Data-driven iteration',
       note: 'Custom scope projects are quoted individually. Tell me what you need.',
+      cta: 'Talk about this project',
     },
     faq: {
       title: 'Frequently asked <span class="text-gradient-primary">questions</span>',
