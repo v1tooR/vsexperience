@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial — Landing Page Ideia Contábil · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       IDEIA CONTÁBIL · PROPOSTA COMERCIAL · LANDING PAGE
+       VS Experience · 2026
+    ═══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --bg:          hsl(0, 0%, 6%);
+      --bg2:         hsl(0, 0%, 9%);
+      --fg:          hsl(0, 0%, 97%);
+      --fg-muted:    rgba(247,247,247,0.65);
+      --fg-subtle:   rgba(247,247,247,0.36);
+      --rose:        hsl(5, 38%, 45%);
+      --rose-light:  hsl(5, 38%, 65%);
+      --brown:       hsl(5, 38%, 22%);
+      --card-bg:     hsla(0, 0%, 100%, 0.03);
+      --card-border: hsla(0, 0%, 100%, 0.08);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+      --radius:      20px;
+      --radius-lg:   28px;
+      --radius-sm:   12px;
+      --shadow:      0 8px 32px rgba(0,0,0,0.30);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.18);
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.intro-active { overflow: hidden; }
+
+    body::before {
+      content: '';
+      position: fixed; top: 10%; left: -300px;
+      width: 600px; height: 700px;
+      background: hsl(5, 60%, 35%); border-radius: 100%;
+      filter: blur(160px); opacity: 0.18;
+      pointer-events: none; z-index: 0;
+      animation: glow-breathe 7s ease-in-out infinite;
+    }
+    body::after {
+      content: '';
+      position: fixed; top: 60%; right: -350px;
+      width: 700px; height: 400px;
+      background: hsl(5, 65%, 38%); border-radius: 100%;
+      filter: blur(150px); opacity: 0.14;
+      pointer-events: none; z-index: 0;
+      animation: glow-breathe 9s 2s ease-in-out infinite;
+    }
+    @keyframes glow-breathe {
+      0%, 100% { opacity: 0.04; }
+      50%       { opacity: 0.22; }
+    }
+
+    /* ─── INTRO ─────────────────────────────────────────── */
+    .intro {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #090909;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .intro::before {
+      content: '';
+      position: absolute; top: 45%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 560px; height: 320px;
+      background: hsl(5, 60%, 35%); border-radius: 100%;
+      filter: blur(120px); opacity: 0.28; pointer-events: none;
+    }
+    .intro-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.25rem; text-align: center; padding: 0 1.5rem;
+    }
+    .intro-ornament { opacity: 0; animation: fade-in 0.8s ease 0.3s forwards; }
+    .intro-pre {
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.28em;
+      text-transform: uppercase; color: rgba(247,247,247,0.4);
+      opacity: 0; animation: fade-up 0.6s ease 0.85s forwards;
+    }
+    .intro-title {
+      font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.02em;
+      opacity: 0; animation: fade-up 0.7s ease 1.3s forwards;
+    }
+    .intro-client {
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      opacity: 0; animation: fade-up 0.6s ease 1.9s forwards;
+    }
+    .intro-bar-wrap {
+      width: 200px; height: 1px;
+      background: rgba(247,247,247,0.07); border-radius: 999px;
+      overflow: hidden; margin-top: 0.5rem;
+      opacity: 0; animation: fade-in 0.4s ease 2.4s forwards;
+    }
+    .intro-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(to right, hsl(5,38%,22%), hsl(5,38%,55%));
+      border-radius: 999px;
+      animation: bar-fill 2.3s cubic-bezier(0.4, 0, 0.2, 1) 2.6s forwards;
+    }
+    @keyframes bar-fill { to { width: 100%; } }
+    .intro.exit { animation: intro-slide-out 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @keyframes intro-slide-out { to { transform: translateY(-100%); } }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container       { max-width: 82rem; margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .section         { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-alt     { background: rgba(14,14,14,0.55); }
+    .section-header  { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.0625rem; color: var(--fg-muted);
+      line-height: 1.72; max-width: 60ch;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, hsl(5,38%,45%) 0%, hsl(5,38%,65%) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--rose); margin-bottom: 1.5rem;
+    }
+    .eyebrow-line {
+      display: inline-block; width: 1.75rem; height: 1px;
+      background: var(--rose); opacity: 0.55;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      padding: 1.125rem 1.5rem; transition: padding 0.3s ease;
+    }
+    .header.scrolled { padding: 0.5rem 1.5rem; }
+    .nav-surface {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.625rem 1.125rem; border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+    .header.scrolled .nav-surface {
+      background: rgba(10,10,10,0.9); border: 1px solid var(--card-border);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.625rem;
+      font-size: 0.9375rem; font-weight: 600; color: var(--fg); flex-shrink: 0;
+    }
+    .nav-links { display: none; align-items: center; gap: 1.75rem; }
+    @media (min-width: 900px) { .nav-links { display: flex; } }
+    .nav-link {
+      font-size: 0.875rem; color: var(--fg-muted);
+      transition: color 0.2s ease; position: relative;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--rose); transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: var(--fg); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+    /* ─── BUTTONS ─────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: inherit; font-weight: 500; cursor: pointer;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .btn-primary {
+      padding: 0.65rem 1.375rem; border-radius: 999px; font-size: 0.875rem;
+      background: var(--gradient); color: hsl(0, 0%, 97%); border: none;
+      box-shadow: 0 4px 16px hsla(5,38%,45%,0.28);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px hsla(5,38%,45%,0.38); }
+    .btn-secondary {
+      padding: 0.65rem 1.375rem; border-radius: 999px; font-size: 0.875rem;
+      border: 1px solid var(--card-border); background: var(--card-bg); color: var(--fg);
+      backdrop-filter: blur(12px);
+    }
+    .btn-secondary:hover { border-color: hsla(5,38%,45%,0.3); background: rgba(255,255,255,0.07); }
+    .btn-lg { padding: 1rem 2rem; font-size: 1rem; border-radius: 16px; }
+    .btn svg {
+      width: 1rem; height: 1rem; stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.3s ease; flex-shrink: 0;
+    }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* Mobile menu */
+    .mob-toggle { display: flex; flex-direction: column; gap: 5px; padding: 0.4rem; cursor: pointer; }
+    @media (min-width: 900px) { .mob-toggle { display: none; } }
+    .mob-toggle span { width: 22px; height: 1.5px; background: var(--fg); border-radius: 2px; transition: all 0.3s ease; display: block; }
+    .mob-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .mob-toggle.open span:nth-child(2) { opacity: 0; }
+    .mob-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .mob-menu {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,10,10,0.97); z-index: 490;
+      padding: 5.5rem 2rem 2rem; flex-direction: column; gap: 1.75rem;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu .nav-link { font-size: 1.375rem; font-weight: 500; }
+    .mob-menu .btn-primary { margin-top: 1rem; justify-content: center; }
+    @media (max-width: 899px) {
+      .header { padding: 0.75rem 1rem; }
+      .header .container { padding: 0; }
+      .nav-surface { padding: 0.5rem 0.875rem; border-radius: 14px; }
+      #navCta { display: none !important; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 9rem 0 6rem; position: relative; overflow: hidden; z-index: 1;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 900px 500px at 10% 55%, hsla(5,38%,45%,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 85% 15%, hsla(5,38%,22%,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
+    }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 4rem; } }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.875rem; border-radius: 999px;
+      border: 1px solid hsla(5,38%,45%,0.22); background: hsla(5,38%,45%,0.06);
+      font-size: 0.6875rem; color: var(--rose); letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 500; margin-bottom: 1.75rem;
+    }
+    .hero-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.0625rem; color: var(--fg-muted); line-height: 1.72; max-width: 48ch; margin-bottom: 2rem; }
+    .hero-bullets { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .hero-bullet { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; color: var(--fg-muted); }
+    .bullet-chk {
+      width: 1.25rem; height: 1.25rem; border-radius: 50%;
+      background: hsla(5,38%,45%,0.12); border: 1px solid hsla(5,38%,45%,0.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .bullet-chk svg { width: 0.625rem; height: 0.625rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Summary card */
+    .hero-right { position: relative; display: flex; justify-content: center; align-items: center; }
+    .summary-card {
+      position: relative; z-index: 2; width: 100%; max-width: 400px;
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+    .sc-head {
+      display: flex; align-items: center; gap: 0.875rem;
+      padding-bottom: 1.25rem; margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .sc-icon {
+      width: 2.75rem; height: 2.75rem; border-radius: 12px;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04));
+      border: 1px solid hsla(5,38%,45%,0.14);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sc-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.125rem; }
+    .sc-sub { font-size: 0.75rem; color: var(--fg-subtle); }
+    .sc-rows { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
+    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .sc-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .sc-val { font-size: 0.875rem; font-weight: 500; color: var(--fg); text-align: right; }
+    .sc-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+    .sc-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0.125rem 0; }
+
+    /* Float pills */
+    .float-pill {
+      position: absolute; display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.875rem; border-radius: 999px;
+      background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(16px); font-size: 0.75rem; color: var(--fg);
+      white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.22); z-index: 5;
+    }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .fp-dot.green { background: #5cb87a; box-shadow: 0 0 0 3px rgba(92,184,122,0.2); }
+    .fp-dot.rose  { background: var(--rose); box-shadow: 0 0 0 3px hsla(5,38%,45%,0.2); }
+    .float-pill-1 { top: 8%; right: 2%; animation: fp-float 5s ease-in-out infinite; }
+    .float-pill-2 { bottom: 12%; left: 1%; animation: fp-float 6.5s ease-in-out 1.5s infinite; }
+    @keyframes fp-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @media (max-width: 1023px) { .float-pill { display: none; } }
+
+    /* ─── SECURITY ALERT ─────────────────────────────────── */
+    .security-alert {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem 1.5rem; border-radius: var(--radius-sm);
+      background: hsla(38, 80%, 45%, 0.06); border: 1px solid hsla(38, 80%, 45%, 0.2);
+      margin-bottom: 2rem;
+    }
+    .sa-icon {
+      width: 2.25rem; height: 2.25rem; border-radius: 8px; flex-shrink: 0;
+      background: hsla(38, 80%, 45%, 0.1); border: 1px solid hsla(38, 80%, 45%, 0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sa-icon svg { width: 1rem; height: 1rem; stroke: hsl(38, 80%, 58%); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sa-title { font-size: 0.875rem; font-weight: 600; color: hsl(38, 80%, 70%); margin-bottom: 0.25rem; }
+    .sa-text  { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.6; }
+
+    /* ─── INCLUSION GRID ─────────────────────────────────── */
+    .inclusion-grid { display: grid; grid-template-columns: 1fr; gap: 0.875rem; }
+    @media (min-width: 640px) { .inclusion-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .inclusion-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .inc-item {
+      display: flex; align-items: flex-start; gap: 0.875rem;
+      padding: 1.125rem 1.25rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .inc-item:hover { border-color: hsla(5,38%,45%,0.22); transform: translateY(-2px); }
+    .inc-check {
+      width: 1.5rem; height: 1.5rem; border-radius: 50%; flex-shrink: 0;
+      background: hsla(5,38%,45%,0.12); border: 1px solid hsla(5,38%,45%,0.2);
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .inc-check svg { width: 0.75rem; height: 0.75rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .inc-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.55; }
+    .inc-text strong { color: var(--fg); font-weight: 500; display: block; margin-bottom: 0.125rem; }
+
+    /* ─── SERVICES LIST ──────────────────────────────────── */
+    .services-list { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .services-list { grid-template-columns: 1fr 1fr; } }
+    .srv-item {
+      display: flex; align-items: center; gap: 0.875rem;
+      padding: 1rem 1.25rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      font-size: 0.9375rem; font-weight: 500;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .srv-item:hover { border-color: hsla(5,38%,45%,0.22); background: rgba(255,255,255,0.05); }
+    .srv-dot {
+      width: 0.5rem; height: 0.5rem; border-radius: 50%;
+      background: var(--rose); flex-shrink: 0;
+      box-shadow: 0 0 0 3px hsla(5,38%,45%,0.18);
+    }
+
+    /* ─── EXCLUSION SECTION ──────────────────────────────── */
+    .excl-grid { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .excl-grid { grid-template-columns: 1fr 1fr; } }
+    .excl-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.875rem 1rem; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5;
+      transition: border-color 0.25s ease;
+    }
+    .excl-item:hover { border-color: rgba(255,255,255,0.1); }
+    .excl-icon { flex-shrink: 0; margin-top: 1px; }
+    .excl-icon svg { width: 0.9375rem; height: 0.9375rem; stroke: rgba(247,247,247,0.28); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .excl-note {
+      grid-column: 1 / -1; margin-top: 1.25rem;
+      padding: 1.125rem 1.375rem; border-radius: var(--radius-sm);
+      background: hsla(5,38%,45%,0.05); border: 1px solid hsla(5,38%,45%,0.14);
+      font-size: 0.875rem; color: var(--fg-muted); line-height: 1.65; font-style: italic;
+    }
+
+    /* ─── TIMELINE ───────────────────────────────────────── */
+    .timeline { position: relative; display: flex; flex-direction: column; gap: 0; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 1.5rem; top: 2.5rem; bottom: 2.5rem;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, hsla(5,38%,45%,0.35), transparent);
+    }
+    @media (min-width: 768px) { .timeline::before { left: 50%; transform: translateX(-50%); } }
+    .tl-step { position: relative; display: flex; gap: 1.5rem; padding: 1.5rem 0; padding-left: 4.5rem; }
+    @media (min-width: 768px) {
+      .tl-step { padding-left: 0; align-items: flex-start; }
+      .tl-step:nth-child(odd)  { flex-direction: row; padding-right: calc(50% + 3rem); }
+      .tl-step:nth-child(even) { flex-direction: row-reverse; padding-left: calc(50% + 3rem); }
+    }
+    .tl-num {
+      position: absolute; left: 0; top: 1.75rem;
+      width: 3rem; height: 3rem; border-radius: 50%;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04));
+      border: 1px solid hsla(5,38%,45%,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: var(--rose); z-index: 2;
+    }
+    @media (min-width: 768px) { .tl-num { left: 50%; transform: translateX(-50%); top: 2rem; } }
+    .tl-content {
+      flex: 1; padding: 1.5rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(20px);
+    }
+    .tl-phase { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.375rem; }
+    .tl-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .tl-desc  { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.62; }
+
+    /* ─── DEADLINE CARD ──────────────────────────────────── */
+    .deadline-card {
+      padding: 2.5rem; border-radius: var(--radius-lg);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      display: flex; flex-direction: column; gap: 1.5rem; backdrop-filter: blur(20px);
+    }
+    @media (min-width: 768px) { .deadline-card { flex-direction: row; align-items: center; gap: 2.5rem; } }
+    .deadline-number {
+      font-size: clamp(3rem, 7vw, 5rem); font-weight: 700; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0;
+    }
+    .deadline-info { flex: 1; }
+    .deadline-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.5rem; }
+    .deadline-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.625rem; }
+    .deadline-text  { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.68; }
+
+    /* ─── CHECKLIST ──────────────────────────────────────── */
+    .checklist { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .checklist { grid-template-columns: 1fr 1fr; } }
+    .chk-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem 1.125rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5;
+      transition: border-color 0.3s ease;
+    }
+    .chk-item:hover { border-color: hsla(5,38%,45%,0.22); }
+    .chk-mark {
+      width: 1.25rem; height: 1.25rem; border-radius: 50%;
+      background: hsla(5,38%,45%,0.1); border: 1px solid hsla(5,38%,45%,0.18);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .chk-mark svg { width: 0.625rem; height: 0.625rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .chk-note { grid-column: 1 / -1; margin-top: 1rem; padding: 1.125rem 1.25rem; border-radius: var(--radius-sm); background: hsla(5,38%,45%,0.05); border: 1px solid hsla(5,38%,45%,0.14); font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.62; font-style: italic; }
+
+    /* ─── INVESTMENT CARD ────────────────────────────────── */
+    .invest-card {
+      padding: 3rem; border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.04); border: 1px solid hsla(5,38%,45%,0.22);
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    }
+    .invest-card::before {
+      content: ''; position: absolute; top: -120px; left: 50%;
+      transform: translateX(-50%); width: 600px; height: 300px;
+      background: radial-gradient(ellipse, hsla(5,38%,45%,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .invest-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 2rem; }
+    @media (min-width: 768px) { .invest-inner { flex-direction: row; align-items: flex-start; gap: 3rem; } }
+    .invest-main { flex: 1; }
+    .invest-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.5rem; }
+    .invest-amount {
+      font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 1rem;
+    }
+    .invest-text { font-size: 1rem; color: var(--fg-muted); line-height: 1.7; max-width: 52ch; }
+    .invest-calc { flex: 0 0 auto; }
+    .calc-box { padding: 1.5rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); min-width: 240px; }
+    .calc-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 1.125rem; }
+    .calc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .calc-row:last-child { border-bottom: none; }
+    .calc-row-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .calc-row-value { font-size: 0.875rem; font-weight: 500; color: var(--fg); }
+    .calc-row.total { padding-top: 0.875rem; margin-top: 0.25rem; border-top: 1px solid hsla(5,38%,45%,0.25); border-bottom: none; }
+    .calc-row.total .calc-row-label { color: var(--fg-muted); font-size: 0.875rem; }
+    .calc-row.total .calc-row-value { font-size: 1.125rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .invest-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    .invest-footer-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.65; }
+    .invest-note { margin-top: 1rem; padding: 0.875rem 1rem; border-radius: 10px; background: hsla(5,38%,45%,0.06); border: 1px solid hsla(5,38%,45%,0.14); font-size: 0.8125rem; color: var(--fg-muted); font-style: italic; line-height: 1.6; }
+
+    /* ─── PAYMENT METHODS ───────────────────────────────── */
+    .pay-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) { .pay-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .pay-card {
+      padding: 1.75rem; border-radius: var(--radius);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px); position: relative; overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .pay-card:hover { transform: translateY(-3px); border-color: hsla(5,38%,45%,0.22); }
+    .pay-card.featured {
+      border-color: hsla(5,38%,45%,0.3);
+      background: rgba(255,255,255,0.05);
+    }
+    .pay-card.featured::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .pay-badge {
+      display: inline-block; margin-bottom: 1.125rem;
+      padding: 0.2rem 0.625rem; border-radius: 999px;
+      background: hsla(5,38%,45%,0.12); border: 1px solid hsla(5,38%,45%,0.2);
+      font-size: 0.625rem; font-weight: 700; color: var(--rose);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .pay-badge.highlight {
+      background: hsla(5,38%,45%,0.2); border-color: hsla(5,38%,45%,0.4);
+    }
+    .pay-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: 10px;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.14), hsla(5,38%,45%,0.03));
+      border: 1px solid hsla(5,38%,45%,0.12);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+    }
+    .pay-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .pay-method { font-size: 0.875rem; font-weight: 600; color: var(--fg); margin-bottom: 0.375rem; }
+    .pay-main {
+      font-size: 1.5rem; font-weight: 700; line-height: 1.15;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 0.375rem;
+    }
+    .pay-main sup { font-size: 0.875rem; font-weight: 600; }
+    .pay-sub { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.5; }
+    .pay-detail { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .pay-detail-row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; padding: 0.25rem 0; }
+    .pay-detail-label { font-size: 0.75rem; color: var(--fg-subtle); }
+    .pay-detail-value { font-size: 0.8125rem; font-weight: 500; color: var(--fg); }
+
+    /* ─── FINAL CTA ──────────────────────────────────────── */
+    .final-cta { position: relative; overflow: hidden; text-align: center; }
+    .final-cta::before {
+      content: ''; position: absolute; top: -100px; left: 50%;
+      transform: translateX(-50%); width: 800px; height: 400px;
+      background: radial-gradient(ellipse, hsla(5,38%,45%,0.09) 0%, transparent 68%);
+      filter: blur(30px); pointer-events: none;
+    }
+    .cta-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+    .cta-sub { font-size: 1rem; color: var(--fg-muted); line-height: 1.72; max-width: 52ch; margin: 0 auto 2.5rem; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; z-index: 1; }
+    .footer-text { font-size: 0.8125rem; color: var(--fg-subtle); line-height: 1.7; }
+    .footer-text a { color: var(--rose); transition: opacity 0.2s; }
+    .footer-text a:hover { opacity: 0.75; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+    .reveal.d4 { transition-delay: 0.4s; }
+
+    :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: hsla(5,38%,45%,0.3); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: hsla(5,38%,45%,0.5); }
+  </style>
+</head>
+<body class="intro-active">
+
+<!-- ═══════════════ INTRO ════════════════════════════════ -->
+<div class="intro" id="intro" role="status" aria-live="polite" aria-label="Carregando proposta">
+  <div class="intro-inner">
+    <svg class="intro-ornament" width="160" height="24" viewBox="0 0 160 24" fill="none" aria-hidden="true">
+      <line x1="0" y1="12" x2="62" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+      <path d="M80 5 L88 12 L80 19 L72 12 Z" stroke="hsl(5,38%,45%)" stroke-width="0.9" opacity="0.75" fill="none"/>
+      <line x1="98" y1="12" x2="160" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+    </svg>
+    <p class="intro-pre">Proposta preparada para</p>
+    <h1 class="intro-title">Ideia Contábil.</h1>
+    <p class="intro-client">Ideia Contábil</p>
+    <div class="intro-bar-wrap" aria-hidden="true">
+      <div class="intro-bar" id="introBar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ HEADER ══════════════════════════════ -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav-surface" aria-label="Navegação principal">
+      <a href="#" class="nav-logo" aria-label="VS Experience">
+        <img src="../assets/images/logo/vslogo.webp" alt="VS Experience" width="28" height="28" style="border-radius:8px; flex-shrink:0;">
+        <span>VS Experience</span>
+      </a>
+      <div class="nav-links" role="list">
+        <a href="#escopo"       class="nav-link" role="listitem">Escopo</a>
+        <a href="#processo"     class="nav-link" role="listitem">Processo</a>
+        <a href="#investimento" class="nav-link" role="listitem">Investimento</a>
+        <a href="#aprovacao"    class="nav-link" role="listitem">Aprovação</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#aprovacao" class="btn btn-primary" style="display:none" id="navCta">
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button class="mob-toggle" id="mobToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Menu mobile" aria-modal="true">
+  <a href="#escopo"       class="nav-link">Escopo</a>
+  <a href="#processo"     class="nav-link">Processo</a>
+  <a href="#investimento" class="nav-link">Investimento</a>
+  <a href="#aprovacao"    class="nav-link">Aprovação</a>
+  <a href="#aprovacao"    class="btn btn-primary">Aprovar proposta</a>
+</div>
+
+<main>
+
+  <!-- ═══ 1. HERO ══════════════════════════════════════════ -->
+  <section class="hero" id="visao-geral" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <div class="hero-tag" aria-label="Proposta exclusiva">
+            <span class="hero-tag-dot" aria-hidden="true"></span>
+            Proposta Comercial · VS Experience
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            Landing Page<br>
+            institucional para<br>
+            <span class="gradient-text">Ideia Contábil.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Substituição do site atual por uma landing page moderna em WordPress — com identidade visual própria, eliminação das vulnerabilidades de segurança do Slider Revolution e estrutura pensada para gerar contato.
+          </p>
+
+          <ul class="hero-bullets" aria-label="Pontos-chave">
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+              Página única com 6 seções — hero, serviços, institucional, depoimentos, contato e WhatsApp fixo
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+              Desenvolvida em WordPress — sem dependência de plugins inseguros
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+              Mais de 40 anos de experiência da Ideia Contábil destacados na estrutura
+            </li>
+          </ul>
+
+          <div class="hero-ctas">
+            <a href="#escopo" class="btn btn-primary btn-lg">
+              Ver escopo completo
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#processo" class="btn btn-secondary btn-lg">
+              Entender processo
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="float-pill float-pill-1" aria-hidden="true">
+            <span class="fp-dot green"></span>
+            +40 anos de experiência
+          </div>
+          <div class="float-pill float-pill-2" aria-hidden="true">
+            <span class="fp-dot rose"></span>
+            15 dias úteis
+          </div>
+
+          <div class="summary-card" role="complementary" aria-label="Resumo da proposta">
+            <div class="sc-head">
+              <div class="sc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <p class="sc-title">Resumo da Proposta</p>
+                <p class="sc-sub">VS Experience · 2026</p>
+              </div>
+            </div>
+            <div class="sc-rows">
+              <div class="sc-row">
+                <span class="sc-label">Cliente</span>
+                <span class="sc-val">Ideia Contábil</span>
+              </div>
+              <div class="sc-divider" aria-hidden="true"></div>
+              <div class="sc-row">
+                <span class="sc-label">Serviço</span>
+                <span class="sc-val">Landing Page WordPress</span>
+              </div>
+              <div class="sc-row">
+                <span class="sc-label">Páginas</span>
+                <span class="sc-val">1 página · 6 seções</span>
+              </div>
+              <div class="sc-divider" aria-hidden="true"></div>
+              <div class="sc-row">
+                <span class="sc-label">Prazo</span>
+                <span class="sc-val">15 dias úteis</span>
+              </div>
+              <div class="sc-row">
+                <span class="sc-label">Investimento</span>
+                <span class="sc-val accent">R$ 1.000</span>
+              </div>
+            </div>
+            <a href="#aprovacao" class="btn btn-primary" style="width:100%; justify-content:center;">
+              Aprovar proposta
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. CONTEXTO E ESCOPO ══════════════════════════════ -->
+  <section class="section section-alt" id="escopo" aria-labelledby="escopo-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Contexto do projeto</div>
+        <h2 class="section-title reveal d1" id="escopo-title">
+          O que será <span class="gradient-text">entregue</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Uma landing page institucional completa, substituindo o site atual e eliminando os riscos de segurança existentes.
+        </p>
+      </div>
+
+      <div class="security-alert reveal d1" role="alert" aria-label="Alerta de segurança">
+        <div class="sa-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div>
+          <p class="sa-title">Vulnerabilidades ativas no site atual</p>
+          <p class="sa-text">O site atual utiliza o Slider Revolution com versão desatualizada que possui vulnerabilidades de segurança conhecidas e exploráveis. A nova landing page será desenvolvida sem dependência deste plugin, eliminando esse risco completamente.</p>
+        </div>
+      </div>
+
+      <div class="inclusion-grid reveal d1" role="list">
+        <div class="inc-item" role="listitem">
+          <div class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <div class="inc-text">
+            <strong>Hero com chamada para contato</strong>
+            Seção principal apresentando o escritório, posicionamento e CTA direcionando para WhatsApp ou formulário de contato.
+          </div>
+        </div>
+        <div class="inc-item" role="listitem">
+          <div class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <div class="inc-text">
+            <strong>Seção de serviços</strong>
+            Apresentação estruturada das 5 áreas de atuação: Contábil, Fiscal Tributário, Recursos Humanos, Abertura de Empresas e Assessoramento Jurídico.
+          </div>
+        </div>
+        <div class="inc-item" role="listitem">
+          <div class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <div class="inc-text">
+            <strong>Seção institucional</strong>
+            Destaque para os mais de 40 anos de experiência do escritório, reforçando credibilidade e solidez no mercado.
+          </div>
+        </div>
+        <div class="inc-item" role="listitem">
+          <div class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <div class="inc-text">
+            <strong>Depoimentos de clientes</strong>
+            Seção de prova social com depoimentos fornecidos pela Ideia Contábil — textos e nomes a serem enviados pelo cliente.
+          </div>
+        </div>
+        <div class="inc-item" role="listitem">
+          <div class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <div class="inc-text">
+            <strong>Informações de contato completas</strong>
+            Endereço, horário de atendimento e mapa do Google Maps incorporado para facilitar a localização do escritório.
+          </div>
+        </div>
+        <div class="inc-item" role="listitem">
+          <div class="inc-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <div class="inc-text">
+            <strong>Botão de WhatsApp fixo</strong>
+            Atalho flutuante visível em todas as seções da página, garantindo que o visitante sempre tenha acesso ao contato direto.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top: 4rem; margin-bottom: 2rem;">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Serviços da Ideia Contábil</div>
+        <h3 class="section-title reveal d1" style="font-size: clamp(1.25rem, 2.5vw, 1.75rem);">
+          Áreas apresentadas <span class="gradient-text">na página</span>
+        </h3>
+      </div>
+
+      <div class="services-list reveal d1" role="list">
+        <div class="srv-item" role="listitem"><span class="srv-dot" aria-hidden="true"></span>Contábil</div>
+        <div class="srv-item" role="listitem"><span class="srv-dot" aria-hidden="true"></span>Fiscal Tributário</div>
+        <div class="srv-item" role="listitem"><span class="srv-dot" aria-hidden="true"></span>Recursos Humanos</div>
+        <div class="srv-item" role="listitem"><span class="srv-dot" aria-hidden="true"></span>Abertura de Empresas</div>
+        <div class="srv-item" role="listitem"><span class="srv-dot" aria-hidden="true"></span>Assessoramento Jurídico</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. O QUE NÃO ESTÁ INCLUSO ════════════════════════ -->
+  <section class="section" aria-labelledby="nao-incluso-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Fora do escopo</div>
+        <h2 class="section-title reveal d1" id="nao-incluso-title">
+          O que <span class="gradient-text">não está incluso</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Para manter o prazo e o valor dentro do combinado, os itens abaixo não fazem parte desta entrega.
+        </p>
+      </div>
+
+      <div class="excl-grid reveal d1" role="list">
+        <div class="excl-item" role="listitem">
+          <div class="excl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Blog ou área de notícias
+        </div>
+        <div class="excl-item" role="listitem">
+          <div class="excl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Páginas internas individuais por serviço
+        </div>
+        <div class="excl-item" role="listitem">
+          <div class="excl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Criação ou redesenho de logotipo
+        </div>
+        <div class="excl-item" role="listitem">
+          <div class="excl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Copywriting — textos fornecidos pelo cliente
+        </div>
+        <div class="excl-item" role="listitem">
+          <div class="excl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Configuração de domínio e hospedagem
+        </div>
+        <div class="excl-item" role="listitem">
+          <div class="excl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Manutenção contínua pós-entrega
+        </div>
+        <div class="excl-note" aria-label="Observação">
+          Qualquer item fora do escopo pode ser avaliado como adicional — com prazo e valor definidos antes do início.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. PROCESSO DE EXECUÇÃO ══════════════════════════ -->
+  <section class="section section-alt" id="processo" aria-labelledby="processo-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Como funciona
+          <span class="eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h2 class="section-title reveal d1" id="processo-title">
+          Processo de <span class="gradient-text">execução</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Quatro etapas com entregas progressivas e aprovação antes de avançar.
+        </p>
+      </div>
+
+      <div class="timeline reveal d1" role="list">
+        <div class="tl-step" role="listitem">
+          <div class="tl-num" aria-label="Etapa 1">01</div>
+          <div class="tl-content">
+            <p class="tl-phase">Etapa 1 · Dias 1–2</p>
+            <h3 class="tl-title">Recebimento e planejamento</h3>
+            <p class="tl-desc">Recebimento dos materiais (textos, fotos, logo, depoimentos, acesso ao servidor), validação do conteúdo e definição da direção visual. Qualquer lacuna é identificada aqui — antes de começar o desenvolvimento.</p>
+          </div>
+        </div>
+
+        <div class="tl-step" role="listitem">
+          <div class="tl-num" aria-label="Etapa 2">02</div>
+          <div class="tl-content">
+            <p class="tl-phase">Etapa 2 · Dias 3–8</p>
+            <h3 class="tl-title">Desenvolvimento WordPress</h3>
+            <p class="tl-desc">Construção da estrutura da página em WordPress com identidade visual própria — sem Slider Revolution. Desenvolvimento das 6 seções: hero, serviços, institucional, depoimentos, contato e WhatsApp fixo.</p>
+          </div>
+        </div>
+
+        <div class="tl-step" role="listitem">
+          <div class="tl-num" aria-label="Etapa 3">03</div>
+          <div class="tl-content">
+            <p class="tl-phase">Etapa 3 · Dias 9–12</p>
+            <h3 class="tl-title">Inserção de conteúdo e revisão</h3>
+            <p class="tl-desc">Inserção de todos os textos, fotos, depoimentos e informações de contato. Conferência visual em desktop e mobile, ajustes de tipografia, espaçamento e responsividade. Revisão do mapa incorporado e do botão de WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="tl-step" role="listitem">
+          <div class="tl-num" aria-label="Etapa 4">04</div>
+          <div class="tl-content">
+            <p class="tl-phase">Etapa 4 · Dias 13–15</p>
+            <h3 class="tl-title">Ajustes finais e entrega</h3>
+            <p class="tl-desc">Rodada de ajustes com base no feedback, conferência final de todos os links e interações, e entrega da página publicada no servidor da Ideia Contábil.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. PRAZO ════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="prazo-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Cronograma</div>
+        <h2 class="section-title reveal d1" id="prazo-title">
+          Prazo de <span class="gradient-text">entrega</span>
+        </h2>
+      </div>
+
+      <div class="deadline-card reveal d1">
+        <div class="deadline-number" aria-label="15 dias úteis">15</div>
+        <div class="deadline-info">
+          <p class="deadline-label">Prazo máximo de execução</p>
+          <h3 class="deadline-title">dias úteis</h3>
+          <p class="deadline-text">
+            A contagem começa após o início formal do projeto e o recebimento completo dos materiais — textos, fotos, logo, depoimentos e acesso ao servidor WordPress. O envio organizado do conteúdo é o principal fator que garante o cumprimento do prazo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. INFORMAÇÕES NECESSÁRIAS ══════════════════════ -->
+  <section class="section section-alt" aria-labelledby="info-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>O que você precisa enviar</div>
+        <h2 class="section-title reveal d1" id="info-title">
+          Informações <span class="gradient-text">necessárias</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Para que o prazo de 15 dias úteis seja cumprido, os materiais precisam chegar organizados no início do projeto.
+        </p>
+      </div>
+
+      <div class="checklist reveal d1" role="list">
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Textos de todas as seções — apresentação, serviços, institucional e contato</span>
+        </div>
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Logo da Ideia Contábil em alta resolução (SVG ou PNG transparente)</span>
+        </div>
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Fotos da equipe e do escritório para uso na seção institucional e hero</span>
+        </div>
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Depoimentos de clientes — nome, texto e cargo ou empresa de cada um</span>
+        </div>
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Endereço completo, horário de atendimento e número de WhatsApp</span>
+        </div>
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Acesso ao servidor WordPress (usuário administrador ou FTP)</span>
+        </div>
+        <div class="chk-item" role="listitem">
+          <div class="chk-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+          <span>Referências visuais, paleta de cores ou manual de identidade, se houver</span>
+        </div>
+        <p class="chk-note">
+          Os textos são de responsabilidade da Ideia Contábil (copywriting não está incluso). Quanto mais completo e organizado o material no início, mais fiel e ágil será a execução.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7. INVESTIMENTO ══════════════════════════════════ -->
+  <section class="section" id="investimento" aria-labelledby="invest-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Investimento</div>
+        <h2 class="section-title reveal d1" id="invest-title">
+          Valor do <span class="gradient-text">projeto</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Um valor direto para uma entrega clara e completa.
+        </p>
+      </div>
+
+      <div class="invest-card reveal d1">
+        <div class="invest-inner">
+          <div class="invest-main">
+            <p class="invest-label">Investimento total</p>
+            <p class="invest-amount" aria-label="R$ 1.000">R$ 1.000</p>
+            <p class="invest-text">
+              O valor cobre todo o desenvolvimento da landing page em WordPress — desde a estrutura visual até a inserção dos conteúdos, configuração do botão de WhatsApp fixo, mapa incorporado e publicação no servidor.
+            </p>
+          </div>
+
+          <div class="invest-calc">
+            <div class="calc-box">
+              <p class="calc-title">O que está incluso</p>
+              <div class="calc-row">
+                <span class="calc-row-label">Desenvolvimento WordPress</span>
+                <span class="calc-row-value">✓</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-row-label">Identidade visual própria</span>
+                <span class="calc-row-value">✓</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-row-label">6 seções completas</span>
+                <span class="calc-row-value">✓</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-row-label">Responsivo (mobile/desktop)</span>
+                <span class="calc-row-value">✓</span>
+              </div>
+              <div class="calc-row">
+                <span class="calc-row-label">Publicação no servidor</span>
+                <span class="calc-row-value">✓</span>
+              </div>
+              <div class="calc-row total">
+                <span class="calc-row-label">Investimento total</span>
+                <span class="calc-row-value">R$ 1.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="invest-footer">
+          <p class="invest-footer-text">
+            Este valor contempla: estrutura WordPress sem dependência de plugins inseguros, identidade visual própria, 6 seções (hero, serviços, institucional, depoimentos, contato e WhatsApp fixo), responsividade, inserção dos conteúdos fornecidos e publicação no servidor existente.
+          </p>
+          <p class="invest-note">
+            Configuração de domínio e hospedagem não estão inclusos — é necessário que o servidor WordPress já esteja ativo e acessível no início do projeto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. FORMAS DE PAGAMENTO ═════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="pagamento-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line" aria-hidden="true"></span>Condições de pagamento</div>
+        <h2 class="section-title reveal d1" id="pagamento-title">
+          Formas de <span class="gradient-text">pagamento</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Escolha a condição que melhor se encaixa no seu momento.
+        </p>
+      </div>
+
+      <div class="pay-grid reveal d1">
+
+        <!-- Cartão de crédito -->
+        <div class="pay-card">
+          <div class="pay-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <span class="pay-badge">Cartão de crédito</span>
+          <p class="pay-method">Parcelado</p>
+          <p class="pay-main"><sup>4×</sup> R$ 259,16</p>
+          <p class="pay-sub">Sem juros adicionais cobrados por nós. Eventuais encargos ficam sujeitos à operadora do cartão.</p>
+          <div class="pay-detail">
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Total no cartão</span>
+              <span class="pay-detail-value">R$ 1.036,64</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Parcelas</span>
+              <span class="pay-detail-value">4×</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pix parcelado -->
+        <div class="pay-card">
+          <div class="pay-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="pay-badge">Pix</span>
+          <p class="pay-method">50% + 50%</p>
+          <p class="pay-main">R$ 500</p>
+          <p class="pay-sub">Entrada no início do projeto e o restante na entrega final.</p>
+          <div class="pay-detail">
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Entrada</span>
+              <span class="pay-detail-value">R$ 500</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Na entrega</span>
+              <span class="pay-detail-value">R$ 500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pix à vista -->
+        <div class="pay-card featured">
+          <div class="pay-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="pay-badge highlight">Melhor opção · Pix à vista</span>
+          <p class="pay-method">10% de desconto</p>
+          <p class="pay-main">R$ 900</p>
+          <p class="pay-sub">Pagamento único via Pix com desconto de R$100 sobre o valor total.</p>
+          <div class="pay-detail">
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Valor original</span>
+              <span class="pay-detail-value">R$ 1.000</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Desconto (10%)</span>
+              <span class="pay-detail-value">− R$ 100</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label" style="color: var(--fg-muted); font-weight: 600;">Total à vista</span>
+              <span class="pay-detail-value" style="color: var(--fg); font-weight: 700;">R$ 900</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. CTA FINAL ════════════════════════════════════ -->
+  <section class="section final-cta" id="aprovacao" aria-labelledby="cta-title">
+    <div class="container-tight">
+      <h2 class="cta-title reveal" id="cta-title">
+        Próximo <span class="gradient-text">passo</span>
+      </h2>
+      <p class="cta-sub reveal d1">
+        Após a aprovação, o projeto começa assim que recebermos os materiais e o acesso ao servidor. Em até 15 dias úteis, a Ideia Contábil terá um site seguro, moderno e focado em conversão.
+      </p>
+      <div class="cta-btns reveal d2">
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Quero%20aprovar%20a%20proposta%20da%20landing%20page%20para%20a%20Ideia%20Cont%C3%A1bil."
+          class="btn btn-primary btn-lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20d%C3%BAvidas%20sobre%20a%20proposta%20da%20Ideia%20Cont%C3%A1bil."
+          class="btn btn-secondary btn-lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tirar dúvidas
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ══════════════════════════════ -->
+<footer>
+  <div class="container">
+    <p class="footer-text">
+      Proposta preparada por <a href="https://vsexperience.com.br" target="_blank" rel="noopener noreferrer">VS Experience</a> · Victor Santos &nbsp;·&nbsp; 2026<br>
+      Este documento é confidencial e foi preparado exclusivamente para a Ideia Contábil.
+    </p>
+  </div>
+</footer>
+
+<script>
+  /* ─── Intro overlay ──────────────────────────────────── */
+  (function () {
+    var intro = document.getElementById('intro');
+    setTimeout(function () {
+      intro.classList.add('exit');
+      setTimeout(function () {
+        intro.style.display = 'none';
+        document.body.classList.remove('intro-active');
+      }, 700);
+    }, 5200);
+  })();
+
+  /* ─── Header scroll ──────────────────────────────────── */
+  var header = document.getElementById('header');
+  var navCta = document.getElementById('navCta');
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 60) {
+      header.classList.add('scrolled');
+      if (navCta) navCta.style.display = 'inline-flex';
+    } else {
+      header.classList.remove('scrolled');
+      if (navCta) navCta.style.display = 'none';
+    }
+  }, { passive: true });
+
+  /* ─── Mobile menu ────────────────────────────────────── */
+  var toggle  = document.getElementById('mobToggle');
+  var mobMenu = document.getElementById('mobMenu');
+  if (toggle && mobMenu) {
+    toggle.addEventListener('click', function () {
+      var open = mobMenu.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobMenu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ─── Reveal on scroll ───────────────────────────────── */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+</script>
+</body>
+</html>
