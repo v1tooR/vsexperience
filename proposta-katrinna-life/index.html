@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial — Reestruturação E-commerce Katrinna Life · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       KATRINNA LIFE · PROPOSTA COMERCIAL · E-COMMERCE
+       VS Experience · 2026
+    ═══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --bg:          hsl(0, 0%, 6%);
+      --bg2:         hsl(0, 0%, 9%);
+      --fg:          hsl(0, 0%, 97%);
+      --fg-muted:    rgba(247,247,247,0.65);
+      --fg-subtle:   rgba(247,247,247,0.36);
+      --rose:        hsl(5, 38%, 45%);
+      --rose-light:  hsl(5, 38%, 65%);
+      --brown:       hsl(5, 38%, 22%);
+      --card-bg:     hsla(0, 0%, 100%, 0.03);
+      --card-border: hsla(0, 0%, 100%, 0.08);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+      --radius:      20px;
+      --radius-lg:   28px;
+      --radius-sm:   12px;
+      --shadow:      0 8px 32px rgba(0,0,0,0.30);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.18);
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg); color: var(--fg);
+      line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    body.intro-active { overflow: hidden; }
+
+    body::before {
+      content: ''; position: fixed; top: 10%; left: -300px;
+      width: 600px; height: 700px; background: hsl(5, 60%, 35%);
+      border-radius: 100%; filter: blur(160px); opacity: 0.18;
+      pointer-events: none; z-index: 0; animation: glow-breathe 7s ease-in-out infinite;
+    }
+    body::after {
+      content: ''; position: fixed; top: 60%; right: -350px;
+      width: 700px; height: 400px; background: hsl(5, 65%, 38%);
+      border-radius: 100%; filter: blur(150px); opacity: 0.14;
+      pointer-events: none; z-index: 0; animation: glow-breathe 9s 2s ease-in-out infinite;
+    }
+    @keyframes glow-breathe { 0%, 100% { opacity: 0.04; } 50% { opacity: 0.22; } }
+
+    /* ─── INTRO ─────────────────────────────────────────── */
+    .intro {
+      position: fixed; inset: 0; z-index: 9999; background: #090909;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .intro::before {
+      content: ''; position: absolute; top: 45%; left: 50%;
+      transform: translate(-50%, -50%); width: 560px; height: 320px;
+      background: hsl(5, 60%, 35%); border-radius: 100%;
+      filter: blur(120px); opacity: 0.28; pointer-events: none;
+    }
+    .intro-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.25rem; text-align: center; padding: 0 1.5rem;
+    }
+    .intro-ornament { opacity: 0; animation: fade-in 0.8s ease 0.3s forwards; }
+    .intro-pre { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(247,247,247,0.4); opacity: 0; animation: fade-up 0.6s ease 0.85s forwards; }
+    .intro-title { font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; opacity: 0; animation: fade-up 0.7s ease 1.3s forwards; }
+    .intro-client { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0; animation: fade-up 0.6s ease 1.9s forwards; }
+    .intro-bar-wrap { width: 200px; height: 1px; background: rgba(247,247,247,0.07); border-radius: 999px; overflow: hidden; margin-top: 0.5rem; opacity: 0; animation: fade-in 0.4s ease 2.4s forwards; }
+    .intro-bar { height: 100%; width: 0%; background: linear-gradient(to right, hsl(5,38%,22%), hsl(5,38%,55%)); border-radius: 999px; animation: bar-fill 2.3s cubic-bezier(0.4, 0, 0.2, 1) 2.6s forwards; }
+    @keyframes bar-fill { to { width: 100%; } }
+    .intro.exit { animation: intro-slide-out 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @keyframes intro-slide-out { to { transform: translateY(-100%); } }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container       { max-width: 82rem; margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .section         { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-alt     { background: rgba(14,14,14,0.55); }
+    .section-header  { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .section-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+    .section-sub { font-size: 1.0625rem; color: var(--fg-muted); line-height: 1.72; max-width: 60ch; }
+    .gradient-text { background: linear-gradient(135deg, hsl(5,38%,45%) 0%, hsl(5,38%,65%) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 1.5rem; }
+    .eyebrow-line { display: inline-block; width: 1.75rem; height: 1px; background: var(--rose); opacity: 0.55; }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 1.125rem 1.5rem; transition: padding 0.3s ease; }
+    .header.scrolled { padding: 0.5rem 1.5rem; }
+    .nav-surface { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.625rem 1.125rem; border-radius: 999px; transition: all 0.3s ease; }
+    .header.scrolled .nav-surface { background: rgba(10,10,10,0.9); border: 1px solid var(--card-border); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .nav-logo { display: flex; align-items: center; gap: 0.625rem; font-size: 0.9375rem; font-weight: 600; color: var(--fg); flex-shrink: 0; }
+    .nav-links { display: none; align-items: center; gap: 1.75rem; }
+    @media (min-width: 900px) { .nav-links { display: flex; } }
+    .nav-link { font-size: 0.875rem; color: var(--fg-muted); transition: color 0.2s ease; position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--rose); transition: width 0.3s ease; }
+    .nav-link:hover { color: var(--fg); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .mob-toggle { display: flex; flex-direction: column; gap: 5px; padding: 0.4rem; cursor: pointer; }
+    @media (min-width: 900px) { .mob-toggle { display: none; } }
+    .mob-toggle span { width: 22px; height: 1.5px; background: var(--fg); border-radius: 2px; transition: all 0.3s ease; display: block; }
+    .mob-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .mob-toggle.open span:nth-child(2) { opacity: 0; }
+    .mob-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .mob-menu { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.97); z-index: 490; padding: 5.5rem 2rem 2rem; flex-direction: column; gap: 1.75rem; }
+    .mob-menu.open { display: flex; }
+    .mob-menu .nav-link { font-size: 1.375rem; font-weight: 500; }
+    .mob-menu .btn-primary { margin-top: 1rem; justify-content: center; }
+    @media (max-width: 899px) { .header { padding: 0.75rem 1rem; } .header .container { padding: 0; } .nav-surface { padding: 0.5rem 0.875rem; border-radius: 14px; } #navCta { display: none !important; } }
+
+    /* ─── BUTTONS ─────────────────────────────────────────── */
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; font-family: inherit; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+    .btn-primary { padding: 0.65rem 1.375rem; border-radius: 999px; font-size: 0.875rem; background: var(--gradient); color: hsl(0, 0%, 97%); border: none; box-shadow: 0 4px 16px hsla(5,38%,45%,0.28); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px hsla(5,38%,45%,0.38); }
+    .btn-secondary { padding: 0.65rem 1.375rem; border-radius: 999px; font-size: 0.875rem; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--fg); backdrop-filter: blur(12px); }
+    .btn-secondary:hover { border-color: hsla(5,38%,45%,0.3); background: rgba(255,255,255,0.07); }
+    .btn-lg { padding: 1rem 2rem; font-size: 1rem; border-radius: 16px; }
+    .btn svg { width: 1rem; height: 1rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s ease; flex-shrink: 0; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 9rem 0 6rem; position: relative; overflow: hidden; z-index: 1; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 900px 500px at 10% 55%, hsla(5,38%,45%,0.05) 0%, transparent 70%), radial-gradient(ellipse 600px 400px at 85% 15%, hsla(5,38%,22%,0.07) 0%, transparent 70%); pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 4rem; } }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.875rem; border-radius: 999px; border: 1px solid hsla(5,38%,45%,0.22); background: hsla(5,38%,45%,0.06); font-size: 0.6875rem; color: var(--rose); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; margin-bottom: 1.75rem; }
+    .hero-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.0625rem; color: var(--fg-muted); line-height: 1.72; max-width: 48ch; margin-bottom: 2rem; }
+    .hero-bullets { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .hero-bullet { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9375rem; color: var(--fg-muted); }
+    .bullet-chk { width: 1.25rem; height: 1.25rem; border-radius: 50%; background: hsla(5,38%,45%,0.12); border: 1px solid hsla(5,38%,45%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .bullet-chk svg { width: 0.625rem; height: 0.625rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Summary card */
+    .hero-right { position: relative; display: flex; justify-content: center; align-items: center; }
+    .summary-card { position: relative; z-index: 2; width: 100%; max-width: 400px; padding: 2rem; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.07); }
+    .sc-head { display: flex; align-items: center; gap: 0.875rem; padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .sc-icon { width: 2.75rem; height: 2.75rem; border-radius: 12px; background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04)); border: 1px solid hsla(5,38%,45%,0.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sc-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.125rem; }
+    .sc-sub { font-size: 0.75rem; color: var(--fg-subtle); }
+    .sc-rows { display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 1.5rem; }
+    .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .sc-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .sc-val { font-size: 0.875rem; font-weight: 500; color: var(--fg); text-align: right; }
+    .sc-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+    .sc-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 0.125rem 0; }
+
+    /* Float pills */
+    .float-pill { position: absolute; display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.875rem; border-radius: 999px; background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.09); backdrop-filter: blur(16px); font-size: 0.75rem; color: var(--fg); white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.22); z-index: 5; }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .fp-dot.green { background: #5cb87a; box-shadow: 0 0 0 3px rgba(92,184,122,0.2); }
+    .fp-dot.rose  { background: var(--rose); box-shadow: 0 0 0 3px hsla(5,38%,45%,0.2); }
+    .float-pill-1 { top: 8%; right: 2%; animation: fp-float 5s ease-in-out infinite; }
+    .float-pill-2 { bottom: 12%; left: 1%; animation: fp-float 6.5s ease-in-out 1.5s infinite; }
+    @keyframes fp-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @media (max-width: 1023px) { .float-pill { display: none; } }
+
+    /* ─── POSITIONING STATEMENT ──────────────────────────── */
+    .positioning {
+      padding: 2rem 2.5rem; border-radius: var(--radius);
+      background: linear-gradient(135deg, hsla(5,38%,22%,0.22) 0%, hsla(5,38%,45%,0.08) 100%);
+      border: 1px solid hsla(5,38%,45%,0.25);
+      position: relative; overflow: hidden;
+    }
+    .positioning::before {
+      content: '"'; position: absolute; top: -0.5rem; left: 1.25rem;
+      font-size: 8rem; font-weight: 700; line-height: 1;
+      color: hsla(5,38%,45%,0.08); pointer-events: none; font-family: Georgia, serif;
+    }
+    .positioning-text {
+      font-size: clamp(1rem, 2vw, 1.1875rem);
+      font-weight: 500; line-height: 1.75;
+      color: var(--fg); position: relative; z-index: 1;
+    }
+    .positioning-text em { color: var(--rose-light); font-style: normal; font-weight: 600; }
+
+    /* ─── DIAGNOSTICO CARDS ──────────────────────────────── */
+    .diag-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .diag-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .diag-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    .diag-card {
+      padding: 1.5rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .diag-card:hover { border-color: hsla(5,38%,45%,0.22); transform: translateY(-3px); }
+    .diag-icon { width: 2.5rem; height: 2.5rem; border-radius: 10px; background: linear-gradient(135deg, hsla(5,38%,45%,0.14), hsla(5,38%,45%,0.03)); border: 1px solid hsla(5,38%,45%,0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .diag-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .diag-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .diag-text  { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.6; }
+
+    /* ─── SCOPE GROUPS ───────────────────────────────────── */
+    .scope-groups { display: flex; flex-direction: column; gap: 2rem; }
+    .scope-group {
+      padding: 1.75rem; border-radius: var(--radius);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+    }
+    .sg-head { display: flex; align-items: center; gap: 0.875rem; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sg-icon { width: 2.5rem; height: 2.5rem; border-radius: 10px; background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04)); border: 1px solid hsla(5,38%,45%,0.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sg-icon svg { width: 1.125rem; height: 1.125rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sg-title { font-size: 1rem; font-weight: 600; }
+    .sg-items { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+    @media (min-width: 640px) { .sg-items { grid-template-columns: 1fr 1fr; } }
+    .sg-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; }
+    .sg-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 0.45rem; opacity: 0.7; }
+
+    /* ─── DIFERENCIAIS ───────────────────────────────────── */
+    .diff-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .diff-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .diff-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    .diff-card {
+      padding: 1.5rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      position: relative; overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .diff-card:hover { transform: translateY(-3px); border-color: hsla(5,38%,45%,0.22); }
+    .diff-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gradient); opacity: 0.45; }
+    .diff-num { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose); opacity: 0.6; margin-bottom: 0.875rem; }
+    .diff-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .diff-text  { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.6; }
+
+    /* ─── EXCLUSION SECTION ──────────────────────────────── */
+    .excl-grid { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .excl-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .excl-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .excl-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.875rem 1rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; transition: border-color 0.25s ease; }
+    .excl-item:hover { border-color: rgba(255,255,255,0.1); }
+    .excl-icon { flex-shrink: 0; margin-top: 1px; }
+    .excl-icon svg { width: 0.9375rem; height: 0.9375rem; stroke: rgba(247,247,247,0.28); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .excl-note { grid-column: 1 / -1; margin-top: 1.25rem; padding: 1.125rem 1.375rem; border-radius: var(--radius-sm); background: hsla(5,38%,45%,0.05); border: 1px solid hsla(5,38%,45%,0.14); font-size: 0.875rem; color: var(--fg-muted); line-height: 1.65; font-style: italic; }
+
+    /* ─── DEADLINE ───────────────────────────────────────── */
+    .deadline-card { padding: 2.5rem; border-radius: var(--radius-lg); background: var(--card-bg); border: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 1.5rem; backdrop-filter: blur(20px); }
+    @media (min-width: 768px) { .deadline-card { flex-direction: row; align-items: center; gap: 2.5rem; } }
+    .deadline-number { font-size: clamp(3rem, 7vw, 5rem); font-weight: 700; line-height: 1; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; flex-shrink: 0; }
+    .deadline-info { flex: 1; }
+    .deadline-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.5rem; }
+    .deadline-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.625rem; }
+    .deadline-text  { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.68; }
+
+    /* ─── INVESTMENT OPTIONS ─────────────────────────────── */
+    .invest-options { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 900px) { .invest-options { grid-template-columns: 1fr 1fr; } }
+    .invest-option {
+      padding: 2.5rem; border-radius: var(--radius-lg);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      backdrop-filter: blur(24px); position: relative; overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .invest-option:hover { border-color: hsla(5,38%,45%,0.3); transform: translateY(-4px); }
+    .invest-option.featured {
+      border-color: hsla(5,38%,45%,0.35);
+      background: rgba(255,255,255,0.05);
+    }
+    .invest-option.featured::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gradient);
+    }
+    .invest-option::after {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 240px; height: 240px;
+      background: radial-gradient(ellipse, hsla(5,38%,45%,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .opt-badge { display: inline-block; margin-bottom: 1.5rem; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .opt-badge.default { background: hsla(5,38%,45%,0.1); border: 1px solid hsla(5,38%,45%,0.2); color: var(--rose); }
+    .opt-badge.recommended { background: var(--gradient); color: hsl(0,0%,97%); }
+    .opt-name { font-size: 1rem; font-weight: 600; color: var(--fg-muted); margin-bottom: 0.5rem; }
+    .opt-price { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+    .opt-price-note { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.75rem; line-height: 1.5; }
+    .opt-divider { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 1.75rem; }
+    .opt-features { display: flex; flex-direction: column; gap: 0.625rem; margin-bottom: 1.75rem; }
+    .opt-feature { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; }
+    .opt-chk { width: 1.125rem; height: 1.125rem; border-radius: 50%; background: hsla(5,38%,45%,0.12); border: 1px solid hsla(5,38%,45%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .opt-chk svg { width: 0.5625rem; height: 0.5625rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .opt-total { padding: 0.875rem 1rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: 0.875rem; color: var(--fg-muted); }
+    .opt-total strong { font-size: 1rem; font-weight: 700; color: var(--fg); }
+
+    /* ─── PARTNERSHIP MONTHLY ────────────────────────────── */
+    .partner-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+    @media (min-width: 640px) { .partner-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .partner-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .partner-item { display: flex; align-items: flex-start; gap: 0.875rem; padding: 1.125rem 1.25rem; border-radius: var(--radius-sm); background: var(--card-bg); border: 1px solid var(--card-border); transition: border-color 0.3s ease, transform 0.3s ease; }
+    .partner-item:hover { border-color: hsla(5,38%,45%,0.22); transform: translateY(-2px); }
+    .partner-check { width: 1.5rem; height: 1.5rem; border-radius: 50%; background: hsla(5,38%,45%,0.12); border: 1px solid hsla(5,38%,45%,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .partner-check svg { width: 0.75rem; height: 0.75rem; stroke: var(--rose); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .partner-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.55; }
+    .partner-text strong { color: var(--fg); font-weight: 500; display: block; margin-bottom: 0.125rem; }
+
+    /* ─── STRATEGIC NOTE ─────────────────────────────────── */
+    .strategic-note {
+      padding: 2.5rem; border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px); position: relative; overflow: hidden;
+    }
+    .strategic-note::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(ellipse, hsla(5,38%,45%,0.05) 0%, transparent 70%); pointer-events: none; }
+    .sn-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.25rem; }
+    @media (min-width: 768px) { .sn-inner { flex-direction: row; align-items: flex-start; gap: 2rem; } }
+    .sn-icon { width: 3rem; height: 3rem; border-radius: 14px; background: linear-gradient(135deg, hsla(5,38%,45%,0.14), hsla(5,38%,45%,0.03)); border: 1px solid hsla(5,38%,45%,0.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sn-icon svg { width: 1.375rem; height: 1.375rem; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sn-title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.625rem; }
+    .sn-text  { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.72; }
+
+    /* ─── NEXT STEPS ─────────────────────────────────────── */
+    .next-steps { display: flex; flex-direction: column; gap: 0; counter-reset: steps; }
+    .ns-item {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding: 1.5rem 0; position: relative;
+    }
+    .ns-item:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .ns-num {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.18), hsla(5,38%,45%,0.04));
+      border: 1px solid hsla(5,38%,45%,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: var(--rose);
+    }
+    .ns-content { flex: 1; padding-top: 0.25rem; }
+    .ns-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .ns-text  { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.6; }
+
+    /* ─── FINAL CTA ──────────────────────────────────────── */
+    .final-cta { position: relative; overflow: hidden; text-align: center; }
+    .final-cta::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, hsla(5,38%,45%,0.09) 0%, transparent 68%); filter: blur(30px); pointer-events: none; }
+    .cta-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+    .cta-sub { font-size: 1rem; color: var(--fg-muted); line-height: 1.72; max-width: 52ch; margin: 0 auto 2.5rem; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ─── BEFORE / AFTER COMPARISON (mobile-first) ─────── */
+
+    /* Tabs — scrollable, no wrapping */
+    .comp-tabs {
+      display: flex; gap: 0.375rem; margin-bottom: 2.5rem;
+      background: rgba(255,255,255,0.025); border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm); padding: 0.3rem;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .comp-tabs::-webkit-scrollbar { display: none; }
+    .comp-tab {
+      padding: 0.65rem 1.25rem; border-radius: 8px; flex-shrink: 0;
+      font-size: 0.8125rem; font-weight: 500; color: var(--fg-subtle);
+      background: none; cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .comp-tab:hover { color: var(--fg-muted); }
+    .comp-tab.active { background: rgba(255,255,255,0.09); color: var(--fg); font-weight: 600; }
+
+    /* Panel visibility */
+    .comp-panel { display: none; }
+    .comp-panel.active { display: block; animation: fade-in 0.3s ease; }
+
+    /* Mobile state toggle bar — hidden on desktop */
+    .comp-state-bar {
+      display: flex; gap: 0; margin-bottom: 1.25rem;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--card-border);
+      border-radius: 999px; padding: 0.25rem;
+    }
+    @media (min-width: 900px) { .comp-state-bar { display: none; } }
+    .comp-state-btn {
+      flex: 1; padding: 0.65rem 1rem; border-radius: 999px;
+      font-size: 0.8125rem; font-weight: 500; color: var(--fg-subtle);
+      cursor: pointer; transition: all 0.25s ease; text-align: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .comp-state-btn[data-state="before"].active {
+      background: rgba(255,255,255,0.09); color: var(--fg); font-weight: 600;
+    }
+    .comp-state-btn[data-state="after"].active {
+      background: var(--gradient); color: #fff; font-weight: 600;
+    }
+
+    /* Grid: side-by-side on desktop, single col on mobile */
+    .comp-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start;
+    }
+    @media (max-width: 899px) { .comp-grid { grid-template-columns: 1fr; } }
+
+    /* On mobile: show only the active state col */
+    @media (max-width: 899px) {
+      .comp-col.after { display: none; }
+      .comp-panel.show-after .comp-col.before { display: none; }
+      .comp-panel.show-after .comp-col.after { display: flex; flex-direction: column; gap: 1rem; animation: comp-slide 0.28s ease; }
+      .comp-panel:not(.show-after) .comp-col.before { animation: comp-slide-rev 0.28s ease; }
+    }
+    @keyframes comp-slide { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes comp-slide-rev { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
+
+    .comp-col { display: flex; flex-direction: column; gap: 1rem; }
+
+    /* Label badge */
+    .comp-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.875rem; border-radius: 999px; font-size: 0.7rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; width: fit-content;
+    }
+    .before-label { background: rgba(255,255,255,0.05); color: var(--fg-subtle); border: 1px solid rgba(255,255,255,0.09); }
+    .after-label { background: var(--gradient); color: #fff; }
+
+    /* Screenshot container */
+    .comp-screen {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--card-border); position: relative;
+      height: 280px; cursor: pointer; transition: height 0.4s ease;
+    }
+    @media (min-width: 900px) { .comp-screen { height: 340px; cursor: default; } }
+    .comp-screen img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
+      transition: transform 6s ease;
+    }
+    /* Desktop scroll-on-hover */
+    @media (hover: hover) and (min-width: 900px) {
+      .comp-screen:hover img { transform: translateY(calc(-100% + 340px)); }
+    }
+    /* Touch expand */
+    .comp-screen.expanded { height: auto; cursor: pointer; }
+    .comp-screen.expanded img { height: auto; object-fit: unset; transition: none; transform: none !important; }
+
+    .comp-col.before .comp-screen img { filter: saturate(0.2) brightness(0.6); }
+    .comp-col.after .comp-screen {
+      border-color: hsla(5,38%,45%,0.4);
+      box-shadow: 0 4px 32px hsla(5,38%,35%,0.22);
+    }
+
+    /* Hint text */
+    .comp-hint { font-size: 0.7rem; color: var(--fg-subtle); text-align: right; margin-top: -0.5rem; }
+    .hint-touch { display: none; }
+    @media (max-width: 899px) { .hint-hover { display: none; } .hint-touch { display: inline; } }
+
+    /* Swipe hint — mobile only */
+    .comp-swipe-hint {
+      display: none; text-align: center; font-size: 0.7rem; color: rgba(247,247,247,0.22);
+      margin-top: 1.25rem; letter-spacing: 0.06em;
+    }
+    @media (max-width: 899px) { .comp-swipe-hint { display: block; } }
+
+    /* Bullet list */
+    .comp-items { display: flex; flex-direction: column; gap: 0.5rem; }
+    .comp-item {
+      display: flex; align-items: flex-start; gap: 0.625rem;
+      font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.45;
+    }
+    .ci-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 0.45rem; }
+    .comp-col.before .ci-dot { background: rgba(255,255,255,0.18); }
+    .comp-col.after .ci-dot { background: var(--rose-light); }
+    .comp-col.before .comp-item { color: var(--fg-subtle); }
+
+    /* ─── MV CASE REFERENCE ──────────────────────────────── */
+    .mv-ref {
+      margin-top: 3rem; border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid var(--card-border);
+      display: flex; flex-direction: column; /* mobile-first */
+    }
+    @media (min-width: 900px) {
+      .mv-ref { flex-direction: row; min-height: 220px; }
+    }
+    .mv-ref-img { position: relative; overflow: hidden; height: 210px; flex-shrink: 0; }
+    @media (min-width: 900px) { .mv-ref-img { height: auto; flex: 1.1; } }
+    .mv-ref-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .mv-ref-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 35%, var(--bg2) 92%);
+    }
+    @media (min-width: 900px) {
+      .mv-ref-img::after { background: linear-gradient(to right, transparent 45%, var(--bg2) 92%); }
+    }
+    .mv-ref-content {
+      padding: 1.75rem; display: flex; flex-direction: column;
+      justify-content: center; gap: 0.75rem; background: var(--bg2); flex: 1;
+    }
+    @media (min-width: 900px) { .mv-ref-content { padding: 2.25rem 2.5rem; gap: 0.875rem; } }
+    .mv-ref-eyebrow { font-size: 0.675rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-light); }
+    .mv-ref-title { font-size: 1.25rem; font-weight: 700; line-height: 1.2; }
+    @media (min-width: 900px) { .mv-ref-title { font-size: 1.375rem; } }
+    .mv-ref-text { font-size: 0.8375rem; color: var(--fg-muted); line-height: 1.65; }
+    .mv-ref-link {
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;
+      font-weight: 600; color: var(--rose-light); width: fit-content;
+      transition: gap 0.2s ease; padding: 0.5rem 0; min-height: 44px;
+    }
+    .mv-ref-link:hover { gap: 0.8rem; }
+    .mv-ref-link svg { width: 0.875rem; height: 0.875rem; }
+
+    /* ─── PAYMENT ───────────────────────────────────────── */
+    .pay-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 700px) { .pay-grid { grid-template-columns: repeat(3, 1fr); } }
+    .pay-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      display: flex; flex-direction: column; gap: 1.25rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .pay-card:hover { border-color: hsla(5,38%,45%,0.3); transform: translateY(-3px); }
+    .pay-card.featured { border-color: hsla(5,38%,45%,0.4); background: rgba(255,255,255,0.05); }
+    .pay-card.featured::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gradient);
+    }
+    .pay-badge { display: inline-flex; align-items: center; width: fit-content; padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(255,255,255,0.07); color: var(--fg-muted); }
+    .pay-badge.highlight { background: var(--gradient); color: hsl(0,0%,97%); }
+    .pay-icon { width: 2.5rem; height: 2.5rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; }
+    .pay-icon svg { width: 1.25rem; height: 1.25rem; stroke: var(--rose-light); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .pay-main { font-size: clamp(1.6rem, 2.5vw, 2rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .pay-main sup { font-size: 0.625em; font-weight: 600; vertical-align: super; }
+    .pay-detail-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); }
+    .pay-detail-label { font-size: 0.8125rem; color: var(--fg-subtle); }
+    .pay-detail-val { font-size: 0.8125rem; font-weight: 600; color: var(--fg-muted); }
+    .pay-detail-val.accent { color: var(--rose-light); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; z-index: 1; }
+    .footer-text { font-size: 0.8125rem; color: var(--fg-subtle); line-height: 1.7; }
+    .footer-text a { color: var(--rose); transition: opacity 0.2s; }
+    .footer-text a:hover { opacity: 0.75; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+    .reveal.d4 { transition-delay: 0.4s; }
+
+    :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: hsla(5,38%,45%,0.3); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: hsla(5,38%,45%,0.5); }
+  </style>
+</head>
+<body class="intro-active">
+
+<!-- ═══════════════ INTRO ════════════════════════════════ -->
+<div class="intro" id="intro" role="status" aria-live="polite" aria-label="Carregando proposta">
+  <div class="intro-inner">
+    <svg class="intro-ornament" width="160" height="24" viewBox="0 0 160 24" fill="none" aria-hidden="true">
+      <line x1="0" y1="12" x2="62" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+      <path d="M80 5 L88 12 L80 19 L72 12 Z" stroke="hsl(5,38%,45%)" stroke-width="0.9" opacity="0.75" fill="none"/>
+      <line x1="98" y1="12" x2="160" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+    </svg>
+    <p class="intro-pre">Proposta preparada para</p>
+    <h1 class="intro-title">Katrinna Life.</h1>
+    <p class="intro-client">Katrinna Life</p>
+    <div class="intro-bar-wrap" aria-hidden="true">
+      <div class="intro-bar" id="introBar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ HEADER ══════════════════════════════ -->
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav-surface" aria-label="Navegação principal">
+      <a href="#" class="nav-logo" aria-label="VS Experience">
+        <img src="../assets/images/logo/vslogo.webp" alt="VS Experience" width="28" height="28" style="border-radius:8px; flex-shrink:0;">
+        <span>VS Experience</span>
+      </a>
+      <div class="nav-links" role="list">
+        <a href="#escopo"       class="nav-link" role="listitem">Escopo</a>
+        <a href="#diferenciais" class="nav-link" role="listitem">Diferenciais</a>
+        <a href="#investimento" class="nav-link" role="listitem">Investimento</a>
+        <a href="#aprovacao"    class="nav-link" role="listitem">Aprovação</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#aprovacao" class="btn btn-primary" style="display:none" id="navCta">
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button class="mob-toggle" id="mobToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="mob-menu" id="mobMenu" role="dialog" aria-label="Menu mobile" aria-modal="true">
+  <a href="#escopo"       class="nav-link">Escopo</a>
+  <a href="#diferenciais" class="nav-link">Diferenciais</a>
+  <a href="#investimento" class="nav-link">Investimento</a>
+  <a href="#aprovacao"    class="nav-link">Aprovação</a>
+  <a href="#aprovacao"    class="btn btn-primary">Aprovar proposta</a>
+</div>
+
+<main>
+
+  <!-- ═══ 1. HERO ══════════════════════════════════════════ -->
+  <section class="hero" id="visao-geral" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <div class="hero-tag">
+            <span class="hero-tag-dot" aria-hidden="true"></span>
+            Proposta Comercial · VS Experience
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            Reestruturação<br>
+            Estratégica do<br>
+            <span class="gradient-text">E-commerce Katrinna Life.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Não vamos apenas ajustar a aparência do site. A proposta é reorganizar a experiência de compra da Katrinna Life para tornar o e-commerce mais claro, confiável, rápido, intuitivo e preparado para vender melhor.
+          </p>
+
+          <ul class="hero-bullets">
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+              Reestruturação visual, UX, checkout e jornada de compra completa
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+              Desenvolvimento de recursos personalizados quando necessário
+            </li>
+            <li class="hero-bullet">
+              <span class="bullet-chk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>
+              Foco em conversão, mobile e percepção de confiança da marca
+            </li>
+          </ul>
+
+          <div class="hero-ctas">
+            <a href="#escopo" class="btn btn-primary btn-lg">
+              Ver escopo completo
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#investimento" class="btn btn-secondary btn-lg">Ver investimento</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="float-pill float-pill-1" aria-hidden="true">
+            <span class="fp-dot green"></span>
+            Foco em conversão
+          </div>
+          <div class="float-pill float-pill-2" aria-hidden="true">
+            <span class="fp-dot rose"></span>
+            20–30 dias úteis
+          </div>
+
+          <div class="summary-card" role="complementary" aria-label="Resumo da proposta">
+            <div class="sc-head">
+              <div class="sc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              </div>
+              <div>
+                <p class="sc-title">Resumo da Proposta</p>
+                <p class="sc-sub">VS Experience · 2026</p>
+              </div>
+            </div>
+            <div class="sc-rows">
+              <div class="sc-row">
+                <span class="sc-label">Cliente</span>
+                <span class="sc-val">Katrinna Life</span>
+              </div>
+              <div class="sc-divider"></div>
+              <div class="sc-row">
+                <span class="sc-label">Projeto</span>
+                <span class="sc-val">E-commerce WordPress/WooCommerce</span>
+              </div>
+              <div class="sc-row">
+                <span class="sc-label">Tipo</span>
+                <span class="sc-val">Reestruturação estratégica</span>
+              </div>
+              <div class="sc-divider"></div>
+              <div class="sc-row">
+                <span class="sc-label">Prazo</span>
+                <span class="sc-val">20–30 dias úteis</span>
+              </div>
+              <div class="sc-row">
+                <span class="sc-label">Investimento</span>
+                <span class="sc-val accent">a partir de R$ 4.997</span>
+              </div>
+            </div>
+            <a href="#aprovacao" class="btn btn-primary" style="width:100%; justify-content:center;">
+              Aprovar proposta
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. POSICIONAMENTO ═════════════════════════════════ -->
+  <section class="section section-alt" aria-label="Posicionamento da proposta">
+    <div class="container-tight">
+      <div class="positioning reveal">
+        <p class="positioning-text">
+          "Não vamos apenas ajustar a aparência do site. A proposta é
+          <em>reorganizar a experiência de compra da Katrinna Life</em>
+          para tornar o e-commerce mais <em>claro, confiável, rápido e intuitivo</em> —
+          e genuinamente <em>preparado para vender melhor.</em>"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. DIAGNÓSTICO ════════════════════════════════════ -->
+  <section class="section" aria-labelledby="diag-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Diagnóstico inicial</div>
+        <h2 class="section-title reveal d1" id="diag-title">
+          Por que o e-commerce<br><span class="gradient-text">precisa de reestruturação</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          A Katrinna Life atua em um mercado de alta percepção — saúde, bem-estar e suplementação. O e-commerce precisa refletir esse nível de qualidade em cada detalhe da experiência.
+        </p>
+      </div>
+
+      <div class="diag-grid reveal d1">
+        <div class="diag-card">
+          <div class="diag-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 class="diag-title">Confiança e credibilidade</h3>
+          <p class="diag-text">Marcas de saúde e suplementação precisam transmitir segurança, profissionalismo e clareza. Qualquer elemento visual ou técnico que gere dúvida reduz diretamente a taxa de conversão.</p>
+        </div>
+        <div class="diag-card">
+          <div class="diag-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3 class="diag-title">Experiência mobile</h3>
+          <p class="diag-text">A maior parte das compras online acontece no celular. Uma navegação truncada, botões mal posicionados ou checkout confuso no mobile são os principais motivos de abandono de carrinho.</p>
+        </div>
+        <div class="diag-card">
+          <div class="diag-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+          <h3 class="diag-title">Jornada de compra</h3>
+          <p class="diag-text">Da home ao checkout, cada fricção é uma oportunidade perdida. O caminho até a finalização da compra precisa ser rápido, claro e motivador — não só funcional.</p>
+        </div>
+        <div class="diag-card">
+          <div class="diag-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3 class="diag-title">Potencial de conversão</h3>
+          <p class="diag-text">Pequenas melhorias na hierarquia visual, nos CTAs, no carrinho e no checkout têm impacto direto no faturamento. O objetivo é transformar visitas em pedidos com mais consistência.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3.5. ANTES E DEPOIS ══════════════════════════════ -->
+  <section class="section section-alt" id="antes-depois" aria-labelledby="comparison-title">
+    <div class="container">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Diagnóstico visual</div>
+        <h2 class="section-title reveal d1" id="comparison-title">
+          O que <span class="gradient-text">muda</span> na prática
+        </h2>
+        <p class="section-sub reveal d2">
+          Cada tela repensada significa menos abandono e mais pedidos finalizados.
+        </p>
+      </div>
+
+      <div class="comp-tabs reveal d1" role="tablist" aria-label="Telas comparadas">
+        <button class="comp-tab active" data-tab="produto" role="tab" aria-selected="true">Página do produto</button>
+        <button class="comp-tab" data-tab="carrinho" role="tab" aria-selected="false">Carrinho</button>
+        <button class="comp-tab" data-tab="checkout" role="tab" aria-selected="false">Checkout</button>
+      </div>
+
+      <!-- Painel: Página do produto -->
+      <div class="comp-panel active" data-panel="produto">
+        <div class="comp-state-bar" role="group" aria-label="Alternar visualização">
+          <button class="comp-state-btn active" data-state="before">Antes</button>
+          <button class="comp-state-btn" data-state="after">Proposta</button>
+        </div>
+        <div class="comp-grid">
+          <div class="comp-col before reveal d1">
+            <span class="comp-label before-label">Antes</span>
+            <div class="comp-screen">
+              <img src="atual/atualpaginadeproduto.png" alt="Página do produto atual" loading="lazy">
+            </div>
+            <p class="comp-hint">
+              <span class="hint-hover">↕ Passe o mouse para rolar</span>
+              <span class="hint-touch">↕ Toque para expandir</span>
+            </p>
+            <div class="comp-items">
+              <div class="comp-item"><span class="ci-dot"></span>Layout padrão WooCommerce sem personalização</div>
+              <div class="comp-item"><span class="ci-dot"></span>Nenhuma avaliação ou prova social visível</div>
+              <div class="comp-item"><span class="ci-dot"></span>CTA em roxo genérico, sem hierarquia visual</div>
+              <div class="comp-item"><span class="ci-dot"></span>Sem produtos relacionados estratégicos</div>
+            </div>
+          </div>
+          <div class="comp-col after reveal d2">
+            <span class="comp-label after-label">Proposta</span>
+            <div class="comp-screen">
+              <img src="a ser feito/paginadoproduto.png" alt="Página do produto proposta" loading="lazy">
+            </div>
+            <p class="comp-hint">
+              <span class="hint-hover">↕ Passe o mouse para rolar</span>
+              <span class="hint-touch">↕ Toque para expandir</span>
+            </p>
+            <div class="comp-items">
+              <div class="comp-item"><span class="ci-dot"></span>Avaliações de clientes em destaque acima do CTA</div>
+              <div class="comp-item"><span class="ci-dot"></span>Botão de compra com identidade visual da marca</div>
+              <div class="comp-item"><span class="ci-dot"></span>Grid de produtos relacionados inteligente</div>
+              <div class="comp-item"><span class="ci-dot"></span>Jornada que mantém o cliente na loja</div>
+            </div>
+          </div>
+        </div>
+        <p class="comp-swipe-hint" aria-hidden="true">← deslize para alternar →</p>
+      </div>
+
+      <!-- Painel: Carrinho -->
+      <div class="comp-panel" data-panel="carrinho">
+        <div class="comp-state-bar" role="group" aria-label="Alternar visualização">
+          <button class="comp-state-btn active" data-state="before">Antes</button>
+          <button class="comp-state-btn" data-state="after">Proposta</button>
+        </div>
+        <div class="comp-grid">
+          <div class="comp-col before">
+            <span class="comp-label before-label">Antes</span>
+            <div class="comp-screen">
+              <img src="atual/atualcarrinho.png" alt="Carrinho atual" loading="lazy">
+            </div>
+            <p class="comp-hint">
+              <span class="hint-hover">↕ Passe o mouse para rolar</span>
+              <span class="hint-touch">↕ Toque para expandir</span>
+            </p>
+            <div class="comp-items">
+              <div class="comp-item"><span class="ci-dot"></span>Tabela estática, visual pesado e datado</div>
+              <div class="comp-item"><span class="ci-dot"></span>Sem sugestões de produtos adicionais</div>
+              <div class="comp-item"><span class="ci-dot"></span>Página separada interrompe o fluxo de compra</div>
+              <div class="comp-item"><span class="ci-dot"></span>CTA "Finalizar" com baixo destaque visual</div>
+            </div>
+          </div>
+          <div class="comp-col after">
+            <span class="comp-label after-label">Proposta</span>
+            <div class="comp-screen">
+              <img src="a ser feito/carrinhoflutuante comorderbump.png" alt="Carrinho flutuante com order bump" loading="lazy">
+            </div>
+            <p class="comp-hint">
+              <span class="hint-hover">↕ Passe o mouse para rolar</span>
+              <span class="hint-touch">↕ Toque para expandir</span>
+            </p>
+            <div class="comp-items">
+              <div class="comp-item"><span class="ci-dot"></span>Carrinho flutuante lateral — sem sair da página</div>
+              <div class="comp-item"><span class="ci-dot"></span>Order bump: produtos relacionados logo abaixo</div>
+              <div class="comp-item"><span class="ci-dot"></span>Barra de frete grátis estimula aumentar o pedido</div>
+              <div class="comp-item"><span class="ci-dot"></span>CTA de checkout imediato sempre visível</div>
+            </div>
+          </div>
+        </div>
+        <p class="comp-swipe-hint" aria-hidden="true">← deslize para alternar →</p>
+      </div>
+
+      <!-- Painel: Checkout -->
+      <div class="comp-panel" data-panel="checkout">
+        <div class="comp-state-bar" role="group" aria-label="Alternar visualização">
+          <button class="comp-state-btn active" data-state="before">Antes</button>
+          <button class="comp-state-btn" data-state="after">Proposta</button>
+        </div>
+        <div class="comp-grid">
+          <div class="comp-col before">
+            <span class="comp-label before-label">Antes</span>
+            <div class="comp-screen">
+              <img src="atual/atualcheckout.png" alt="Checkout atual" loading="lazy">
+            </div>
+            <p class="comp-hint">
+              <span class="hint-hover">↕ Passe o mouse para rolar</span>
+              <span class="hint-touch">↕ Toque para expandir</span>
+            </p>
+            <div class="comp-items">
+              <div class="comp-item"><span class="ci-dot"></span>Formulário longo em coluna única</div>
+              <div class="comp-item"><span class="ci-dot"></span>Coluna "Informações adicionais" vazia e confusa</div>
+              <div class="comp-item"><span class="ci-dot"></span>Sem stepper visual de progresso</div>
+              <div class="comp-item"><span class="ci-dot"></span>Alto atrito — causa abandono no último passo</div>
+            </div>
+          </div>
+          <div class="comp-col after">
+            <span class="comp-label after-label">Proposta</span>
+            <div class="comp-screen">
+              <img src="a ser feito/checkout.png" alt="Checkout proposto" loading="lazy">
+            </div>
+            <p class="comp-hint">
+              <span class="hint-hover">↕ Passe o mouse para rolar</span>
+              <span class="hint-touch">↕ Toque para expandir</span>
+            </p>
+            <div class="comp-items">
+              <div class="comp-item"><span class="ci-dot"></span>Stepper visual: Contato → Entrega → Pagamento</div>
+              <div class="comp-item"><span class="ci-dot"></span>Resumo do pedido sempre visível no lado direito</div>
+              <div class="comp-item"><span class="ci-dot"></span>Interface limpa — foco total na finalização</div>
+              <div class="comp-item"><span class="ci-dot"></span>Menor atrito = mais pedidos concluídos</div>
+            </div>
+          </div>
+        </div>
+        <p class="comp-swipe-hint" aria-hidden="true">← deslize para alternar →</p>
+      </div>
+
+      <!-- Referência: Multivegetal -->
+      <div class="mv-ref reveal d2">
+        <div class="mv-ref-img">
+          <img src="../assets/images/cases/multivegetal.webp" alt="Case Multi Vegetal" loading="lazy">
+        </div>
+        <div class="mv-ref-content">
+          <p class="mv-ref-eyebrow">Case de referência · VS Experience</p>
+          <h3 class="mv-ref-title">Multi Vegetal</h3>
+          <p class="mv-ref-text">
+            E-commerce de cosméticos naturais reestruturado com foco em jornada de compra, vitrine de produtos e hierarquia visual — o mesmo nível de cuidado que será aplicado à Katrinna Life.
+          </p>
+          <a href="https://multivegetal.com/" target="_blank" rel="noopener noreferrer" class="mv-ref-link">
+            Ver projeto ao vivo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 4. ESCOPO COMPLETO ════════════════════════════════ -->
+  <section class="section section-alt" id="escopo" aria-labelledby="escopo-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Escopo do projeto</div>
+        <h2 class="section-title reveal d1" id="escopo-title">
+          O que será <span class="gradient-text">entregue</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Reestruturação completa organizada em frentes estratégicas — cada uma com impacto direto na experiência do cliente e no resultado da loja.
+        </p>
+      </div>
+
+      <div class="scope-groups reveal d1">
+
+        <div class="scope-group">
+          <div class="sg-head">
+            <div class="sg-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            <h3 class="sg-title">Diagnóstico e Estratégia</h3>
+          </div>
+          <div class="sg-items">
+            <div class="sg-item"><span class="sg-dot"></span>Diagnóstico estratégico do e-commerce atual</div>
+            <div class="sg-item"><span class="sg-dot"></span>Mapeamento da jornada atual do usuário</div>
+            <div class="sg-item"><span class="sg-dot"></span>Identificação de pontos de atrito e oportunidades</div>
+            <div class="sg-item"><span class="sg-dot"></span>Orientações de evolução pós-entrega</div>
+          </div>
+        </div>
+
+        <div class="scope-group">
+          <div class="sg-head">
+            <div class="sg-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <h3 class="sg-title">Visual e Experiência (UX/UI)</h3>
+          </div>
+          <div class="sg-items">
+            <div class="sg-item"><span class="sg-dot"></span>Reestruturação visual da home</div>
+            <div class="sg-item"><span class="sg-dot"></span>Melhoria da hierarquia de informações</div>
+            <div class="sg-item"><span class="sg-dot"></span>Organização de banners, seções e chamadas</div>
+            <div class="sg-item"><span class="sg-dot"></span>Ajustes na experiência mobile</div>
+            <div class="sg-item"><span class="sg-dot"></span>Melhoria dos botões de compra e CTAs</div>
+            <div class="sg-item"><span class="sg-dot"></span>Ajustes de responsividade, links e estrutura geral</div>
+          </div>
+        </div>
+
+        <div class="scope-group">
+          <div class="sg-head">
+            <div class="sg-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <h3 class="sg-title">Produtos e Catálogo</h3>
+          </div>
+          <div class="sg-items">
+            <div class="sg-item"><span class="sg-dot"></span>Reestruturação das páginas de produto</div>
+            <div class="sg-item"><span class="sg-dot"></span>Melhor organização de benefícios e diferenciais</div>
+            <div class="sg-item"><span class="sg-dot"></span>Ajustes nos cards de produto</div>
+            <div class="sg-item"><span class="sg-dot"></span>Clareza nas informações e descrições essenciais</div>
+          </div>
+        </div>
+
+        <div class="scope-group">
+          <div class="sg-head">
+            <div class="sg-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+            <h3 class="sg-title">Carrinho, Checkout e Conversão</h3>
+          </div>
+          <div class="sg-items">
+            <div class="sg-item"><span class="sg-dot"></span>Revisão da jornada até o carrinho</div>
+            <div class="sg-item"><span class="sg-dot"></span>Nova estrutura de carrinho com foco em conversão</div>
+            <div class="sg-item"><span class="sg-dot"></span>Implementação de order bump no carrinho (se viável)</div>
+            <div class="sg-item"><span class="sg-dot"></span>Otimização do checkout — simplificação e redução de atrito</div>
+            <div class="sg-item"><span class="sg-dot"></span>Ajustes no WooCommerce para melhor experiência</div>
+          </div>
+        </div>
+
+        <div class="scope-group">
+          <div class="sg-head">
+            <div class="sg-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <h3 class="sg-title">Técnico e Personalização</h3>
+          </div>
+          <div class="sg-items">
+            <div class="sg-item"><span class="sg-dot"></span>Criação ou adaptação de plugins personalizados</div>
+            <div class="sg-item"><span class="sg-dot"></span>Melhorias de aderência visual e performance de compra</div>
+            <div class="sg-item"><span class="sg-dot"></span>Integração com WhatsApp de forma estratégica</div>
+            <div class="sg-item"><span class="sg-dot"></span>Ajustes técnicos essenciais de responsividade</div>
+          </div>
+        </div>
+
+        <div class="scope-group">
+          <div class="sg-head">
+            <div class="sg-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <h3 class="sg-title">Páginas Institucionais</h3>
+          </div>
+          <div class="sg-items">
+            <div class="sg-item"><span class="sg-dot"></span>Revisão das páginas Sobre, Contato e FAQ</div>
+            <div class="sg-item"><span class="sg-dot"></span>Revisão de políticas e páginas de suporte</div>
+            <div class="sg-item"><span class="sg-dot"></span>Coerência visual e informacional com a marca</div>
+            <div class="sg-item"><span class="sg-dot"></span>Clareza e confiança em todas as páginas secundárias</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. DIFERENCIAIS ══════════════════════════════════ -->
+  <section class="section" id="diferenciais" aria-labelledby="diff-title">
+    <div class="container">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Por que esta proposta<span class="eyebrow-line"></span></div>
+        <h2 class="section-title reveal d1" id="diff-title">
+          Diferenciais do <span class="gradient-text">projeto</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Existem soluções prontas no mercado por valores menores. Esta proposta é diferente porque entrega estratégia, não apenas aparência.
+        </p>
+      </div>
+
+      <div class="diff-grid reveal d1">
+        <div class="diff-card">
+          <p class="diff-num">01</p>
+          <h3 class="diff-title">Foco em conversão</h3>
+          <p class="diff-text">Cada decisão de design e estrutura é orientada por um objetivo: transformar mais visitantes em compradores com mais consistência.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">02</p>
+          <h3 class="diff-title">Mobile como prioridade</h3>
+          <p class="diff-text">A experiência mobile não é adaptada — é construída como ponto de partida, garantindo fluidez onde a maioria das compras acontece.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">03</p>
+          <h3 class="diff-title">Checkout simplificado</h3>
+          <p class="diff-text">Redução de campos, etapas e atritos no processo de finalização para que o cliente chegue ao pagamento sem desistir no caminho.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">04</p>
+          <h3 class="diff-title">Carrinho estratégico</h3>
+          <p class="diff-text">Estrutura de carrinho pensada para reter, persuadir e aumentar o ticket médio — com possibilidade de order bump se tecnicamente viável.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">05</p>
+          <h3 class="diff-title">Plugins personalizados</h3>
+          <p class="diff-text">Quando nenhuma solução pronta atende ao que a loja precisa, desenvolvemos recursos próprios para garantir a aderência visual e funcional.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">06</p>
+          <h3 class="diff-title">Percepção de confiança</h3>
+          <p class="diff-text">Para uma marca de saúde e bem-estar, confiança é um fator de venda. Cada elemento é pensado para reforçar credibilidade em toda a jornada.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">07</p>
+          <h3 class="diff-title">Estrutura para vender</h3>
+          <p class="diff-text">Não apenas estética — o projeto entrega uma arquitetura de informação orientada à venda, com hierarquia, CTAs e fluxo pensados para converter.</p>
+        </div>
+        <div class="diff-card">
+          <p class="diff-num">08</p>
+          <h3 class="diff-title">Visão de produto</h3>
+          <p class="diff-text">A entrega não termina na publicação. Você recebe orientações claras de como evoluir o e-commerce conforme a marca cresce.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. FORA DO ESCOPO ════════════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="fora-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Fora do escopo</div>
+        <h2 class="section-title reveal d1" id="fora-title">
+          O que <span class="gradient-text">não está incluso</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Para manter o escopo claro e o prazo previsível, os itens abaixo não fazem parte desta entrega inicial.
+        </p>
+      </div>
+
+      <div class="excl-grid reveal d1">
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Cadastro ilimitado de produtos
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Produção de fotos ou vídeos
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Gestão de tráfego pago
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Criação de identidade visual completa
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Redação técnica ou científica dos produtos
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Hospedagem, domínio ou custos de ferramentas externas
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Manutenção mensal pós-entrega (salvo parceria)
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Integrações complexas não mapeadas inicialmente
+        </div>
+        <div class="excl-item">
+          <div class="excl-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          Alterações ilimitadas fora do escopo aprovado
+        </div>
+        <div class="excl-note">
+          Qualquer item não listado no escopo pode ser avaliado como adição — com prazo e valor definidos em conjunto antes do início.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7. PRAZO ════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="prazo-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Cronograma</div>
+        <h2 class="section-title reveal d1" id="prazo-title">
+          Prazo de <span class="gradient-text">entrega</span>
+        </h2>
+      </div>
+
+      <div class="deadline-card reveal d1">
+        <div class="deadline-number" aria-label="20 a 30 dias úteis">20–30</div>
+        <div class="deadline-info">
+          <p class="deadline-label">Prazo estimado de execução</p>
+          <h3 class="deadline-title">dias úteis</h3>
+          <p class="deadline-text">
+            O prazo varia conforme a liberação de acessos ao site, envio de materiais da marca (imagens, textos, referências), velocidade de resposta para aprovações intermediárias e complexidade técnica dos ajustes identificados durante o diagnóstico. Quanto mais organizado o material no início, mais ágil a execução.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. INVESTIMENTO ══════════════════════════════════ -->
+  <section class="section section-alt" id="investimento" aria-labelledby="invest-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Investimento</div>
+        <h2 class="section-title reveal d1" id="invest-title">
+          Opções de <span class="gradient-text">contratação</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Duas formas de trabalhar juntos — escolha a que melhor se encaixa no momento da Katrinna Life.
+        </p>
+      </div>
+
+      <div class="invest-options reveal d1">
+
+        <!-- Opção 1: Projeto fechado -->
+        <div class="invest-option">
+          <span class="opt-badge default">Projeto fechado</span>
+          <p class="opt-name">Reestruturação completa</p>
+          <p class="opt-price">R$ 4.997</p>
+          <p class="opt-price-note">
+            50% para início do projeto<br>
+            50% na entrega e publicação
+          </p>
+          <div class="opt-divider"></div>
+          <ul class="opt-features">
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Diagnóstico estratégico completo</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Reestruturação visual da home e páginas</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Páginas de produto otimizadas</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Carrinho e checkout reestruturados</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Order bump (se tecnicamente viável)</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Experiência mobile otimizada</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Plugins personalizados quando necessário</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Integração estratégica com WhatsApp</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Páginas institucionais revisadas</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Orientações de evolução pós-entrega</li>
+          </ul>
+          <div class="opt-total">
+            <span>Total do projeto</span>
+            <strong>R$ 4.997</strong>
+          </div>
+        </div>
+
+        <!-- Opção 2: Parceria -->
+        <div class="invest-option featured">
+          <span class="opt-badge recommended">Parceria recomendada</span>
+          <p class="opt-name">Entrada facilitada + acompanhamento</p>
+          <p class="opt-price">R$ 1.497 <span style="font-size:1.125rem; font-weight:500; -webkit-text-fill-color: var(--fg-muted);">entrada</span></p>
+          <p class="opt-price-note">
+            + 6 parcelas mensais de R$ 597<br>
+            <span style="color: var(--fg); font-weight: 600;">Total: R$ 5.079</span>
+          </p>
+          <div class="opt-divider"></div>
+          <ul class="opt-features">
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Tudo do projeto fechado</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Manutenção mensal do WordPress/WooCommerce</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Pequenos ajustes visuais mensais</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Criação ou troca de banners simples</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Ajustes em produtos e seções</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Acompanhamento da experiência de compra</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Sugestões mensais de melhoria de conversão</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Correções técnicas simples</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Suporte para dúvidas</li>
+            <li class="opt-feature"><span class="opt-chk"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></span>Evolução contínua conforme campanhas e lançamentos</li>
+          </ul>
+          <div class="opt-total">
+            <span>Total da parceria (7 meses)</span>
+            <strong>R$ 5.079</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Detalhe da parceria mensal -->
+      <div style="margin-top: 3rem;">
+        <div class="section-header">
+          <div class="eyebrow reveal"><span class="eyebrow-line"></span>O que a parceria mensal inclui</div>
+          <h3 class="section-title reveal d1" style="font-size: clamp(1.25rem, 2.5vw, 1.75rem);">
+            Evolução <span class="gradient-text">contínua da loja</span>
+          </h3>
+          <p class="section-sub reveal d2">
+            O e-commerce não termina na entrega. A parceria garante que a loja acompanhe o crescimento da marca, as campanhas e as novas necessidades do negócio.
+          </p>
+        </div>
+
+        <div class="partner-grid reveal d1">
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Manutenção WordPress/WooCommerce</strong>Atualizações e cuidados básicos da plataforma.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Ajustes visuais mensais</strong>Pequenas alterações de layout, cores, espaçamentos e elementos visuais.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Criação ou troca de banners</strong>Banners simples para campanhas, datas especiais e novidades.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Ajustes em produtos e seções</strong>Atualizações pontuais em descrições, imagens, preços e seções da loja.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Acompanhamento de experiência</strong>Análise básica do comportamento de compra e sugestões de melhoria.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Sugestões de conversão</strong>Recomendações mensais para melhorar taxas, carrinho e checkout.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Correções técnicas simples</strong>Resolução de bugs, erros de exibição e comportamentos inesperados.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Suporte para dúvidas</strong>Canal direto para perguntas técnicas e dúvidas operacionais.</div>
+          </div>
+          <div class="partner-item">
+            <div class="partner-check"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg></div>
+            <div class="partner-text"><strong>Evolução contínua</strong>O e-commerce cresce junto com a marca — sem parar após a entrega inicial.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. OBSERVAÇÃO ESTRATÉGICA ═══════════════════════ -->
+  <section class="section" aria-labelledby="estrategico-title">
+    <div class="container-tight">
+      <div class="strategic-note reveal d1">
+        <div class="sn-inner">
+          <div class="sn-icon">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <h3 class="sn-title" id="estrategico-title">Por que não basta uma solução simples</h3>
+            <p class="sn-text">
+              Existem opções no mercado por valores significativamente menores — temas prontos em Nuvemshop, lojas configuradas em poucas horas, templates instalados sem personalização. São soluções válidas para quem está começando ou precisa de algo funcional rapidamente.
+            </p>
+            <p class="sn-text" style="margin-top: 1rem;">
+              A proposta da Katrinna Life é diferente porque <strong>não entregamos apenas uma loja funcionando</strong> — entregamos uma experiência de compra estrategicamente construída: checkout otimizado, carrinho pensado para conversão, jornada mobile fluida, recursos personalizados e uma estrutura preparada para vender mais. A diferença não é só visual. É a diferença entre um site que existe e um site que trabalha pela marca.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10. FORMAS DE PAGAMENTO ═════════════════════════ -->
+  <section class="section section-alt" aria-labelledby="pay-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Flexibilidade</div>
+        <h2 class="section-title reveal d1" id="pay-title">
+          Formas de <span class="gradient-text">pagamento</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Escolha a forma que melhor se encaixa no momento da Katrinna Life. Todas as opções incluem o escopo completo.
+        </p>
+      </div>
+
+      <div class="pay-grid reveal d1">
+
+        <!-- Cartão de crédito -->
+        <div class="pay-card">
+          <div class="pay-badge">Cartão de crédito</div>
+          <div class="pay-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <p class="pay-main"><sup>12×</sup> R$ 449,73</p>
+          </div>
+          <div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Total parcelado</span>
+              <span class="pay-detail-val">R$ 5.396,76</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Sem juros adicionais</span>
+              <span class="pay-detail-val">via link de pagamento</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pix 50/50 -->
+        <div class="pay-card">
+          <div class="pay-badge">Pix em duas etapas</div>
+          <div class="pay-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <p class="pay-main">R$ 2.498,50</p>
+          </div>
+          <div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">50% no início</span>
+              <span class="pay-detail-val">R$ 2.498,50</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">50% na entrega</span>
+              <span class="pay-detail-val">R$ 2.498,50</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Total</span>
+              <span class="pay-detail-val">R$ 4.997,00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pix à vista -->
+        <div class="pay-card featured">
+          <div class="pay-badge highlight">Melhor opção</div>
+          <div class="pay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <p class="pay-main">R$ 4.497,30</p>
+          </div>
+          <div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Desconto à vista</span>
+              <span class="pay-detail-val accent">−10% (R$ 499,70)</span>
+            </div>
+            <div class="pay-detail-row">
+              <span class="pay-detail-label">Pagamento único</span>
+              <span class="pay-detail-val">via Pix</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11. PRÓXIMOS PASSOS ══════════════════════════════ -->
+  <section class="section section-alt" id="aprovacao" aria-labelledby="steps-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span>Como avançar</div>
+        <h2 class="section-title reveal d1" id="steps-title">
+          Próximos <span class="gradient-text">passos</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Depois da aprovação, o processo é simples e rápido. Em poucos dias já começamos a reestruturação.
+        </p>
+      </div>
+
+      <div class="next-steps reveal d1">
+        <div class="ns-item">
+          <div class="ns-num">01</div>
+          <div class="ns-content">
+            <p class="ns-title">Aprovação da proposta</p>
+            <p class="ns-text">Confirmação da opção escolhida (projeto fechado ou parceria) e envio do contrato para formalização.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">02</div>
+          <div class="ns-content">
+            <p class="ns-title">Liberação dos acessos ao site</p>
+            <p class="ns-text">Acesso ao painel do WordPress/WooCommerce, servidor e qualquer ferramenta integrada à loja atual.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">03</div>
+          <div class="ns-content">
+            <p class="ns-title">Envio dos materiais da marca</p>
+            <p class="ns-text">Logos, paleta de cores, imagens, referências visuais e qualquer conteúdo que a Katrinna Life queira manter ou incluir.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">04</div>
+          <div class="ns-content">
+            <p class="ns-title">Alinhamento inicial</p>
+            <p class="ns-text">Reunião ou chamada rápida para confirmar prioridades, expectativas e definir os primeiros entregáveis.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">05</div>
+          <div class="ns-content">
+            <p class="ns-title">Início da reestruturação</p>
+            <p class="ns-text">Diagnóstico do e-commerce atual e início do desenvolvimento — com atualizações de progresso ao longo do processo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11. CTA FINAL ════════════════════════════════════ -->
+  <section class="section final-cta" aria-labelledby="cta-title">
+    <div class="container-tight">
+      <h2 class="cta-title reveal" id="cta-title">
+        Pronto para <span class="gradient-text">vender mais?</span>
+      </h2>
+      <p class="cta-sub reveal d1">
+        A reestruturação do e-commerce da Katrinna Life começa com uma decisão. Qualquer dúvida antes de aprovar — também estamos disponíveis para conversar.
+      </p>
+      <div class="cta-btns reveal d2">
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Quero%20aprovar%20a%20proposta%20de%20reestrutura%C3%A7%C3%A3o%20do%20e-commerce%20da%20Katrinna%20Life."
+          class="btn btn-primary btn-lg"
+          target="_blank" rel="noopener noreferrer"
+        >
+          Aprovar proposta
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20d%C3%BAvidas%20sobre%20a%20proposta%20da%20Katrinna%20Life%20antes%20de%20aprovar."
+          class="btn btn-secondary btn-lg"
+          target="_blank" rel="noopener noreferrer"
+        >
+          Tirar dúvidas antes
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p class="footer-text">
+      Proposta preparada por <a href="https://vsexperience.com.br" target="_blank" rel="noopener noreferrer">VS Experience</a> · Victor Santos &nbsp;·&nbsp; 2026<br>
+      Este documento é confidencial e foi preparado exclusivamente para a Katrinna Life.
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var intro = document.getElementById('intro');
+    setTimeout(function () {
+      intro.classList.add('exit');
+      setTimeout(function () {
+        intro.style.display = 'none';
+        document.body.classList.remove('intro-active');
+      }, 700);
+    }, 5200);
+  })();
+
+  var header = document.getElementById('header');
+  var navCta = document.getElementById('navCta');
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 60) {
+      header.classList.add('scrolled');
+      if (navCta) navCta.style.display = 'inline-flex';
+    } else {
+      header.classList.remove('scrolled');
+      if (navCta) navCta.style.display = 'none';
+    }
+  }, { passive: true });
+
+  var toggle  = document.getElementById('mobToggle');
+  var mobMenu = document.getElementById('mobMenu');
+  if (toggle && mobMenu) {
+    toggle.addEventListener('click', function () {
+      var open = mobMenu.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobMenu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ── Comparison: shared helper ── */
+  function syncToggle(panel, state) {
+    panel.querySelectorAll('.comp-state-btn').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-state') === state);
+    });
+  }
+
+  /* ── Comparison tabs ── */
+  var compTabs = document.querySelectorAll('.comp-tab');
+  var compPanels = document.querySelectorAll('.comp-panel');
+  compTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var target = tab.getAttribute('data-tab');
+      compTabs.forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      compPanels.forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+      var panel = document.querySelector('[data-panel="' + target + '"]');
+      if (panel) {
+        panel.classList.add('active');
+        panel.classList.remove('show-after');
+        syncToggle(panel, 'before');
+      }
+    });
+  });
+
+  /* ── Mobile before/after toggle ── */
+  document.querySelectorAll('.comp-state-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var state = btn.getAttribute('data-state');
+      var panel = btn.closest('.comp-panel');
+      syncToggle(panel, state);
+      panel.classList.toggle('show-after', state === 'after');
+    });
+  });
+
+  /* ── Tap to expand screenshots (touch only) ── */
+  document.querySelectorAll('.comp-screen').forEach(function (screen) {
+    screen.addEventListener('click', function () {
+      if (window.innerWidth >= 900) return;
+      var expanded = screen.classList.toggle('expanded');
+      var hint = screen.nextElementSibling;
+      if (hint && hint.classList.contains('comp-hint')) {
+        var t = hint.querySelector('.hint-touch');
+        if (t) t.textContent = expanded ? '↕ Toque para recolher' : '↕ Toque para expandir';
+      }
+    });
+  });
+
+  /* ── Swipe left/right to toggle before/after (mobile) ── */
+  document.querySelectorAll('.comp-panel').forEach(function (panel) {
+    var sx = 0, sy = 0;
+    panel.addEventListener('touchstart', function (e) {
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive: true });
+    panel.addEventListener('touchend', function (e) {
+      var dx = sx - e.changedTouches[0].clientX;
+      var dy = Math.abs(sy - e.changedTouches[0].clientY);
+      if (dy > 40 || Math.abs(dx) < 50) return;
+      var after = panel.classList.contains('show-after');
+      if (dx > 0 && !after) { panel.classList.add('show-after'); syncToggle(panel, 'after'); }
+      else if (dx < 0 && after) { panel.classList.remove('show-after'); syncToggle(panel, 'before'); }
+    }, { passive: true });
+  });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+</script>
+</body>
+</html>
