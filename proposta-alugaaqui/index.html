@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial — Landing Page AlugaAqui · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       ALUGAAQUI · PROPOSTA COMERCIAL · LANDING PAGE
+       VS Experience · 2026
+    ═══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --bg:          hsl(0, 0%, 6%);
+      --bg2:         hsl(0, 0%, 9%);
+      --fg:          hsl(0, 0%, 97%);
+      --fg-muted:    rgba(247,247,247,0.65);
+      --fg-subtle:   rgba(247,247,247,0.36);
+      --rose:        hsl(5, 38%, 45%);
+      --rose-light:  hsl(5, 38%, 65%);
+      --brown:       hsl(5, 38%, 22%);
+      --card-bg:     hsla(0, 0%, 100%, 0.03);
+      --card-border: hsla(0, 0%, 100%, 0.08);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+      --radius:      20px;
+      --radius-lg:   28px;
+      --radius-sm:   12px;
+      --shadow:      0 8px 32px rgba(0,0,0,0.30);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.18);
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg); color: var(--fg);
+      line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    body.intro-active { overflow: hidden; }
+
+    body::before {
+      content: ''; position: fixed; top: 10%; left: -300px;
+      width: 600px; height: 700px; background: hsl(5, 60%, 35%);
+      border-radius: 100%; filter: blur(160px); opacity: 0.18;
+      pointer-events: none; z-index: 0; animation: glow-breathe 7s ease-in-out infinite;
+    }
+    body::after {
+      content: ''; position: fixed; top: 60%; right: -350px;
+      width: 700px; height: 400px; background: hsl(5, 65%, 38%);
+      border-radius: 100%; filter: blur(150px); opacity: 0.14;
+      pointer-events: none; z-index: 0; animation: glow-breathe 9s 2s ease-in-out infinite;
+    }
+    @keyframes glow-breathe { 0%, 100% { opacity: 0.04; } 50% { opacity: 0.22; } }
+
+    /* ─── INTRO ─────────────────────────────────────────── */
+    .intro {
+      position: fixed; inset: 0; z-index: 9999; background: #090909;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .intro::before {
+      content: ''; position: absolute; top: 45%; left: 50%;
+      transform: translate(-50%, -50%); width: 560px; height: 320px;
+      background: hsl(5, 60%, 35%); border-radius: 100%;
+      filter: blur(120px); opacity: 0.28; pointer-events: none;
+    }
+    .intro-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.25rem; text-align: center; padding: 0 1.5rem;
+    }
+    .intro-ornament { opacity: 0; animation: fade-in 0.8s ease 0.3s forwards; }
+    .intro-pre { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(247,247,247,0.4); opacity: 0; animation: fade-up 0.6s ease 0.85s forwards; }
+    .intro-title { font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; opacity: 0; animation: fade-up 0.7s ease 1.3s forwards; }
+    .intro-client { font-size: 0.875rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0; animation: fade-up 0.6s ease 1.9s forwards; }
+    .intro-bar-wrap { width: 200px; height: 1px; background: rgba(247,247,247,0.07); border-radius: 999px; overflow: hidden; margin-top: 0.5rem; opacity: 0; animation: fade-in 0.4s ease 2.4s forwards; }
+    .intro-bar { height: 100%; width: 0%; background: linear-gradient(to right, hsl(5,38%,22%), hsl(5,38%,55%)); border-radius: 999px; animation: bar-fill 2.3s cubic-bezier(0.4, 0, 0.2, 1) 2.6s forwards; }
+    @keyframes bar-fill { to { width: 100%; } }
+    .intro.exit { animation: intro-slide-out 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    @keyframes intro-slide-out { to { transform: translateY(-100%); } }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container       { max-width: 82rem; margin: 0 auto; padding: 0 1.5rem; }
+    .container-tight { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+    .section         { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-alt     { background: rgba(14,14,14,0.55); }
+    .section-header  { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+    .section-header.center .eyebrow { justify-content: center; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    .section-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+    .section-sub { font-size: 1.0625rem; color: var(--fg-muted); line-height: 1.7; max-width: 52ch; }
+    .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .eyebrow { display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 1rem; }
+    .eyebrow-line { display: block; width: 2rem; height: 1px; background: var(--gradient); flex-shrink: 0; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fade-up  { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 0; transition: background 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    header.scrolled { background: rgba(9,9,9,0.92); backdrop-filter: blur(20px); border-color: var(--card-border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gradient); display: inline-block; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--fg-muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-cta { display: none; padding: 0.5rem 1.25rem; border-radius: 999px; background: var(--gradient); font-size: 0.8125rem; font-weight: 600; color: #fff; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+    .mob-toggle { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .mob-toggle span { display: block; width: 22px; height: 2px; background: var(--fg); border-radius: 2px; transition: all 0.3s; }
+    .mob-menu { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(9,9,9,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { font-size: 1.5rem; font-weight: 600; color: var(--fg); }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .mob-toggle { display: flex; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 9rem 0 6rem; position: relative; overflow: hidden; z-index: 1; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 900px 500px at 10% 55%, hsla(5,38%,45%,0.05) 0%, transparent 70%), radial-gradient(ellipse 600px 400px at 85% 15%, hsla(5,38%,22%,0.07) 0%, transparent 70%); pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 400px; } }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.875rem; border-radius: 999px; background: hsla(5,38%,45%,0.1); border: 1px solid hsla(5,38%,45%,0.25); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 1.5rem; }
+    .hero-title { font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.0625rem; color: var(--fg-muted); line-height: 1.72; max-width: 50ch; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 0.875rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; transition: all 0.2s ease; }
+    .btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 20px hsla(5,38%,35%,0.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px hsla(5,38%,35%,0.4); }
+    .btn-ghost { background: rgba(255,255,255,0.05); color: var(--fg-muted); border: 1px solid var(--card-border); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.09); color: var(--fg); }
+    .btn-lg { padding: 0.9rem 2rem; font-size: 1rem; }
+    .btn svg { width: 1.125rem; height: 1.125rem; flex-shrink: 0; }
+
+    /* Float pills */
+    .float-pills { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+    @media (min-width: 640px) { .float-pills { flex-direction: row; flex-wrap: wrap; } }
+    .float-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem 0.45rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid var(--card-border); font-size: 0.8125rem; font-weight: 500; color: var(--fg-muted); width: fit-content; }
+    .fp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .fp-dot.green { background: hsl(142, 60%, 45%); box-shadow: 0 0 6px hsl(142, 60%, 45%); }
+    .fp-dot.rose  { background: var(--rose-light); box-shadow: 0 0 6px var(--rose-light); }
+
+    /* Summary card */
+    .summary-card {
+      background: linear-gradient(135deg, hsla(5,38%,22%,0.22) 0%, hsla(5,38%,45%,0.08) 100%);
+      border: 1px solid hsla(5,38%,45%,0.25);
+      border-radius: var(--radius-lg); padding: 2rem;
+      position: relative; overflow: hidden;
+    }
+    .summary-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 240px; height: 240px; background: radial-gradient(ellipse, hsla(5,38%,45%,0.12) 0%, transparent 70%); pointer-events: none; }
+    .sc-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.375rem; display: block; }
+    .sc-val { font-size: 1.0625rem; font-weight: 700; color: var(--fg); }
+    .sc-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .sc-rows { display: flex; flex-direction: column; gap: 1.25rem; }
+    .sc-row { display: flex; flex-direction: column; gap: 0.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sc-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .sc-header { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .sc-header-icon { width: 2rem; height: 2rem; border-radius: 8px; background: var(--gradient); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sc-header-icon svg { width: 1rem; height: 1rem; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-header-title { font-size: 0.8125rem; font-weight: 600; line-height: 1.3; }
+
+    /* ─── OBJETIVO ───────────────────────────────────────── */
+    .obj-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .obj-grid { grid-template-columns: 1fr 1fr; } }
+    .obj-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      position: relative; overflow: hidden;
+    }
+    .obj-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(ellipse, hsla(5,38%,45%,0.06) 0%, transparent 70%); pointer-events: none; }
+    .obj-icon { width: 2.5rem; height: 2.5rem; border-radius: var(--radius-sm); background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .obj-icon svg { width: 1.25rem; height: 1.25rem; stroke: var(--rose-light); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .obj-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.625rem; }
+    .obj-text { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.7; }
+
+    /* ─── ESTRUTURA DA PÁGINA ────────────────────────────── */
+    .page-sections { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .page-sections { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .page-sections { grid-template-columns: repeat(4, 1fr); } }
+    .ps-card {
+      padding: 1.5rem; border-radius: var(--radius);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      display: flex; flex-direction: column; gap: 0.75rem;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .ps-card:hover { border-color: hsla(5,38%,45%,0.3); transform: translateY(-3px); }
+    .ps-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--rose-light); }
+    .ps-name { font-size: 0.9375rem; font-weight: 700; line-height: 1.3; }
+    .ps-desc { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.55; }
+
+    /* ─── ESCOPO ─────────────────────────────────────────── */
+    .scope-grid { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .scope-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .scope-grid { grid-template-columns: repeat(3, 1fr); } }
+    .scope-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem 1.25rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5;
+    }
+    .scope-check { width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+    .scope-check svg { width: 0.625rem; height: 0.625rem; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── FORA DO ESCOPO ─────────────────────────────────── */
+    .oos-grid { display: grid; grid-template-columns: 1fr; gap: 0.625rem; }
+    @media (min-width: 640px) { .oos-grid { grid-template-columns: 1fr 1fr; } }
+    .oos-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem 1.25rem; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.875rem; color: var(--fg-subtle); line-height: 1.5;
+    }
+    .oos-x { width: 1.25rem; height: 1.25rem; border-radius: 50%; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+    .oos-x svg { width: 0.6rem; height: 0.6rem; stroke: var(--fg-subtle); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── MATERIAIS ──────────────────────────────────────── */
+    .mat-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+    }
+    .mat-intro { font-size: 0.9375rem; color: var(--fg-muted); line-height: 1.7; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mat-list { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+    @media (min-width: 640px) { .mat-list { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .mat-list { grid-template-columns: repeat(3, 1fr); } }
+    .mat-item { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: var(--fg-muted); line-height: 1.5; }
+    .mat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose-light); flex-shrink: 0; margin-top: 0.45rem; }
+
+    /* ─── PRAZO ──────────────────────────────────────────── */
+    .prazo-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+    .prazo-total { display: inline-flex; align-items: baseline; gap: 0.375rem; padding: 0.75rem 1.5rem; border-radius: 999px; background: var(--gradient); }
+    .prazo-num { font-size: 2rem; font-weight: 700; line-height: 1; color: #fff; }
+    .prazo-unit { font-size: 0.8125rem; font-weight: 500; color: rgba(255,255,255,0.75); }
+    .timeline { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--card-border); border-radius: var(--radius); overflow: hidden; }
+    @media (min-width: 768px) { .timeline { grid-template-columns: repeat(4, 1fr); gap: 1px; } }
+    .tl-item { padding: 1.75rem; background: var(--bg2); display: flex; flex-direction: column; gap: 0.5rem; }
+    .tl-period { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose-light); }
+    .tl-title { font-size: 0.9375rem; font-weight: 700; }
+    .tl-text { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.55; }
+
+    /* ─── INVESTIMENTO ───────────────────────────────────── */
+    .invest-card {
+      padding: 3rem; border-radius: var(--radius-lg);
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+    }
+    @media (min-width: 900px) { .invest-card { grid-template-columns: 1fr 1fr; align-items: center; } }
+    .invest-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gradient); }
+    .invest-amount { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.03em; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.75rem; }
+    .invest-label { font-size: 0.875rem; color: var(--fg-muted); margin-bottom: 1.5rem; line-height: 1.5; }
+    .invest-badge { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.35rem 0.875rem; border-radius: 999px; background: hsla(5,38%,45%,0.1); border: 1px solid hsla(5,38%,45%,0.2); font-size: 0.75rem; font-weight: 600; color: var(--rose-light); }
+    .invest-details { display: flex; flex-direction: column; gap: 1rem; }
+    .invest-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .invest-row:last-child { border-bottom: none; }
+    .invest-row-label { font-size: 0.875rem; color: var(--fg-subtle); }
+    .invest-row-val { font-size: 0.9375rem; font-weight: 600; color: var(--fg-muted); }
+    .invest-row-val.highlight { color: var(--rose-light); }
+
+    /* ─── NEXT STEPS ─────────────────────────────────────── */
+    .next-steps { display: flex; flex-direction: column; gap: 0; }
+    .ns-item { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.5rem 0; position: relative; }
+    .ns-item:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .ns-num { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .ns-content { flex: 1; padding-top: 0.375rem; }
+    .ns-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .ns-text { font-size: 0.875rem; color: var(--fg-muted); line-height: 1.6; }
+
+    /* ─── FINAL CTA ──────────────────────────────────────── */
+    .final-cta { position: relative; overflow: hidden; text-align: center; }
+    .final-cta::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, hsla(5,38%,45%,0.09) 0%, transparent 68%); filter: blur(30px); pointer-events: none; }
+    .cta-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.25rem; }
+    .cta-sub { font-size: 1.0625rem; color: var(--fg-muted); line-height: 1.68; max-width: 48ch; margin: 0 auto 2.5rem; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; z-index: 1; }
+    .footer-text { font-size: 0.8125rem; color: var(--fg-subtle); line-height: 1.7; }
+    .footer-text a { color: var(--rose); transition: opacity 0.2s; }
+    .footer-text a:hover { opacity: 0.75; }
+
+    /* ─── ANIMATIONS & UTILS ─────────────────────────────── */
+    :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: hsla(5,38%,45%,0.3); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: hsla(5,38%,45%,0.5); }
+
+    /* ─── READING PROGRESS ───────────────────────────────── */
+    #read-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 2px;
+      background: var(--gradient); z-index: 9998;
+      pointer-events: none; will-change: width;
+      transition: width 0.08s linear;
+    }
+
+    /* ─── SCROLL OFFSET (fixed header) ──────────────────── */
+    section[id] { scroll-margin-top: 5rem; }
+
+    /* ─── SCROLLSPY NAV ACTIVE ───────────────────────────── */
+    .nav-links a { position: relative; }
+    .nav-links a.active { color: var(--fg); }
+    .nav-links a.active::after {
+      content: ''; position: absolute;
+      bottom: -4px; left: 0; right: 0; height: 1px;
+      background: var(--gradient); border-radius: 999px;
+    }
+
+    /* ─── EYEBROW NUMBER TAG ─────────────────────────────── */
+    .eyebrow-num {
+      font-size: 0.625rem; font-weight: 700;
+      color: var(--rose); opacity: 0.45;
+      letter-spacing: 0.18em; font-variant-numeric: tabular-nums;
+    }
+
+    /* ─── SECTION STEP BREADCRUMB ────────────────────────── */
+    .section-breadcrumb {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.625rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--fg-subtle); margin-bottom: 0.5rem;
+    }
+    .section-breadcrumb span { color: var(--rose-light); opacity: 0.6; }
+
+    /* ─── NEXT STEPS CONNECTOR LINE ──────────────────────── */
+    .next-steps { position: relative; }
+    .next-steps::before {
+      content: ''; position: absolute;
+      left: 1.25rem; top: 4rem; bottom: 4rem;
+      width: 1px;
+      background: linear-gradient(to bottom, hsla(5,38%,45%,0.25) 0%, hsla(5,38%,45%,0.04) 100%);
+      pointer-events: none;
+    }
+    .ns-num { position: relative; z-index: 1; }
+
+    /* ─── TIMELINE STEP DOT ──────────────────────────────── */
+    .tl-period { display: flex; align-items: center; gap: 0.5rem; }
+    .tl-period::before {
+      content: ''; flex-shrink: 0;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--rose-light); opacity: 0.75;
+    }
+
+    /* ─── PAGE SECTIONS FLOW NUMBER ─────────────────────── */
+    .ps-num { display: flex; align-items: center; gap: 0.4rem; }
+    .ps-num::before {
+      content: ''; display: block;
+      width: 1rem; height: 1px;
+      background: var(--gradient); flex-shrink: 0;
+      opacity: 0.5;
+    }
+
+    /* ─── INVEST MOBILE ──────────────────────────────────── */
+    @media (max-width: 899px) {
+      .invest-card { padding: 2rem 1.5rem; }
+      .invest-amount { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+    }
+
+    /* ─── NAV CTA DESKTOP ALWAYS VISIBLE ────────────────── */
+    @media (min-width: 901px) { .nav-cta { display: inline-flex !important; } }
+
+    /* ─── FLOAT PILL MOBILE SINGLE COL ──────────────────── */
+    @media (max-width: 480px) {
+      .float-pills { flex-direction: column; }
+      .float-pill { width: 100%; }
+    }
+
+    /* ─── MAT-CARD WARNING BLOCK ─────────────────────────── */
+    .mat-warning {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem 1.25rem; border-radius: var(--radius-sm);
+      background: hsla(5,38%,45%,0.07); border: 1px solid hsla(5,38%,45%,0.18);
+      font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.6;
+      margin-top: 1.5rem;
+    }
+    .mat-warning svg { width: 1rem; height: 1rem; stroke: var(--rose-light); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 0.1rem; }
+
+    /* ─── SCOPE INCLUDES/EXCLUDES LABEL ─────────────────── */
+    .scope-legend { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .scope-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--fg-subtle); }
+    .scope-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .scope-legend-dot.inc { background: var(--gradient); }
+    .scope-legend-dot.exc { background: rgba(255,255,255,0.15); }
+
+    /* ─── INVEST DETAIL GRID ─────────────────────────────── */
+    .invest-highlight-row {
+      padding: 1rem 1.25rem; border-radius: var(--radius-sm);
+      background: hsla(5,38%,45%,0.07); border: 1px solid hsla(5,38%,45%,0.15);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .invest-highlight-row .invest-row-val { color: var(--rose-light); font-weight: 700; }
+  </style>
+</head>
+<body class="intro-active">
+
+<!-- Barra de leitura -->
+<div id="read-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════ INTRO ════════════════════════════════ -->
+<div class="intro" id="intro" role="status" aria-label="Carregando proposta">
+  <div class="intro-inner">
+    <svg class="intro-ornament" width="160" height="24" viewBox="0 0 160 24" fill="none" aria-hidden="true">
+      <line x1="0" y1="12" x2="62" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+      <circle cx="80" cy="12" r="4" stroke="hsl(5,38%,45%)" stroke-width="1" opacity="0.7"/>
+      <line x1="98" y1="12" x2="160" y2="12" stroke="hsl(5,38%,45%)" stroke-width="0.6" opacity="0.4"/>
+    </svg>
+    <p class="intro-pre">Proposta preparada para</p>
+    <h1 class="intro-title">AlugaAqui.</h1>
+    <p class="intro-client">AlugaAqui Máquinas e Equipamentos</p>
+    <div class="intro-bar-wrap" aria-hidden="true">
+      <div class="intro-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ HEADER ══════════════════════════════ -->
+<header id="header">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Navegação principal">
+      <div class="nav-brand">
+        <span class="nav-brand-dot"></span>
+        VS Experience
+      </div>
+      <div class="nav-links" role="list">
+        <a href="#objetivo" role="listitem">Objetivo</a>
+        <a href="#escopo" role="listitem">Escopo</a>
+        <a href="#investimento" role="listitem">Investimento</a>
+        <a href="#aprovacao" role="listitem">Aprovação</a>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Quero%20aprovar%20a%20proposta%20de%20Landing%20Page%20para%20a%20AlugaAqui." target="_blank" rel="noopener noreferrer" class="nav-cta" id="navCta" style="display:none">Aprovar proposta</a>
+      <button class="mob-toggle" id="mobToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav class="mob-menu" id="mobMenu" aria-label="Menu mobile">
+  <a href="#objetivo" >Objetivo</a>
+  <a href="#escopo">Escopo</a>
+  <a href="#investimento">Investimento</a>
+  <a href="#aprovacao">Aprovação</a>
+</nav>
+
+<main>
+
+  <!-- ═══ 1. HERO ══════════════════════════════════════════ -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-content">
+          <div class="hero-tag reveal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Proposta Comercial · Landing Page
+          </div>
+          <h1 class="hero-title reveal d1" id="hero-title">
+            Uma Landing Page que<br>
+            <span class="gradient-text">gera pedidos de orçamento</span><br>
+            pelo WhatsApp.
+          </h1>
+          <p class="hero-sub reveal d2">
+            Presença digital profissional para a AlugaAqui Máquinas e Equipamentos — transmitindo confiança, agilidade e facilitando o contato de clientes que precisam alugar equipamentos.
+          </p>
+
+          <div class="float-pills reveal d2">
+            <div class="float-pill"><span class="fp-dot green"></span>Captação via WhatsApp</div>
+            <div class="float-pill"><span class="fp-dot rose"></span>7–15 dias úteis</div>
+          </div>
+
+          <div class="hero-btns reveal d3">
+            <a
+              href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Quero%20aprovar%20a%20proposta%20de%20Landing%20Page%20para%20a%20AlugaAqui%20M%C3%A1quinas%20e%20Equipamentos."
+              class="btn btn-primary btn-lg"
+              target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Aprovar proposta
+            </a>
+            <a
+              href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20proposta%20de%20Landing%20Page%20para%20a%20AlugaAqui."
+              class="btn btn-ghost btn-lg"
+              target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Tirar uma dúvida
+            </a>
+          </div>
+        </div>
+
+        <div class="summary-card reveal d2">
+          <div class="sc-header">
+            <div class="sc-header-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <p class="sc-header-title">Landing Page Profissional</p>
+              <p style="font-size:0.75rem; color:var(--fg-subtle); margin-top:0.1rem;">AlugaAqui Máquinas e Equipamentos</p>
+            </div>
+          </div>
+          <div class="sc-rows">
+            <div class="sc-row">
+              <span class="sc-label">Entregável</span>
+              <span class="sc-val">1 página · 8 seções</span>
+            </div>
+            <div class="sc-row">
+              <span class="sc-label">Foco</span>
+              <span class="sc-val">Captação de orçamentos via WhatsApp</span>
+            </div>
+            <div class="sc-row">
+              <span class="sc-label">Prazo estimado</span>
+              <span class="sc-val">7–15 dias úteis</span>
+            </div>
+            <div class="sc-row">
+              <span class="sc-label">Investimento</span>
+              <span class="sc-val accent">R$ 1.600,00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. OBJETIVO ══════════════════════════════════════ -->
+  <section class="section section-alt" id="objetivo" aria-labelledby="obj-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-num">01</span><span class="eyebrow-line"></span>Por que isso importa</div>
+        <h2 class="section-title reveal d1" id="obj-title">
+          Objetivo da <span class="gradient-text">Landing Page</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Uma presença digital profissional transforma a percepção da AlugaAqui e converte visitantes em clientes que pedem orçamento.
+        </p>
+      </div>
+
+      <div class="obj-grid">
+        <div class="obj-card reveal d1">
+          <div class="obj-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="obj-title">Gerar confiança imediata</h3>
+          <p class="obj-text">Construtoras, empreiteiros e profissionais de obra pesquisam antes de contratar. Uma página bem estruturada transmite profissionalismo desde o primeiro acesso — reduzindo a hesitação e aumentando as chances de contato.</p>
+        </div>
+        <div class="obj-card reveal d2">
+          <div class="obj-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.28 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.18 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 8.07 8.07l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="obj-title">Facilitar o pedido de orçamento</h3>
+          <p class="obj-text">Botões de WhatsApp posicionados estrategicamente ao longo da página eliminam qualquer barreira entre o interesse do cliente e o primeiro contato — tornando o processo rápido, simples e natural.</p>
+        </div>
+        <div class="obj-card reveal d1">
+          <div class="obj-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="obj-title">Apresentar o portfólio de equipamentos</h3>
+          <p class="obj-text">Mostrar os equipamentos disponíveis, marcas atendidas e categorias de serviço ajuda o cliente a identificar rapidamente se a AlugaAqui atende à sua necessidade — qualificando o contato antes mesmo da ligação.</p>
+        </div>
+        <div class="obj-card reveal d2">
+          <div class="obj-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <h3 class="obj-title">Destacar os diferenciais da empresa</h3>
+          <p class="obj-text">Entrega rápida, equipamentos revisados e atendimento especializado são diferenciais que muitos clientes valorizam mas que precisam estar visíveis. A página faz esse trabalho de argumentação de forma clara e direta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. ESTRUTURA DA PÁGINA ════════════════════════════ -->
+  <section class="section" id="estrutura" aria-labelledby="struct-title">
+    <div class="container">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-num">02</span><span class="eyebrow-line"></span>O que será entregue</div>
+        <h2 class="section-title reveal d1" id="struct-title">
+          Estrutura da <span class="gradient-text">Landing Page</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Oito seções planejadas para guiar o visitante da primeira impressão até o pedido de orçamento.
+        </p>
+      </div>
+
+      <div class="page-sections reveal d1">
+        <div class="ps-card">
+          <p class="ps-num">01</p>
+          <p class="ps-name">Menu de Navegação</p>
+          <p class="ps-desc">Links para as seções principais e botão de WhatsApp em destaque no topo.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">02</p>
+          <p class="ps-name">Hero / Chamada Principal</p>
+          <p class="ps-desc">Título forte, imagem de equipamento e botão de "Solicitar Orçamento" acima da dobra.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">03</p>
+          <p class="ps-name">Serviços e Equipamentos</p>
+          <p class="ps-desc">Categorias e tipos de máquinas disponíveis para locação com descrições objetivas.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">04</p>
+          <p class="ps-name">Sobre a Empresa</p>
+          <p class="ps-desc">Apresentação, missão, experiência e valores da AlugaAqui para gerar credibilidade.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">05</p>
+          <p class="ps-name">Marcas e Categorias</p>
+          <p class="ps-desc">Principais fabricantes e categorias de equipamentos atendidos pela empresa.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">06</p>
+          <p class="ps-name">Diferenciais</p>
+          <p class="ps-desc">Entrega rápida, equipamentos revisados, atendimento especializado e outros pontos fortes.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">07</p>
+          <p class="ps-name">FAQ</p>
+          <p class="ps-desc">Perguntas frequentes sobre locação, prazos, documentação e processo de contrato.</p>
+        </div>
+        <div class="ps-card">
+          <p class="ps-num">08</p>
+          <p class="ps-name">Rodapé</p>
+          <p class="ps-desc">Informações completas: contato, WhatsApp, CNPJ, endereço e redes sociais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. ESCOPO INCLUSO ════════════════════════════════ -->
+  <section class="section section-alt" id="escopo" aria-labelledby="scope-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-num">03</span><span class="eyebrow-line"></span>Escopo do projeto</div>
+        <h2 class="section-title reveal d1" id="scope-title">
+          O que está <span class="gradient-text">incluso</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Tudo o que será desenvolvido e entregue dentro do valor acordado.
+        </p>
+      </div>
+      <div class="scope-grid reveal d1">
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Design visual exclusivo para a AlugaAqui</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Menu de navegação responsivo</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Seção hero com chamada forte e CTA de WhatsApp</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Seção de serviços e equipamentos disponíveis</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Seção sobre a empresa</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Seção de marcas e categorias de equipamentos</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Seção de diferenciais da empresa</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>FAQ com perguntas frequentes</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Rodapé completo com dados da empresa</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Botões de WhatsApp em múltiplas seções</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Design 100% responsivo (mobile e desktop)</div>
+        <div class="scope-item"><div class="scope-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>2 rodadas de revisão e ajustes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. FORA DO ESCOPO ════════════════════════════════ -->
+  <section class="section" id="fora-escopo" aria-labelledby="oos-title">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-num">04</span><span class="eyebrow-line"></span>Limites do projeto</div>
+        <h2 class="section-title reveal d1" id="oos-title">
+          O que <span class="gradient-text">não está incluso</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Para evitar dúvidas, estes itens estão fora do escopo desta proposta e podem ser cotados separadamente se necessário.
+        </p>
+      </div>
+      <div class="oos-grid reveal d1">
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Criação de identidade visual ou redesign de logo</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Produção profissional de fotos e vídeos</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Criação de textos e copywriting do conteúdo</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Gestão de tráfego pago (Google Ads, Meta Ads)</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Hospedagem, domínio ou ferramentas pagas</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Sistemas, painéis ou funcionalidades complexas</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Alterações ilimitadas após aprovação final do layout</div>
+        <div class="oos-item"><div class="oos-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Integração com sistemas de gestão ou ERP</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. MATERIAIS NECESSÁRIOS ═════════════════════════ -->
+  <section class="section section-alt" id="materiais" aria-labelledby="mat-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-num">05</span><span class="eyebrow-line"></span>Sua parte no processo</div>
+        <h2 class="section-title reveal d1" id="mat-title">
+          Materiais <span class="gradient-text">necessários</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Para que o projeto inicie dentro do prazo, estes materiais devem ser enviados após a aprovação da proposta.
+        </p>
+      </div>
+
+      <div class="mat-card reveal d1">
+        <div class="mat-list">
+          <div class="mat-item"><span class="mat-dot"></span>Logo da empresa em boa resolução (PNG ou SVG)</div>
+          <div class="mat-item"><span class="mat-dot"></span>Textos e apresentação da empresa</div>
+          <div class="mat-item"><span class="mat-dot"></span>Fotos e imagens dos equipamentos disponíveis</div>
+          <div class="mat-item"><span class="mat-dot"></span>Número de WhatsApp para os botões de contato</div>
+          <div class="mat-item"><span class="mat-dot"></span>CNPJ e dados completos para o rodapé</div>
+          <div class="mat-item"><span class="mat-dot"></span>Marcas e fabricantes dos equipamentos</div>
+          <div class="mat-item"><span class="mat-dot"></span>Diferenciais e pontos fortes da empresa</div>
+          <div class="mat-item"><span class="mat-dot"></span>Perguntas frequentes dos clientes (se houver)</div>
+          <div class="mat-item"><span class="mat-dot"></span>Referências visuais ou cores da marca (se houver)</div>
+        </div>
+        <div class="mat-warning">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          O prazo de <strong>&nbsp;7 a 15 dias úteis&nbsp;</strong> começa a contar após o pagamento inicial <em>e</em> o envio completo destes materiais. Envios incompletos ou com atraso impactam diretamente a data de entrega.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7. PRAZO ═════════════════════════════════════════ -->
+  <section class="section" id="prazo" aria-labelledby="prazo-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-num">06</span><span class="eyebrow-line"></span>Etapas do projeto</div>
+        <h2 class="section-title reveal d1" id="prazo-title">
+          Prazo de <span class="gradient-text">entrega</span>
+        </h2>
+      </div>
+
+      <div class="prazo-header reveal d1">
+        <p style="font-size:0.9375rem; color:var(--fg-muted); max-width:48ch; line-height:1.65;">
+          O desenvolvimento é organizado em etapas claras. O prazo total varia conforme a velocidade de envio dos materiais e as rodadas de revisão.
+        </p>
+        <div class="prazo-total" aria-label="7 a 15 dias úteis">
+          <span class="prazo-num">7–15</span>
+          <span class="prazo-unit">dias úteis</span>
+        </div>
+      </div>
+
+      <div class="timeline reveal d1">
+        <div class="tl-item">
+          <p class="tl-period">Dias 1–2</p>
+          <p class="tl-title">Alinhamento e briefing</p>
+          <p class="tl-text">Recebimento dos materiais, reunião de alinhamento e definição das referências visuais.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-period">Dias 3–8</p>
+          <p class="tl-title">Desenvolvimento e design</p>
+          <p class="tl-text">Criação do layout, estruturação de todas as seções e integração dos conteúdos fornecidos.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-period">Dias 9–12</p>
+          <p class="tl-title">Revisões e ajustes</p>
+          <p class="tl-text">Apresentação do resultado, coleta de feedback e aplicação das revisões solicitadas.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-period">Dias 13–15</p>
+          <p class="tl-title">Entrega final</p>
+          <p class="tl-text">Aprovação final, entrega dos arquivos ou publicação conforme combinado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. INVESTIMENTO ═══════════════════════════════════ -->
+  <section class="section section-alt" id="investimento" aria-labelledby="invest-title">
+    <div class="container-tight">
+      <div class="section-header center">
+        <div class="eyebrow reveal"><span class="eyebrow-num">07</span><span class="eyebrow-line"></span>Transparência no valor</div>
+        <h2 class="section-title reveal d1" id="invest-title">
+          Valor do <span class="gradient-text">projeto</span>
+        </h2>
+      </div>
+
+      <div class="invest-card reveal d1">
+        <div>
+          <p style="font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-subtle); margin-bottom:0.75rem;">Landing Page completa</p>
+          <p class="invest-amount" aria-label="R$ 1.600,00">R$ 1.600</p>
+          <p class="invest-label">Inclui todas as 8 seções, design responsivo,<br>botões de WhatsApp e 2 rodadas de revisão.</p>
+          <div class="invest-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Valor fixo · sem surpresas
+          </div>
+        </div>
+        <div class="invest-details">
+          <div class="invest-highlight-row">
+            <span class="invest-row-label" style="font-weight:600; color:var(--fg-muted);">Forma de pagamento</span>
+            <span class="invest-row-val highlight">A combinar</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Meios aceitos</span>
+            <span class="invest-row-val">Pix · Transferência · Cartão</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Entrada (início do projeto)</span>
+            <span class="invest-row-val">50% — R$ 800,00</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Restante (na entrega)</span>
+            <span class="invest-row-val">50% — R$ 800,00</span>
+          </div>
+          <div class="invest-row">
+            <span class="invest-row-label">Validade desta proposta</span>
+            <span class="invest-row-val">15 dias corridos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. PRÓXIMOS PASSOS ═══════════════════════════════ -->
+  <section class="section" id="aprovacao" aria-labelledby="steps-title">
+    <div class="container-tight">
+      <div class="section-header">
+        <div class="eyebrow reveal"><span class="eyebrow-num">08</span><span class="eyebrow-line"></span>Como avançar</div>
+        <h2 class="section-title reveal d1" id="steps-title">
+          Próximos <span class="gradient-text">passos</span>
+        </h2>
+        <p class="section-sub reveal d2">
+          Depois da aprovação, o processo é direto e sem burocracia. Em poucos dias o projeto já está em andamento.
+        </p>
+      </div>
+
+      <div class="next-steps reveal d1">
+        <div class="ns-item">
+          <div class="ns-num">01</div>
+          <div class="ns-content">
+            <p class="ns-title">Aprovação desta proposta</p>
+            <p class="ns-text">Confirme a proposta via WhatsApp. Caso tenha dúvidas antes de aprovar, também estamos disponíveis para conversar.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">02</div>
+          <div class="ns-content">
+            <p class="ns-title">Definição da forma de pagamento</p>
+            <p class="ns-text">Alinhamos juntos a forma de pagamento que funciona melhor para ambos os lados e formalizamos o acordo.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">03</div>
+          <div class="ns-content">
+            <p class="ns-title">Pagamento inicial e envio dos materiais</p>
+            <p class="ns-text">Com o pagamento inicial confirmado, a AlugaAqui envia todos os materiais listados nesta proposta para darmos início.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">04</div>
+          <div class="ns-content">
+            <p class="ns-title">Alinhamento e início do desenvolvimento</p>
+            <p class="ns-text">Reunião rápida para confirmar referências, identidade visual e prioridades — e o projeto entra em produção.</p>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">05</div>
+          <div class="ns-content">
+            <p class="ns-title">Entrega, revisão e publicação</p>
+            <p class="ns-text">Apresentamos o resultado, aplicamos os ajustes nas rodadas de revisão e entregamos a página finalizada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10. CTA FINAL ════════════════════════════════════ -->
+  <section class="section final-cta" aria-labelledby="cta-title">
+    <div class="container-tight">
+      <h2 class="cta-title reveal" id="cta-title">
+        Pronto para ter uma presença<br><span class="gradient-text">que gera orçamentos?</span>
+      </h2>
+      <p class="cta-sub reveal d1">
+        A Landing Page da AlugaAqui Máquinas e Equipamentos começa com uma decisão. Qualquer dúvida antes de aprovar — estamos disponíveis para conversar.
+      </p>
+      <div class="cta-btns reveal d2">
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Quero%20aprovar%20a%20proposta%20de%20Landing%20Page%20para%20a%20AlugaAqui%20M%C3%A1quinas%20e%20Equipamentos."
+          class="btn btn-primary btn-lg"
+          target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Aprovar proposta
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20proposta%20de%20Landing%20Page%20para%20a%20AlugaAqui."
+          class="btn btn-ghost btn-lg"
+          target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Tirar dúvidas antes
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p class="footer-text">
+      Proposta preparada por <a href="https://vsexperience.com.br" target="_blank" rel="noopener noreferrer">VS Experience</a> · Victor Santos &nbsp;·&nbsp; 2026<br>
+      Este documento é confidencial e foi preparado exclusivamente para a AlugaAqui Máquinas e Equipamentos.
+    </p>
+  </div>
+</footer>
+
+<script>
+  /* ── INTRO ── */
+  (function () {
+    var intro = document.getElementById('intro');
+    setTimeout(function () {
+      intro.classList.add('exit');
+      setTimeout(function () {
+        intro.style.display = 'none';
+        document.body.classList.remove('intro-active');
+      }, 700);
+    }, 5200);
+  })();
+
+  /* ── READING PROGRESS BAR ── */
+  var progressBar = document.getElementById('read-progress');
+  function updateProgress() {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+    if (progressBar) progressBar.style.width = pct + '%';
+  }
+
+  /* ── HEADER SCROLL + NAV CTA ── */
+  var header = document.getElementById('header');
+  var navCta = document.getElementById('navCta');
+
+  /* ── SCROLLSPY ── */
+  var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+  var spySections = [];
+  navAnchors.forEach(function (a) {
+    var id = a.getAttribute('href').replace('#', '');
+    var sec = document.getElementById(id);
+    if (sec) spySections.push({ link: a, section: sec });
+  });
+
+  function updateScrollspy() {
+    var scrollY = window.pageYOffset;
+    var active = null;
+    spySections.forEach(function (item) {
+      var top = item.section.getBoundingClientRect().top + scrollY - 120;
+      if (scrollY >= top) active = item;
+    });
+    navAnchors.forEach(function (a) { a.classList.remove('active'); });
+    if (active) active.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', function () {
+    updateProgress();
+    var y = window.pageYOffset;
+
+    if (y > 60) {
+      header.classList.add('scrolled');
+      if (navCta) navCta.style.display = 'inline-flex';
+    } else {
+      header.classList.remove('scrolled');
+      if (navCta && window.innerWidth < 901) navCta.style.display = 'none';
+    }
+
+    updateScrollspy();
+  }, { passive: true });
+
+  /* ── MOBILE MENU (explicit classList — evita bug em browsers antigos) ── */
+  var toggle  = document.getElementById('mobToggle');
+  var mobMenu = document.getElementById('mobMenu');
+  if (toggle && mobMenu) {
+    toggle.addEventListener('click', function () {
+      var isOpen = mobMenu.classList.contains('open');
+      if (isOpen) {
+        mobMenu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      } else {
+        mobMenu.classList.add('open');
+        toggle.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+    mobMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobMenu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ── SCROLL REVEAL ── */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ── INIT ── */
+  updateProgress();
+  updateScrollspy();
+</script>
+</body>
+</html>
