@@ -388,13 +388,37 @@
 
     /* ─── MAT-CARD WARNING BLOCK ─────────────────────────── */
     .mat-warning {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      padding: 1rem 1.25rem; border-radius: var(--radius-sm);
-      background: hsla(5,38%,45%,0.07); border: 1px solid hsla(5,38%,45%,0.18);
-      font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.6;
-      margin-top: 1.5rem;
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem;
+      padding: 1.125rem 1.25rem; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, hsla(5,38%,45%,0.10), hsla(5,38%,22%,0.08));
+      border: 1px solid hsla(5,38%,45%,0.22);
+      margin-top: 1.75rem;
     }
-    .mat-warning svg { width: 1rem; height: 1rem; stroke: var(--rose-light); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 0.1rem; }
+    .mat-warning-icon {
+      width: 2rem; height: 2rem; border-radius: 10px;
+      background: hsla(5,38%,45%,0.14);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .mat-warning-icon svg { width: 1rem; height: 1rem; stroke: var(--rose-light); fill: none; stroke-width: 2; }
+    .mat-warning-title { font-size: 0.875rem; font-weight: 700; color: var(--fg); line-height: 1.3; margin-bottom: 0.2rem; }
+    .mat-warning-text { font-size: 0.8125rem; color: var(--fg-muted); line-height: 1.55; max-width: 68ch; }
+    .mat-warning-pill {
+      display: inline-flex; align-items: baseline; gap: 0.35rem;
+      padding: 0.55rem 0.8rem; border-radius: 999px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      white-space: nowrap;
+    }
+    .mat-warning-pill strong { color: var(--fg); font-size: 1rem; line-height: 1; }
+    .mat-warning-pill span { color: var(--fg-subtle); font-size: 0.7rem; font-weight: 600; }
+    @media (max-width: 720px) {
+      .mat-warning { grid-template-columns: auto 1fr; align-items: flex-start; }
+      .mat-warning-pill { grid-column: 2; width: fit-content; margin-top: 0.15rem; }
+    }
+    @media (max-width: 480px) {
+      .mat-warning { grid-template-columns: 1fr; gap: 0.75rem; }
+      .mat-warning-pill { grid-column: auto; }
+    }
 
     /* ─── SCOPE INCLUDES/EXCLUDES LABEL ─────────────────── */
     .scope-legend { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -725,8 +749,17 @@
           <div class="mat-item"><span class="mat-dot"></span>Referências visuais ou cores da marca (se houver)</div>
         </div>
         <div class="mat-warning">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          O prazo de <strong>&nbsp;7 a 15 dias úteis&nbsp;</strong> começa a contar após o pagamento inicial <em>e</em> o envio completo destes materiais. Envios incompletos ou com atraso impactam diretamente a data de entrega.
+          <span class="mat-warning-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </span>
+          <div>
+            <p class="mat-warning-title">Contagem do prazo</p>
+            <p class="mat-warning-text">Começa após o pagamento inicial e o envio completo dos materiais. Envios incompletos ou atrasados podem alterar a data de entrega.</p>
+          </div>
+          <div class="mat-warning-pill" aria-label="Prazo de 7 a 15 dias úteis">
+            <strong>7-15</strong>
+            <span>dias úteis</span>
+          </div>
         </div>
       </div>
     </div>
