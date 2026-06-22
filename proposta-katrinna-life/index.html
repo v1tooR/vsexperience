@@ -453,13 +453,6 @@
     .hint-touch { display: none; }
     @media (max-width: 899px) { .hint-hover { display: none; } .hint-touch { display: inline; } }
 
-    /* Swipe hint — mobile only */
-    .comp-swipe-hint {
-      display: none; text-align: center; font-size: 0.7rem; color: rgba(247,247,247,0.22);
-      margin-top: 1.25rem; letter-spacing: 0.06em;
-    }
-    @media (max-width: 899px) { .comp-swipe-hint { display: block; } }
-
     /* Bullet list */
     .comp-items { display: flex; flex-direction: column; gap: 0.5rem; }
     .comp-item {
@@ -700,7 +693,7 @@
               </div>
               <div class="sc-row">
                 <span class="sc-label">Investimento</span>
-                <span class="sc-val accent">a partir de R$ 4.997</span>
+                <span class="sc-val accent">a partir de R$ 4.250</span>
               </div>
             </div>
             <a href="#aprovacao" class="btn btn-primary" style="width:100%; justify-content:center;">
@@ -825,7 +818,6 @@
             </div>
           </div>
         </div>
-        <p class="comp-swipe-hint" aria-hidden="true">← deslize para alternar →</p>
       </div>
 
       <!-- Painel: Carrinho -->
@@ -868,7 +860,6 @@
             </div>
           </div>
         </div>
-        <p class="comp-swipe-hint" aria-hidden="true">← deslize para alternar →</p>
       </div>
 
       <!-- Painel: Checkout -->
@@ -911,7 +902,6 @@
             </div>
           </div>
         </div>
-        <p class="comp-swipe-hint" aria-hidden="true">← deslize para alternar →</p>
       </div>
 
       <!-- Referência: Multivegetal -->
@@ -1194,7 +1184,7 @@
         <div class="invest-option">
           <span class="opt-badge default">Projeto fechado</span>
           <p class="opt-name">Reestruturação completa</p>
-          <p class="opt-price">R$ 4.997</p>
+          <p class="opt-price">R$ 4.250</p>
           <p class="opt-price-note">
             50% para início do projeto<br>
             50% na entrega e publicação
@@ -1214,7 +1204,7 @@
           </ul>
           <div class="opt-total">
             <span>Total do projeto</span>
-            <strong>R$ 4.997</strong>
+            <strong>R$ 4.250</strong>
           </div>
         </div>
 
@@ -1224,8 +1214,8 @@
           <p class="opt-name">Entrada facilitada + acompanhamento</p>
           <p class="opt-price">R$ 1.497 <span style="font-size:1.125rem; font-weight:500; -webkit-text-fill-color: var(--fg-muted);">entrada</span></p>
           <p class="opt-price-note">
-            + 6 parcelas mensais de R$ 597<br>
-            <span style="color: var(--fg); font-weight: 600;">Total: R$ 5.079</span>
+            + 6 parcelas de R$ 500 (≈2,5% a.m.)<br>
+            <span style="color: var(--fg); font-weight: 600;">Total: R$ 4.497</span>
           </p>
           <div class="opt-divider"></div>
           <ul class="opt-features">
@@ -1242,7 +1232,7 @@
           </ul>
           <div class="opt-total">
             <span>Total da parceria (7 meses)</span>
-            <strong>R$ 5.079</strong>
+            <strong>R$ 4.497</strong>
           </div>
         </div>
 
@@ -1346,12 +1336,12 @@
             <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
           </div>
           <div>
-            <p class="pay-main"><sup>12×</sup> R$ 449,73</p>
+            <p class="pay-main"><sup>10×</sup> R$ 450,00</p>
           </div>
           <div>
             <div class="pay-detail-row">
               <span class="pay-detail-label">Total parcelado</span>
-              <span class="pay-detail-val">R$ 5.396,76</span>
+              <span class="pay-detail-val">R$ 4.500,00</span>
             </div>
             <div class="pay-detail-row">
               <span class="pay-detail-label">Sem juros adicionais</span>
@@ -1367,20 +1357,20 @@
             <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
           <div>
-            <p class="pay-main">R$ 2.498,50</p>
+            <p class="pay-main">R$ 2.125,00</p>
           </div>
           <div>
             <div class="pay-detail-row">
               <span class="pay-detail-label">50% no início</span>
-              <span class="pay-detail-val">R$ 2.498,50</span>
+              <span class="pay-detail-val">R$ 2.125,00</span>
             </div>
             <div class="pay-detail-row">
               <span class="pay-detail-label">50% na entrega</span>
-              <span class="pay-detail-val">R$ 2.498,50</span>
+              <span class="pay-detail-val">R$ 2.125,00</span>
             </div>
             <div class="pay-detail-row">
               <span class="pay-detail-label">Total</span>
-              <span class="pay-detail-val">R$ 4.997,00</span>
+              <span class="pay-detail-val">R$ 4.250,00</span>
             </div>
           </div>
         </div>
@@ -1392,12 +1382,12 @@
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <div>
-            <p class="pay-main">R$ 4.497,30</p>
+            <p class="pay-main">R$ 4.250,00</p>
           </div>
           <div>
             <div class="pay-detail-row">
-              <span class="pay-detail-label">Desconto à vista</span>
-              <span class="pay-detail-val accent">−10% (R$ 499,70)</span>
+              <span class="pay-detail-label">Melhor custo-benefício</span>
+              <span class="pay-detail-val accent">sem acréscimos</span>
             </div>
             <div class="pay-detail-row">
               <span class="pay-detail-label">Pagamento único</span>
@@ -1575,39 +1565,28 @@
   document.querySelectorAll('.comp-state-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var state = btn.getAttribute('data-state');
-      var panel = btn.closest('.comp-panel');
+      var panel = btn.parentNode;
+      while (panel && !panel.classList.contains('comp-panel')) { panel = panel.parentNode; }
+      if (!panel) return;
       syncToggle(panel, state);
-      panel.classList.toggle('show-after', state === 'after');
+      if (state === 'after') { panel.classList.add('show-after'); }
+      else { panel.classList.remove('show-after'); }
     });
   });
 
-  /* ── Tap to expand screenshots (touch only) ── */
+  /* ── Tap to expand screenshots (mobile only) ── */
   document.querySelectorAll('.comp-screen').forEach(function (screen) {
     screen.addEventListener('click', function () {
       if (window.innerWidth >= 900) return;
-      var expanded = screen.classList.toggle('expanded');
+      var isExpanded = screen.classList.contains('expanded');
+      if (isExpanded) { screen.classList.remove('expanded'); }
+      else { screen.classList.add('expanded'); }
       var hint = screen.nextElementSibling;
       if (hint && hint.classList.contains('comp-hint')) {
         var t = hint.querySelector('.hint-touch');
-        if (t) t.textContent = expanded ? '↕ Toque para recolher' : '↕ Toque para expandir';
+        if (t) t.textContent = isExpanded ? '↕ Toque para expandir' : '↕ Toque para recolher';
       }
     });
-  });
-
-  /* ── Swipe left/right to toggle before/after (mobile) ── */
-  document.querySelectorAll('.comp-panel').forEach(function (panel) {
-    var sx = 0, sy = 0;
-    panel.addEventListener('touchstart', function (e) {
-      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
-    }, { passive: true });
-    panel.addEventListener('touchend', function (e) {
-      var dx = sx - e.changedTouches[0].clientX;
-      var dy = Math.abs(sy - e.changedTouches[0].clientY);
-      if (dy > 40 || Math.abs(dx) < 50) return;
-      var after = panel.classList.contains('show-after');
-      if (dx > 0 && !after) { panel.classList.add('show-after'); syncToggle(panel, 'after'); }
-      else if (dx < 0 && after) { panel.classList.remove('show-after'); syncToggle(panel, 'before'); }
-    }, { passive: true });
   });
 
   var revealEls = document.querySelectorAll('.reveal');
