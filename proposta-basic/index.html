@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial · Basic · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS — VS Experience Design System
+       ============================================ */
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff-body:     'Space Grotesk', sans-serif;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      transition: width 0.08s linear;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.9);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .h-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-right: auto;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .h-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .h-nav a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    @media (max-width: 820px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+    .container-sm {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+
+    /* ============================================
+       SECTION
+       ============================================ */
+    .section {
+      padding: clamp(5rem, 10vw, 8rem) 0;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
+    }
+
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .eyebrow-num {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      opacity: 0.65;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line {
+      height: 1px;
+      width: 2.5rem;
+      background: var(--gradient);
+      opacity: 0.45;
+    }
+    .eyebrow-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 66ch;
+      overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.4s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 8% 18%, hsla(5, 38%, 20%, 0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 45% at 88% 72%, hsla(5, 38%, 14%, 0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+
+    .conf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 hsla(5,38%,45%,0.45); }
+      50% { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 7px hsla(5,38%,45%,0); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      max-width: 12ch;
+      overflow-wrap: anywhere;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.8vw, 1.1875rem);
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 3rem;
+      max-width: 54ch;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      max-width: 740px;
+      width: 100%;
+    }
+    .hs-item {
+      background: var(--bg-2);
+      padding: 1.25rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .hs-item:hover { background: var(--bg-3); }
+    .hs-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.375rem;
+    }
+    .hs-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .hs-val.accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .scroll-line { width: 2rem; height: 1px; background: var(--border-2); }
+
+    /* ============================================
+       FEATURE CARDS (stack / goals)
+       ============================================ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+      gap: 1.125rem;
+      margin-top: 2.5rem;
+    }
+    .feat-card {
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feat-card:hover {
+      border-color: hsla(5, 38%, 45%, 0.28);
+      transform: translateY(-4px);
+    }
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-icon {
+      width: 42px; height: 42px;
+      border-radius: var(--radius);
+      background: hsla(5, 38%, 45%, 0.1);
+      border: 1px solid hsla(5, 38%, 45%, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.125rem;
+    }
+    .feat-icon svg { width: 19px; height: 19px; stroke: var(--rose-light); }
+    .feat-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .feat-desc { font-size: 0.85rem; color: var(--text-2); line-height: 1.6; }
+
+    /* ============================================
+       SCOPE GRID
+       ============================================ */
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(278px, 100%), 1fr));
+      gap: 0.6875rem;
+      margin-top: 2.5rem;
+    }
+    .scope-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      padding: 0.9375rem 1.125rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .scope-item:hover {
+      background: var(--surface-2);
+      border-color: var(--border-2);
+    }
+    .check-circle {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: hsla(5, 38%, 45%, 0.1);
+      border: 1px solid hsla(5, 38%, 45%, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .check-circle svg { width: 11px; height: 11px; stroke: var(--rose-light); stroke-width: 2.5; }
+    .scope-text { font-size: 0.875rem; color: var(--text-2); line-height: 1.5; }
+
+    /* ============================================
+       PRAZO — Timeline design (v2)
+       ============================================ */
+    .prazo-range {
+      margin-top: 2.5rem;
+      padding: 2.25rem 2.5rem 2rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .prazo-range::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    /* Track: two numbers + bar in between */
+    .prazo-track-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .prazo-anchor {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .prazo-stat-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .prazo-num {
+      font-family: var(--ff-body);
+      font-size: clamp(3rem, 9vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .prazo-unit {
+      font-size: 0.5625rem;
+      color: var(--text-muted);
+      margin-top: 0.375rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .prazo-bar-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.625rem;
+      min-width: 0;
+    }
+    .prazo-bar {
+      width: 100%;
+      height: 5px;
+      border-radius: 99px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .prazo-bar-fill {
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      border-radius: 99px;
+    }
+    .prazo-bar-label {
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+    /* Divider */
+    .prazo-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.75rem 0 1.5rem;
+    }
+    /* Phases */
+    .prazo-phases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.625rem;
+    }
+    .prazo-phase {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.125rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .prazo-phase:hover { border-color: var(--border-2); }
+    .prazo-phase-num {
+      font-family: var(--ff-body);
+      font-size: 0.5625rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      color: var(--rose-light);
+      opacity: 0.55;
+      letter-spacing: 0.06em;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+    .prazo-phase-name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+    .prazo-phase-dur {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      font-feature-settings: 'tnum';
+    }
+    /* Note */
+    .prazo-note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-left: 2px solid hsla(5, 38%, 45%, 0.45);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    @media (max-width: 640px) {
+      .prazo-track-wrap { gap: 1.25rem; }
+      .prazo-phases { grid-template-columns: 1fr; }
+      .prazo-bar-label { display: none; }
+    }
+    @media (max-width: 480px) {
+      .prazo-range { padding: 1.5rem 1.25rem; }
+      .prazo-num { font-size: clamp(2.5rem, 14vw, 3.5rem); }
+    }
+
+    /* ============================================
+       INVESTMENT HERO (price display)
+       ============================================ */
+    .invest-card {
+      margin-top: 2.5rem;
+      padding: 3rem 3rem 2.5rem;
+      border-radius: var(--radius-xl);
+      background: hsla(5, 38%, 8%, 0.55);
+      border: 1px solid hsla(5, 38%, 45%, 0.15);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .invest-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    .invest-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-body);
+      font-size: clamp(6rem, 20vw, 15rem);
+      font-weight: 900;
+      color: transparent;
+      background: linear-gradient(135deg, hsla(5,38%,30%,0.055) 0%, hsla(5,38%,50%,0.022) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+    .invest-label {
+      position: relative;
+      z-index: 1;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .price-display {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+    }
+    .price-currency {
+      font-family: var(--ff-body);
+      font-size: clamp(1.125rem, 2.5vw, 1.875rem);
+      font-weight: 600;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-top: clamp(0.5rem, 1.2vw, 0.95rem);
+      padding-right: 0.3rem;
+    }
+    .price-main {
+      font-family: var(--ff-body);
+      font-size: clamp(3.35rem, 14vw, 9.5rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .price-cents {
+      font-family: var(--ff-body);
+      font-size: clamp(1.25rem, 3.5vw, 2.875rem);
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      align-self: flex-end;
+      padding-bottom: clamp(0.3rem, 0.8vw, 0.7rem);
+      opacity: 0.5;
+    }
+    .invest-desc {
+      position: relative;
+      z-index: 1;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .validity-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.375rem;
+      background: hsla(5, 38%, 22%, 0.15);
+      border: 1px solid hsla(5, 38%, 45%, 0.16);
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      color: var(--text-2);
+      margin-top: 1.75rem;
+    }
+    .validity-pill .v-num {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       PAYMENT CARDS
+       ============================================ */
+    .pay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 1.125rem;
+      margin-top: 2.5rem;
+    }
+    .pay-card {
+      padding: 2rem 1.875rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .pay-card:hover {
+      border-color: hsla(5, 38%, 45%, 0.22);
+      transform: translateY(-3px);
+    }
+    .pay-card.featured {
+      background: linear-gradient(135deg, hsla(5,38%,22%,0.2) 0%, hsla(5,38%,45%,0.06) 100%);
+      border-color: hsla(5, 38%, 45%, 0.2);
+    }
+    .pay-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .pay-card.featured::before,
+    .pay-card:hover::before { opacity: 1; }
+
+    .pay-badge {
+      display: inline-block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      background: hsla(5, 38%, 45%, 0.12);
+      border: 1px solid hsla(5, 38%, 45%, 0.2);
+      border-radius: 100px;
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 0.875rem;
+    }
+    .pay-option {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .pay-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.375rem;
+      line-height: 1.35;
+    }
+    .pay-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5625rem 0;
+      border-bottom: 1px solid var(--border);
+      min-width: 0;
+    }
+    .pay-row:last-of-type { border-bottom: none; }
+    .pay-row-label { font-size: 0.8125rem; color: var(--text-2); min-width: 0; }
+    .pay-row-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .pay-row-val.grad {
+      color: var(--text);
+    }
+    .pay-row-val.striked {
+      text-decoration: line-through;
+      opacity: 0.38;
+      font-size: 0.8125rem;
+    }
+    .pay-row-val.green { color: hsl(140, 50%, 58%); }
+    .pay-total {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-2);
+    }
+    .pay-total-label {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .pay-total-val {
+      font-family: var(--ff-body);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    /* ============================================
+       EXCLUSIONS
+       ============================================ */
+    .excl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(275px, 100%), 1fr));
+      gap: 0.625rem;
+      margin-top: 2.5rem;
+    }
+    .excl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1.125rem;
+      background: hsla(5, 8%, 100%, 0.025);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .excl-x { flex-shrink: 0; margin-top: 1px; opacity: 0.38; }
+    .excl-x svg { width: 18px; height: 18px; stroke: var(--text-muted); stroke-width: 2; }
+    .excl-text { font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ============================================
+       MAINTENANCE CARD
+       ============================================ */
+    .maint-card {
+      margin-top: 2.5rem;
+      padding: 2.5rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .maint-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0.5;
+    }
+    .maint-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, hsla(5,38%,45%,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .maint-tag {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 0.75rem;
+    }
+    .maint-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .maint-desc { font-size: 0.9rem; color: var(--text-2); line-height: 1.65; max-width: 50ch; }
+    .maint-price-box {
+      text-align: center;
+      padding: 1.5rem 1.875rem;
+      border-radius: var(--radius-lg);
+      background: hsla(5, 38%, 22%, 0.2);
+      border: 1px solid hsla(5, 38%, 45%, 0.18);
+      min-width: 150px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .maint-from {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .maint-price-val {
+      font-family: var(--ff-body);
+      font-size: 1.875rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .maint-per { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+    @media (max-width: 640px) {
+      .maint-card { grid-template-columns: 1fr; }
+      .maint-price-box { width: fit-content; }
+    }
+
+    /* ============================================
+       NEXT STEPS
+       ============================================ */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-top: 2.5rem;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.5rem 1.875rem;
+      background: var(--bg-2);
+      transition: background 0.2s;
+    }
+    .step-item:hover { background: var(--bg-3); }
+    .step-num {
+      font-family: var(--ff-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 2rem;
+      padding-top: 3px;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+    .step-content h4 { font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .step-content p { font-size: 0.85rem; color: var(--text-2); line-height: 1.55; }
+
+    /* ============================================
+       FINAL CTA
+       ============================================ */
+    .final-cta {
+      text-align: center;
+      padding: clamp(5rem, 10vw, 8rem) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 50% 50%, hsla(5,38%,20%,0.22) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; z-index: 1; }
+    .final-cta-title {
+      font-size: clamp(1.875rem, 4.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+    .final-cta-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      max-width: 52ch;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--radius);
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    .btn-primary {
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px hsla(5, 38%, 45%, 0.38);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-2);
+    }
+    .btn-secondary:hover {
+      border-color: var(--rose);
+      background: hsla(5, 38%, 45%, 0.08);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+    .footer-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .footer-note { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 640px) {
+      #hdr {
+        height: 60px;
+        padding: 0 1rem;
+      }
+      .header-inner { gap: 0.75rem; }
+      .h-brand {
+        font-size: 0.875rem;
+        max-width: 9.5rem;
+      }
+      .h-client-tag {
+        font-size: 0.6875rem;
+        padding: 0.22rem 0.625rem;
+      }
+      .container,
+      .container-sm {
+        padding: 0 1.125rem;
+      }
+      .section { padding: 4rem 0; }
+      .eyebrow {
+        gap: 0.625rem;
+        margin-bottom: 1.5rem;
+      }
+      .eyebrow-line { width: 1.35rem; }
+      .eyebrow-label { letter-spacing: 0.09em; }
+      .hero {
+        min-height: auto;
+        justify-content: flex-start;
+        padding: 6.5rem 0 3rem;
+      }
+      .hero-grid { background-size: 48px 48px; }
+      .conf-tag {
+        align-items: flex-start;
+        font-size: 0.625rem;
+        letter-spacing: 0.08em;
+        line-height: 1.4;
+        margin-bottom: 1.5rem;
+      }
+      .conf-dot { margin-top: 0.25rem; }
+      .hero-title {
+        font-size: clamp(2.05rem, 8.2vw, 2.45rem);
+        max-width: 11.8ch;
+        letter-spacing: -0.02em;
+      }
+      .hero-subtitle {
+        font-size: 0.97rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        max-width: 35ch;
+      }
+      .hero-summary,
+      .pay-grid,
+      .scope-grid,
+      .excl-grid {
+        grid-template-columns: 1fr;
+      }
+      .hs-item { padding: 1rem 1.125rem; }
+      .scroll-hint { margin-top: 2rem; }
+      .card-grid { margin-top: 2rem; }
+      .feat-card { padding: 1.35rem; }
+      .prazo-range {
+        padding: 1.25rem;
+        border-radius: var(--radius-lg);
+      }
+      .prazo-phase { padding: 0.875rem 1rem; }
+      .invest-card {
+        padding: 2rem 1rem;
+        border-radius: var(--radius-lg);
+      }
+      .price-currency { font-size: 1rem; }
+      .price-main {
+        font-size: clamp(3.15rem, 17vw, 4.1rem);
+        letter-spacing: -0.02em;
+      }
+      .price-cents { font-size: 1.15rem; }
+      .validity-pill {
+        width: 100%;
+        justify-content: center;
+        border-radius: var(--radius);
+        text-align: center;
+      }
+      .pay-card { padding: 1.5rem 1.25rem; }
+      .pay-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+      .pay-row-val { white-space: normal; }
+      .maint-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
+      }
+      .maint-price-box { width: 100%; }
+      .step-item {
+        gap: 1rem;
+        padding: 1.25rem;
+      }
+      .cta-btns {
+        align-items: stretch;
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        min-height: 48px;
+        white-space: normal;
+        text-align: center;
+      }
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .h-client-tag { display: none; }
+      .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.15rem); }
+      .section-title,
+      .final-cta-title { font-size: 1.75rem; }
+      .price-main { font-size: clamp(2.75rem, 16vw, 3.35rem); }
+      .price-cents { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div id="read-progress"></div>
+
+  <!-- Header -->
+  <header id="hdr">
+    <div class="header-inner">
+      <div class="h-brand">
+        <span class="h-brand-dot"></span>
+        VS Experience
+      </div>
+      <span class="h-client-tag">Proposta Comercial · Basic</span>
+      <nav class="h-nav">
+        <a href="#escopo">Escopo</a>
+        <a href="#prazo">Prazo</a>
+        <a href="#investimento">Investimento</a>
+        <a href="#pagamento">Pagamento</a>
+        <a href="#proximos">Próximos Passos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+         ══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="container hero-inner">
+
+        <div class="conf-tag reveal">
+          <span class="conf-dot"></span>
+          Proposta comercial exclusiva · Basic
+        </div>
+
+        <h1 class="hero-title reveal d1">
+          Sua loja de bolsas<br>
+          <span class="text-gradient">no digital — do zero ao checkout.</span>
+        </h1>
+
+        <p class="hero-subtitle reveal d2">
+          Uma estrutura de vendas online completa, responsiva e construída para transmitir confiança à sua cliente desde o primeiro clique até a conclusão da compra.
+        </p>
+
+        <div class="hero-summary reveal d3">
+          <div class="hs-item">
+            <div class="hs-label">Serviço</div>
+            <div class="hs-val">E-commerce · WooCommerce</div>
+          </div>
+          <div class="hs-item">
+            <div class="hs-label">Plataforma</div>
+            <div class="hs-val">WordPress + Elementor</div>
+          </div>
+          <div class="hs-item">
+            <div class="hs-label">Produtos iniciais</div>
+            <div class="hs-val">Até 10 cadastrados</div>
+          </div>
+          <div class="hs-item">
+            <div class="hs-label">Investimento</div>
+            <div class="hs-val accent">R$ 2.989,00</div>
+          </div>
+        </div>
+
+        <div class="scroll-hint reveal d4">
+          <span class="scroll-line"></span>
+          Role para conhecer o projeto completo
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         01 — APRESENTAÇÃO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="apresentacao">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">01</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Apresentação do Projeto</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Uma loja que vende pela internet<br>
+          <span class="text-gradient">com a seriedade que sua marca merece.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Mais do que "montar uma loja", o objetivo aqui é construir uma presença digital de vendas funcional, bem organizada e preparada para converter visitantes em clientes. Cada página, cada botão e cada detalhe do fluxo de compra são pensados para transmitir segurança a quem acessa — e facilidade para quem vende.
+        </p>
+
+        <p class="section-text reveal d3" style="margin-top: 1rem;">
+          Esta proposta descreve com clareza o que será desenvolvido, como funciona o processo, o prazo estimado e as condições de pagamento — sem letra miúda, sem surpresa no meio do caminho.
+        </p>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         02 — OBJETIVO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="objetivo">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">02</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Objetivo do E-commerce</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Vender bolsas online com<br>
+          <span class="text-gradient">estrutura, clareza e confiança.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O e-commerce será desenvolvido para que suas clientes possam descobrir os produtos, entender o que estão comprando e concluir a compra de forma simples e segura — seja pelo celular, tablet ou computador.
+        </p>
+
+        <div class="card-grid">
+          <div class="feat-card reveal d2">
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+            <div class="feat-name">Jornada de compra fluida</div>
+            <div class="feat-desc">Do primeiro acesso até a finalização do pedido — sem fricção, sem confusão, sem abandono de carrinho por dificuldade.</div>
+          </div>
+          <div class="feat-card reveal d3">
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+            <div class="feat-name">Mobile-first</div>
+            <div class="feat-desc">Layout responsivo otimizado para celular, tablet e computador — a maioria das compras começa pelo smartphone.</div>
+          </div>
+          <div class="feat-card reveal d4">
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="feat-name">Confiança desde o primeiro clique</div>
+            <div class="feat-desc">Design alinhado à sua identidade de marca, com páginas que passam credibilidade antes mesmo de a cliente ver o produto.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         03 — O QUE SERÁ DESENVOLVIDO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="plataforma">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">03</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">O que será desenvolvido</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Tecnologia escolhida<br>
+          <span class="text-gradient">com propósito, não por acaso.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          A stack foi escolhida por combinar estabilidade, flexibilidade e facilidade de gestão. Após a entrega, você terá autonomia para atualizar produtos, preços e conteúdo — sem depender de um desenvolvedor para cada mudança no dia a dia.
+        </p>
+
+        <div class="card-grid">
+          <div class="feat-card reveal d2">
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="feat-name">WordPress</div>
+            <div class="feat-desc">CMS mais usado do mundo. Estável, seguro, com ecossistema maduro e painel de gestão intuitivo.</div>
+          </div>
+          <div class="feat-card reveal d3">
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+            </div>
+            <div class="feat-name">WooCommerce</div>
+            <div class="feat-desc">Plugin oficial de e-commerce. Controle total sobre produtos, pedidos, pagamentos, frete e categorias.</div>
+          </div>
+          <div class="feat-card reveal d4">
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+            </div>
+            <div class="feat-name">Elementor</div>
+            <div class="feat-desc">Construtor visual premium que permite criar páginas personalizadas e visualmente refinadas com total liberdade.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         04 — ESCOPO INCLUSO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="escopo">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">04</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Escopo incluso</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Tudo que está <span class="text-gradient">coberto nesta proposta.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O escopo abaixo está incluído no valor apresentado. Nenhum item adicional será cobrado sem combinação prévia.
+        </p>
+
+        <div class="scope-grid">
+
+          <div class="scope-item reveal d1">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Criação da estrutura visual do e-commerce</span>
+          </div>
+
+          <div class="scope-item reveal d1">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Página inicial personalizada</span>
+          </div>
+
+          <div class="scope-item reveal d2">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Página de loja (catálogo de produtos)</span>
+          </div>
+
+          <div class="scope-item reveal d2">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Página individual de cada produto</span>
+          </div>
+
+          <div class="scope-item reveal d3">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Carrinho de compras configurado</span>
+          </div>
+
+          <div class="scope-item reveal d3">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Checkout funcional e configurado</span>
+          </div>
+
+          <div class="scope-item reveal d1">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Cadastro de até 10 produtos</span>
+          </div>
+
+          <div class="scope-item reveal d1">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Organização básica de categorias</span>
+          </div>
+
+          <div class="scope-item reveal d2">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Configuração básica do WooCommerce</span>
+          </div>
+
+          <div class="scope-item reveal d2">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Configuração de formas de pagamento</span>
+          </div>
+
+          <div class="scope-item reveal d3">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Configuração básica de frete</span>
+          </div>
+
+          <div class="scope-item reveal d3">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Botão de WhatsApp integrado</span>
+          </div>
+
+          <div class="scope-item reveal d1">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Layout responsivo para celular, tablet e computador</span>
+          </div>
+
+          <div class="scope-item reveal d1">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Design alinhado à identidade visual da marca</span>
+          </div>
+
+          <div class="scope-item reveal d2">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Otimização básica de SEO</span>
+          </div>
+
+          <div class="scope-item reveal d2">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Páginas essenciais: política de troca, privacidade, termos e contato</span>
+          </div>
+
+          <div class="scope-item reveal d3">
+            <div class="check-circle"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+            <span class="scope-text">Testes completos do fluxo de compra antes da entrega</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         05 — PRAZO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="prazo">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">05</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Prazo de Entrega</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Entrega previsível,<br>
+          <span class="text-gradient">sem sumiço no meio do caminho.</span>
+        </h2>
+
+        <div class="prazo-range reveal d2">
+
+          <!-- Âncoras numéricas + barra de range -->
+          <div class="prazo-track-wrap">
+            <div class="prazo-anchor">
+              <div class="prazo-stat-label">Mínimo</div>
+              <div class="prazo-num">10</div>
+              <div class="prazo-unit">dias úteis</div>
+            </div>
+            <div class="prazo-bar-area">
+              <div class="prazo-bar"><div class="prazo-bar-fill"></div></div>
+              <div class="prazo-bar-label">janela de entrega</div>
+            </div>
+            <div class="prazo-anchor">
+              <div class="prazo-stat-label">Máximo</div>
+              <div class="prazo-num">30</div>
+              <div class="prazo-unit">dias úteis</div>
+            </div>
+          </div>
+
+          <div class="prazo-divider"></div>
+
+          <!-- Fases do projeto -->
+          <div class="prazo-phases">
+            <div class="prazo-phase">
+              <div class="prazo-phase-num">01</div>
+              <div>
+                <div class="prazo-phase-name">Briefing & Setup</div>
+                <div class="prazo-phase-dur">1–2 dias úteis</div>
+              </div>
+            </div>
+            <div class="prazo-phase">
+              <div class="prazo-phase-num">02</div>
+              <div>
+                <div class="prazo-phase-name">Desenvolvimento</div>
+                <div class="prazo-phase-dur">7–25 dias úteis</div>
+              </div>
+            </div>
+            <div class="prazo-phase">
+              <div class="prazo-phase-num">03</div>
+              <div>
+                <div class="prazo-phase-name">Revisão & Publicação</div>
+                <div class="prazo-phase-dur">2–3 dias úteis</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prazo-note">
+            O prazo começa a contar a partir do recebimento de todos os materiais necessários: acessos à hospedagem e domínio, logotipo, identidade visual, textos, fotos dos produtos, informações de preço e dados para configuração de pagamento e frete. Quanto mais completo e rápido o envio, mais ágil será a entrega.
+          </div>
+        </div>
+
+        <p class="section-text reveal d3" style="margin-top: 1.75rem; font-size: 0.875rem;">
+          Ao longo do desenvolvimento, você acompanha o progresso e dá feedback em momentos definidos — com clareza do que está sendo feito em cada etapa.
+        </p>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         06 — INVESTIMENTO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="investimento">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">06</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Investimento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Valor do projeto —<br>
+          <span class="text-gradient">escopo fechado, sem surpresa.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O valor abaixo cobre tudo que está descrito no escopo desta proposta. Nenhum item adicional será cobrado sem combinação e aprovação prévia.
+        </p>
+
+        <div class="invest-card reveal d3">
+          <div class="invest-watermark" aria-hidden="true">2.989</div>
+          <div class="invest-label">Valor total do projeto</div>
+          <div class="price-display" aria-label="R$ 2.989,00">
+            <span class="price-currency">R$</span>
+            <span class="price-main">2.989</span>
+            <span class="price-cents">,00</span>
+          </div>
+          <div class="invest-desc">
+            Basic · WordPress + WooCommerce + Elementor · Até 10 produtos · Responsivo · Testado antes da entrega
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:center;">
+          <div class="validity-pill reveal d4">
+            <span class="v-num">7</span>
+            dias de validade desta proposta
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         07 — FORMAS DE PAGAMENTO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="pagamento">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">07</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Formas de Pagamento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Escolha a opção<br>
+          <span class="text-gradient">que melhor se adapta a você.</span>
+        </h2>
+
+        <div class="pay-grid">
+
+          <!-- Opção 1: 50/50 -->
+          <div class="pay-card featured reveal d2">
+            <div class="pay-option">Opção 01</div>
+            <div class="pay-title">50% na entrada + 50% na entrega</div>
+            <div class="pay-row">
+              <span class="pay-row-label">Na aprovação da proposta</span>
+              <span class="pay-row-val grad">R$ 1.494,50</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-row-label">Na entrega e publicação</span>
+              <span class="pay-row-val grad">R$ 1.494,50</span>
+            </div>
+            <div class="pay-total">
+              <div class="pay-total-label">Total</div>
+              <div class="pay-total-val">R$ 2.989,00</div>
+            </div>
+          </div>
+
+          <!-- Opção 2: À vista com desconto -->
+          <div class="pay-card featured reveal d3">
+            <div class="pay-badge">5% de desconto</div>
+            <div class="pay-option">Opção 02</div>
+            <div class="pay-title">À vista na aprovação</div>
+            <div class="pay-row">
+              <span class="pay-row-label">Valor original</span>
+              <span class="pay-row-val striked">R$ 2.989,00</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-row-label">Desconto de 5%</span>
+              <span class="pay-row-val green">− R$ 149,45</span>
+            </div>
+            <div class="pay-total">
+              <div class="pay-total-label">Total com desconto</div>
+              <div class="pay-total-val">R$ 2.839,55</div>
+            </div>
+          </div>
+
+          <!-- Opção 3: Parcelado -->
+          <div class="pay-card reveal d4">
+            <div class="pay-option">Opção 03</div>
+            <div class="pay-title">Parcelado em até 10×</div>
+            <div class="pay-row">
+              <span class="pay-row-label">Parcelas</span>
+              <span class="pay-row-val grad">10 × R$ 311,36</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-row-label">Modalidade</span>
+              <span class="pay-row-val" style="font-size:0.8125rem; color:var(--text-2);">Cartão de Crédito</span>
+            </div>
+            <div class="pay-total">
+              <div class="pay-total-label">Total parcelado</div>
+              <div class="pay-total-val">R$ 3.113,60</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         08 — NÃO INCLUSO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="nao-incluso">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">08</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">O que não está incluso</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Transparência total —<br>
+          <span class="text-gradient">sem letra miúda.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Os itens abaixo não fazem parte do escopo desta proposta. Caso precise de algum deles, posso orçar separadamente sem compromisso.
+        </p>
+
+        <div class="excl-grid">
+
+          <div class="excl-item reveal d2">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Domínio e hospedagem</span>
+          </div>
+
+          <div class="excl-item reveal d2">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Plugins pagos, caso necessários</span>
+          </div>
+
+          <div class="excl-item reveal d3">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Criação de logotipo</span>
+          </div>
+
+          <div class="excl-item reveal d3">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Produção de fotos profissionais</span>
+          </div>
+
+          <div class="excl-item reveal d4">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Cadastro de mais de 10 produtos</span>
+          </div>
+
+          <div class="excl-item reveal d4">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Gestão da loja após a entrega</span>
+          </div>
+
+          <div class="excl-item reveal d2">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Manutenção mensal (disponível como serviço opcional)</span>
+          </div>
+
+          <div class="excl-item reveal d2">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Tráfego pago (Google Ads, Meta Ads)</span>
+          </div>
+
+          <div class="excl-item reveal d3">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Criação de redes sociais</span>
+          </div>
+
+          <div class="excl-item reveal d3">
+            <div class="excl-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <span class="excl-text">Emissão de nota fiscal por venda ou configuração fiscal avançada, salvo se combinado à parte</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         09 — MANUTENÇÃO OPCIONAL
+         ══════════════════════════════════════════ -->
+    <section class="section" id="manutencao">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">09</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Manutenção Opcional</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Sua loja sempre<br>
+          <span class="text-gradient">funcionando e atualizada.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Após a entrega, você pode contratar um plano de manutenção mensal — ideal para quem quer ter suporte técnico disponível, atualizações em dia e tranquilidade para focar no que realmente importa: vender.
+        </p>
+
+        <div class="maint-card reveal d3">
+          <div>
+            <div class="maint-tag">Opcional · Contratação mensal</div>
+            <div class="maint-title">Plano de Manutenção Mensal</div>
+            <div class="maint-desc">
+              Inclui atualizações do WordPress, WooCommerce e plugins, suporte técnico para dúvidas e imprevistos, pequenos ajustes de layout ou conteúdo, e acompanhamento do funcionamento geral da loja — para que você nunca fique sozinha com um problema técnico.
+            </div>
+          </div>
+          <div class="maint-price-box">
+            <div class="maint-from">a partir de</div>
+            <div class="maint-price-val">R$ 197</div>
+            <div class="maint-per">/mês</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         10 — PRÓXIMOS PASSOS
+         ══════════════════════════════════════════ -->
+    <section class="section" id="proximos">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">10</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Próximos Passos</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Para iniciar o projeto,<br>
+          <span class="text-gradient">é simples assim.</span>
+        </h2>
+
+        <div class="steps-list reveal d2">
+
+          <div class="step-item">
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <h4>Tire suas dúvidas</h4>
+              <p>Está com alguma dúvida antes de fechar? Me chame no WhatsApp — a conversa não compromete em nada e estou aqui para responder com clareza.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <h4>Aprovação da proposta</h4>
+              <p>Confirme que está de acordo com o escopo, o prazo e os valores — e que forma de pagamento você prefere.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <h4>Pagamento da entrada</h4>
+              <p>Realizamos a entrada conforme a opção escolhida. Esse é o ponto de partida oficial do projeto.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-num">04</span>
+            <div class="step-content">
+              <h4>Envio dos materiais</h4>
+              <p>Você nos envia tudo o que precisamos: acessos, logotipo, imagens dos produtos, textos, preços, informações de frete e pagamento.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-num">05</span>
+            <div class="step-content">
+              <h4>Desenvolvimento com acompanhamento</h4>
+              <p>Desenvolvemos a loja com checkpoints ao longo do caminho. Você acompanha, aprova e dá feedback em momentos definidos.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-num">06</span>
+            <div class="step-content">
+              <h4>Revisão final e publicação</h4>
+              <p>Com tudo aprovado e testado, a loja vai ao ar. Você recebe os acessos completos e a loja está pronta para vender.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FINAL CTA
+         ══════════════════════════════════════════ -->
+    <section class="final-cta">
+      <div class="final-cta-bg"></div>
+      <div class="container final-cta-inner">
+
+        <h2 class="final-cta-title reveal">
+          Pronta para transformar sua marca<br>
+          <span class="text-gradient">em uma loja online de verdade?</span>
+        </h2>
+
+        <p class="final-cta-text reveal d1">
+          Estou à disposição para esclarecer qualquer dúvida antes de começar. Me chame no WhatsApp — a conversa não compromete em nada e posso te dar um caminho claro do que faríamos primeiro.
+        </p>
+
+        <div class="cta-btns reveal d2">
+          <a
+            href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Recebi%20a%20proposta%20da%20Basic%20e%20quero%20dar%20continuidade."
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Quero dar continuidade
+          </a>
+          <a href="https://vsexperience.com.br" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            Ver portfólio completo
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-dot"></span>
+        VS Experience
+      </div>
+      <span class="footer-note">© 2026 Victor Santos · Proposta Comercial · Basic</span>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('read-progress');
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = Math.min(100, (scrollY / max) * 100) + '%';
+    }, { passive: true });
+
+    // Header scroll state
+    const hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', () => {
+      hdr.classList.toggle('scrolled', scrollY > 40);
+    }, { passive: true });
+
+    // Scroll reveal via IntersectionObserver
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
