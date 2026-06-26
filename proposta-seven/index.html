@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Orçamento · Site WordPress com Mapa de Distribuidores · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS — VS Experience Design System
+       ============================================ */
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff-body:     'Space Grotesk', sans-serif;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      transition: width 0.08s linear;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .h-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-right: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .h-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .h-nav a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    @media (max-width: 820px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+    .container-sm {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+
+    /* ============================================
+       SECTION
+       ============================================ */
+    .section {
+      padding: clamp(5rem, 10vw, 8rem) 0;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
+    }
+
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .eyebrow-num {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      opacity: 0.65;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line {
+      height: 1px;
+      width: 2.5rem;
+      background: var(--gradient);
+      opacity: 0.45;
+    }
+    .eyebrow-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 66ch;
+      overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 8% 18%, hsla(5, 38%, 20%, 0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 45% at 88% 72%, hsla(5, 38%, 14%, 0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .conf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 hsla(5,38%,45%,0.45); }
+      50% { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 7px hsla(5,38%,45%,0); }
+    }
+
+    .hero-title {
+      font-size: clamp(1.875rem, 3.6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 52ch;
+      overflow-wrap: anywhere;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      border-color: hsla(5, 8%, 100%, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Hero stats bar */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .hs-item {
+      background: var(--bg-2);
+      padding: 1.25rem 1.375rem;
+      transition: background 0.2s;
+    }
+    .hs-item:hover { background: var(--bg-3); }
+    .hs-label {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .hs-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .hs-val.accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .scroll-line { width: 2rem; height: 1px; background: var(--border-2); }
+
+    /* ============================================
+       HERO MAP SIMULATION
+       ============================================ */
+    .hero-map-sim {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 400px;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 32px 80px hsla(0,0%,0%,0.45);
+    }
+    .map-terrain {
+      position: absolute;
+      inset: 0;
+      background-color: hsl(208, 14%, 9%);
+      background-image:
+        radial-gradient(ellipse 65% 45% at 28% 52%, hsl(120, 9%, 11.5%) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 68% 38%, hsl(208, 12%, 11%) 0%, transparent 55%);
+    }
+    .map-roads {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(208, 20%, 50%, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(208, 20%, 50%, 0.1) 1px, transparent 1px),
+        linear-gradient(hsla(208, 20%, 55%, 0.18) 2px, transparent 2px),
+        linear-gradient(90deg, hsla(208, 20%, 55%, 0.18) 2px, transparent 2px);
+      background-size: 34px 34px, 34px 34px, 102px 102px, 102px 102px;
+    }
+    .map-topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 0.875rem 0.875rem 0;
+      z-index: 10;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .map-search {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: hsla(208, 10%, 6%, 0.82);
+      border: 1px solid hsla(0, 0%, 100%, 0.1);
+      border-radius: var(--radius);
+      padding: 0.5rem 0.75rem;
+      backdrop-filter: blur(12px);
+    }
+    .map-search svg {
+      width: 13px; height: 13px;
+      opacity: 0.45;
+      flex-shrink: 0;
+      color: var(--text);
+    }
+    .map-search-text {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+    }
+    .map-filter-btn {
+      padding: 0.5rem 0.875rem;
+      background: hsla(208, 10%, 6%, 0.82);
+      border: 1px solid hsla(0, 0%, 100%, 0.1);
+      border-radius: var(--radius);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      backdrop-filter: blur(12px);
+      cursor: default;
+    }
+    /* Distributor list panel (right side) */
+    .map-list-panel {
+      position: absolute;
+      top: 3.75rem;
+      right: 0.875rem;
+      bottom: 1.5rem;
+      width: 158px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      z-index: 10;
+    }
+    .map-list-item {
+      background: hsla(208, 10%, 6%, 0.88);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.625rem 0.75rem;
+      backdrop-filter: blur(10px);
+      cursor: default;
+      transition: border-color 0.2s;
+    }
+    .map-list-item.is-active { border-color: hsla(5, 38%, 45%, 0.4); }
+    .mli-name {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.1875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .mli-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+    .mli-city {
+      font-size: 0.5625rem;
+      color: var(--text-muted);
+      padding-left: 0.875rem;
+    }
+    /* Pins */
+    .map-pin {
+      position: absolute;
+      z-index: 8;
+    }
+    .map-pin-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: 2px solid hsla(0,0%,100%,0.45);
+      box-shadow: 0 2px 8px hsla(5,38%,35%,0.4);
+    }
+    .map-pin.is-active .map-pin-dot {
+      width: 13px; height: 13px;
+      box-shadow: 0 0 0 6px hsla(5, 38%, 45%, 0.22), 0 2px 8px hsla(5,38%,35%,0.5);
+    }
+    /* Info card */
+    .map-info-card {
+      position: absolute;
+      z-index: 20;
+      width: 195px;
+      background: hsla(208, 10%, 5%, 0.94);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      padding: 0.875rem 1rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px hsla(0,0%,0%,0.5);
+    }
+    .map-card-badge {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      opacity: 0.7;
+      margin-bottom: 0.3rem;
+    }
+    .map-card-name {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .map-card-addr {
+      font-size: 0.625rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .map-card-btns {
+      display: flex;
+      gap: 0.375rem;
+    }
+    .map-card-btn {
+      flex: 1;
+      padding: 0.375rem 0;
+      border-radius: 0.4rem;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: center;
+      cursor: default;
+    }
+    .map-card-btn.wpp {
+      background: hsla(142, 55%, 30%, 0.28);
+      border: 1px solid hsla(142, 55%, 35%, 0.32);
+      color: hsl(142, 55%, 62%);
+    }
+    .map-card-btn.route {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      color: var(--text-2);
+    }
+    .map-attribution {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0.5rem;
+      font-size: 0.4375rem;
+      color: hsla(0,0%,80%,0.35);
+      background: hsla(0,0%,0%,0.3);
+      padding: 0.175rem 0.375rem;
+      border-radius: 0.25rem;
+    }
+
+    /* ============================================
+       TECH CHIPS
+       ============================================ */
+    .tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+    .tech-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.375rem 0.875rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-2);
+    }
+    .tc-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       BENEFIT GRID (seção "Por que não Google Maps")
+       ============================================ */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+    }
+    .benefit-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .benefit-card:hover { border-color: var(--border-2); }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .benefit-card:hover::before { opacity: 0.55; }
+    .benefit-icon {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 0.5rem;
+      background: hsla(5, 38%, 22%, 0.28);
+      border: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .benefit-icon svg { width: 15px; height: 15px; color: var(--rose-light); }
+    .benefit-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.375rem;
+      line-height: 1.35;
+    }
+    .benefit-desc {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       OPTION CARDS (investimento)
+       ============================================ */
+    .option-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .opt-card {
+      padding: 2.25rem 2.5rem 2.5rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .opt-card.featured {
+      background: hsla(5, 38%, 22%, 0.1);
+      border-color: hsla(5, 38%, 45%, 0.22);
+    }
+    .opt-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0;
+    }
+    .opt-card.featured::before { opacity: 1; }
+    .opt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .opt-badge.simple {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      color: var(--text-muted);
+    }
+    .opt-badge.recommended {
+      background: hsla(5, 38%, 22%, 0.38);
+      border: 1px solid hsla(5, 38%, 45%, 0.32);
+      color: var(--rose-light);
+    }
+    .opt-title {
+      font-size: 1.3125rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .opt-desc {
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+    .opt-price-wrap {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .opt-price-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .opt-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+    }
+    .opt-price-currency {
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--text-2);
+      letter-spacing: -0.01em;
+    }
+    .opt-price-val {
+      font-family: var(--ff-body);
+      font-size: clamp(2.75rem, 7vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Payment rows */
+    .opt-payment {
+      margin-bottom: 2rem;
+    }
+    .opt-payment-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.875rem;
+    }
+    .pay-opt-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.5625rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .pay-opt-row:last-child { border-bottom: none; }
+    .pay-opt-label { font-size: 0.8125rem; color: var(--text-2); }
+    .pay-opt-val {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      font-feature-settings: 'tnum';
+      white-space: nowrap;
+    }
+    .pay-opt-val.discount { color: var(--rose-light); }
+    /* Feature list */
+    .opt-features-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.875rem;
+    }
+    .opt-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.8125rem;
+      color: var(--text-2);
+      line-height: 1.45;
+      padding: 0.3rem 0;
+    }
+    .opt-feature svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 14px; height: 14px;
+      color: var(--rose-light);
+    }
+
+    /* ============================================
+       COMPARISON TABLE
+       ============================================ */
+    .compare-wrap {
+      margin-top: 2.5rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .compare-table thead tr {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table th {
+      padding: 1.125rem 1.5rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .compare-table th:not(:first-child) { text-align: center; }
+    .compare-table th.th-featured { color: var(--rose-light); }
+    .compare-table td {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .compare-table td:not(:first-child) { text-align: center; }
+    .compare-table tbody tr:last-child td { border-bottom: none; }
+    .compare-table tbody tr:hover { background: var(--surface-2); }
+    .td-feature { color: var(--text); font-weight: 500; }
+    .td-yes { color: hsl(142, 55%, 58%); font-weight: 600; }
+    .td-no  { color: var(--text-muted); opacity: 0.55; }
+    .td-p1  { color: var(--text); font-weight: 700; font-feature-settings: 'tnum'; }
+    .td-p2  {
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       NOT INCLUDED
+       ============================================ */
+    .excl-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.625rem;
+      margin-top: 2rem;
+    }
+    .excl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1.125rem;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+    .excl-item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 14px; height: 14px;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .excl-note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-left: 2px solid hsla(5, 38%, 45%, 0.4);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       RECOMMENDATION BOX
+       ============================================ */
+    .recommend-box {
+      padding: 3rem;
+      border-radius: var(--radius-xl);
+      background: hsla(5, 38%, 22%, 0.1);
+      border: 1px solid hsla(5, 38%, 45%, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .recommend-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    .recommend-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 1.5rem;
+    }
+    .recommend-eyebrow svg {
+      width: 1.25rem; height: 1.25rem;
+      color: var(--rose-light);
+    }
+    .recommend-eyebrow-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      opacity: 0.75;
+    }
+    .recommend-title {
+      font-size: clamp(1.375rem, 3vw, 1.875rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+    .recommend-text {
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 68ch;
+    }
+    .recommend-pill {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.5rem 1.125rem;
+      border-radius: 100px;
+      background: hsla(5, 38%, 22%, 0.35);
+      border: 1px solid hsla(5, 38%, 45%, 0.22);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--rose-light);
+      font-feature-settings: 'tnum';
+    }
+
+    /* ============================================
+       FINAL CTA
+       ============================================ */
+    .final-cta {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      text-align: center;
+      position: relative;
+    }
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, hsla(5, 38%, 18%, 0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; z-index: 1; }
+    .final-cta-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .final-cta-text {
+      font-size: 1.0625rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 52ch;
+      margin: 0 auto 2.5rem;
+    }
+    .final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1.125rem 2.5rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .final-cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px hsla(5, 38%, 30%, 0.3);
+    }
+    .final-cta-btn svg { width: 20px; height: 20px; }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .footer-tagline {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 36ch;
+      line-height: 1.5;
+    }
+    .footer-meta p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      text-align: right;
+    }
+    .footer-copy {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      opacity: 0.4;
+      margin-top: 0.375rem;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 960px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-map-sim { height: 300px; }
+      .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+      .option-cards { grid-template-columns: 1fr; }
+      .opt-card { padding: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; padding: 6.5rem 0 3rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .excl-grid { grid-template-columns: 1fr; }
+      .recommend-box { padding: 2rem 1.5rem; }
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+    }
+    @media (max-width: 580px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+      .compare-table th, .compare-table td { padding: 0.75rem 0.875rem; font-size: 0.8125rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .hero-map-sim { height: 260px; }
+      .map-list-panel { display: none; }
+    }
+    @media (max-width: 380px) {
+      .h-client-tag { display: none; }
+      .section-title { font-size: 1.75rem; }
+      .final-cta-title { font-size: 1.875rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading progress bar -->
+  <div id="read-progress"></div>
+
+  <!-- Header -->
+  <header id="hdr">
+    <div class="header-inner">
+      <div class="h-brand">
+        <div class="h-brand-dot"></div>
+        VS Experience
+      </div>
+      <div class="h-client-tag">Orçamento · Seven</div>
+      <nav class="h-nav">
+        <a href="#visao-geral">Visão Geral</a>
+        <a href="#solucao">Solução</a>
+        <a href="#investimento">Investimento</a>
+        <a href="#comparativo">Comparativo</a>
+        <a href="#fechamento">Fechar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+         ══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-bg"></div>
+      <div class="container hero-inner">
+        <div class="hero-layout">
+
+          <!-- Left: text content -->
+          <div>
+            <div class="conf-tag reveal">
+              <span class="conf-dot"></span>
+              Proposta comercial exclusiva · Seven
+            </div>
+
+            <h1 class="hero-title reveal d1">
+              Site WordPress com Busca de<br>
+              <span class="text-gradient">Distribuidores no Mapa.</span>
+            </h1>
+
+            <p class="hero-subtitle reveal d2">
+              Desenvolvimento de um site institucional de uma página com mapa interativo para localização de distribuidores, utilizando WordPress, plugin personalizado, Leaflet e OpenStreetMap.
+            </p>
+
+            <div class="hero-btns reveal d3">
+              <a href="#investimento" class="btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Ver opções de investimento
+              </a>
+              <a href="#solucao" class="btn-ghost">Entender a solução</a>
+            </div>
+
+            <div class="hero-stats reveal d4">
+              <div class="hs-item">
+                <div class="hs-label">Tipo de projeto</div>
+                <div class="hs-val">Site Institucional</div>
+              </div>
+              <div class="hs-item">
+                <div class="hs-label">Plataforma</div>
+                <div class="hs-val">WordPress + Plugin</div>
+              </div>
+              <div class="hs-item">
+                <div class="hs-label">Investimento</div>
+                <div class="hs-val accent">R$ 1.200 – 1.600</div>
+              </div>
+            </div>
+
+            <div class="scroll-hint reveal d5">
+              <span class="scroll-line"></span>
+              Role para conhecer o projeto completo
+            </div>
+          </div>
+
+          <!-- Right: map simulation -->
+          <div class="reveal d2">
+            <div class="hero-map-sim">
+              <div class="map-terrain"></div>
+              <div class="map-roads"></div>
+
+              <!-- Search bar -->
+              <div class="map-topbar">
+                <div class="map-search">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                  <span class="map-search-text">Buscar por cidade ou estado...</span>
+                </div>
+                <div class="map-filter-btn">Filtrar</div>
+              </div>
+
+              <!-- Distributor list panel -->
+              <div class="map-list-panel">
+                <div class="map-list-item is-active">
+                  <div class="mli-name"><span class="mli-dot"></span>Seven São Paulo</div>
+                  <div class="mli-city">São Paulo, SP</div>
+                </div>
+                <div class="map-list-item">
+                  <div class="mli-name"><span class="mli-dot"></span>Seven Campinas</div>
+                  <div class="mli-city">Campinas, SP</div>
+                </div>
+                <div class="map-list-item">
+                  <div class="mli-name"><span class="mli-dot"></span>Seven Curitiba</div>
+                  <div class="mli-city">Curitiba, PR</div>
+                </div>
+                <div class="map-list-item">
+                  <div class="mli-name"><span class="mli-dot"></span>Seven BH</div>
+                  <div class="mli-city">Belo Horizonte, MG</div>
+                </div>
+              </div>
+
+              <!-- Pins -->
+              <div class="map-pin is-active" style="top:50%;left:24%">
+                <div class="map-pin-dot"></div>
+              </div>
+              <div class="map-pin" style="top:34%;left:35%">
+                <div class="map-pin-dot"></div>
+              </div>
+              <div class="map-pin" style="top:62%;left:33%">
+                <div class="map-pin-dot"></div>
+              </div>
+              <div class="map-pin" style="top:42%;left:14%">
+                <div class="map-pin-dot"></div>
+              </div>
+
+              <!-- Info card -->
+              <div class="map-info-card" style="top:28%;left:5%">
+                <div class="map-card-badge">Distribuidor</div>
+                <div class="map-card-name">Seven São Paulo</div>
+                <div class="map-card-addr">Av. Paulista, 1000<br>São Paulo, SP</div>
+                <div class="map-card-btns">
+                  <div class="map-card-btn wpp">WhatsApp</div>
+                  <div class="map-card-btn route">Ver Rota</div>
+                </div>
+              </div>
+
+              <div class="map-attribution">© OpenStreetMap contributors</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         01 — VISÃO GERAL
+         ══════════════════════════════════════════ -->
+    <section class="section" id="visao-geral">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">01</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Visão Geral do Projeto</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Presença online + mapa de distribuidores,<br>
+          <span class="text-gradient">em uma solução integrada.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O projeto tem como objetivo criar uma presença institucional online para a empresa e facilitar que visitantes encontrem distribuidores por cidade, estado ou região — tudo em uma única página, clara e responsiva.
+        </p>
+
+        <p class="section-text reveal d3" style="margin-top: 1.125rem;">
+          A solução será desenvolvida em WordPress, com um plugin personalizado para carregar os distribuidores no mapa, exibir informações e direcionar o usuário para WhatsApp ou rota no Google Maps.
+        </p>
+
+        <div class="tech-chips reveal d4">
+          <div class="tech-chip"><span class="tc-dot"></span>WordPress</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Plugin Personalizado</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Leaflet.js</div>
+          <div class="tech-chip"><span class="tc-dot"></span>OpenStreetMap</div>
+          <div class="tech-chip"><span class="tc-dot"></span>One Page</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Layout Responsivo</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Até 30 Distribuidores</div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         02 — POR QUE NÃO GOOGLE MAPS API
+         ══════════════════════════════════════════ -->
+    <section class="section" id="solucao">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">02</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Por que não usar a Google Maps API?</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Leaflet + OpenStreetMap —<br>
+          <span class="text-gradient">mais leve, sem custo recorrente.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          A API completa do Google Maps pode gerar cobrança conforme o volume de acessos e recursos utilizados. Para esse tipo de projeto, a solução com Leaflet + OpenStreetMap entrega a mesma funcionalidade com menor risco financeiro e maior simplicidade técnica.
+        </p>
+        <p class="section-text reveal d3" style="margin-top: 1.125rem;">
+          O botão de rota ainda pode abrir o Google Maps externamente — sem a necessidade de carregar toda a estrutura paga da API dentro do site. O melhor dos dois mundos, sem o custo.
+        </p>
+
+        <div class="benefit-grid">
+          <div class="benefit-card reveal d1">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="benefit-title">Menor risco de custo recorrente</div>
+            <div class="benefit-desc">Sem billing mensal da API do Google Maps por volume de requisições ou acessos.</div>
+          </div>
+          <div class="benefit-card reveal d2">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="benefit-title">Mapa leve e responsivo</div>
+            <div class="benefit-desc">Leaflet é otimizado para performance e carrega rápido em qualquer dispositivo.</div>
+          </div>
+          <div class="benefit-card reveal d3">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div class="benefit-title">Sem dependência de API proprietária</div>
+            <div class="benefit-desc">OpenStreetMap é open-source. Sem chaves obrigatórias, sem quotas, sem surpresas.</div>
+          </div>
+          <div class="benefit-card reveal d4">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div class="benefit-title">Rotas via Google Maps externo</div>
+            <div class="benefit-desc">O botão "Ver Rota" abre o Google Maps externo — funciona sem nenhum custo de API.</div>
+          </div>
+          <div class="benefit-card reveal d5">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="benefit-title">Boa performance</div>
+            <div class="benefit-desc">Carregamento significativamente mais rápido que a API completa do Google Maps.</div>
+          </div>
+          <div class="benefit-card reveal d6">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div class="benefit-title">Ideal para o escopo atual</div>
+            <div class="benefit-desc">Entrega marcadores, busca, cards e botões de ação — exatamente o necessário.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         03 — INVESTIMENTO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="investimento">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">03</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Opções de Investimento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Duas opções para<br>
+          <span class="text-gradient">diferentes necessidades.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Escolha a opção que melhor se encaixa na realidade da sua empresa — pela simplicidade inicial ou pela autonomia de gerenciamento a longo prazo.
+        </p>
+
+        <div class="option-cards">
+
+          <!-- Opção 1 -->
+          <div class="opt-card reveal d2">
+            <div class="opt-badge simple">Opção 1</div>
+            <div class="opt-title">Site WordPress + Plugin Simples</div>
+            <div class="opt-desc">
+              Indicado para empresas que possuem poucos distribuidores ou não precisam alterar os dados com frequência.
+            </div>
+            <div class="opt-price-wrap">
+              <div class="opt-price-label">Investimento</div>
+              <div class="opt-price">
+                <span class="opt-price-currency">R$</span>
+                <span class="opt-price-val">1.200</span>
+              </div>
+            </div>
+            <div class="opt-payment">
+              <div class="opt-payment-label">Condições de pagamento</div>
+              <div class="pay-opt-row">
+                <span class="pay-opt-label">50% na entrada</span>
+                <span class="pay-opt-val">R$ 600,00</span>
+              </div>
+              <div class="pay-opt-row">
+                <span class="pay-opt-label">50% na entrega</span>
+                <span class="pay-opt-val">R$ 600,00</span>
+              </div>
+              <div class="pay-opt-row">
+                <span class="pay-opt-label">À vista com 5% de desconto</span>
+                <span class="pay-opt-val discount">R$ 1.140,00</span>
+              </div>
+            </div>
+            <div class="opt-features-label">O que está incluso</div>
+            <div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Site institucional one page em WordPress
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Layout responsivo para desktop, tablet e celular
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Seções: apresentação, sobre, diferenciais e mapa
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Plugin personalizado com Leaflet + OpenStreetMap
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Busca por cidade, estado ou região
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Card de informações do distribuidor
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Botão de WhatsApp e botão de rota
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Cadastro inicial de até 30 distribuidores
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Publicação no domínio e hospedagem do cliente
+              </div>
+            </div>
+          </div>
+
+          <!-- Opção 2 (recomendada) -->
+          <div class="opt-card featured reveal d3">
+            <div class="opt-badge recommended">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Recomendado
+            </div>
+            <div class="opt-title">Site WordPress + Plugin com Painel</div>
+            <div class="opt-desc">
+              Indicado para empresas que desejam mais autonomia para cadastrar, editar e remover distribuidores diretamente pelo painel do WordPress.
+            </div>
+            <div class="opt-price-wrap">
+              <div class="opt-price-label">Investimento</div>
+              <div class="opt-price">
+                <span class="opt-price-currency">R$</span>
+                <span class="opt-price-val">1.600</span>
+              </div>
+            </div>
+            <div class="opt-payment">
+              <div class="opt-payment-label">Condições de pagamento</div>
+              <div class="pay-opt-row">
+                <span class="pay-opt-label">50% na entrada</span>
+                <span class="pay-opt-val">R$ 800,00</span>
+              </div>
+              <div class="pay-opt-row">
+                <span class="pay-opt-label">50% na entrega</span>
+                <span class="pay-opt-val">R$ 800,00</span>
+              </div>
+              <div class="pay-opt-row">
+                <span class="pay-opt-label">À vista com 5% de desconto</span>
+                <span class="pay-opt-val discount">R$ 1.520,00</span>
+              </div>
+            </div>
+            <div class="opt-features-label">O que está incluso</div>
+            <div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Tudo que está incluso na Opção 1
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Painel no WordPress para cadastrar, editar e remover distribuidores
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Campos: nome, cidade, estado, endereço, telefone, WhatsApp, lat e lon
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Autonomia total para gestão futura sem depender de suporte técnico
+              </div>
+              <div class="opt-feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Ideal para redes em crescimento ou com atualizações frequentes
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         04 — COMPARATIVO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="comparativo">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">04</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Comparativo entre as opções</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          O que cada opção<br>
+          <span class="text-gradient">inclui e diferencia.</span>
+        </h2>
+
+        <div class="compare-wrap reveal d2">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width:55%">Recurso</th>
+                <th>Opção 1<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.55">R$ 1.200</span></th>
+                <th class="th-featured">Opção 2 ★<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7">R$ 1.600</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-feature">Site institucional one page</td>
+                <td class="td-yes">✓</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Mapa interativo (Leaflet)</td>
+                <td class="td-yes">✓</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Busca por cidade / estado / região</td>
+                <td class="td-yes">✓</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Botão de WhatsApp</td>
+                <td class="td-yes">✓</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Botão de rota (Google Maps externo)</td>
+                <td class="td-yes">✓</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Cadastro inicial até 30 distribuidores</td>
+                <td class="td-yes">✓</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Painel para editar distribuidores</td>
+                <td class="td-no">—</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature">Ideal para atualizações frequentes</td>
+                <td class="td-no">—</td>
+                <td class="td-yes">✓</td>
+              </tr>
+              <tr>
+                <td class="td-feature" style="font-weight:700;color:var(--text)">Investimento</td>
+                <td class="td-p1">R$ 1.200</td>
+                <td class="td-p2">R$ 1.600</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         05 — OBSERVAÇÕES
+         ══════════════════════════════════════════ -->
+    <section class="section" id="observacoes">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">05</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Observações Importantes</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          O que <span class="text-gradient">não está incluso</span><br>neste orçamento.
+        </h2>
+
+        <div class="excl-grid reveal d2">
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Domínio
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Hospedagem
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Criação de identidade visual
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Produção profissional de textos
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Banco de imagens
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Manutenção mensal após a entrega
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Cadastro acima de 30 distribuidores
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Custos externos de ferramentas ou serviços de terceiros
+          </div>
+        </div>
+
+        <div class="excl-note reveal d3">
+          É necessário manter a atribuição do OpenStreetMap visível no mapa, conforme as políticas de uso da plataforma.
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         06 — RECOMENDAÇÃO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="recomendacao">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">06</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Recomendação Profissional</span>
+        </div>
+
+        <div class="recommend-box reveal d1">
+          <div class="recommend-eyebrow">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span class="recommend-eyebrow-label">Minha recomendação</span>
+          </div>
+          <div class="recommend-title">
+            Opção 2 — Site WordPress + Plugin com Painel de Distribuidores
+          </div>
+          <div class="recommend-text">
+            Minha recomendação é a Opção 2. Por uma diferença de R$ 400, a empresa ganha autonomia para cadastrar, editar e remover distribuidores diretamente pelo WordPress, sem depender de alterações técnicas simples no futuro. Isso torna a solução mais prática, escalável e fácil de manter.
+          </div>
+          <div class="recommend-pill">Diferença de apenas R$ 400,00 para mais autonomia</div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         07 — FECHAMENTO / CTA
+         ══════════════════════════════════════════ -->
+    <section class="section final-cta" id="fechamento">
+      <div class="final-cta-bg"></div>
+      <div class="container final-cta-inner">
+
+        <div class="eyebrow reveal" style="justify-content:center">
+          <span class="eyebrow-num">07</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Próximos Passos</span>
+        </div>
+
+        <h2 class="final-cta-title reveal d1">
+          Pronto para avançarmos<br>
+          <span class="text-gradient">com o projeto?</span>
+        </h2>
+
+        <p class="final-cta-text reveal d2">
+          Após a aprovação, iniciamos o alinhamento das informações, estruturação da página, desenvolvimento do site e criação do plugin de busca de distribuidores.
+        </p>
+
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Vi%20o%20or%C3%A7amento%20do%20site%20WordPress%20com%20mapa%20de%20distribuidores%20e%20quero%20dar%20continuidade."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="final-cta-btn reveal d3"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Aprovar orçamento
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-brand-dot"></div>
+            VS Experience
+          </div>
+          <div class="footer-tagline">Desenvolvimento Web, Sites, Landing Pages e Soluções Digitais</div>
+        </div>
+        <div class="footer-meta">
+          <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+          <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+          <p class="footer-copy">© 2025 VS Experience · Proposta confidencial</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('read-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / total * 100) + '%';
+    }, { passive: true });
+
+    // Header scrolled state
+    const hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', () => {
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
