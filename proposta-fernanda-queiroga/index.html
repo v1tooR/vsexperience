@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial · Fernanda Queiroga · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS — VS Experience Design System
+       ============================================ */
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff-body:     'Space Grotesk', sans-serif;
+
+      /* Part accent colors (subtle) */
+      --p1: hsl(210, 70%, 55%);
+      --p2: hsl(155, 55%, 45%);
+      --p3: hsl(38, 80%, 55%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      transition: width 0.08s linear;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .h-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-right: auto;
+    }
+    .h-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .h-nav a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    @media (max-width: 860px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container    { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+    .container-sm { max-width: 840px;  margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+
+    /* ============================================
+       SECTIONS & DIVIDERS
+       ============================================ */
+    .section { padding: clamp(5rem, 10vw, 8rem) 0; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
+    }
+
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .eyebrow-num {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      opacity: 0.65;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line {
+      height: 1px;
+      width: 2.5rem;
+      background: var(--gradient);
+      opacity: 0.45;
+    }
+    .eyebrow-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 64ch;
+      overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 5% 20%, hsla(5, 38%, 18%, 0.3) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 40% at 90% 75%, hsla(5, 38%, 12%, 0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .conf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 hsla(5,38%,45%,0.45); }
+      50%       { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 7px hsla(5,38%,45%,0); }
+    }
+    .hero-title {
+      font-size: clamp(1.875rem, 3.6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 52ch;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 0.875rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      border-color: hsla(5, 8%, 100%, 0.2);
+      transform: translateY(-1px);
+    }
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .scroll-line { width: 2rem; height: 1px; background: var(--border-2); }
+
+    /* ============================================
+       HERO PROPOSAL PANEL (right side)
+       ============================================ */
+    .proposal-panel {
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 32px 80px hsla(0,0%,0%,0.45);
+      position: relative;
+    }
+    .proposal-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    .pp-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pp-header-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .pp-header-badge {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      background: hsla(5, 38%, 22%, 0.4);
+      border: 1px solid hsla(5, 38%, 45%, 0.25);
+      color: var(--rose-light);
+    }
+
+    /* Part rows */
+    .pp-parts { padding: 0.5rem 0; }
+    .pp-part-row {
+      display: grid;
+      grid-template-columns: 2rem 1fr auto;
+      gap: 0.875rem;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .pp-part-row:last-child { border-bottom: none; }
+    .pp-part-row:hover { background: hsla(5,8%,100%,0.025); }
+    .pp-part-num {
+      width: 2rem; height: 2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+      flex-shrink: 0;
+    }
+    .pp-num-1 { background: hsla(210, 70%, 30%, 0.3); border: 1px solid hsla(210, 70%, 55%, 0.2); color: hsl(210, 70%, 68%); }
+    .pp-num-2 { background: hsla(155, 55%, 20%, 0.3); border: 1px solid hsla(155, 55%, 45%, 0.2); color: hsl(155, 55%, 58%); }
+    .pp-num-3 { background: hsla(38, 80%, 25%, 0.3); border: 1px solid hsla(38, 80%, 55%, 0.2); color: hsl(38, 80%, 65%); }
+    .pp-part-info {}
+    .pp-part-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+    .pp-part-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .pp-tag {
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.45rem;
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .pp-part-price {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      color: var(--text);
+      white-space: nowrap;
+      text-align: right;
+    }
+    .pp-total-row {
+      padding: 1.125rem 1.5rem;
+      background: hsla(5, 38%, 10%, 0.4);
+      border-top: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .pp-total-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .pp-total-val {
+      font-family: var(--ff-body);
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       PART SECTION HEADER BAND
+       ============================================ */
+    .part-band {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 2.25rem;
+      padding: 0.625rem 1rem 0.625rem 0.75rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .part-band-num {
+      width: 2rem; height: 2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+      flex-shrink: 0;
+    }
+    .part-band-text {}
+    .part-band-section {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .part-band-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+    .part-band-price {
+      margin-left: auto;
+      font-size: 1rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      color: var(--text);
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    /* ============================================
+       FEATURE GRID
+       ============================================ */
+    .feat-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+    }
+    .feat-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+    }
+    .feat-card {
+      padding: 1.375rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+    .feat-card:hover { border-color: var(--border-2); }
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .feat-card:hover::before { opacity: 0.5; }
+    .feat-icon {
+      width: 2rem; height: 2rem;
+      border-radius: 0.5rem;
+      background: hsla(5, 38%, 22%, 0.28);
+      border: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.875rem;
+    }
+    .feat-icon svg { width: 14px; height: 14px; color: var(--rose-light); }
+    .feat-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.35;
+    }
+    .feat-desc {
+      font-size: 0.78125rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       PHONE BIO SIMULATION (Part 1)
+       ============================================ */
+    .bio-phone-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    .bio-phone {
+      width: 220px;
+      border-radius: 2rem;
+      background: hsl(5, 8%, 7%);
+      border: 1.5px solid var(--border-2);
+      box-shadow: 0 24px 60px hsla(0,0%,0%,0.45), 0 0 0 1px hsla(5,8%,100%,0.04) inset;
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-notch {
+      height: 28px;
+      background: hsl(5, 8%, 5.5%);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-notch-bar {
+      width: 72px; height: 5px;
+      border-radius: 3px;
+      background: hsl(5, 8%, 14%);
+    }
+    .bio-screen {
+      padding: 1.25rem 0.875rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .bio-avatar-wrap {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--gradient);
+      opacity: 0.75;
+      margin-bottom: 0.25rem;
+      border: 2px solid hsla(5, 38%, 45%, 0.3);
+    }
+    .bio-name-tag {
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .bio-handle {
+      font-size: 0.5rem;
+      color: var(--text-muted);
+      margin-top: -0.4rem;
+    }
+    .bio-link-btn {
+      width: 100%;
+      height: 26px;
+      border-radius: 5px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+    }
+    .bio-link-btn.accent {
+      background: hsla(5, 38%, 22%, 0.4);
+      border-color: hsla(5, 38%, 45%, 0.3);
+    }
+    .phone-bottom-bar {
+      height: 20px;
+      background: hsl(5, 8%, 5.5%);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-home-bar {
+      width: 50px; height: 3px;
+      border-radius: 2px;
+      background: var(--surface-2);
+    }
+
+    /* ============================================
+       BROWSER SITE SIMULATION (Part 2)
+       ============================================ */
+    .browser-sim {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px hsla(0,0%,0%,0.4);
+      margin-top: 3rem;
+    }
+    .browser-bar {
+      background: hsl(5, 8%, 7%);
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .browser-dots { display: flex; gap: 0.35rem; flex-shrink: 0; }
+    .bd { width: 8px; height: 8px; border-radius: 50%; }
+    .bd-r { background: hsl(5, 70%, 50%); opacity: 0.75; }
+    .bd-y { background: hsl(38, 85%, 55%); opacity: 0.75; }
+    .bd-g { background: hsl(130, 55%, 45%); opacity: 0.75; }
+    .browser-url {
+      flex: 1;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 0.3rem;
+      padding: 0.2rem 0.625rem;
+      font-size: 0.625rem;
+      color: var(--text-muted);
+    }
+    .browser-body {
+      background: hsl(5, 8%, 7.5%);
+      padding: 1.25rem;
+      min-height: 180px;
+    }
+    /* BSM site mock */
+    .bsm-header-mock {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.875rem;
+    }
+    .bsm-logo-mock {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .bsm-logo-line1 { width: 80px; height: 7px; border-radius: 4px; background: var(--surface-2); }
+    .bsm-logo-line2 { width: 50px; height: 5px; border-radius: 3px; background: var(--surface); }
+    .bsm-nav-mock { display: flex; gap: 0.5rem; }
+    .bsm-nav-item { width: 28px; height: 6px; border-radius: 3px; background: var(--surface); }
+    .bsm-hero-mock {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .bsm-hero-text { display: flex; flex-direction: column; gap: 0.35rem; }
+    .bsm-h1 { width: 85%; height: 9px; border-radius: 4px; background: var(--surface-2); }
+    .bsm-h1-2 { width: 65%; height: 9px; border-radius: 4px; background: var(--surface-2); opacity: 0.7; }
+    .bsm-p { width: 92%; height: 5px; border-radius: 3px; background: var(--surface); }
+    .bsm-p-2 { width: 80%; height: 5px; border-radius: 3px; background: var(--surface); }
+    .bsm-cta-mock { width: 64px; height: 22px; border-radius: 4px; background: var(--gradient); opacity: 0.75; flex-shrink: 0; margin-top: 0.25rem; }
+    /* Google Form mock inside browser */
+    .form-mock-wrap {
+      margin-top: 0.875rem;
+      padding-top: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+    .form-mock-label {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-mock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.625rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .form-mock-title-line { width: 55%; height: 6px; border-radius: 3px; background: var(--surface-2); }
+    .form-field-mock {
+      width: 100%;
+      height: 16px;
+      border-radius: 3px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+    }
+    .form-submit-mock {
+      width: 52px; height: 14px;
+      border-radius: 3px;
+      background: hsl(210, 60%, 35%);
+      opacity: 0.7;
+      margin-top: 0.1rem;
+      align-self: flex-end;
+    }
+
+    /* ============================================
+       EBOOK CARDS (Part 3)
+       ============================================ */
+    .ebook-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .ebook-card {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .ebook-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-3px);
+    }
+    .ebook-cover {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .ebook-cover-1 {
+      background:
+        radial-gradient(ellipse 80% 60% at 80% 20%, hsla(210, 70%, 25%, 0.6) 0%, transparent 60%),
+        linear-gradient(160deg, hsl(210, 30%, 10%) 0%, hsl(5, 8%, 8%) 100%);
+    }
+    .ebook-cover-2 {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, hsla(155, 50%, 18%, 0.6) 0%, transparent 60%),
+        linear-gradient(160deg, hsl(155, 20%, 9%) 0%, hsl(5, 8%, 8%) 100%);
+    }
+    .ebook-cover-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(hsla(5,8%,100%,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5,8%,100%,0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .ebook-badge {
+      position: relative;
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .ebook-badge-1 { background: hsla(210, 70%, 30%, 0.5); border: 1px solid hsla(210, 70%, 55%, 0.3); color: hsl(210, 70%, 72%); }
+    .ebook-badge-2 { background: hsla(155, 55%, 20%, 0.5); border: 1px solid hsla(155, 55%, 45%, 0.3); color: hsl(155, 55%, 65%); }
+    .ebook-cover-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .ebook-cover-sub {
+      font-size: 0.5625rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      position: relative;
+      letter-spacing: 0.04em;
+    }
+    .ebook-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+    .ebook-body-text {
+      font-size: 0.8125rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .ebook-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+    .ebook-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.78125rem;
+      color: var(--text-muted);
+    }
+    .ebook-item svg { flex-shrink: 0; margin-top: 2px; width: 12px; height: 12px; color: var(--rose-light); opacity: 0.65; }
+    .ebook-price-tag {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .ebook-price-label { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .ebook-price-val { font-size: 0.9375rem; font-weight: 700; font-feature-settings: 'tnum'; color: var(--text); }
+
+    /* ============================================
+       UPDATE ITEMS (Part 2)
+       ============================================ */
+    .update-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .update-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .update-item:hover { border-color: var(--border-2); }
+    .update-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gradient);
+      opacity: 0.35;
+    }
+    .update-item-num {
+      font-family: var(--ff-body);
+      font-size: 0.5625rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      color: var(--rose-light);
+      opacity: 0.55;
+      letter-spacing: 0.06em;
+      padding-top: 2px;
+      min-width: 1.75rem;
+      text-align: center;
+    }
+    .update-item-content {}
+    .update-item-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .update-item-desc {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .update-item-tag {
+      display: inline-flex;
+      margin-top: 0.5rem;
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       INVESTMENT TABLE
+       ============================================ */
+    .invest-table {
+      margin-top: 3rem;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .invest-table-header {
+      padding: 1rem 1.5rem;
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 2rem 1fr auto auto;
+      gap: 1rem;
+      align-items: center;
+    }
+    .it-col-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .it-row {
+      display: grid;
+      grid-template-columns: 2rem 1fr auto auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.125rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .it-row:hover { background: hsla(5,8%,100%,0.02); }
+    .it-num {
+      width: 1.75rem; height: 1.75rem;
+      border-radius: 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-feature-settings: 'tnum';
+      flex-shrink: 0;
+    }
+    .it-name { font-size: 0.9375rem; font-weight: 600; color: var(--text); }
+    .it-name small { display: block; font-size: 0.75rem; font-weight: 400; color: var(--text-muted); margin-top: 0.1rem; }
+    .it-items-count {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-feature-settings: 'tnum';
+      text-align: center;
+    }
+    .it-price {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      color: var(--text);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .it-total-row {
+      display: grid;
+      grid-template-columns: 2rem 1fr auto auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      background: hsla(5, 38%, 10%, 0.4);
+      border-top: 1px solid hsla(5, 38%, 45%, 0.2);
+    }
+    .it-total-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+    .it-total-sub {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      text-align: center;
+    }
+    .it-total-price {
+      font-family: var(--ff-body);
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: right;
+    }
+
+    /* Payment cards */
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875rem;
+      margin-top: 1.5rem;
+    }
+    .pay-option {
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .pay-option:hover { border-color: var(--border-2); }
+    .pay-option-num {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .pay-option-name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.625rem;
+      line-height: 1.3;
+    }
+    .pay-option-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .pay-option-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+    }
+    .pay-option-row-label { color: var(--text-muted); }
+    .pay-option-row-val { font-weight: 600; color: var(--text); font-feature-settings: 'tnum'; }
+    .pay-note {
+      margin-top: 1.5rem;
+      padding: 0.875rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-left: 2px solid hsla(5, 38%, 45%, 0.4);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       FINAL CTA
+       ============================================ */
+    .final-cta {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      text-align: center;
+      position: relative;
+    }
+    .final-cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, hsla(5, 38%, 16%, 0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; z-index: 1; }
+    .final-cta-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .final-cta-text {
+      font-size: 1.0625rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 52ch;
+      margin: 0 auto 2.5rem;
+    }
+    .final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1.125rem 2.5rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .final-cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px hsla(5, 38%, 30%, 0.3);
+    }
+    .final-cta-btn svg { width: 20px; height: 20px; }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .footer-tagline {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 36ch;
+      line-height: 1.5;
+    }
+    .footer-meta p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      text-align: right;
+    }
+    .footer-copy { font-size: 0.6875rem; color: var(--text-muted); opacity: 0.4; }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 960px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .feat-grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .ebook-grid { grid-template-columns: 1fr; }
+      .payment-options { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; padding: 6.5rem 0 3rem; }
+      .feat-grid-2 { grid-template-columns: 1fr; }
+      .it-header-count, .it-items-count { display: none; }
+      .invest-table-header, .it-row, .it-total-row {
+        grid-template-columns: 2rem 1fr auto;
+      }
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+    }
+    @media (max-width: 580px) {
+      .feat-grid-3 { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="read-progress"></div>
+
+  <!-- Header -->
+  <header id="hdr">
+    <div class="header-inner">
+      <div class="h-brand">
+        <div class="h-brand-dot"></div>
+        VS Experience
+      </div>
+      <div class="h-client-tag">Proposta · Fernanda Queiroga</div>
+      <nav class="h-nav">
+        <a href="#parte-1">Parte 1</a>
+        <a href="#parte-2">Parte 2</a>
+        <a href="#parte-3">Parte 3</a>
+        <a href="#investimento">Investimento</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+         ══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-bg"></div>
+      <div class="container hero-inner">
+        <div class="hero-layout">
+
+          <!-- Left: text -->
+          <div>
+            <div class="conf-tag reveal">
+              <span class="conf-dot"></span>
+              Proposta comercial exclusiva · Fernanda Queiroga
+            </div>
+
+            <h1 class="hero-title reveal d1">
+              Três partes para<br>
+              <span class="text-gradient">ampliar sua presença digital.</span>
+            </h1>
+
+            <p class="hero-subtitle reveal d2">
+              Link da Bio, atualizações completas nos seus sites e dois e-books profissionais — tudo organizado em partes independentes para facilitar o planejamento e o pagamento.
+            </p>
+
+            <div class="hero-btns reveal d3">
+              <a href="#investimento" class="btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                Ver resumo completo
+              </a>
+              <a href="#parte-1" class="btn-ghost">Explorar partes</a>
+            </div>
+
+            <div class="scroll-hint reveal d4">
+              <span class="scroll-line"></span>
+              Role para conhecer cada parte da proposta
+            </div>
+          </div>
+
+          <!-- Right: proposal summary panel -->
+          <div class="reveal d2">
+            <div class="proposal-panel">
+              <div class="pp-header">
+                <span class="pp-header-label">Proposta detalhada</span>
+                <span class="pp-header-badge">3 partes</span>
+              </div>
+
+              <div class="pp-parts">
+                <div class="pp-part-row">
+                  <div class="pp-part-num pp-num-1">01</div>
+                  <div class="pp-part-info">
+                    <div class="pp-part-name">Link da Bio</div>
+                    <div class="pp-part-tags">
+                      <span class="pp-tag">Página de links</span>
+                      <span class="pp-tag">Instagram</span>
+                      <span class="pp-tag">Design custom</span>
+                    </div>
+                  </div>
+                  <div class="pp-part-price">R$ 500</div>
+                </div>
+
+                <div class="pp-part-row">
+                  <div class="pp-part-num pp-num-2">02</div>
+                  <div class="pp-part-info">
+                    <div class="pp-part-name">Atualizações de Sites</div>
+                    <div class="pp-part-tags">
+                      <span class="pp-tag">BSM → Beyond Speaking</span>
+                      <span class="pp-tag">B. Exec. English</span>
+                      <span class="pp-tag">Google Form</span>
+                    </div>
+                  </div>
+                  <div class="pp-part-price">R$ 400</div>
+                </div>
+
+                <div class="pp-part-row">
+                  <div class="pp-part-num pp-num-3">03</div>
+                  <div class="pp-part-info">
+                    <div class="pp-part-name">E-books (2 unidades)</div>
+                    <div class="pp-part-tags">
+                      <span class="pp-tag">Como escrever e-mails</span>
+                      <span class="pp-tag">Entrevista de emprego</span>
+                    </div>
+                  </div>
+                  <div class="pp-part-price">R$ 1.400</div>
+                </div>
+              </div>
+
+              <div class="pp-total-row">
+                <span class="pp-total-label">Investimento total</span>
+                <span class="pp-total-val">R$ 2.300,00</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         PARTE 1 — LINK DA BIO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="parte-1">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">01</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Parte 1 · R$ 500</span>
+        </div>
+
+        <div class="part-band reveal d1">
+          <div class="part-band-num pp-num-1">01</div>
+          <div class="part-band-text">
+            <div class="part-band-section">Parte 1 de 3</div>
+            <div class="part-band-title">Link da Bio</div>
+          </div>
+          <div class="part-band-price">R$ 500,00</div>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Um hub de links que representa<br>
+          <span class="text-gradient">sua autoridade profissional.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Página personalizada para ser colocada no Instagram Bio — centralizando todos os seus links (site, WhatsApp, programa, e-book) em um único endereço com design consistente com a sua identidade visual.
+        </p>
+
+        <div class="feat-grid-3">
+          <div class="feat-card reveal d1">
+            <div class="feat-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 8a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zm12 0a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+            </div>
+            <div class="feat-title">Design personalizado</div>
+            <div class="feat-desc">Visual alinhado com a identidade da Fernanda Queiroga — cores, tipografia e posicionamento.</div>
+          </div>
+          <div class="feat-card reveal d2">
+            <div class="feat-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+            </div>
+            <div class="feat-title">Links configurados</div>
+            <div class="feat-desc">Todos os links relevantes: site, WhatsApp, programas, e-books, redes sociais.</div>
+          </div>
+          <div class="feat-card reveal d3">
+            <div class="feat-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="feat-title">Otimizado para mobile</div>
+            <div class="feat-desc">Experiência perfeita em celular — exatamente onde seu público vai acessar.</div>
+          </div>
+          <div class="feat-card reveal d4">
+            <div class="feat-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="feat-title">Carregamento rápido</div>
+            <div class="feat-desc">Página leve para não perder o visitante nos primeiros segundos.</div>
+          </div>
+          <div class="feat-card reveal d5">
+            <div class="feat-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
+            </div>
+            <div class="feat-title">Endereço personalizado</div>
+            <div class="feat-desc">Publicado em domínio próprio ou subdomínio — não em plataformas genéricas com marca de terceiros.</div>
+          </div>
+          <div class="feat-card reveal d6">
+            <div class="feat-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </div>
+            <div class="feat-title">Fácil de atualizar</div>
+            <div class="feat-desc">Estrutura pensada para que novos links sejam adicionados sem retrabalho de design.</div>
+          </div>
+        </div>
+
+        <!-- Phone simulation -->
+        <div class="bio-phone-wrap reveal d3">
+          <div class="bio-phone">
+            <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+            <div class="bio-screen">
+              <div class="bio-avatar-wrap"></div>
+              <div class="bio-name-tag">Fernanda Queiroga</div>
+              <div class="bio-handle">@fernandaqueiroga</div>
+              <div class="bio-link-btn accent"></div>
+              <div class="bio-link-btn"></div>
+              <div class="bio-link-btn"></div>
+              <div class="bio-link-btn" style="opacity:0.6"></div>
+              <div class="bio-link-btn" style="opacity:0.4"></div>
+            </div>
+            <div class="phone-bottom-bar"><div class="phone-home-bar"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         PARTE 2 — ATUALIZAÇÕES DE SITES
+         ══════════════════════════════════════════ -->
+    <section class="section" id="parte-2">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">02</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Parte 2 · R$ 400</span>
+        </div>
+
+        <div class="part-band reveal d1">
+          <div class="part-band-num pp-num-2">02</div>
+          <div class="part-band-text">
+            <div class="part-band-section">Parte 2 de 3</div>
+            <div class="part-band-title">Atualizações de Sites</div>
+          </div>
+          <div class="part-band-price">R$ 400,00</div>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Sites atualizados e alinhados<br>
+          <span class="text-gradient">com o que você é hoje.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Três entregas direcionadas para deixar sua presença digital consistente com o seu posicionamento atual: rebranding, site completo e integração de formulário de inscrição.
+        </p>
+
+        <div class="update-list">
+
+          <div class="update-item reveal d2">
+            <div class="update-item-num">01</div>
+            <div class="update-item-content">
+              <div class="update-item-title">BS Mentorship → Beyond Speaking Mentorship</div>
+              <div class="update-item-desc">
+                Atualização completa do nome e identidade textual: troca de nomenclatura em todos os elementos do site — título, menus, rodapé, meta tags e qualquer ocorrência do nome antigo.
+              </div>
+              <span class="update-item-tag">Rebranding de nome</span>
+            </div>
+          </div>
+
+          <div class="update-item reveal d3">
+            <div class="update-item-num">03</div>
+            <div class="update-item-content">
+              <div class="update-item-title">Incorporação do Google Form de inscrição</div>
+              <div class="update-item-desc">
+                Incorporação do formulário de candidatura ao Beyond Speaking Mentorship no site — integrado nativamente no layout, com visual consistente com o design existente.
+              </div>
+              <span class="update-item-tag">Google Forms embed</span>
+            </div>
+          </div>
+
+          <div class="update-item reveal d4">
+            <div class="update-item-num">02</div>
+            <div class="update-item-content">
+              <div class="update-item-title">Beyond Executive English — site completo</div>
+              <div class="update-item-desc">
+                Conclusão do site do Beyond Executive English com todas as seções necessárias — o projeto anterior entregue de forma completa, responsivo e publicado.
+              </div>
+              <span class="update-item-tag">Entregue por último</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Browser simulation showing Beyond Speaking Mentorship -->
+        <div class="browser-sim reveal d5" style="margin-top:2.5rem">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="bd bd-r"></span>
+              <span class="bd bd-y"></span>
+              <span class="bd bd-g"></span>
+            </div>
+            <div class="browser-url">beyondspeakingmentorship.com</div>
+          </div>
+          <div class="browser-body">
+            <div class="bsm-header-mock">
+              <div class="bsm-logo-mock">
+                <div class="bsm-logo-line1"></div>
+                <div class="bsm-logo-line2"></div>
+              </div>
+              <div class="bsm-nav-mock">
+                <div class="bsm-nav-item"></div>
+                <div class="bsm-nav-item"></div>
+                <div class="bsm-nav-item" style="width:36px;height:18px;border-radius:4px;background:hsla(155,40%,20%,0.5);border:1px solid hsla(155,55%,45%,0.2)"></div>
+              </div>
+            </div>
+            <div class="bsm-hero-mock">
+              <div class="bsm-hero-text">
+                <div class="bsm-h1"></div>
+                <div class="bsm-h1-2"></div>
+                <div style="height:0.375rem"></div>
+                <div class="bsm-p"></div>
+                <div class="bsm-p-2"></div>
+                <div class="bsm-cta-mock"></div>
+              </div>
+            </div>
+            <!-- Google Form mock embedded -->
+            <div class="form-mock-wrap">
+              <div class="form-mock-label">Formulário de candidatura incorporado</div>
+              <div class="form-mock-card">
+                <div class="form-mock-title-line"></div>
+                <div class="form-field-mock"></div>
+                <div class="form-field-mock"></div>
+                <div class="form-field-mock" style="height:30px"></div>
+                <div class="form-submit-mock"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         PARTE 3 — E-BOOKS
+         ══════════════════════════════════════════ -->
+    <section class="section" id="parte-3">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">03</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Parte 3 · R$ 1.400</span>
+        </div>
+
+        <div class="part-band reveal d1">
+          <div class="part-band-num pp-num-3">03</div>
+          <div class="part-band-text">
+            <div class="part-band-section">Parte 3 de 3</div>
+            <div class="part-band-title">E-books Profissionais</div>
+          </div>
+          <div class="part-band-price">R$ 700,00 · cada</div>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Dois e-books que transformam<br>
+          <span class="text-gradient">seu conhecimento em produto.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Design editorial profissional para dois e-books — cada um com identidade visual própria, diagramação completa e pronto para venda ou distribuição digital. Entregues em PDF de alta qualidade e versão web.
+        </p>
+
+        <div class="ebook-grid">
+
+          <div class="ebook-card reveal d2">
+            <div class="ebook-cover ebook-cover-1">
+              <div class="ebook-cover-grid"></div>
+              <div class="ebook-badge ebook-badge-1">E-book · R$ 700</div>
+              <div class="ebook-cover-title">Como Escrever<br>E-mails Profissionais</div>
+              <div class="ebook-cover-sub">Fernanda Queiroga · Beyond Executive English</div>
+            </div>
+            <div class="ebook-body">
+              <div class="ebook-body-text">
+                Guia completo sobre escrita estratégica de e-mails em inglês — tom, estrutura, formalidade e os erros mais comuns que brasileiros cometem.
+              </div>
+              <div class="ebook-items">
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  Diagramação editorial completa
+                </div>
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  Capa profissional
+                </div>
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  PDF + versão web pronto para venda
+                </div>
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  Elementos visuais e infográficos
+                </div>
+              </div>
+              <div class="ebook-price-tag">
+                <span class="ebook-price-label">Investimento</span>
+                <span class="ebook-price-val">R$ 700,00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ebook-card reveal d3">
+            <div class="ebook-cover ebook-cover-2">
+              <div class="ebook-cover-grid"></div>
+              <div class="ebook-badge ebook-badge-2">E-book · R$ 700</div>
+              <div class="ebook-cover-title">Entrevista de<br>Emprego em Inglês</div>
+              <div class="ebook-cover-sub">Fernanda Queiroga · Beyond Speaking Mentorship</div>
+            </div>
+            <div class="ebook-body">
+              <div class="ebook-body-text">
+                Preparação completa para entrevistas em inglês — perguntas frequentes, respostas estratégicas, postura e vocabulário para impressionar desde o primeiro minuto.
+              </div>
+              <div class="ebook-items">
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  Diagramação editorial completa
+                </div>
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  Capa profissional
+                </div>
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  PDF + versão web pronto para venda
+                </div>
+                <div class="ebook-item">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  Elementos visuais e infográficos
+                </div>
+              </div>
+              <div class="ebook-price-tag">
+                <span class="ebook-price-label">Investimento</span>
+                <span class="ebook-price-val">R$ 700,00</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         INVESTIMENTO — RESUMO COMPLETO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="investimento">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">04</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Resumo do Investimento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Partes independentes,<br>
+          <span class="text-gradient">pagamento flexível.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Cada parte pode ser aprovada e paga de forma independente — começando pela que fizer mais sentido agora e adicionando as demais conforme o planejamento.
+        </p>
+
+        <!-- Investment table -->
+        <div class="invest-table reveal d3">
+          <div class="invest-table-header">
+            <div></div>
+            <div class="it-col-label">Descrição</div>
+            <div class="it-col-label it-header-count" style="text-align:center">Itens</div>
+            <div class="it-col-label" style="text-align:right">Valor</div>
+          </div>
+
+          <div class="it-row">
+            <div class="it-num pp-num-1">01</div>
+            <div class="it-name">
+              Link da Bio
+              <small>Página de links personalizada para Instagram Bio</small>
+            </div>
+            <div class="it-items-count">1 entrega</div>
+            <div class="it-price">R$ 500,00</div>
+          </div>
+
+          <div class="it-row">
+            <div class="it-num pp-num-2">02</div>
+            <div class="it-name">
+              Atualizações de Sites
+              <small>Rebranding BSM + Beyond Exec. English completo + Google Form</small>
+            </div>
+            <div class="it-items-count">3 itens</div>
+            <div class="it-price">R$ 400,00</div>
+          </div>
+
+          <div class="it-row" style="border-bottom:none">
+            <div class="it-num pp-num-3">03</div>
+            <div class="it-name">
+              E-books (2 unidades)
+              <small>Como Escrever E-mails + Entrevista de Emprego · R$ 700 cada</small>
+            </div>
+            <div class="it-items-count">2 e-books</div>
+            <div class="it-price">R$ 1.400,00</div>
+          </div>
+
+          <div class="it-total-row">
+            <div></div>
+            <div class="it-total-label">Total geral</div>
+            <div class="it-total-sub">3 partes</div>
+            <div class="it-total-price">R$ 2.300,00</div>
+          </div>
+        </div>
+
+        <!-- Payment options per part -->
+        <div style="margin-top:3rem">
+          <h3 class="reveal" style="font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem">Condições por parte</h3>
+          <p class="reveal d1" style="font-size:0.875rem;color:var(--text-muted);margin-bottom:0">Cada parte pode ser aprovada e paga individualmente, no ritmo que for melhor para você.</p>
+        </div>
+
+        <div class="payment-options reveal d2">
+          <div class="pay-option">
+            <div class="pay-option-num">Parte 1 · Link da Bio</div>
+            <div class="pay-option-name">Pagamento único ou parcelado</div>
+            <div class="pay-option-rows">
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">À vista</span>
+                <span class="pay-option-row-val">R$ 500,00</span>
+              </div>
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">50% entrada</span>
+                <span class="pay-option-row-val">R$ 250,00</span>
+              </div>
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">50% entrega</span>
+                <span class="pay-option-row-val">R$ 250,00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pay-option">
+            <div class="pay-option-num">Parte 2 · Atualizações</div>
+            <div class="pay-option-name">Pagamento único ou parcelado</div>
+            <div class="pay-option-rows">
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">À vista</span>
+                <span class="pay-option-row-val">R$ 400,00</span>
+              </div>
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">50% entrada</span>
+                <span class="pay-option-row-val">R$ 200,00</span>
+              </div>
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">50% entrega</span>
+                <span class="pay-option-row-val">R$ 200,00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pay-option">
+            <div class="pay-option-num">Parte 3 · E-books</div>
+            <div class="pay-option-name">Por e-book ou os dois juntos</div>
+            <div class="pay-option-rows">
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">1 e-book</span>
+                <span class="pay-option-row-val">R$ 700,00</span>
+              </div>
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">2 e-books</span>
+                <span class="pay-option-row-val">R$ 1.400,00</span>
+              </div>
+              <div class="pay-option-row">
+                <span class="pay-option-row-label">50% + 50%</span>
+                <span class="pay-option-row-val">por e-book</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pay-note reveal d3">
+          Possível contratar as partes em momentos diferentes — cada parte tem seu próprio fluxo de início, desenvolvimento e entrega. Ao contratar as <strong style="color:var(--text-2)">3 partes juntas</strong>, podemos discutir condições especiais de pagamento.
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         PRÓXIMOS PASSOS — CTA
+         ══════════════════════════════════════════ -->
+    <section class="section final-cta" id="contato">
+      <div class="final-cta-bg"></div>
+      <div class="container final-cta-inner">
+
+        <div class="eyebrow reveal" style="justify-content:center">
+          <span class="eyebrow-num">05</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Próximos Passos</span>
+        </div>
+
+        <h2 class="final-cta-title reveal d1">
+          Qual parte você quer<br>
+          <span class="text-gradient">começar primeiro?</span>
+        </h2>
+
+        <p class="final-cta-text reveal d2">
+          Entre em contato pelo WhatsApp, diga qual parte quer iniciar e combinamos os detalhes. Não precisa aprovar tudo de uma vez.
+        </p>
+
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Recebi%20a%20proposta%20da%20Fernanda%20Queiroga%20e%20quero%20dar%20continuidade."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="final-cta-btn reveal d3"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Falar com Victor
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-brand-dot"></div>
+            VS Experience
+          </div>
+          <div class="footer-tagline">Desenvolvimento Web, Sites, Landing Pages e Soluções Digitais</div>
+        </div>
+        <div class="footer-meta">
+          <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+          <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+          <p class="footer-copy">© 2025 VS Experience · Proposta confidencial</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('read-progress');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / total * 100) + '%';
+    }, { passive: true });
+
+    // Header scroll state
+    const hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', () => {
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
