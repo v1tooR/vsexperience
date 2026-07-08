@@ -987,7 +987,7 @@
         </div>
 
         <div class="pricing-grid">
-          <div class="pricing-card animate-fade-up delay-100">
+          <div class="pricing-card animate-fade-up delay-100" data-service="landing">
             <div class="pricing-top-bar"></div>
             <div class="pricing-card-inner">
               <div class="pricing-icon">
@@ -997,10 +997,6 @@
                 </svg>
               </div>
               <span class="pricing-type" data-i18n="investment.p1type">Landing Page</span>
-              <div class="pricing-price">
-                <span class="price-from" data-i18n="investment.range">de</span>
-                <span class="price-value" data-i18n="investment.p1price">R$ 1.000</span>
-              </div>
               <ul class="pricing-includes">
                 <li data-i18n="investment.p1i1">Diagnóstico e estratégia</li>
                 <li data-i18n="investment.p1i2">UX + narrativa de conversão</li>
@@ -1014,7 +1010,7 @@
             </div>
           </div>
 
-          <div class="pricing-card animate-fade-up delay-200">
+          <div class="pricing-card animate-fade-up delay-200" data-service="institucional">
             <div class="pricing-top-bar"></div>
             <div class="pricing-card-inner">
               <div class="pricing-icon">
@@ -1024,10 +1020,6 @@
                 </svg>
               </div>
               <span class="pricing-type" data-i18n="investment.p2type">Institucional</span>
-              <div class="pricing-price">
-                <span class="price-from" data-i18n="investment.range">de</span>
-                <span class="price-value" data-i18n="investment.p2price">R$ 2.000 <span class="price-range">– R$ 3.000</span></span>
-              </div>
               <ul class="pricing-includes">
                 <li data-i18n="investment.p2i1">Múltiplas páginas e seções</li>
                 <li data-i18n="investment.p2i2">Identidade e narrativa de marca</li>
@@ -1041,7 +1033,7 @@
             </div>
           </div>
 
-          <div class="pricing-card animate-fade-up delay-300">
+          <div class="pricing-card animate-fade-up delay-300" data-service="ecommerce">
             <div class="pricing-top-bar"></div>
             <div class="pricing-card-inner">
               <div class="pricing-icon">
@@ -1051,10 +1043,6 @@
                 </svg>
               </div>
               <span class="pricing-type" data-i18n="investment.p3type">E-commerce</span>
-              <div class="pricing-price">
-                <span class="price-from" data-i18n="investment.range">de</span>
-                <span class="price-value" data-i18n="investment.p3price">R$ 4.000 <span class="price-range">– R$ 6.000</span></span>
-              </div>
               <ul class="pricing-includes">
                 <li data-i18n="investment.p3i1">Experiência de loja completa</li>
                 <li data-i18n="investment.p3i2">Jornada de compra otimizada</li>
@@ -1068,7 +1056,7 @@
             </div>
           </div>
 
-          <div class="pricing-card animate-fade-up delay-100">
+          <div class="pricing-card animate-fade-up delay-100" data-service="design-system">
             <div class="pricing-top-bar"></div>
             <div class="pricing-card-inner">
               <div class="pricing-icon">
@@ -1078,10 +1066,6 @@
                 </svg>
               </div>
               <span class="pricing-type" data-i18n="investment.p4type">Design System</span>
-              <div class="pricing-price">
-                <span class="price-from" data-i18n="investment.range">de</span>
-                <span class="price-value" data-i18n="investment.p4price">R$ 3.000</span>
-              </div>
               <ul class="pricing-includes">
                 <li data-i18n="investment.p4i1">Tokens e variáveis base</li>
                 <li data-i18n="investment.p4i2">Biblioteca de componentes</li>
@@ -1095,7 +1079,7 @@
             </div>
           </div>
 
-          <div class="pricing-card pricing-featured animate-fade-up delay-200">
+          <div class="pricing-card pricing-featured animate-fade-up delay-200" data-service="saas">
             <div class="pricing-top-bar"></div>
             <span class="pricing-badge" data-i18n="investment.badge">Mais estratégico</span>
             <div class="pricing-card-inner pricing-featured-inner">
@@ -1107,10 +1091,6 @@
                   </svg>
                 </div>
                 <span class="pricing-type" data-i18n="investment.p5type">SaaS / Produto Digital</span>
-                <div class="pricing-price">
-                  <span class="price-from" data-i18n="investment.from">a partir de</span>
-                  <span class="price-value" data-i18n="investment.p5price">R$ 6.000 <span class="price-range">– a combinar</span></span>
-                </div>
                 <p class="pricing-featured-desc" data-i18n="investment.p5desc">
                   Projetos com maior complexidade de fluxo, múltiplos perfis de usuário e evolução contínua são orçados após diagnóstico.
                 </p>
@@ -1306,6 +1286,30 @@
 
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/script.js"></script>
+  <script>
+    // Pricing card tilt + select interaction
+    (function () {
+      const cards = document.querySelectorAll('.pricing-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width  - 0.5) * 10;
+          const y = ((e.clientY - r.top)  / r.height - 0.5) * -10;
+          card.style.transition = 'transform 0.08s ease, border-color 0.35s, box-shadow 0.45s';
+          card.style.transform = `perspective(900px) rotateX(${y}deg) rotateY(${x}deg) translateY(-8px) scale(1.015)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.55s cubic-bezier(0.34,1.4,0.64,1), border-color 0.35s, box-shadow 0.45s';
+          card.style.transform = '';
+        });
+        card.addEventListener('click', e => {
+          if (e.target.closest('.pricing-cta')) return;
+          cards.forEach(c => c.classList.remove('pricing-selected'));
+          card.classList.toggle('pricing-selected');
+        });
+      });
+    })();
+  </script>
   <div id="cursor">
     <div class="cursor__circle"></div>
   </div>

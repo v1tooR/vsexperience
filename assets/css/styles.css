@@ -396,9 +396,9 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem; /* small padding so image doesn't touch edges */
-  
+  padding: 0.25rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  transition: width 0.35s ease, height 0.35s ease, border-radius 0.35s ease;
 }
 
 .logo-icon img {
@@ -2065,4 +2065,293 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ================================
+   Header — Pill nav (G4-style)
+   ================================ */
+
+/* Full pill shape */
+.nav-surface {
+  border-radius: 9999px;
+  transition:
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s ease,
+    backdrop-filter 0.4s ease,
+    box-shadow 0.45s ease,
+    padding 0.35s ease;
+}
+
+/* Nav links: white + visible no topo transparente */
+.nav-link {
+  color: hsla(0, 0%, 92%, 0.7);
+  font-size: 0.875rem;
+  font-weight: 450;
+}
+.nav-link:hover {
+  color: hsl(0, 0%, 100%);
+}
+
+/* Pill refinado no scroll */
+.header.scrolled .nav-surface {
+  background: hsla(5, 10%, 8%, 0.90);
+  border: 1px solid hsla(0, 0%, 100%, 0.09);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  box-shadow:
+    0 8px 32px hsla(0, 0%, 0%, 0.40),
+    0 1px 0 hsla(0, 0%, 100%, 0.07) inset;
+  padding: 0.4rem 0.5rem 0.4rem 1.25rem;
+}
+
+/* Logo menor dentro do pill */
+.header.scrolled .logo-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  transition: width 0.35s ease, height 0.35s ease;
+}
+.header.scrolled .logo {
+  gap: 0.5rem;
+}
+.header.scrolled .logo-text {
+  font-size: 1rem;
+}
+
+/* Links dentro do pill: um pouco mais visíveis */
+.header.scrolled .nav-link {
+  color: hsla(0, 0%, 82%, 0.75);
+  font-size: 0.8125rem;
+}
+.header.scrolled .nav-link:hover {
+  color: hsl(0, 0%, 97%);
+}
+
+/* CTA pill no scroll */
+.header.scrolled .btn-primary.btn-sm {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.8125rem;
+  border-radius: 9999px;
+}
+
+/* Lang toggle no scroll */
+.header.scrolled .lang-toggle {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* ================================
+   Pricing Cards — v2 Interactive
+   ================================ */
+
+/* Per-service accent tokens */
+.pricing-card[data-service="landing"] {
+  --c:    hsl(38, 85%, 58%);
+  --ca:   hsla(38, 85%, 58%, 0.12);
+  --cb:   hsla(38, 85%, 58%, 0.28);
+  --cg:   hsla(38, 85%, 58%, 0.18);
+}
+.pricing-card[data-service="institucional"] {
+  --c:    hsl(213, 72%, 62%);
+  --ca:   hsla(213, 72%, 62%, 0.12);
+  --cb:   hsla(213, 72%, 62%, 0.28);
+  --cg:   hsla(213, 72%, 62%, 0.18);
+}
+.pricing-card[data-service="ecommerce"] {
+  --c:    hsl(152, 58%, 50%);
+  --ca:   hsla(152, 58%, 50%, 0.12);
+  --cb:   hsla(152, 58%, 50%, 0.28);
+  --cg:   hsla(152, 58%, 50%, 0.18);
+}
+.pricing-card[data-service="design-system"] {
+  --c:    hsl(255, 65%, 67%);
+  --ca:   hsla(255, 65%, 67%, 0.12);
+  --cb:   hsla(255, 65%, 67%, 0.28);
+  --cg:   hsla(255, 65%, 67%, 0.18);
+}
+.pricing-card[data-service="saas"] {
+  --c:    hsl(5, 52%, 60%);
+  --ca:   hsla(5, 52%, 60%, 0.12);
+  --cb:   hsla(5, 52%, 60%, 0.30);
+  --cg:   hsla(5, 52%, 60%, 0.20);
+}
+
+/* Card base reset */
+.pricing-card {
+  --c:    hsl(5, 52%, 58%);
+  --ca:   hsla(5, 52%, 58%, 0.12);
+  --cb:   hsla(5, 52%, 58%, 0.28);
+  --cg:   hsla(5, 52%, 58%, 0.18);
+  background: hsla(5, 12%, 8%, 0.72);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  border: 1px solid hsla(0, 0%, 100%, 0.06);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.04) inset, 0 4px 24px hsla(0, 0%, 0%, 0.3);
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.45s ease;
+  will-change: transform;
+}
+
+/* Shimmer sweep on hover */
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    hsla(0, 0%, 100%, 0.055) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pricing-card:hover::before {
+  left: 145%;
+}
+
+/* Gradient glow border on hover */
+.pricing-card:hover {
+  border-color: var(--cb);
+  box-shadow:
+    0 0 0 1px var(--cb),
+    0 20px 60px -8px var(--cg),
+    0 8px 24px -4px var(--cg),
+    0 1px 0 hsla(0, 0%, 100%, 0.06) inset;
+}
+
+/* Selected state (via JS click) */
+.pricing-card.pricing-selected {
+  border-color: var(--c);
+  box-shadow:
+    0 0 0 2px var(--c),
+    0 24px 60px -8px var(--cg),
+    0 1px 0 hsla(0, 0%, 100%, 0.08) inset;
+}
+.pricing-card.pricing-selected .pricing-top-bar {
+  opacity: 1;
+  height: 3px;
+}
+
+/* Top accent bar */
+.pricing-top-bar {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--c) 50%, transparent 100%);
+  opacity: 0.55;
+  transition: opacity 0.35s ease, height 0.35s ease;
+}
+.pricing-card:hover .pricing-top-bar,
+.pricing-card.pricing-selected .pricing-top-bar {
+  opacity: 1;
+  height: 3px;
+}
+.pricing-featured .pricing-top-bar {
+  opacity: 1;
+}
+
+/* Icon container */
+.pricing-icon {
+  background: var(--ca);
+  border: 1px solid var(--cb);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pricing-card:hover .pricing-icon {
+  background: var(--ca);
+  border-color: var(--c);
+  box-shadow: 0 0 18px -4px var(--c);
+  transform: scale(1.12) rotate(-4deg);
+}
+.pricing-icon svg {
+  stroke: var(--muted-foreground);
+  transition: stroke 0.3s ease;
+}
+.pricing-card:hover .pricing-icon svg {
+  stroke: var(--c);
+}
+
+/* Service type label */
+.pricing-type {
+  color: var(--c);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.pricing-card:hover .pricing-type,
+.pricing-card.pricing-selected .pricing-type {
+  opacity: 1;
+}
+
+/* Deliverables list items */
+.pricing-includes li {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.pricing-card:hover .pricing-includes li {
+  color: hsla(0, 0%, 85%, 0.92);
+}
+.pricing-card:hover .pricing-includes li:nth-child(1) { transition-delay: 0.04s; }
+.pricing-card:hover .pricing-includes li:nth-child(2) { transition-delay: 0.08s; }
+.pricing-card:hover .pricing-includes li:nth-child(3) { transition-delay: 0.12s; }
+.pricing-card:hover .pricing-includes li:nth-child(4) { transition-delay: 0.16s; }
+.pricing-card:hover .pricing-includes li:nth-child(5) { transition-delay: 0.20s; }
+.pricing-card:hover .pricing-includes li:nth-child(6) { transition-delay: 0.24s; }
+
+/* Checkmark dot */
+.pricing-includes li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c);
+  flex-shrink: 0;
+  margin-top: 0.44rem;
+  opacity: 0.55;
+  box-shadow: 0 0 0 0 var(--c);
+  transition: opacity 0.25s ease, box-shadow 0.35s ease;
+  font-size: 0; /* override text */
+}
+.pricing-card:hover .pricing-includes li::before {
+  opacity: 1;
+  box-shadow: 0 0 8px 1px var(--c);
+}
+
+/* CTA button */
+.pricing-cta {
+  background: var(--gradient-primary);
+  border: none;
+  color: hsl(0, 0%, 97%);
+  box-shadow: 0 4px 16px hsla(5, 38%, 22%, 0.28);
+}
+.pricing-cta:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px hsla(5, 38%, 22%, 0.45), 0 0 20px -5px var(--c);
+  color: hsl(0, 0%, 100%);
+}
+
+/* Featured card */
+.pricing-card.pricing-featured {
+  background: linear-gradient(145deg, hsla(5, 35%, 11%, 0.85) 0%, hsla(5, 10%, 7%, 0.8) 100%);
+}
+
+/* Inner z-index above shimmer */
+.pricing-card-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pricing badge */
+.pricing-badge {
+  background: hsla(5, 38%, 12%, 0.7);
+  border-color: var(--cb);
+  color: var(--c);
 }
