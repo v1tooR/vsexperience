@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial · AdestraCão Mogi · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS — VS Experience Design System
+       ============================================ */
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff-body:     'Space Grotesk', sans-serif;
+
+      /* Service accent colors */
+      --s1: hsl(38, 80%, 55%);   /* amber  — Link na Bio    */
+      --s2: hsl(270, 55%, 62%);  /* violet — Instagram      */
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      transition: width 0.08s linear;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900; padding: 0 2rem; height: 64px;
+      display: flex; align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: flex; align-items: center; gap: 1.25rem; min-width: 0;
+    }
+    .h-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 0.9375rem; letter-spacing: -0.01em;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem; color: var(--text-muted);
+      padding: 0.25rem 0.75rem; border: 1px solid var(--border);
+      border-radius: 100px; white-space: nowrap; margin-right: auto;
+    }
+    .h-nav { display: flex; align-items: center; gap: 1.5rem; }
+    .h-nav a {
+      font-size: 0.8125rem; font-weight: 500; color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    @media (max-width: 860px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container    { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+    .container-sm { max-width: 840px;  margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+
+    /* ============================================
+       SECTIONS & DIVIDERS
+       ============================================ */
+    .section { padding: clamp(5rem, 10vw, 8rem) 0; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
+    }
+
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .eyebrow-num {
+      font-family: var(--ff-body); font-size: 0.75rem; font-weight: 700;
+      color: var(--rose-light); opacity: 0.65; letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line { height: 1px; width: 2.5rem; background: var(--gradient); opacity: 0.45; }
+    .eyebrow-label {
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem); font-weight: 700;
+      line-height: 1.13; letter-spacing: -0.025em;
+      margin-bottom: 1.25rem; overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); color: var(--text-2);
+      line-height: 1.75; max-width: 64ch; overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh; display: flex; flex-direction: column;
+      justify-content: center; padding-top: 64px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 5% 20%, hsla(5, 38%, 18%, 0.3) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 40% at 90% 75%, hsla(38, 50%, 18%, 0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+    }
+    .conf-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--rose-light); margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--rose); animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.75); }
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem); font-weight: 700;
+      line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.6vw, 1.125rem); color: var(--text-2);
+      line-height: 1.7; margin-bottom: 2.5rem; max-width: 52ch;
+    }
+    .hero-services { display: flex; flex-direction: column; gap: 0.625rem; }
+    .hs-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.875rem; color: var(--text-2);
+    }
+    .hs-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .hs-dot-1 { background: var(--s1); }
+    .hs-dot-2 { background: var(--s2); }
+
+    /* ============================================
+       PROPOSAL PANEL (hero right)
+       ============================================ */
+    .proposal-panel {
+      background: var(--bg-2); border: 1px solid var(--border-2);
+      border-radius: var(--radius-xl); padding: 1.75rem;
+      position: relative; overflow: hidden;
+    }
+    .proposal-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, hsla(5, 38%, 30%, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .pp-header {
+      display: flex; align-items: center; gap: 0.875rem;
+      margin-bottom: 1.5rem; padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pp-icon {
+      width: 40px; height: 40px; border-radius: var(--radius);
+      background: var(--gradient); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .pp-title { font-size: 0.9375rem; font-weight: 600; }
+    .pp-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .pp-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; border-bottom: 1px solid var(--border); gap: 1rem;
+    }
+    .pp-service-info { display: flex; align-items: center; gap: 0.875rem; }
+    .pp-num {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em;
+      font-feature-settings: 'tnum'; padding: 0.2rem 0.55rem;
+      border-radius: 4px; flex-shrink: 0;
+    }
+    .pp-num-1 { background: hsla(38, 80%, 55%, 0.14); color: var(--s1); }
+    .pp-num-2 { background: hsla(270, 55%, 62%, 0.14); color: var(--s2); }
+    .pp-service-name { font-size: 0.9375rem; font-weight: 500; }
+    .pp-price {
+      font-size: 1rem; font-weight: 700; letter-spacing: -0.02em;
+      font-feature-settings: 'tnum'; color: var(--text); white-space: nowrap;
+    }
+    .pp-divider { height: 1px; background: var(--border-2); margin: 0.25rem 0; }
+    .pp-total-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0 0; gap: 1rem;
+    }
+    .pp-total-label { font-size: 0.8125rem; font-weight: 600; color: var(--text-2); }
+    .pp-total-val {
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pp-install-note {
+      font-size: 0.6875rem; color: var(--text-muted);
+      margin-top: 0.625rem; text-align: right;
+    }
+
+    /* ============================================
+       SERVICE BAND
+       ============================================ */
+    .service-band {
+      display: inline-flex; align-items: center; gap: 0.875rem;
+      margin-bottom: 2.5rem; padding: 0.625rem 1.25rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+    .sb-num {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+    }
+    .sb-num-1 { background: hsla(38, 80%, 55%, 0.14); color: var(--s1); }
+    .sb-num-2 { background: hsla(270, 55%, 62%, 0.14); color: var(--s2); }
+    .sb-name { font-size: 0.8125rem; font-weight: 600; color: var(--text-2); }
+    .sb-sep { width: 1px; height: 12px; background: var(--border-2); }
+    .sb-price { font-size: 0.875rem; font-weight: 700; font-feature-settings: 'tnum'; }
+    .sb-price-1 { color: var(--s1); }
+    .sb-price-2 { color: var(--s2); }
+
+    /* ============================================
+       TWO-COLUMN LAYOUT
+       ============================================ */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .two-col.flip > *:first-child { order: 2; }
+    .two-col.flip > *:last-child  { order: 1; }
+    @media (max-width: 860px) {
+      .two-col { grid-template-columns: 1fr; gap: 3rem; }
+      .two-col.flip > * { order: unset; }
+    }
+
+    /* ============================================
+       FEATURE LIST
+       ============================================ */
+    .feature-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .f-item { display: flex; align-items: flex-start; gap: 0.875rem; }
+    .f-check {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; margin-top: 0.125rem;
+    }
+    .f-check-1 { background: hsla(38, 80%, 55%, 0.12); }
+    .f-check-2 { background: hsla(270, 55%, 62%, 0.12); }
+    .f-check svg { width: 10px; height: 10px; }
+    .f-check-1 svg { stroke: var(--s1); }
+    .f-check-2 svg { stroke: var(--s2); }
+    .f-text { font-size: 0.9375rem; color: var(--text-2); line-height: 1.5; }
+
+    /* ============================================
+       PHONE MOCK
+       ============================================ */
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone-frame {
+      width: 238px; background: #0e0e0e;
+      border-radius: 2.75rem; border: 2px solid #2a2a2a;
+      position: relative; overflow: hidden;
+      box-shadow:
+        0 40px 80px hsla(0, 0%, 0%, 0.65),
+        0 0 0 1px hsla(0, 0%, 100%, 0.05) inset;
+    }
+    .phone-notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 88px; height: 26px;
+      background: #0e0e0e; border-radius: 0 0 1rem 1rem; z-index: 10;
+    }
+    .phone-screen {
+      min-height: 490px; background: hsl(5, 8%, 7%);
+      border-radius: 2.5rem; overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; padding: 3.25rem 1rem 1rem;
+      position: relative;
+    }
+    .phone-screen-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 110% 50% at 50% 0%, hsla(38, 60%, 28%, 0.38) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 40% at 80% 100%, hsla(5, 38%, 20%, 0.2) 0%, transparent 55%);
+    }
+    .bio-avatar {
+      width: 62px; height: 62px; border-radius: 50%;
+      background: var(--gradient); border: 2px solid hsla(5, 38%, 45%, 0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; position: relative; z-index: 1; margin-bottom: 0.625rem;
+    }
+    .bio-name {
+      font-size: 0.8125rem; font-weight: 700; color: #f0f0f0;
+      position: relative; z-index: 1; margin-bottom: 0.2rem; text-align: center;
+    }
+    .bio-desc {
+      font-size: 0.6rem; color: #777; position: relative; z-index: 1;
+      margin-bottom: 1.25rem; text-align: center; line-height: 1.6;
+    }
+    .bio-links {
+      width: 100%; display: flex; flex-direction: column; gap: 0.5rem;
+      position: relative; z-index: 1;
+    }
+    .bio-link {
+      background: hsla(5, 8%, 100%, 0.06); border: 1px solid hsla(5, 8%, 100%, 0.09);
+      border-radius: 0.625rem; padding: 0.5rem 0.875rem;
+      font-size: 0.625rem; font-weight: 600; color: #ccc;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    .bio-link-dot { width: 5px; height: 5px; border-radius: 50%; }
+    .bio-link:nth-child(1) .bio-link-dot { background: var(--s1); }
+    .bio-link:nth-child(2) .bio-link-dot { background: #25D366; }
+    .bio-link:nth-child(3) .bio-link-dot { background: var(--s2); }
+    .bio-link:nth-child(4) .bio-link-dot { background: var(--rose); }
+    .phone-home-bar {
+      height: 4px; width: 80px; background: #2c2c2c;
+      border-radius: 2px; margin: 1rem auto 0.625rem;
+      position: relative; z-index: 1;
+    }
+
+    /* ============================================
+       INSTAGRAM GRID MOCK
+       ============================================ */
+    .ig-mock-wrap {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+      box-shadow: 0 32px 64px hsla(0, 0%, 0%, 0.4);
+    }
+    .ig-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.875rem 1.125rem; border-bottom: 1px solid var(--border);
+    }
+    .ig-avatar-sm {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--gradient); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8125rem;
+    }
+    .ig-handle { font-size: 0.75rem; font-weight: 600; line-height: 1.2; }
+    .ig-at    { font-size: 0.6875rem; color: var(--text-muted); }
+    .ig-new-badge {
+      margin-left: auto; font-size: 0.625rem; font-weight: 700;
+      padding: 0.2rem 0.625rem; border-radius: 100px;
+      background: hsla(270, 55%, 62%, 0.14); color: var(--s2);
+      letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .ig-post { aspect-ratio: 1/1; position: relative; overflow: hidden; }
+    .ig-post-bg { position: absolute; inset: 0; }
+    .ig-post-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%);
+    }
+    .ig-post-label {
+      position: absolute; bottom: 0.4rem; left: 0.4rem; right: 0.4rem;
+      font-size: 0.44rem; font-weight: 700; color: rgba(255,255,255,0.88);
+      line-height: 1.3; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .ig-footer {
+      padding: 0.625rem 1.125rem; font-size: 0.6875rem; color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* ============================================
+       INVESTMENT TABLE
+       ============================================ */
+    .invest-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .invest-table { width: 100%; border-collapse: collapse; }
+    .it-head { border-bottom: 1px solid var(--border-2); }
+    .it-head th {
+      padding: 0.875rem 1.5rem; text-align: left;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .it-head th:last-child { text-align: right; }
+    .it-row td {
+      padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--border);
+      font-size: 0.9375rem; vertical-align: top;
+    }
+    .it-row:last-of-type td { border-bottom: none; }
+    .it-tag {
+      display: inline-block; font-size: 0.6875rem; font-weight: 700;
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    .it-tag-1 { background: hsla(38, 80%, 55%, 0.12); color: var(--s1); }
+    .it-tag-2 { background: hsla(270, 55%, 62%, 0.12); color: var(--s2); }
+    .it-service { font-weight: 500; }
+    .it-desc { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .it-val {
+      font-weight: 700; text-align: right;
+      font-feature-settings: 'tnum'; color: var(--text); white-space: nowrap;
+    }
+    .it-total-row { background: var(--surface); border-top: 1px solid var(--border-2); }
+    .it-total-row td { padding: 1.25rem 1.5rem; }
+    .it-total-label { font-size: 0.875rem; font-weight: 700; }
+    .it-total-val {
+      font-size: 1.5rem; font-weight: 700; text-align: right;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       PAYMENT OPTIONS
+       ============================================ */
+    .pay-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    @media (max-width: 600px) { .pay-options { grid-template-columns: 1fr; } }
+    .pay-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.25rem 1.375rem;
+    }
+    .pay-card-label {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;
+    }
+    .pay-main { font-size: 1.0625rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .pay-alt  { font-size: 0.75rem; color: var(--text-muted); }
+    .pay-combo {
+      background: var(--surface); border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg); padding: 1.25rem 1.375rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .pay-combo-left .pay-card-label { margin-bottom: 0.375rem; }
+    .pay-combo-right { text-align: right; }
+    .pay-note {
+      font-size: 0.8125rem; color: var(--text-muted); padding: 1rem 1.25rem;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); line-height: 1.7;
+    }
+
+    /* ============================================
+       CTA SECTION
+       ============================================ */
+    .cta-section {
+      padding: clamp(5rem, 10vw, 8rem) 0;
+      text-align: center; position: relative;
+    }
+    .cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, hsla(5, 38%, 18%, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-title {
+      font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 1.25rem;
+    }
+    .cta-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); color: var(--text-2);
+      max-width: 52ch; margin: 0 auto 2.5rem; line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 0.9375rem 2.25rem; border-radius: 100px;
+      font-family: var(--ff-body); font-size: 0.9375rem; font-weight: 700;
+      letter-spacing: -0.01em; cursor: pointer;
+      background: var(--gradient); color: white; border: none;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; }
+    .footer-text { font-size: 0.75rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<header id="hdr">
+  <div class="header-inner">
+    <div class="h-brand">
+      <div class="h-brand-dot"></div>
+      VS Experience
+    </div>
+    <div class="h-client-tag">AdestraCão Mogi</div>
+    <nav class="h-nav">
+      <a href="#bio">Link na Bio</a>
+      <a href="#posts">Posts</a>
+      <a href="#investimento">Investimento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ════════════════════════════════════
+       HERO
+       ════════════════════════════════════ -->
+  <section class="hero section">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-inner container">
+      <div class="hero-layout">
+
+        <div class="hero-left">
+          <div class="conf-tag reveal">
+            <div class="conf-dot"></div>
+            Proposta Comercial · 2025
+          </div>
+          <h1 class="hero-title reveal d1">
+            Presença digital que<br><span class="text-gradient">atrai e converte</span>
+          </h1>
+          <p class="hero-sub reveal d2">
+            Uma proposta pensada para levar o AdestraCão Mogi para o próximo nível — com um Link na Bio que centraliza todos os seus canais e posts que geram engajamento e novos clientes no Instagram.
+          </p>
+          <div class="hero-services reveal d3">
+            <div class="hs-item">
+              <span class="hs-dot hs-dot-1"></span>
+              Link na Bio — R$ 550,00 (até 10×)
+            </div>
+            <div class="hs-item">
+              <span class="hs-dot hs-dot-2"></span>
+              6 Posts no Instagram — R$ 333,70 (até 10×)
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right reveal d2">
+          <div class="proposal-panel">
+            <div class="pp-header">
+              <div class="pp-icon">🐾</div>
+              <div>
+                <div class="pp-title">AdestraCão Mogi</div>
+                <div class="pp-subtitle">Proposta · VS Experience · 2025</div>
+              </div>
+            </div>
+
+            <div class="pp-row">
+              <div class="pp-service-info">
+                <span class="pp-num pp-num-1">01</span>
+                <span class="pp-service-name">Link na Bio</span>
+              </div>
+              <span class="pp-price">R$ 550,00</span>
+            </div>
+
+            <div class="pp-row">
+              <div class="pp-service-info">
+                <span class="pp-num pp-num-2">02</span>
+                <span class="pp-service-name">6 Posts Instagram</span>
+              </div>
+              <span class="pp-price">R$ 333,70</span>
+            </div>
+
+            <div class="pp-divider"></div>
+
+            <div class="pp-total-row">
+              <span class="pp-total-label">Investimento total</span>
+              <span class="pp-total-val">R$ 950,00</span>
+            </div>
+            <div class="pp-install-note">Parcelamento em até 10× sem juros</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       01 · LINK NA BIO
+       ════════════════════════════════════ -->
+  <section class="section" id="bio">
+    <div class="container">
+
+      <div class="service-band reveal">
+        <span class="sb-num sb-num-1">01</span>
+        <span class="sb-name">Link na Bio</span>
+        <span class="sb-sep"></span>
+        <span class="sb-price sb-price-1">R$ 550,00</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-num">01</span>
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-label">Serviço</span>
+          </div>
+          <h2 class="section-title reveal d1">
+            Todos os seus canais<br><span class="text-gradient">em um único link</span>
+          </h2>
+          <p class="section-text reveal d2">
+            Uma página exclusiva e personalizada que centraliza tudo: WhatsApp, Instagram, agendamento e serviços — facilitando que o cliente encontre e entre em contato com o AdestraCão Mogi em um único clique.
+          </p>
+          <ul class="feature-list">
+            <li class="f-item reveal d3">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Design exclusivo alinhado à identidade visual do AdestraCão Mogi</span>
+            </li>
+            <li class="f-item reveal d3">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Botões para WhatsApp, Instagram, site e agendamento</span>
+            </li>
+            <li class="f-item reveal d4">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Otimizado para mobile — experiência fluida no celular</span>
+            </li>
+            <li class="f-item reveal d4">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Rastreamento de cliques por link</span>
+            </li>
+            <li class="f-item reveal d5">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Fácil atualização a qualquer momento</span>
+            </li>
+            <li class="f-item reveal d5">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Parcelamento em até 10× sem juros</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="phone-wrap reveal d2">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-screen-bg"></div>
+              <div class="bio-avatar">🐾</div>
+              <div class="bio-name">AdestraCão Mogi</div>
+              <div class="bio-desc">Adestramento profissional 🐕<br>Mogi das Cruzes e região</div>
+              <div class="bio-links">
+                <div class="bio-link"><div class="bio-link-dot"></div>Agende sua aula</div>
+                <div class="bio-link"><div class="bio-link-dot"></div>Falar pelo WhatsApp</div>
+                <div class="bio-link"><div class="bio-link-dot"></div>Nosso Instagram</div>
+                <div class="bio-link"><div class="bio-link-dot"></div>Conheça os serviços</div>
+              </div>
+              <div class="phone-home-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       02 · 6 POSTS INSTAGRAM
+       ════════════════════════════════════ -->
+  <section class="section" id="posts">
+    <div class="container">
+
+      <div class="service-band reveal">
+        <span class="sb-num sb-num-2">02</span>
+        <span class="sb-name">6 Posts no Instagram</span>
+        <span class="sb-sep"></span>
+        <span class="sb-price sb-price-2">R$ 333,70</span>
+      </div>
+
+      <div class="two-col flip">
+        <div>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-num">02</span>
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-label">Serviço</span>
+          </div>
+          <h2 class="section-title reveal d1">
+            Conteúdo visual que<br><span class="text-gradient">gera engajamento</span>
+          </h2>
+          <p class="section-text reveal d2">
+            6 posts criativos prontos para publicação, alinhados com a identidade do AdestraCão Mogi. Layouts pensados para transmitir autoridade, gerar engajamento e atrair novos clientes no feed do Instagram.
+          </p>
+          <ul class="feature-list">
+            <li class="f-item reveal d3">
+              <div class="f-check f-check-2">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">6 artes prontas para publicação no feed</span>
+            </li>
+            <li class="f-item reveal d3">
+              <div class="f-check f-check-2">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Layouts alinhados com a identidade visual</span>
+            </li>
+            <li class="f-item reveal d4">
+              <div class="f-check f-check-2">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Conteúdo orientado ao engajamento e conversão</span>
+            </li>
+            <li class="f-item reveal d4">
+              <div class="f-check f-check-2">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Entrega em PNG de alta resolução (1080×1080px)</span>
+            </li>
+            <li class="f-item reveal d5">
+              <div class="f-check f-check-2">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Dicas, apresentação de serviços e geração de leads</span>
+            </li>
+            <li class="f-item reveal d5">
+              <div class="f-check f-check-2">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Parcelamento em até 10× sem juros</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal d2">
+          <div class="ig-mock-wrap">
+            <div class="ig-header">
+              <div class="ig-avatar-sm">🐾</div>
+              <div>
+                <div class="ig-handle">AdestraCão Mogi</div>
+                <div class="ig-at">@adestracaomogi</div>
+              </div>
+              <div class="ig-new-badge">6 novos posts</div>
+            </div>
+            <div class="ig-grid">
+              <div class="ig-post">
+                <div class="ig-post-bg" style="background: linear-gradient(135deg, hsl(38,60%,18%) 0%, hsl(32,52%,30%) 100%);"></div>
+                <div class="ig-post-overlay"></div>
+                <div class="ig-post-label">Dica de adestramento</div>
+              </div>
+              <div class="ig-post">
+                <div class="ig-post-bg" style="background: linear-gradient(135deg, hsl(155,38%,13%) 0%, hsl(145,32%,23%) 100%);"></div>
+                <div class="ig-post-overlay"></div>
+                <div class="ig-post-label">Sessão em grupo</div>
+              </div>
+              <div class="ig-post">
+                <div class="ig-post-bg" style="background: linear-gradient(135deg, hsl(270,38%,16%) 0%, hsl(260,32%,26%) 100%);"></div>
+                <div class="ig-post-overlay"></div>
+                <div class="ig-post-label">Resultado ✓</div>
+              </div>
+              <div class="ig-post">
+                <div class="ig-post-bg" style="background: linear-gradient(135deg, hsl(20,52%,18%) 0%, hsl(15,46%,28%) 100%);"></div>
+                <div class="ig-post-overlay"></div>
+                <div class="ig-post-label">Novo aluno</div>
+              </div>
+              <div class="ig-post">
+                <div class="ig-post-bg" style="background: linear-gradient(135deg, hsl(5,34%,12%) 0%, hsl(5,38%,24%) 100%);"></div>
+                <div class="ig-post-overlay"></div>
+                <div class="ig-post-label">AdestraCão Mogi</div>
+              </div>
+              <div class="ig-post">
+                <div class="ig-post-bg" style="background: linear-gradient(135deg, hsl(48,50%,16%) 0%, hsl(42,46%,28%) 100%);"></div>
+                <div class="ig-post-overlay"></div>
+                <div class="ig-post-label">Agende sua aula</div>
+              </div>
+            </div>
+            <div class="ig-footer">
+              <span>6 posts · feed Instagram</span>
+              <span>PNG 1080×1080</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       03 · INVESTIMENTO
+       ════════════════════════════════════ -->
+  <section class="section" id="investimento">
+    <div class="container-sm">
+
+      <div class="eyebrow reveal" style="justify-content: center;">
+        <span class="eyebrow-num">03</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Investimento</span>
+      </div>
+      <h2 class="section-title reveal d1" style="text-align: center;">
+        Seu <span class="text-gradient">investimento</span>
+      </h2>
+      <p class="section-text reveal d2" style="text-align: center; margin: 0 auto 3rem;">
+        Os serviços podem ser contratados separadamente ou em conjunto, com flexibilidade de parcelamento em até 10× sem juros.
+      </p>
+
+      <div class="invest-card reveal d3">
+        <table class="invest-table">
+          <thead class="it-head">
+            <tr>
+              <th>Serviço</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="it-row">
+              <td>
+                <div><span class="it-tag it-tag-1">01</span><span class="it-service">Link na Bio</span></div>
+                <div class="it-desc">Página personalizada com todos os canais centralizados</div>
+              </td>
+              <td class="it-val">R$ 550,00</td>
+            </tr>
+            <tr class="it-row">
+              <td>
+                <div><span class="it-tag it-tag-2">02</span><span class="it-service">6 Posts no Instagram</span></div>
+                <div class="it-desc">Artes prontas para publicação em alta resolução</div>
+              </td>
+              <td class="it-val">R$ 333,70</td>
+            </tr>
+            <tr class="it-total-row">
+              <td class="it-total-label">Investimento Total</td>
+              <td class="it-total-val">R$ 883,70</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pay-options reveal d4">
+        <div class="pay-card">
+          <div class="pay-card-label">Link na Bio</div>
+          <div class="pay-main">10× de R$ 55,00</div>
+          <div class="pay-alt">ou à vista R$ 550,00</div>
+        </div>
+        <div class="pay-card">
+          <div class="pay-card-label">6 Posts Instagram</div>
+          <div class="pay-main">10× de R$ 33,37</div>
+          <div class="pay-alt">ou à vista R$ 333,70</div>
+        </div>
+      </div>
+
+      <div class="pay-combo reveal d5">
+        <div class="pay-combo-left">
+          <div class="pay-card-label">Combo completo</div>
+          <div class="pay-main">10× de R$ 88,37</div>
+        </div>
+        <div class="pay-combo-right">
+          <div class="pay-alt">ou à vista R$ 883,70</div>
+        </div>
+      </div>
+
+      <div class="pay-note reveal d6">
+        Os serviços podem ser contratados separadamente ou em conjunto. O parcelamento é em até 10× sem juros. Pagamento: 50% na aprovação da proposta e 50% na entrega do projeto.
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       CTA / FECHAMENTO
+       ════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="cta-inner container-sm">
+      <div class="eyebrow reveal" style="justify-content: center;">
+        <span class="eyebrow-num">04</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Próximo passo</span>
+      </div>
+      <h2 class="cta-title reveal d1">
+        Pronto para dar o<br><span class="text-gradient">próximo passo?</span>
+      </h2>
+      <p class="cta-text reveal d2">
+        Aceite esta proposta e vamos começar a construir a presença digital do AdestraCão Mogi — com identidade, estratégia e resultado.
+      </p>
+      <a href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1%21%20Quero%20fechar%20a%20proposta%20para%20o%20AdestraCão%20Mogi%20%F0%9F%90%BE" class="btn-primary reveal d3" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Fechar proposta
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p class="footer-text">© 2026 VS Experience · Proposta confidencial para AdestraCão Mogi</p>
+  </div>
+</footer>
+
+<script>
+  const prog = document.getElementById('read-progress');
+  const hdr  = document.getElementById('hdr');
+
+  window.addEventListener('scroll', () => {
+    const h   = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    prog.style.width = pct + '%';
+    hdr.classList.toggle('scrolled', h.scrollTop > 20);
+  }, { passive: true });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
