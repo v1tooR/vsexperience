@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial · Isadora Diniz · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS — VS Experience Design System
+       ============================================ */
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff-body:     'Space Grotesk', sans-serif;
+
+      /* Service accent colors */
+      --s1: hsl(24, 72%, 56%);   /* amber/brick  — Landing Page  */
+      --s2: hsl(200, 60%, 48%);  /* steel blue   — Parceria      */
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      transition: width 0.08s linear;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900; padding: 0 2rem; height: 64px;
+      display: flex; align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: flex; align-items: center; gap: 1.25rem; min-width: 0;
+    }
+    .h-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 0.9375rem; letter-spacing: -0.01em;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem; color: var(--text-muted);
+      padding: 0.25rem 0.75rem; border: 1px solid var(--border);
+      border-radius: 100px; white-space: nowrap; margin-right: auto;
+    }
+    .h-nav { display: flex; align-items: center; gap: 1.5rem; }
+    .h-nav a {
+      font-size: 0.8125rem; font-weight: 500; color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    @media (max-width: 860px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container    { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+    .container-sm { max-width: 840px;  margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+
+    /* ============================================
+       SECTIONS & DIVIDERS
+       ============================================ */
+    .section { padding: clamp(5rem, 10vw, 8rem) 0; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
+    }
+
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .eyebrow-num {
+      font-family: var(--ff-body); font-size: 0.75rem; font-weight: 700;
+      color: var(--rose-light); opacity: 0.65; letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line { height: 1px; width: 2.5rem; background: var(--gradient); opacity: 0.45; }
+    .eyebrow-label {
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem); font-weight: 700;
+      line-height: 1.13; letter-spacing: -0.025em;
+      margin-bottom: 1.25rem; overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); color: var(--text-2);
+      line-height: 1.75; max-width: 64ch; overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh; display: flex; flex-direction: column;
+      justify-content: center; padding-top: 64px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 5% 20%, hsla(5, 38%, 18%, 0.3) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 40% at 90% 75%, hsla(24, 60%, 18%, 0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-right  { display: none; }
+    }
+    .conf-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.6875rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--rose-light); margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--rose); animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.75); }
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem); font-weight: 700;
+      line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.6vw, 1.125rem); color: var(--text-2);
+      line-height: 1.7; margin-bottom: 2.5rem; max-width: 52ch;
+    }
+    .hero-services { display: flex; flex-direction: column; gap: 0.625rem; }
+    .hs-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.875rem; color: var(--text-2);
+    }
+    .hs-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .hs-dot-1 { background: var(--s1); }
+    .hs-dot-2 { background: var(--s2); }
+
+    /* ============================================
+       PROPOSAL PANEL (hero right)
+       ============================================ */
+    .proposal-panel {
+      background: var(--bg-2); border: 1px solid var(--border-2);
+      border-radius: var(--radius-xl); padding: 1.75rem;
+      position: relative; overflow: hidden;
+    }
+    .proposal-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, hsla(5, 38%, 30%, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .pp-header {
+      display: flex; align-items: center; gap: 0.875rem;
+      margin-bottom: 1.5rem; padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pp-icon {
+      width: 40px; height: 40px; border-radius: var(--radius);
+      background: var(--gradient); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .pp-title  { font-size: 0.9375rem; font-weight: 600; }
+    .pp-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .pp-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; border-bottom: 1px solid var(--border); gap: 1rem;
+    }
+    .pp-service-info { display: flex; align-items: center; gap: 0.875rem; }
+    .pp-num {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em;
+      font-feature-settings: 'tnum'; padding: 0.2rem 0.55rem;
+      border-radius: 4px; flex-shrink: 0;
+    }
+    .pp-num-1 { background: hsla(24, 72%, 56%, 0.14); color: var(--s1); }
+    .pp-num-2 { background: hsla(200, 60%, 48%, 0.14); color: var(--s2); }
+    .pp-service-name { font-size: 0.9375rem; font-weight: 500; }
+    .pp-price {
+      font-size: 1rem; font-weight: 700; letter-spacing: -0.02em;
+      font-feature-settings: 'tnum'; color: var(--text); white-space: nowrap;
+    }
+    .pp-divider { height: 1px; background: var(--border-2); margin: 0.25rem 0; }
+    .pp-total-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0 0; gap: 1rem;
+    }
+    .pp-total-label { font-size: 0.8125rem; font-weight: 600; color: var(--text-2); }
+    .pp-total-val {
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pp-install-note { font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.5rem; text-align: right; }
+    .pp-partner-note {
+      margin-top: 1rem; padding: 0.75rem 1rem;
+      border-radius: var(--radius); background: var(--surface);
+      border: 1px solid var(--border); border-left: 2px solid var(--s2);
+      font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* ============================================
+       SERVICE BAND
+       ============================================ */
+    .service-band {
+      display: inline-flex; align-items: center; gap: 0.875rem;
+      margin-bottom: 2.5rem; padding: 0.625rem 1.25rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+    .sb-num {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+    }
+    .sb-num-1 { background: hsla(24, 72%, 56%, 0.14); color: var(--s1); }
+    .sb-num-2 { background: hsla(200, 60%, 48%, 0.14); color: var(--s2); }
+    .sb-name  { font-size: 0.8125rem; font-weight: 600; color: var(--text-2); }
+    .sb-sep   { width: 1px; height: 12px; background: var(--border-2); }
+    .sb-price { font-size: 0.875rem; font-weight: 700; font-feature-settings: 'tnum'; }
+    .sb-price-1 { color: var(--s1); }
+    .sb-price-2 { color: var(--s2); }
+
+    /* ============================================
+       TWO-COLUMN LAYOUT
+       ============================================ */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    @media (max-width: 860px) {
+      .two-col { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* ============================================
+       FEATURE LIST
+       ============================================ */
+    .feature-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .f-item { display: flex; align-items: flex-start; gap: 0.875rem; }
+    .f-check {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; margin-top: 0.125rem;
+    }
+    .f-check-1 { background: hsla(24, 72%, 56%, 0.12); }
+    .f-check svg { width: 10px; height: 10px; }
+    .f-check-1 svg { stroke: var(--s1); }
+    .f-text { font-size: 0.9375rem; color: var(--text-2); line-height: 1.5; }
+
+    /* ============================================
+       BROWSER MOCK — construction landing page
+       ============================================ */
+    .browser-frame {
+      width: 100%; border-radius: var(--radius-xl); overflow: hidden;
+      border: 1px solid var(--border-2);
+      box-shadow: 0 40px 80px hsla(0,0%,0%,0.55), 0 0 0 1px hsla(0,0%,100%,0.04) inset;
+    }
+    .browser-bar {
+      background: hsl(5, 8%, 7%); border-bottom: 1px solid var(--border);
+      padding: 0.5rem 0.875rem; display: flex; align-items: center; gap: 0.75rem;
+    }
+    .browser-dots { display: flex; gap: 0.35rem; flex-shrink: 0; }
+    .bd { width: 8px; height: 8px; border-radius: 50%; }
+    .bd-r { background: hsl(5, 70%, 50%); opacity: 0.7; }
+    .bd-y { background: hsl(38, 85%, 55%); opacity: 0.7; }
+    .bd-g { background: hsl(130, 55%, 45%); opacity: 0.7; }
+    .browser-url {
+      flex: 1; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 0.3rem; padding: 0.2rem 0.625rem;
+      font-size: 0.625rem; color: var(--text-muted);
+    }
+    /* Nav mock */
+    .cst-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border);
+      background: hsl(5, 8%, 6%);
+    }
+    .cst-logo-block { display: flex; flex-direction: column; gap: 0.2rem; }
+    .cst-logo-line  { border-radius: 3px; background: var(--surface-2); }
+    .cst-nav-links  { display: flex; align-items: center; gap: 0.625rem; }
+    .cst-nav-link   { width: 28px; height: 5px; border-radius: 3px; background: var(--surface); }
+    .cst-cta-btn    { width: 52px; height: 18px; border-radius: 4px; background: var(--gradient); opacity: 0.7; }
+    /* Hero mock */
+    .cst-hero {
+      padding: 1.5rem 1.25rem 1.25rem;
+      background: linear-gradient(160deg, hsl(24, 14%, 8%) 0%, hsl(5, 10%, 6%) 100%);
+      position: relative; overflow: hidden;
+    }
+    .cst-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(hsla(5,8%,100%,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5,8%,100%,0.018) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .cst-hero-inner { position: relative; z-index: 1; }
+    .cst-badge {
+      display: inline-block; font-size: 0.4375rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.625rem;
+      background: hsla(24, 72%, 30%, 0.4); border: 1px solid hsla(24, 72%, 56%, 0.25);
+      color: hsl(24, 72%, 72%);
+    }
+    .cst-line { border-radius: 4px; margin-bottom: 0.35rem; }
+    .cst-btns { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    .cst-btn-p { width: 64px; height: 20px; border-radius: 4px; background: var(--gradient); opacity: 0.75; }
+    .cst-btn-g { width: 64px; height: 20px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border-2); }
+    /* Services mock */
+    .cst-services {
+      padding: 1rem 1.25rem; border-top: 1px solid var(--border);
+      background: hsl(5, 8%, 7%);
+    }
+    .cst-section-label {
+      font-size: 0.4375rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;
+    }
+    .cst-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .cst-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.625rem;
+    }
+    .cst-card-bar { width: 16px; height: 2px; border-radius: 1px; background: var(--gradient); margin-bottom: 0.4rem; }
+    .cst-card-t   { height: 5px; border-radius: 3px; background: var(--surface-2); margin-bottom: 0.3rem; }
+    .cst-card-l   { height: 4px; border-radius: 3px; background: var(--surface); }
+    /* Portfolio mock */
+    .cst-portfolio {
+      padding: 1rem 1.25rem 1.25rem; border-top: 1px solid var(--border);
+      background: hsl(5, 8%, 7%);
+    }
+    .cst-port-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.375rem; margin-top: 0.5rem; }
+    .cst-port-item {
+      aspect-ratio: 4/3; border-radius: 5px; overflow: hidden; position: relative;
+    }
+    .cst-port-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+    }
+
+    /* ============================================
+       PARTNERSHIP CARDS
+       ============================================ */
+    .partner-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    @media (max-width: 640px) { .partner-grid { grid-template-columns: 1fr; } }
+    .partner-card {
+      padding: 1.5rem; border-radius: var(--radius-xl);
+      background: var(--surface); border: 1px solid var(--border);
+      position: relative; overflow: hidden; transition: border-color 0.25s;
+    }
+    .partner-card:hover { border-color: var(--border-2); }
+    .partner-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: var(--gradient); opacity: 0; transition: opacity 0.25s;
+    }
+    .partner-card:hover::before { opacity: 0.5; }
+    .partner-card-label {
+      font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;
+    }
+    .partner-card-title {
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      line-height: 1.3; margin-bottom: 0.5rem; letter-spacing: -0.015em;
+    }
+    .partner-card-desc {
+      font-size: 0.8125rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem;
+    }
+    .partner-card-price {
+      font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .partner-card-price-note { font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .partner-card-accent {
+      border-color: hsla(200, 60%, 48%, 0.2);
+    }
+    .partner-card-accent::before {
+      background: linear-gradient(90deg, transparent, var(--s2), transparent);
+      opacity: 0.4;
+    }
+    .partner-card-accent:hover { border-color: hsla(200, 60%, 48%, 0.35); }
+
+    /* ============================================
+       INVESTMENT TABLE
+       ============================================ */
+    .invest-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .invest-table { width: 100%; border-collapse: collapse; }
+    .it-head { border-bottom: 1px solid var(--border-2); }
+    .it-head th {
+      padding: 0.875rem 1.5rem; text-align: left;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .it-head th:last-child { text-align: right; }
+    .it-row td {
+      padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--border);
+      font-size: 0.9375rem; vertical-align: top;
+    }
+    .it-row:last-of-type td { border-bottom: none; }
+    .it-tag {
+      display: inline-block; font-size: 0.6875rem; font-weight: 700;
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    .it-tag-1 { background: hsla(24, 72%, 56%, 0.12); color: var(--s1); }
+    .it-service { font-weight: 500; }
+    .it-desc { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .it-val {
+      font-weight: 700; text-align: right;
+      font-feature-settings: 'tnum'; color: var(--text); white-space: nowrap;
+    }
+    .it-total-row { background: var(--surface); border-top: 1px solid var(--border-2); }
+    .it-total-row td { padding: 1.25rem 1.5rem; }
+    .it-total-label { font-size: 0.875rem; font-weight: 700; }
+    .it-total-val {
+      font-size: 1.5rem; font-weight: 700; text-align: right;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       PAYMENT OPTIONS
+       ============================================ */
+    .pay-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    @media (max-width: 600px) { .pay-options { grid-template-columns: 1fr; } }
+    .pay-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.25rem 1.375rem;
+    }
+    .pay-card-label {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;
+    }
+    .pay-main { font-size: 1.0625rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .pay-alt  { font-size: 0.75rem; color: var(--text-muted); }
+    .pay-note {
+      font-size: 0.8125rem; color: var(--text-muted); padding: 1rem 1.25rem;
+      border: 1px solid var(--border); border-left: 2px solid hsla(5, 38%, 45%, 0.4);
+      border-radius: var(--radius); background: var(--surface); line-height: 1.7;
+    }
+
+    /* ============================================
+       CTA SECTION
+       ============================================ */
+    .cta-section {
+      padding: clamp(5rem, 10vw, 8rem) 0;
+      text-align: center; position: relative;
+    }
+    .cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, hsla(5, 38%, 18%, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-title {
+      font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 1.25rem;
+    }
+    .cta-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); color: var(--text-2);
+      max-width: 52ch; margin: 0 auto 2.5rem; line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 0.9375rem 2.25rem; border-radius: 100px;
+      font-family: var(--ff-body); font-size: 0.9375rem; font-weight: 700;
+      letter-spacing: -0.01em; cursor: pointer;
+      background: var(--gradient); color: white; border: none;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+    .footer-inner {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-size: 0.9375rem; font-weight: 700;
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;
+    }
+    .footer-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+    .footer-tagline { font-size: 0.75rem; color: var(--text-muted); max-width: 36ch; line-height: 1.5; }
+    .footer-meta p  { font-size: 0.75rem; color: var(--text-muted); line-height: 1.75; text-align: right; }
+    .footer-copy    { font-size: 0.6875rem; color: var(--text-muted); opacity: 0.4; }
+    @media (max-width: 640px) {
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<header id="hdr">
+  <div class="header-inner">
+    <div class="h-brand">
+      <div class="h-brand-dot"></div>
+      VS Experience
+    </div>
+    <div class="h-client-tag">Isadora Diniz · Construtora</div>
+    <nav class="h-nav">
+      <a href="#landing">Landing Page</a>
+      <a href="#investimento">Investimento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ════════════════════════════════════
+       HERO
+       ════════════════════════════════════ -->
+  <section class="hero section">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-inner container">
+      <div class="hero-layout">
+
+        <div>
+          <div class="conf-tag reveal">
+            <div class="conf-dot"></div>
+            Proposta Comercial · 2026
+          </div>
+          <h1 class="hero-title reveal d1">
+            Uma presença digital que<br><span class="text-gradient">atrai e converte</span>
+          </h1>
+          <p class="hero-sub reveal d2">
+            Uma proposta estratégica para posicionar a construtora no digital — com uma landing page que transmite credibilidade, apresenta os diferenciais da empresa e converte visitantes em contatos comerciais via WhatsApp.
+          </p>
+          <div class="hero-services reveal d3">
+            <div class="hs-item">
+              <span class="hs-dot hs-dot-1"></span>
+              Landing Page Institucional — R$ 1.600
+            </div>
+            <div class="hs-item">
+              <span class="hs-dot hs-dot-1"></span>
+              Parcelamento em até 10x de R$ 166,69
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right reveal d2">
+          <div class="proposal-panel">
+            <div class="pp-header">
+              <div class="pp-icon">🏗️</div>
+              <div>
+                <div class="pp-title">Isadora Diniz · Construtora</div>
+                <div class="pp-subtitle">Proposta · VS Experience · 2026</div>
+              </div>
+            </div>
+
+            <div class="pp-row">
+              <div class="pp-service-info">
+                <span class="pp-num pp-num-1">01</span>
+                <span class="pp-service-name">Landing Page Institucional</span>
+              </div>
+              <span class="pp-price">R$ 1.600</span>
+            </div>
+
+            <div class="pp-divider"></div>
+
+            <div class="pp-total-row">
+              <span class="pp-total-label">Investimento total</span>
+              <span class="pp-total-val">R$ 1.600,00</span>
+            </div>
+            <div class="pp-install-note">Pix · ou parcelado em até 10x de R$ 166,69</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       01 · LANDING PAGE INSTITUCIONAL
+       ════════════════════════════════════ -->
+  <section class="section" id="landing">
+    <div class="container">
+
+      <div class="service-band reveal">
+        <span class="sb-num sb-num-1">01</span>
+        <span class="sb-name">Landing Page Institucional</span>
+        <span class="sb-sep"></span>
+        <span class="sb-price sb-price-1">R$ 1.600,00</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-num">01</span>
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-label">Serviço</span>
+          </div>
+          <h2 class="section-title reveal d1">
+            Credibilidade digital que<br><span class="text-gradient">gera novos clientes</span>
+          </h2>
+          <p class="section-text reveal d2">
+            Uma landing page completa para a construtora — com foco em transmitir profissionalismo, mostrar os diferenciais e transformar visitantes em leads qualificados via WhatsApp e formulário de contato.
+          </p>
+          <ul class="feature-list">
+            <li class="f-item reveal d3">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Design exclusivo alinhado à identidade visual da construtora</span>
+            </li>
+            <li class="f-item reveal d3">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Desenvolvimento responsivo para mobile, tablet e desktop</span>
+            </li>
+            <li class="f-item reveal d4">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Seções estratégicas: apresentação, serviços, portfólio, diferenciais e depoimentos</span>
+            </li>
+            <li class="f-item reveal d4">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Integração com WhatsApp para captação direta de leads</span>
+            </li>
+            <li class="f-item reveal d5">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">Formulário de contato para solicitação de orçamentos</span>
+            </li>
+            <li class="f-item reveal d5">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">SEO técnico básico — meta tags, títulos e desempenho inicial</span>
+            </li>
+            <li class="f-item reveal d6">
+              <div class="f-check f-check-1">
+                <svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="f-text">1 rodada de revisão inclusa · entrega em até 15 dias úteis</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Browser mock: construction landing page wireframe -->
+        <div class="reveal d2">
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <span class="bd bd-r"></span>
+                <span class="bd bd-y"></span>
+                <span class="bd bd-g"></span>
+              </div>
+              <div class="browser-url">isadoradiniz.com.br</div>
+            </div>
+            <!-- Nav -->
+            <div class="cst-nav">
+              <div class="cst-logo-block">
+                <div class="cst-logo-line" style="width:80px;height:6px"></div>
+                <div class="cst-logo-line" style="width:52px;height:4px;opacity:0.5;margin-top:3px"></div>
+              </div>
+              <div class="cst-nav-links">
+                <div class="cst-nav-link"></div>
+                <div class="cst-nav-link"></div>
+                <div class="cst-nav-link"></div>
+                <div class="cst-cta-btn"></div>
+              </div>
+            </div>
+            <!-- Hero -->
+            <div class="cst-hero">
+              <div class="cst-hero-grid"></div>
+              <div class="cst-hero-inner">
+                <div class="cst-badge">Construtora · Qualidade e solidez</div>
+                <div class="cst-line" style="width:78%;height:9px;background:var(--surface-2)"></div>
+                <div class="cst-line" style="width:60%;height:9px;background:var(--surface);opacity:.7"></div>
+                <div style="height:0.375rem"></div>
+                <div class="cst-line" style="width:88%;height:4px;background:var(--surface)"></div>
+                <div class="cst-line" style="width:70%;height:4px;background:var(--surface)"></div>
+                <div class="cst-btns">
+                  <div class="cst-btn-p"></div>
+                  <div class="cst-btn-g"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Services -->
+            <div class="cst-services">
+              <div class="cst-section-label">Serviços</div>
+              <div class="cst-grid-3">
+                <div class="cst-card">
+                  <div class="cst-card-bar"></div>
+                  <div class="cst-card-t" style="width:70%"></div>
+                  <div class="cst-card-l" style="width:90%"></div>
+                  <div class="cst-card-l" style="width:65%;margin-top:2px"></div>
+                </div>
+                <div class="cst-card">
+                  <div class="cst-card-bar"></div>
+                  <div class="cst-card-t" style="width:80%"></div>
+                  <div class="cst-card-l" style="width:88%"></div>
+                  <div class="cst-card-l" style="width:55%;margin-top:2px"></div>
+                </div>
+                <div class="cst-card">
+                  <div class="cst-card-bar"></div>
+                  <div class="cst-card-t" style="width:60%"></div>
+                  <div class="cst-card-l" style="width:92%"></div>
+                  <div class="cst-card-l" style="width:70%;margin-top:2px"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Portfolio -->
+            <div class="cst-portfolio">
+              <div class="cst-section-label">Portfólio</div>
+              <div class="cst-port-grid">
+                <div class="cst-port-item">
+                  <div style="position:absolute;inset:0;background:linear-gradient(135deg,hsl(24,20%,14%) 0%,hsl(28,15%,22%) 100%)"></div>
+                  <div class="cst-port-overlay"></div>
+                </div>
+                <div class="cst-port-item">
+                  <div style="position:absolute;inset:0;background:linear-gradient(135deg,hsl(200,18%,12%) 0%,hsl(205,14%,20%) 100%)"></div>
+                  <div class="cst-port-overlay"></div>
+                </div>
+                <div class="cst-port-item">
+                  <div style="position:absolute;inset:0;background:linear-gradient(135deg,hsl(5,12%,12%) 0%,hsl(8,10%,20%) 100%)"></div>
+                  <div class="cst-port-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       02 · INVESTIMENTO
+       ════════════════════════════════════ -->
+  <section class="section" id="investimento">
+    <div class="container-sm">
+
+      <div class="eyebrow reveal" style="justify-content: center;">
+        <span class="eyebrow-num">02</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Investimento</span>
+      </div>
+      <h2 class="section-title reveal d1" style="text-align: center;">
+        Seu <span class="text-gradient">investimento</span>
+      </h2>
+      <p class="section-text reveal d2" style="text-align: center; margin: 0 auto 3rem;">
+        Pagamento no Pix ou parcelado em até 10x no cartão de crédito.
+      </p>
+
+      <div class="invest-card reveal d3">
+        <table class="invest-table">
+          <thead class="it-head">
+            <tr>
+              <th>Serviço</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="it-row">
+              <td>
+                <div><span class="it-tag it-tag-1">01</span><span class="it-service">Landing Page Institucional</span></div>
+                <div class="it-desc">Design exclusivo · responsivo · WhatsApp · formulário · SEO básico · 1 revisão</div>
+              </td>
+              <td class="it-val">R$ 1.600,00</td>
+            </tr>
+            <tr class="it-total-row">
+              <td class="it-total-label">Investimento Total</td>
+              <td class="it-total-val">R$ 1.600,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pay-options reveal d4">
+        <div class="pay-card">
+          <div class="pay-card-label">Pix · à vista</div>
+          <div class="pay-main">R$ 1.600,00</div>
+          <div class="pay-alt">50% na aprovação · 50% na entrega</div>
+        </div>
+        <div class="pay-card">
+          <div class="pay-card-label">Cartão de crédito · até 10x</div>
+          <div class="pay-main">10x de R$ 166,69</div>
+          <div class="pay-alt">Total R$ 1.666,90 com taxas</div>
+        </div>
+      </div>
+
+      <div class="pay-note reveal d5">
+        Pix ou transferência: 50% para iniciar o projeto e 50% na entrega final. Parcelamento disponível em até 10x no cartão via link de cobrança. Entrega estimada em até 15 dias úteis após recebimento dos materiais — logotipo, textos e fotos.
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════
+       CTA / FECHAMENTO
+       ════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="cta-inner container-sm">
+      <div class="eyebrow reveal" style="justify-content: center;">
+        <span class="eyebrow-num">03</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Próximo passo</span>
+      </div>
+      <h2 class="cta-title reveal d1">
+        Pronto para dar o<br><span class="text-gradient">próximo passo?</span>
+      </h2>
+      <p class="cta-text reveal d2">
+        Aceite esta proposta e vamos construir a presença digital da construtora — com design, estratégia e foco em resultado.
+      </p>
+      <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Recebi%20a%20proposta%20e%20quero%20fechar%20a%20landing%20page%20da%20construtora." class="btn-primary reveal d3" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Fechar proposta
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-dot"></div>
+          VS Experience
+        </div>
+        <div class="footer-tagline">Desenvolvimento Web, Sites, Landing Pages e Soluções Digitais</div>
+      </div>
+      <div class="footer-meta">
+        <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+        <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+        <p class="footer-copy">© 2026 VS Experience · Proposta confidencial para Isadora Diniz</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const prog = document.getElementById('read-progress');
+  const hdr  = document.getElementById('hdr');
+
+  window.addEventListener('scroll', () => {
+    const h   = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    prog.style.width = pct + '%';
+    hdr.classList.toggle('scrolled', h.scrollTop > 20);
+  }, { passive: true });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
