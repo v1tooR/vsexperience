@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mockup Test · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === Design Tokens — mirrors VS Experience === */
+    :root {
+      --bg:            hsl(0, 0%, 6%);
+      --fg:            hsl(0, 0%, 97%);
+      --card:          hsl(0, 0%, 9%);
+      --primary:       hsl(5, 38%, 22%);
+      --primary-light: hsl(5, 38%, 45%);
+      --secondary:     hsl(0, 0%, 12%);
+      --muted:         hsl(0, 0%, 60%);
+      --border:        hsl(0, 0%, 18%);
+      --glass-bg:      hsla(0, 0%, 100%, 0.03);
+      --glass-border:  hsla(0, 0%, 100%, 0.08);
+      --radius:        1rem;
+      --radius-lg:     1.5rem;
+      --font:          'Space Grotesk', system-ui, sans-serif;
+      --grad-primary:  linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 5%; left: -250px;
+      width: 600px; height: 600px;
+      background: hsl(5, 60%, 30%);
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0; right: -200px;
+      width: 500px; height: 400px;
+      background: hsl(5, 65%, 35%);
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ======= Page Header ======= */
+    .page-header {
+      margin-bottom: 4rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 2.5rem;
+    }
+
+    .page-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      opacity: 0.6;
+    }
+
+    .page-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+    }
+
+    .page-subtitle {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ======= Section ======= */
+    .test-section { margin-bottom: 4.5rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    .badge-new     { background: var(--grad-primary); color: white; }
+    .badge-current { background: hsla(0,0%,100%,0.07); color: var(--muted); border: 1px solid var(--glass-border); }
+
+    .section-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ================================================
+       FEATURED MOCKUP CARD (Concept A)
+       ================================================ */
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        0 8px 40px hsla(0,0%,0%,0.45),
+        inset 0 1px 0 var(--glass-border);
+      overflow: hidden;
+      transition: transform 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-5px);
+      border-color: hsla(5, 38%, 35%, 0.35);
+      box-shadow:
+        0 20px 60px hsla(0,0%,0%,0.5),
+        0 0 0 1px hsla(5, 38%, 35%, 0.15),
+        inset 0 1px 0 var(--glass-border);
+    }
+
+    /* --- Browser Mockup Panel --- */
+    .mockup-panel {
+      position: relative;
+      background: hsl(0, 0%, 10%);
+      border-right: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .browser-chrome {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.8rem;
+      background: hsl(0, 0%, 13%);
+      border-bottom: 1px solid hsl(0, 0%, 17%);
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+
+    .browser-url {
+      flex: 1;
+      background: hsl(0, 0%, 9%);
+      border: 1px solid hsl(0, 0%, 19%);
+      border-radius: 5px;
+      padding: 0.22rem 0.55rem;
+      font-size: 0.68rem;
+      color: hsl(0, 0%, 50%);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-width: 0;
+    }
+
+    .url-lock { flex-shrink: 0; opacity: 0.45; }
+
+    .url-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* The scrollable viewport window */
+    .mockup-viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+      min-height: 360px;
+    }
+
+    .mockup-screenshot {
+      width: 100%;
+      display: block;
+      transform-origin: top center;
+      will-change: transform;
+      /* No transition here — JS lerps smoothly */
+    }
+
+    /* Scan-line cursor */
+    .scan-line {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1.5px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        hsla(5, 70%, 60%, 0.0) 15%,
+        hsla(5, 70%, 60%, 0.7) 50%,
+        hsla(5, 70%, 60%, 0.0) 85%,
+        transparent 100%
+      );
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s;
+      z-index: 15;
+    }
+
+    .mockup-panel:hover .scan-line { opacity: 1; }
+
+    /* Bottom gradient fade so the image doesn't hard-clip */
+    .mockup-viewport::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 100px;
+      background: linear-gradient(to top, hsl(0, 0%, 10%) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Scrollbar track */
+    .scroll-track {
+      position: absolute;
+      right: 5px; top: 6px; bottom: 6px;
+      width: 3px;
+      background: hsla(0,0%,100%,0.06);
+      border-radius: 3px;
+      z-index: 20;
+    }
+
+    .scroll-thumb {
+      position: absolute;
+      left: 0; right: 0;
+      background: var(--grad-primary);
+      border-radius: 3px;
+      top: 0;
+      height: 40px;
+      transition: top 0.08s linear;
+    }
+
+    /* "Move cursor" hint */
+    .mockup-hint {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: hsla(0, 0%, 0%, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 0.28rem 0.9rem;
+      font-size: 0.63rem;
+      color: hsl(0, 0%, 55%);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 30;
+      opacity: 1;
+      transition: opacity 0.4s;
+    }
+
+    .featured-card:hover .mockup-hint { opacity: 0; }
+
+    /* Auto-scroll progress pill */
+    .auto-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: hsla(0, 0%, 0%, 0.5);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 0.18rem 0.55rem;
+      font-size: 0.58rem;
+      color: hsl(0, 0%, 45%);
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      z-index: 30;
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .featured-card:hover .auto-badge { opacity: 0; }
+
+    /* --- Content Panel --- */
+    .featured-content {
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-top { flex: 1; }
+
+    .case-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: hsla(5, 38%, 22%, 0.2);
+      color: hsl(5, 38%, 62%);
+      font-size: 0.73rem;
+      font-weight: 500;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    .featured-content h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .case-detail {
+      font-size: 0.865rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+      line-height: 1.65;
+    }
+
+    .case-detail strong { color: var(--fg); }
+
+    .featured-divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: 1.5rem 0;
+    }
+
+    .featured-meta {
+      display: flex;
+      gap: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .meta-label {
+      font-size: 0.63rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: hsl(0, 0%, 40%);
+    }
+
+    .meta-value {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--grad-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 24px hsla(5, 38%, 22%, 0.55);
+      transform: scale(1.03);
+    }
+
+    .btn-icon {
+      width: 1rem; height: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover .btn-icon { transform: translateX(4px); }
+
+    /* ================================================
+       CURRENT CARD (Comparison)
+       ================================================ */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .case-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px hsla(0,0%,0%,0.3), inset 0 1px 0 var(--glass-border);
+      transition: all 0.5s ease;
+    }
+
+    .case-card:hover {
+      transform: translateY(-8px);
+      border-color: hsla(5, 38%, 22%, 0.3);
+    }
+
+    .case-image {
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--card) 100%);
+      overflow: hidden;
+    }
+
+    .case-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .case-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+    }
+
+    .case-focus, .case-deliverables, .case-impact {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-focus strong, .case-deliverables strong, .case-impact strong { color: var(--fg); }
+
+    .case-button { margin-top: 1.5rem; }
+
+    /* Ghost placeholder cards */
+    .card-ghost {
+      border-radius: var(--radius-lg);
+      border: 1px dashed hsla(0,0%,100%,0.06);
+      overflow: hidden;
+    }
+
+    .ghost-img {
+      aspect-ratio: 16 / 10;
+      background: hsla(0,0%,100%,0.02);
+    }
+
+    .ghost-content {
+      padding: 1.5rem;
+    }
+
+    .ghost-line {
+      height: 10px;
+      border-radius: 6px;
+      background: hsla(0,0%,100%,0.04);
+      margin-bottom: 0.75rem;
+    }
+
+    .ghost-line.short { width: 60%; }
+    .ghost-line.tall  { height: 14px; width: 40%; margin-bottom: 1rem; }
+
+    /* ======= Page divider ======= */
+    .page-divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: 3.5rem 0 4rem;
+    }
+
+    /* ======= Suggestion Box ======= */
+    .suggestions {
+      background: hsla(5, 38%, 14%, 0.15);
+      border: 1px solid hsla(5, 38%, 22%, 0.25);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-top: 3rem;
+    }
+
+    .suggestions h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .suggestion-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .suggestion-list li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.865rem;
+      color: hsl(0, 0%, 72%);
+      line-height: 1.55;
+    }
+
+    .sugg-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: hsla(5, 38%, 22%, 0.25);
+      color: var(--primary-light);
+      font-size: 0.65rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .sugg-strong { color: var(--fg); font-weight: 600; }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+
+      .mockup-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .mockup-viewport { min-height: 280px; }
+
+      .cards-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── Page Header ─────────────────────────────────── -->
+  <div class="page-header">
+    <div class="page-eyebrow">
+      <span class="eyebrow-dot"></span>
+      VS Experience · Teste de Componente
+    </div>
+    <h1 class="page-title">Mockup interativo nos cards de cases</h1>
+    <p class="page-subtitle">
+      Passe o cursor sobre o mockup de browser para navegar pela página do projeto.
+      Abaixo, o card atual para comparação.
+    </p>
+  </div>
+
+  <!-- ── SECTION 1: NEW CONCEPT ──────────────────────── -->
+  <div class="test-section">
+    <div class="section-header">
+      <span class="section-badge badge-new">Conceito novo</span>
+      <span class="section-desc">Featured card horizontal com preview interativo — mouse controla o scroll</span>
+    </div>
+
+    <article class="featured-card">
+
+      <!-- Browser Mockup Panel -->
+      <div class="mockup-panel" id="mockupPanel">
+        <div class="browser-chrome">
+          <div class="browser-dots">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+          </div>
+          <div class="browser-url">
+            <svg class="url-lock" width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1C8.68 1 6 3.68 6 7v1H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V10a2 2 0 00-2-2h-2V7c0-3.32-2.68-6-6-6zm0 2c2.21 0 4 1.79 4 4v1H8V7c0-2.21 1.79-4 4-4z"/>
+            </svg>
+            <span class="url-text">alugaaquimaquinas.com.br</span>
+          </div>
+        </div>
+
+        <div class="mockup-viewport" id="mockupViewport">
+          <div class="scan-line" id="scanLine"></div>
+
+          <img
+            src="assets/images/cases/alugaaqui-full.png"
+            alt="Aluga Aqui Máquinas — preview"
+            class="mockup-screenshot"
+            id="mockupShot"
+          />
+
+          <div class="scroll-track">
+            <div class="scroll-thumb" id="scrollThumb"></div>
+          </div>
+        </div>
+
+        <div class="auto-badge" id="autoBadge">Auto-scroll ativo</div>
+        <div class="mockup-hint">↕ Mova o cursor para navegar</div>
+      </div>
+
+      <!-- Content Panel -->
+      <div class="featured-content">
+        <div class="featured-top">
+          <span class="case-tag">Landing Page · VS Experience</span>
+          <h2>Aluga Aqui Máquinas</h2>
+
+          <p class="case-detail">
+            <strong>Foco:</strong> apresentar o portfólio de equipamentos com clareza e converter visitantes em pedidos de orçamento.
+          </p>
+          <p class="case-detail">
+            <strong>Entregas:</strong> landing page institucional, catálogo de máquinas, fluxo de orçamento e CTAs para contato imediato.
+          </p>
+          <p class="case-detail">
+            <strong>Impacto:</strong> clientes encontram o equipamento certo com mais facilidade e iniciam a locação com menos barreiras.
+          </p>
+
+          <div class="featured-divider"></div>
+
+          <div class="featured-meta">
+            <div class="meta-item">
+              <span class="meta-label">Tipo</span>
+              <span class="meta-value">Landing Page</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Segmento</span>
+              <span class="meta-value">Locação Industrial</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Por</span>
+              <span class="meta-value">VS Experience</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://alugaaquimaquinas.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Ver projeto ao vivo
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <!-- ── SECTION 2: CURRENT DESIGN ──────────────────── -->
+  <div class="test-section">
+    <div class="section-header">
+      <span class="section-badge badge-current">Card atual</span>
+      <span class="section-desc">Grid 3 colunas — design existente em vsexperience.com.br/#cases</span>
+    </div>
+
+    <div class="cards-row">
+
+      <!-- Real card -->
+      <article class="case-card">
+        <div class="case-image">
+          <img src="assets/images/cases/alugaaqui.webp" alt="Aluga Aqui Máquinas" class="case-img" />
+        </div>
+        <div class="case-content">
+          <span class="case-tag">Landing Page - VS Experience</span>
+          <h3>Aluga Aqui Máquinas</h3>
+          <p class="case-focus"><strong>Foco:</strong> apresentar o portfólio de equipamentos com clareza e converter visitantes em pedidos de orçamento.</p>
+          <p class="case-deliverables"><strong>Entregas:</strong> landing page, catálogo de máquinas, fluxo de orçamento e CTAs para contato.</p>
+          <p class="case-impact"><strong>Impacto:</strong> clientes encontram o equipamento certo com mais facilidade e iniciam a locação com menos barreiras.</p>
+          <a href="https://alugaaquimaquinas.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
+            Ver projeto
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Ghost placeholders — to show grid context -->
+      <div class="card-ghost">
+        <div class="ghost-img"></div>
+        <div class="ghost-content">
+          <div class="ghost-line short"></div>
+          <div class="ghost-line tall"></div>
+          <div class="ghost-line"></div>
+          <div class="ghost-line"></div>
+        </div>
+      </div>
+
+      <div class="card-ghost">
+        <div class="ghost-img"></div>
+        <div class="ghost-content">
+          <div class="ghost-line short"></div>
+          <div class="ghost-line tall"></div>
+          <div class="ghost-line"></div>
+          <div class="ghost-line"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Suggestions ──────────────────────────────────── -->
+  <div class="suggestions">
+    <h3>Melhores abordagens para implementação</h3>
+    <ul class="suggestion-list">
+      <li>
+        <span class="sugg-num">1</span>
+        <span>
+          <span class="sugg-strong">Screenshot de página inteira (recomendado):</span>
+          usar uma captura full-page (ex: extensão GoFullPage ou Playwright) em vez do thumbnail atual — a imagem ideal tem ~1920×7000 px. Com uma imagem longa, o scroll do mockup percorre seções reais do site.
+        </span>
+      </li>
+      <li>
+        <span class="sugg-num">2</span>
+        <span>
+          <span class="sugg-strong">Mouse-scroll interativo (este teste):</span>
+          cursor Y → posição no screenshot. Lerp suave no JS. Zero dependências, funciona offline, sem CORS. É a abordagem mais robusta para portfólio.
+        </span>
+      </li>
+      <li>
+        <span class="sugg-num">3</span>
+        <span>
+          <span class="sugg-strong">Auto-scroll com pausa no hover:</span>
+          scroll contínuo lento quando idle, controle pelo mouse quando o usuário entra. Já implementado neste teste — dá vida ao card mesmo sem interação.
+        </span>
+      </li>
+      <li>
+        <span class="sugg-num">4</span>
+        <span>
+          <span class="sugg-strong">iframe embed (alternativa):</span>
+          incorporar o site real via iframe para interação completa. Problema: maioria dos sites bloqueia com <code style="font-family:monospace;font-size:0.8em;color:inherit;">X-Frame-Options</code>. Aluga Aqui provavelmente bloqueia. Não recomendado para produção.
+        </span>
+      </li>
+      <li>
+        <span class="sugg-num">5</span>
+        <span>
+          <span class="sugg-strong">Click-to-expand lightbox:</span>
+          card menor + clique abre modal com o mockup em tamanho maior. Boa alternativa para a grade de 3 colunas sem alterar o layout existente.
+        </span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  const viewport  = document.getElementById('mockupViewport');
+  const shot      = document.getElementById('mockupShot');
+  const scanLine  = document.getElementById('scanLine');
+  const thumb     = document.getElementById('scrollThumb');
+  const autoBadge = document.getElementById('autoBadge');
+
+  let isHovering  = false;
+  let currentY    = 0;
+  let targetY     = 0;
+  let autoDir     = 1;        // 1 = scrolling down, -1 = up
+  let autoSpeed   = 0.6;      // px per frame
+  let rafId       = null;
+
+  function scrollRange() {
+    return Math.max(0, shot.offsetHeight - viewport.clientHeight);
+  }
+
+  function thumbSize() {
+    const vH = viewport.clientHeight;
+    const iH  = shot.offsetHeight || vH;
+    return Math.max(20, (vH / iH) * vH);
+  }
+
+  function updateThumb(progress) {
+    const vH    = viewport.clientHeight;
+    const tH    = thumbSize();
+    const maxTop = vH - tH - 12;
+    thumb.style.height = tH + 'px';
+    thumb.style.top    = (progress * maxTop + 6) + 'px';
+  }
+
+  function loop() {
+    if (isHovering) {
+      // Smooth follow mouse
+      currentY += (targetY - currentY) * 0.1;
+    } else {
+      // Auto-scroll
+      currentY += autoDir * autoSpeed;
+      const range = scrollRange();
+      if (currentY >= range) { currentY = range; autoDir = -1; }
+      if (currentY <= 0)     { currentY = 0;     autoDir =  1; }
+      targetY = currentY;
+    }
+
+    shot.style.transform = `translateY(-${currentY}px)`;
+    const progress = scrollRange() > 0 ? currentY / scrollRange() : 0;
+    updateThumb(progress);
+
+    rafId = requestAnimationFrame(loop);
+  }
+
+  // Start loop after image loads (needs real height)
+  shot.addEventListener('load', () => {
+    updateThumb(0);
+    loop();
+  });
+
+  // If image already cached
+  if (shot.complete && shot.naturalHeight > 0) {
+    updateThumb(0);
+    loop();
+  }
+
+  viewport.addEventListener('mouseenter', () => {
+    isHovering = true;
+    autoBadge.style.opacity = '0';
+  });
+
+  viewport.addEventListener('mouseleave', () => {
+    isHovering = false;
+    scanLine.style.top = '-10px';
+    autoBadge.style.opacity = '';
+  });
+
+  viewport.addEventListener('mousemove', (e) => {
+    const rect  = viewport.getBoundingClientRect();
+    const relY  = (e.clientY - rect.top) / rect.height;  // 0–1
+    targetY     = relY * scrollRange();
+
+    // Scan line follows cursor
+    scanLine.style.top = (e.clientY - rect.top) + 'px';
+  });
+</script>
+
+</body>
+</html>
