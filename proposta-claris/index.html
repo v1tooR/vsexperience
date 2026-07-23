@@ -2,2231 +2,1888 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#ffffff">
-  <title>VS-CLARIS-001 · Anamnese Digital · VS Experience</title>
-  <meta name="description" content="Proposta comercial para implementação da Anamnese Digital da Claris Reabilitação Oral.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
   <meta name="robots" content="noindex, nofollow">
+  <title>Proposta · Anamnese Digital Claris · VS Experience</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- impeccable-disable overused-font: VS Experience brand font, used consistently across all project files -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- impeccable-disable overused-font: VS Experience brand font, consistent across all proposals -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
     :root {
-      --canvas: #f7f7f6;
-      --surface: #ffffff;
-      --surface-soft: #f0eeee;
-      --ink: #1d191b;
-      --ink-soft: #5f575b;
-      --ink-faint: #746c70;
-      --line: #ded9db;
-      --line-strong: #c9c1c4;
-      --brand: #742e33;
-      --brand-dark: #4e1d21;
-      --brand-deep: #2b1215;
-      --brand-soft: #f2e7e8;
-      --success: #25734b;
-      --success-soft: #e7f2ec;
-      --whatsapp: #1c7c4d;
-      --white: #ffffff;
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
 
-      --radius-sm: 8px;
-      --radius: 12px;
-      --radius-lg: 16px;
-      --container: 1180px;
-      --font: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-      --z-progress: 40;
-      --z-header: 30;
-      --z-mobile-cta: 20;
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff:          'Space Grotesk', sans-serif;
     }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 6rem;
-      background: var(--canvas);
-    }
-
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      margin: 0;
-      min-width: 320px;
-      background: var(--canvas);
-      color: var(--ink);
-      font-family: var(--font);
-      font-size: 1rem;
-      line-height: 1.65;
+      font-family: var(--ff);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
 
-    button,
-    a {
-      font: inherit;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    button {
-      color: inherit;
-    }
-
-    svg {
-      display: block;
-    }
-
-    :focus-visible {
-      outline: 3px solid #bd7378;
-      outline-offset: 3px;
-    }
-
-    ::selection {
-      background: #dcc0c2;
-      color: var(--brand-deep);
-    }
-
-    .skip-link {
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
       position: fixed;
-      z-index: calc(var(--z-header) + 1);
-      top: 0.75rem;
-      left: 0.75rem;
-      padding: 0.7rem 1rem;
-      border-radius: var(--radius-sm);
-      background: var(--brand-deep);
-      color: var(--white);
-      text-decoration: none;
-      transform: translateY(-180%);
-      transition: transform 180ms var(--ease);
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      transition: width 0.08s linear;
     }
 
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .progress {
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
       position: fixed;
-      z-index: var(--z-progress);
-      inset: 0 0 auto;
-      height: 3px;
-      pointer-events: none;
-    }
-
-    .progress__fill {
-      width: 100%;
-      height: 100%;
-      background: var(--brand);
-      transform: scaleX(0);
-      transform-origin: left;
-      will-change: transform;
-    }
-
-    .container {
-      width: min(calc(100% - 2rem), var(--container));
-      margin-inline: auto;
-    }
-
-    .topbar {
-      position: sticky;
-      z-index: var(--z-header);
-      top: 0;
-      border-bottom: 1px solid rgba(222, 217, 219, 0.9);
-      background: rgba(255, 255, 255, 0.96);
-    }
-
-    .topbar__inner {
-      min-height: 4.5rem;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 2rem;
+      height: 64px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .h-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-right: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .h-nav {
+      display: flex;
+      align-items: center;
       gap: 1.5rem;
     }
-
-    .brand {
+    .h-nav a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    .h-print-btn {
       display: inline-flex;
-      align-items: baseline;
-      gap: 0.32rem;
-      color: var(--ink);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      white-space: nowrap;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.875rem;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-family: var(--ff);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .h-print-btn:hover {
+      background: var(--surface-2);
+      border-color: var(--border-2);
+      color: var(--text);
+    }
+    .h-print-btn svg { width: 13px; height: 13px; }
+    @media (max-width: 820px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+    .container-sm {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
     }
 
-    .brand span {
-      color: var(--brand);
+    /* ============================================
+       SECTION
+       ============================================ */
+    .section {
+      padding: clamp(5rem, 10vw, 8rem) 0;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
     }
 
-    .topbar__meta {
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      color: var(--ink-soft);
-      font-size: 0.78rem;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
-
-    .topbar__id {
-      padding-right: 1rem;
-      border-right: 1px solid var(--line);
+    .eyebrow-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      opacity: 0.65;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line {
+      height: 1px;
+      width: 2.5rem;
+      background: var(--gradient);
+      opacity: 0.45;
+    }
+    .eyebrow-label {
+      font-size: 0.6875rem;
       font-weight: 600;
-      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
-    .icon-button {
-      min-height: 2.7rem;
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 66ch;
+      overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 8% 18%, hsla(5, 38%, 20%, 0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 45% at 88% 72%, hsla(5, 38%, 14%, 0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .conf-tag {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 0.5rem;
-      padding: 0.55rem 0.85rem;
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius-sm);
-      background: var(--surface);
-      color: var(--ink);
-      cursor: pointer;
-      font-size: 0.78rem;
+      font-size: 0.6875rem;
       font-weight: 600;
-      transition:
-        border-color 180ms var(--ease),
-        background 180ms var(--ease),
-        transform 180ms var(--ease);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 hsla(5,38%,45%,0.45); }
+      50% { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 7px hsla(5,38%,45%,0); }
     }
 
-    .icon-button:hover {
-      border-color: var(--brand);
-      background: var(--brand-soft);
+    .hero-title {
+      font-size: clamp(1.875rem, 3.6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 52ch;
+      overflow-wrap: anywhere;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--ff);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--ff);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      border-color: hsla(5, 8%, 100%, 0.2);
       transform: translateY(-1px);
     }
 
-    .icon-button svg {
-      width: 1rem;
-      height: 1rem;
-    }
-
-    .hero {
-      padding-block: clamp(3rem, 8vw, 6.5rem);
-      background: var(--surface);
-    }
-
-    .hero__grid {
+    /* Hero stats bar */
+    .hero-stats {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(20rem, 0.75fr);
-      gap: clamp(2.5rem, 7vw, 6rem);
-      align-items: center;
-    }
-
-    .hero__copy {
-      min-width: 0;
-    }
-
-    .proposal-label {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      margin: 0 0 1.6rem;
-      color: var(--brand);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .proposal-label::before {
-      width: 2rem;
-      height: 2px;
-      background: var(--brand);
-      content: "";
-    }
-
-    .hero h1 {
-      max-width: 13ch;
-      margin: 0;
-      font-size: clamp(2.7rem, 6.7vw, 5.6rem);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 0.98;
-      text-wrap: balance;
-    }
-
-    .hero__lead {
-      max-width: 62ch;
-      margin: 1.6rem 0 0;
-      color: var(--ink-soft);
-      font-size: clamp(1rem, 1.5vw, 1.15rem);
-      line-height: 1.7;
-      text-wrap: pretty;
-    }
-
-    .hero__meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.75rem;
-      margin-top: 2rem;
-    }
-
-    .meta-pair {
-      display: grid;
-      gap: 0.12rem;
-    }
-
-    .meta-pair span:first-child {
-      color: var(--ink-faint);
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-
-    .meta-pair span:last-child {
-      color: var(--ink);
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .decision-panel {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(1.6rem, 3vw, 2.25rem);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
       border-radius: var(--radius-lg);
-      background: var(--brand-deep);
-      color: var(--white);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .hs-item {
+      background: var(--bg-2);
+      padding: 1.25rem 1.375rem;
+      transition: background 0.2s;
+    }
+    .hs-item:hover { background: var(--bg-3); }
+    .hs-label {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .hs-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .hs-val.accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .decision-panel::after {
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .scroll-line { width: 2rem; height: 1px; background: var(--border-2); }
+
+    /* ============================================
+       HERO FORM-TO-PDF VISUALIZATION
+       ============================================ */
+    .hero-flow-sim {
+      border-radius: var(--radius-xl);
+      height: 400px;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 32px 80px hsla(0,0%,0%,0.45);
+      background: var(--bg-2);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* Subtle noise texture background */
+    .hero-flow-sim::before {
+      content: '';
       position: absolute;
-      width: 13rem;
-      height: 13rem;
-      right: -6rem;
-      bottom: -7rem;
-      border: 3rem solid rgba(255, 255, 255, 0.045);
-      border-radius: 50%;
-      content: "";
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 55% at 25% 50%, hsla(5, 38%, 18%, 0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 75% 50%, hsla(5, 38%, 12%, 0.18) 0%, transparent 60%);
       pointer-events: none;
     }
 
-    .decision-panel__label {
-      margin: 0 0 0.5rem;
-      color: #d7c4c6;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .decision-panel__value {
-      margin: 0;
-      font-size: clamp(2.6rem, 5vw, 4.2rem);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .decision-panel__installments {
-      margin: 0.55rem 0 1.75rem;
-      color: #e5d9da;
-      font-size: 0.87rem;
-    }
-
-    .decision-panel__facts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin: 0 0 1.6rem;
-      padding: 1.15rem 0;
-      border-block: 1px solid rgba(255, 255, 255, 0.16);
-    }
-
-    .decision-panel__fact {
-      display: grid;
-      gap: 0.18rem;
-    }
-
-    .decision-panel__fact span {
-      color: #bfa9ab;
-      font-size: 0.7rem;
-    }
-
-    .decision-panel__fact strong {
-      color: var(--white);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-
-    .primary-button {
+    .flow-sim-inner {
       position: relative;
       z-index: 1;
-      min-height: 3.25rem;
-      display: inline-flex;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.75rem;
+      width: 100%;
+    }
+
+    /* Form card */
+    .fsim-form {
+      flex: 1;
+      background: hsla(5, 8%, 4%, 0.9);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px hsla(0,0%,0%,0.4);
+    }
+    .fsim-form-header {
+      padding: 0.625rem 0.875rem;
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .fsim-dots {
+      display: flex;
+      gap: 0.3rem;
+    }
+    .fsim-dots span {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+    }
+    .fsim-dots span:nth-child(1) { background: #ff5f57; }
+    .fsim-dots span:nth-child(2) { background: #febc2e; }
+    .fsim-dots span:nth-child(3) { background: #28c840; }
+    .fsim-url {
+      font-size: 0.5625rem;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      flex: 1;
+      text-align: center;
+    }
+    .fsim-form-body {
+      padding: 0.875rem;
+    }
+    .fsim-section-label {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      opacity: 0.65;
+      margin-bottom: 0.75rem;
+    }
+    .fsim-field {
+      height: 1.5rem;
+      border-radius: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 0.4rem;
+      position: relative;
+    }
+    .fsim-field::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 35%;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--border-2);
+    }
+    .fsim-field.wide::before { width: 55%; }
+    .fsim-field.short::before { width: 25%; }
+    .fsim-textarea {
+      height: 2.5rem;
+      border-radius: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+    .fsim-sig {
+      border-radius: 4px;
+      background: hsla(5, 38%, 22%, 0.1);
+      border: 1px dashed hsla(5, 38%, 35%, 0.3);
+      padding: 0.4rem 0.5rem;
+      margin-bottom: 0.625rem;
+    }
+    .fsim-sig-line {
+      height: 18px;
+      border-bottom: 1px solid hsla(5, 38%, 35%, 0.3);
+      margin-bottom: 0.2rem;
+    }
+    .fsim-sig-label {
+      font-size: 0.375rem;
+      color: hsla(5, 38%, 55%, 0.65);
+      letter-spacing: 0.08em;
+    }
+    .fsim-gen-btn {
+      width: 100%;
+      padding: 0.45rem;
+      border-radius: 4px;
+      background: var(--gradient);
+      font-size: 0.5625rem;
+      font-weight: 700;
+      text-align: center;
+      color: white;
+      letter-spacing: 0.04em;
+    }
+
+    /* Arrow */
+    .fsim-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      flex-shrink: 0;
+    }
+    .fsim-arrow-line {
+      width: 2rem;
+      height: 1px;
+      background: var(--gradient);
+      opacity: 0.6;
+    }
+    .fsim-arrow svg {
+      width: 14px; height: 14px;
+      color: var(--rose);
+    }
+    .fsim-arrow-label {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* PDF + share card */
+    .fsim-pdf {
+      flex: 0 0 auto;
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .fsim-pdf-card {
+      background: hsla(5, 8%, 4%, 0.9);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px hsla(0,0%,0%,0.4);
+    }
+    .fsim-pdf-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      margin-bottom: 0.75rem;
+    }
+    .fsim-pdf-icon {
+      width: 2rem; height: 2.4rem;
+      border-radius: 4px;
+      background: hsla(5, 38%, 22%, 0.3);
+      border: 1px solid hsla(5, 38%, 35%, 0.3);
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.65rem;
-      width: 100%;
-      padding: 0.8rem 1.15rem;
-      border: 0;
-      border-radius: var(--radius-sm);
-      background: var(--white);
-      color: var(--brand-deep);
-      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .fsim-pdf-icon svg { width: 12px; height: 12px; color: var(--rose-light); }
+    .fsim-pdf-info { min-width: 0; }
+    .fsim-pdf-name {
+      font-size: 0.5625rem;
       font-weight: 700;
-      text-align: center;
-      text-decoration: none;
-      transition:
-        background 180ms var(--ease),
-        transform 180ms var(--ease);
-    }
-
-    .primary-button:hover {
-      background: #f1e8e9;
-      transform: translateY(-2px);
-    }
-
-    .primary-button svg {
-      width: 1.15rem;
-      height: 1.15rem;
-      flex: 0 0 auto;
-    }
-
-    .decision-panel__note {
-      margin: 0.8rem 0 0;
-      color: #bfa9ab;
-      font-size: 0.71rem;
-      text-align: center;
-    }
-
-    .proposal {
-      display: grid;
-      grid-template-columns: 13rem minmax(0, 1fr);
-      gap: clamp(2.5rem, 6vw, 6rem);
-      padding-block: clamp(3.5rem, 7vw, 6.5rem);
-    }
-
-    .section-nav {
-      position: sticky;
-      top: 6.5rem;
-      align-self: start;
-    }
-
-    .section-nav__title {
-      margin: 0 0 0.75rem;
-      color: var(--ink-faint);
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-
-    .section-nav ul {
-      display: grid;
-      gap: 0.18rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .section-nav a {
-      display: block;
-      padding: 0.56rem 0.7rem;
-      border-radius: 6px;
-      color: var(--ink-soft);
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition:
-        background 160ms var(--ease),
-        color 160ms var(--ease);
-    }
-
-    .section-nav a:hover {
-      background: var(--surface-soft);
-      color: var(--ink);
-    }
-
-    .section-nav a[aria-current="true"] {
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-      font-weight: 700;
-    }
-
-    .section-nav__validity {
-      margin: 1.25rem 0 0;
-      padding: 1rem 0.75rem 0;
-      border-top: 1px solid var(--line);
-      color: var(--ink-faint);
-      font-size: 0.72rem;
-      line-height: 1.55;
-    }
-
-    .section-nav__validity strong {
-      display: block;
-      color: var(--ink);
-      font-size: 0.79rem;
-      font-weight: 600;
-    }
-
-    .proposal__content {
-      min-width: 0;
-    }
-
-    .content-section {
-      padding-bottom: clamp(3.75rem, 7vw, 6rem);
-    }
-
-    .content-section + .content-section {
-      padding-top: clamp(3.75rem, 7vw, 6rem);
-      border-top: 1px solid var(--line);
-    }
-
-    .section-heading {
-      max-width: 48rem;
-      margin-bottom: 2rem;
-    }
-
-    .section-kicker {
-      margin: 0 0 0.65rem;
-      color: var(--brand);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(1.9rem, 4vw, 3.25rem);
-      font-weight: 600;
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      text-wrap: balance;
-    }
-
-    .section-heading > p:last-child {
-      max-width: 65ch;
-      margin: 1rem 0 0;
-      color: var(--ink-soft);
-      line-height: 1.75;
-      text-wrap: pretty;
-    }
-
-    .change-map {
+      color: var(--text);
+      margin-bottom: 0.2rem;
+      white-space: nowrap;
       overflow: hidden;
-      border-block: 1px solid var(--line-strong);
+      text-overflow: ellipsis;
+    }
+    .fsim-pdf-meta {
+      font-size: 0.4375rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .fsim-share-title {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.375rem;
+    }
+    .fsim-share-btns {
+      display: flex;
+      gap: 0.375rem;
+    }
+    .fsim-share-btn {
+      flex: 1;
+      padding: 0.35rem 0;
+      border-radius: 4px;
+      font-size: 0.5rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .fsim-share-btn.wpp {
+      background: hsla(142, 55%, 28%, 0.25);
+      border: 1px solid hsla(142, 55%, 35%, 0.3);
+      color: hsl(142, 55%, 62%);
+    }
+    .fsim-share-btn.dl {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      color: var(--text-2);
     }
 
-    .change-map__row {
-      display: grid;
-      grid-template-columns: minmax(0, 0.85fr) 2rem minmax(0, 1.15fr);
-      gap: 1rem;
+    /* Status pill on PDF */
+    .fsim-status-pill {
+      display: flex;
       align-items: center;
-      padding: 1.25rem 0;
+      gap: 0.35rem;
+      padding: 0.3rem 0.5rem;
+      background: hsla(5, 38%, 22%, 0.15);
+      border: 1px solid hsla(5, 38%, 35%, 0.2);
+      border-radius: 100px;
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--rose-light);
+    }
+    .fsim-status-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
     }
 
-    .change-map__row + .change-map__row {
-      border-top: 1px solid var(--line);
+    /* ============================================
+       CHANGE MAP (before/after)
+       ============================================ */
+    .change-map {
+      margin-top: 2.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
     }
-
-    .change-map__before {
-      color: var(--ink-faint);
-      font-size: 0.9rem;
+    .change-map-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 2.5rem minmax(0, 1fr);
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.5rem;
     }
-
-    .change-map__arrow {
-      color: var(--brand);
+    .change-map-row + .change-map-row { border-top: 1px solid var(--border); }
+    .cm-before {
+      font-size: 0.875rem;
+      color: var(--text-muted);
     }
-
-    .change-map__arrow svg {
-      width: 1.2rem;
-      height: 1.2rem;
+    .cm-arrow {
+      display: flex;
+      justify-content: center;
+      color: var(--rose);
     }
-
-    .change-map__after {
-      color: var(--ink);
-      font-size: 0.94rem;
-      font-weight: 600;
+    .cm-arrow svg { width: 1.1rem; height: 1.1rem; }
+    .cm-after {
+      font-size: 0.875rem;
+      color: var(--text);
+      font-weight: 500;
     }
-
     .outcome-note {
       display: flex;
       gap: 0.85rem;
       align-items: flex-start;
-      margin: 1.5rem 0 0;
-      padding: 1rem 1.1rem;
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
       border-radius: var(--radius);
-      background: var(--success-soft);
-      color: #1f573b;
-      font-size: 0.88rem;
+      background: hsla(142, 55%, 28%, 0.1);
+      border: 1px solid hsla(142, 55%, 35%, 0.2);
+      color: hsl(142, 55%, 68%);
+      font-size: 0.875rem;
       line-height: 1.6;
     }
+    .outcome-note svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; margin-top: 2px; }
 
-    .outcome-note svg {
-      width: 1.2rem;
-      height: 1.2rem;
-      margin-top: 0.14rem;
-      flex: 0 0 auto;
-    }
-
-    .flow {
+    /* ============================================
+       FLOW STEPS
+       ============================================ */
+    .flow-list {
       display: grid;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      counter-reset: proposal-flow;
+      gap: 0;
+      margin-top: 2.5rem;
     }
-
-    .flow li {
-      counter-increment: proposal-flow;
+    .flow-item {
       display: grid;
       grid-template-columns: 3.25rem 1fr;
       gap: 1.15rem;
       position: relative;
       padding-bottom: 1.75rem;
     }
-
-    .flow li:last-child {
-      padding-bottom: 0;
-    }
-
-    .flow li::before {
-      display: grid;
-      place-items: center;
-      width: 3.25rem;
-      height: 3.25rem;
+    .flow-item:last-child { padding-bottom: 0; }
+    .flow-num {
+      width: 3.25rem; height: 3.25rem;
       border-radius: 50%;
-      background: var(--brand);
-      color: var(--white);
-      content: counter(proposal-flow, decimal-leading-zero);
-      font-size: 0.74rem;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.8125rem;
       font-weight: 700;
+      flex-shrink: 0;
       font-variant-numeric: tabular-nums;
     }
-
-    .flow li:not(:last-child)::after {
+    .flow-item:not(:last-child)::after {
       position: absolute;
-      top: 3.25rem;
-      bottom: 0;
+      top: 3.25rem; bottom: 0;
       left: 1.6rem;
       width: 1px;
-      background: var(--line-strong);
-      content: "";
+      background: var(--border-2);
+      content: '';
     }
-
-    .flow__body {
-      padding-top: 0.2rem;
-    }
-
-    .flow h3 {
-      margin: 0 0 0.35rem;
+    .flow-body { padding-top: 0.5rem; }
+    .flow-title {
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
     }
-
-    .flow p {
-      max-width: 64ch;
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: 0.91rem;
-      line-height: 1.7;
+    .flow-desc {
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 60ch;
     }
 
     .technical-note {
       margin-top: 2rem;
-      padding: 1.2rem 1.3rem;
-      border: 1px solid var(--line-strong);
+      padding: 1.15rem 1.3rem;
       border-radius: var(--radius);
-      color: var(--ink-soft);
-      font-size: 0.87rem;
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      color: var(--text-2);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+    .technical-note strong { color: var(--text); }
+
+    /* ============================================
+       BENEFIT GRID (escopo)
+       ============================================ */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+    }
+    .benefit-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .benefit-card:hover { border-color: var(--border-2); }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .benefit-card:hover::before { opacity: 0.55; }
+    .benefit-icon {
+      width: 2.125rem; height: 2.125rem;
+      border-radius: 0.5rem;
+      background: hsla(5, 38%, 22%, 0.28);
+      border: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .benefit-icon svg { width: 15px; height: 15px; color: var(--rose-light); }
+    .benefit-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.375rem;
+      line-height: 1.35;
+    }
+    .benefit-desc {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
       line-height: 1.65;
     }
 
-    .technical-note strong {
-      color: var(--ink);
-    }
-
-    .section-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .section-toolbar p {
-      margin: 0;
-      color: var(--ink-faint);
-      font-size: 0.79rem;
-    }
-
-    .text-button {
-      min-height: 2.75rem;
-      padding: 0.55rem 0.8rem;
-      border: 0;
-      border-radius: var(--radius-sm);
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-      cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 700;
-      transition: background 160ms var(--ease);
-    }
-
-    .text-button:hover {
-      background: #e7d5d7;
-    }
-
-    .scope-list {
-      border-top: 1px solid var(--line-strong);
-    }
-
-    .scope-item {
-      border-bottom: 1px solid var(--line-strong);
-    }
-
-    .scope-item summary {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.5rem;
-      align-items: center;
-      min-height: 5.25rem;
-      padding: 1rem 0;
-      cursor: pointer;
-      list-style: none;
-    }
-
-    .scope-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .scope-item summary:hover .scope-item__title {
-      color: var(--brand);
-    }
-
-    .scope-item__summary {
-      min-width: 0;
-    }
-
-    .scope-item__title {
-      display: block;
-      color: var(--ink);
-      font-size: 1rem;
-      font-weight: 700;
-      transition: color 160ms var(--ease);
-    }
-
-    .scope-item__description {
-      display: block;
-      margin-top: 0.2rem;
-      color: var(--ink-faint);
-      font-size: 0.82rem;
-    }
-
-    .scope-item__action {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--ink-faint);
-      font-size: 0.72rem;
-      white-space: nowrap;
-    }
-
-    .scope-item__chevron {
-      display: grid;
-      place-items: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: var(--surface-soft);
-      color: var(--ink);
-      transition:
-        background 180ms var(--ease),
-        transform 220ms var(--ease);
-    }
-
-    .scope-item__chevron svg {
-      width: 0.95rem;
-      height: 0.95rem;
-    }
-
-    .scope-item[open] .scope-item__chevron {
-      background: var(--brand-soft);
-      color: var(--brand);
-      transform: rotate(45deg);
-    }
-
-    .scope-item__content {
-      padding: 0 0 1.5rem;
-    }
-
-    .scope-item__content ul {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.65rem 2rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .scope-item__content li {
-      position: relative;
-      padding-left: 1.2rem;
-      color: var(--ink-soft);
-      font-size: 0.86rem;
-      line-height: 1.55;
-    }
-
-    .scope-item__content li::before {
-      position: absolute;
-      top: 0.55rem;
-      left: 0;
-      width: 0.42rem;
-      height: 0.42rem;
-      border-radius: 50%;
-      background: var(--brand);
-      content: "";
-    }
-
-    .deliverables {
+    /* Deliverables dark card */
+    .deliverables-card {
       margin-top: 2.5rem;
       padding: clamp(1.4rem, 3vw, 2rem);
       border-radius: var(--radius-lg);
-      background: var(--brand-deep);
-      color: var(--white);
+      background: hsla(5, 38%, 22%, 0.1);
+      border: 1px solid hsla(5, 38%, 45%, 0.15);
+      position: relative;
+      overflow: hidden;
     }
-
-    .deliverables h3 {
-      margin: 0 0 1.3rem;
-      font-size: 1.15rem;
+    .deliverables-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    .deliverables-card h3 {
+      font-size: 1.0625rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.25rem;
     }
-
-    .deliverables ul {
+    .deliverables-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.85rem 2rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      gap: 0.75rem 2rem;
     }
-
-    .deliverables li {
+    .deliv-item {
       display: flex;
       gap: 0.65rem;
       align-items: flex-start;
-      color: #e6dcdd;
       font-size: 0.84rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .deliv-item svg {
+      width: 1rem; height: 1rem;
+      margin-top: 0.1rem;
+      color: var(--rose-light);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       INVESTMENT
+       ============================================ */
+    .investment-panel {
+      max-width: 720px;
+      margin: 3rem auto 0;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .inv-top {
+      background: var(--gradient);
+      padding: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      position: relative;
+    }
+    .inv-top::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, hsla(0,0%,100%,0.07) 0%, transparent 60%);
+    }
+    .inv-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsla(0,0%,100%,0.6);
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .inv-value {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.3rem;
+      position: relative;
+    }
+    .inv-currency {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: hsla(0,0%,100%,0.85);
+      letter-spacing: -0.01em;
+    }
+    .inv-amount {
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: white;
+      font-variant-numeric: tabular-nums;
+    }
+    .inv-sub {
+      font-size: 0.82rem;
+      color: hsla(0,0%,100%,0.65);
+      margin-top: 0.5rem;
+      position: relative;
+    }
+    .inv-body {
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    .pay-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .pay-row:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
+    .pay-label { font-size: 0.875rem; color: var(--text-2); }
+    .pay-label strong { display: block; color: var(--text); font-size: 0.9rem; }
+    .pay-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .inv-note {
+      padding: 0.875rem 1rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-top: 1.25rem;
+    }
+    .timeline-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 1.25rem;
+    }
+    .timeline-item {
+      background: var(--bg-2);
+      padding: 1rem 1.1rem;
+    }
+    .timeline-item-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      opacity: 0.7;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-item p {
+      margin: 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
       line-height: 1.5;
     }
 
-    .deliverables li svg {
-      width: 1rem;
-      height: 1rem;
-      margin-top: 0.18rem;
-      color: #98d5b5;
-      flex: 0 0 auto;
-    }
-
-    .schedule {
+    /* Policy */
+    .policy-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-block: 1px solid var(--line-strong);
-    }
-
-    .schedule__item {
-      padding: 1.4rem 1.25rem;
-    }
-
-    .schedule__item:first-child {
-      padding-left: 0;
-    }
-
-    .schedule__item + .schedule__item {
-      border-left: 1px solid var(--line);
-    }
-
-    .schedule__label {
-      display: block;
-      margin-bottom: 0.45rem;
-      color: var(--brand);
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .schedule__item strong {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 0.95rem;
-    }
-
-    .schedule__item p {
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: 0.82rem;
-      line-height: 1.55;
-    }
-
-    .responsibilities {
-      margin-top: 2rem;
-    }
-
-    .responsibilities summary,
-    .exclusions summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      min-height: 3.5rem;
-      cursor: pointer;
-      color: var(--ink);
-      font-size: 0.9rem;
-      font-weight: 700;
-      list-style: none;
-    }
-
-    .responsibilities summary::-webkit-details-marker,
-    .exclusions summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .responsibilities summary span:last-child,
-    .exclusions summary span:last-child {
-      color: var(--brand);
-      font-size: 1.25rem;
-      font-weight: 400;
-      transition: transform 180ms var(--ease);
-    }
-
-    .responsibilities[open] summary span:last-child,
-    .exclusions[open] summary span:last-child {
-      transform: rotate(45deg);
-    }
-
-    .numbered-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.8rem 2rem;
-      margin: 0;
-      padding: 0 0 0.5rem;
-      list-style: none;
-      counter-reset: responsibilities;
-    }
-
-    .numbered-list li {
-      counter-increment: responsibilities;
-      display: grid;
-      grid-template-columns: 1.8rem 1fr;
-      gap: 0.6rem;
-      align-items: start;
-      color: var(--ink-soft);
-      font-size: 0.84rem;
-      line-height: 1.55;
-    }
-
-    .numbered-list li::before {
-      display: grid;
-      place-items: center;
-      width: 1.8rem;
-      height: 1.8rem;
-      border-radius: 50%;
-      background: var(--surface-soft);
-      color: var(--brand);
-      content: counter(responsibilities);
-      font-size: 0.67rem;
-      font-weight: 700;
-    }
-
-    .investment {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .investment__total {
-      padding: clamp(1.5rem, 3vw, 2.1rem);
-      border-radius: var(--radius-lg);
-      background: var(--brand);
-      color: var(--white);
-    }
-
-    .investment__total span {
-      display: block;
-      color: #eadcdd;
-      font-size: 0.77rem;
-      font-weight: 600;
-    }
-
-    .investment__total strong {
-      display: block;
-      margin: 0.35rem 0 0.6rem;
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .investment__total p {
-      margin: 0;
-      color: #eadcdd;
-      font-size: 0.82rem;
-    }
-
-    .payment-split {
-      margin: 0;
-    }
-
-    .payment-split > div {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1rem;
-      align-items: center;
-      padding: 0.95rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .payment-split dt,
-    .payment-split dd {
-      margin: 0;
-    }
-
-    .payment-split dt {
-      color: var(--ink-soft);
-      font-size: 0.84rem;
-    }
-
-    .payment-split dt strong {
-      display: block;
-      color: var(--ink);
-      font-size: 0.9rem;
-    }
-
-    .payment-split dd {
-      color: var(--ink);
-      font-size: 1.05rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .payment-note {
-      margin: 1.2rem 0 0;
-      color: var(--ink-soft);
-      font-size: 0.82rem;
-      line-height: 1.6;
-    }
-
-    .policy {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .policy__item {
-      padding: 1.15rem;
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius);
-    }
-
-    .policy__item strong {
-      display: block;
-      margin-bottom: 0.4rem;
-      font-size: 0.87rem;
-    }
-
-    .policy__item p {
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: 0.81rem;
-      line-height: 1.6;
-    }
-
-    .exclusions {
       margin-top: 1.5rem;
-      border-block: 1px solid var(--line-strong);
     }
-
-    .exclusions__content {
-      padding: 0.5rem 0 1.5rem;
+    .policy-card {
+      padding: 1.15rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
     }
-
-    .exclusions__content ul {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.55rem 2rem;
+    .policy-card strong {
+      display: block;
+      font-size: 0.875rem;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .policy-card p {
       margin: 0;
-      padding: 0;
-      list-style: none;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
-    .exclusions__content li {
-      position: relative;
-      padding-left: 1.15rem;
-      color: var(--ink-soft);
-      font-size: 0.82rem;
-      line-height: 1.55;
+    /* ============================================
+       EXCLUSIONS
+       ============================================ */
+    .excl-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.625rem;
+      margin-top: 2rem;
     }
-
-    .exclusions__content li::before {
-      position: absolute;
-      top: 0.72rem;
-      left: 0;
-      width: 0.5rem;
-      height: 1px;
-      background: var(--brand);
-      content: "";
+    .excl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1.125rem;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.4;
     }
-
-    .exclusions__content p {
-      margin: 1rem 0 0;
-      color: var(--ink-faint);
-      font-size: 0.78rem;
+    .excl-item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 14px; height: 14px;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .excl-note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
       font-style: italic;
     }
 
-    .approval {
-      overflow: hidden;
-      padding: clamp(1.6rem, 5vw, 3.2rem);
-      border-radius: var(--radius-lg);
-      background: var(--brand-deep);
-      color: var(--white);
-    }
-
-    .approval__header {
+    /* Responsibilities */
+    .resp-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem 2rem;
+      margin-top: 2rem;
+    }
+    .resp-item {
+      display: grid;
+      grid-template-columns: 1.75rem 1fr;
+      gap: 0.6rem;
       align-items: start;
-    }
-
-    .approval h2 {
-      max-width: 13ch;
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1.02;
-      text-wrap: balance;
-    }
-
-    .approval__header p {
-      max-width: 52ch;
-      margin: 1rem 0 0;
-      color: #d7c7c9;
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    .approval__price {
-      color: var(--white);
-      font-size: 1.35rem;
-      font-weight: 700;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .approval__facts {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
-      padding-block: 1.25rem;
-      border-block: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .approval__fact {
-      display: grid;
-      gap: 0.2rem;
-    }
-
-    .approval__fact span {
-      color: #aa9295;
-      font-size: 0.69rem;
-    }
-
-    .approval__fact strong {
-      color: var(--white);
       font-size: 0.84rem;
-      font-weight: 600;
+      color: var(--text-2);
+      line-height: 1.55;
     }
-
-    .approval__actions {
+    .resp-num {
+      width: 1.75rem; height: 1.75rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
       display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-
-    .approval__actions .primary-button {
-      width: auto;
-      min-width: 17rem;
-    }
-
-    .approval__secondary {
-      min-height: 3.25rem;
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.55rem;
-      padding: 0.8rem 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: var(--radius-sm);
-      background: transparent;
-      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       FINAL CTA
+       ============================================ */
+    .final-cta {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      text-align: center;
+      position: relative;
+    }
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, hsla(5, 38%, 18%, 0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; z-index: 1; }
+    .final-cta-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .final-cta-text {
+      font-size: 1.0625rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 52ch;
+      margin: 0 auto 0.75rem;
+    }
+    .final-cta-meta {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+    .final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1.125rem 2.5rem;
+      background: var(--gradient);
+      color: #fff;
+      font-family: var(--ff);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-lg);
       cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: background 180ms var(--ease);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .final-cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px hsla(5, 38%, 30%, 0.3);
+    }
+    .final-cta-btn svg { width: 20px; height: 20px; }
+    .final-cta-sub {
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
     }
 
-    .approval__secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
     }
-
-    .approval__secondary svg {
-      width: 1rem;
-      height: 1rem;
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
-
-    .signature-area {
-      display: none;
-    }
-
-    .footer {
-      padding-block: 2rem 7rem;
-      border-top: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .footer__inner {
+    .footer-brand {
+      font-size: 0.9375rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      color: var(--ink-faint);
-      font-size: 0.76rem;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
     }
-
-    .footer__inner p {
-      margin: 0;
-      max-width: 42rem;
+    .footer-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .footer-tagline {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 36ch;
+      line-height: 1.5;
+    }
+    .footer-meta p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.75;
       text-align: right;
     }
-
-    .mobile-cta {
-      position: fixed;
-      z-index: var(--z-mobile-cta);
-      right: max(0.75rem, env(safe-area-inset-right));
-      bottom: max(0.75rem, env(safe-area-inset-bottom));
-      left: max(0.75rem, env(safe-area-inset-left));
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.65rem;
-      border-radius: var(--radius);
-      background: var(--brand-deep);
-      color: var(--white);
-      box-shadow: 0 6px 8px rgba(43, 18, 21, 0.2);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(calc(100% + 1rem));
-      transition:
-        opacity 200ms var(--ease),
-        transform 240ms var(--ease);
+    .footer-copy {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      opacity: 0.4;
+      margin-top: 0.375rem;
     }
 
-    .mobile-cta.is-visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .mobile-cta__price {
-      display: grid;
-      gap: 0;
-      padding-left: 0.35rem;
-      white-space: nowrap;
-    }
-
-    .mobile-cta__price span {
-      color: #bfa9ab;
-      font-size: 0.63rem;
-    }
-
-    .mobile-cta__price strong {
-      font-size: 0.9rem;
-    }
-
-    .mobile-cta .primary-button {
-      min-height: 2.75rem;
-      width: auto;
-      padding-inline: 1rem;
-      font-size: 0.82rem;
-    }
-
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
     @media (max-width: 960px) {
-      .hero__grid {
-        grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
-        gap: 2.5rem;
-      }
-
-      .proposal {
-        grid-template-columns: 10.5rem minmax(0, 1fr);
-        gap: 2.5rem;
-      }
+      .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-flow-sim { height: 320px; }
+      .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; padding: 6.5rem 0 3rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .excl-grid { grid-template-columns: 1fr; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .resp-grid { grid-template-columns: 1fr; }
+      .deliverables-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+      .change-map-row { grid-template-columns: 1fr; gap: 0.4rem; }
+      .cm-arrow { transform: rotate(90deg); }
+      .timeline-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 580px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+      .hero-flow-sim { height: 260px; }
+      .flow-sim-inner { gap: 0.75rem; padding: 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .h-client-tag { display: none; }
+      .h-print-btn span { display: none; }
     }
 
-    @media (max-width: 760px) {
-      html {
-        scroll-padding-top: 5.5rem;
-      }
-
-      .topbar__date {
-        display: none;
-      }
-
-      .hero {
-        padding-block: 3.25rem;
-      }
-
-      .hero__grid,
-      .proposal,
-      .investment {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero__grid {
-        gap: 2.25rem;
-      }
-
-      .hero h1 {
-        max-width: 11ch;
-      }
-
-      .decision-panel {
-        max-width: 34rem;
-      }
-
-      .proposal {
-        padding-top: 3.5rem;
-      }
-
-      .section-nav {
-        display: none;
-      }
-
-      .scope-item__content ul,
-      .deliverables ul,
-      .numbered-list,
-      .exclusions__content ul {
-        grid-template-columns: 1fr;
-      }
-
-      .schedule {
-        grid-template-columns: 1fr;
-      }
-
-      .schedule__item,
-      .schedule__item:first-child {
-        padding: 1.1rem 0;
-      }
-
-      .schedule__item + .schedule__item {
-        border-top: 1px solid var(--line);
-        border-left: 0;
-      }
-
-      .approval__header {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .approval__facts {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .approval__actions {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .approval__actions .primary-button {
-        width: 100%;
-        min-width: 0;
-      }
-
-      .mobile-cta {
-        display: flex;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .container {
-        width: min(calc(100% - 1.25rem), var(--container));
-      }
-
-      .topbar__inner {
-        min-height: 4.1rem;
-      }
-
-      .topbar__id,
-      .icon-button span {
-        display: none;
-      }
-
-      .icon-button {
-        width: 2.7rem;
-        padding: 0;
-      }
-
-      .hero h1 {
-        max-width: none;
-        font-size: clamp(2.45rem, 11.5vw, 3.2rem);
-      }
-
-      .hero__meta {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-
-      .decision-panel__facts,
-      .policy {
-        grid-template-columns: 1fr;
-      }
-
-      .change-map__row {
-        grid-template-columns: 1fr;
-        gap: 0.35rem;
-      }
-
-      .change-map__arrow {
-        transform: rotate(90deg);
-      }
-
-      .section-toolbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .scope-item summary {
-        gap: 0.75rem;
-      }
-
-      .scope-item__action > span:first-child {
-        display: none;
-      }
-
-      .approval__facts {
-        grid-template-columns: 1fr;
-      }
-
-      .footer__inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer__inner p {
-        text-align: left;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-
+    /* ============================================
+       PRINT
+       ============================================ */
     @media print {
-      @page {
-        size: A4;
-        margin: 1.35cm 1.4cm;
-      }
-
-      *,
-      *::before,
-      *::after {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-
-      html,
-      body {
-        background: #ffffff !important;
-      }
-
-      body {
-        font-size: 9.5pt;
-      }
-
-      .progress,
-      .skip-link,
-      .topbar,
-      .section-nav,
-      .section-toolbar,
-      .mobile-cta,
-      .approval__actions,
-      .footer {
-        display: none !important;
-      }
-
-      .container {
-        width: 100%;
-      }
-
-      .hero {
-        padding: 0 0 1cm;
-      }
-
-      .hero__grid {
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 1cm;
-      }
-
-      .hero h1 {
-        font-size: 30pt;
-      }
-
-      .decision-panel {
-        padding: 0.7cm;
-      }
-
-      .decision-panel__value {
-        font-size: 26pt;
-      }
-
-      .decision-panel .primary-button,
-      .decision-panel__note {
-        display: none;
-      }
-
-      .proposal {
-        display: block;
-        padding: 0;
-      }
-
-      .content-section,
-      .content-section + .content-section {
-        padding: 0.8cm 0;
-      }
-
-      .section-heading {
-        margin-bottom: 0.5cm;
-      }
-
-      .section-heading h2 {
-        font-size: 20pt;
-      }
-
-      .scope-item {
-        break-inside: avoid;
-      }
-
-      details > :not(summary) {
-        display: block !important;
-      }
-
-      .scope-item__action,
-      .responsibilities summary span:last-child,
-      .exclusions summary span:last-child {
-        display: none !important;
-      }
-
-      .responsibilities,
-      .exclusions {
-        break-inside: avoid;
-      }
-
-      details summary {
-        break-after: avoid;
-      }
-
-      .deliverables,
-      .investment,
-      .policy,
-      .approval,
-      .schedule {
-        break-inside: avoid;
-      }
-
-      .approval {
-        margin-top: 0.8cm;
-      }
-
-      .signature-area {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1cm;
-        margin-top: 1cm;
-      }
-
-      .signature-area__line {
-        height: 1.2cm;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-      }
-
-      .signature-area__label {
-        margin-top: 0.2cm;
-        color: #d7c7c9;
-        font-size: 7.5pt;
-      }
+      @page { size: A4; margin: 1.4cm; }
+      *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: #fff !important; color: #1a1a1a !important; }
+      #hdr, #read-progress, .scroll-hint, .hero-btns, .h-print-btn { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero { min-height: auto; padding: 0 0 1.5cm; }
+      .hero-flow-sim { height: 240px; }
+      .benefit-card, .deliverables-card, .investment-panel, .policy-card, .excl-item, .flow-item { break-inside: avoid; page-break-inside: avoid; }
+      .section { padding: 1cm 0; }
+      .final-cta-btn { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
-  <div class="progress" aria-hidden="true">
-    <div class="progress__fill" id="progressFill"></div>
-  </div>
+  <div id="read-progress"></div>
 
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <a class="brand" href="#topo" aria-label="VS Experience — voltar ao início">
-        VS <span>Experience</span>
-      </a>
-
-      <div class="topbar__meta">
-        <span class="topbar__id">VS-CLARIS-001</span>
-        <span class="topbar__date">Válida até <strong id="validTopbar"></strong></span>
-        <button class="icon-button" type="button" data-print aria-label="Salvar esta proposta como PDF">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-            <rect x="6" y="14" width="12" height="8"/>
-          </svg>
-          <span>Salvar PDF</span>
-        </button>
+  <header id="hdr">
+    <div class="header-inner">
+      <div class="h-brand">
+        <div class="h-brand-dot"></div>
+        VS Experience
       </div>
+      <div class="h-client-tag">VS-CLARIS-001 · Proposta Comercial</div>
+      <nav class="h-nav">
+        <a href="#visao-geral">Contexto</a>
+        <a href="#solucao">Solução</a>
+        <a href="#escopo">Escopo</a>
+        <a href="#investimento">Investimento</a>
+        <a href="#fechamento">Fechar</a>
+      </nav>
+      <button class="h-print-btn" onclick="window.print()" aria-label="Salvar como PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+          <rect x="6" y="14" width="12" height="8"/>
+        </svg>
+        <span>PDF</span>
+      </button>
     </div>
   </header>
 
-  <main id="conteudo">
-    <section class="hero" id="topo" aria-labelledby="proposal-title">
-      <div class="container hero__grid">
-        <div class="hero__copy">
-          <p class="proposal-label">Proposta comercial · VS-CLARIS-001</p>
-          <h1 id="proposal-title">Anamnese digital, do preenchimento ao PDF.</h1>
-          <p class="hero__lead">
-            Implementação técnica do fluxo da Claris Reabilitação Oral para receber dados e assinatura do paciente, gerar o documento e facilitar o envio à recepção.
-          </p>
+  <main>
 
-          <div class="hero__meta" aria-label="Dados da proposta">
-            <div class="meta-pair">
-              <span>Cliente</span>
-              <span>Claris Reabilitação Oral</span>
+    <!-- ═══════════════════════════════════ HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-bg"></div>
+      <div class="container hero-inner">
+        <div class="hero-layout">
+
+          <div>
+            <div class="conf-tag reveal">
+              <span class="conf-dot"></span>
+              Proposta comercial exclusiva · Claris Reabilitação Oral
             </div>
-            <div class="meta-pair">
-              <span>Responsável</span>
-              <span>Luiz Claris</span>
+
+            <h1 class="hero-title reveal d1">
+              Anamnese digital:<br>
+              <span class="text-gradient">do formulário ao PDF em minutos.</span>
+            </h1>
+
+            <p class="hero-subtitle reveal d2">
+              Implementação técnica do fluxo de anamnese da Claris — preenchimento, assinatura digital, geração de PDF e compartilhamento direto pelo celular do paciente.
+            </p>
+
+            <div class="hero-btns reveal d3">
+              <a href="#investimento" class="btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Ver investimento
+              </a>
+              <a href="#solucao" class="btn-ghost">Como vai funcionar</a>
             </div>
-            <div class="meta-pair">
-              <span>Emissão</span>
-              <span id="emissionDate"></span>
+
+            <div class="hero-stats reveal d4">
+              <div class="hs-item">
+                <div class="hs-label">Investimento total</div>
+                <div class="hs-val accent">R$ 600,00</div>
+              </div>
+              <div class="hs-item">
+                <div class="hs-label">Prazo estimado</div>
+                <div class="hs-val">5 a 7 dias úteis</div>
+              </div>
+              <div class="hs-item">
+                <div class="hs-label">Validade da proposta</div>
+                <div class="hs-val" id="validHero"></div>
+              </div>
+            </div>
+
+            <div class="scroll-hint reveal d5">
+              <span class="scroll-line"></span>
+              Role para conhecer o projeto completo
+            </div>
+          </div>
+
+          <!-- Form-to-PDF visualization -->
+          <div class="reveal d2">
+            <div class="hero-flow-sim">
+              <div class="flow-sim-inner">
+
+                <!-- Form card -->
+                <div class="fsim-form">
+                  <div class="fsim-form-header">
+                    <div class="fsim-dots"><span></span><span></span><span></span></div>
+                    <div class="fsim-url">claris.com.br/anamnese</div>
+                  </div>
+                  <div class="fsim-form-body">
+                    <div class="fsim-section-label">Anamnese Digital · Claris</div>
+                    <div class="fsim-field wide"></div>
+                    <div class="fsim-field short"></div>
+                    <div class="fsim-field"></div>
+                    <div class="fsim-textarea"></div>
+                    <div class="fsim-sig">
+                      <div class="fsim-sig-line"></div>
+                      <div class="fsim-sig-label">Assinatura digital</div>
+                    </div>
+                    <div class="fsim-gen-btn">Gerar PDF</div>
+                  </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="fsim-arrow">
+                  <div class="fsim-arrow-line"></div>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                  </svg>
+                  <div class="fsim-arrow-label">PDF gerado</div>
+                </div>
+
+                <!-- Output -->
+                <div class="fsim-pdf">
+                  <div class="fsim-status-pill">
+                    <span class="fsim-status-dot"></span>
+                    Documento gerado
+                  </div>
+                  <div class="fsim-pdf-card">
+                    <div class="fsim-pdf-top">
+                      <div class="fsim-pdf-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </div>
+                      <div class="fsim-pdf-info">
+                        <div class="fsim-pdf-name">anamnese_paciente.pdf</div>
+                        <div class="fsim-pdf-meta">Com assinatura digital<br>Identificação da clínica</div>
+                      </div>
+                    </div>
+                    <div class="fsim-share-title">Compartilhar</div>
+                    <div class="fsim-share-btns">
+                      <div class="fsim-share-btn wpp">WhatsApp</div>
+                      <div class="fsim-share-btn dl">Download</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════ 01 CONTEXTO -->
+    <section class="section" id="visao-geral">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">01</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">O cenário atual</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          O formulário existe. Falta o<br>
+          <span class="text-gradient">fluxo que o completa.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          A Claris possui um formulário de anamnese em desenvolvimento, mas enfrenta dificuldades técnicas na etapa final: a geração do PDF e o compartilhamento das respostas. A implementação fecha esse fluxo sem criar um sistema paralelo — tudo integrado ao WordPress já existente.
+        </p>
+
+        <div class="change-map reveal d3">
+          <div class="change-map-row">
+            <div class="cm-before">Geração do PDF com falhas ou inexistente</div>
+            <div class="cm-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <div class="cm-after">PDF organizado com respostas, assinatura e identificação da clínica</div>
+          </div>
+          <div class="change-map-row">
+            <div class="cm-before">Repasse manual e fragmentado das informações</div>
+            <div class="cm-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <div class="cm-after">Compartilhamento via menu nativo do celular, com WhatsApp entre as opções</div>
+          </div>
+          <div class="change-map-row">
+            <div class="cm-before">Risco de formulário enviado incompleto</div>
+            <div class="cm-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <div class="cm-after">Validação dos campos antes de gerar o documento</div>
+          </div>
+        </div>
+
+        <div class="outcome-note reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+          <span>Sem aplicativo separado, sem novas ferramentas na rotina da equipe — implementado diretamente no WordPress atual da clínica.</span>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════ 02 SOLUÇÃO -->
+    <section class="section" id="solucao">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">02</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Experiência proposta</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Um fluxo simples, do primeiro campo<br>
+          <span class="text-gradient">ao envio para a recepção.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O paciente acessa, preenche e compartilha tudo no próprio celular — no navegador, sem instalar nada.
+        </p>
+
+        <div class="flow-list">
+
+          <div class="flow-item reveal d1">
+            <div class="flow-num">1</div>
+            <div class="flow-body">
+              <div class="flow-title">Acesso e preenchimento</div>
+              <div class="flow-desc">O paciente abre a anamnese pelo site da Claris, em qualquer aparelho com navegador, e preenche os dados clínicos.</div>
+            </div>
+          </div>
+
+          <div class="flow-item reveal d2">
+            <div class="flow-num">2</div>
+            <div class="flow-body">
+              <div class="flow-title">Assinatura e validação</div>
+              <div class="flow-desc">A assinatura é feita no próprio dispositivo. O sistema valida os campos antes de liberar a próxima etapa.</div>
+            </div>
+          </div>
+
+          <div class="flow-item reveal d3">
+            <div class="flow-num">3</div>
+            <div class="flow-body">
+              <div class="flow-title">Geração do PDF</div>
+              <div class="flow-desc">O navegador gera um PDF com as respostas organizadas por seções, identificação do paciente e da clínica, data, horário e assinatura.</div>
+            </div>
+          </div>
+
+          <div class="flow-item reveal d4">
+            <div class="flow-num">4</div>
+            <div class="flow-body">
+              <div class="flow-title">Compartilhamento ou download</div>
+              <div class="flow-desc">O menu nativo do celular é aberto para o paciente escolher o WhatsApp ou outro canal. O botão de download fica disponível como alternativa.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="technical-note reveal d5">
+          <strong>Nota técnica sobre o WhatsApp:</strong> o processo utiliza o menu de compartilhamento nativo do sistema operacional do aparelho — o mesmo que aparece ao compartilhar uma foto. Por limitações dos navegadores e da plataforma, o sistema não seleciona automaticamente uma conversa específica nem confirma se o envio foi concluído. Esse é o comportamento padrão dessa tecnologia em qualquer site.
+        </p>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════ 03 ESCOPO -->
+    <section class="section" id="escopo">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">03</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Escopo e entregas</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          O que está incluído<br>
+          <span class="text-gradient">nesta implementação.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          HTML, CSS e JavaScript puros, integrados ao WordPress por shortcode ou plugin leve — carregados apenas na página da anamnese.
+        </p>
+
+        <div class="benefit-grid">
+
+          <div class="benefit-card reveal d1">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="benefit-title">Correção do formulário</div>
+            <div class="benefit-desc">Análise técnica, remoção de conflitos entre scripts, correção dos erros que impedem a geração do PDF e ajustes de compatibilidade com WordPress.</div>
+          </div>
+
+          <div class="benefit-card reveal d2">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="benefit-title">Geração do PDF</div>
+            <div class="benefit-desc">Documento com respostas, identificação do paciente e da clínica, data, horário, assinatura digital e nome de arquivo personalizado.</div>
+          </div>
+
+          <div class="benefit-card reveal d3">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <div class="benefit-title">Compartilhamento</div>
+            <div class="benefit-desc">Botão de compartilhamento nativo no celular com WhatsApp disponível entre as opções, botão de download como alternativa e tratamento para navegadores incompatíveis.</div>
+          </div>
+
+          <div class="benefit-card reveal d4">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="benefit-title">Integração com WordPress</div>
+            <div class="benefit-desc">Implementação no site atual, sem React, sem sistemas paralelos. Via shortcode ou plugin leve, com scripts carregados apenas na página da anamnese.</div>
+          </div>
+
+          <div class="benefit-card reveal d5">
+            <div class="benefit-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline stroke-linecap="round" stroke-linejoin="round" stroke-width="2" points="9 11 12 14 22 4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div class="benefit-title">Testes e validação</div>
+            <div class="benefit-desc">Verificação em desktop e dispositivos móveis: geração do PDF, assinatura digital, compartilhamento e responsividade do formulário.</div>
+          </div>
+
+        </div>
+
+        <div class="deliverables-card reveal d3">
+          <h3>Entregáveis confirmados</h3>
+          <div class="deliverables-grid">
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Formulário corrigido e funcional</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>PDF com todas as respostas</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Assinatura digital no documento</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Compartilhamento nativo pelo celular</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Botão de download como alternativa</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Implementação no WordPress</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Testes em múltiplos dispositivos</div>
+            <div class="deliv-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>Orientação breve para a equipe</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════ 04 INVESTIMENTO -->
+    <section class="section" id="investimento">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">04</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Investimento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Valor e condições de<br>
+          <span class="text-gradient">pagamento.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Pagamento dividido em dois momentos: início e entrega, sem surpresas ou cobranças extras dentro do escopo acordado.
+        </p>
+
+        <div class="investment-panel reveal d3">
+          <div class="inv-top">
+            <div class="inv-label">Investimento total</div>
+            <div class="inv-value">
+              <span class="inv-currency">R$</span>
+              <span class="inv-amount">600</span>
+            </div>
+            <div class="inv-sub">Implementação da Anamnese Digital Claris</div>
+          </div>
+          <div class="inv-body">
+            <div class="pay-row">
+              <div class="pay-label"><strong>Entrada</strong>Para início do projeto</div>
+              <div class="pay-val">R$ 300,00</div>
+            </div>
+            <div class="pay-row">
+              <div class="pay-label"><strong>Na entrega</strong>Após implementação e validação</div>
+              <div class="pay-val">R$ 300,00</div>
+            </div>
+            <p class="inv-note">O início será confirmado após o recebimento da entrada e dos acessos necessários ao WordPress.</p>
+
+            <div class="timeline-strip">
+              <div class="timeline-item">
+                <div class="timeline-item-label">Preparação</div>
+                <strong>Acessos e conteúdo</strong>
+                <p>Recebimento dos dados e alinhamento final do formulário.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item-label">Implementação</div>
+                <strong>Correção e integração</strong>
+                <p>Desenvolvimento do fluxo, PDF e WordPress.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item-label">Validação</div>
+                <strong>Testes e entrega</strong>
+                <p>Conferência em dispositivos e ajustes finais.</p>
+              </div>
+            </div>
+
+            <div class="policy-grid">
+              <div class="policy-card">
+                <strong>Incluído no valor</strong>
+                <p>Pequenos ajustes técnicos e visuais relacionados ao escopo, solicitados em até 7 dias corridos após a entrega.</p>
+              </div>
+              <div class="policy-card">
+                <strong>Avaliado separadamente</strong>
+                <p>Novas funcionalidades, alterações estruturais, novas etapas ou mudanças significativas no formulário.</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <aside class="decision-panel" aria-label="Resumo comercial">
-          <p class="decision-panel__label">Investimento total</p>
-          <p class="decision-panel__value">R$ 600</p>
-          <p class="decision-panel__installments">50% no início · 50% na entrega</p>
-
-          <div class="decision-panel__facts">
-            <div class="decision-panel__fact">
-              <span>Prazo estimado</span>
-              <strong>5 a 7 dias úteis</strong>
-            </div>
-            <div class="decision-panel__fact">
-              <span>Validade</span>
-              <strong id="validHero"></strong>
-            </div>
-          </div>
-
-          <a class="primary-button approval-link" href="#" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741 1.027 1.01-3.766-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
-            </svg>
-            Aprovar pelo WhatsApp
-          </a>
-          <p class="decision-panel__note">Abre uma mensagem pronta para confirmação.</p>
-        </aside>
       </div>
     </section>
 
-    <div class="container proposal">
-      <nav class="section-nav" aria-label="Navegação da proposta">
-        <p class="section-nav__title">Nesta proposta</p>
-        <ul>
-          <li><a href="#visao-geral">Visão geral</a></li>
-          <li><a href="#solucao">Como funciona</a></li>
-          <li><a href="#escopo">Escopo e entregas</a></li>
-          <li><a href="#prazo">Prazo e dependências</a></li>
-          <li><a href="#condicoes">Condições</a></li>
-          <li><a href="#aprovacao">Aprovação</a></li>
-        </ul>
-        <p class="section-nav__validity">
-          Proposta válida até
-          <strong id="validNav"></strong>
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════ 05 CONDIÇÕES -->
+    <section class="section" id="condicoes">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">05</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">O que não está incluso</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Limites do escopo e<br>
+          <span class="text-gradient">responsabilidades do cliente.</span>
+        </h2>
+
+        <div class="excl-grid reveal d2">
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Envio automático ao WhatsApp da clínica</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Integração com a API oficial da Meta</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Painel administrativo de respostas</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Banco de dados de prontuários</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Armazenamento permanente dos PDFs</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Integração com sistemas odontológicos</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Envio automático por e-mail</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Aplicativo para Android ou iOS</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Reformulação completa do formulário</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Alterações jurídicas no consentimento</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Hospedagem ou configuração de servidor</div>
+          <div class="excl-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Manutenção contínua após ajustes</div>
+        </div>
+
+        <p class="excl-note reveal d3">
+          Funcionalidades fora deste escopo poderão ser avaliadas separadamente em uma futura evolução do projeto.
         </p>
-      </nav>
 
-      <article class="proposal__content">
-        <section class="content-section" id="visao-geral" aria-labelledby="visao-title">
-          <div class="section-heading">
-            <p class="section-kicker">Visão geral</p>
-            <h2 id="visao-title">O que será resolvido</h2>
-            <p>
-              O formulário atual está em desenvolvimento, mas a etapa final ainda apresenta dificuldades na geração do documento e no compartilhamento das respostas. A implementação fecha esse fluxo sem criar um sistema paralelo.
-            </p>
-          </div>
+        <div class="eyebrow reveal" style="margin-top: 3rem">
+          <span class="eyebrow-line" style="width:1.5rem"></span>
+          <span class="eyebrow-label">O que a Claris deverá fornecer</span>
+        </div>
 
-          <div class="change-map" aria-label="Comparação entre cenário atual e solução">
-            <div class="change-map__row">
-              <div class="change-map__before">Documento final com falhas</div>
-              <div class="change-map__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </div>
-              <div class="change-map__after">PDF organizado com respostas, identificação e assinatura</div>
-            </div>
-            <div class="change-map__row">
-              <div class="change-map__before">Repasse manual das informações</div>
-              <div class="change-map__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </div>
-              <div class="change-map__after">Compartilhamento pelo próprio celular, com WhatsApp entre as opções</div>
-            </div>
-            <div class="change-map__row">
-              <div class="change-map__before">Risco de envio incompleto</div>
-              <div class="change-map__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </div>
-              <div class="change-map__after">Validação dos dados antes da geração do documento</div>
-            </div>
-          </div>
+        <div class="resp-grid reveal d2">
+          <div class="resp-item"><span class="resp-num">1</span>Acesso administrativo ao WordPress</div>
+          <div class="resp-item"><span class="resp-num">2</span>Acesso à hospedagem, se necessário</div>
+          <div class="resp-item"><span class="resp-num">3</span>Número oficial de WhatsApp para recebimento</div>
+          <div class="resp-item"><span class="resp-num">4</span>Versão final das perguntas do formulário</div>
+          <div class="resp-item"><span class="resp-num">5</span>Textos finais de consentimento e LGPD</div>
+          <div class="resp-item"><span class="resp-num">6</span>Logo e arquivos institucionais da clínica</div>
+          <div class="resp-item"><span class="resp-num">7</span>Aprovação do layout do PDF</div>
+          <div class="resp-item"><span class="resp-num">8</span>Disponibilidade para os testes finais</div>
+        </div>
 
-          <p class="outcome-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
-            <span>A solução será integrada ao WordPress atual da clínica, sem aplicativo separado e sem novas ferramentas para a rotina da equipe.</span>
-          </p>
-        </section>
+      </div>
+    </section>
 
-        <section class="content-section" id="solucao" aria-labelledby="solucao-title">
-          <div class="section-heading">
-            <p class="section-kicker">Experiência proposta</p>
-            <h2 id="solucao-title">Um fluxo simples para o paciente</h2>
-            <p>Do acesso ao envio, tudo acontece no navegador do próprio dispositivo.</p>
-          </div>
+    <div class="divider"></div>
 
-          <ol class="flow">
-            <li>
-              <div class="flow__body">
-                <h3>Acesso e preenchimento</h3>
-                <p>O paciente abre a anamnese pelo site da Claris em qualquer aparelho com navegador e preenche seus dados clínicos.</p>
-              </div>
-            </li>
-            <li>
-              <div class="flow__body">
-                <h3>Assinatura e validação</h3>
-                <p>A assinatura é feita no próprio dispositivo. Antes de avançar, o formulário verifica se as informações necessárias estão completas.</p>
-              </div>
-            </li>
-            <li>
-              <div class="flow__body">
-                <h3>Geração do documento</h3>
-                <p>O navegador gera um PDF organizado com as respostas, identificação do paciente e da clínica, data, horário e assinatura digital.</p>
-              </div>
-            </li>
-            <li>
-              <div class="flow__body">
-                <h3>Compartilhamento ou download</h3>
-                <p>O menu nativo do celular é aberto para o paciente escolher o WhatsApp ou outro canal. O download permanece disponível como alternativa.</p>
-              </div>
-            </li>
-          </ol>
+    <!-- ═══════════════════════════════ 06 CTA -->
+    <section class="section final-cta" id="fechamento">
+      <div class="final-cta-bg"></div>
+      <div class="container final-cta-inner">
 
-          <p class="technical-note">
-            <strong>Como será construído:</strong> HTML, CSS e JavaScript puros, integrados ao WordPress por shortcode ou plugin leve. Os scripts serão carregados somente na página da anamnese.
-          </p>
-        </section>
+        <div class="eyebrow reveal" style="justify-content:center">
+          <span class="eyebrow-num">06</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Próximos passos</span>
+        </div>
 
-        <section class="content-section" id="escopo" aria-labelledby="escopo-title">
-          <div class="section-heading">
-            <p class="section-kicker">Escopo e entregas</p>
-            <h2 id="escopo-title">O que está incluído</h2>
-            <p>Abra os grupos para conferir cada item técnico. O primeiro já está expandido para facilitar a leitura.</p>
-          </div>
+        <h2 class="final-cta-title reveal d1">
+          Pronto para finalizar<br>
+          <span class="text-gradient">a anamnese da Claris?</span>
+        </h2>
 
-          <div class="section-toolbar">
-            <p>5 frentes de implementação</p>
-            <button class="text-button" id="toggleScope" type="button" aria-expanded="false">Expandir todos</button>
-          </div>
+        <p class="final-cta-text reveal d2">
+          Após a aprovação, iniciamos o recebimento dos acessos e da versão final do formulário para dar andamento à implementação.
+        </p>
 
-          <div class="scope-list">
-            <details class="scope-item" open>
-              <summary>
-                <span class="scope-item__summary">
-                  <span class="scope-item__title">Formulário digital</span>
-                  <span class="scope-item__description">Correção do fluxo existente e validação do preenchimento</span>
-                </span>
-                <span class="scope-item__action">
-                  <span>7 itens</span>
-                  <span class="scope-item__chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                  </span>
-                </span>
-              </summary>
-              <div class="scope-item__content">
-                <ul>
-                  <li>Revisão técnica do formulário atual</li>
-                  <li>Correção do fluxo de preenchimento</li>
-                  <li>Validação dos campos obrigatórios</li>
-                  <li>Manutenção da assinatura digital</li>
-                  <li>Correção dos conflitos que impedem o PDF</li>
-                  <li>Reorganização do JavaScript existente</li>
-                  <li>Ajustes de compatibilidade com WordPress</li>
-                </ul>
-              </div>
-            </details>
+        <p class="final-cta-meta reveal d2">
+          VS-CLARIS-001 · Proposta válida até <strong id="validCta"></strong>
+        </p>
 
-            <details class="scope-item">
-              <summary>
-                <span class="scope-item__summary">
-                  <span class="scope-item__title">Geração do PDF</span>
-                  <span class="scope-item__description">Documento completo, legível e pronto para arquivamento</span>
-                </span>
-                <span class="scope-item__action">
-                  <span>7 itens</span>
-                  <span class="scope-item__chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                  </span>
-                </span>
-              </summary>
-              <div class="scope-item__content">
-                <ul>
-                  <li>Documento com todas as respostas preenchidas</li>
-                  <li>Identificação do paciente e da clínica</li>
-                  <li>Data e horário de preenchimento</li>
-                  <li>Assinatura digital incluída</li>
-                  <li>Respostas organizadas por seções</li>
-                  <li>Nome de arquivo personalizado</li>
-                  <li>Layout adequado para leitura e arquivamento</li>
-                </ul>
-              </div>
-            </details>
+        <a class="final-cta-btn reveal d3" href="#" id="approvalBtn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Aprovar proposta pelo WhatsApp
+        </a>
 
-            <details class="scope-item">
-              <summary>
-                <span class="scope-item__summary">
-                  <span class="scope-item__title">Compartilhamento</span>
-                  <span class="scope-item__description">Envio pelo menu nativo do celular com rota alternativa</span>
-                </span>
-                <span class="scope-item__action">
-                  <span>5 itens</span>
-                  <span class="scope-item__chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                  </span>
-                </span>
-              </summary>
-              <div class="scope-item__content">
-                <ul>
-                  <li>PDF gerado no próprio navegador</li>
-                  <li>Botão de compartilhamento nativo no celular</li>
-                  <li>WhatsApp disponível entre as opções</li>
-                  <li>Botão alternativo de download</li>
-                  <li>Tratamento para navegadores incompatíveis</li>
-                </ul>
-              </div>
-            </details>
+        <p class="final-cta-sub reveal d4">
+          Abre uma mensagem pré-preenchida para aprovação.
+        </p>
 
-            <details class="scope-item">
-              <summary>
-                <span class="scope-item__summary">
-                  <span class="scope-item__title">Integração com WordPress</span>
-                  <span class="scope-item__description">Implementação leve no site atual da clínica</span>
-                </span>
-                <span class="scope-item__action">
-                  <span>4 itens</span>
-                  <span class="scope-item__chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                  </span>
-                </span>
-              </summary>
-              <div class="scope-item__content">
-                <ul>
-                  <li>Implementação no site atual, sem React</li>
-                  <li>HTML, CSS e JavaScript puros</li>
-                  <li>Inserção via shortcode ou plugin leve</li>
-                  <li>Scripts carregados apenas na página da anamnese</li>
-                </ul>
-              </div>
-            </details>
+      </div>
+    </section>
 
-            <details class="scope-item">
-              <summary>
-                <span class="scope-item__summary">
-                  <span class="scope-item__title">Testes e validação</span>
-                  <span class="scope-item__description">Verificação do fluxo nos principais cenários de uso</span>
-                </span>
-                <span class="scope-item__action">
-                  <span>5 itens</span>
-                  <span class="scope-item__chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-                  </span>
-                </span>
-              </summary>
-              <div class="scope-item__content">
-                <ul>
-                  <li>Testes em desktop e dispositivos móveis</li>
-                  <li>Validação da geração do PDF</li>
-                  <li>Validação da assinatura digital</li>
-                  <li>Validação do compartilhamento</li>
-                  <li>Verificação de responsividade</li>
-                </ul>
-              </div>
-            </details>
-          </div>
-
-          <div class="deliverables">
-            <h3>Entregáveis confirmados</h3>
-            <ul>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Formulário corrigido e funcional</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>PDF com todas as respostas</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Assinatura digital no documento</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Compartilhamento nativo pelo celular</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Download como alternativa</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Implementação no WordPress</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Testes em múltiplos dispositivos</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Orientação breve para a equipe</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="content-section" id="prazo" aria-labelledby="prazo-title">
-          <div class="section-heading">
-            <p class="section-kicker">Prazo e dependências</p>
-            <h2 id="prazo-title">5 a 7 dias úteis para implementar e validar</h2>
-            <p>O prazo começa após a entrada, o envio dos acessos e a confirmação da versão final do formulário.</p>
-          </div>
-
-          <div class="schedule" aria-label="Etapas do projeto">
-            <div class="schedule__item">
-              <span class="schedule__label">Preparação</span>
-              <strong>Acessos e conteúdo</strong>
-              <p>Recebimento dos dados necessários e alinhamento final do formulário.</p>
-            </div>
-            <div class="schedule__item">
-              <span class="schedule__label">Implementação</span>
-              <strong>Correção e integração</strong>
-              <p>Desenvolvimento do fluxo, PDF, compartilhamento e WordPress.</p>
-            </div>
-            <div class="schedule__item">
-              <span class="schedule__label">Validação</span>
-              <strong>Testes finais</strong>
-              <p>Conferência em dispositivos, ajustes de escopo e entrega.</p>
-            </div>
-          </div>
-
-          <details class="responsibilities">
-            <summary>
-              <span>O que a Claris deverá fornecer</span>
-              <span aria-hidden="true">+</span>
-            </summary>
-            <ol class="numbered-list">
-              <li>Acesso administrativo ao WordPress da clínica</li>
-              <li>Acesso à hospedagem, caso seja necessário</li>
-              <li>Confirmação do número oficial de WhatsApp para recebimento</li>
-              <li>Versão final das perguntas do formulário</li>
-              <li>Textos finais de consentimento e aviso de LGPD</li>
-              <li>Logo e arquivos institucionais da clínica</li>
-              <li>Aprovação do layout do PDF antes da implementação</li>
-              <li>Disponibilidade para participar dos testes finais</li>
-            </ol>
-          </details>
-        </section>
-
-        <section class="content-section" id="condicoes" aria-labelledby="condicoes-title">
-          <div class="section-heading">
-            <p class="section-kicker">Condições comerciais</p>
-            <h2 id="condicoes-title">Investimento e regras de ajuste</h2>
-            <p>Valores, marcos de pagamento e limites apresentados de forma objetiva.</p>
-          </div>
-
-          <div class="investment">
-            <div class="investment__total">
-              <span>Investimento total</span>
-              <strong>R$ 600</strong>
-              <p>Implementação da Anamnese Digital Claris</p>
-            </div>
-
-            <div>
-              <dl class="payment-split">
-                <div>
-                  <dt><strong>Entrada</strong>Para início do projeto</dt>
-                  <dd>R$ 300</dd>
-                </div>
-                <div>
-                  <dt><strong>Na entrega</strong>Após implementação e validação</dt>
-                  <dd>R$ 300</dd>
-                </div>
-              </dl>
-              <p class="payment-note">O início será confirmado após o recebimento da entrada e dos acessos necessários ao WordPress.</p>
-            </div>
-          </div>
-
-          <div class="policy">
-            <div class="policy__item">
-              <strong>Incluído no valor</strong>
-              <p>Pequenos ajustes técnicos e visuais relacionados ao escopo, solicitados em até 7 dias corridos após a entrega.</p>
-            </div>
-            <div class="policy__item">
-              <strong>Avaliado separadamente</strong>
-              <p>Novas funcionalidades, alterações estruturais, novas etapas ou mudanças significativas no formulário.</p>
-            </div>
-          </div>
-
-          <details class="exclusions">
-            <summary>
-              <span>Itens fora deste escopo</span>
-              <span aria-hidden="true">+</span>
-            </summary>
-            <div class="exclusions__content">
-              <ul>
-                <li>Envio automático ao WhatsApp da clínica</li>
-                <li>Integração com a API oficial da Meta</li>
-                <li>Criação ou configuração de WhatsApp Business</li>
-                <li>Painel administrativo de respostas</li>
-                <li>Cadastro e login de pacientes</li>
-                <li>Banco de dados de prontuários</li>
-                <li>Armazenamento permanente dos PDFs</li>
-                <li>Integração com sistemas odontológicos</li>
-                <li>Envio automático por e-mail</li>
-                <li>Automações internas da recepção</li>
-                <li>Hospedagem ou configuração de servidor</li>
-                <li>Aplicativo para Android ou iOS</li>
-                <li>Reformulação completa do formulário</li>
-                <li>Redesign da identidade visual da clínica</li>
-                <li>Alterações jurídicas no termo de consentimento</li>
-                <li>Manutenção contínua após o período de ajustes</li>
-              </ul>
-              <p>Funcionalidades fora deste escopo poderão ser avaliadas separadamente em uma futura evolução do projeto.</p>
-            </div>
-          </details>
-        </section>
-
-        <section class="content-section" id="aprovacao" aria-labelledby="aprovacao-title">
-          <div class="approval">
-            <div class="approval__header">
-              <div>
-                <h2 id="aprovacao-title">Tudo certo para começar?</h2>
-                <p>Ao aprovar, as partes confirmam o acordo sobre escopo, valor, prazo e condições descritos nesta proposta.</p>
-              </div>
-              <strong class="approval__price">R$ 600</strong>
-            </div>
-
-            <div class="approval__facts">
-              <div class="approval__fact">
-                <span>Cliente</span>
-                <strong>Claris Reabilitação Oral</strong>
-              </div>
-              <div class="approval__fact">
-                <span>Responsável</span>
-                <strong>Luiz Claris</strong>
-              </div>
-              <div class="approval__fact">
-                <span>Referência</span>
-                <strong>VS-CLARIS-001 · <span id="approvalDate"></span></strong>
-              </div>
-            </div>
-
-            <div class="approval__actions">
-              <a class="primary-button approval-link" href="#" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741 1.027 1.01-3.766-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
-                </svg>
-                Aprovar pelo WhatsApp
-              </a>
-              <button class="approval__secondary" type="button" data-print>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
-                  <rect x="6" y="14" width="12" height="8"/>
-                </svg>
-                Salvar uma cópia
-              </button>
-            </div>
-
-            <div class="signature-area" aria-hidden="true">
-              <div>
-                <div class="signature-area__line"></div>
-                <div class="signature-area__label">Luiz Claris · Cliente</div>
-              </div>
-              <div>
-                <div class="signature-area__line"></div>
-                <div class="signature-area__label">Victor Santos · VS Experience</div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-    </div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer__inner">
-      <span class="brand">VS <span>Experience</span></span>
-      <p>Clareza na estratégia, consistência na experiência e qualidade na execução.</p>
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-brand-dot"></div>
+            VS Experience
+          </div>
+          <div class="footer-tagline">UX/UI Design e Desenvolvimento Web</div>
+        </div>
+        <div class="footer-meta">
+          <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+          <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+          <p class="footer-copy">Emitida em <span id="emissionDate"></span> · Proposta confidencial</p>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <div class="mobile-cta" aria-label="Ação de aprovação">
-    <div class="mobile-cta__price">
-      <span>Investimento</span>
-      <strong>R$ 600</strong>
-    </div>
-    <a class="primary-button approval-link" href="#" target="_blank" rel="noopener noreferrer">Aprovar proposta</a>
-  </div>
-
   <script>
     (function () {
-      "use strict";
+      'use strict';
 
-      var whatsappVictor = "5512991833641";
+      var whatsappVictor = '5512991833641';
       var approvalMessage = encodeURIComponent(
-        "Olá, Victor! Analisei e aprovo a proposta VS-CLARIS-001 para implementação da Anamnese Digital da Claris, no valor de R$ 600,00."
+        'Olá, Victor! Analisei e aprovo a proposta VS-CLARIS-001 para implementação da Anamnese Digital da Claris, no valor de R$ 600,00.'
       );
-      var approvalUrl = "https://wa.me/" + whatsappVictor + "?text=" + approvalMessage;
 
-      document.querySelectorAll(".approval-link").forEach(function (link) {
-        link.href = approvalUrl;
-      });
+      document.getElementById('approvalBtn').href =
+        'https://wa.me/' + whatsappVictor + '?text=' + approvalMessage;
 
-      var formatDate = function (date) {
-        return date.toLocaleDateString("pt-BR", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        });
+      var fmt = function (d) {
+        return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
       };
 
       var today = new Date();
-      var validUntil = new Date(today);
-      validUntil.setDate(today.getDate() + 7);
+      var valid = new Date(today);
+      valid.setDate(today.getDate() + 7);
 
       var dates = {
-        emissionDate: formatDate(today),
-        approvalDate: formatDate(today),
-        validTopbar: formatDate(validUntil),
-        validHero: formatDate(validUntil),
-        validNav: formatDate(validUntil)
+        emissionDate: fmt(today),
+        validHero: fmt(valid),
+        validCta:  fmt(valid)
       };
 
       Object.keys(dates).forEach(function (id) {
-        var element = document.getElementById(id);
-        if (element) element.textContent = dates[id];
+        var el = document.getElementById(id);
+        if (el) el.textContent = dates[id];
       });
 
-      document.querySelectorAll("[data-print]").forEach(function (button) {
-        button.addEventListener("click", function () {
-          window.print();
+      // Reading progress bar
+      var bar = document.getElementById('read-progress');
+      window.addEventListener('scroll', function () {
+        var total = document.body.scrollHeight - window.innerHeight;
+        bar.style.width = (window.scrollY / total * 100) + '%';
+      }, { passive: true });
+
+      // Header scrolled state
+      var hdr = document.getElementById('hdr');
+      window.addEventListener('scroll', function () {
+        hdr.classList.toggle('scrolled', window.scrollY > 40);
+      }, { passive: true });
+
+      // Scroll reveal
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
         });
-      });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-      var progressFill = document.getElementById("progressFill");
-      var updateProgress = function () {
-        var documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-        var progress = documentHeight > 0 ? window.scrollY / documentHeight : 0;
-        progressFill.style.transform = "scaleX(" + Math.min(Math.max(progress, 0), 1) + ")";
-      };
-
-      updateProgress();
-      window.addEventListener("scroll", updateProgress, { passive: true });
-      window.addEventListener("resize", updateProgress, { passive: true });
-
-      var scopeItems = Array.prototype.slice.call(document.querySelectorAll(".scope-item"));
-      var toggleScope = document.getElementById("toggleScope");
-
-      var syncScopeButton = function () {
-        var allOpen = scopeItems.every(function (item) { return item.open; });
-        toggleScope.textContent = allOpen ? "Recolher todos" : "Expandir todos";
-        toggleScope.setAttribute("aria-expanded", String(allOpen));
-      };
-
-      toggleScope.addEventListener("click", function () {
-        var shouldOpen = !scopeItems.every(function (item) { return item.open; });
-        scopeItems.forEach(function (item) {
-          item.open = shouldOpen;
-        });
-        syncScopeButton();
-      });
-
-      scopeItems.forEach(function (item) {
-        item.addEventListener("toggle", syncScopeButton);
-      });
-      syncScopeButton();
-
-      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
-      var sections = navLinks
-        .map(function (link) { return document.querySelector(link.getAttribute("href")); })
-        .filter(Boolean);
-
-      var updateCurrentSection = function () {
-        var currentIndex = 0;
-        var readingLine = Math.min(180, window.innerHeight * 0.28);
-
-        sections.forEach(function (section, index) {
-          if (section.getBoundingClientRect().top <= readingLine) {
-            currentIndex = index;
-          }
-        });
-
-        navLinks.forEach(function (link, index) {
-          if (index === currentIndex) {
-            link.setAttribute("aria-current", "true");
-          } else {
-            link.removeAttribute("aria-current");
-          }
-        });
-      };
-
-      updateCurrentSection();
-      window.addEventListener("scroll", updateCurrentSection, { passive: true });
-      window.addEventListener("resize", updateCurrentSection, { passive: true });
-
-      var mobileCta = document.querySelector(".mobile-cta");
-      var decisionPanel = document.querySelector(".decision-panel");
-      var approvalSection = document.getElementById("aprovacao");
-
-      if (mobileCta && decisionPanel && approvalSection && "IntersectionObserver" in window) {
-        var visibility = {
-          hero: true,
-          approval: false
-        };
-
-        var syncMobileCta = function () {
-          mobileCta.classList.toggle("is-visible", !visibility.hero && !visibility.approval);
-        };
-
-        var ctaObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.target === decisionPanel) visibility.hero = entry.isIntersecting;
-            if (entry.target === approvalSection) visibility.approval = entry.isIntersecting;
-          });
-          syncMobileCta();
-        }, { threshold: 0.1 });
-
-        ctaObserver.observe(decisionPanel);
-        ctaObserver.observe(approvalSection);
-      } else if (mobileCta) {
-        mobileCta.classList.add("is-visible");
-      }
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
     })();
   </script>
+
 </body>
 </html>
