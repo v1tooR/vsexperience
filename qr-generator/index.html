@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <title>Gerador de QR Code · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- impeccable-disable overused-font: VS Experience brand font, consistent across all tools and proposals -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── DESIGN TOKENS (VS Experience borgonha) ─────────────────── */
+    :root {
+      --rose:       hsl(5, 38%, 45%);
+      --rose-dark:  hsl(5, 38%, 22%);
+      --rose-light: hsl(5, 45%, 68%);
+      --gradient:   linear-gradient(135deg, hsl(5,38%,22%) 0%, hsl(5,38%,45%) 100%);
+
+      --bg:         hsl(5, 10%, 5.5%);
+      --bg-2:       hsl(5, 8%, 8%);
+      --bg-3:       hsl(5, 8%, 10.5%);
+      --surface:    hsla(5, 8%, 100%, 0.04);
+      --surface-2:  hsla(5, 8%, 100%, 0.07);
+      --border:     hsla(5, 8%, 100%, 0.08);
+      --border-2:   hsla(5, 8%, 100%, 0.13);
+      --text:       hsl(0, 0%, 94%);
+      --text-2:     hsl(0, 0%, 70%);
+      --text-muted: hsl(0, 0%, 48%);
+
+      --radius:     0.75rem;
+      --radius-lg:  1.25rem;
+      --ff:         'Space Grotesk', sans-serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+
+    /* ─── PROGRESS BAR ───────────────────────────────────────────── */
+    #read-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--gradient);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────────── */
+    #hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .h-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-right: auto;
+    }
+    .h-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .h-back:hover { color: var(--text); }
+    .h-back svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+
+    /* ─── PAGE HERO ──────────────────────────────────────────────── */
+    .page-hero {
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 75% 65% at 6% 25%, hsla(5,38%,18%,0.26) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 55% at 88% 65%, hsla(5,38%,12%,0.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(hsla(5,8%,100%,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5,8%,100%,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: clamp(3rem, 7vw, 5.5rem) 0 3.5rem;
+    }
+
+    .conf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 1.5rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); box-shadow:0 0 0 0 hsla(5,38%,45%,0.45); }
+      50% { opacity:0.85; transform:scale(1.2); box-shadow:0 0 0 7px hsla(5,38%,45%,0); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 5.5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.032em;
+      line-height: 1.08;
+      margin-bottom: 1.1rem;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 52ch;
+      margin-bottom: 2rem;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.875rem;
+      border: 1px solid var(--border-2);
+      border-radius: 100px;
+      background: var(--surface);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-2);
+    }
+    .pill svg { width: 11px; height: 11px; color: hsl(142,55%,55%); flex-shrink: 0; }
+
+    /* ─── TOOL SECTION ───────────────────────────────────────────── */
+    .tool-section {
+      padding: 3rem 0 7rem;
+    }
+    .tool-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    /* Controls */
+    .controls-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ctrl-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.375rem 1.5rem;
+    }
+
+    .ctrl-label {
+      display: block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.875rem;
+    }
+    .ctrl-label-hint {
+      font-size: 0.625rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-left: 0.5rem;
+    }
+
+    /* Input */
+    .input-wrap { position: relative; }
+    .qr-input {
+      width: 100%;
+      background: var(--bg-2);
+      border: 1.5px solid var(--border-2);
+      border-radius: var(--radius);
+      padding: 0.9rem 2.75rem 0.9rem 1rem;
+      font-family: var(--ff);
+      font-size: 0.9375rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .qr-input:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px hsla(5, 38%, 45%, 0.1);
+    }
+    .qr-input::placeholder { color: var(--text-muted); }
+    .input-clear {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.2rem;
+      display: none;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .input-clear:hover { color: var(--text); background: var(--surface-2); }
+    .input-clear.show { display: flex; align-items: center; }
+    .input-clear svg { width: 14px; height: 14px; }
+
+    .input-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+    }
+    .input-type {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+    }
+    .char-count {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .char-count.warn  { color: hsl(38, 80%, 60%); }
+    .char-count.over  { color: hsl(5, 70%, 60%); }
+
+    /* Option button groups */
+    .opt-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .opt-btn {
+      flex: 1;
+      min-width: 0;
+      padding: 0.55rem 0.625rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-2);
+      font-family: var(--ff);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .opt-btn:hover { background: var(--bg-3); border-color: var(--border-2); color: var(--text); }
+    .opt-btn.active {
+      background: hsla(5, 38%, 22%, 0.45);
+      border-color: hsla(5, 38%, 45%, 0.5);
+      color: var(--rose-light);
+      font-weight: 600;
+    }
+
+    /* Color row */
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .color-swatch {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.15s, transform 0.15s;
+      flex-shrink: 0;
+      outline: none;
+    }
+    .color-swatch:hover { transform: scale(1.1); }
+    .color-swatch.active { border-color: var(--rose-light) !important; }
+
+    .custom-color-wrap { position: relative; }
+    .custom-color-label {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 0.5rem;
+      border: 1.5px dashed var(--border-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      overflow: hidden;
+    }
+    .custom-color-label:hover { border-color: var(--rose-light); }
+    .custom-color-label svg { width: 13px; height: 13px; color: var(--text-muted); }
+    input[type="color"] {
+      position: absolute;
+      width: 0; height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Info note */
+    .info-note {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 1rem 1.125rem;
+      border-radius: var(--radius);
+      background: hsla(5, 38%, 22%, 0.1);
+      border: 1px solid hsla(5, 38%, 35%, 0.18);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .info-note svg { width: 1rem; height: 1rem; color: var(--rose-light); flex-shrink: 0; margin-top: 1px; }
+    .info-note a { color: var(--rose-light); text-decoration: underline; }
+
+    /* ─── PREVIEW PANEL ──────────────────────────────────────────── */
+    .preview-panel {
+      position: sticky;
+      top: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .preview-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    .preview-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+
+    /* QR frame */
+    .qr-frame {
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 2.25rem;
+    }
+
+    /* Canvas wrapper (white background for QR) */
+    .qr-canvas-wrap {
+      display: none;
+      background: #fff;
+      border-radius: 0.625rem;
+      padding: 0.875rem;
+      box-shadow: 0 2px 20px hsla(0,0%,0%,0.22);
+      animation: qrIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .qr-canvas-wrap.show { display: block; }
+    @keyframes qrIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    #qrCanvas { display: block; border-radius: 2px; }
+
+    /* Empty state */
+    .qr-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    .qr-empty.gone { display: none; }
+    .empty-icon {
+      width: 88px;
+      height: 88px;
+      opacity: 0.1;
+    }
+    .empty-text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      max-width: 20ch;
+      line-height: 1.55;
+    }
+
+    /* Preview footer */
+    .preview-foot {
+      padding: 1rem 1.5rem 1.375rem;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+    .preview-foot.show { display: block; }
+    .direct-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: hsl(142, 55%, 60%);
+      margin-bottom: 0.5rem;
+    }
+    .direct-badge svg { width: 12px; height: 12px; }
+    .preview-dest {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Action buttons */
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .btn-dl, .btn-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem;
+      font-family: var(--ff);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: opacity 0.18s, transform 0.18s, background 0.18s;
+      border: none;
+    }
+    .btn-dl {
+      background: var(--gradient);
+      color: #fff;
+    }
+    .btn-dl:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+    .btn-copy {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border-2);
+    }
+    .btn-copy:hover:not(:disabled) { background: var(--bg-3); transform: translateY(-1px); }
+    .btn-dl:disabled,
+    .btn-copy:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+    .btn-dl svg, .btn-copy svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ─── FEEDBACK TOAST ─────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(1rem);
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      border-radius: 100px;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 8px 32px hsla(0,0%,0%,0.35);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast svg { width: 14px; height: 14px; color: hsl(142,55%,55%); flex-shrink: 0; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .footer-tagline { font-size: 0.75rem; color: var(--text-muted); }
+    .footer-meta p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.75; text-align: right; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .tool-layout { grid-template-columns: 1fr; }
+      .preview-panel { position: static; }
+    }
+    @media (max-width: 600px) {
+      .opt-row { display: grid; grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+    }
+    @media (max-width: 480px) {
+      .hero-pills { flex-direction: column; align-items: flex-start; }
+      .action-row { grid-template-columns: 1fr; }
+      .h-client-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="read-progress"></div>
+
+  <header id="hdr">
+    <div class="header-inner">
+      <div class="h-brand">
+        <div class="h-brand-dot"></div>
+        VS Experience
+      </div>
+      <div class="h-client-tag">Ferramentas · QR Code</div>
+      <a href="../index.html" class="h-back">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Portfólio
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="container">
+        <div class="hero-inner">
+
+          <div class="conf-tag">
+            <span class="conf-dot"></span>
+            Ferramenta gratuita · VS Experience
+          </div>
+
+          <h1 class="hero-title">
+            Gerador de<br>
+            <span class="text-gradient">QR Code direto.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Sem redirecionadores, sem links intermediários, sem serviços que podem sair do ar. O conteúdo é codificado diretamente — funciona enquanto o destino existir.
+          </p>
+
+          <div class="hero-pills">
+            <div class="pill">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m5 12 4 4L19 6"/></svg>
+              Sem conta ou cadastro
+            </div>
+            <div class="pill">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m5 12 4 4L19 6"/></svg>
+              Sem limite de geração
+            </div>
+            <div class="pill">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m5 12 4 4L19 6"/></svg>
+              Gerado 100% no navegador
+            </div>
+            <div class="pill">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m5 12 4 4L19 6"/></svg>
+              Nenhum dado enviado a servidores
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL -->
+    <section class="tool-section">
+      <div class="container">
+        <div class="tool-layout">
+
+          <!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
+          <div class="controls-stack">
+
+            <!-- Input -->
+            <div class="ctrl-card">
+              <label class="ctrl-label" for="qrInput">Conteúdo do QR code</label>
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  id="qrInput"
+                  class="qr-input"
+                  placeholder="https://seusite.com.br"
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+                <button class="input-clear" id="inputClear" title="Limpar" aria-label="Limpar campo">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+              </div>
+              <div class="input-foot">
+                <span class="input-type" id="inputType">URL, texto, WhatsApp, e-mail…</span>
+                <span class="char-count" id="charCount">0</span>
+              </div>
+            </div>
+
+            <!-- Size -->
+            <div class="ctrl-card">
+              <label class="ctrl-label">Tamanho do arquivo baixado</label>
+              <div class="opt-row" id="sizeGroup">
+                <button class="opt-btn" data-size="200">200 px</button>
+                <button class="opt-btn active" data-size="400">400 px</button>
+                <button class="opt-btn" data-size="800">800 px</button>
+                <button class="opt-btn" data-size="1200">1200 px</button>
+              </div>
+            </div>
+
+            <!-- Error correction -->
+            <div class="ctrl-card">
+              <label class="ctrl-label">
+                Resistência a danos
+                <span class="ctrl-label-hint">H suporta até 30% de dano físico</span>
+              </label>
+              <div class="opt-row" id="ecGroup">
+                <button class="opt-btn" data-level="L">L · Mínima</button>
+                <button class="opt-btn" data-level="M">M · Baixa</button>
+                <button class="opt-btn active" data-level="Q">Q · Alta</button>
+                <button class="opt-btn" data-level="H">H · Máxima</button>
+              </div>
+            </div>
+
+            <!-- Color -->
+            <div class="ctrl-card">
+              <label class="ctrl-label">Cor do código</label>
+              <div class="color-row">
+                <button class="color-swatch active" data-color="#000000" style="background:#000000" title="Preto" aria-label="Preto"></button>
+                <button class="color-swatch" data-color="#5c1f14" style="background:#5c1f14" title="Borgonha" aria-label="Borgonha"></button>
+                <button class="color-swatch" data-color="#0f2444" style="background:#0f2444" title="Marinho" aria-label="Marinho"></button>
+                <button class="color-swatch" data-color="#1a3d28" style="background:#1a3d28" title="Verde" aria-label="Verde"></button>
+                <button class="color-swatch" data-color="#2d1545" style="background:#2d1545" title="Roxo" aria-label="Roxo"></button>
+                <button class="color-swatch" data-color="#8b2500" style="background:#8b2500" title="Tijolo" aria-label="Tijolo"></button>
+                <div class="custom-color-wrap">
+                  <label class="custom-color-label" for="fgColor" title="Cor personalizada">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  </label>
+                  <input type="color" id="fgColor" value="#000000">
+                </div>
+              </div>
+            </div>
+
+            <!-- Info note -->
+            <div class="info-note">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              <span>Nenhum dado é enviado para servidores. A geração acontece totalmente no navegador usando a biblioteca <strong>QRious</strong> (open-source, MIT). O código gerado contém o conteúdo diretamente — não há redirecionamento nem expiração.</span>
+            </div>
+
+          </div>
+
+          <!-- ── RIGHT: PREVIEW ──────────────────────────────────── -->
+          <div class="preview-panel">
+
+            <div class="preview-card">
+              <div class="qr-frame" id="qrFrame">
+
+                <!-- Empty state -->
+                <div class="qr-empty" id="emptyState">
+                  <svg class="empty-icon" viewBox="0 0 88 88" fill="currentColor">
+                    <rect x="3"  y="3"  width="34" height="34" rx="3" fill="none" stroke="currentColor" stroke-width="4.5"/>
+                    <rect x="13" y="13" width="14" height="14" rx="2"/>
+                    <rect x="51" y="3"  width="34" height="34" rx="3" fill="none" stroke="currentColor" stroke-width="4.5"/>
+                    <rect x="61" y="13" width="14" height="14" rx="2"/>
+                    <rect x="3"  y="51" width="34" height="34" rx="3" fill="none" stroke="currentColor" stroke-width="4.5"/>
+                    <rect x="13" y="61" width="14" height="14" rx="2"/>
+                    <rect x="51" y="51" width="9" height="9" rx="1"/>
+                    <rect x="64" y="51" width="9" height="9" rx="1"/>
+                    <rect x="77" y="51" width="8" height="5" rx="1"/>
+                    <rect x="51" y="64" width="5" height="9" rx="1"/>
+                    <rect x="60" y="64" width="9" height="9" rx="1"/>
+                    <rect x="73" y="64" width="9" height="9" rx="1"/>
+                    <rect x="51" y="77" width="9" height="8" rx="1"/>
+                    <rect x="64" y="77" width="5" height="8" rx="1"/>
+                    <rect x="73" y="77" width="12" height="8" rx="1"/>
+                  </svg>
+                  <p class="empty-text">Digite uma URL ou texto para gerar o QR code</p>
+                </div>
+
+                <!-- QR canvas -->
+                <div class="qr-canvas-wrap" id="qrCanvasWrap">
+                  <canvas id="qrCanvas"></canvas>
+                </div>
+
+              </div>
+
+              <div class="preview-foot" id="previewFoot">
+                <div class="direct-badge">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m5 12 4 4L19 6"/></svg>
+                  Direto · sem redirecionamento · não expira
+                </div>
+                <p class="preview-dest" id="previewDest"></p>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="btn-dl" id="btnDownload" disabled>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar PNG
+              </button>
+              <button class="btn-copy" id="btnCopy" disabled>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                Copiar imagem
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-brand-dot"></div>
+            VS Experience
+          </div>
+          <div class="footer-tagline">UX/UI Design e Desenvolvimento Web</div>
+        </div>
+        <div class="footer-meta">
+          <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+          <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="m5 12 4 4L19 6"/></svg>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- QRious: pure JS, MIT license, renders to Canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var qr = null;
+    var state = { size: 400, level: 'Q', color: '#000000', value: '' };
+    var debounceTimer;
+    var toastTimer;
+    var hasQR = false;
+
+    var MAX = 2953;
+
+    var $ = function (id) { return document.getElementById(id); };
+
+    var input        = $('qrInput');
+    var inputClear   = $('inputClear');
+    var inputType    = $('inputType');
+    var charCount    = $('charCount');
+    var emptyState   = $('emptyState');
+    var qrCanvasWrap = $('qrCanvasWrap');
+    var qrCanvas     = $('qrCanvas');
+    var previewFoot  = $('previewFoot');
+    var previewDest  = $('previewDest');
+    var btnDownload  = $('btnDownload');
+    var btnCopy      = $('btnCopy');
+    var fgColor      = $('fgColor');
+    var toast        = $('toast');
+    var toastText    = $('toastText');
+
+    // ── Type detection ────────────────────────────────────────────
+    function detectType(v) {
+      if (!v) return 'URL, texto, WhatsApp, e-mail…';
+      if (/^https?:\/\//i.test(v))  return 'URL detectada';
+      if (/^mailto:/i.test(v))       return 'E-mail detectado';
+      if (/^[\w.+\-]+@[\w\-]+\.\w+$/.test(v)) return 'E-mail detectado';
+      if (/^tel:/i.test(v))          return 'Telefone detectado';
+      if (/^WIFI:/i.test(v))         return 'Configuração de Wi-Fi';
+      if (/^BEGIN:VCARD/i.test(v))   return 'Cartão de visita (vCard)';
+      if (/wa\.me|whatsapp/i.test(v)) return 'Link WhatsApp detectado';
+      return 'Texto livre';
+    }
+
+    // ── Update input metadata ─────────────────────────────────────
+    function updateMeta() {
+      var v = input.value;
+      var n = v.length;
+      inputClear.className = 'input-clear' + (n > 0 ? ' show' : '');
+      inputType.textContent = detectType(v);
+      charCount.textContent = n + ' / ' + MAX;
+      charCount.className = 'char-count' + (n > MAX * 0.9 ? ' warn' : '') + (n > MAX ? ' over' : '');
+    }
+
+    // ── Generate ─────────────────────────────────────────────────
+    function generate() {
+      var v = input.value.trim();
+      state.value = v;
+
+      if (!v) { setEmpty(); return; }
+      if (typeof QRious === 'undefined') {
+        setEmpty();
+        showToast('Biblioteca não carregada. Verifique a conexão.');
+        return;
+      }
+
+      var previewPx = Math.min(state.size, 192);
+
+      if (!qr) {
+        qr = new QRious({ element: qrCanvas });
+      }
+
+      try {
+        qr.set({
+          value:            v,
+          size:             previewPx,
+          level:            state.level,
+          foreground:       state.color,
+          foregroundAlpha:  1,
+          background:       '#ffffff',
+          backgroundAlpha:  1,
+          padding:          Math.round(previewPx * 0.042)
+        });
+      } catch (e) {
+        setEmpty();
+        showToast('Conteúdo muito longo para este nível de correção.');
+        return;
+      }
+
+      emptyState.className = 'qr-empty gone';
+      qrCanvasWrap.className = 'qr-canvas-wrap show';
+      previewFoot.className = 'preview-foot show';
+      previewDest.textContent = v.length > 52 ? v.slice(0, 50) + '…' : v;
+
+      hasQR = true;
+      btnDownload.disabled = false;
+      btnCopy.disabled = false;
+    }
+
+    function setEmpty() {
+      emptyState.className = 'qr-empty';
+      qrCanvasWrap.className = 'qr-canvas-wrap';
+      previewFoot.className = 'preview-foot';
+      hasQR = false;
+      btnDownload.disabled = true;
+      btnCopy.disabled = true;
+    }
+
+    // ── Download ─────────────────────────────────────────────────
+    function download() {
+      if (!hasQR || typeof QRious === 'undefined') return;
+
+      var dlCanvas = document.createElement('canvas');
+      var dlQr = new QRious({ element: dlCanvas });
+      try {
+        dlQr.set({
+          value:           state.value,
+          size:            state.size,
+          level:           state.level,
+          foreground:      state.color,
+          foregroundAlpha: 1,
+          background:      '#ffffff',
+          backgroundAlpha: 1,
+          padding:         Math.round(state.size * 0.05)
+        });
+      } catch (e) {
+        showToast('Não foi possível gerar em ' + state.size + 'px.');
+        return;
+      }
+
+      var name = 'qrcode';
+      try {
+        var u = new URL(state.value);
+        name = 'qrcode-' + u.hostname.replace(/^www\./, '').replace(/\./g, '-');
+      } catch (_) {
+        name = 'qrcode-' + state.value.slice(0, 24).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'qrcode';
+      }
+
+      var a = document.createElement('a');
+      a.download = name + '-' + state.size + 'px.png';
+      a.href = dlCanvas.toDataURL('image/png');
+      a.click();
+      showToast('Download iniciado · ' + state.size + ' px');
+    }
+
+    // ── Copy to clipboard ─────────────────────────────────────────
+    function copyImage() {
+      if (!hasQR) return;
+      if (!navigator.clipboard || !window.ClipboardItem) {
+        showToast('Navegador não suporta copiar imagem. Use o download.');
+        return;
+      }
+      qrCanvas.toBlob(function (blob) {
+        navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+          .then(function () { showToast('Imagem copiada!'); })
+          .catch(function () { showToast('Não foi possível copiar. Use o download.'); });
+      }, 'image/png');
+    }
+
+    // ── Toast ─────────────────────────────────────────────────────
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2400);
+    }
+
+    // ── Option groups ─────────────────────────────────────────────
+    function bindGroup(groupId, prop, transform) {
+      document.querySelectorAll('#' + groupId + ' .opt-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('#' + groupId + ' .opt-btn').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          state[prop] = transform ? transform(btn.dataset[prop === 'size' ? 'size' : 'level']) : btn.dataset[prop === 'size' ? 'size' : 'level'];
+          if (prop === 'size') state.size = parseInt(btn.dataset.size, 10);
+          generate();
+        });
+      });
+    }
+    bindGroup('sizeGroup', 'size');
+    bindGroup('ecGroup', 'level');
+
+    // ── Color swatches ────────────────────────────────────────────
+    document.querySelectorAll('.color-swatch').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.color-swatch').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.color = btn.dataset.color;
+        fgColor.value = state.color;
+        generate();
+      });
+    });
+
+    fgColor.addEventListener('input', function () {
+      state.color = fgColor.value;
+      document.querySelectorAll('.color-swatch').forEach(function (b) { b.classList.remove('active'); });
+      generate();
+    });
+
+    // ── Input ─────────────────────────────────────────────────────
+    input.addEventListener('input', function () {
+      updateMeta();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(generate, 300);
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { clearTimeout(debounceTimer); generate(); }
+    });
+
+    inputClear.addEventListener('click', function () {
+      input.value = '';
+      updateMeta();
+      setEmpty();
+      input.focus();
+    });
+
+    btnDownload.addEventListener('click', download);
+    btnCopy.addEventListener('click', copyImage);
+
+    // ── Header + progress ─────────────────────────────────────────
+    var hdr = $('hdr');
+    var bar = $('read-progress');
+    window.addEventListener('scroll', function () {
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+      var total = document.body.scrollHeight - window.innerHeight;
+      if (total > 0) bar.style.width = (window.scrollY / total * 100) + '%';
+    }, { passive: true });
+
+    // Init
+    input.focus();
+    updateMeta();
+  })();
+  </script>
+
+</body>
+</html>
