@@ -648,12 +648,28 @@
       .profile-grid { grid-template-columns: repeat(2,1fr); }
       .phases-grid  { grid-template-columns: repeat(2,1fr); }
     }
+    /* Benefit grid: 5 cards em 2-col — último card sozinho no centro */
+    @media (max-width: 960px) and (min-width: 581px) {
+      .benefit-grid > .benefit-card:last-child:nth-child(2n+1) { grid-column: 1 / -1; max-width: 50%; justify-self: center; }
+    }
     @media (max-width: 768px) {
       .hero { min-height: auto; }
       .hero-stats { grid-template-columns: repeat(2,1fr); }
+      .hero-stats .hs-item:nth-child(2n) { border-right: none; }
       .excl-grid  { grid-template-columns: 1fr; }
       .bonus-grid { grid-template-columns: 1fr; }
       .h-client-tag { display: none; }
+    }
+    @media (max-width: 640px) {
+      .container, .container-sm { padding: 0 1.25rem; }
+      #hdr { padding: 0 1.25rem; }
+      .hero { gap: 2rem; }
+      .hero-dash-sim { height: 340px; }
+      .bonus-box { padding: 1.5rem 1.25rem; }
+      .recommend-box { padding: 1.5rem 1.25rem; }
+      .opt-card { padding: 1.5rem; }
+      .footer-inner { flex-direction: column; gap: 0.875rem; align-items: flex-start; }
+      .footer-meta { text-align: left; }
     }
     @media (max-width: 580px) {
       .benefit-grid { grid-template-columns: 1fr; }
@@ -662,8 +678,16 @@
       .mvp-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
+      .container, .container-sm { padding: 0 1rem; }
+      #hdr { padding: 0 1rem; }
       .hero-stats { grid-template-columns: 1fr; }
-      .hero-btns  { flex-direction: column; }
+      .hero-stats .hs-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-stats .hs-item:last-child { border-bottom: none; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns a { width: 100%; justify-content: center; }
+      .bonus-box { padding: 1.25rem 1rem; }
+      .recommend-box { padding: 1.25rem 1rem; }
+      .opt-card { padding: 1.25rem; }
     }
     @media print {
       #read-progress, #hdr { display: none; }
@@ -1451,17 +1475,17 @@
       validade:  10, // dias corridos
 
       valores: {
-        comercial:    '15.000',
-        parceria:     '11.900',
-        entrada:      'R$ 4.760',
+        comercial:    '9.900',
+        parceria:     '7.497',
+        entrada:      'R$ 2.999',
         nParcelas:    3,
-        valorParcela: 'R$ 2.380',
+        valorParcela: 'R$ 1.499',
       },
 
       prazo: '[INSERIR PRAZO]', // ← alterar aqui quando definido
 
       whatsapp: '5512991833641',
-      msgAprovacao: 'Olá, Victor! Analisei a proposta VS-POPRH-001 e quero avançar com o desenvolvimento do webapp de gestão de mentorados da POPRH, no valor de R$ 11.900.',
+      msgAprovacao: 'Olá, Victor! Analisei a proposta VS-POPRH-001 e quero avançar com o desenvolvimento do webapp de gestão de mentorados da POPRH, no valor de R$ 7.497.',
     };
     // ───────────────────────────────────────────────────────
 
