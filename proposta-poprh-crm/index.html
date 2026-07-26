@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<!-- impeccable-disable overused-font: VS Experience brand font, consistent across all proposals -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta · CRM + Chatbot · POPRH · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5,38%,22%) 0%, hsl(5,38%,45%) 100%);
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+      --ff-body:     'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Read progress ─────────────────────────────── */
+    #read-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--gradient);
+      z-index: 1000; pointer-events: none;
+    }
+
+    /* ── Header ────────────────────────────────────── */
+    #hdr {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100; padding: 0 2rem; height: 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
+      background: transparent; border-bottom: 1px solid transparent;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom-color: var(--border);
+    }
+    .h-brand {
+      font-size: 0.875rem; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--text); display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .h-brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gradient); }
+    .h-right { display: flex; align-items: center; gap: 0.75rem; }
+    .h-client-tag {
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 100px; padding: 0.25rem 0.75rem;
+    }
+    .h-print-btn {
+      font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 0.375rem;
+      padding: 0.25rem 0.5rem; border-radius: 6px; transition: color 0.2s;
+    }
+    .h-print-btn:hover { color: var(--text); }
+    .h-print-btn svg { width: 14px; height: 14px; }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .container    { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .container-sm { max-width: 800px;  margin: 0 auto; padding: 0 2rem; }
+    .section      { padding: clamp(5rem, 10vw, 8rem) 0; }
+    .divider      { height: 1px; background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent); }
+
+    /* ── Eyebrow ─────────────────────────────────────── */
+    .eyebrow { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1.25rem; }
+    .eyebrow-num  { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose-light); opacity: 0.65; }
+    .eyebrow-line { width: 24px; height: 1px; background: var(--rose); opacity: 0.4; }
+    .eyebrow-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* ── Section titles ──────────────────────────────── */
+    .section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--text); }
+    .section-text  { font-size: 1.0625rem; color: var(--text-2); line-height: 1.75; margin-top: 1rem; }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── Scroll reveal ───────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.05s; } .d2 { transition-delay: 0.1s; }
+    .d3 { transition-delay: 0.15s; } .d4 { transition-delay: 0.2s; }
+    .d5 { transition-delay: 0.25s; } .d6 { transition-delay: 0.3s; }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; padding-top: 6rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 70% 50%, hsla(5,38%,22%,0.18) 0%, transparent 70%); }
+    .hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.035;
+      background-image: linear-gradient(var(--border-2) 1px, transparent 1px), linear-gradient(90deg, var(--border-2) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-left { position: relative; z-index: 1; }
+    .conf-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); border: 1px solid var(--border); border-radius: 100px;
+      padding: 0.375rem 0.875rem; margin-bottom: 1.75rem;
+    }
+    .conf-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+    .hero-title { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: var(--text); margin-bottom: 1.25rem; }
+    .hero-text   { font-size: 1.0625rem; color: var(--text-2); line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem; }
+    .hero-btns   { display: flex; gap: 0.875rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gradient); color: #fff;
+      font-family: var(--ff-body); font-size: 0.9375rem; font-weight: 600;
+      padding: 0.875rem 1.75rem; border-radius: var(--radius);
+      border: none; cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--surface); color: var(--text-2);
+      font-family: var(--ff-body); font-size: 0.9375rem; font-weight: 600;
+      padding: 0.875rem 1.75rem; border-radius: var(--radius);
+      border: 1px solid var(--border); cursor: pointer; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { background: var(--surface-2); border-color: var(--border-2); transform: translateY(-1px); }
+
+    /* Hero stats bar */
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden; background: var(--surface);
+    }
+    .hs-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); }
+    .hs-item:last-child { border-right: none; }
+    .hs-label { font-size: 0.625rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .hs-val   { font-size: 1.0625rem; font-weight: 700; color: var(--text); }
+    .hs-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Tech chips */
+    .tech-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; }
+    .tech-chip {
+      display: flex; align-items: center; gap: 0.375rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--text-2);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.3125rem 0.75rem;
+    }
+    .tc-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+
+    /* ── Hero CRM Simulation ─────────────────────────── */
+    .hero-right { position: relative; z-index: 1; }
+    .hero-dash-sim {
+      border-radius: var(--radius-xl); overflow: hidden;
+      height: 400px; position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 32px 80px hsla(0,0%,0%,0.45);
+      background: hsl(225, 14%, 8%);
+      display: flex; flex-direction: column;
+    }
+    .hdash-chrome {
+      height: 2.5rem; flex-shrink: 0;
+      background: hsl(225, 13%, 9.5%);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.5rem; padding: 0 0.875rem;
+    }
+    .hdash-dots { display: flex; gap: 0.3rem; }
+    .hdash-dots span { width: 7px; height: 7px; border-radius: 50%; }
+    .hdash-dots span:nth-child(1) { background: #ff5f57; }
+    .hdash-dots span:nth-child(2) { background: #febc2e; }
+    .hdash-dots span:nth-child(3) { background: #28c840; }
+    .hdash-url {
+      flex: 1; height: 1.5rem; background: hsl(225, 12%, 11%);
+      border: 1px solid var(--border); border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.5rem; color: var(--text-muted);
+    }
+    .hdash-app { flex: 1; display: flex; overflow: hidden; }
+    .hdash-sidebar {
+      width: 50px; flex-shrink: 0; background: hsl(225, 13%, 8%);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.75rem 0; gap: 0.35rem;
+    }
+    .hdash-nav-item {
+      width: 30px; height: 30px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hdash-nav-item svg { width: 13px; height: 13px; color: hsla(0,0%,100%,0.22); stroke-width: 2; }
+    .hdash-nav-item.active { background: hsla(5, 38%, 22%, 0.55); }
+    .hdash-nav-item.active svg { color: var(--rose-light); }
+    .hdash-nav-spacer { flex: 1; }
+    .hdash-main { flex: 1; display: flex; flex-direction: column; gap: 0.45rem; padding: 0.875rem; overflow: hidden; }
+
+    /* CRM flow indicator */
+    .hcrm-flow {
+      display: flex; align-items: center;
+      background: hsl(225, 12%, 10.5%); border: 1px solid var(--border);
+      border-radius: 0.5rem; padding: 0.5rem 0.625rem; flex-shrink: 0;
+      gap: 0;
+    }
+    .hcrm-flow-step {
+      display: flex; align-items: center; gap: 0.2rem;
+      font-size: 0.3375rem; font-weight: 600; color: var(--text-muted); flex: 1;
+    }
+    .hcrm-flow-step svg { width: 7px; height: 7px; stroke-width: 2.5; }
+    .hcrm-flow-step.done { color: hsl(142, 55%, 52%); }
+    .hcrm-flow-step.done svg { color: hsl(142, 55%, 52%); }
+    .hcrm-flow-step.active { color: var(--rose-light); }
+    .hcrm-flow-step.active svg { color: var(--rose-light); }
+    .hcrm-flow-arr { font-size: 0.4375rem; color: var(--border-2); padding: 0 0.25rem; flex-shrink: 0; }
+
+    /* Lead card */
+    .hcrm-lead-card {
+      background: hsl(225, 12%, 10.5%);
+      border: 1px solid hsla(5, 38%, 45%, 0.22);
+      border-radius: 0.5rem; padding: 0.5rem 0.625rem; flex-shrink: 0;
+      position: relative;
+    }
+    .hcrm-lead-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+      background: var(--gradient); border-radius: 0.5rem 0.5rem 0 0;
+    }
+    .hcrm-lead-top {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.225rem;
+    }
+    .hcrm-bot-pill {
+      font-size: 0.3rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--rose-light); background: hsla(5,38%,22%,0.45);
+      border: 1px solid hsla(5,38%,45%,0.2); border-radius: 100px; padding: 0.1rem 0.375rem;
+    }
+    .hcrm-lead-ts { font-size: 0.3rem; color: var(--text-muted); }
+    .hcrm-lead-name { font-size: 0.5625rem; font-weight: 700; color: var(--text); margin-bottom: 0.125rem; }
+    .hcrm-lead-detail { font-size: 0.375rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .hcrm-lead-bottom { display: flex; align-items: center; gap: 0.4rem; }
+    .hcrm-stage-new {
+      font-size: 0.3rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: hsl(142,55%,52%); background: hsla(142,55%,14%,0.35);
+      border: 1px solid hsla(142,55%,32%,0.25); border-radius: 100px; padding: 0.1rem 0.375rem;
+    }
+    .hcrm-assign-badge {
+      font-size: 0.3rem; color: var(--text-muted);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; padding: 0.1rem 0.375rem;
+    }
+
+    /* Mini kanban */
+    .hcrm-kanban {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.3rem; flex-shrink: 0;
+    }
+    .hcrm-kancol {
+      background: hsl(225, 12%, 10.5%); border: 1px solid var(--border);
+      border-radius: 0.375rem; padding: 0.375rem 0.375rem;
+    }
+    .hcrm-kancol.active { border-color: hsla(5,38%,45%,0.22); }
+    .hcrm-kcol-head {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.25rem;
+    }
+    .hcrm-kcol-label { font-size: 0.3rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+    .hcrm-kcol-count { font-size: 0.4375rem; font-weight: 700; color: var(--text); }
+    .hcrm-kcol-count.rose { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hcrm-kcol-count.grn { color: hsl(142,55%,52%); }
+    .hcrm-dot-row { display: flex; gap: 0.2rem; flex-wrap: wrap; }
+    .hcrm-dot { width: 5px; height: 3px; border-radius: 2px; background: var(--border-2); }
+    .hcrm-dot.active { background: var(--rose); }
+    .hcrm-dot.grn { background: hsl(142,55%,42%); }
+
+    /* CRM pill (top-right overlay) */
+    .hdash-crm-pill {
+      position: absolute; top: 3.5rem; right: 0.75rem;
+      font-size: 0.35rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--rose-light); background: hsla(5,38%,22%,0.5);
+      border: 1px solid hsla(5,38%,45%,0.2); border-radius: 100px; padding: 0.2rem 0.5rem;
+    }
+
+    /* ── Benefit Grid ────────────────────────────────── */
+    .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; margin-top: 2.5rem; }
+    .benefit-card {
+      padding: 1.5rem; border-radius: var(--radius-lg);
+      background: var(--surface); border: 1px solid var(--border);
+      position: relative; overflow: hidden; transition: border-color 0.2s;
+    }
+    .benefit-card:hover { border-color: var(--border-2); }
+    .benefit-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: var(--radius);
+      background: hsla(5, 38%, 22%, 0.28); border: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+    }
+    .benefit-icon svg { width: 18px; height: 18px; color: var(--rose-light); }
+    .benefit-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+    .benefit-desc  { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
+    .module-list { margin-top: 0.875rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .module-list-item {
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      font-size: 0.75rem; color: var(--text-muted); line-height: 1.45;
+    }
+    .module-list-item::before {
+      content: ''; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--rose); flex-shrink: 0; margin-top: 6px;
+    }
+
+    /* ── Profile cards ───────────────────────────────── */
+    .profile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; margin-top: 2.5rem; }
+    .profile-card {
+      padding: 1.5rem 1.25rem; border-radius: var(--radius-lg);
+      background: var(--surface); border: 1px solid var(--border); text-align: center;
+    }
+    .profile-icon {
+      width: 2.75rem; height: 2.75rem; border-radius: 50%;
+      background: hsla(5, 38%, 22%, 0.28); border: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+    }
+    .profile-icon svg { width: 18px; height: 18px; color: var(--rose-light); }
+    .profile-name { font-size: 0.9375rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .profile-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Discovery / MVP grid ────────────────────────── */
+    .mvp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 2rem; }
+    .mvp-item {
+      display: flex; align-items: flex-start; gap: 0.625rem;
+      padding: 0.75rem 1rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 0.8125rem; color: var(--text-2); line-height: 1.45;
+    }
+    .mvp-item svg { flex-shrink: 0; margin-top: 1px; width: 14px; height: 14px; color: hsl(142, 55%, 52%); }
+    .mvp-item.search svg { color: var(--rose-light); }
+
+    /* ── Project phases ──────────────────────────────── */
+    .phases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; margin-top: 2.5rem; }
+    .phase-card {
+      padding: 1.25rem; border-radius: var(--radius-lg);
+      background: var(--surface); border: 1px solid var(--border);
+    }
+    .phase-card.discovery { border-color: var(--border-2); }
+    .phase-num  { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.15em; color: var(--rose-light); opacity: 0.6; margin-bottom: 0.5rem; }
+    .phase-name { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .phase-date { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ── Investment / Option cards ───────────────────── */
+    .option-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.5rem; }
+    .opt-card {
+      border-radius: var(--radius-xl); background: var(--surface);
+      border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden;
+    }
+    .opt-card.featured { border-color: var(--border-2); background: var(--surface-2); }
+    .opt-card.featured::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gradient);
+    }
+    .opt-badge {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      font-size: 0.625rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 100px; padding: 0.3rem 0.75rem; margin-bottom: 1.25rem;
+    }
+    .opt-badge.simple      { color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); }
+    .opt-badge.recommended { color: var(--rose-light); background: hsla(5,38%,22%,0.3); border: 1px solid hsla(5,38%,45%,0.25); }
+    .opt-title { font-size: 1.125rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .opt-desc  { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .opt-price-wrap  { margin-bottom: 1.5rem; }
+    .opt-price-label { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .opt-price-tag   { font-size: 0.6875rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.5rem; }
+    .opt-price-row   { display: flex; align-items: baseline; gap: 0.25rem; }
+    .opt-price-currency { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .opt-price-val {
+      font-size: 2.25rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .pay-opt-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.625rem 0; border-top: 1px solid var(--border); font-size: 0.8125rem;
+    }
+    .pay-opt-label { color: var(--text-muted); }
+    .pay-opt-val   { font-weight: 600; color: var(--text); }
+    .pay-opt-val.discount { color: var(--rose-light); }
+    .pay-opt-val.placeholder { color: var(--text-muted); font-style: italic; }
+
+    /* ── Discovery box ───────────────────────────────── */
+    .discovery-box {
+      margin-top: 1.5rem; padding: 2rem 2.5rem;
+      border-radius: var(--radius-xl);
+      background: hsla(38, 90%, 10%, 0.15); border: 1px solid hsla(38, 80%, 35%, 0.22);
+      position: relative; overflow: hidden;
+    }
+    .discovery-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(135deg, hsl(38,80%,30%) 0%, hsl(38,90%,52%) 100%);
+    }
+    .disc-eyebrow { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.875rem; }
+    .disc-eyebrow-label {
+      font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: hsl(38, 85%, 62%);
+    }
+    .disc-eyebrow svg { width: 14px; height: 14px; color: hsl(38, 85%, 62%); }
+    .disc-title { font-size: 1.125rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
+    .disc-body  { font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+
+    /* ── Manutenção box ──────────────────────────────── */
+    .manutencao-box {
+      margin-top: 1.25rem; padding: 1.5rem 2rem;
+      border-radius: var(--radius-lg); background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .mant-left { flex: 1; }
+    .mant-label {
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 0.375rem;
+    }
+    .mant-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .mant-desc  { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
+    .mant-price {
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* ── Exclusions grid ─────────────────────────────── */
+    .excl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 2rem; }
+    .excl-item {
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      padding: 0.75rem 1rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 0.8125rem; color: var(--text-2); line-height: 1.45;
+    }
+    .excl-item svg { flex-shrink: 0; margin-top: 1px; width: 14px; height: 14px; color: var(--text-muted); }
+    /* impeccable-disable side-tab: matches Seven proposal design system, established pattern */
+    .excl-note {
+      margin-top: 1rem; padding: 1rem 1.25rem;
+      border-radius: var(--radius); font-size: 0.8125rem; color: var(--text-muted);
+      line-height: 1.7; background: var(--surface);
+      border-left: 2px solid hsla(5, 38%, 45%, 0.4);
+    }
+
+    /* ── Recommend box ───────────────────────────────── */
+    .recommend-box {
+      margin-top: 2rem; padding: 2rem 2.5rem;
+      border-radius: var(--radius-xl); background: var(--surface); border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .recommend-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gradient);
+    }
+    .recommend-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.875rem; }
+    .recommend-body  { font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .recommend-pill {
+      display: inline-block; margin-top: 1rem;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em;
+      color: var(--rose-light); background: hsla(5,38%,22%,0.3);
+      border: 1px solid hsla(5,38%,45%,0.2); border-radius: 100px; padding: 0.3rem 0.75rem;
+    }
+
+    /* ── Final CTA ───────────────────────────────────── */
+    .final-cta { position: relative; overflow: hidden; padding: clamp(5rem, 10vw, 8rem) 0; text-align: center; }
+    .final-cta-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 60% at 50% 50%, hsla(5,38%,22%,0.2) 0%, transparent 70%); }
+    .final-cta-title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: var(--text); margin-bottom: 1.25rem; position: relative; }
+    .final-cta-sub   { font-size: 1.0625rem; color: var(--text-2); line-height: 1.7; max-width: 520px; margin: 0 auto 2.5rem; position: relative; }
+    .final-cta-btn {
+      display: inline-flex; align-items: center; gap: 0.625rem;
+      background: var(--gradient); color: #fff;
+      font-family: var(--ff-body); font-size: 1rem; font-weight: 600;
+      padding: 1rem 2.25rem; border-radius: var(--radius-lg);
+      border: none; cursor: pointer; text-decoration: none; position: relative;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .final-cta-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 0; background: var(--bg-2); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-brand-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gradient); }
+    .footer-tagline { font-size: 0.8125rem; font-weight: 600; color: var(--text); }
+    .footer-meta { text-align: right; }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; gap: 3rem; }
+      .benefit-grid { grid-template-columns: repeat(2,1fr); }
+      .option-cards { grid-template-columns: 1fr; }
+      .profile-grid { grid-template-columns: repeat(2,1fr); }
+      .phases-grid  { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; }
+      .hero-stats { grid-template-columns: repeat(2,1fr); }
+      .hero-stats .hs-item:nth-child(2n) { border-right: none; }
+      .excl-grid { grid-template-columns: 1fr; }
+      .h-client-tag { display: none; }
+      .manutencao-box { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .container, .container-sm { padding: 0 1.25rem; }
+      #hdr { padding: 0 1.25rem; }
+      .hero { gap: 2rem; }
+      .hero-dash-sim { height: 340px; }
+      .discovery-box { padding: 1.5rem 1.25rem; }
+      .recommend-box { padding: 1.5rem 1.25rem; }
+      .opt-card { padding: 1.5rem; }
+      .footer-inner { flex-direction: column; gap: 0.875rem; align-items: flex-start; }
+      .footer-meta { text-align: left; }
+    }
+    @media (max-width: 580px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .phases-grid  { grid-template-columns: 1fr; }
+      .mvp-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .container, .container-sm { padding: 0 1rem; }
+      #hdr { padding: 0 1rem; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-stats .hs-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-stats .hs-item:last-child { border-bottom: none; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns a { width: 100%; justify-content: center; }
+      .discovery-box { padding: 1.25rem 1rem; }
+    }
+    @media print {
+      #read-progress, #hdr { display: none; }
+      .hero { min-height: auto; padding-top: 2rem; }
+      .hero-dash-sim { box-shadow: none; }
+      .reveal { opacity: 1; transform: none; }
+      .final-cta-bg { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="read-progress"></div>
+
+  <header id="hdr">
+    <a class="h-brand" href="#">
+      <span class="h-brand-dot"></span>
+      VS Experience
+    </a>
+    <div class="h-right">
+      <span class="h-client-tag" id="cfg-proposta-tag">VS-POPRH-002 · Proposta Comercial</span>
+      <button class="h-print-btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir
+      </button>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="section hero container">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+
+    <div class="hero-left">
+      <div class="conf-tag">
+        <span class="conf-dot"></span>
+        Proposta exclusiva · POPRH
+      </div>
+
+      <h1 class="hero-title reveal">
+        Atendimento, leads e CRM <span class="text-gradient">integrados ao chatbot</span> da POPRH.
+      </h1>
+
+      <p class="hero-text reveal d1">
+        Central comercial que conecta o chatbot da POPRH ao CRM, eliminando a troca de plataformas e centralizando leads, conversas, tarefas e o funil de vendas em um único ambiente operado pela equipe.
+      </p>
+
+      <div class="hero-btns reveal d2">
+        <a id="cfg-wpp-btn" href="#" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Aprovar proposta
+        </a>
+        <a href="#investimento" class="btn-secondary">
+          Ver investimento
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-stats reveal d3">
+        <div class="hs-item">
+          <div class="hs-label">Investimento estimado</div>
+          <div class="hs-val accent" id="cfg-hs-valor">R$ 8.697</div>
+        </div>
+        <div class="hs-item">
+          <div class="hs-label">Discovery</div>
+          <div class="hs-val">Incluso</div>
+        </div>
+        <div class="hs-item">
+          <div class="hs-label">Validade</div>
+          <div class="hs-val" id="cfg-hs-validade">10 dias</div>
+        </div>
+      </div>
+
+      <div class="tech-chips reveal d4">
+        <div class="tech-chip"><span class="tc-dot"></span>CRM Kanban</div>
+        <div class="tech-chip"><span class="tc-dot"></span>Integração Chatbot</div>
+        <div class="tech-chip"><span class="tc-dot"></span>Gestão de Leads</div>
+        <div class="tech-chip"><span class="tc-dot"></span>Dashboard Comercial</div>
+        <div class="tech-chip"><span class="tc-dot"></span>Multiusuário</div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal d2">
+      <div class="hero-dash-sim">
+        <!-- Browser chrome -->
+        <div class="hdash-chrome">
+          <div class="hdash-dots"><span></span><span></span><span></span></div>
+          <div class="hdash-url">crm.poprh.com.br/leads</div>
+        </div>
+
+        <!-- CRM pill -->
+        <div class="hdash-crm-pill">CRM · Integrado</div>
+
+        <div class="hdash-app">
+          <!-- Sidebar -->
+          <div class="hdash-sidebar">
+            <div class="hdash-nav-item active">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="hdash-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <div class="hdash-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="hdash-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="hdash-nav-spacer"></div>
+            <div class="hdash-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+            </div>
+          </div>
+
+          <!-- Main CRM content -->
+          <div class="hdash-main">
+
+            <!-- Flow: Chatbot → Lead → CRM -->
+            <div class="hcrm-flow">
+              <div class="hcrm-flow-step done">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Chatbot
+              </div>
+              <div class="hcrm-flow-arr">→</div>
+              <div class="hcrm-flow-step done">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+                Lead criado
+              </div>
+              <div class="hcrm-flow-arr">→</div>
+              <div class="hcrm-flow-step active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                Comercial
+              </div>
+              <div class="hcrm-flow-arr">→</div>
+              <div class="hcrm-flow-step">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Funil
+              </div>
+            </div>
+
+            <!-- New lead from chatbot -->
+            <div class="hcrm-lead-card">
+              <div class="hcrm-lead-top">
+                <div class="hcrm-bot-pill">via Chatbot · agora</div>
+                <div class="hcrm-lead-ts">há 1 min</div>
+              </div>
+              <div class="hcrm-lead-name">Maria Silva</div>
+              <div class="hcrm-lead-detail">Interesse em Mentoria RH · São Paulo, SP</div>
+              <div class="hcrm-lead-bottom">
+                <div class="hcrm-stage-new">Novo lead</div>
+                <div class="hcrm-assign-badge">Não atribuído</div>
+              </div>
+            </div>
+
+            <!-- Mini kanban -->
+            <div class="hcrm-kanban">
+              <div class="hcrm-kancol active">
+                <div class="hcrm-kcol-head">
+                  <span class="hcrm-kcol-label">Novo</span>
+                  <span class="hcrm-kcol-count rose">4</span>
+                </div>
+                <div class="hcrm-dot-row">
+                  <span class="hcrm-dot active"></span>
+                  <span class="hcrm-dot active"></span>
+                  <span class="hcrm-dot"></span>
+                  <span class="hcrm-dot"></span>
+                </div>
+              </div>
+              <div class="hcrm-kancol">
+                <div class="hcrm-kcol-head">
+                  <span class="hcrm-kcol-label">Qualif.</span>
+                  <span class="hcrm-kcol-count">6</span>
+                </div>
+                <div class="hcrm-dot-row">
+                  <span class="hcrm-dot"></span><span class="hcrm-dot"></span>
+                  <span class="hcrm-dot"></span><span class="hcrm-dot"></span>
+                  <span class="hcrm-dot"></span><span class="hcrm-dot"></span>
+                </div>
+              </div>
+              <div class="hcrm-kancol">
+                <div class="hcrm-kcol-head">
+                  <span class="hcrm-kcol-label">Proposta</span>
+                  <span class="hcrm-kcol-count rose">2</span>
+                </div>
+                <div class="hcrm-dot-row">
+                  <span class="hcrm-dot active"></span>
+                  <span class="hcrm-dot active"></span>
+                </div>
+              </div>
+              <div class="hcrm-kancol">
+                <div class="hcrm-kcol-head">
+                  <span class="hcrm-kcol-label">Fechado</span>
+                  <span class="hcrm-kcol-count grn">11</span>
+                </div>
+                <div class="hcrm-dot-row">
+                  <span class="hcrm-dot grn"></span><span class="hcrm-dot grn"></span>
+                  <span class="hcrm-dot grn"></span><span class="hcrm-dot grn"></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       01 — Visão Geral
+  ════════════════════════════════════════ -->
+  <section class="section" id="visao-geral">
+    <div class="container-sm">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">01</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Visão Geral</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Da conversa no chatbot à <span class="text-gradient">negociação no CRM.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        Hoje a equipe comercial da POPRH opera entre plataformas diferentes: o chatbot recebe leads, mas os dados precisam ser copiados manualmente para outra ferramenta, o histórico fica fragmentado e o contexto do atendimento se perde na troca de responsável.
+      </p>
+      <p class="section-text reveal d3">
+        O objetivo deste projeto é criar uma central própria que integre o chatbot ao CRM — automatizando a criação de leads, centralizando o histórico de interações e permitindo que o time comercial opere com mais agilidade, visibilidade e controle sobre o funil de vendas.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       02 — Principais Módulos
+  ════════════════════════════════════════ -->
+  <section class="section" id="modulos">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">02</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Principais Módulos</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Três frentes.<br><span class="text-gradient">Um único sistema.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        A plataforma é estruturada em três módulos principais que se complementam para cobrir todo o ciclo de atendimento e gestão comercial da POPRH.
+      </p>
+
+      <div class="benefit-grid">
+
+        <div class="benefit-card reveal d1">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <div class="benefit-title">CRM Comercial</div>
+          <div class="benefit-desc">Funil de vendas visual com gestão completa de leads do primeiro contato à conversão.</div>
+          <ul class="module-list">
+            <li class="module-list-item">Funil Kanban com etapas configuráveis</li>
+            <li class="module-list-item">Cadastro completo de leads e contatos</li>
+            <li class="module-list-item">Histórico de interações por lead</li>
+            <li class="module-list-item">Tarefas, lembretes e próximos passos</li>
+            <li class="module-list-item">Responsável por atendimento</li>
+            <li class="module-list-item">Motivos de perda e conversão</li>
+            <li class="module-list-item">Filtros, busca e dashboard comercial</li>
+          </ul>
+        </div>
+
+        <div class="benefit-card reveal d2">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="benefit-title">Integração com Chatbot</div>
+          <div class="benefit-desc">Conexão entre o chatbot existente da POPRH e o CRM para automação da criação e atualização de leads.</div>
+          <ul class="module-list">
+            <li class="module-list-item">Recebimento automático dos dados captados</li>
+            <li class="module-list-item">Criação de leads sem intervenção manual</li>
+            <li class="module-list-item">Atualização de contatos já existentes</li>
+            <li class="module-list-item">Registro das respostas e do histórico de conversa</li>
+            <li class="module-list-item">Transferência do atendimento para o responsável</li>
+            <li class="module-list-item">Identificação da origem de cada lead</li>
+          </ul>
+        </div>
+
+        <div class="benefit-card reveal d3">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="benefit-title">Centralização de Processos</div>
+          <div class="benefit-desc">Mapeamento e centralização das atividades hoje distribuídas em plataformas diferentes, reduzindo a troca de contexto.</div>
+          <ul class="module-list">
+            <li class="module-list-item">Consulta de informações do lead em um só lugar</li>
+            <li class="module-list-item">Mudança de etapa do funil sem sair da plataforma</li>
+            <li class="module-list-item">Distribuição e redistribuição de leads</li>
+            <li class="module-list-item">Visualização de indicadores em tempo real</li>
+            <li class="module-list-item">Integrações com ferramentas externas onde necessário</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       03 — Perfis de Acesso
+  ════════════════════════════════════════ -->
+  <section class="section" id="perfis">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">03</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Perfis de Acesso</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Cada perfil acessa <span class="text-gradient">o que é seu.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        Quatro perfis distintos com permissões e visibilidades adaptadas ao papel de cada pessoa no processo de atendimento e gestão comercial.
+      </p>
+
+      <div class="profile-grid">
+        <div class="profile-card reveal d1">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="profile-name">Administrador</div>
+          <div class="profile-desc">Acesso total: usuários, configurações, relatórios, integrações e dados de toda a operação.</div>
+        </div>
+        <div class="profile-card reveal d2">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="profile-name">Gestor</div>
+          <div class="profile-desc">Visão geral do funil, métricas da equipe, redistribuição de leads e relatórios de desempenho.</div>
+        </div>
+        <div class="profile-card reveal d3">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <div class="profile-name">Comercial</div>
+          <div class="profile-desc">Leads atribuídos, pipeline próprio, histórico de interações, tarefas e registro de observações.</div>
+        </div>
+        <div class="profile-card reveal d4">
+          <div class="profile-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="profile-name">Atendimento</div>
+          <div class="profile-desc">Recepção de leads do chatbot, histórico de conversa, transferência de atendimento e registro inicial.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       04 — Etapa de Diagnóstico
+  ════════════════════════════════════════ -->
+  <section class="section" id="diagnostico">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">04</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Etapa de Diagnóstico</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Antes de desenvolver, <span class="text-gradient">entender o cenário atual.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        Como o fluxo completo e as plataformas utilizadas pela POPRH precisam ser mapeados com precisão, o projeto inclui uma etapa inicial de discovery técnico. Essa análise é necessária para definir o escopo final e as integrações viáveis — e está inclusa no investimento desta proposta.
+      </p>
+
+      <div class="mvp-grid">
+        <div class="mvp-item search reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Qual chatbot é utilizado e disponibilidade da API
+        </div>
+        <div class="mvp-item search reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Plataformas utilizadas atualmente e por qual função
+        </div>
+        <div class="mvp-item search reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Informações que precisam ser sincronizadas entre sistemas
+        </div>
+        <div class="mvp-item search reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Processos que podem ser automatizados ou eliminados
+        </div>
+        <div class="mvp-item search reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Regras de distribuição e responsabilidade de leads
+        </div>
+        <div class="mvp-item search reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Perfis de usuários e volume de atendimentos diários
+        </div>
+        <div class="mvp-item search reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Relatórios e indicadores necessários para a gestão
+        </div>
+        <div class="mvp-item search reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Integrações obrigatórias e requisitos de segurança (LGPD)
+        </div>
+      </div>
+
+      <div class="recommend-box reveal" style="margin-top:2.5rem">
+        <div class="recommend-title">O escopo e investimento finais poderão ser ajustados após o diagnóstico.</div>
+        <div class="recommend-body">
+          O investimento apresentado nesta proposta considera o escopo inicial descrito aqui. Após a análise técnica do chatbot, das integrações e dos processos utilizados atualmente pela POPRH, o escopo e o valor final serão confirmados ou revisados em conjunto.
+        </div>
+        <div class="recommend-pill">Discovery incluso no investimento estimado</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       05 — Escopo Inicial
+  ════════════════════════════════════════ -->
+  <section class="section" id="escopo">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">05</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Escopo Inicial</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        O que está previsto <span class="text-gradient">nesta proposta.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        O escopo inicial cobre as funcionalidades essenciais para que a POPRH inicie a operação integrada entre chatbot e CRM. Funcionalidades adicionais identificadas no discovery poderão ser incluídas ou orçadas à parte.
+      </p>
+
+      <div class="mvp-grid">
+        <div class="mvp-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Login, recuperação de senha e gestão de usuários
+        </div>
+        <div class="mvp-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Cadastro de contatos e leads com histórico completo
+        </div>
+        <div class="mvp-item reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          CRM com funil Kanban e etapas configuráveis
+        </div>
+        <div class="mvp-item reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Integração inicial com o chatbot (via API)
+        </div>
+        <div class="mvp-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Criação automática de leads a partir do chatbot
+        </div>
+        <div class="mvp-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Distribuição e atribuição de atendimentos
+        </div>
+        <div class="mvp-item reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Tarefas, lembretes e observações internas por lead
+        </div>
+        <div class="mvp-item reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Dashboard comercial com indicadores-chave
+        </div>
+        <div class="mvp-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Permissões por perfil de acesso
+        </div>
+        <div class="mvp-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Layout responsivo para desktop e mobile
+        </div>
+        <div class="mvp-item reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Testes funcionais e publicação em produção
+        </div>
+        <div class="mvp-item reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Treinamento e suporte técnico inicial
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       06 — Etapas do Projeto
+  ════════════════════════════════════════ -->
+  <section class="section" id="etapas">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">06</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Etapas do Projeto</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Do discovery ao <span class="text-gradient">go-live.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        O projeto é estruturado em oito etapas, começando pelo diagnóstico técnico para garantir que o desenvolvimento parta de um mapeamento real do ambiente atual da POPRH.
+      </p>
+
+      <div class="phases-grid">
+        <div class="phase-card discovery reveal d1">
+          <div class="phase-num">ETAPA 01</div>
+          <div class="phase-name">Discovery técnico</div>
+          <div class="phase-date">Mapeamento do chatbot, plataformas e processos atuais. Define o escopo final.</div>
+        </div>
+        <div class="phase-card reveal d2">
+          <div class="phase-num">ETAPA 02</div>
+          <div class="phase-name">Levantamento de requisitos</div>
+          <div class="phase-date">Definição detalhada de fluxos, regras de negócio e integrações necessárias.</div>
+        </div>
+        <div class="phase-card reveal d3">
+          <div class="phase-num">ETAPA 03</div>
+          <div class="phase-name">UX / Design de interface</div>
+          <div class="phase-date">Prototipagem das telas e aprovação do visual antes do desenvolvimento.</div>
+        </div>
+        <div class="phase-card reveal d4">
+          <div class="phase-num">ETAPA 04</div>
+          <div class="phase-name">Desenvolvimento Back-end</div>
+          <div class="phase-date">Banco de dados, APIs, autenticação, regras de negócio e lógica de integração.</div>
+        </div>
+        <div class="phase-card reveal d1">
+          <div class="phase-num">ETAPA 05</div>
+          <div class="phase-name">Integração com chatbot</div>
+          <div class="phase-date">Conexão com a API do chatbot, testes de envio e recepção de dados.</div>
+        </div>
+        <div class="phase-card reveal d2">
+          <div class="phase-num">ETAPA 06</div>
+          <div class="phase-name">Desenvolvimento Front-end</div>
+          <div class="phase-date">Implementação do CRM, funil, dashboard, telas de leads e perfis.</div>
+        </div>
+        <div class="phase-card reveal d3">
+          <div class="phase-num">ETAPA 07</div>
+          <div class="phase-name">Homologação</div>
+          <div class="phase-date">Ambiente de staging para validação pela equipe POPRH antes da publicação.</div>
+        </div>
+        <div class="phase-card reveal d4">
+          <div class="phase-num">ETAPA 08</div>
+          <div class="phase-name">Deploy e treinamento</div>
+          <div class="phase-date">Publicação em produção, onboarding da equipe e suporte no período inicial.</div>
+        </div>
+      </div>
+
+      <div class="recommend-box reveal" style="margin-top:2.5rem">
+        <div class="recommend-title">Prazo estimado de entrega</div>
+        <div class="recommend-body">
+          O prazo será definido após o discovery técnico e o levantamento de requisitos, com base na complexidade das integrações identificadas. Uma estimativa detalhada será apresentada ao final da etapa 02.
+        </div>
+        <div class="recommend-pill" id="cfg-prazo-pill">Prazo: a definir após discovery</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       07 — Investimento
+  ════════════════════════════════════════ -->
+  <section class="section" id="investimento">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">07</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Investimento</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Estimativa inicial <span class="text-gradient">com discovery incluso.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        O valor apresentado considera o escopo descrito nesta proposta. Após a etapa de diagnóstico técnico, o investimento final será confirmado ou ajustado em conjunto com a POPRH.
+      </p>
+
+      <div class="option-cards">
+
+        <!-- Escopo base -->
+        <div class="opt-card reveal d1">
+          <div class="opt-badge simple">Escopo base</div>
+          <div class="opt-title">CRM + Integração Chatbot</div>
+          <div class="opt-desc">Desenvolvimento completo conforme escopo inicial descrito nesta proposta, incluindo etapa de diagnóstico técnico.</div>
+          <div class="opt-price-wrap">
+            <div class="opt-price-label">Investimento estimado</div>
+            <div class="opt-price-tag">Valor sujeito a ajuste após discovery</div>
+            <div class="opt-price-row">
+              <span class="opt-price-currency">R$</span>
+              <span class="opt-price-val" id="cfg-valor-estimado-display">8.697</span>
+            </div>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Discovery técnico</span>
+            <span class="pay-opt-val">Incluso</span>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Módulos inclusos</span>
+            <span class="pay-opt-val">CRM + Chatbot + Central</span>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Deploy em produção</span>
+            <span class="pay-opt-val">Incluso</span>
+          </div>
+        </div>
+
+        <!-- Condição de pagamento -->
+        <div class="opt-card featured reveal d2">
+          <div class="opt-badge recommended">★ Condição de pagamento</div>
+          <div class="opt-title">CRM + Integração Chatbot</div>
+          <div class="opt-desc">Mesmo escopo completo com condição de entrada para iniciar o projeto e saldo parcelado conforme aprovação.</div>
+          <div class="opt-price-wrap">
+            <div class="opt-price-label">Total estimado</div>
+            <div class="opt-price-row">
+              <span class="opt-price-currency">R$</span>
+              <span class="opt-price-val" id="cfg-valor-estimado-display2">8.697</span>
+            </div>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Entrada para início do projeto</span>
+            <span class="pay-opt-val discount" id="cfg-entrada-display">R$ 1.400</span>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Saldo</span>
+            <span class="pay-opt-val placeholder" id="cfg-parcelas-display">[Condição a definir]</span>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Validade desta proposta</span>
+            <span class="pay-opt-val" id="cfg-validade-display">10 dias corridos</span>
+          </div>
+          <div class="pay-opt-row">
+            <span class="pay-opt-label">Expira em</span>
+            <span class="pay-opt-val" id="cfg-expira-display"></span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Manutenção mensal opcional -->
+      <div class="manutencao-box reveal">
+        <div class="mant-left">
+          <div class="mant-label">Opcional · Manutenção mensal</div>
+          <div class="mant-title">Suporte contínuo pós-lançamento</div>
+          <div class="mant-desc">Atualizações, correções, pequenas evoluções e suporte técnico mensal após a entrega do projeto.</div>
+        </div>
+        <div class="mant-price" id="cfg-manutencao-display">R$ [VALOR]/mês</div>
+      </div>
+
+      <!-- Discovery adjustment note -->
+      <div class="discovery-box reveal">
+        <div class="disc-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="disc-eyebrow-label">Observação sobre o investimento</span>
+        </div>
+        <div class="disc-title">O valor poderá ser ajustado após a análise técnica.</div>
+        <div class="disc-body">
+          O investimento apresentado considera o escopo inicial descrito nesta proposta. Alterações poderão ser necessárias após a análise técnica do chatbot, das integrações e dos processos utilizados atualmente pela POPRH. Qualquer revisão de escopo será apresentada e aprovada antes do desenvolvimento.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       08 — Evoluções Futuras + Observações
+  ════════════════════════════════════════ -->
+  <section class="section" id="evolucoes">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">08</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Evoluções Futuras</span>
+      </div>
+      <h2 class="section-title reveal d1">
+        Fora do escopo inicial, <span class="text-gradient">mas já no radar.</span>
+      </h2>
+      <p class="section-text reveal d2">
+        As funcionalidades abaixo não estão incluídas no escopo desta proposta. Estão listadas para transparência e poderão ser desenvolvidas em fases posteriores, mediante nova proposta e escopo.
+      </p>
+
+      <div class="excl-grid">
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Integração com WhatsApp (Business API)
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Automação de follow-up e sequências de mensagens
+        </div>
+        <div class="excl-item reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Distribuição inteligente de leads por IA
+        </div>
+        <div class="excl-item reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Resumos automáticos de conversas com IA
+        </div>
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Integração com e-mail e caixa de entrada unificada
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Integração com plataformas de pagamento
+        </div>
+        <div class="excl-item reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Relatórios avançados e exportações customizadas
+        </div>
+        <div class="excl-item reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Automações de pós-venda e onboarding automático
+        </div>
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Integração com a plataforma de mentorados
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Unificação de dados comerciais e educacionais
+        </div>
+        <div class="excl-item reveal d3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Classificação de leads por IA com scoring automático
+        </div>
+        <div class="excl-item reveal d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          App mobile nativo (iOS / Android)
+        </div>
+      </div>
+
+      <div class="excl-note reveal">
+        As evoluções futuras serão priorizadas com base no uso real do sistema após o lançamento. O código será desenvolvido de forma modular para facilitar a adição dessas funcionalidades nas próximas fases.
+      </div>
+
+      <!-- Observações -->
+      <div style="margin-top:3.5rem">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num"></span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Observações e condições</span>
+        </div>
+
+        <div class="excl-grid" style="margin-top:1.5rem">
+          <div class="excl-item reveal d1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            A integração dependerá da API, documentação e limitações técnicas do chatbot atual
+          </div>
+          <div class="excl-item reveal d2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Algumas ferramentas poderão continuar em uso por meio de integrações pontuais
+          </div>
+          <div class="excl-item reveal d3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Alterações de escopo após aprovação poderão impactar prazo e valor
+          </div>
+          <div class="excl-item reveal d4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Infraestrutura (hospedagem, domínio) por conta da POPRH
+          </div>
+          <div class="excl-item reveal d1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            O pagamento da entrada inicia o projeto e a etapa de discovery
+          </div>
+          <div class="excl-item reveal d2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Esta proposta tem validade de <span id="cfg-obs-validade" style="font-weight:700;color:var(--text)">10 dias</span> a partir da data de emissão
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════
+       FINAL CTA
+  ════════════════════════════════════════ -->
+  <section class="final-cta">
+    <div class="final-cta-bg"></div>
+    <div class="container-sm">
+      <div class="eyebrow reveal" style="justify-content:center">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Próximo passo</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h2 class="final-cta-title reveal d1">
+        Pronto para centralizar o atendimento<br>e o CRM da POPRH?
+      </h2>
+      <p class="final-cta-sub reveal d2">
+        Envie sua aprovação pelo WhatsApp e iniciamos a etapa de discovery ainda esta semana.
+      </p>
+      <div class="reveal d3">
+        <a id="cfg-wpp-btn-final" href="#" class="final-cta-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Aprovar e iniciar discovery
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-brand-dot"></div>
+          <span class="footer-tagline">VS Experience</span>
+        </div>
+        <div class="footer-meta">
+          <div class="footer-copy" id="cfg-footer-info">VS-POPRH-002 · Emitida em <span id="cfg-emissao"></span> · Válida até <span id="cfg-validade-ate"></span></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── CONFIG ─────────────────────────────────────────────
+    var CONFIG = {
+      proposta:  'VS-POPRH-002',
+      cliente:   'POPRH',
+      validade:  10, // dias corridos
+
+      valores: {
+        estimado:     '8.697',
+        entrada:      'R$ 1.400',
+        parcelamento: '[CONDIÇÃO]', // ← definir condição de parcelamento
+        manutencao:   '[VALOR]',    // ← definir valor mensal opcional
+      },
+
+      prazo: '[INSERIR PRAZO]', // ← alterar após kickoff
+
+      whatsapp: '5512991833641',
+      msgAprovacao: 'Olá, Victor! Analisei a proposta VS-POPRH-002 e quero avançar com o CRM integrado ao chatbot da POPRH, com investimento estimado de R$ 8.697.',
+    };
+    // ───────────────────────────────────────────────────────
+
+    (function () {
+      var el;
+
+      el = document.getElementById('cfg-valor-estimado-display');
+      if (el) el.textContent = CONFIG.valores.estimado;
+
+      el = document.getElementById('cfg-valor-estimado-display2');
+      if (el) el.textContent = CONFIG.valores.estimado;
+
+      el = document.getElementById('cfg-hs-valor');
+      if (el) el.textContent = 'R$ ' + CONFIG.valores.estimado;
+
+      el = document.getElementById('cfg-entrada-display');
+      if (el) el.textContent = CONFIG.valores.entrada;
+
+      el = document.getElementById('cfg-parcelas-display');
+      if (el) el.textContent = CONFIG.valores.parcelamento === '[CONDIÇÃO]' ? '[Condição a definir]' : CONFIG.valores.parcelamento;
+
+      el = document.getElementById('cfg-manutencao-display');
+      if (el) el.textContent = CONFIG.valores.manutencao === '[VALOR]' ? 'R$ [VALOR]/mês' : 'R$ ' + CONFIG.valores.manutencao + '/mês';
+
+      // Prazo
+      el = document.getElementById('cfg-prazo-pill');
+      if (el) el.textContent = CONFIG.prazo === '[INSERIR PRAZO]' ? 'Prazo: a definir após discovery' : 'Prazo: ' + CONFIG.prazo;
+
+      // Dates
+      var today = new Date();
+      var expires = new Date(today);
+      expires.setDate(today.getDate() + CONFIG.validade);
+
+      var months = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+      var fmtDate = function (d) { return d.getDate() + ' de ' + months[d.getMonth()] + '. de ' + d.getFullYear(); };
+      var fmtDateShort = function (d) { return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear(); };
+
+      el = document.getElementById('cfg-expira-display');
+      if (el) el.textContent = fmtDate(expires);
+
+      el = document.getElementById('cfg-hs-validade');
+      if (el) el.textContent = CONFIG.validade + ' dias';
+
+      el = document.getElementById('cfg-validade-display');
+      if (el) el.textContent = CONFIG.validade + ' dias corridos';
+
+      el = document.getElementById('cfg-obs-validade');
+      if (el) el.textContent = CONFIG.validade + ' dias';
+
+      el = document.getElementById('cfg-emissao');
+      if (el) el.textContent = fmtDateShort(today);
+
+      el = document.getElementById('cfg-validade-ate');
+      if (el) el.textContent = fmtDateShort(expires);
+
+      // WhatsApp
+      var wppUrl = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(CONFIG.msgAprovacao);
+      [document.getElementById('cfg-wpp-btn'), document.getElementById('cfg-wpp-btn-final')]
+        .forEach(function (b) { if (b) b.href = wppUrl; });
+
+      // Proposta tag
+      el = document.getElementById('cfg-proposta-tag');
+      if (el) el.textContent = CONFIG.proposta + ' · Proposta Comercial';
+    })();
+
+    // ── Read progress bar ──────────────────────────────────
+    var bar = document.getElementById('read-progress');
+    window.addEventListener('scroll', function () {
+      var total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / total * 100) + '%';
+    }, { passive: true });
+
+    // ── Header scroll state ────────────────────────────────
+    var hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', function () {
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Scroll reveal ──────────────────────────────────────
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  </script>
+</body>
+</html>

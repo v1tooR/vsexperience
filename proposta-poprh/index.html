@@ -640,6 +640,117 @@
     .footer-meta { text-align: right; }
     .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
 
+    /* ── Header CRM link ────────────────────────── */
+    .h-crm-link {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--rose-light); background: hsla(5,38%,22%,0.25);
+      border: 1px solid hsla(5,38%,45%,0.2); border-radius: 100px;
+      padding: 0.25rem 0.75rem; text-decoration: none;
+      display: flex; align-items: center; gap: 0.3rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .h-crm-link:hover { background: hsla(5,38%,22%,0.45); border-color: hsla(5,38%,45%,0.4); }
+    .h-crm-link svg { width: 11px; height: 11px; }
+
+    /* ── Combo box ───────────────────────────────── */
+    .combo-box {
+      margin-top: 1.5rem; padding: 2rem 2.5rem;
+      border-radius: var(--radius-xl);
+      background: hsla(5, 38%, 9%, 0.4);
+      border: 1px solid hsla(5, 38%, 45%, 0.3);
+      position: relative; overflow: hidden;
+    }
+    .combo-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gradient);
+    }
+    .combo-eyebrow { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.875rem; }
+    .combo-eyebrow-label {
+      font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--rose-light);
+    }
+    .combo-eyebrow svg { width: 14px; height: 14px; color: var(--rose-light); }
+    .combo-title { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.375rem; }
+    .combo-sub   { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; margin-bottom: 1.5rem; }
+    .combo-items {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .combo-item {
+      padding: 0.875rem 1rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+    }
+    .combo-item-tag {
+      font-size: 0.4375rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.375rem;
+    }
+    .combo-item-name { font-size: 0.75rem; font-weight: 600; color: var(--text-2); margin-bottom: 0.25rem; }
+    .combo-item-val  { font-size: 1.0625rem; font-weight: 700; color: var(--text); }
+    .combo-plus { font-size: 1.25rem; font-weight: 700; color: var(--text-muted); text-align: center; flex-shrink: 0; }
+    .combo-result { padding-top: 1.25rem; border-top: 1px solid hsla(5,38%,45%,0.15); }
+    .combo-result-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.3rem 0; font-size: 0.8125rem;
+    }
+    .combo-result-label { color: var(--text-muted); }
+    .combo-result-val   { font-weight: 600; color: var(--text); }
+    .combo-result-val.struck { text-decoration: line-through; color: var(--text-muted); font-weight: 400; }
+    .combo-result-val.saved  { color: hsl(142, 55%, 52%); }
+    .combo-final-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 0.75rem; padding-top: 0.875rem;
+      border-top: 1px solid hsla(5,38%,45%,0.15);
+    }
+    .combo-final-label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .combo-final-price-row { display: flex; align-items: baseline; gap: 0.25rem; }
+    .combo-final-currency  { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .combo-final-price {
+      font-size: 2.25rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .combo-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1.25rem; gap: 1rem; flex-wrap: wrap;
+    }
+    .combo-saving-badge {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em;
+      color: hsl(142, 55%, 52%); background: hsla(142,55%,14%,0.2);
+      border: 1px solid hsla(142,55%,32%,0.25); border-radius: 100px; padding: 0.3rem 0.875rem;
+    }
+    .combo-saving-badge svg { width: 13px; height: 13px; }
+    .combo-link-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.875rem; font-weight: 600;
+      color: var(--rose-light); background: hsla(5,38%,22%,0.25);
+      border: 1px solid hsla(5,38%,45%,0.3); border-radius: var(--radius);
+      padding: 0.625rem 1.25rem; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .combo-link-btn:hover { background: hsla(5,38%,22%,0.45); border-color: hsla(5,38%,45%,0.45); }
+    .combo-link-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── Final crosslink ─────────────────────────── */
+    .final-crosslink {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      margin-top: 1.75rem; flex-wrap: wrap;
+    }
+    .final-crosslink-label { font-size: 0.8125rem; color: var(--text-muted); }
+    .final-crosslink-link {
+      font-size: 0.8125rem; font-weight: 600; color: var(--rose-light);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;
+      transition: opacity 0.2s;
+    }
+    .final-crosslink-link:hover { opacity: 0.72; }
+    .final-crosslink-link svg { width: 12px; height: 12px; }
+
+    /* ── Responsive (new components) ────────────── */
+    @media (max-width: 768px) { .h-crm-link { display: none; } }
+    @media (max-width: 640px) { .combo-box { padding: 1.5rem 1.25rem; } }
+    @media (max-width: 580px) { .combo-items { grid-template-columns: 1fr; } .combo-plus { display: none; } }
+    @media (max-width: 480px) { .combo-footer { flex-direction: column; align-items: flex-start; } }
+
     /* ── Responsive ──────────────────────────── */
     @media (max-width: 960px) {
       .hero { grid-template-columns: 1fr; gap: 3rem; }
@@ -709,6 +820,10 @@
     </a>
     <div class="h-right">
       <span class="h-client-tag" id="cfg-proposta-tag">VS-POPRH-001 · Proposta Comercial</span>
+      <a id="cfg-crm-header-link" href="../proposta-poprh-crm/" class="h-crm-link">
+        CRM
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
       <button class="h-print-btn" onclick="window.print()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Imprimir
@@ -1325,6 +1440,60 @@
           <strong style="color:var(--text-2)">O site institucional não inclui:</strong> sistema de blog, integração com plataformas de pagamento, área logada ou múltiplas páginas além da landing principal.
         </div>
       </div>
+
+      <!-- ── Oferta conjunta ──────────────────── -->
+      <div class="combo-box reveal">
+        <div class="combo-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <span class="combo-eyebrow-label">Oferta conjunta · VS-POPRH-001 + VS-POPRH-002</span>
+        </div>
+        <div class="combo-title">Aprove os dois projetos e economize 20%.</div>
+        <div class="combo-sub">Ao contratar o Webapp de Mentoria e o CRM integrado ao chatbot juntos, você tem uma condição especial sobre o valor total — sem abrir mão de nenhum escopo.</div>
+
+        <div class="combo-items">
+          <div class="combo-item">
+            <div class="combo-item-tag">VS-POPRH-001</div>
+            <div class="combo-item-name">Webapp de Mentoria</div>
+            <div class="combo-item-val" id="cfg-combo-val1">R$ 7.497</div>
+          </div>
+          <div class="combo-plus">+</div>
+          <div class="combo-item">
+            <div class="combo-item-tag">VS-POPRH-002</div>
+            <div class="combo-item-name">CRM + Chatbot</div>
+            <div class="combo-item-val" id="cfg-combo-val2">R$ 8.697</div>
+          </div>
+        </div>
+
+        <div class="combo-result">
+          <div class="combo-result-row">
+            <span class="combo-result-label">Subtotal individual</span>
+            <span class="combo-result-val struck" id="cfg-combo-subtotal">R$ 16.194</span>
+          </div>
+          <div class="combo-result-row">
+            <span class="combo-result-label">Desconto por combo (20%)</span>
+            <span class="combo-result-val saved" id="cfg-combo-desc">− R$ 3.239</span>
+          </div>
+          <div class="combo-final-row">
+            <span class="combo-final-label">Investimento conjunto</span>
+            <div class="combo-final-price-row">
+              <span class="combo-final-currency">R$</span>
+              <span class="combo-final-price" id="cfg-combo-final">12.955</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="combo-footer">
+          <div class="combo-saving-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="cfg-combo-saving">Você economiza R$ 3.239</span>
+          </div>
+          <a id="cfg-combo-crm-link" href="../proposta-poprh-crm/" class="combo-link-btn">
+            Ver proposta CRM + Chatbot
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1449,6 +1618,13 @@
           Aprovar e iniciar projeto
         </a>
       </div>
+      <div class="final-crosslink reveal d4">
+        <span class="final-crosslink-label">Veja também:</span>
+        <a id="cfg-combo-crm-link-final" href="../proposta-poprh-crm/" class="final-crosslink-link">
+          VS-POPRH-002 · CRM integrado ao chatbot
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1486,6 +1662,14 @@
 
       whatsapp: '5512991833641',
       msgAprovacao: 'Olá, Victor! Analisei a proposta VS-POPRH-001 e quero avançar com o desenvolvimento do webapp de gestão de mentorados da POPRH, no valor de R$ 7.497.',
+
+      combo: {
+        crm:      '8.697',   // valor VS-POPRH-002
+        subtotal: '16.194',  // 7.497 + 8.697
+        desconto: '3.239',   // 20% de 16.194
+        final:    '12.955',  // com 20% desconto
+        crmUrl:   '../proposta-poprh-crm/',
+      },
     };
     // ───────────────────────────────────────────────────────
 
@@ -1557,6 +1741,31 @@
       // Proposta tag
       el = document.getElementById('cfg-proposta-tag');
       if (el) el.textContent = CONFIG.proposta + ' · Proposta Comercial';
+
+      // Combo offer values
+      el = document.getElementById('cfg-combo-val1');
+      if (el) el.textContent = 'R$ ' + CONFIG.valores.parceria;
+
+      el = document.getElementById('cfg-combo-val2');
+      if (el) el.textContent = 'R$ ' + CONFIG.combo.crm;
+
+      el = document.getElementById('cfg-combo-subtotal');
+      if (el) el.textContent = 'R$ ' + CONFIG.combo.subtotal;
+
+      el = document.getElementById('cfg-combo-desc');
+      if (el) el.textContent = '− R$ ' + CONFIG.combo.desconto;
+
+      el = document.getElementById('cfg-combo-final');
+      if (el) el.textContent = CONFIG.combo.final;
+
+      el = document.getElementById('cfg-combo-saving');
+      if (el) el.textContent = 'Você economiza R$ ' + CONFIG.combo.desconto;
+
+      // CRM links (header + combo box + final CTA)
+      ['cfg-crm-header-link', 'cfg-combo-crm-link', 'cfg-combo-crm-link-final'].forEach(function(id) {
+        var link = document.getElementById(id);
+        if (link) link.href = CONFIG.combo.crmUrl;
+      });
     })();
 
     // ── Read progress bar ──────────────────────────────────
