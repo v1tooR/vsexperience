@@ -749,7 +749,12 @@
     @media (max-width: 768px) { .h-crm-link { display: none; } }
     @media (max-width: 640px) { .combo-box { padding: 1.5rem 1.25rem; } }
     @media (max-width: 580px) { .combo-items { grid-template-columns: 1fr; } .combo-plus { display: none; } }
-    @media (max-width: 480px) { .combo-footer { flex-direction: column; align-items: flex-start; } }
+    @media (max-width: 480px) {
+      .combo-footer { flex-direction: column; align-items: flex-start; }
+      .combo-link-btn { width: 100%; justify-content: center; }
+      .combo-final-row { flex-direction: column; align-items: flex-start; gap: 0.375rem; }
+      .combo-box { padding: 1.25rem 1rem; }
+    }
 
     /* ── Responsive ──────────────────────────── */
     @media (max-width: 960px) {
@@ -767,6 +772,8 @@
       .hero { min-height: auto; }
       .hero-stats { grid-template-columns: repeat(2,1fr); }
       .hero-stats .hs-item:nth-child(2n) { border-right: none; }
+      /* 3rd stat card spans both cols so the bottom row is always full-width */
+      .hero-stats .hs-item:last-child:nth-child(odd) { grid-column: 1 / -1; border-top: 1px solid var(--border); }
       .excl-grid  { grid-template-columns: 1fr; }
       .bonus-grid { grid-template-columns: 1fr; }
       .h-client-tag { display: none; }
@@ -781,6 +788,8 @@
       .opt-card { padding: 1.5rem; }
       .footer-inner { flex-direction: column; gap: 0.875rem; align-items: flex-start; }
       .footer-meta { text-align: left; }
+      /* Let headings with <br> flow naturally on small screens */
+      .final-cta-title br { display: none; }
     }
     @media (max-width: 580px) {
       .benefit-grid { grid-template-columns: 1fr; }
@@ -793,7 +802,8 @@
       #hdr { padding: 0 1rem; }
       .hero-stats { grid-template-columns: 1fr; }
       .hero-stats .hs-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .hero-stats .hs-item:last-child { border-bottom: none; }
+      /* Reset the border-top added for the 2-col orphan fix above */
+      .hero-stats .hs-item:last-child { border-bottom: none; border-top: none; }
       .hero-btns { flex-direction: column; }
       .hero-btns a { width: 100%; justify-content: center; }
       .bonus-box { padding: 1.25rem 1rem; }
