@@ -427,7 +427,7 @@
       margin-top: 1.25rem; padding: 1.5rem 2rem;
       border-radius: var(--radius-lg); background: var(--surface);
       border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem;
     }
     .mant-left { flex: 1; }
     .mant-label {
@@ -501,6 +501,36 @@
     .footer-tagline { font-size: 0.8125rem; font-weight: 600; color: var(--text); }
     .footer-meta { text-align: right; }
     .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ── Scope checklist ─────────────────────────────── */
+    .scope-list { list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .scope-list-item {
+      display: flex; align-items: flex-start; gap: 0.625rem;
+      font-size: 0.8125rem; color: var(--text-2); line-height: 1.45;
+    }
+    .scope-list-item svg { flex-shrink: 0; margin-top: 1px; width: 14px; height: 14px; color: hsl(142, 55%, 52%); }
+
+    /* ── Investment card extras ───────────────────────── */
+    .opt-price-old { font-size: 0.875rem; color: var(--text-muted); text-decoration: line-through; margin-bottom: 0.125rem; }
+    .inv-note {
+      margin-top: 1rem; padding: 0.875rem 1rem;
+      border-radius: var(--radius); font-size: 0.75rem;
+      color: var(--text-muted); line-height: 1.65;
+      background: var(--surface); border: 1px solid var(--border);
+    }
+
+    /* ── Maintenance box extras ───────────────────────── */
+    .mant-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.55; }
+    .mant-excl {
+      font-size: 0.6875rem; color: var(--text-muted); line-height: 1.6;
+      margin-top: 0.75rem; padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Investimento primeiro no mobile ────────────────── */
+    @media (max-width: 960px) {
+      .option-cards.inv-layout .opt-card.featured { order: -1; }
+    }
 
     /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 960px) {
@@ -606,7 +636,7 @@
 
       <div class="hero-stats reveal d3">
         <div class="hs-item">
-          <div class="hs-label">Investimento estimado</div>
+          <div class="hs-label">Investimento especial</div>
           <div class="hs-val accent" id="cfg-hs-valor">R$ 8.697</div>
         </div>
         <div class="hs-item">
@@ -1123,60 +1153,86 @@
         <span class="eyebrow-label">Investimento</span>
       </div>
       <h2 class="section-title reveal d1">
-        Estimativa inicial <span class="text-gradient">com discovery incluso.</span>
+        Investimento <span class="text-gradient">do projeto.</span>
       </h2>
       <p class="section-text reveal d2">
-        O valor apresentado considera o escopo descrito nesta proposta. Após a etapa de diagnóstico técnico, o investimento final será confirmado ou ajustado em conjunto com a POPRH.
+        O valor considera o escopo inicial apresentado, incluindo a etapa de diagnóstico técnico. Caso sejam identificadas novas integrações ou funcionalidades fora do escopo, elas serão avaliadas e orçadas separadamente.
       </p>
 
-      <div class="option-cards">
+      <div class="option-cards inv-layout" style="align-items:start">
 
-        <!-- Escopo base -->
+        <!-- Escopo incluso -->
         <div class="opt-card reveal d1">
           <div class="opt-badge simple">Escopo base</div>
-          <div class="opt-title">CRM + Integração Chatbot</div>
-          <div class="opt-desc">Desenvolvimento completo conforme escopo inicial descrito nesta proposta, incluindo etapa de diagnóstico técnico.</div>
-          <div class="opt-price-wrap">
-            <div class="opt-price-label">Investimento estimado</div>
-            <div class="opt-price-tag">Valor sujeito a ajuste após discovery</div>
-            <div class="opt-price-row">
-              <span class="opt-price-currency">R$</span>
-              <span class="opt-price-val" id="cfg-valor-estimado-display">8.697</span>
-            </div>
-          </div>
-          <div class="pay-opt-row">
-            <span class="pay-opt-label">Discovery técnico</span>
-            <span class="pay-opt-val">Incluso</span>
-          </div>
-          <div class="pay-opt-row">
-            <span class="pay-opt-label">Módulos inclusos</span>
-            <span class="pay-opt-val">CRM + Chatbot + Central</span>
-          </div>
-          <div class="pay-opt-row">
-            <span class="pay-opt-label">Deploy em produção</span>
-            <span class="pay-opt-val">Incluso</span>
-          </div>
+          <div class="opt-title">O que está incluído</div>
+          <ul class="scope-list">
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Discovery e diagnóstico técnico
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Desenvolvimento do CRM
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Integração com o chatbot existente
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Centralização dos leads e atendimentos
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Funil comercial em Kanban
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Histórico de interações
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Gestão de usuários e permissões
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Dashboard comercial
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Testes e homologação
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Deploy em produção
+            </li>
+            <li class="scope-list-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Suporte inicial após a entrega
+            </li>
+          </ul>
         </div>
 
-        <!-- Condição de pagamento -->
+        <!-- Investimento -->
         <div class="opt-card featured reveal d2">
-          <div class="opt-badge recommended">★ Condição de pagamento</div>
-          <div class="opt-title">CRM + Integração Chatbot</div>
-          <div class="opt-desc">Mesmo escopo completo com condição de entrada para iniciar o projeto e saldo parcelado conforme aprovação.</div>
+          <div class="opt-badge recommended">★ Condição especial de parceria</div>
+          <div class="opt-title">CRM + Integração com Chatbot</div>
           <div class="opt-price-wrap">
-            <div class="opt-price-label">Total estimado</div>
+            <div class="opt-price-label">Valor comercial</div>
+            <div class="opt-price-old" id="cfg-valor-comercial-old">R$ 10.900</div>
+            <div class="opt-price-label" style="margin-top:0.75rem">Investimento especial</div>
             <div class="opt-price-row">
               <span class="opt-price-currency">R$</span>
-              <span class="opt-price-val" id="cfg-valor-estimado-display2">8.697</span>
+              <span class="opt-price-val" id="cfg-valor-parceria-display">8.900</span>
             </div>
           </div>
           <div class="pay-opt-row">
             <span class="pay-opt-label">Entrada para início do projeto</span>
-            <span class="pay-opt-val discount" id="cfg-entrada-display">R$ 1.400</span>
+            <span class="pay-opt-val discount" id="cfg-entrada-display">R$ 3.560</span>
           </div>
           <div class="pay-opt-row">
             <span class="pay-opt-label">Saldo</span>
-            <span class="pay-opt-val placeholder" id="cfg-parcelas-display">[Condição a definir]</span>
+            <span class="pay-opt-val" id="cfg-parcelas-display">3x R$ 1.780</span>
           </div>
           <div class="pay-opt-row">
             <span class="pay-opt-label">Validade desta proposta</span>
@@ -1186,6 +1242,7 @@
             <span class="pay-opt-label">Expira em</span>
             <span class="pay-opt-val" id="cfg-expira-display"></span>
           </div>
+          <div class="inv-note">O início do projeto será confirmado após o pagamento da entrada e a aprovação formal da proposta.</div>
         </div>
 
       </div>
@@ -1195,22 +1252,13 @@
         <div class="mant-left">
           <div class="mant-label">Opcional · Manutenção mensal</div>
           <div class="mant-title">Suporte contínuo pós-lançamento</div>
-          <div class="mant-desc">Atualizações, correções, pequenas evoluções e suporte técnico mensal após a entrega do projeto.</div>
+          <div class="mant-desc">Monitoramento, correções, atualizações técnicas, backups e suporte para pequenas melhorias após a entrega do projeto.</div>
+          <div class="mant-note">Contratação opcional após o período de suporte inicial.</div>
+          <div class="mant-excl">Novos módulos, integrações complexas e alterações relevantes de escopo não estão incluídos na manutenção mensal e serão orçados separadamente.</div>
         </div>
-        <div class="mant-price" id="cfg-manutencao-display">R$ [VALOR]/mês</div>
+        <div class="mant-price" id="cfg-manutencao-display">R$ 590/mês</div>
       </div>
 
-      <!-- Discovery adjustment note -->
-      <div class="discovery-box reveal">
-        <div class="disc-eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span class="disc-eyebrow-label">Observação sobre o investimento</span>
-        </div>
-        <div class="disc-title">O valor poderá ser ajustado após a análise técnica.</div>
-        <div class="disc-body">
-          O investimento apresentado considera o escopo inicial descrito nesta proposta. Alterações poderão ser necessárias após a análise técnica do chatbot, das integrações e dos processos utilizados atualmente pela POPRH. Qualquer revisão de escopo será apresentada e aprovada antes do desenvolvimento.
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1376,39 +1424,41 @@
       validade:  10, // dias corridos
 
       valores: {
-        estimado:     '8.697',
-        entrada:      'R$ 1.400',
-        parcelamento: '[CONDIÇÃO]', // ← definir condição de parcelamento
-        manutencao:   '[VALOR]',    // ← definir valor mensal opcional
+        comercial:    '10.900',  // valor de mercado (riscado)
+        parceria:     '8.900',   // condição especial de parceria
+        entrada:      'R$ 3.560',
+        nParcelas:    3,
+        valorParcela: 'R$ 1.780',
+        manutencao:   '590',     // opcional / mês
       },
 
       prazo: '[INSERIR PRAZO]', // ← alterar após kickoff
 
       whatsapp: '5512991833641',
-      msgAprovacao: 'Olá, Victor! Analisei a proposta VS-POPRH-002 e quero avançar com o CRM integrado ao chatbot da POPRH, com investimento estimado de R$ 8.697.',
+      msgAprovacao: 'Olá, Victor! Analisei a proposta VS-POPRH-002 e quero avançar com o CRM integrado ao chatbot da POPRH, no investimento especial de R$ 8.900.',
     };
     // ───────────────────────────────────────────────────────
 
     (function () {
       var el;
 
-      el = document.getElementById('cfg-valor-estimado-display');
-      if (el) el.textContent = CONFIG.valores.estimado;
+      el = document.getElementById('cfg-valor-comercial-old');
+      if (el) el.textContent = 'R$ ' + CONFIG.valores.comercial;
 
-      el = document.getElementById('cfg-valor-estimado-display2');
-      if (el) el.textContent = CONFIG.valores.estimado;
+      el = document.getElementById('cfg-valor-parceria-display');
+      if (el) el.textContent = CONFIG.valores.parceria;
 
       el = document.getElementById('cfg-hs-valor');
-      if (el) el.textContent = 'R$ ' + CONFIG.valores.estimado;
+      if (el) el.textContent = 'R$ ' + CONFIG.valores.parceria;
 
       el = document.getElementById('cfg-entrada-display');
       if (el) el.textContent = CONFIG.valores.entrada;
 
       el = document.getElementById('cfg-parcelas-display');
-      if (el) el.textContent = CONFIG.valores.parcelamento === '[CONDIÇÃO]' ? '[Condição a definir]' : CONFIG.valores.parcelamento;
+      if (el) el.textContent = CONFIG.valores.nParcelas + 'x ' + CONFIG.valores.valorParcela;
 
       el = document.getElementById('cfg-manutencao-display');
-      if (el) el.textContent = CONFIG.valores.manutencao === '[VALOR]' ? 'R$ [VALOR]/mês' : 'R$ ' + CONFIG.valores.manutencao + '/mês';
+      if (el) el.textContent = 'R$ ' + CONFIG.valores.manutencao + '/mês';
 
       // Prazo
       el = document.getElementById('cfg-prazo-pill');
