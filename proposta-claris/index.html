@@ -65,10 +65,12 @@
       position: fixed;
       top: 0; left: 0;
       height: 2px;
-      width: 0%;
+      width: 100%;
       background: var(--gradient);
       z-index: 1000;
-      transition: width 0.08s linear;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.08s linear;
     }
 
     /* ============================================
@@ -1248,6 +1250,7 @@
     @media (max-width: 768px) {
       .hero { min-height: auto; padding: 6.5rem 0 3rem; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats .hs-item:last-child:nth-child(odd) { grid-column: 1 / -1; border-top: 1px solid var(--border); }
       .excl-grid { grid-template-columns: 1fr; }
       .policy-grid { grid-template-columns: 1fr; }
       .resp-grid { grid-template-columns: 1fr; }
@@ -1264,11 +1267,23 @@
       .flow-sim-inner { gap: 0.75rem; padding: 1.25rem; }
     }
     @media (max-width: 480px) {
+      .container, .container-sm { padding: 0 1rem; }
+      #hdr { padding: 0 1rem; }
       .hero-stats { grid-template-columns: 1fr; }
+      .hero-stats .hs-item:last-child:nth-child(odd) { grid-column: auto; border-top: none; border-bottom: 1px solid var(--border); }
       .hero-btns { flex-direction: column; }
       .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
       .h-client-tag { display: none; }
       .h-print-btn span { display: none; }
+      .hero-flow-sim { height: 220px; }
+      .flow-sim-inner { gap: 0.5rem; padding: 1rem; }
+    }
+    @media (max-width: 380px) {
+      .hero-title { font-size: 1.625rem; }
+      .hero-flow-sim { height: 190px; }
+      .fsim-pdf { width: 44%; }
+      .section-title { font-size: 1.625rem; }
+      .final-cta-btn { padding: 1rem 1.75rem; font-size: 0.9375rem; }
     }
 
     /* ============================================
@@ -1865,7 +1880,7 @@
       var bar = document.getElementById('read-progress');
       window.addEventListener('scroll', function () {
         var total = document.body.scrollHeight - window.innerHeight;
-        bar.style.width = (window.scrollY / total * 100) + '%';
+        bar.style.transform = 'scaleX(' + (window.scrollY / total) + ')';
       }, { passive: true });
 
       // Header scrolled state
