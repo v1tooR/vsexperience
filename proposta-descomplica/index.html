@@ -239,6 +239,11 @@
     .inv-bonus-label { font-size: 0.8125rem; color: var(--text-2); }
     .inv-bonus-label strong { display: block; color: var(--rose-light); font-size: 0.875rem; }
     .inv-bonus-val { font-size: 0.875rem; font-weight: 700; color: var(--text-muted); text-decoration: line-through; white-space: nowrap; }
+    .inv-recurring { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; padding: 1rem; margin-bottom: 1.5rem; border-radius: var(--radius); background: hsla(5,38%,45%,0.1); border: 1px solid hsla(5,38%,55%,0.28); text-align: left; }
+    .inv-recurring-copy { font-size: 0.8125rem; color: var(--text-2); line-height: 1.6; }
+    .inv-recurring-copy strong { display: block; margin-bottom: 0.2rem; color: var(--rose-light); font-size: 0.875rem; }
+    .inv-recurring-value { flex-shrink: 0; color: var(--text); font-size: 0.875rem; font-weight: 700; text-align: right; white-space: nowrap; }
+    .inv-recurring-value span { display: block; margin-top: 0.15rem; color: var(--text-muted); font-size: 0.6875rem; font-weight: 400; }
     .inv-divider-label { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
     .pay-row { display: flex; align-items: baseline; justify-content: space-between; padding: 0.875rem 0; border-bottom: 1px solid var(--border); gap: 1rem; }
     .pay-row:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
@@ -309,6 +314,8 @@
       .hero-crm-sim { height: 220px; }
       .cta-btns { flex-direction: column; align-items: center; }
       .final-cta-btn { width: 100%; max-width: 340px; justify-content: center; }
+      .inv-recurring { flex-direction: column; gap: 0.75rem; }
+      .inv-recurring-value { text-align: left; }
     }
     @media (max-width: 380px) {
       .hero-title { font-size: 1.625rem; }
@@ -850,7 +857,7 @@
       <div class="excl-grid">
         <div class="excl-item reveal d1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          Servidor ou VPS
+          Mensalidade do servidor ou VPS utilizado pelo CRM e pela Evolution API
         </div>
         <div class="excl-item reveal d2">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -926,6 +933,16 @@
               Desenvolvido e publicado junto ao CRM, sem custo adicional
             </div>
             <div class="inv-bonus-val">R$ 1.500,00</div>
+          </div>
+          <div class="inv-recurring">
+            <div class="inv-recurring-copy">
+              <strong>Infraestrutura mensal necessária</strong>
+              Para manter o CRM e a Evolution API online, será necessária a contratação de um servidor ou VPS com cobrança mensal. Esse custo recorrente não está incluído no investimento do projeto.
+            </div>
+            <div class="inv-recurring-value">
+              Valor mensal a definir
+              <span>Conforme o servidor escolhido</span>
+            </div>
           </div>
           <div class="inv-divider-label">Condição de pagamento — 3 parcelas</div>
           <div class="pay-row">
