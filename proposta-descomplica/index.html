@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta · CRM + Evolution API · Descomplica Locações · VS Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- impeccable-disable overused-font: VS Experience brand font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose:       hsl(5, 38%, 45%);
+      --rose-dark:  hsl(5, 38%, 22%);
+      --rose-light: hsl(5, 45%, 68%);
+      --gradient:   linear-gradient(135deg, hsl(5,38%,22%) 0%, hsl(5,38%,45%) 100%);
+      --bg:         hsl(5, 10%, 5.5%);
+      --bg-2:       hsl(5, 8%, 8%);
+      --bg-3:       hsl(5, 8%, 10.5%);
+      --surface:    hsla(5, 8%, 100%, 0.04);
+      --surface-2:  hsla(5, 8%, 100%, 0.07);
+      --border:     hsla(5, 8%, 100%, 0.08);
+      --border-2:   hsla(5, 8%, 100%, 0.13);
+      --text:       hsl(0, 0%, 94%);
+      --text-2:     hsl(0, 0%, 70%);
+      --text-muted: hsl(0, 0%, 48%);
+      --radius:     0.75rem;
+      --radius-lg:  1.25rem;
+      --radius-xl:  2rem;
+      --ff:         'Space Grotesk', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: var(--ff); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    #read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 100%; background: var(--gradient); z-index: 1000; transform: scaleX(0); transform-origin: left center; transition: transform 0.08s linear; }
+
+    #hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 0 2rem; height: 64px; display: flex; align-items: center; background: hsla(5,10%,5.5%,0.55); backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+    #hdr.scrolled { background: hsla(5,10%,5.5%,0.92); border-bottom-color: var(--border); }
+    .header-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 1.25rem; min-width: 0; }
+    .h-brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 0.9375rem; letter-spacing: -0.01em; white-space: nowrap; flex-shrink: 0; }
+    .h-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+    .h-client-tag { font-size: 0.75rem; color: var(--text-muted); padding: 0.25rem 0.75rem; border: 1px solid var(--border); border-radius: 100px; white-space: nowrap; margin-right: auto; overflow: hidden; text-overflow: ellipsis; }
+    .h-nav { display: flex; align-items: center; gap: 1.5rem; }
+    .h-nav a { font-size: 0.8125rem; font-weight: 500; color: var(--text-2); transition: color 0.2s; }
+    .h-nav a:hover { color: var(--text); }
+    .h-print-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.875rem; border: 1px solid var(--border-2); border-radius: var(--radius); background: var(--surface); color: var(--text-muted); font-family: var(--ff); font-size: 0.72rem; font-weight: 600; cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .h-print-btn:hover { background: var(--surface-2); color: var(--text); }
+    .h-print-btn svg { width: 13px; height: 13px; }
+    @media (max-width: 820px) { .h-nav { display: none; } }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+    .container-sm { max-width: 800px; margin: 0 auto; padding: 0 1.75rem; width: 100%; }
+    .section { padding: clamp(5rem,10vw,8rem) 0; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent); }
+
+    .eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .eyebrow-num { font-size: 0.75rem; font-weight: 700; color: var(--rose-light); opacity: 0.65; letter-spacing: 0.06em; font-feature-settings: 'tnum'; }
+    .eyebrow-line { height: 1px; width: 2.5rem; background: var(--gradient); opacity: 0.45; }
+    .eyebrow-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    .section-title { font-size: clamp(1.875rem,4vw,2.875rem); font-weight: 700; line-height: 1.13; letter-spacing: -0.025em; margin-bottom: 1.25rem; overflow-wrap: anywhere; }
+    .section-text { font-size: clamp(0.9375rem,1.5vw,1.0625rem); color: var(--text-2); line-height: 1.75; max-width: 66ch; overflow-wrap: anywhere; }
+    /* impeccable-disable gradient-text: VS Experience brand accent treatment */
+    .text-gradient { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; } .d5 { transition-delay: 0.40s; } .d6 { transition-delay: 0.48s; }
+
+    /* HERO */
+    .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 64px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 8% 18%, hsla(5,38%,20%,0.28) 0%, transparent 58%), radial-gradient(ellipse 55% 45% at 88% 72%, hsla(5,38%,14%,0.2) 0%, transparent 55%); pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(hsla(5,8%,100%,0.022) 1px,transparent 1px), linear-gradient(90deg,hsla(5,8%,100%,0.022) 1px,transparent 1px); background-size: 72px 72px; pointer-events: none; }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .conf-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 2rem; }
+    .conf-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); box-shadow:0 0 0 0 hsla(5,38%,45%,0.45); } 50% { opacity:.85; transform:scale(1.2); box-shadow:0 0 0 7px hsla(5,38%,45%,0); } }
+    .hero-title { font-size: clamp(1.875rem,3.6vw,3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.028em; margin-bottom: 1.25rem; overflow-wrap: anywhere; }
+    .hero-subtitle { font-size: clamp(0.9375rem,1.5vw,1.0625rem); color: var(--text-2); line-height: 1.7; margin-bottom: 2.5rem; max-width: 52ch; overflow-wrap: anywhere; }
+    .hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; background: var(--gradient); color: #fff; font-family: var(--ff); font-size: 0.9375rem; font-weight: 600; border: none; border-radius: var(--radius); cursor: pointer; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; background: var(--surface); color: var(--text); font-family: var(--ff); font-size: 0.9375rem; font-weight: 600; border: 1px solid var(--border-2); border-radius: var(--radius); cursor: pointer; text-decoration: none; backdrop-filter: blur(10px); transition: background 0.2s, transform 0.2s; }
+    .btn-ghost:hover { background: var(--surface-2); transform: translateY(-1px); }
+    .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); margin-top: 3rem; }
+    .hs-item { background: var(--bg-2); padding: 1.25rem 1.375rem; transition: background 0.2s; }
+    .hs-item:hover { background: var(--bg-3); }
+    .hs-label { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .hs-val { font-size: 0.9375rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .hs-val.accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .scroll-hint { display: flex; align-items: center; gap: 0.75rem; margin-top: 2.5rem; font-size: 0.75rem; color: var(--text-muted); }
+    .scroll-line { width: 2rem; height: 1px; background: var(--border-2); }
+
+    /* CRM MOCKUP */
+    .hero-crm-sim { border-radius: var(--radius-xl); height: 420px; position: relative; border: 1px solid var(--border); box-shadow: 0 32px 80px hsla(0,0%,0%,0.5); background: var(--bg-2); overflow: hidden; }
+    .crm-topbar { height: 36px; background: var(--bg-3); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.65rem; padding: 0 0.875rem; flex-shrink: 0; }
+    .crm-dots { display: flex; gap: 0.3rem; }
+    .crm-dots span { width: 7px; height: 7px; border-radius: 50%; }
+    .crm-dots span:nth-child(1) { background: #ff5f57; }
+    .crm-dots span:nth-child(2) { background: #febc2e; }
+    .crm-dots span:nth-child(3) { background: #28c840; }
+    .crm-url { font-size: 0.5625rem; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 0.2rem 0.75rem; flex: 1; max-width: 220px; text-align: center; }
+    .crm-body { height: calc(100% - 36px); display: flex; background: hsl(220, 14%, 8%); }
+    .crm-sidebar { width: 48px; background: hsl(220, 16%, 6%); border-right: 1px solid hsla(220,14%,100%,0.06); display: flex; flex-direction: column; align-items: center; padding: 0.65rem 0; gap: 0.3rem; flex-shrink: 0; }
+    .crm-sb-logo { width: 24px; height: 24px; border-radius: 6px; background: var(--gradient); margin-bottom: 0.6rem; display: flex; align-items: center; justify-content: center; }
+    .crm-sb-logo svg { width: 11px; height: 11px; color: #fff; }
+    .crm-sb-item { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .crm-sb-item.active { background: hsla(220,60%,65%,0.14); }
+    .crm-sb-item svg { width: 13px; height: 13px; color: hsla(220,14%,100%,0.3); }
+    .crm-sb-item.active svg { color: hsl(220,60%,72%); }
+    .crm-sb-divider { width: 20px; height: 1px; background: hsla(220,14%,100%,0.06); margin: 0.15rem 0; }
+    .crm-main { flex: 1; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+    .crm-main-header { padding: 0.55rem 0.875rem; border-bottom: 1px solid hsla(220,14%,100%,0.06); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .crm-main-title { font-size: 0.5rem; font-weight: 700; color: hsl(220,15%,85%); letter-spacing: 0.03em; }
+    .crm-main-actions { display: flex; gap: 0.3rem; }
+    .crm-btn-sm { font-size: 0.33rem; padding: 0.15rem 0.4rem; border-radius: 3px; background: hsla(220,60%,65%,0.12); color: hsl(220,60%,70%); border: 1px solid hsla(220,60%,65%,0.2); font-weight: 600; letter-spacing: 0.04em; }
+    .crm-kanban { flex: 1; display: grid; grid-template-columns: repeat(4,1fr); gap: 0.4rem; padding: 0.55rem 0.6rem; overflow: hidden; }
+    .crm-col { display: flex; flex-direction: column; gap: 0.25rem; overflow: hidden; }
+    .crm-col-header { display: flex; align-items: center; justify-content: space-between; padding: 0 0.2rem 0.2rem; }
+    .crm-col-name { font-size: 0.3rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: hsla(220,14%,100%,0.35); }
+    .crm-col-count { font-size: 0.3rem; background: hsla(220,14%,100%,0.07); border-radius: 100px; padding: 0.08rem 0.28rem; color: hsla(220,14%,100%,0.38); }
+    .crm-card { background: hsl(220,14%,11%); border: 1px solid hsla(220,14%,100%,0.07); border-radius: 4px; padding: 0.325rem 0.4rem; }
+    .crm-card + .crm-card { margin-top: 0.2rem; }
+    .crm-card-name { font-size: 0.375rem; font-weight: 600; color: hsl(220,15%,82%); margin-bottom: 0.12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .crm-card-meta { display: flex; align-items: center; gap: 0.25rem; }
+    .crm-card-tag { font-size: 0.28rem; color: hsla(220,14%,100%,0.3); font-weight: 500; }
+    .crm-card-tag.wpp { color: hsl(142,55%,52%); }
+    .crm-card-tag.hot { color: hsl(35,90%,58%); }
+    .crm-card-dot { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
+    .crm-card-dot.g { background: hsl(142,55%,52%); }
+    .crm-card-dot.y { background: hsl(35,90%,58%); }
+    .crm-card-dot.r { background: hsl(5,70%,55%); }
+    .crm-card-dot.b { background: hsl(220,60%,60%); }
+    .crm-stats-bar { display: flex; gap: 0.35rem; padding: 0.45rem 0.6rem; border-top: 1px solid hsla(220,14%,100%,0.05); flex-shrink: 0; }
+    .crm-stat { flex: 1; background: hsl(220,14%,10%); border-radius: 3px; padding: 0.25rem 0.3rem; border: 1px solid hsla(220,14%,100%,0.05); }
+    .crm-stat-val { font-size: 0.5rem; font-weight: 700; color: hsl(220,15%,82%); }
+    .crm-stat-label { font-size: 0.27rem; color: hsla(220,14%,100%,0.32); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.05rem; }
+
+    /* WPP PANEL */
+    .crm-wpp-panel { width: 108px; border-left: 1px solid hsla(220,14%,100%,0.06); display: flex; flex-direction: column; flex-shrink: 0; background: hsl(220,14%,7%); }
+    .crm-wpp-header { padding: 0.5rem 0.5rem 0.35rem; border-bottom: 1px solid hsla(220,14%,100%,0.06); }
+    .crm-wpp-title { font-size: 0.35rem; font-weight: 700; color: hsl(142,55%,52%); letter-spacing: 0.08em; text-transform: uppercase; }
+    .crm-wpp-sub { font-size: 0.275rem; color: hsla(220,14%,100%,0.3); margin-top: 0.08rem; }
+    .crm-wpp-msgs { flex: 1; padding: 0.35rem 0.4rem; display: flex; flex-direction: column; gap: 0.3rem; overflow: hidden; }
+    .crm-wpp-msg { padding: 0.2rem 0.3rem; border-radius: 4px; font-size: 0.3rem; line-height: 1.4; max-width: 90%; }
+    .crm-wpp-msg.in { background: hsl(220,14%,13%); color: hsla(220,14%,100%,0.65); align-self: flex-start; }
+    .crm-wpp-msg.out { background: hsl(142,35%,16%); color: hsla(142,40%,80%,0.8); align-self: flex-end; }
+    .crm-wpp-input { display: flex; align-items: center; gap: 0.25rem; padding: 0.35rem 0.4rem; border-top: 1px solid hsla(220,14%,100%,0.06); }
+    .crm-wpp-field { flex: 1; background: hsl(220,14%,12%); border: 1px solid hsla(220,14%,100%,0.08); border-radius: 100px; height: 12px; }
+    .crm-wpp-send { width: 12px; height: 12px; border-radius: 50%; background: hsl(142,45%,22%); border: 1px solid hsl(142,45%,30%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .crm-wpp-send svg { width: 6px; height: 6px; color: hsl(142,55%,52%); }
+
+    /* BENEFIT GRID */
+    .benefit-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.875rem; margin-top: 2.5rem; }
+    .benefit-card { padding: 1.5rem; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); position: relative; overflow: hidden; transition: border-color 0.2s; }
+    .benefit-card:hover { border-color: var(--border-2); }
+    .benefit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gradient); opacity: 0; transition: opacity 0.25s; }
+    .benefit-card:hover::before { opacity: 0.55; }
+    .benefit-icon { width: 2.125rem; height: 2.125rem; border-radius: 0.5rem; background: hsla(5,38%,22%,0.28); border: 1px solid hsla(5,38%,45%,0.18); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .benefit-icon svg { width: 15px; height: 15px; color: var(--rose-light); }
+    .benefit-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem; line-height: 1.35; }
+    .benefit-desc { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* FEATURE LIST */
+    .feature-list { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.5rem; margin-top: 2.5rem; }
+    .feature-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.875rem 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); font-size: 0.875rem; color: var(--text-2); line-height: 1.45; transition: border-color 0.2s; }
+    .feature-item:hover { border-color: var(--border-2); }
+    .feature-item svg { flex-shrink: 0; margin-top: 2px; width: 14px; height: 14px; color: var(--rose-light); }
+    .feature-item strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.15rem; font-size: 0.875rem; }
+    .feature-note { margin-top: 1.25rem; padding: 1rem 1.25rem; border-radius: var(--radius); background: hsla(5,38%,22%,0.1); border: 1px solid hsla(5,38%,45%,0.15); font-size: 0.8125rem; color: var(--text-2); line-height: 1.65; }
+    .feature-note strong { color: var(--rose-light); }
+
+    /* TECH GRID */
+    .tech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; margin-top: 2.5rem; }
+    .tech-item { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); transition: border-color 0.2s; }
+    .tech-item:hover { border-color: var(--border-2); }
+    .tech-role { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-light); opacity: 0.75; }
+    .tech-name { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .tech-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { margin-top: 2.5rem; padding: clamp(1.75rem,4vw,2.5rem); border-radius: var(--radius-xl); background: hsla(5,38%,22%,0.12); border: 1px solid hsla(5,38%,45%,0.18); position: relative; overflow: hidden; }
+    .highlight-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gradient); }
+    .highlight-box-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 1.25rem; }
+    .highlight-box-title { font-size: clamp(1.25rem,2.5vw,1.75rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
+    .highlight-box-text { font-size: 0.9375rem; color: var(--text-2); line-height: 1.75; margin-bottom: 1.5rem; max-width: 66ch; }
+    .highlight-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; margin-top: 1.25rem; }
+    .highlight-list-item { padding: 0.625rem 0.875rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.8125rem; color: var(--text-2); }
+    .bonus-badge { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.3rem 0.75rem; background: hsla(5,38%,22%,0.35); border: 1px solid hsla(5,38%,45%,0.3); border-radius: 100px; font-size: 0.6875rem; font-weight: 700; color: var(--rose-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .bonus-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+    .bonus-value { display: inline-flex; align-items: baseline; gap: 0.4rem; font-size: 0.8125rem; color: var(--text-muted); text-decoration: line-through; margin-top: 1.25rem; }
+
+    /* FLOW STEPS */
+    .flow-list { display: grid; gap: 0; margin-top: 2.5rem; }
+    .flow-item { display: grid; grid-template-columns: 3.25rem 1fr; gap: 1.15rem; position: relative; padding-bottom: 1.75rem; }
+    .flow-item:last-child { padding-bottom: 0; }
+    .flow-num { width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8125rem; font-weight: 700; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .flow-item:not(:last-child)::after { position: absolute; top: 3.25rem; bottom: 0; left: 1.6rem; width: 1px; background: var(--border-2); content: ''; }
+    .flow-body { padding-top: 0.5rem; }
+    .flow-title { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.3rem; }
+    .flow-desc { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; max-width: 60ch; }
+
+    /* DEADLINE STRIP */
+    .deadline-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); margin-top: 2.5rem; }
+    .dl-item { background: var(--bg-2); padding: 1.25rem 1.1rem; }
+    .dl-label { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-light); opacity: 0.7; margin-bottom: 0.35rem; }
+    .dl-val { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .dl-sub { font-size: 0.75rem; color: var(--text-muted); line-height: 1.45; }
+
+    /* TECHNICAL NOTE */
+    .technical-note { margin-top: 2rem; padding: 1.15rem 1.3rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border-2); color: var(--text-2); font-size: 0.875rem; line-height: 1.65; }
+    .technical-note strong { color: var(--text); }
+
+    /* EXCLUSIONS */
+    .excl-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.5rem; margin-top: 2rem; }
+    .excl-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); font-size: 0.8125rem; color: var(--text-2); line-height: 1.4; }
+    .excl-item svg { flex-shrink: 0; margin-top: 2px; width: 14px; height: 14px; color: var(--text-muted); opacity: 0.5; }
+    .excl-note { margin-top: 1.25rem; padding: 1rem 1.25rem; border-radius: var(--radius); background: var(--bg-3); border: 1px solid var(--border); font-size: 0.8125rem; color: var(--text-muted); line-height: 1.7; font-style: italic; }
+
+    /* INVESTMENT */
+    .investment-panel { max-width: 720px; margin: 3rem auto 0; border-radius: var(--radius-xl); background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+    .inv-top { background: var(--gradient); padding: clamp(2rem,5vw,3rem); text-align: center; position: relative; }
+    .inv-top::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 40%, hsla(0,0%,100%,0.07) 0%, transparent 60%); }
+    .inv-label { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsla(0,0%,100%,0.6); margin-bottom: 0.75rem; position: relative; }
+    .inv-value { display: flex; align-items: baseline; justify-content: center; gap: 0.3rem; position: relative; }
+    .inv-currency { font-size: 1.5rem; font-weight: 700; color: hsla(0,0%,100%,0.85); }
+    .inv-amount { font-size: clamp(3rem,8vw,4.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: white; font-variant-numeric: tabular-nums; }
+    .inv-sub { font-size: 0.82rem; color: hsla(0,0%,100%,0.65); margin-top: 0.5rem; position: relative; }
+    .inv-body { padding: clamp(1.5rem,4vw,2.5rem); }
+    .inv-bonus-row { display: flex; align-items: center; justify-content: space-between; padding: 0.875rem 1rem; background: hsla(5,38%,22%,0.15); border: 1px solid hsla(5,38%,45%,0.2); border-radius: var(--radius); margin-bottom: 1.5rem; gap: 1rem; }
+    .inv-bonus-label { font-size: 0.8125rem; color: var(--text-2); }
+    .inv-bonus-label strong { display: block; color: var(--rose-light); font-size: 0.875rem; }
+    .inv-bonus-val { font-size: 0.875rem; font-weight: 700; color: var(--text-muted); text-decoration: line-through; white-space: nowrap; }
+    .inv-divider-label { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .pay-row { display: flex; align-items: baseline; justify-content: space-between; padding: 0.875rem 0; border-bottom: 1px solid var(--border); gap: 1rem; }
+    .pay-row:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
+    .pay-label { font-size: 0.875rem; color: var(--text-2); }
+    .pay-label strong { display: block; color: var(--text); font-size: 0.9rem; }
+    .pay-val { font-size: 1rem; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .inv-note { padding: 0.875rem 1rem; border-radius: var(--radius); background: var(--bg-3); border: 1px solid var(--border); font-size: 0.8125rem; color: var(--text-muted); line-height: 1.65; margin-top: 1.25rem; }
+
+    /* FINAL CTA */
+    .final-cta { padding: clamp(5rem,10vw,9rem) 0; text-align: center; position: relative; }
+    .final-cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, hsla(5,38%,18%,0.22) 0%, transparent 65%); pointer-events: none; }
+    .final-cta-inner { position: relative; z-index: 1; }
+    .final-cta-title { font-size: clamp(2rem,5vw,3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .final-cta-text { font-size: 1.0625rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; margin: 0 auto 0.75rem; }
+    .final-cta-meta { font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .final-cta-btn { display: inline-flex; align-items: center; gap: 0.625rem; padding: 1.125rem 2.5rem; background: var(--gradient); color: #fff; font-family: var(--ff); font-size: 1.0625rem; font-weight: 700; border: none; border-radius: var(--radius-lg); cursor: pointer; text-decoration: none; transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .final-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 16px 40px hsla(5,38%,30%,0.3); }
+    .final-cta-btn svg { width: 20px; height: 20px; }
+    .final-cta-btn.ghost { background: var(--surface); border: 1px solid var(--border-2); font-size: 0.9375rem; padding: 1rem 2rem; }
+    .final-cta-btn.ghost:hover { background: var(--surface-2); box-shadow: none; }
+    .final-cta-sub { margin-top: 1.25rem; font-size: 0.8125rem; color: var(--text-muted); }
+
+    /* FOOTER */
+    footer { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { font-size: 0.9375rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .footer-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+    .footer-tagline { font-size: 0.75rem; color: var(--text-muted); max-width: 36ch; line-height: 1.5; }
+    .footer-meta p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.75; text-align: right; }
+    .footer-copy { font-size: 0.6875rem; color: var(--text-muted); opacity: 0.4; margin-top: 0.375rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-crm-sim { height: 320px; }
+      .benefit-grid { grid-template-columns: repeat(2,1fr); }
+      .tech-grid { grid-template-columns: repeat(2,1fr); }
+      .highlight-list { grid-template-columns: repeat(2,1fr); }
+      .deadline-strip { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; padding: 6.5rem 0 3rem; }
+      .hero-stats { grid-template-columns: repeat(2,1fr); }
+      .hero-stats .hs-item:last-child:nth-child(odd) { grid-column: 1 / -1; border-top: 1px solid var(--border); }
+      .feature-list { grid-template-columns: 1fr; }
+      .excl-grid { grid-template-columns: 1fr; }
+      .highlight-list { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+      .crm-wpp-panel { display: none; }
+    }
+    @media (max-width: 580px) {
+      .benefit-grid { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .hero-crm-sim { height: 260px; }
+      .deadline-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .container, .container-sm { padding: 0 1rem; }
+      #hdr { padding: 0 1rem; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-stats .hs-item:last-child:nth-child(odd) { grid-column: auto; border-top: none; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .h-client-tag { display: none; }
+      .h-print-btn span { display: none; }
+      .hero-crm-sim { height: 220px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .final-cta-btn { width: 100%; max-width: 340px; justify-content: center; }
+    }
+    @media (max-width: 380px) {
+      .hero-title { font-size: 1.625rem; }
+      .section-title { font-size: 1.625rem; }
+      .hero-crm-sim { height: 190px; }
+    }
+
+    /* PRINT */
+    @media print {
+      @page { size: A4; margin: 1.4cm; }
+      *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: #fff !important; color: #1a1a1a !important; }
+      #hdr, #read-progress, .scroll-hint, .hero-btns, .h-print-btn, .cta-btns { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero { min-height: auto; padding: 0 0 1.5cm; }
+      .hero-crm-sim { height: 220px; }
+      .section { padding: 1cm 0; }
+      .benefit-card, .tech-item, .investment-panel, .excl-item, .flow-item { break-inside: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<header id="hdr">
+  <div class="header-inner">
+    <div class="h-brand"><div class="h-brand-dot"></div>VS Experience</div>
+    <div class="h-client-tag" id="cfg-header-tag">VS-DESL-001 · Proposta Comercial</div>
+    <nav class="h-nav">
+      <a href="#objetivo">Objetivo</a>
+      <a href="#escopo">Escopo</a>
+      <a href="#tecnologias">Tecnologias</a>
+      <a href="#etapas">Etapas</a>
+      <a href="#limites">Limites</a>
+      <a href="#investimento">Investimento</a>
+    </nav>
+    <button class="h-print-btn" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <span>Imprimir</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="container hero-inner">
+      <div class="hero-layout">
+        <div>
+          <div class="conf-tag reveal"><div class="conf-dot"></div>CRM + Evolution API · Descomplica Locações</div>
+          <!-- impeccable-disable gradient-text: VS Experience brand accent treatment -->
+          <h1 class="hero-title reveal d1">Atendimento centralizado.<br><span class="text-gradient">Gestão em um lugar só.</span></h1>
+          <p class="hero-subtitle reveal d2">CRM web personalizado com central de conversas do WhatsApp integrada via Evolution API: do primeiro contato até o fechamento da locação.</p>
+          <div class="hero-btns reveal d3">
+            <a href="#investimento" class="btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Ver investimento
+            </a>
+            <a href="#escopo" class="btn-ghost">Explorar escopo</a>
+          </div>
+          <div class="hero-stats reveal d4">
+            <div class="hs-item">
+              <div class="hs-label">Prazo</div>
+              <div class="hs-val accent">45 dias úteis</div>
+            </div>
+            <div class="hs-item">
+              <div class="hs-label">Suporte</div>
+              <div class="hs-val">30 dias</div>
+            </div>
+            <div class="hs-item">
+              <div class="hs-label">Validade</div>
+              <div class="hs-val" id="validHero">10 dias</div>
+            </div>
+          </div>
+          <div class="scroll-hint reveal d5">
+            <div class="scroll-line"></div>
+            Role para conhecer o projeto
+          </div>
+        </div>
+        <div class="reveal d2">
+          <!-- CRM MOCKUP -->
+          <div class="hero-crm-sim">
+            <div class="crm-topbar">
+              <div class="crm-dots"><span></span><span></span><span></span></div>
+              <div class="crm-url">crm.descomplicalocacoes.com.br</div>
+            </div>
+            <div class="crm-body">
+              <!-- Sidebar -->
+              <div class="crm-sidebar">
+                <div class="crm-sb-logo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                </div>
+                <div class="crm-sb-item active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                </div>
+                <div class="crm-sb-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="crm-sb-divider"></div>
+                <div class="crm-sb-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div class="crm-sb-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+              </div>
+              <!-- Main -->
+              <div class="crm-main">
+                <div class="crm-main-header">
+                  <div class="crm-main-title">Funil Comercial — Locações</div>
+                  <div class="crm-main-actions">
+                    <div class="crm-btn-sm">+ Novo</div>
+                    <div class="crm-btn-sm">Filtrar</div>
+                  </div>
+                </div>
+                <div class="crm-kanban">
+                  <div class="crm-col">
+                    <div class="crm-col-header">
+                      <span class="crm-col-name">Novo</span>
+                      <span class="crm-col-count">4</span>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Maria Souza</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot g"></div><span class="crm-card-tag wpp">WhatsApp</span></div>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">João Lima</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot b"></div><span class="crm-card-tag">Site</span></div>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Carlos M.</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot g"></div><span class="crm-card-tag wpp">WhatsApp</span></div>
+                    </div>
+                  </div>
+                  <div class="crm-col">
+                    <div class="crm-col-header">
+                      <span class="crm-col-name">Em atendimento</span>
+                      <span class="crm-col-count">3</span>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Ana Paula</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot y"></div><span class="crm-card-tag hot">Quente</span></div>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Roberto K.</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot g"></div><span class="crm-card-tag wpp">WhatsApp</span></div>
+                    </div>
+                  </div>
+                  <div class="crm-col">
+                    <div class="crm-col-header">
+                      <span class="crm-col-name">Proposta</span>
+                      <span class="crm-col-count">2</span>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Fernanda L.</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot y"></div><span class="crm-card-tag hot">Aguardando</span></div>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Diego S.</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot r"></div><span class="crm-card-tag">3 dias</span></div>
+                    </div>
+                  </div>
+                  <div class="crm-col">
+                    <div class="crm-col-header">
+                      <span class="crm-col-name">Fechado</span>
+                      <span class="crm-col-count">7</span>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Patrícia N.</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot g"></div><span class="crm-card-tag">Contratado</span></div>
+                    </div>
+                    <div class="crm-card">
+                      <div class="crm-card-name">Marcos V.</div>
+                      <div class="crm-card-meta"><div class="crm-card-dot g"></div><span class="crm-card-tag">Contratado</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="crm-stats-bar">
+                  <div class="crm-stat">
+                    <div class="crm-stat-val">16</div>
+                    <div class="crm-stat-label">Total ativos</div>
+                  </div>
+                  <div class="crm-stat">
+                    <div class="crm-stat-val">7</div>
+                    <div class="crm-stat-label">Fechamentos</div>
+                  </div>
+                  <div class="crm-stat">
+                    <div class="crm-stat-val">43%</div>
+                    <div class="crm-stat-label">Conversão</div>
+                  </div>
+                  <div class="crm-stat">
+                    <div class="crm-stat-val">2,4d</div>
+                    <div class="crm-stat-label">Ciclo médio</div>
+                  </div>
+                </div>
+              </div>
+              <!-- WhatsApp Panel -->
+              <div class="crm-wpp-panel">
+                <div class="crm-wpp-header">
+                  <div class="crm-wpp-title">WhatsApp</div>
+                  <div class="crm-wpp-sub">Ana Paula · Evolution API</div>
+                </div>
+                <div class="crm-wpp-msgs">
+                  <div class="crm-wpp-msg in">Boa tarde! Gostaria de saber se tem imóvel disponível no centro?</div>
+                  <div class="crm-wpp-msg out">Olá Ana! Sim, temos 2 opções disponíveis. Posso te enviar as fotos?</div>
+                  <div class="crm-wpp-msg in">Por favor! Tem algum de 2 quartos?</div>
+                  <div class="crm-wpp-msg out">Sim! Tenho um ótimo na Rua das Flores. Vou te mandar os detalhes.</div>
+                </div>
+                <div class="crm-wpp-input">
+                  <div class="crm-wpp-field"></div>
+                  <div class="crm-wpp-send">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 01 OBJETIVO -->
+  <section class="section" id="objetivo">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <!-- impeccable-disable numbered-section-markers: VS Experience section cadence -->
+        <span class="eyebrow-num">01</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Objetivo do projeto</span>
+      </div>
+      <h2 class="section-title reveal d1">Uma operação com<br><span class="text-gradient">gestão profissional</span></h2>
+      <p class="section-text reveal d2">A Descomplica Locações conduz atendimentos por múltiplos canais, gerencia contatos e acompanha locações. Sem um sistema centralizado, essas informações ficam dispersas e difíceis de acompanhar. O CRM resolve esse problema reunindo tudo em uma única plataforma construída para a operação real da empresa.</p>
+      <div class="benefit-grid">
+        <div class="benefit-card reveal d1">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="benefit-title">Atendimentos centralizados</div>
+          <div class="benefit-desc">Todos os contatos, histórico de interações e oportunidades comerciais em um único lugar, sem depender de planilhas ou anotações avulsas.</div>
+        </div>
+        <div class="benefit-card reveal d2">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="benefit-title">Funil visual por estágio</div>
+          <div class="benefit-desc">Kanban com etapas personalizadas para o processo da Descomplica: de primeiro contato até a contratação da locação, com visibilidade clara de cada oportunidade.</div>
+        </div>
+        <div class="benefit-card reveal d3">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="benefit-title">WhatsApp dentro do CRM</div>
+          <div class="benefit-desc">Conversas do WhatsApp integradas diretamente na plataforma via Evolution API. Mensagens enviadas e recebidas sem precisar alternar de aplicativo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 02 ESCOPO -->
+  <section class="section" id="escopo">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">02</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Escopo do sistema</span>
+      </div>
+      <h2 class="section-title reveal d1">Tudo que o CRM<br><span class="text-gradient">vai incluir</span></h2>
+      <p class="section-text reveal d2">O sistema será desenvolvido do zero, com todas as funcionalidades descritas abaixo incluídas no escopo desta proposta.</p>
+      <div class="feature-list">
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Login e controle de usuários</strong>Autenticação segura, senhas criptografadas e controle de acesso por perfil.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Dashboard com indicadores básicos</strong>Visão geral do funil, contatos ativos, oportunidades e conversão.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Cadastro e gerenciamento de clientes</strong>Ficha completa de cada cliente com dados de contato, histórico e observações.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Histórico de interações</strong>Registro cronológico de todos os atendimentos realizados com cada contato.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Funil comercial em Kanban</strong>Quadro visual de oportunidades com colunas personalizadas para o fluxo da Descomplica.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Etapas personalizadas de atendimento</strong>Criação e edição de colunas do funil conforme a operação evolui.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Responsável por atendimento</strong>Identificação de qual usuário está conduzindo cada oportunidade.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Tarefas e lembretes</strong>Registro de follow-ups e próximas ações vinculadas a contatos e oportunidades.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Tags, observações, busca e filtros</strong>Organização e localização rápida de contatos por qualquer critério.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Central de conversas do WhatsApp</strong>Inbox integrado para ler e responder mensagens sem sair do CRM.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Envio e recebimento de mensagens</strong>Comunicação em tempo real via WhatsApp diretamente no sistema.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Envio de arquivos compatíveis</strong>Imagens, PDFs e documentos enviados pelo WhatsApp direto da plataforma.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Integração por webhooks com Evolution API</strong>Comunicação em tempo real entre o CRM e a instância do WhatsApp.</div>
+        </div>
+        <div class="feature-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Área administrativa</strong>Configurações da conta, usuários, instância e preferências do sistema.</div>
+        </div>
+        <div class="feature-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div><strong>Interface responsiva</strong>Compatível com computador, tablet e celular, sem perda de funcionalidade.</div>
+        </div>
+      </div>
+      <div class="feature-note reveal">
+        <strong>Instância inicial:</strong> A primeira versão será desenvolvida para uma instância principal do WhatsApp. A adição de mais instâncias poderá ser tratada como escopo futuro.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 03 TECNOLOGIAS -->
+  <section class="section" id="tecnologias">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">03</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Tecnologias utilizadas</span>
+      </div>
+      <h2 class="section-title reveal d1">Stack moderno,<br><span class="text-gradient">seguro e escalável</span></h2>
+      <p class="section-text reveal d2">O CRM será construído com tecnologias consolidadas e adequadas para um sistema interno autenticado, priorizando performance, manutenibilidade e segurança dos dados.</p>
+      <div class="tech-grid">
+        <div class="tech-item reveal d1">
+          <div class="tech-role">Interface</div>
+          <div class="tech-name">React + Vite</div>
+          <div class="tech-desc">Interface moderna e reativa. Vite no lugar do Next.js oferece estrutura mais leve e adequada para sistemas internos autenticados.</div>
+        </div>
+        <div class="tech-item reveal d2">
+          <div class="tech-role">Linguagem</div>
+          <div class="tech-name">TypeScript</div>
+          <div class="tech-desc">Tipagem estática que reduz bugs em produção, facilita a manutenção e melhora a confiabilidade do código ao longo do tempo.</div>
+        </div>
+        <div class="tech-item reveal d3">
+          <div class="tech-role">Estilização</div>
+          <div class="tech-name">Tailwind CSS</div>
+          <div class="tech-desc">Utilitários de CSS para construção rápida e consistente da interface, com suporte nativo a responsividade e dark mode.</div>
+        </div>
+        <div class="tech-item reveal d1">
+          <div class="tech-role">Backend</div>
+          <div class="tech-name">Node.js + API REST</div>
+          <div class="tech-desc">Servidor robusto com rotas protegidas, validação de dados, tratamento de erros e armazenamento seguro das credenciais.</div>
+        </div>
+        <div class="tech-item reveal d2">
+          <div class="tech-role">Banco de dados</div>
+          <div class="tech-name">PostgreSQL</div>
+          <div class="tech-desc">Banco relacional confiável para armazenar contatos, histórico, conversas e configurações com integridade e performance.</div>
+        </div>
+        <div class="tech-item reveal d3">
+          <div class="tech-role">Integração WhatsApp</div>
+          <div class="tech-name">Evolution API</div>
+          <div class="tech-desc">Integração via webhooks para envio e recebimento de mensagens em tempo real, mantendo a operação do WhatsApp dentro do CRM.</div>
+        </div>
+      </div>
+      <div class="technical-note reveal">
+        <strong>Segurança:</strong> Serão aplicadas boas práticas em todas as camadas: proteção de rotas, criptografia de senhas, validação de dados no servidor e armazenamento seguro das credenciais da integração. A integração estará sujeita às condições técnicas da Evolution API e às políticas do WhatsApp em vigor.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 04 SITE INSTITUCIONAL (bonificação) -->
+  <section class="section" id="site-institucional">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">04</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Site institucional</span>
+      </div>
+      <h2 class="section-title reveal d1">Presença digital.<br><span class="text-gradient">Incluso na contratação.</span></h2>
+      <p class="section-text reveal d2">Na contratação do CRM, a Descomplica Locações também recebe um site institucional responsivo, sem nenhum custo adicional. Um canal de entrada para novos clientes, apresentando a empresa de forma profissional na web.</p>
+      <div class="highlight-box reveal">
+        <div class="bonus-badge">Bonificação incluída</div>
+        <div class="highlight-box-title">Site institucional · Descomplica Locações</div>
+        <div class="highlight-box-text">Site responsivo com foco em apresentar profissionalmente a empresa, seus serviços e canais de atendimento, desenvolvido em paralelo ao CRM e publicado junto com ele.</div>
+        <div class="highlight-list">
+          <div class="highlight-list-item">Página inicial</div>
+          <div class="highlight-list-item">Apresentação da empresa</div>
+          <div class="highlight-list-item">Serviços de locação</div>
+          <div class="highlight-list-item">Diferenciais</div>
+          <div class="highlight-list-item">Formulário de contato</div>
+          <div class="highlight-list-item">Botão para WhatsApp</div>
+          <div class="highlight-list-item">Links para redes sociais</div>
+          <div class="highlight-list-item">SEO técnico básico</div>
+          <div class="highlight-list-item">Google Analytics / GTM</div>
+        </div>
+        <div class="bonus-value">Valor comercial separado: R$ 1.500,00. Incluído sem custo adicional na contratação do CRM.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 05 ETAPAS -->
+  <section class="section" id="etapas">
+    <div class="container-sm">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">05</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Etapas do projeto</span>
+      </div>
+      <h2 class="section-title reveal d1">Do planejamento<br><span class="text-gradient">à publicação</span></h2>
+      <p class="section-text reveal d2">Seis etapas estruturadas para garantir que o sistema entregue seja adequado à operação real da Descomplica, com validação em cada fase antes de avançar.</p>
+      <div class="flow-list">
+        <div class="flow-item reveal d1">
+          <div class="flow-num">01</div>
+          <div class="flow-body">
+            <div class="flow-title">Planejamento do fluxo de atendimento</div>
+            <div class="flow-desc">Entendimento profundo da operação da Descomplica: como os clientes chegam, como são atendidos e quais etapas compõem o processo de locação. Essa análise serve de base para o desenho do sistema.</div>
+          </div>
+        </div>
+        <div class="flow-item reveal d2">
+          <div class="flow-num">02</div>
+          <div class="flow-body">
+            <div class="flow-title">Criação das telas e identidade visual</div>
+            <div class="flow-desc">Projeto visual do CRM e do site institucional, com aprovação antes do início do desenvolvimento. Interface criada para refletir a identidade da empresa.</div>
+          </div>
+        </div>
+        <div class="flow-item reveal d3">
+          <div class="flow-num">03</div>
+          <div class="flow-body">
+            <div class="flow-title">Desenvolvimento do CRM</div>
+            <div class="flow-desc">Construção de todas as funcionalidades descritas no escopo: autenticação, cadastros, funil Kanban, histórico, tarefas, filtros e área administrativa.</div>
+          </div>
+        </div>
+        <div class="flow-item reveal d4">
+          <div class="flow-num">04</div>
+          <div class="flow-body">
+            <div class="flow-title">Integração com a Evolution API</div>
+            <div class="flow-desc">Conexão do CRM com a instância do WhatsApp via webhooks, com a central de conversas ativa: envio, recebimento e transferência de arquivos funcionando.</div>
+          </div>
+        </div>
+        <div class="flow-item reveal d5">
+          <div class="flow-num">05</div>
+          <div class="flow-body">
+            <div class="flow-title">Testes e homologação</div>
+            <div class="flow-desc">Versão disponibilizada para validação pela equipe da Descomplica. Ajustes e correções dentro do escopo realizados nesta fase antes da publicação definitiva.</div>
+          </div>
+        </div>
+        <div class="flow-item reveal d6">
+          <div class="flow-num">06</div>
+          <div class="flow-body">
+            <div class="flow-title">Publicação do CRM e do site institucional</div>
+            <div class="flow-desc">Disponibilização do CRM no servidor contratado pela Descomplica e publicação do site institucional. Entrega após quitação integral do projeto.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 06 PRAZO E SUPORTE -->
+  <section class="section" id="prazo">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">06</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Prazo e suporte</span>
+      </div>
+      <h2 class="section-title reveal d1">Cronograma<br><span class="text-gradient">e garantia</span></h2>
+      <p class="section-text reveal d2">O prazo começa a contar após o pagamento inicial e o recebimento de todos os materiais, informações e acessos necessários ao desenvolvimento.</p>
+      <div class="deadline-strip">
+        <div class="dl-item reveal d1">
+          <div class="dl-label">Prazo total</div>
+          <div class="dl-val">45 dias úteis</div>
+          <div class="dl-sub">Contados após pagamento inicial e envio dos materiais</div>
+        </div>
+        <div class="dl-item reveal d2">
+          <div class="dl-label">Suporte pós-entrega</div>
+          <div class="dl-val">30 dias</div>
+          <div class="dl-sub">Suporte corretivo após a publicação</div>
+        </div>
+        <div class="dl-item reveal d3">
+          <div class="dl-label">Início</div>
+          <div class="dl-val">Na aprovação</div>
+          <div class="dl-sub">Após o pagamento da 1ª parcela</div>
+        </div>
+        <div class="dl-item reveal d4">
+          <div class="dl-label">Publicação</div>
+          <div class="dl-val">Na quitação</div>
+          <div class="dl-sub">Após pagamento integral do projeto</div>
+        </div>
+      </div>
+      <div class="technical-note reveal">
+        <strong>Suporte corretivo</strong> contempla a correção de erros relacionados ao desenvolvimento realizado dentro do escopo desta proposta. Não inclui novas funcionalidades, mudanças de layout, novas integrações ou alterações realizadas por terceiros. <strong>Alterações no escopo</strong> ou atrasos no envio de materiais poderão impactar o prazo de entrega.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 07 LIMITES DO ESCOPO -->
+  <section class="section" id="limites">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">07</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Limites do escopo</span>
+      </div>
+      <h2 class="section-title reveal d1">O que <span class="text-gradient">não está incluído</span></h2>
+      <p class="section-text reveal d2">Para garantir clareza sobre o que é entregue, os itens abaixo estão fora do escopo desta proposta e não compõem o desenvolvimento contratado.</p>
+      <div class="excl-grid">
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Servidor ou VPS
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Hospedagem do CRM, site ou Evolution API
+        </div>
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Domínio
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Número, chip ou conta do WhatsApp
+        </div>
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Custos de serviços externos
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Disparos de mensagens em massa
+        </div>
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Chatbot com inteligência artificial
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Aplicativo para Play Store ou App Store
+        </div>
+        <div class="excl-item reveal d1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Integrações não descritas nesta proposta
+        </div>
+        <div class="excl-item reveal d2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Manutenção mensal após período de suporte
+        </div>
+      </div>
+      <div class="excl-note reveal">
+        A integração estará sujeita às condições técnicas da Evolution API, da infraestrutura contratada pela Descomplica Locações e das políticas do WhatsApp em vigor na data de desenvolvimento.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 08 INVESTIMENTO -->
+  <section class="section final-cta" id="investimento">
+    <div class="final-cta-bg"></div>
+    <div class="container final-cta-inner">
+      <div class="eyebrow reveal" style="justify-content:center;">
+        <span class="eyebrow-num">08</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-label">Investimento</span>
+      </div>
+      <h2 class="final-cta-title reveal d1">Proposta de<br><span class="text-gradient">investimento</span></h2>
+      <p class="final-cta-text reveal d2">CRM completo com integração ao WhatsApp via Evolution API, incluindo o site institucional da Descomplica Locações como bonificação.</p>
+      <p class="final-cta-meta reveal d3">Válido por <span id="validCta">10 dias</span> a partir de <span id="emissionDate">—</span></p>
+
+      <div class="investment-panel reveal d2">
+        <div class="inv-top">
+          <div class="inv-label">Investimento total</div>
+          <div class="inv-value">
+            <span class="inv-currency">R$</span>
+            <span class="inv-amount" id="cfg-price-total">5.900,00</span>
+          </div>
+          <div class="inv-sub">CRM + Evolution API · Descomplica Locações</div>
+        </div>
+        <div class="inv-body">
+          <div class="inv-bonus-row">
+            <div class="inv-bonus-label">
+              <strong>Site institucional · Bonificado</strong>
+              Desenvolvido e publicado junto ao CRM, sem custo adicional
+            </div>
+            <div class="inv-bonus-val">R$ 1.500,00</div>
+          </div>
+          <div class="inv-divider-label">Condição de pagamento — 3 parcelas</div>
+          <div class="pay-row">
+            <div class="pay-label"><strong>Parcela 1 — na aprovação</strong>Pagamento para início imediato do projeto</div>
+            <div class="pay-val" id="cfg-price-p1">R$ 1.900,00</div>
+          </div>
+          <div class="pay-row">
+            <div class="pay-label"><strong>Parcela 2 — estrutura funcional</strong>Após apresentação da estrutura funcional do sistema</div>
+            <div class="pay-val" id="cfg-price-p2">R$ 2.000,00</div>
+          </div>
+          <div class="pay-row">
+            <div class="pay-label"><strong>Parcela 3 — homologação</strong>Na disponibilização da versão para homologação</div>
+            <div class="pay-val" id="cfg-price-p3">R$ 2.000,00</div>
+          </div>
+          <p class="inv-note">Pagamento via Pix ou transferência bancária. A publicação definitiva será realizada após a quitação integral do projeto. CNPJ: <span id="cfg-footer-cnpj">63.282.462/0001-69</span></p>
+        </div>
+      </div>
+
+      <div class="cta-btns reveal d3" style="margin-top:3rem;">
+        <a id="cfg-wpp-link" href="#" class="final-cta-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Aprovar proposta
+        </a>
+        <a id="cfg-wpp-contato" href="#" class="final-cta-btn ghost" target="_blank" rel="noopener">
+          Falar com Victor
+        </a>
+      </div>
+      <p class="final-cta-sub reveal d4">Proposta <span id="cfg-footer-proposta">VS-DESL-001</span> · Válida por <span id="validCta2">10 dias</span> · Emitida em <span id="emissionDate2">—</span></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><div class="footer-brand-dot"></div>VS Experience</div>
+        <div class="footer-tagline">Design e desenvolvimento web para marcas e empresas que querem presença digital de verdade.</div>
+      </div>
+      <div class="footer-meta">
+        <p>Proposta <span id="cfg-footer-proposta2">VS-DESL-001</span></p>
+        <p>CNPJ <span id="cfg-footer-cnpj2">63.282.462/0001-69</span></p>
+        <p>vtorsilvasantos@gmail.com</p>
+        <p class="footer-copy">© 2026 VS Experience · Todos os direitos reservados</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var CONFIG = {
+    proposta:    'VS-DESL-001',
+    cliente:     'Descomplica Locações',
+    validade:    10,
+    total:       '5.900,00',
+    parcela1:    '1.900,00',
+    parcela2:    '2.000,00',
+    parcela3:    '2.000,00',
+    whatsapp:    '5512991833641',
+    email:       'vtorsilvasantos@gmail.com',
+    cnpj:        '63.282.462/0001-69',
+    msgAprovacao: 'Olá, Victor! Analisei a proposta VS-DESL-001 e quero avançar com o desenvolvimento do CRM integrado à Evolution API para a Descomplica Locações, no valor de R$ 5.900,00.',
+    msgContato:   'Olá, Victor! Gostaria de conversar sobre a proposta VS-DESL-001 para a Descomplica Locações.'
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var enc = encodeURIComponent;
+    var wppBase = 'https://wa.me/' + CONFIG.whatsapp + '?text=';
+    var approveLink = document.getElementById('cfg-wpp-link');
+    var contactLink = document.getElementById('cfg-wpp-contato');
+    if (approveLink) approveLink.href = wppBase + enc(CONFIG.msgAprovacao);
+    if (contactLink) contactLink.href = wppBase + enc(CONFIG.msgContato);
+
+    var ids = {
+      'cfg-header-tag':    CONFIG.proposta + ' · Proposta Comercial',
+      'cfg-price-total':   CONFIG.total,
+      'cfg-price-p1':      'R$ ' + CONFIG.parcela1,
+      'cfg-price-p2':      'R$ ' + CONFIG.parcela2,
+      'cfg-price-p3':      'R$ ' + CONFIG.parcela3,
+      'cfg-footer-proposta': CONFIG.proposta,
+      'cfg-footer-proposta2': CONFIG.proposta,
+      'cfg-footer-cnpj':   CONFIG.cnpj,
+      'cfg-footer-cnpj2':  CONFIG.cnpj
+    };
+    Object.keys(ids).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = ids[id];
+    });
+
+    var now = new Date();
+    var expiry = new Date(now.getTime() + CONFIG.validade * 24 * 60 * 60 * 1000);
+    var fmtDate = function(d) {
+      return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    };
+    var nowStr = fmtDate(now);
+    var expiryStr = fmtDate(expiry);
+
+    ['emissionDate','emissionDate2'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = nowStr;
+    });
+    ['validHero','validCta','validCta2'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = CONFIG.validade + ' dias (até ' + expiryStr + ')';
+    });
+  });
+
+  // Header scroll
+  var hdr = document.getElementById('hdr');
+  window.addEventListener('scroll', function() {
+    hdr.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  // Progress bar
+  var bar = document.getElementById('read-progress');
+  window.addEventListener('scroll', function() {
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if (total > 0) bar.style.transform = 'scaleX(' + (window.scrollY / total) + ')';
+  }, { passive: true });
+
+  // Scroll reveal
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
