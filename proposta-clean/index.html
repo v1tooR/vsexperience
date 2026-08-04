@@ -1,0 +1,3356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta · Sistema de Gestão para Lavanderia · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS — VS Experience Design System
+       ============================================ */
+    :root {
+      --rose:        hsl(5, 38%, 45%);
+      --rose-dark:   hsl(5, 38%, 22%);
+      --rose-light:  hsl(5, 45%, 68%);
+      --gradient:    linear-gradient(135deg, hsl(5, 38%, 22%) 0%, hsl(5, 38%, 45%) 100%);
+
+      --bg:          hsl(5, 10%, 5.5%);
+      --bg-2:        hsl(5, 8%, 8%);
+      --bg-3:        hsl(5, 8%, 10.5%);
+      --surface:     hsla(5, 8%, 100%, 0.04);
+      --surface-2:   hsla(5, 8%, 100%, 0.07);
+      --border:      hsla(5, 8%, 100%, 0.08);
+      --border-2:    hsla(5, 8%, 100%, 0.13);
+
+      --text:        hsl(0, 0%, 94%);
+      --text-2:      hsl(0, 0%, 70%);
+      --text-muted:  hsl(0, 0%, 48%);
+
+      --radius:      0.75rem;
+      --radius-lg:   1.25rem;
+      --radius-xl:   2rem;
+
+      --ff-body:     'Space Grotesk', sans-serif;
+      --ff-mono:     'JetBrains Mono', ui-monospace, monospace;
+
+      /* Status accents — operação da lavanderia */
+      --st-recebido: hsl(210, 62%, 62%);   /* azul    */
+      --st-processo: hsl(38, 78%, 58%);    /* âmbar   */
+      --st-pronto:   hsl(160, 52%, 52%);   /* verde   */
+      --st-entregue: hsl(0, 0%, 62%);      /* neutro  */
+      --st-pend:     hsl(5, 60%, 60%);     /* alerta  */
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { font: inherit; color: inherit; background: none; border: none; }
+
+    /* ============================================
+       READING PROGRESS BAR
+       ============================================ */
+    #read-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 100%;
+      background: var(--gradient);
+      z-index: 1000;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      will-change: transform;
+    }
+
+    /* ============================================
+       HEADER
+       ============================================ */
+    #hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: hsla(5, 10%, 5.5%, 0.55);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #hdr.scrolled {
+      background: hsla(5, 10%, 5.5%, 0.92);
+      border-bottom-color: var(--border);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .h-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .h-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+    .h-client-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      margin-right: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .h-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .h-nav a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .h-nav a:hover { color: var(--text); }
+    @media (max-width: 900px) { .h-nav { display: none; } }
+
+    /* ============================================
+       CONTAINERS
+       ============================================ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+    .container-sm {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+      width: 100%;
+    }
+
+    /* ============================================
+       SECTION
+       ============================================ */
+    .section { padding: clamp(5rem, 10vw, 8rem) 0; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent);
+    }
+
+    /* ============================================
+       EYEBROW
+       ============================================ */
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .eyebrow-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      opacity: 0.65;
+      letter-spacing: 0.06em;
+      font-feature-settings: 'tnum';
+    }
+    .eyebrow-line {
+      height: 1px;
+      width: 2.5rem;
+      background: var(--gradient);
+      opacity: 0.45;
+    }
+    .eyebrow-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .section-text {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 66ch;
+      overflow-wrap: anywhere;
+    }
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 8% 18%, hsla(5, 38%, 20%, 0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 45% at 88% 72%, hsla(5, 38%, 14%, 0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsla(5, 8%, 100%, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(5, 8%, 100%, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.06fr;
+      gap: 2.75rem;
+      align-items: center;
+    }
+
+    .conf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 2rem;
+    }
+    .conf-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 hsla(5,38%,45%,0.45); }
+      50% { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 7px hsla(5,38%,45%,0); }
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 3.2vw, 2.625rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.028em;
+      margin-bottom: 1.25rem;
+      overflow-wrap: anywhere;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 52ch;
+      overflow-wrap: anywhere;
+    }
+    .hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      border-color: hsla(5, 8%, 100%, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .hs-item {
+      background: var(--bg-2);
+      padding: 1.25rem 1.375rem;
+      transition: background 0.2s;
+    }
+    .hs-item:hover { background: var(--bg-3); }
+    .hs-label {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .hs-val {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .hs-val.accent {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .scroll-line { width: 2rem; height: 1px; background: var(--border-2); }
+
+    /* ============================================
+       APP WINDOW CHROME (shared mockup shell)
+       ============================================ */
+    .app-win {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg-2);
+      border: 1px solid var(--border-2);
+      box-shadow: 0 32px 80px hsla(0,0%,0%,0.5);
+    }
+    .app-chrome {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.625rem 0.875rem;
+      background: hsl(5, 8%, 7%);
+      border-bottom: 1px solid var(--border);
+    }
+    .app-dots { display: flex; gap: 5px; flex-shrink: 0; }
+    .app-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: hsla(0,0%,100%,0.13);
+    }
+    .app-url {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--ff-mono);
+      font-size: 0.5625rem;
+      color: var(--text-muted);
+      background: hsla(0,0%,0%,0.35);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.2rem 0.55rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .app-pill {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      background: hsla(5, 38%, 22%, 0.4);
+      border: 1px solid hsla(5, 38%, 45%, 0.28);
+      border-radius: 100px;
+      padding: 0.2rem 0.55rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       HERO DASHBOARD MOCKUP
+       ============================================ */
+    .hdash-body { display: flex; min-height: 428px; }
+    .hdash-side {
+      width: 132px;
+      flex-shrink: 0;
+      background: hsl(5, 8%, 6.5%);
+      border-right: 1px solid var(--border);
+      padding: 0.875rem 0.625rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1875rem;
+    }
+    .hd-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      padding: 0 0.35rem 0.875rem;
+    }
+    .hd-logo i {
+      width: 15px; height: 15px;
+      border-radius: 4px;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+    .hd-navlabel {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.6;
+      padding: 0.625rem 0.4rem 0.35rem;
+    }
+    .hd-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 0.375rem 0.4rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .hd-nav svg { width: 11px; height: 11px; flex-shrink: 0; opacity: 0.8; }
+    .hd-nav:hover { color: var(--text-2); background: var(--surface); }
+    .hd-nav.is-on {
+      color: var(--text);
+      background: hsla(5, 38%, 45%, 0.13);
+      box-shadow: inset 2px 0 0 var(--rose);
+    }
+    .hd-nav.is-on svg { color: var(--rose-light); opacity: 1; }
+    .hd-user {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.35rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .hd-avatar {
+      width: 19px; height: 19px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .hd-uname { font-size: 0.5625rem; font-weight: 600; line-height: 1.25; }
+    .hd-urole { font-size: 0.4375rem; color: var(--text-muted); }
+
+    .hdash-main { flex: 1; padding: 0.875rem; min-width: 0; }
+    .hd-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .hd-title { font-size: 0.8125rem; font-weight: 700; letter-spacing: -0.01em; }
+    .hd-sub { font-size: 0.5rem; color: var(--text-muted); }
+    .hd-cta {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--gradient);
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .hd-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.375rem;
+      margin-bottom: 0.75rem;
+    }
+    .hd-kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 0.55rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .hd-kpi:hover { border-color: var(--border-2); transform: translateY(-1px); }
+    .hd-kpi-l {
+      font-size: 0.4375rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hd-kpi-v {
+      font-family: var(--ff-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .hd-kpi-d { font-size: 0.4375rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .hd-kpi-v.up { color: var(--st-pronto); }
+    .hd-kpi-v.warn { color: var(--st-pend); }
+
+    /* Kanban */
+    .hd-kanban {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.375rem;
+    }
+    .hd-col {
+      background: hsla(0,0%,0%,0.22);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4375rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3125rem;
+    }
+    .hd-col-h {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0 0.15rem 0.3rem;
+    }
+    .hd-col-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .hd-col-t {
+      font-size: 0.4688rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hd-col-n {
+      margin-left: auto;
+      font-family: var(--ff-mono);
+      font-size: 0.4375rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border-radius: 4px;
+      padding: 0.05rem 0.25rem;
+      flex-shrink: 0;
+    }
+    .hd-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4375rem 0.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .hd-card:hover { border-color: var(--border-2); transform: translateY(-1px); }
+    .hd-card-os {
+      font-family: var(--ff-mono);
+      font-size: 0.4375rem;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+    .hd-card-n {
+      font-size: 0.5625rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hd-card-f {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.3rem;
+    }
+    .hd-chip {
+      font-size: 0.4063rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border-radius: 3px;
+      padding: 0.05rem 0.25rem;
+      white-space: nowrap;
+    }
+    .hd-val {
+      font-family: var(--ff-mono);
+      font-size: 0.4688rem;
+      font-weight: 700;
+      color: var(--text-2);
+      white-space: nowrap;
+    }
+    .hd-val.paid { color: var(--st-pronto); }
+    .hd-val.due  { color: var(--st-pend); }
+    .hd-card.is-new { animation: cardIn 0.5s ease both; }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ============================================
+       TECH CHIPS
+       ============================================ */
+    .tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+    .tech-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.375rem 0.875rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-2);
+    }
+    .tc-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
+
+    /* ============================================
+       ANTES / DEPOIS
+       ============================================ */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .ba-card {
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .ba-card.after {
+      background: hsla(5, 38%, 22%, 0.1);
+      border-color: hsla(5, 38%, 45%, 0.2);
+    }
+    .ba-card.after::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    .ba-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      color: var(--text-muted);
+    }
+    .ba-card.after .ba-tag {
+      background: hsla(5, 38%, 22%, 0.38);
+      border-color: hsla(5, 38%, 45%, 0.3);
+      color: var(--rose-light);
+    }
+    .ba-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--text-2);
+      padding: 0.4rem 0;
+    }
+    .ba-line svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 3px; }
+    .ba-card .ba-line svg { color: var(--text-muted); opacity: 0.5; }
+    .ba-card.after .ba-line svg { color: var(--rose-light); opacity: 1; }
+
+    /* ============================================
+       FLUXO INTERATIVO
+       ============================================ */
+    .flow-wrap {
+      display: grid;
+      grid-template-columns: 268px 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    /* impede que a lista rolável de etapas estique a coluna do grid */
+    .flow-wrap > * { min-width: 0; }
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3125rem;
+      position: relative;
+    }
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.6875rem 0.875rem;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.22s, border-color 0.22s, transform 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .flow-step:hover { background: var(--surface-2); border-color: var(--border-2); }
+    .flow-step.is-on {
+      background: hsla(5, 38%, 22%, 0.22);
+      border-color: hsla(5, 38%, 45%, 0.35);
+    }
+    .flow-step.is-on::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gradient);
+    }
+    .fs-num {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-mono);
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      transition: all 0.22s;
+    }
+    .flow-step.is-on .fs-num {
+      color: #fff;
+      background: var(--gradient);
+      border-color: transparent;
+    }
+    .fs-text { display: block; min-width: 0; }
+    .fs-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-2);
+      line-height: 1.3;
+      transition: color 0.22s;
+    }
+    .flow-step.is-on .fs-label { color: var(--text); }
+    .fs-hint {
+      display: block;
+      font-size: 0.625rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-top: 1px;
+    }
+    .flow-progress {
+      margin-top: 0.75rem;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .flow-progress i {
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s ease;
+    }
+    .flow-autoplay {
+      font-size: 0.625rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .flow-autoplay i {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    /* Screen area */
+    .flow-screen { min-width: 0; }
+    .fscreen-body {
+      position: relative;
+      min-height: 430px;
+      padding: 1.125rem;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, hsla(5, 38%, 25%, 0.09), transparent 65%),
+        var(--bg-2);
+    }
+    .fpanel { display: none; }
+    .fpanel.is-on { display: block; animation: panelIn 0.4s ease both; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+    .fp-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.875rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .fp-title { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.015em; }
+    .fp-meta {
+      font-family: var(--ff-mono);
+      font-size: 0.625rem;
+      color: var(--text-muted);
+    }
+
+    /* generic mock atoms */
+    .m-field {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5625rem 0.75rem;
+      background: hsla(0,0%,0%,0.28);
+      border: 1px solid var(--border-2);
+      border-radius: 8px;
+      font-size: 0.75rem;
+      color: var(--text-2);
+    }
+    .m-field svg { width: 13px; height: 13px; opacity: 0.45; flex-shrink: 0; }
+    .m-caret {
+      display: inline-block;
+      width: 1px;
+      height: 0.85em;
+      background: var(--rose-light);
+      margin-left: 1px;
+      animation: blink 1.05s step-end infinite;
+      vertical-align: -1px;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .m-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5625rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .m-row + .m-row { margin-top: 0.375rem; }
+    .m-row:hover { border-color: var(--border-2); background: var(--surface-2); }
+    .m-row.is-sel {
+      background: hsla(5, 38%, 22%, 0.24);
+      border-color: hsla(5, 38%, 45%, 0.4);
+    }
+    .m-ava {
+      width: 26px; height: 26px;
+      border-radius: 7px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .m-row.is-sel .m-ava { background: var(--gradient); border-color: transparent; color: #fff; }
+    .m-name { font-size: 0.75rem; font-weight: 600; line-height: 1.3; }
+    .m-doc { font-family: var(--ff-mono); font-size: 0.5625rem; color: var(--text-muted); }
+    .m-grow { flex: 1; min-width: 0; }
+    .m-tag {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .m-tag.pf { color: var(--st-recebido); border-color: hsla(210,62%,62%,0.3); background: hsla(210,62%,50%,0.14); }
+    .m-tag.pj { color: var(--st-processo); border-color: hsla(38,78%,58%,0.3); background: hsla(38,78%,50%,0.14); }
+    .m-tag.ok { color: var(--st-pronto); border-color: hsla(160,52%,52%,0.32); background: hsla(160,52%,42%,0.16); }
+    .m-tag.warn { color: var(--st-pend); border-color: hsla(5,60%,60%,0.32); background: hsla(5,60%,50%,0.16); }
+    .m-sec-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .m-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4375rem 0.875rem;
+      border-radius: 7px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      background: var(--gradient);
+      color: #fff;
+      white-space: nowrap;
+    }
+    .m-btn.ghost {
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      color: var(--text-2);
+    }
+    .m-btn svg { width: 12px; height: 12px; }
+    .m-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 0.875rem;
+      padding-top: 0.875rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .m-foot-note { font-size: 0.625rem; color: var(--text-muted); }
+
+    /* Panel 2 — peças */
+    .m-pieces {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4375rem;
+    }
+    .m-piece {
+      padding: 0.625rem 0.6875rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .m-piece:hover { transform: translateY(-1px); }
+    .m-piece.has {
+      background: hsla(5, 38%, 22%, 0.2);
+      border-color: hsla(5, 38%, 45%, 0.32);
+    }
+    .m-piece-n { font-size: 0.6875rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.4rem; }
+    .m-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.3rem;
+    }
+    .m-step-btn {
+      width: 18px; height: 18px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .m-piece.has .m-step-btn { color: var(--rose-light); border-color: hsla(5,38%,45%,0.3); }
+    .m-qty {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .m-piece:not(.has) .m-qty { color: var(--text-muted); opacity: 0.5; }
+
+    /* Panel 3/4 — tabela de serviços */
+    .m-table { width: 100%; border-collapse: collapse; }
+    .m-table th {
+      text-align: left;
+      font-size: 0.4688rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0 0.5rem 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .m-table th:last-child, .m-table td:last-child { text-align: right; }
+    .m-table td {
+      font-size: 0.6875rem;
+      color: var(--text-2);
+      padding: 0.4375rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .m-table tr:last-child td { border-bottom: none; }
+    .m-table tbody tr:hover td { background: var(--surface); }
+    .m-table .td-p { color: var(--text); font-weight: 600; }
+    .m-table .td-v { font-family: var(--ff-mono); font-weight: 600; color: var(--text); white-space: nowrap; }
+    .m-svc {
+      font-size: 0.5rem;
+      font-weight: 600;
+      padding: 0.1rem 0.375rem;
+      border-radius: 4px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Panel 4 — resumo do valor */
+    .m-sum {
+      background: hsla(0,0%,0%,0.25);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.875rem 1rem;
+    }
+    .m-sum-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.3125rem 0;
+      font-size: 0.75rem;
+      color: var(--text-2);
+    }
+    .m-sum-row b { font-family: var(--ff-mono); font-weight: 600; color: var(--text); }
+    .m-sum-row.total {
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .m-sum-row.total b {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .m-sum-row.disc b { color: var(--st-pronto); }
+
+    /* Panel 5 — pagamento */
+    .m-pays {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.4375rem;
+      margin-bottom: 0.875rem;
+    }
+    .m-pay {
+      padding: 0.6875rem 0.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .m-pay:hover { border-color: var(--border-2); transform: translateY(-1px); }
+    .m-pay.is-on {
+      background: hsla(5, 38%, 22%, 0.26);
+      border-color: hsla(5, 38%, 45%, 0.42);
+    }
+    .m-pay svg { width: 16px; height: 16px; margin-bottom: 0.35rem; color: var(--text-muted); }
+    .m-pay.is-on svg { color: var(--rose-light); }
+    .m-pay-n { font-size: 0.625rem; font-weight: 600; color: var(--text-2); }
+    .m-pay.is-on .m-pay-n { color: var(--text); }
+    .m-pix {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.875rem;
+      border-radius: 10px;
+      background: hsla(0,0%,0%,0.25);
+      border: 1px solid var(--border);
+    }
+    .m-qr {
+      width: 88px; height: 88px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 7px;
+      padding: 6px;
+      position: relative;
+    }
+    .m-qr-mods {
+      position: absolute;
+      inset: 6px;
+      --c: #0d0d0d;
+      background-image:
+        linear-gradient(90deg, var(--c) 25%, #fff 0 50%, var(--c) 0 62.5%, #fff 0),
+        linear-gradient(var(--c) 12.5%, #fff 0 37.5%, var(--c) 0 50%, #fff 0 75%, var(--c) 0 87.5%, #fff 0);
+      background-size: 15px 15px, 11px 11px;
+      background-blend-mode: difference;
+    }
+    .m-qr-eye {
+      position: absolute;
+      width: 21px; height: 21px;
+      background: #fff;
+      border: 4px solid #0d0d0d;
+      border-radius: 3px;
+    }
+    .m-qr-eye::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: #0d0d0d;
+      border-radius: 1px;
+    }
+    .m-qr-eye.tl { top: 6px; left: 6px; }
+    .m-qr-eye.tr { top: 6px; right: 6px; }
+    .m-qr-eye.bl { bottom: 6px; left: 6px; }
+    .m-pix-info { min-width: 0; }
+    .m-pix-val {
+      font-family: var(--ff-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.15rem;
+    }
+    .m-pix-l { font-size: 0.625rem; color: var(--text-muted); line-height: 1.5; }
+    .m-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.625rem;
+      font-weight: 700;
+      padding: 0.25rem 0.625rem;
+      border-radius: 100px;
+      background: hsla(160, 52%, 42%, 0.16);
+      border: 1px solid hsla(160, 52%, 52%, 0.32);
+      color: var(--st-pronto);
+    }
+    .m-status i {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    /* Panel 6 — NFS-e */
+    .m-nf {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4375rem;
+      margin-bottom: 0.875rem;
+    }
+    .m-nf-cell {
+      padding: 0.5625rem 0.75rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .m-nf-l {
+      font-size: 0.4688rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+    .m-nf-v {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
+    .m-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0.875rem;
+      border-radius: 10px;
+      background: hsla(160, 52%, 42%, 0.1);
+      border: 1px solid hsla(160, 52%, 52%, 0.26);
+      margin-bottom: 0.875rem;
+    }
+    .m-banner svg { width: 20px; height: 20px; color: var(--st-pronto); flex-shrink: 0; }
+    .m-banner-t { font-size: 0.8125rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .m-banner-s { font-size: 0.625rem; color: var(--text-muted); }
+
+    /* Panel 7 — comprovante térmico */
+    .m-receipt-wrap { display: flex; gap: 1rem; align-items: flex-start; }
+    .m-receipt {
+      width: 224px;
+      flex-shrink: 0;
+      background: hsl(40, 12%, 94%);
+      color: hsl(0, 0%, 12%);
+      font-family: var(--ff-mono);
+      font-size: 0.5625rem;
+      line-height: 1.55;
+      padding: 0.875rem 0.875rem 1.25rem;
+      border-radius: 3px;
+      box-shadow: 0 14px 34px hsla(0,0%,0%,0.45);
+      position: relative;
+      -webkit-mask-image: radial-gradient(circle 4px at 4px 100%, transparent 98%, #000 100%);
+    }
+    .m-receipt::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -5px;
+      height: 6px;
+      background:
+        radial-gradient(circle 5px at 5px -1px, transparent 96%, hsl(40, 12%, 94%) 100%) repeat-x;
+      background-size: 10px 6px;
+    }
+    .m-rc-brand {
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.1rem;
+    }
+    .m-rc-sub { text-align: center; font-size: 0.5rem; opacity: 0.6; line-height: 1.5; }
+    .m-rc-hr {
+      border-top: 1px dashed hsla(0,0%,0%,0.35);
+      margin: 0.5rem 0;
+    }
+    .m-rc-line { display: flex; justify-content: space-between; gap: 0.5rem; }
+    .m-rc-line span:last-child { white-space: nowrap; }
+    .m-rc-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin: 0.25rem 0;
+    }
+    .m-rc-code {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      letter-spacing: 0.18em;
+    }
+    .m-rc-bars {
+      height: 26px;
+      margin: 0.4rem 0 0.3rem;
+      background-image: repeating-linear-gradient(90deg,
+        #111 0 2px, transparent 0 4px, #111 0 5px, transparent 0 9px,
+        #111 0 3px, transparent 0 5px, #111 0 1px, transparent 0 4px);
+    }
+    .m-rc-foot { text-align: center; font-size: 0.4688rem; opacity: 0.55; line-height: 1.6; }
+    .m-print-side { flex: 1; min-width: 0; }
+    .m-note {
+      padding: 0.6875rem 0.875rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid hsla(5, 38%, 45%, 0.45);
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .m-note + .m-note { margin-top: 0.4375rem; }
+
+    /* Panel 8 — timeline */
+    .m-timeline { position: relative; padding-left: 1.25rem; }
+    .m-timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 8px; bottom: 12px;
+      width: 1px;
+      background: var(--border-2);
+    }
+    .m-tl {
+      position: relative;
+      padding: 0 0 0.875rem 0;
+    }
+    .m-tl:last-child { padding-bottom: 0; }
+    .m-tl::before {
+      content: '';
+      position: absolute;
+      left: -1.25rem; top: 5px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: var(--bg-2);
+      border: 2px solid var(--border-2);
+    }
+    .m-tl.done::before { background: var(--st-pronto); border-color: var(--st-pronto); }
+    .m-tl.now::before {
+      background: var(--rose);
+      border-color: var(--rose);
+      box-shadow: 0 0 0 4px hsla(5, 38%, 45%, 0.22);
+    }
+    .m-tl-t { font-size: 0.75rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .m-tl.pend .m-tl-t { color: var(--text-muted); }
+    .m-tl-d { font-family: var(--ff-mono); font-size: 0.5625rem; color: var(--text-muted); }
+    .m-tl-who { font-size: 0.5625rem; color: var(--text-muted); opacity: 0.75; }
+
+    /* ============================================
+       ESCOPO — MODULE GRID
+       ============================================ */
+    .mod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.875rem;
+      margin-top: 2.5rem;
+    }
+    .mod-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .mod-card:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .mod-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .mod-card:hover::before { opacity: 0.6; }
+    .mod-icon {
+      width: 2.125rem; height: 2.125rem;
+      border-radius: 0.5rem;
+      background: hsla(5, 38%, 22%, 0.28);
+      border: 1px solid hsla(5, 38%, 45%, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .mod-icon svg { width: 15px; height: 15px; color: var(--rose-light); }
+    .mod-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 0.375rem;
+      line-height: 1.35;
+    }
+    .mod-desc { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.65; }
+    .mod-items {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .mod-item {
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: var(--text-2);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.15rem 0.5rem;
+    }
+
+    /* ============================================
+       INTEGRAÇÕES
+       ============================================ */
+    .integ-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .integ-card {
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .integ-card:hover { border-color: var(--border-2); }
+    .integ-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .integ-logo {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+    }
+    .integ-logo.pb { color: hsl(38, 78%, 62%); background: hsla(38, 78%, 45%, 0.14); border-color: hsla(38, 78%, 55%, 0.28); }
+    .integ-logo.as { color: hsl(210, 62%, 66%); background: hsla(210, 62%, 45%, 0.14); border-color: hsla(210, 62%, 58%, 0.28); }
+    .integ-name { font-size: 1rem; font-weight: 700; line-height: 1.2; }
+    .integ-role {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .integ-desc { font-size: 0.8125rem; color: var(--text-2); line-height: 1.7; }
+    .integ-list { margin-top: 0.875rem; }
+    .integ-li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 0.2rem 0;
+    }
+    .integ-li svg { width: 12px; height: 12px; color: var(--rose-light); flex-shrink: 0; margin-top: 3px; }
+
+    .alert-box {
+      margin-top: 1.25rem;
+      padding: 1.125rem 1.375rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-left: 2px solid hsla(38, 78%, 58%, 0.5);
+      font-size: 0.8125rem;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+    .alert-box strong { color: var(--text); font-weight: 600; }
+
+    /* ============================================
+       NÃO INCLUÍDO
+       ============================================ */
+    .excl-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.625rem;
+      margin-top: 2rem;
+    }
+    .excl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1.125rem;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+    .excl-item svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 14px; height: 14px;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .excl-note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-left: 2px solid hsla(5, 38%, 45%, 0.4);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       PRAZO / TIMELINE DE ENTREGA
+       ============================================ */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .phase {
+      padding: 1.375rem 1.25rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .phase:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .phase-n {
+      font-family: var(--ff-mono);
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--rose-light);
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+    .phase-t { font-size: 0.875rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.4rem; }
+    .phase-d { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+    .phase-bar {
+      height: 2px;
+      border-radius: 2px;
+      background: var(--gradient);
+      margin-top: 0.875rem;
+      opacity: 0.55;
+    }
+
+    /* ============================================
+       INVESTIMENTO
+       ============================================ */
+    .price-hero {
+      margin-top: 2.5rem;
+      padding: 2.75rem 3rem;
+      border-radius: var(--radius-xl);
+      background: hsla(5, 38%, 22%, 0.1);
+      border: 1px solid hsla(5, 38%, 45%, 0.22);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .price-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    .ph-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .ph-price { display: flex; align-items: baseline; gap: 0.25rem; }
+    .ph-cur { font-size: 1.5rem; font-weight: 700; color: var(--text-2); }
+    .ph-val {
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      font-feature-settings: 'tnum';
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ph-desc {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-top: 1rem;
+      max-width: 34ch;
+    }
+    .pay-list { display: flex; flex-direction: column; }
+    .pay-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9375rem 1.125rem;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .pay-row + .pay-row { margin-top: 0.3125rem; }
+    .pay-row:hover { background: var(--surface); border-color: var(--border); }
+    .pay-row.best {
+      background: hsla(5, 38%, 22%, 0.3);
+      border-color: hsla(5, 38%, 45%, 0.3);
+    }
+    .pay-ic {
+      width: 2rem; height: 2rem;
+      border-radius: 0.5rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .pay-ic svg { width: 14px; height: 14px; color: var(--text-2); }
+    .pay-row.best .pay-ic { background: hsla(5,38%,45%,0.2); border-color: hsla(5,38%,45%,0.3); }
+    .pay-row.best .pay-ic svg { color: var(--rose-light); }
+    .pay-n { font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
+    .pay-s { font-size: 0.6875rem; color: var(--text-muted); }
+    .pay-v {
+      margin-left: auto;
+      text-align: right;
+      font-family: var(--ff-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .pay-row.best .pay-v { color: var(--rose-light); }
+    .pay-badge {
+      display: inline-block;
+      font-size: 0.4688rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--st-pronto);
+      background: hsla(160, 52%, 42%, 0.16);
+      border: 1px solid hsla(160, 52%, 52%, 0.3);
+      border-radius: 100px;
+      padding: 0.1rem 0.45rem;
+      margin-left: 0.4rem;
+      vertical-align: 2px;
+    }
+
+    /* Mensalidade */
+    .mens-box {
+      margin-top: 1rem;
+      padding: 2rem 2.5rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .mens-l { min-width: 0; }
+    .mens-tag {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .mens-t { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 0.5rem; }
+    .mens-d { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.65; max-width: 46ch; }
+    .mens-p {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .mens-val {
+      font-family: var(--ff-mono);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .mens-per { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem; }
+
+    /* ============================================
+       FINAL CTA
+       ============================================ */
+    .final-cta {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      text-align: center;
+      position: relative;
+    }
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, hsla(5, 38%, 18%, 0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; z-index: 1; }
+    .final-cta-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .final-cta-text {
+      font-size: 1.0625rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 54ch;
+      margin: 0 auto 2.5rem;
+    }
+    .final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1.125rem 2.5rem;
+      background: var(--gradient);
+      color: #fff;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .final-cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px hsla(5, 38%, 30%, 0.3);
+    }
+    .final-cta-btn svg { width: 20px; height: 20px; }
+    .final-cta-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 1.5rem; }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gradient); }
+    .footer-tagline { font-size: 0.75rem; color: var(--text-muted); max-width: 36ch; line-height: 1.5; }
+    .footer-meta p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.75; text-align: right; }
+    .footer-copy { font-size: 0.6875rem; color: var(--text-muted); opacity: 0.4; margin-top: 0.375rem; }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1020px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .flow-wrap { grid-template-columns: 1fr; }
+      .flow-steps {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0.4375rem;
+        padding-bottom: 0.5rem;
+        scrollbar-width: thin;
+      }
+      .flow-step { flex: 0 0 auto; width: auto; }
+      .fs-text { display: none; }
+      .flow-step.is-on .fs-text { display: block; }
+      .price-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2.25rem; }
+      .mod-grid { grid-template-columns: repeat(2, 1fr); }
+      .phase-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 820px) {
+      .hero { min-height: auto; padding: 6.5rem 0 3rem; }
+      .hdash-side { display: none; }
+      .hd-kanban { grid-template-columns: repeat(2, 1fr); }
+      .ba-grid { grid-template-columns: 1fr; }
+      .integ-grid { grid-template-columns: 1fr; }
+      .excl-grid { grid-template-columns: 1fr; }
+      .m-receipt-wrap { flex-direction: column; }
+      .m-receipt { width: 100%; max-width: 260px; margin: 0 auto; }
+      .footer-inner { flex-direction: column; }
+      .footer-meta p { text-align: left; }
+    }
+    @media (max-width: 640px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+      .hd-kpis { grid-template-columns: repeat(2, 1fr); }
+      .mod-grid { grid-template-columns: 1fr; }
+      .m-pieces { grid-template-columns: repeat(2, 1fr); }
+      .m-pays { grid-template-columns: repeat(2, 1fr); }
+      .m-nf { grid-template-columns: 1fr; }
+      .m-table { display: block; overflow-x: auto; white-space: nowrap; }
+      .m-pix { flex-direction: column; align-items: flex-start; }
+      .mens-box { padding: 1.75rem; }
+      .mens-p { text-align: left; }
+      .fscreen-body { padding: 0.875rem; }
+    }
+    @media (max-width: 460px) {
+      .phase-grid { grid-template-columns: 1fr; }
+      .hd-kanban { grid-template-columns: 1fr; }
+      .section-title { font-size: 1.75rem; }
+      .final-cta-title { font-size: 1.875rem; }
+      .h-client-tag { display: none; }
+      .price-hero { padding: 1.75rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="read-progress"></div>
+
+  <header id="hdr">
+    <div class="header-inner">
+      <div class="h-brand">
+        <div class="h-brand-dot"></div>
+        VS Experience
+      </div>
+      <div class="h-client-tag">Proposta · Sistema para Lavanderia</div>
+      <nav class="h-nav">
+        <a href="#visao-geral">Visão Geral</a>
+        <a href="#fluxo">Fluxo</a>
+        <a href="#escopo">Escopo</a>
+        <a href="#integracoes">Integrações</a>
+        <a href="#investimento">Investimento</a>
+        <a href="#fechamento">Fechar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+         ══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-bg"></div>
+      <div class="container hero-inner">
+        <div class="hero-layout">
+
+          <!-- Left -->
+          <div>
+            <div class="conf-tag reveal">
+              <span class="conf-dot"></span>
+              Proposta comercial exclusiva
+            </div>
+
+            <h1 class="hero-title reveal d1">
+              Do talão de papel<br>
+              ao <span class="text-gradient">sistema de gestão.</span>
+            </h1>
+
+            <p class="hero-subtitle reveal d2">
+              Sistema web interno para a lavanderia organizar clientes, peças, serviços, pagamentos, notas fiscais e relatórios em uma única plataforma, instalável no computador, no tablet e no celular da equipe.
+            </p>
+
+            <div class="hero-btns reveal d3">
+              <a href="#investimento" class="btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Ver o investimento
+              </a>
+              <a href="#fluxo" class="btn-ghost">Ver o sistema funcionando</a>
+            </div>
+
+            <div class="hero-stats reveal d4">
+              <div class="hs-item">
+                <div class="hs-label">Tipo de projeto</div>
+                <div class="hs-val">Sistema Web Interno</div>
+              </div>
+              <div class="hs-item">
+                <div class="hs-label">Prazo de entrega</div>
+                <div class="hs-val">30 a 45 dias</div>
+              </div>
+              <div class="hs-item">
+                <div class="hs-label">Investimento</div>
+                <div class="hs-val accent">R$ 4.500,00</div>
+              </div>
+            </div>
+
+            <div class="scroll-hint reveal d5">
+              <span class="scroll-line"></span>
+              Role para conhecer o projeto completo
+            </div>
+          </div>
+
+          <!-- Right: dashboard mockup -->
+          <div class="reveal d2">
+            <div class="app-win">
+              <div class="app-chrome">
+                <div class="app-dots"><span></span><span></span><span></span></div>
+                <div class="app-url">app.lavanderia.com.br/painel</div>
+                <div class="app-pill">PWA instalado</div>
+              </div>
+              <div class="hdash-body">
+
+                <aside class="hdash-side">
+                  <div class="hd-logo"><i></i> Lavanderia</div>
+                  <div class="hd-navlabel">Operação</div>
+                  <div class="hd-nav is-on">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/></svg>
+                    Atendimentos
+                  </div>
+                  <div class="hd-nav">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Clientes
+                  </div>
+                  <div class="hd-nav">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    Peças e serviços
+                  </div>
+                  <div class="hd-navlabel">Financeiro</div>
+                  <div class="hd-nav">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                    Pagamentos
+                  </div>
+                  <div class="hd-nav">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Notas fiscais
+                  </div>
+                  <div class="hd-nav">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    Relatórios
+                  </div>
+                  <div class="hd-user">
+                    <div class="hd-avatar">A</div>
+                    <div>
+                      <div class="hd-uname">Atendente</div>
+                      <div class="hd-urole">Balcão · Loja</div>
+                    </div>
+                  </div>
+                </aside>
+
+                <div class="hdash-main">
+                  <div class="hd-head">
+                    <div>
+                      <div class="hd-title">Atendimentos de hoje</div>
+                      <div class="hd-sub">Quinta-feira · atualizado agora</div>
+                    </div>
+                    <div class="hd-cta">+ Novo atendimento</div>
+                  </div>
+
+                  <div class="hd-kpis">
+                    <div class="hd-kpi">
+                      <div class="hd-kpi-l">Atendimentos</div>
+                      <div class="hd-kpi-v">27</div>
+                      <div class="hd-kpi-d">no dia</div>
+                    </div>
+                    <div class="hd-kpi">
+                      <div class="hd-kpi-l">Peças</div>
+                      <div class="hd-kpi-v">184</div>
+                      <div class="hd-kpi-d">em processo</div>
+                    </div>
+                    <div class="hd-kpi">
+                      <div class="hd-kpi-l">Faturado</div>
+                      <div class="hd-kpi-v up">R$ 3.480</div>
+                      <div class="hd-kpi-d">recebido hoje</div>
+                    </div>
+                    <div class="hd-kpi">
+                      <div class="hd-kpi-l">A receber</div>
+                      <div class="hd-kpi-v warn">R$ 940</div>
+                      <div class="hd-kpi-d">6 pendentes</div>
+                    </div>
+                  </div>
+
+                  <div class="hd-kanban">
+                    <div class="hd-col">
+                      <div class="hd-col-h">
+                        <span class="hd-col-dot" style="background:var(--st-recebido)"></span>
+                        <span class="hd-col-t">Recebido</span>
+                        <span class="hd-col-n" id="k-n1">3</span>
+                      </div>
+                      <div class="hd-card" id="k-slot">
+                        <div class="hd-card-os">#OS-1042</div>
+                        <div class="hd-card-n">Maria A. Souza</div>
+                        <div class="hd-card-f"><span class="hd-chip">8 peças</span><span class="hd-val paid">R$ 260</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1041</div>
+                        <div class="hd-card-n">Hotel Marina</div>
+                        <div class="hd-card-f"><span class="hd-chip">42 peças</span><span class="hd-val due">Faturar</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1040</div>
+                        <div class="hd-card-n">Carlos Ribeiro</div>
+                        <div class="hd-card-f"><span class="hd-chip">3 peças</span><span class="hd-val paid">R$ 88</span></div>
+                      </div>
+                    </div>
+
+                    <div class="hd-col">
+                      <div class="hd-col-h">
+                        <span class="hd-col-dot" style="background:var(--st-processo)"></span>
+                        <span class="hd-col-t">Em processo</span>
+                        <span class="hd-col-n">4</span>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1038</div>
+                        <div class="hd-card-n">Juliana Prado</div>
+                        <div class="hd-card-f"><span class="hd-chip">Seco</span><span class="hd-val paid">R$ 195</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1037</div>
+                        <div class="hd-card-n">Rest. Dom Pedro</div>
+                        <div class="hd-card-f"><span class="hd-chip">31 peças</span><span class="hd-val due">Faturar</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1035</div>
+                        <div class="hd-card-n">Ana Beatriz</div>
+                        <div class="hd-card-f"><span class="hd-chip">5 peças</span><span class="hd-val paid">R$ 142</span></div>
+                      </div>
+                    </div>
+
+                    <div class="hd-col">
+                      <div class="hd-col-h">
+                        <span class="hd-col-dot" style="background:var(--st-pronto)"></span>
+                        <span class="hd-col-t">Pronto</span>
+                        <span class="hd-col-n">5</span>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1031</div>
+                        <div class="hd-card-n">Roberto Lima</div>
+                        <div class="hd-card-f"><span class="hd-chip">Retirar</span><span class="hd-val paid">Pago</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1029</div>
+                        <div class="hd-card-n">Clínica Vitta</div>
+                        <div class="hd-card-f"><span class="hd-chip">18 peças</span><span class="hd-val due">Pendente</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1028</div>
+                        <div class="hd-card-n">Fernanda Melo</div>
+                        <div class="hd-card-f"><span class="hd-chip">2 peças</span><span class="hd-val paid">Pago</span></div>
+                      </div>
+                    </div>
+
+                    <div class="hd-col">
+                      <div class="hd-col-h">
+                        <span class="hd-col-dot" style="background:var(--st-entregue)"></span>
+                        <span class="hd-col-t">Entregue</span>
+                        <span class="hd-col-n">15</span>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1024</div>
+                        <div class="hd-card-n">Paulo Andrade</div>
+                        <div class="hd-card-f"><span class="hd-chip">NFS-e</span><span class="hd-val paid">R$ 74</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1022</div>
+                        <div class="hd-card-n">Studio Bella</div>
+                        <div class="hd-card-f"><span class="hd-chip">NFS-e</span><span class="hd-val paid">R$ 310</span></div>
+                      </div>
+                      <div class="hd-card">
+                        <div class="hd-card-os">#OS-1019</div>
+                        <div class="hd-card-n">Helena Duarte</div>
+                        <div class="hd-card-f"><span class="hd-chip">NFS-e</span><span class="hd-val paid">R$ 126</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         01 — VISÃO GERAL
+         ══════════════════════════════════════════ -->
+    <section class="section" id="visao-geral">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">01</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Visão Geral do Projeto</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          O controle da lavanderia<br>
+          <span class="text-gradient">em um só lugar.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O objetivo do projeto é substituir o controle manual em talões por um sistema de gestão web, organizando clientes, peças, serviços, pagamentos, notas fiscais e relatórios em uma estrutura única, pesquisável e confiável.
+        </p>
+
+        <p class="section-text reveal d3" style="margin-top: 1.125rem;">
+          A plataforma será utilizada apenas pela equipe da lavanderia. Não há área do cliente: todo o registro acontece no balcão, e o cliente recebe o comprovante impresso e a nota fiscal.
+        </p>
+
+        <div class="ba-grid">
+          <div class="ba-card reveal d2">
+            <div class="ba-tag">Hoje · Talão manual</div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              Histórico do cliente depende de procurar no papel
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              Cálculo de valores feito à mão, sujeito a erro
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              Pendências de pagamento sem visão consolidada
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              Fechamento e envio para a contadora demorados
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              Risco de perda ou rasura do talão
+            </div>
+          </div>
+
+          <div class="ba-card after reveal d3">
+            <div class="ba-tag">Com o sistema</div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Histórico completo por cliente, com busca instantânea
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Valores calculados automaticamente pela tabela de serviços
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Pagamentos pendentes visíveis em um painel único
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Relatórios prontos e exportação para a contadora
+            </div>
+            <div class="ba-line">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              Dados salvos na nuvem, acessíveis de qualquer aparelho
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-chips reveal d4">
+          <div class="tech-chip"><span class="tc-dot"></span>Sistema Web</div>
+          <div class="tech-chip"><span class="tc-dot"></span>PWA Instalável</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Uso Interno</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Até 3 Usuários</div>
+          <div class="tech-chip"><span class="tc-dot"></span>NFS-e</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Impressora Térmica</div>
+          <div class="tech-chip"><span class="tc-dot"></span>Relatórios</div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         02 — FLUXO INTERATIVO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="fluxo">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">02</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Fluxo de Atendimento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Oito passos, do balcão<br>
+          <span class="text-gradient">até a entrega.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Clique em cada etapa para visualizar como a tela correspondente se comporta no sistema. As telas abaixo são simulações do produto final. O layout definitivo é validado com a equipe antes do desenvolvimento.
+        </p>
+
+        <div class="flow-wrap reveal d3" id="flow">
+
+          <!-- Steps -->
+          <div>
+            <div class="flow-steps" id="flow-steps">
+              <button class="flow-step is-on" data-step="1">
+                <span class="fs-num">1</span>
+                <span class="fs-text">
+                  <span class="fs-label">Cliente</span>
+                  <span class="fs-hint">Cadastrar ou selecionar</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="2">
+                <span class="fs-num">2</span>
+                <span class="fs-text">
+                  <span class="fs-label">Peças recebidas</span>
+                  <span class="fs-hint">Registrar o que entrou</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="3">
+                <span class="fs-num">3</span>
+                <span class="fs-text">
+                  <span class="fs-label">Serviços</span>
+                  <span class="fs-hint">Adicionar por peça</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="4">
+                <span class="fs-num">4</span>
+                <span class="fs-text">
+                  <span class="fs-label">Valor</span>
+                  <span class="fs-hint">Cálculo automático</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="5">
+                <span class="fs-num">5</span>
+                <span class="fs-text">
+                  <span class="fs-label">Pagamento</span>
+                  <span class="fs-hint">Pix, cartão ou dinheiro</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="6">
+                <span class="fs-num">6</span>
+                <span class="fs-text">
+                  <span class="fs-label">NFS-e</span>
+                  <span class="fs-hint">Emissão da nota</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="7">
+                <span class="fs-num">7</span>
+                <span class="fs-text">
+                  <span class="fs-label">Comprovante</span>
+                  <span class="fs-hint">Impressão térmica</span>
+                </span>
+              </button>
+              <button class="flow-step" data-step="8">
+                <span class="fs-num">8</span>
+                <span class="fs-text">
+                  <span class="fs-label">Acompanhamento</span>
+                  <span class="fs-hint">Status até a entrega</span>
+                </span>
+              </button>
+            </div>
+            <div class="flow-progress"><i id="flow-bar"></i></div>
+            <div class="flow-autoplay" id="flow-auto"><i></i> Demonstração automática · clique para navegar</div>
+          </div>
+
+          <!-- Screen -->
+          <div class="flow-screen">
+            <div class="app-win">
+              <div class="app-chrome">
+                <div class="app-dots"><span></span><span></span><span></span></div>
+                <div class="app-url" id="flow-url">app.lavanderia.com.br/atendimentos/novo</div>
+                <div class="app-pill" id="flow-pill">Passo 1 de 8</div>
+              </div>
+              <div class="fscreen-body">
+
+                <!-- 1. CLIENTE -->
+                <div class="fpanel is-on" data-panel="1">
+                  <div class="fp-head">
+                    <div class="fp-title">Selecionar cliente</div>
+                    <div class="fp-meta">Novo atendimento · #OS-1042</div>
+                  </div>
+                  <div class="m-field" style="margin-bottom:0.875rem">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <span>Buscar por nome, CPF, CNPJ ou telefone<span class="m-caret"></span></span>
+                  </div>
+                  <div class="m-sec-label">Resultados</div>
+                  <div class="m-row is-sel">
+                    <div class="m-ava">MA</div>
+                    <div class="m-grow">
+                      <div class="m-name">Maria Aparecida Souza</div>
+                      <div class="m-doc">CPF 123.456.789-00 · (12) 99xxx-xxxx</div>
+                    </div>
+                    <span class="m-tag pf">PF</span>
+                  </div>
+                  <div class="m-row">
+                    <div class="m-ava">HM</div>
+                    <div class="m-grow">
+                      <div class="m-name">Hotel Marina Ltda.</div>
+                      <div class="m-doc">CNPJ 12.345.678/0001-90 · Faturamento mensal</div>
+                    </div>
+                    <span class="m-tag pj">PJ</span>
+                  </div>
+                  <div class="m-row">
+                    <div class="m-ava">MF</div>
+                    <div class="m-grow">
+                      <div class="m-name">Maria Fernanda Alves</div>
+                      <div class="m-doc">CPF 987.654.321-00 · (12) 98xxx-xxxx</div>
+                    </div>
+                    <span class="m-tag pf">PF</span>
+                  </div>
+                  <div class="m-foot">
+                    <span class="m-foot-note">Cliente novo? O cadastro é feito na mesma tela, sem sair do atendimento.</span>
+                    <span class="m-btn ghost">+ Cadastrar cliente</span>
+                  </div>
+                </div>
+
+                <!-- 2. PEÇAS -->
+                <div class="fpanel" data-panel="2">
+                  <div class="fp-head">
+                    <div class="fp-title">Peças recebidas</div>
+                    <div class="fp-meta">Maria A. Souza · #OS-1042</div>
+                  </div>
+                  <div class="m-sec-label">Toque para adicionar as peças</div>
+                  <div class="m-pieces">
+                    <div class="m-piece has">
+                      <div class="m-piece-n">Camisa social</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">3</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece has">
+                      <div class="m-piece-n">Calça</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">2</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece has">
+                      <div class="m-piece-n">Terno</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">1</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece has">
+                      <div class="m-piece-n">Vestido</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">1</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece has">
+                      <div class="m-piece-n">Edredom queen</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">1</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece">
+                      <div class="m-piece-n">Cortina</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">0</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece">
+                      <div class="m-piece-n">Toalha</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">0</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece">
+                      <div class="m-piece-n">Jaleco</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">0</span><span class="m-step-btn">+</span></div>
+                    </div>
+                    <div class="m-piece">
+                      <div class="m-piece-n">Tapete</div>
+                      <div class="m-stepper"><span class="m-step-btn">−</span><span class="m-qty">0</span><span class="m-step-btn">+</span></div>
+                    </div>
+                  </div>
+                  <div class="m-foot">
+                    <span class="m-foot-note">Observações por peça: mancha, botão faltando, tecido delicado.</span>
+                    <span class="m-btn">8 peças · Continuar</span>
+                  </div>
+                </div>
+
+                <!-- 3. SERVIÇOS -->
+                <div class="fpanel" data-panel="3">
+                  <div class="fp-head">
+                    <div class="fp-title">Serviços por peça</div>
+                    <div class="fp-meta">8 peças · #OS-1042</div>
+                  </div>
+                  <table class="m-table">
+                    <thead>
+                      <tr><th>Peça</th><th>Serviço</th><th>Valor</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="td-p">Camisa social ×3</td>
+                        <td><span class="m-svc">Lavar e passar</span></td>
+                        <td class="td-v">R$ 42,00</td>
+                      </tr>
+                      <tr>
+                        <td class="td-p">Calça ×2</td>
+                        <td><span class="m-svc">Lavar e passar</span></td>
+                        <td class="td-v">R$ 36,00</td>
+                      </tr>
+                      <tr>
+                        <td class="td-p">Terno ×1</td>
+                        <td><span class="m-svc">Lavagem a seco</span></td>
+                        <td class="td-v">R$ 65,00</td>
+                      </tr>
+                      <tr>
+                        <td class="td-p">Vestido ×1</td>
+                        <td><span class="m-svc">Lavagem a seco</span></td>
+                        <td class="td-v">R$ 55,00</td>
+                      </tr>
+                      <tr>
+                        <td class="td-p">Edredom queen ×1</td>
+                        <td><span class="m-svc">Lavagem especial</span></td>
+                        <td class="td-v">R$ 70,00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="m-foot">
+                    <span class="m-foot-note">A tabela de peças e serviços é cadastrada e editada pela própria equipe.</span>
+                    <span class="m-btn ghost">+ Adicionar serviço</span>
+                  </div>
+                </div>
+
+                <!-- 4. VALOR -->
+                <div class="fpanel" data-panel="4">
+                  <div class="fp-head">
+                    <div class="fp-title">Cálculo do atendimento</div>
+                    <div class="fp-meta">#OS-1042 · 5 serviços</div>
+                  </div>
+                  <div class="m-sum">
+                    <div class="m-sum-row"><span>Subtotal dos serviços</span><b>R$ 268,00</b></div>
+                    <div class="m-sum-row"><span>Acréscimo por urgência</span><b>R$ 0,00</b></div>
+                    <div class="m-sum-row disc"><span>Desconto aplicado</span><b>− R$ 8,00</b></div>
+                    <div class="m-sum-row total"><span>Total a pagar</span><b>R$ 260,00</b></div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4375rem;margin-top:0.875rem">
+                    <div class="m-nf-cell">
+                      <div class="m-nf-l">Previsão de entrega</div>
+                      <div class="m-nf-v">Sex, 08/08 · 17h</div>
+                    </div>
+                    <div class="m-nf-cell">
+                      <div class="m-nf-l">Peças no atendimento</div>
+                      <div class="m-nf-v">8 peças</div>
+                    </div>
+                  </div>
+                  <div class="m-foot">
+                    <span class="m-foot-note">Todo cálculo vem da tabela cadastrada, sem conta feita à mão.</span>
+                    <span class="m-btn">Ir para o pagamento</span>
+                  </div>
+                </div>
+
+                <!-- 5. PAGAMENTO -->
+                <div class="fpanel" data-panel="5">
+                  <div class="fp-head">
+                    <div class="fp-title">Registrar pagamento</div>
+                    <div class="fp-meta">Total R$ 260,00 · #OS-1042</div>
+                  </div>
+                  <div class="m-pays">
+                    <div class="m-pay is-on">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l4.5 4.5L12 12 7.5 7.5 12 3zm0 9l4.5 4.5L12 21l-4.5-4.5L12 12z"/></svg>
+                      <div class="m-pay-n">Pix</div>
+                    </div>
+                    <div class="m-pay">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M6 19h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                      <div class="m-pay-n">Débito</div>
+                    </div>
+                    <div class="m-pay">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h3M6 19h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                      <div class="m-pay-n">Crédito</div>
+                    </div>
+                    <div class="m-pay">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2m2-8H9a2 2 0 00-2 2v4a2 2 0 002 2h10a2 2 0 002-2v-4a2 2 0 00-2-2z"/></svg>
+                      <div class="m-pay-n">Dinheiro</div>
+                    </div>
+                  </div>
+                  <div class="m-pix">
+                    <div class="m-qr">
+                      <div class="m-qr-mods"></div>
+                      <div class="m-qr-eye tl"></div>
+                      <div class="m-qr-eye tr"></div>
+                      <div class="m-qr-eye bl"></div>
+                    </div>
+                    <div class="m-pix-info">
+                      <div class="m-pix-val">R$ 260,00</div>
+                      <div class="m-pix-l">QR Code Pix gerado pelo sistema.<br>A confirmação chega automaticamente na tela.</div>
+                      <div class="m-status"><i></i> Pagamento confirmado</div>
+                    </div>
+                  </div>
+                  <div class="m-foot">
+                    <span class="m-foot-note">Débito e crédito seguem na Moderninha Pro 2, com confirmação manual no sistema.</span>
+                    <span class="m-btn ghost">Deixar em aberto</span>
+                  </div>
+                </div>
+
+                <!-- 6. NFS-e -->
+                <div class="fpanel" data-panel="6">
+                  <div class="fp-head">
+                    <div class="fp-title">Emissão da NFS-e</div>
+                    <div class="fp-meta">#OS-1042 · Maria A. Souza</div>
+                  </div>
+                  <div class="m-banner">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div>
+                      <div class="m-banner-t">Nota autorizada pela prefeitura</div>
+                      <div class="m-banner-s">Emitida em 04/08 às 14:32 · envio automático por e-mail</div>
+                    </div>
+                  </div>
+                  <div class="m-nf">
+                    <div class="m-nf-cell">
+                      <div class="m-nf-l">Número da nota</div>
+                      <div class="m-nf-v">00001042</div>
+                    </div>
+                    <div class="m-nf-cell">
+                      <div class="m-nf-l">Código de verificação</div>
+                      <div class="m-nf-v">4KP9-2QX7</div>
+                    </div>
+                    <div class="m-nf-cell">
+                      <div class="m-nf-l">Valor dos serviços</div>
+                      <div class="m-nf-v">R$ 260,00</div>
+                    </div>
+                    <div class="m-nf-cell">
+                      <div class="m-nf-l">Tomador</div>
+                      <div class="m-nf-v">Maria A. Souza</div>
+                    </div>
+                  </div>
+                  <div class="m-foot">
+                    <span class="m-foot-note">Emissão integrada, sem sair do sistema.</span>
+                    <span style="display:flex;gap:0.375rem">
+                      <span class="m-btn ghost">Baixar XML</span>
+                      <span class="m-btn">Ver PDF</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- 7. COMPROVANTE -->
+                <div class="fpanel" data-panel="7">
+                  <div class="fp-head">
+                    <div class="fp-title">Comprovante de entrega</div>
+                    <div class="fp-meta">Impressora térmica · 80 mm</div>
+                  </div>
+                  <div class="m-receipt-wrap">
+                    <div class="m-receipt">
+                      <div class="m-rc-brand">LAVANDERIA</div>
+                      <div class="m-rc-sub">CNPJ 00.000.000/0001-00<br>Rua Exemplo, 100 - Centro</div>
+                      <div class="m-rc-hr"></div>
+                      <div class="m-rc-line"><span>OS</span><span>#1042</span></div>
+                      <div class="m-rc-line"><span>Cliente</span><span>Maria A. S.</span></div>
+                      <div class="m-rc-line"><span>Entrada</span><span>04/08 14:30</span></div>
+                      <div class="m-rc-line"><span>Entrega</span><span>08/08 17:00</span></div>
+                      <div class="m-rc-hr"></div>
+                      <div class="m-rc-line"><span>3 Camisa social</span><span>42,00</span></div>
+                      <div class="m-rc-line"><span>2 Calca</span><span>36,00</span></div>
+                      <div class="m-rc-line"><span>1 Terno seco</span><span>65,00</span></div>
+                      <div class="m-rc-line"><span>1 Vestido seco</span><span>55,00</span></div>
+                      <div class="m-rc-line"><span>1 Edredom queen</span><span>70,00</span></div>
+                      <div class="m-rc-hr"></div>
+                      <div class="m-rc-line"><span>Subtotal</span><span>268,00</span></div>
+                      <div class="m-rc-line"><span>Desconto</span><span>-8,00</span></div>
+                      <div class="m-rc-total"><span>TOTAL</span><span>R$ 260,00</span></div>
+                      <div class="m-rc-line"><span>Pago em</span><span>PIX</span></div>
+                      <div class="m-rc-line"><span>NFS-e</span><span>00001042</span></div>
+                      <div class="m-rc-hr"></div>
+                      <div class="m-rc-sub" style="font-size:0.4688rem">CÓDIGO DE RETIRADA</div>
+                      <div class="m-rc-code">1042</div>
+                      <div class="m-rc-bars"></div>
+                      <div class="m-rc-foot">Apresente este comprovante na retirada<br>Obrigado pela preferência</div>
+                    </div>
+                    <div class="m-print-side">
+                      <div class="m-sec-label">Impressão</div>
+                      <div class="m-note">Layout otimizado para bobina de <strong style="color:var(--text)">80 mm</strong>, com corte automático e reimpressão a qualquer momento pelo histórico do atendimento.</div>
+                      <div class="m-note">O mesmo comprovante pode ser gerado em PDF para envio manual pela equipe, quando necessário.</div>
+                      <div class="m-note">O código de retirada localiza o atendimento na entrega em uma única busca.</div>
+                      <div style="display:flex;gap:0.375rem;margin-top:0.875rem;flex-wrap:wrap">
+                        <span class="m-btn">
+                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                          Imprimir
+                        </span>
+                        <span class="m-btn ghost">Gerar PDF</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 8. ACOMPANHAMENTO -->
+                <div class="fpanel" data-panel="8">
+                  <div class="fp-head">
+                    <div class="fp-title">Acompanhamento do serviço</div>
+                    <div class="fp-meta">#OS-1042 · 8 peças</div>
+                  </div>
+                  <div class="m-timeline">
+                    <div class="m-tl done">
+                      <div class="m-tl-t">Recebido no balcão</div>
+                      <div class="m-tl-d">04/08 · 14:30</div>
+                      <div class="m-tl-who">Registrado por Atendente</div>
+                    </div>
+                    <div class="m-tl done">
+                      <div class="m-tl-t">Pagamento confirmado · Pix</div>
+                      <div class="m-tl-d">04/08 · 14:33</div>
+                      <div class="m-tl-who">R$ 260,00 · NFS-e 00001042 emitida</div>
+                    </div>
+                    <div class="m-tl now">
+                      <div class="m-tl-t">Em processo · lavagem a seco</div>
+                      <div class="m-tl-d">05/08 · 09:12</div>
+                      <div class="m-tl-who">Etapa atual do atendimento</div>
+                    </div>
+                    <div class="m-tl pend">
+                      <div class="m-tl-t">Pronto para retirada</div>
+                      <div class="m-tl-d">previsto 08/08</div>
+                    </div>
+                    <div class="m-tl pend">
+                      <div class="m-tl-t">Entregue ao cliente</div>
+                      <div class="m-tl-d">aguardando</div>
+                    </div>
+                  </div>
+                  <div class="m-foot">
+                    <span class="m-foot-note">O status é alterado pela equipe e reflete no painel em tempo real.</span>
+                    <span class="m-btn">Marcar como pronto</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         03 — ESCOPO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="escopo">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">03</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Escopo do Projeto</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Tudo que o sistema<br>
+          <span class="text-gradient">vai entregar.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O escopo abaixo é fechado e será desenvolvido integralmente dentro do prazo e do valor apresentados nesta proposta.
+        </p>
+
+        <div class="mod-grid">
+
+          <div class="mod-card reveal d1">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="mod-title">Dashboard administrativo</div>
+            <div class="mod-desc">Visão diária da operação: atendimentos, peças em processo, faturamento e pendências em uma só tela.</div>
+            <div class="mod-items">
+              <span class="mod-item">Indicadores do dia</span>
+              <span class="mod-item">Painel por status</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d2">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div class="mod-title">Cadastro de clientes</div>
+            <div class="mod-desc">Pessoa física e pessoa jurídica, com dados fiscais, contato e histórico completo de atendimentos.</div>
+            <div class="mod-items">
+              <span class="mod-item">PF e PJ</span>
+              <span class="mod-item">Histórico</span>
+              <span class="mod-item">Busca rápida</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d3">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z"/></svg>
+            </div>
+            <div class="mod-title">Peças e serviços</div>
+            <div class="mod-desc">Tabela própria de peças e serviços com valores, editável pela equipe sem depender de suporte técnico.</div>
+            <div class="mod-items">
+              <span class="mod-item">Tabela de preços</span>
+              <span class="mod-item">Edição livre</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d1">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <div class="mod-title">Registro de atendimentos</div>
+            <div class="mod-desc">A ordem de serviço completa: cliente, peças, serviços, valores, observações e prazo de entrega.</div>
+            <div class="mod-items">
+              <span class="mod-item">Ordem de serviço</span>
+              <span class="mod-item">Observações por peça</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d2">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="mod-title">Controle de status</div>
+            <div class="mod-desc">Acompanhamento do serviço do recebimento até a entrega, com histórico de cada mudança de etapa.</div>
+            <div class="mod-items">
+              <span class="mod-item">Recebido</span>
+              <span class="mod-item">Em processo</span>
+              <span class="mod-item">Pronto</span>
+              <span class="mod-item">Entregue</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d3">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M6 19h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+            </div>
+            <div class="mod-title">Pagamentos</div>
+            <div class="mod-desc">Registro por Pix, débito, crédito ou dinheiro, com controle dos valores que ficaram pendentes.</div>
+            <div class="mod-items">
+              <span class="mod-item">4 formas</span>
+              <span class="mod-item">Pendências</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d1">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="mod-title">Faturamento para empresas</div>
+            <div class="mod-desc">Acúmulo dos atendimentos de clientes PJ em fechamento semanal ou mensal, com fatura consolidada.</div>
+            <div class="mod-items">
+              <span class="mod-item">Semanal</span>
+              <span class="mod-item">Mensal</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d2">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <div class="mod-title">Emissão de NFS-e</div>
+            <div class="mod-desc">Nota fiscal de serviço emitida direto do atendimento, com PDF e XML disponíveis no histórico.</div>
+            <div class="mod-items">
+              <span class="mod-item">PDF e XML</span>
+              <span class="mod-item">Integrada</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d3">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            </div>
+            <div class="mod-title">Impressão térmica</div>
+            <div class="mod-desc">Comprovante formatado para impressora térmica, com reimpressão a partir do histórico do atendimento.</div>
+            <div class="mod-items">
+              <span class="mod-item">Bobina 80 mm</span>
+              <span class="mod-item">Reimpressão</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d1">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+            </div>
+            <div class="mod-title">Relatórios</div>
+            <div class="mod-desc">Fechamento diário e mensal de atendimentos, peças, serviços e formas de pagamento.</div>
+            <div class="mod-items">
+              <span class="mod-item">Diário</span>
+              <span class="mod-item">Mensal</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d2">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            </div>
+            <div class="mod-title">Exportação para a contadora</div>
+            <div class="mod-desc">Geração de arquivos com os dados do período, no formato combinado com a contabilidade.</div>
+            <div class="mod-items">
+              <span class="mod-item">Por período</span>
+              <span class="mod-item">Download</span>
+            </div>
+          </div>
+
+          <div class="mod-card reveal d3">
+            <div class="mod-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="mod-title">PWA e usuários</div>
+            <div class="mod-desc">Aplicativo instalável no computador, tablet ou celular, com acesso para até três usuários internos.</div>
+            <div class="mod-items">
+              <span class="mod-item">Instalável</span>
+              <span class="mod-item">3 usuários</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         04 — INTEGRAÇÕES
+         ══════════════════════════════════════════ -->
+    <section class="section" id="integracoes">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">04</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Sugestão de Integrações</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Pagamentos e nota fiscal,<br>
+          <span class="text-gradient">com plataformas consolidadas.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          Como solução inicial, a estrutura sugerida combina duas plataformas já estabelecidas no mercado, cada uma responsável por uma parte do fluxo.
+        </p>
+
+        <div class="integ-grid">
+          <div class="integ-card reveal d2">
+            <div class="integ-head">
+              <div class="integ-logo pb">PB</div>
+              <div>
+                <div class="integ-name">PagBank</div>
+                <div class="integ-role">Pagamentos</div>
+              </div>
+            </div>
+            <div class="integ-desc">
+              Utilizado para gerar links de pagamento, checkout ou QR Code Pix e confirmar automaticamente o recebimento dentro do sistema.
+            </div>
+            <div class="integ-list">
+              <div class="integ-li">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Link de pagamento e checkout
+              </div>
+              <div class="integ-li">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                QR Code Pix gerado pelo sistema
+              </div>
+              <div class="integ-li">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Confirmação automática do pagamento
+              </div>
+            </div>
+          </div>
+
+          <div class="integ-card reveal d3">
+            <div class="integ-head">
+              <div class="integ-logo as">AS</div>
+              <div>
+                <div class="integ-name">Asaas</div>
+                <div class="integ-role">Emissão fiscal</div>
+              </div>
+            </div>
+            <div class="integ-desc">
+              Utilizado para a emissão da NFS-e a partir do atendimento concluído, com retorno do número da nota, PDF e XML.
+            </div>
+            <div class="integ-list">
+              <div class="integ-li">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Emissão de NFS-e integrada
+              </div>
+              <div class="integ-li">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                PDF e XML no histórico do atendimento
+              </div>
+              <div class="integ-li">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                Envio da nota ao cliente por e-mail
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-box reveal d3">
+          <strong>Importante:</strong> essa estrutura é uma sugestão inicial e deverá ser validada de acordo com o CNPJ, o município, a atividade da empresa e as necessidades da contadora. A definição final das plataformas acontece na etapa de alinhamento, antes do início do desenvolvimento.
+        </div>
+
+        <div class="alert-box reveal d4" style="border-left-color: hsla(160, 52%, 52%, 0.45)">
+          <strong>Moderninha Pro 2:</strong> a maquininha continuará sendo utilizada normalmente nos pagamentos presenciais. O sistema não se conecta diretamente a ela: o pagamento é registrado manualmente no atendimento, mantendo o controle financeiro completo.
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         05 — NÃO INCLUÍDO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="nao-incluido">
+      <div class="container-sm">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">05</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Limites do Escopo</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          O que <span class="text-gradient">não está incluso</span><br>nesta proposta.
+        </h2>
+
+        <p class="section-text reveal d2">
+          Os itens abaixo estão fora do escopo atual. Podem ser avaliados futuramente como evolução do sistema, mediante novo orçamento.
+        </p>
+
+        <div class="excl-grid reveal d2">
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Área do cliente
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Integração direta com a Moderninha
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Aplicativo nas lojas (App Store e Google Play)
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Conciliação bancária
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Sistema contábil completo
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Múltiplos CNPJs ou unidades
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            WhatsApp automatizado
+          </div>
+          <div class="excl-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            Mais de três usuários internos
+          </div>
+        </div>
+
+        <div class="excl-note reveal d3">
+          Taxas das plataformas de pagamento, custos de emissão fiscal, domínio e demais serviços externos são pagos diretamente pela contratante às respectivas empresas.
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         06 — PRAZO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="prazo">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">06</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Prazo de Entrega</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          De 30 a 45 dias,<br>
+          <span class="text-gradient">em quatro etapas.</span>
+        </h2>
+
+        <p class="section-text reveal d2">
+          O prazo começa a contar a partir do recebimento de todas as informações e acessos necessários: dados da empresa, tabela de peças e serviços, credenciais das plataformas e definições da contadora.
+        </p>
+
+        <div class="phase-grid">
+          <div class="phase reveal d1">
+            <div class="phase-n">ETAPA 01</div>
+            <div class="phase-t">Alinhamento</div>
+            <div class="phase-d">Levantamento da tabela de peças e serviços, dados fiscais e validação das plataformas com a contadora.</div>
+            <div class="phase-bar" style="width:100%"></div>
+          </div>
+          <div class="phase reveal d2">
+            <div class="phase-n">ETAPA 02</div>
+            <div class="phase-t">Desenvolvimento</div>
+            <div class="phase-d">Construção do sistema: cadastros, atendimentos, status, pagamentos, faturamento e relatórios.</div>
+            <div class="phase-bar" style="width:100%"></div>
+          </div>
+          <div class="phase reveal d3">
+            <div class="phase-n">ETAPA 03</div>
+            <div class="phase-t">Integrações e testes</div>
+            <div class="phase-d">Conexão com pagamentos e NFS-e, ajuste da impressão térmica e testes com dados reais.</div>
+            <div class="phase-bar" style="width:100%"></div>
+          </div>
+          <div class="phase reveal d4">
+            <div class="phase-n">ETAPA 04</div>
+            <div class="phase-t">Entrega e treinamento</div>
+            <div class="phase-d">Publicação, instalação do PWA nos aparelhos da equipe e treinamento de uso do sistema.</div>
+            <div class="phase-bar" style="width:100%"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         07 — INVESTIMENTO
+         ══════════════════════════════════════════ -->
+    <section class="section" id="investimento">
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          <span class="eyebrow-num">07</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Investimento</span>
+        </div>
+
+        <h2 class="section-title reveal d1">
+          Um valor fechado<br>
+          <span class="text-gradient">para todo o escopo.</span>
+        </h2>
+
+        <div class="price-hero reveal d2">
+          <div>
+            <div class="ph-label">Valor do projeto</div>
+            <div class="ph-price">
+              <span class="ph-cur">R$</span>
+              <span class="ph-val">4.500</span>
+            </div>
+            <div class="ph-desc">
+              Desenvolvimento completo do sistema, integrações, testes, publicação e treinamento da equipe.
+            </div>
+          </div>
+
+          <div class="pay-list">
+            <div class="pay-row best">
+              <div class="pay-ic">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l4.5 4.5L12 12 7.5 7.5 12 3zm0 9l4.5 4.5L12 21l-4.5-4.5L12 12z"/></svg>
+              </div>
+              <div>
+                <div class="pay-n">Pix à vista <span class="pay-badge">Economia R$ 200</span></div>
+                <div class="pay-s">Pagamento único na aprovação</div>
+              </div>
+              <div class="pay-v">R$ 4.300,00</div>
+            </div>
+
+            <div class="pay-row">
+              <div class="pay-ic">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="pay-n">Pix parcelado</div>
+                <div class="pay-s">3 parcelas · total R$ 4.500,00</div>
+              </div>
+              <div class="pay-v">3× R$ 1.500,00</div>
+            </div>
+
+            <div class="pay-row">
+              <div class="pay-ic">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h3M6 19h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+              </div>
+              <div>
+                <div class="pay-n">Cartão de crédito</div>
+                <div class="pay-s">Em até 10 vezes · total R$ 4.687,40</div>
+              </div>
+              <div class="pay-v">10× R$ 468,74</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mens-box reveal d3">
+          <div class="mens-l">
+            <div class="mens-tag">Após a entrega</div>
+            <div class="mens-t">Manutenção e hospedagem</div>
+            <div class="mens-d">
+              Servidor, banco de dados, backups, atualizações de segurança, correções e suporte ao uso do sistema pela equipe.
+            </div>
+          </div>
+          <div class="mens-p">
+            <div class="mens-val">R$ 120</div>
+            <div class="mens-per">por mês</div>
+          </div>
+        </div>
+
+        <div class="excl-note reveal d4">
+          As taxas das plataformas de pagamento, os custos de emissão fiscal, o domínio e demais serviços externos serão pagos pela contratante diretamente às respectivas empresas, e não estão inclusos no valor do projeto nem na mensalidade.
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ══════════════════════════════════════════
+         08 — FECHAMENTO
+         ══════════════════════════════════════════ -->
+    <section class="section final-cta" id="fechamento">
+      <div class="final-cta-bg"></div>
+      <div class="container final-cta-inner">
+
+        <div class="eyebrow reveal" style="justify-content:center">
+          <span class="eyebrow-num">08</span>
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-label">Próximos Passos</span>
+        </div>
+
+        <h2 class="final-cta-title reveal d1">
+          Pronto para tirar<br>
+          <span class="text-gradient">o talão da mesa?</span>
+        </h2>
+
+        <p class="final-cta-text reveal d2">
+          Após a aprovação, iniciamos o alinhamento das informações, a validação das plataformas com a contadora e o desenvolvimento do sistema.
+        </p>
+
+        <a
+          href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Vi%20a%20proposta%20do%20sistema%20de%20gest%C3%A3o%20para%20a%20lavanderia%20e%20quero%20dar%20continuidade."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="final-cta-btn reveal d3"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Aprovar proposta
+        </a>
+
+        <div class="final-cta-sub reveal d4">
+          Proposta válida por 15 dias · Prazo de 30 a 45 dias após o recebimento das informações e acessos
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">
+            <div class="footer-brand-dot"></div>
+            VS Experience
+          </div>
+          <div class="footer-tagline">Desenvolvimento Web, Sistemas, Sites e Soluções Digitais</div>
+        </div>
+        <div class="footer-meta">
+          <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+          <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+          <p class="footer-copy">© 2026 VS Experience · Proposta confidencial</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Reading progress bar ──────────────────────────────
+    const bar = document.getElementById('read-progress');
+    const hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + Math.min(1, window.scrollY / total) + ')';
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Scroll reveal ─────────────────────────────────────
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── Fluxo interativo ──────────────────────────────────
+    (function () {
+      const wrap    = document.getElementById('flow');
+      if (!wrap) return;
+      const steps   = Array.from(wrap.querySelectorAll('.flow-step'));
+      const panels  = Array.from(wrap.querySelectorAll('.fpanel'));
+      const barEl   = document.getElementById('flow-bar');
+      const pillEl  = document.getElementById('flow-pill');
+      const urlEl   = document.getElementById('flow-url');
+      const autoEl  = document.getElementById('flow-auto');
+      const stepsEl = document.getElementById('flow-steps');
+
+      const URLS = {
+        1: 'app.lavanderia.com.br/atendimentos/novo',
+        2: 'app.lavanderia.com.br/atendimentos/1042/pecas',
+        3: 'app.lavanderia.com.br/atendimentos/1042/servicos',
+        4: 'app.lavanderia.com.br/atendimentos/1042/resumo',
+        5: 'app.lavanderia.com.br/atendimentos/1042/pagamento',
+        6: 'app.lavanderia.com.br/atendimentos/1042/nfse',
+        7: 'app.lavanderia.com.br/atendimentos/1042/comprovante',
+        8: 'app.lavanderia.com.br/atendimentos/1042'
+      };
+
+      let current = 1;
+      let timer   = null;
+      let auto    = true;
+
+      function show(n) {
+        current = n;
+        steps.forEach(s => s.classList.toggle('is-on', +s.dataset.step === n));
+        panels.forEach(p => p.classList.toggle('is-on', +p.dataset.panel === n));
+        barEl.style.transform = 'scaleX(' + (n / steps.length) + ')';
+        pillEl.textContent = 'Passo ' + n + ' de ' + steps.length;
+        urlEl.textContent = URLS[n];
+
+        // Mantém a etapa ativa visível no scroll horizontal (mobile)
+        if (window.innerWidth <= 1020) {
+          const el = steps[n - 1];
+          stepsEl.scrollTo({ left: el.offsetLeft - 16, behavior: 'smooth' });
+        }
+      }
+
+      function stopAuto() {
+        if (!auto) return;
+        auto = false;
+        clearInterval(timer);
+        autoEl.innerHTML = 'Navegue pelas etapas para ver cada tela do sistema';
+      }
+
+      steps.forEach(s => {
+        s.addEventListener('click', () => { stopAuto(); show(+s.dataset.step); });
+      });
+
+      // Autoplay somente enquanto a seção estiver visível
+      const flowIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!auto) return;
+          if (e.isIntersecting) {
+            clearInterval(timer);
+            timer = setInterval(() => show(current % steps.length + 1), 3600);
+          } else {
+            clearInterval(timer);
+          }
+        });
+      }, { threshold: 0.35 });
+      flowIO.observe(wrap);
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (reduce.matches) stopAuto();
+
+      show(1);
+    })();
+
+    // ── Hero: novo atendimento chegando no kanban ─────────
+    (function () {
+      const slot = document.getElementById('k-slot');
+      const nEl  = document.getElementById('k-n1');
+      if (!slot || !nEl) return;
+
+      const FILA = [
+        { os: '#OS-1042', nome: 'Maria A. Souza',  chip: '8 peças',  val: 'R$ 260', cls: 'paid' },
+        { os: '#OS-1043', nome: 'Bruno Carvalho',  chip: '4 peças',  val: 'R$ 118', cls: 'paid' },
+        { os: '#OS-1044', nome: 'Pousada Recanto', chip: '26 peças', val: 'Faturar', cls: 'due' },
+        { os: '#OS-1045', nome: 'Larissa Ferraz',  chip: '6 peças',  val: 'R$ 174', cls: 'paid' }
+      ];
+
+      let i = 0, count = 3;
+
+      const heroIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !slot.dataset.running) {
+            slot.dataset.running = '1';
+            setInterval(() => {
+              i = (i + 1) % FILA.length;
+              const d = FILA[i];
+              slot.innerHTML =
+                '<div class="hd-card-os">' + d.os + '</div>' +
+                '<div class="hd-card-n">' + d.nome + '</div>' +
+                '<div class="hd-card-f"><span class="hd-chip">' + d.chip + '</span>' +
+                '<span class="hd-val ' + d.cls + '">' + d.val + '</span></div>';
+              slot.classList.remove('is-new');
+              void slot.offsetWidth;
+              slot.classList.add('is-new');
+              count = 3 + (i % 3);
+              nEl.textContent = count;
+            }, 3200);
+          }
+        });
+      }, { threshold: 0.3 });
+      heroIO.observe(slot);
+    })();
+  </script>
+
+</body>
+</html>
