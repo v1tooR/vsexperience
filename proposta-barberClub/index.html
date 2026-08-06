@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Proposta comercial para criação da landing page da Barber Club.">
+  <title>Proposta · Landing Page Barber Club · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rose: hsl(5 38% 45%);
+      --rose-dark: hsl(5 38% 22%);
+      --rose-light: hsl(5 45% 68%);
+      --rose-pale: hsl(5 50% 82%);
+      --gradient: linear-gradient(135deg, hsl(5 38% 22%) 0%, hsl(5 38% 45%) 100%);
+      --bg: hsl(5 10% 5.5%);
+      --bg-2: hsl(5 8% 8%);
+      --bg-3: hsl(5 8% 10.5%);
+      --surface: hsl(5 8% 100% / 0.04);
+      --surface-2: hsl(5 8% 100% / 0.07);
+      --border: hsl(5 8% 100% / 0.09);
+      --border-2: hsl(5 8% 100% / 0.14);
+      --text: hsl(0 0% 94%);
+      --text-2: hsl(0 0% 72%);
+      --text-muted: hsl(0 0% 58%);
+      --success: hsl(146 50% 54%);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --ff-body: 'Space Grotesk', sans-serif;
+      --z-progress: 50;
+      --z-header: 40;
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      font-family: var(--ff-body);
+      font-kerning: normal;
+      font-optical-sizing: auto;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { overflow: clip; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: .7rem 1rem;
+      border-radius: 8px;
+      color: white;
+      background: var(--rose);
+      transform: translateY(-160%);
+      transition: transform .2s var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    :focus-visible { outline: 2px solid var(--rose-light); outline-offset: 4px; }
+
+    #read-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: var(--z-progress);
+      width: 100%;
+      height: 2px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .08s linear;
+    }
+
+    #hdr {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: var(--z-header);
+      height: 64px;
+      padding-inline: 2rem;
+      display: flex;
+      align-items: center;
+      background: hsl(5 10% 5.5% / .58);
+      backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid transparent;
+      transition: background .3s, border-color .3s;
+    }
+    #hdr.scrolled { background: hsl(5 10% 5.5% / .94); border-bottom-color: var(--border); }
+    .header-inner {
+      width: min(100%, 1120px);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 0;
+    }
+    .brand { display: inline-flex; align-items: center; gap: .55rem; font-size: .94rem; font-weight: 700; white-space: nowrap; }
+    .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 0 5px hsl(5 38% 45% / .12); }
+    .client-tag {
+      max-width: 260px;
+      margin-right: auto;
+      overflow: hidden;
+      padding: .24rem .72rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: .75rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .nav { display: flex; align-items: center; gap: 1.5rem; }
+    .nav a { color: var(--text-2); font-size: .8rem; font-weight: 500; transition: color .2s; }
+    .nav a:hover { color: var(--text); }
+
+    .container { width: min(100%, 1120px); margin-inline: auto; padding-inline: 1.75rem; }
+    .container-sm { width: min(100%, 860px); margin-inline: auto; padding-inline: 1.75rem; }
+    .section { padding-block: clamp(5rem, 10vw, 8rem); scroll-margin-top: 60px; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-2) 25%, var(--border-2) 75%, transparent); }
+
+    .section-label { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.75rem; color: var(--text-muted); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .section-label::before { content: ''; width: 32px; height: 1px; background: var(--rose); }
+    .section-title { max-width: 760px; margin-bottom: 1.25rem; font-size: clamp(1.9rem, 3.6vw, 2.85rem); font-weight: 700; line-height: 1.12; letter-spacing: -.03em; overflow-wrap: anywhere; }
+    .section-title .accent { color: var(--rose-light); }
+    .section-copy { max-width: 65ch; color: var(--text-2); font-size: 1rem; line-height: 1.75; }
+
+    .hero {
+      position: relative;
+      min-height: min(100svh, 980px);
+      padding: clamp(6rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 4.5rem);
+      display: flex;
+      align-items: center;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background:
+        radial-gradient(circle at 78% 30%, hsl(5 38% 35% / .18), transparent 32rem),
+        radial-gradient(circle at 9% 95%, hsl(5 38% 20% / .22), transparent 27rem);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: auto 0 0;
+      height: 25%;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2.5rem, 5vw, 5rem); align-items: center; min-width: 0; }
+    .hero-copy { min-width: 0; }
+    .hero-kicker { display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.5rem; padding: .48rem .8rem; border: 1px solid var(--border-2); border-radius: 999px; color: var(--rose-pale); background: hsl(5 38% 30% / .16); font-size: .72rem; font-weight: 600; letter-spacing: .04em; }
+    .hero-kicker span { width: 6px; height: 6px; border-radius: 50%; background: var(--rose-light); animation: pulse 2.4s ease-in-out infinite; }
+    .hero-title { max-width: 700px; margin-bottom: 1.3rem; font-size: clamp(2.65rem, 4.5vw, 4.15rem); line-height: 1.02; letter-spacing: -.035em; }
+    .hero-title .accent { color: var(--rose-light); }
+    .hero-subtitle { max-width: 52ch; color: var(--text-2); font-size: 1rem; line-height: 1.72; overflow-wrap: anywhere; }
+    .hero-actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: .8rem; }
+    .btn-primary, .btn-ghost { min-height: 48px; padding: .78rem 1.15rem; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; gap: .55rem; font-size: .86rem; font-weight: 600; transition: transform .25s var(--ease-out), background .25s, color .25s; }
+    .btn-primary { color: white; background: var(--gradient); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-primary svg { width: 17px; height: 17px; }
+    .btn-ghost { border: 1px solid var(--border-2); color: var(--text-2); background: var(--surface); }
+    .btn-ghost:hover { color: var(--text); background: var(--surface-2); }
+    .hero-facts { margin-top: 2rem; padding-top: 1.15rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .hero-fact small { display: block; margin-bottom: .2rem; color: var(--text-muted); font-size: .68rem; }
+    .hero-fact strong { color: var(--text); font-size: .88rem; font-weight: 600; }
+    .hero-fact strong.accent { color: var(--rose-light); }
+    .scroll-cue { margin-top: 1.5rem; display: flex; align-items: center; gap: .65rem; color: var(--text-muted); font-size: .72rem; }
+    .scroll-cue span { width: 28px; height: 1px; background: var(--border-2); }
+
+    .mockup-stage { position: relative; min-height: 480px; display: grid; place-items: center; perspective: 1400px; }
+    .mockup-glow { position: absolute; width: 80%; aspect-ratio: 1; border-radius: 50%; background: hsl(5 38% 38% / .14); filter: blur(70px); }
+    .browser {
+      position: relative;
+      width: min(100%, 580px);
+      aspect-ratio: 1.42;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #11100f;
+      box-shadow: 0 28px 65px hsl(0 0% 0% / .42);
+      transform: rotateY(-7deg) rotateX(3deg);
+      animation: browser-float 7s ease-in-out infinite;
+    }
+    .browser-bar { height: 34px; padding-inline: 12px; display: flex; align-items: center; gap: 5px; background: #211f1d; }
+    .browser-dot { width: 6px; height: 6px; border-radius: 50%; background: #5b5752; }
+    .browser-address { width: 42%; height: 12px; margin-left: 8px; border-radius: 99px; background: #302d2a; }
+    .site-preview { position: relative; height: calc(100% - 34px); overflow: hidden; background: #15120f; }
+    .site-preview > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.06) brightness(.56); }
+    .site-preview::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, hsl(20 20% 7% / .86) 0%, hsl(20 20% 7% / .42) 54%, transparent 100%); }
+    .preview-nav { position: relative; z-index: 2; padding: 18px 22px; display: flex; align-items: center; color: white; }
+    .preview-logo { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 700; letter-spacing: .04em; }
+    .preview-mark { width: 17px; height: 17px; border: 1px solid #c9a568; border-radius: 50%; display: grid; place-items: center; color: #c9a568; font-size: 8px; }
+    .preview-links { margin-left: auto; display: flex; gap: 16px; color: #d0c8be; font-size: 6px; }
+    .preview-book { margin-left: 14px; padding: 6px 9px; border-radius: 4px; background: #aa7b3c; font-size: 6px; font-weight: 700; }
+    .preview-content { position: relative; z-index: 2; width: 64%; padding: 48px 22px 24px; color: white; }
+    .preview-caption { margin-bottom: 9px; color: #c9a568; font-size: 6px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .preview-content h3 { font-size: clamp(21px, 3vw, 39px); line-height: .98; letter-spacing: -.035em; }
+    .preview-content p { width: 86%; margin-top: 11px; color: #d2cbc4; font-size: 7px; line-height: 1.55; }
+    .preview-cta { display: inline-flex; margin-top: 15px; padding: 7px 10px; border-radius: 4px; background: #aa7b3c; font-size: 6px; font-weight: 700; }
+    .preview-proof { position: absolute; z-index: 3; right: 18px; bottom: 16px; width: 112px; padding: 10px; border-radius: 8px; color: #ddd5cc; background: hsl(20 20% 8% / .82); backdrop-filter: blur(8px); font-size: 6px; line-height: 1.45; }
+    .preview-stars { margin-bottom: 4px; color: #c9a568; letter-spacing: 2px; }
+
+    .phone {
+      position: absolute;
+      right: -12px;
+      bottom: 12px;
+      width: 160px;
+      height: 314px;
+      padding: 7px;
+      border-radius: 25px;
+      background: #24211f;
+      box-shadow: 0 20px 45px hsl(0 0% 0% / .5);
+      transform: rotate(4deg);
+      animation: phone-float 6s 1s ease-in-out infinite;
+    }
+    .phone-screen { position: relative; height: 100%; overflow: hidden; border-radius: 19px; background: #15120f; }
+    .phone-screen img { width: 100%; height: 55%; object-fit: cover; filter: saturate(.7) brightness(.55); }
+    .phone-screen::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 24%, #15120f 57%); }
+    .phone-notch { position: absolute; z-index: 3; top: 7px; left: 50%; width: 48px; height: 9px; border-radius: 99px; background: #24211f; transform: translateX(-50%); }
+    .phone-copy { position: absolute; z-index: 2; inset: 123px 13px auto; text-align: center; color: white; }
+    .phone-copy small { color: #c9a568; font-size: 5px; letter-spacing: .12em; text-transform: uppercase; }
+    .phone-copy h4 { margin-top: 5px; font-size: 20px; line-height: 1; letter-spacing: -.03em; }
+    .phone-copy p { margin: 8px auto 0; color: #c7beb6; font-size: 6px; line-height: 1.5; }
+    .phone-copy span { display: inline-flex; margin-top: 10px; padding: 7px 12px; border-radius: 4px; background: #aa7b3c; font-size: 6px; font-weight: 700; }
+
+    .overview-grid { margin-top: 3.5rem; display: grid; grid-template-columns: 1.2fr .8fr; gap: 1rem; }
+    .overview-main { padding: clamp(1.6rem, 3vw, 2.5rem); border: 1px solid var(--border-2); border-radius: var(--radius-lg); background: var(--surface); }
+    .overview-main p { color: var(--text-2); font-size: 1rem; line-height: 1.75; }
+    .overview-main strong { color: var(--text); }
+    .overview-side { display: flex; flex-direction: column; }
+    .overview-stat { flex: 1; padding: 1.25rem 1.35rem; border-bottom: 1px solid var(--border); }
+    .overview-stat:first-child { border-top: 1px solid var(--border); }
+    .overview-stat small { display: block; margin-bottom: .3rem; color: var(--text-muted); font-size: .72rem; }
+    .overview-stat strong { font-size: 1rem; font-weight: 600; }
+
+    .structure-list { margin-top: 3.25rem; border-top: 1px solid var(--border-2); }
+    .structure-row { display: grid; grid-template-columns: 48px minmax(180px, .75fr) 1.25fr; gap: 1.5rem; padding: 1.4rem 0; align-items: start; border-bottom: 1px solid var(--border); }
+    .structure-num { color: var(--rose-light); font-size: .75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .structure-row h3 { font-size: 1rem; font-weight: 600; }
+    .structure-row p { color: var(--text-2); font-size: 1rem; line-height: 1.65; }
+
+    .deliverable-layout { margin-top: 3.5rem; display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; align-items: stretch; }
+    .deliverable-main, .deliverable-panel { border: 1px solid var(--border-2); border-radius: var(--radius-lg); background: var(--surface); }
+    .deliverable-main { padding: clamp(1.6rem, 3vw, 2.5rem); }
+    .deliverable-panel { padding: 1.65rem; background: var(--bg-2); }
+    .deliverable-icon { width: 38px; height: 38px; margin-bottom: 1.2rem; border-radius: 10px; display: grid; place-items: center; color: var(--rose-light); background: hsl(5 38% 45% / .14); }
+    .deliverable-icon svg { width: 19px; height: 19px; }
+    .deliverable-main h3, .deliverable-panel h3 { margin-bottom: .65rem; font-size: 1.22rem; }
+    .deliverable-main > p, .deliverable-panel > p { margin-bottom: 1.35rem; color: var(--text-2); font-size: 1rem; }
+    .check-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem 1.25rem; }
+    .check-item { display: flex; align-items: flex-start; gap: .65rem; color: var(--text-2); font-size: 1rem; line-height: 1.55; }
+    .check-item svg { flex: 0 0 auto; width: 15px; height: 15px; margin-top: .18rem; color: var(--rose-light); }
+    .technical-list { display: grid; gap: .8rem; }
+    .technical-item { padding-bottom: .8rem; border-bottom: 1px solid var(--border); color: var(--text-2); font-size: 1rem; }
+    .technical-item:last-child { padding-bottom: 0; border-bottom: 0; }
+    .technical-item strong { display: block; margin-bottom: .16rem; color: var(--text); font-size: .86rem; }
+    .deliverable-strip { grid-column: 1 / -1; padding: 1.2rem 1.4rem; border-radius: var(--radius); display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--rose-pale); background: hsl(5 38% 28% / .36); }
+    .deliverable-strip strong { font-size: .92rem; }
+    .deliverable-strip span { color: var(--text-2); font-size: .8rem; }
+
+    .investment-wrap { margin-top: 3.2rem; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 1rem; }
+    .price-card { position: relative; overflow: hidden; padding: clamp(1.75rem, 4vw, 3rem); border-radius: var(--radius-lg); background: var(--gradient); }
+    .price-card::after { content: ''; position: absolute; right: -15%; bottom: -55%; width: 360px; aspect-ratio: 1; border: 1px solid hsl(0 0% 100% / .11); border-radius: 50%; }
+    .price-card > * { position: relative; z-index: 1; }
+    .price-label { margin-bottom: .8rem; color: hsl(0 0% 100% / .7); font-size: .73rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .price { display: flex; align-items: flex-start; gap: .45rem; font-size: clamp(3.6rem, 8vw, 6rem); font-weight: 700; line-height: .9; letter-spacing: -.04em; }
+    .price sup { margin-top: .5rem; font-size: 1rem; letter-spacing: 0; }
+    .price-desc { max-width: 50ch; margin-top: 1.4rem; color: hsl(0 0% 100% / .78); line-height: 1.65; }
+    .payment-card { padding: 1.6rem; border: 1px solid var(--border-2); border-radius: var(--radius-lg); background: var(--bg-2); }
+    .payment-card h3 { margin-bottom: 1rem; font-size: 1rem; }
+    .payment-row { padding: 1rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; gap: 1rem; }
+    .payment-row:last-of-type { border-bottom: 0; }
+    .payment-row span { color: var(--text-muted); font-size: .78rem; }
+    .payment-row strong { font-size: .9rem; font-variant-numeric: tabular-nums; }
+    .payment-note { margin-top: 1rem; padding: .8rem; border-radius: 8px; color: var(--text-2); background: var(--surface); font-size: .74rem; line-height: 1.5; }
+
+    .collab-grid { margin-top: 3.2rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .collab-column { padding: clamp(1.5rem, 3vw, 2rem); border: 1px solid var(--border-2); border-radius: var(--radius-lg); }
+    .collab-column:first-child { background: var(--surface); }
+    .collab-column:last-child { background: var(--bg-2); }
+    .collab-column h3 { margin-bottom: .4rem; font-size: 1.15rem; }
+    .collab-column > p { margin-bottom: 1.4rem; color: var(--text-muted); font-size: .8rem; }
+    .simple-list { display: grid; gap: .7rem; }
+    .simple-list li { display: flex; align-items: flex-start; gap: .65rem; color: var(--text-2); font-size: 1rem; line-height: 1.55; }
+    .simple-list li::before { content: ''; flex: 0 0 auto; width: 6px; height: 6px; margin-top: .45rem; border-radius: 50%; background: var(--rose); }
+    .content-note { grid-column: 1 / -1; padding: 1.1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-2); background: hsl(5 38% 28% / .14); font-size: .84rem; }
+    .content-note strong { color: var(--text); }
+
+    .limits-grid { margin-top: 3rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border-2); }
+    .limit-item { padding: 1rem .75rem 1rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: .7rem; color: var(--text-2); font-size: 1rem; }
+    .limit-item:nth-child(odd) { margin-right: 1.25rem; }
+    .limit-item svg { flex: 0 0 auto; width: 16px; height: 16px; margin-top: .18rem; color: var(--text-muted); }
+    .limits-note { margin-top: 1.5rem; padding: 1rem 1.15rem; border-radius: 9px; color: var(--text-2); background: var(--surface); font-size: .8rem; }
+
+    .process-track { margin-top: 3.2rem; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .process-track::before { content: ''; position: absolute; top: 17px; left: 7%; right: 7%; height: 1px; background: var(--border-2); }
+    .process-step { position: relative; padding-top: 3.1rem; }
+    .process-dot { position: absolute; top: 10px; left: 0; width: 15px; height: 15px; border: 4px solid var(--bg); border-radius: 50%; background: var(--rose); box-shadow: 0 0 0 1px var(--rose); }
+    .process-step small { display: block; margin-bottom: .35rem; color: var(--rose-light); font-size: .69rem; font-weight: 600; }
+    .process-step h3 { margin-bottom: .4rem; font-size: .92rem; }
+    .process-step p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+    .timeline-banner { margin-top: 2.5rem; padding: 1.4rem 1.6rem; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; background: var(--gradient); }
+    .timeline-banner span { color: hsl(0 0% 100% / .72); font-size: .78rem; }
+    .timeline-banner strong { display: block; color: white; font-size: clamp(1.3rem, 3vw, 2rem); line-height: 1.1; }
+    .timeline-pill { flex: 0 0 auto; padding: .65rem .9rem; border: 1px solid hsl(0 0% 100% / .18); border-radius: 999px; color: white; font-size: .75rem; font-weight: 600; }
+
+    .final-cta { position: relative; padding-block: clamp(6rem, 13vw, 10rem); text-align: center; isolation: isolate; }
+    .final-cta::before { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle at 50% 45%, hsl(5 38% 30% / .34), transparent 38rem); }
+    .final-cta .section-label { justify-content: center; }
+    .final-cta-title { max-width: 820px; margin: 0 auto 1.25rem; font-size: clamp(2.25rem, 5vw, 4rem); font-weight: 700; line-height: 1.04; letter-spacing: -.035em; }
+    .final-cta-title .accent { color: var(--rose-light); }
+    .final-cta-copy { max-width: 610px; margin: 0 auto 2rem; color: var(--text-2); font-size: 1rem; line-height: 1.7; }
+    .final-button { min-height: 54px; padding: .9rem 1.35rem; border-radius: 10px; display: inline-flex; align-items: center; gap: .65rem; color: white; background: var(--gradient); font-weight: 600; transition: transform .25s var(--ease-out); }
+    .final-button:hover { transform: translateY(-3px); }
+    .final-button svg { width: 20px; height: 20px; }
+
+    footer { padding-block: 2rem; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+    .footer-brand { display: flex; align-items: center; gap: .55rem; font-size: .9rem; font-weight: 700; }
+    .footer-copy { margin-top: .35rem; color: var(--text-muted); font-size: .7rem; }
+    .footer-meta { color: var(--text-muted); font-size: .72rem; text-align: right; line-height: 1.7; }
+
+    .reveal { opacity: 1; transform: none; filter: none; }
+    .js .reveal { opacity: 1; transform: translateY(16px); filter: none; transition: transform .75s var(--ease-out); }
+    .js .reveal.visible { opacity: 1; transform: none; filter: none; }
+    .delay-1 { transition-delay: .08s !important; }
+    .delay-2 { transition-delay: .16s !important; }
+    .delay-3 { transition-delay: .24s !important; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(.78); } }
+    @keyframes browser-float { 0%, 100% { transform: rotateY(-7deg) rotateX(3deg) translateY(0); } 50% { transform: rotateY(-5deg) rotateX(2deg) translateY(-10px); } }
+    @keyframes phone-float { 0%, 100% { transform: rotate(4deg) translateY(0); } 50% { transform: rotate(2.5deg) translateY(-9px); } }
+
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero-copy { max-width: 680px; }
+      .hero-title { max-width: 13ch; font-size: clamp(2.7rem, 6.2vw, 3.85rem); }
+      .hero-grid { gap: 2.75rem; }
+      .mockup-stage { width: min(100%, 720px); margin-inline: auto; }
+      .browser { transform: none; animation-name: browser-float-flat; }
+      @keyframes browser-float-flat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    }
+    @media (max-width: 820px) {
+      .nav { display: none; }
+      .overview-grid, .deliverable-layout, .investment-wrap { grid-template-columns: 1fr; }
+      .deliverable-strip { grid-column: auto; }
+      .process-track { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+      .process-track::before { display: none; }
+      .process-step { padding-top: 2.5rem; }
+      .phone { right: 0; }
+    }
+    @media (max-width: 640px) {
+      #hdr { height: 58px; padding-inline: 1rem; }
+      .client-tag { max-width: 145px; font-size: .67rem; }
+      .container, .container-sm { padding-inline: 1.15rem; }
+      .section { padding-block: 4.5rem; }
+      .section-title { margin-bottom: 1rem; font-size: clamp(1.75rem, 7.5vw, 2.125rem); line-height: 1.14; }
+      .section-copy { line-height: 1.7; }
+      .hero { min-height: auto; padding: 5.75rem 0 3.5rem; }
+      .hero-grid { gap: 2.25rem; }
+      .hero-kicker { padding: .42rem .68rem; font-size: .68rem; }
+      .hero-title { max-width: 12ch; margin-bottom: 1.1rem; font-size: clamp(2.25rem, 10.5vw, 2.75rem); line-height: 1.05; letter-spacing: -.025em; }
+      .hero-subtitle { max-width: 40ch; line-height: 1.65; }
+      .hero-actions { margin-top: 1.5rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions a { width: 100%; }
+      .hero-facts { margin-top: 1.65rem; grid-template-columns: 1fr; }
+      .hero-fact:not(:last-child) { display: none; }
+      .hero-fact { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+      .hero-fact small { margin: 0; }
+      .scroll-cue { display: none; }
+      .mockup-stage { min-height: 350px; margin-top: .5rem; }
+      .browser { width: calc(100% + 1rem); margin-left: -.5rem; aspect-ratio: 1.28; }
+      .preview-links { display: none; }
+      .preview-content { width: 74%; padding-top: 32px; }
+      .preview-content h3 { font-size: 23px; }
+      .phone { width: 116px; height: 230px; right: 2px; bottom: 2px; }
+      .phone-copy { inset: 84px 8px auto; }
+      .phone-copy h4 { font-size: 14px; }
+      .preview-proof { display: none; }
+      .overview-grid, .structure-list, .deliverable-layout, .investment-wrap, .collab-grid, .limits-grid, .process-track { margin-top: 2.35rem; }
+      .overview-main, .deliverable-main, .deliverable-panel, .collab-column, .payment-card { padding: 1.35rem; }
+      .structure-row { grid-template-columns: 30px 1fr; gap: .6rem; padding-block: 1.2rem; }
+      .structure-row p { grid-column: 2; }
+      .check-list, .collab-grid, .limits-grid, .process-track { grid-template-columns: 1fr; }
+      .check-item, .technical-item, .simple-list li, .limit-item, .process-step p { font-size: 1rem; }
+      .content-note { grid-column: auto; }
+      .limit-item:nth-child(odd) { margin-right: 0; }
+      .timeline-banner { align-items: flex-start; flex-direction: column; }
+      .final-cta { padding-block: 5rem; }
+      .final-cta-title { font-size: clamp(2rem, 9vw, 2.75rem); line-height: 1.08; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-meta { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .js .reveal { opacity: 1; transform: none; filter: none; }
+    }
+  </style>
+
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div id="read-progress" aria-hidden="true"></div>
+
+  <header id="hdr">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="VS Experience — voltar ao início">
+        <span class="brand-dot" aria-hidden="true"></span>
+        VS Experience
+      </a>
+      <div class="client-tag">Proposta · Barber Club</div>
+      <nav class="nav" aria-label="Navegação da proposta">
+        <a href="#escopo">Escopo</a>
+        <a href="#investimento">Investimento</a>
+        <a href="#prazo">Prazo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-kicker reveal"><span aria-hidden="true"></span> Proposta comercial exclusiva · Barber Club</div>
+            <h1 class="hero-title reveal delay-1">Uma landing page que transforma presença digital em <span class="accent">novos contatos.</span></h1>
+            <p class="hero-subtitle reveal delay-2">Desenvolvimento de uma página institucional profissional, moderna e responsiva para apresentar a Barber Club, valorizar seus serviços e conduzir potenciais clientes ao WhatsApp.</p>
+            <div class="hero-actions reveal delay-3">
+              <a class="btn-primary" href="#investimento">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.6 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.6-1M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                Ver investimento
+              </a>
+              <a class="btn-ghost" href="#escopo">Conhecer o projeto</a>
+            </div>
+            <div class="hero-facts reveal delay-3">
+              <div class="hero-fact"><small>Formato</small><strong>Landing page única</strong></div>
+              <div class="hero-fact"><small>Prazo estimado</small><strong>10 a 15 dias úteis</strong></div>
+              <div class="hero-fact"><small>Investimento</small><strong class="accent">R$ 1.450,00</strong></div>
+            </div>
+            <div class="scroll-cue reveal delay-3"><span aria-hidden="true"></span> Role para conhecer a proposta completa</div>
+          </div>
+
+          <div class="mockup-stage reveal delay-2" aria-label="Mockups da futura landing page da Barber Club em computador e celular">
+            <div class="mockup-glow" aria-hidden="true"></div>
+            <div class="browser" aria-hidden="true">
+              <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-address"></span></div>
+              <div class="site-preview">
+                <img src="https://images.unsplash.com/photo-1653875700329-a7c8aca94c95?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="" width="1200" height="800" fetchpriority="high">
+                <div class="preview-nav">
+                  <div class="preview-logo"><span class="preview-mark">BC</span> BARBER CLUB</div>
+                  <div class="preview-links"><span>Serviços</span><span>Sobre</span><span>Contato</span></div>
+                  <span class="preview-book">AGENDAR HORÁRIO</span>
+                </div>
+                <div class="preview-content">
+                  <div class="preview-caption">Estilo · precisão · cuidado</div>
+                  <h3>Seu estilo começa aqui.</h3>
+                  <p>Cortes, barba e uma experiência pensada em cada detalhe.</p>
+                  <span class="preview-cta">FALAR NO WHATSAPP</span>
+                </div>
+                <div class="preview-proof"><div class="preview-stars">★★★★★</div>“Atendimento impecável e resultado acima da expectativa.”</div>
+              </div>
+            </div>
+            <div class="phone" aria-hidden="true">
+              <div class="phone-screen">
+                <div class="phone-notch"></div>
+                <img src="https://images.unsplash.com/photo-1653875700329-a7c8aca94c95?auto=format&amp;fit=crop&amp;w=600&amp;q=78" alt="" width="600" height="700">
+                <div class="phone-copy"><small>Barber Club</small><h4>Seu estilo começa aqui.</h4><p>Experiência, cuidado e precisão.</p><span>AGENDAR AGORA</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="visao-geral">
+      <div class="container-sm">
+        <div class="section-label reveal">Visão do projeto</div>
+        <h2 class="section-title reveal delay-1">Uma presença profissional, construída para <span class="accent">gerar confiança e ação.</span></h2>
+        <p class="section-copy reveal delay-2">A proposta contempla o desenvolvimento completo de uma landing page institucional para a Barber Club, com comunicação objetiva, navegação fluida e chamadas estratégicas para contato via WhatsApp.</p>
+        <div class="overview-grid">
+          <div class="overview-main reveal">
+            <p>O projeto seguirá um padrão visual moderno e profissional, adaptado à identidade, ao público e aos objetivos comerciais da empresa. A disposição final das seções será definida de acordo com os materiais recebidos e com o que melhor favorece a <strong>clareza, a credibilidade e a conversão.</strong></p>
+          </div>
+          <div class="overview-side reveal delay-1">
+            <div class="overview-stat"><small>Objetivo principal</small><strong>Novos contatos pelo WhatsApp</strong></div>
+            <div class="overview-stat"><small>Experiência</small><strong>Celular, tablet e computador</strong></div>
+            <div class="overview-stat"><small>Direção</small><strong>Visual personalizado para a marca</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="escopo">
+      <div class="container">
+        <div class="section-label reveal">Estrutura da página</div>
+        <h2 class="section-title reveal delay-1">A jornada certa para apresentar, convencer e <span class="accent">facilitar o contato.</span></h2>
+        <p class="section-copy reveal delay-2">A página poderá reunir as seções abaixo. A ordem será refinada durante o projeto para criar uma narrativa natural, sem excesso de informação.</p>
+
+        <div class="structure-list">
+          <div class="structure-row reveal"><span class="structure-num">01</span><h3>Entrada e navegação</h3><p>Menu, seção principal com chamada estratégica e botão de contato em destaque.</p></div>
+          <div class="structure-row reveal"><span class="structure-num">02</span><h3>Oferta e diferenciais</h3><p>Apresentação dos principais serviços ou produtos, benefícios e motivos para escolher a empresa.</p></div>
+          <div class="structure-row reveal"><span class="structure-num">03</span><h3>Confiança</h3><p>Seção institucional, números, resultados, marcas, parceiros e empresas atendidas.</p></div>
+          <div class="structure-row reveal"><span class="structure-num">04</span><h3>Prova e objeções</h3><p>Depoimentos de clientes e perguntas frequentes para reduzir dúvidas antes do contato.</p></div>
+          <div class="structure-row reveal"><span class="structure-num">05</span><h3>Conversão</h3><p>Chamada final para orçamento, contatos, endereço, redes sociais e botão flutuante de WhatsApp.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="entregas">
+      <div class="container">
+        <div class="section-label reveal">O que está incluso</div>
+        <h2 class="section-title reveal delay-1">Design, conteúdo e tecnologia trabalhando como <span class="accent">uma única experiência.</span></h2>
+        <p class="section-copy reveal delay-2">A entrega cobre da organização da informação à publicação definitiva, com os fundamentos necessários para uma página profissional e preparada para divulgação.</p>
+
+        <div class="deliverable-layout">
+          <article class="deliverable-main reveal">
+            <div class="deliverable-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v18m9-9H3m15.5-5.5-13 13m0-13 13 13"/></svg></div>
+            <h3>Design e experiência</h3>
+            <p>Uma composição própria para a Barber Club, com atenção especial à hierarquia, leitura e conversão.</p>
+            <div class="check-list">
+              <div class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Layout personalizado</div>
+              <div class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Design moderno e profissional</div>
+              <div class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Responsividade completa</div>
+              <div class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Animações e interações sutis</div>
+              <div class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Aplicação da identidade visual</div>
+              <div class="check-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Uso estratégico de imagens e CTAs</div>
+            </div>
+          </article>
+
+          <aside class="deliverable-panel reveal delay-1">
+            <div class="deliverable-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m8 9-4 3 4 3m8-6 4 3-4 3m-2-9-4 12"/></svg></div>
+            <h3>Desenvolvimento e publicação</h3>
+            <p>Base técnica enxuta, rápida e pronta para funcionar.</p>
+            <div class="technical-list">
+              <div class="technical-item"><strong>Desempenho e SEO</strong>Otimização de velocidade e configuração básica para mecanismos de busca.</div>
+              <div class="technical-item"><strong>Conversão e contatos</strong>WhatsApp, redes sociais e formulário de contato, quando necessário.</div>
+              <div class="technical-item"><strong>Domínio e segurança</strong>Configuração de domínio, publicação e certificado SSL.</div>
+              <div class="technical-item"><strong>Privacidade e métricas</strong>Política de privacidade, cookies básico e integração com Analytics, Pixel ou GTM mediante acessos.</div>
+            </div>
+          </aside>
+
+          <div class="deliverable-strip reveal delay-2"><strong>Landing page institucional completa</strong><span>Uma página única, responsiva e preparada para gerar contatos.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="investimento">
+      <div class="container-sm">
+        <div class="section-label reveal">Investimento</div>
+        <h2 class="section-title reveal delay-1">Uma entrega completa, com valor <span class="accent">claro e fechado.</span></h2>
+        <p class="section-copy reveal delay-2">O investimento contempla todas as etapas descritas nesta proposta para a criação da landing page institucional.</p>
+
+        <div class="investment-wrap">
+          <div class="price-card reveal">
+            <div class="price-label">Desenvolvimento da landing page</div>
+            <div class="price"><sup>R$</sup>1.450</div>
+            <p class="price-desc">Planejamento, design, desenvolvimento, apoio ao conteúdo, integrações básicas e publicação da página.</p>
+          </div>
+          <aside class="payment-card reveal delay-1">
+            <h3>Condição sugerida</h3>
+            <div class="payment-row"><span>50% para início</span><strong>R$ 725,00</strong></div>
+            <div class="payment-row"><span>50% na aprovação</span><strong>R$ 725,00</strong></div>
+            <p class="payment-note">A segunda parcela é realizada após a finalização e aprovação, antes da publicação definitiva.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="conteudo-cliente">
+      <div class="container-sm">
+        <div class="section-label reveal">Conteúdo e colaboração</div>
+        <h2 class="section-title reveal delay-1">Você fornece a essência da marca. Eu transformo em uma comunicação <span class="accent">clara e convincente.</span></h2>
+
+        <div class="collab-grid">
+          <article class="collab-column reveal">
+            <h3>Materiais do cliente</h3>
+            <p>Informações necessárias para dar início ao projeto</p>
+            <ul class="simple-list">
+              <li>Logotipo e identidade visual disponível</li>
+              <li>Informações institucionais da empresa</li>
+              <li>Lista de serviços ou produtos</li>
+              <li>Fotografias e materiais disponíveis</li>
+              <li>Contatos e redes sociais</li>
+              <li>Depoimentos e demais informações institucionais</li>
+            </ul>
+          </article>
+          <article class="collab-column reveal delay-1">
+            <h3>Apoio incluído</h3>
+            <p>Tratamento estratégico do conteúdo recebido</p>
+            <ul class="simple-list">
+              <li>Organização das informações por prioridade</li>
+              <li>Otimização dos textos enviados</li>
+              <li>Ajustes de clareza, tom e profissionalismo</li>
+              <li>Chamadas de ação voltadas para conversão</li>
+              <li>Seleção de recursos visuais compatíveis</li>
+              <li>Orientação sobre lacunas de conteúdo</li>
+            </ul>
+          </article>
+          <p class="content-note reveal delay-2"><strong>Sobre as imagens:</strong> caso não existam fotografias profissionais, poderão ser utilizadas imagens de bancos gratuitos ou outros recursos visuais compatíveis com o projeto.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="limites">
+      <div class="container-sm">
+        <div class="section-label reveal">Limites do projeto</div>
+        <h2 class="section-title reveal delay-1">Uma página institucional enxuta, sem custos ou funções <span class="accent">fora do combinado.</span></h2>
+        <p class="section-copy reveal delay-2">A proposta contempla uma landing page de página única. Os itens abaixo não fazem parte deste orçamento.</p>
+
+        <div class="limits-grid reveal">
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Sistema administrativo</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Cadastro de produtos pelo cliente</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Loja virtual ou checkout</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Área de login ou banco de dados</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Integrações complexas com sistemas externos</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Produção profissional de fotos ou vídeos</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Campanhas de tráfego pago</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Registro ou renovação de domínio</div>
+          <div class="limit-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M5 12h14"/></svg>Hospedagem mensal</div>
+        </div>
+        <p class="limits-note reveal delay-1">Funcionalidades adicionais ou alterações relevantes no escopo poderão ser avaliadas e orçadas separadamente.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="prazo">
+      <div class="container">
+        <div class="section-label reveal">Processo, revisões e prazo</div>
+        <h2 class="section-title reveal delay-1">Um processo objetivo, com espaço para <span class="accent">refinar cada detalhe.</span></h2>
+        <p class="section-copy reveal delay-2">O cronograma começa após o recebimento de todos os materiais necessários e segue quatro etapas principais.</p>
+
+        <div class="process-track">
+          <article class="process-step reveal"><span class="process-dot"></span><small>Etapa 01</small><h3>Alinhamento</h3><p>Recebimento de materiais, objetivos, referências e informações da empresa.</p></article>
+          <article class="process-step reveal delay-1"><span class="process-dot"></span><small>Etapa 02</small><h3>Primeira versão</h3><p>Estrutura, direção visual, conteúdo otimizado e desenvolvimento inicial.</p></article>
+          <article class="process-step reveal delay-2"><span class="process-dot"></span><small>Etapa 03</small><h3>Ajustes</h3><p>Até 2 rodadas de alterações após a apresentação da primeira versão.</p></article>
+          <article class="process-step reveal delay-3"><span class="process-dot"></span><small>Etapa 04</small><h3>Publicação</h3><p>Aprovação final, pagamento da segunda parcela e publicação definitiva.</p></article>
+        </div>
+
+        <div class="timeline-banner reveal delay-2">
+          <div><span>Prazo estimado após o recebimento dos materiais</span><strong>10 a 15 dias úteis</strong></div>
+          <div class="timeline-pill">Até 2 rodadas de ajustes</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="final-cta" id="fechamento">
+      <div class="container-sm">
+        <div class="section-label reveal">Próximo passo</div>
+        <h2 class="final-cta-title reveal delay-1">Pronto para transformar a presença digital da <span class="accent">Barber Club?</span></h2>
+        <p class="final-cta-copy reveal delay-2">Com a aprovação, iniciamos o alinhamento dos materiais e a construção de uma landing page profissional, responsiva e preparada para gerar novos contatos.</p>
+        <a class="final-button reveal delay-3" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20Vi%20a%20proposta%20da%20landing%20page%20da%20Barber%20Club%20e%20quero%20dar%20continuidade." target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Aprovar proposta pelo WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand"><span class="brand-dot" aria-hidden="true"></span> VS Experience</div>
+          <p class="footer-copy">Desenvolvimento Web, Sites, Landing Pages e Soluções Digitais</p>
+        </div>
+        <div class="footer-meta">
+          <p>Victor Santos · CNPJ: 63.282.462/0001-69</p>
+          <p>vtorsilvasantos@gmail.com · (12) 99183-3641</p>
+          <p>© 2026 VS Experience · Proposta confidencial</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById('read-progress');
+    const header = document.getElementById('hdr');
+
+    function updateScrollUI() {
+      const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      progress.style.transform = `scaleX(${Math.min(window.scrollY / scrollable, 1)})`;
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }
+
+    updateScrollUI();
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -35px 0px' });
+
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    } else {
+      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+    }
+
+  </script>
+</body>
+</html>
