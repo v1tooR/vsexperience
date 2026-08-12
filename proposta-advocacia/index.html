@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#371616">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Proposta comercial para desenvolvimento de landing page profissional para advocacia.">
+  <title>Proposta Comercial · Landing Page para Advocacia · VS Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rose: hsl(5 38% 45%);
+      --rose-dark: hsl(5 38% 22%);
+      --rose-light: hsl(5 48% 72%);
+      --rose-soft: hsl(5 25% 17%);
+      --bg: hsl(5 10% 5.5%);
+      --bg-2: hsl(5 8% 8%);
+      --bg-3: hsl(5 8% 10.5%);
+      --surface: hsl(5 8% 100% / 0.045);
+      --surface-2: hsl(5 8% 100% / 0.075);
+      --border: hsl(5 8% 100% / 0.09);
+      --border-strong: hsl(5 8% 100% / 0.16);
+      --text: hsl(0 0% 95%);
+      --text-2: hsl(0 0% 73%);
+      --text-muted: hsl(0 0% 58%);
+      --success: hsl(142 42% 64%);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --font: "Space Grotesk", system-ui, sans-serif;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --header-height: 64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::selection { background: var(--rose); color: white; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    svg { display: block; }
+    main { overflow: clip; }
+
+    .container {
+      width: min(1120px, calc(100% - 3.5rem));
+      margin-inline: auto;
+    }
+    .container-narrow {
+      width: min(840px, calc(100% - 3.5rem));
+      margin-inline: auto;
+    }
+    .section { padding: clamp(5rem, 9vw, 8rem) 0; }
+    .section-line { border-top: 1px solid var(--border); }
+
+    #read-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 50;
+      width: 0;
+      height: 2px;
+      background: var(--rose-light);
+      transform-origin: left;
+    }
+
+    .header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 40;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      background: hsl(5 10% 5.5% / 0.58);
+      backdrop-filter: blur(18px) saturate(1.35);
+      border-bottom: 1px solid transparent;
+      transition: background .3s ease, border-color .3s ease;
+    }
+    .header.scrolled {
+      background: hsl(5 10% 5.5% / 0.93);
+      border-bottom-color: var(--border);
+    }
+    .header-inner { display: flex; align-items: center; min-width: 0; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: .55rem; font-size: .94rem; font-weight: 700; white-space: nowrap; }
+    .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 0 5px hsl(5 38% 45% / .1); }
+    .client-tag {
+      margin-right: auto;
+      padding: .28rem .72rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: .72rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .nav { display: flex; align-items: center; gap: 1.35rem; }
+    .nav a { color: var(--text-2); font-size: .79rem; font-weight: 500; transition: color .2s ease; }
+    .nav a:hover, .nav a:focus-visible { color: var(--text); }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--header-height) + 4rem) 0 4rem;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 68vw;
+      height: 68vw;
+      max-width: 850px;
+      max-height: 850px;
+      top: -24vw;
+      left: -24vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, hsl(5 38% 24% / .38), transparent 68%);
+      pointer-events: none;
+    }
+    .hero-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr); gap: clamp(2.5rem, 6vw, 5.5rem); align-items: center; }
+    .proposal-label { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.5rem; color: var(--rose-light); font-size: .69rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .proposal-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--rose); animation: pulse 2.4s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: .55; box-shadow: 0 0 0 7px hsl(5 38% 45% / 0); } }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 16ch;
+      margin-bottom: 1.25rem;
+      font-size: clamp(2.2rem, 5vw, 4.35rem);
+      line-height: 1.03;
+      letter-spacing: -.035em;
+      text-wrap: balance;
+    }
+    .accent { color: var(--rose-light); }
+    .hero-copy { max-width: 58ch; margin-bottom: 2rem; color: var(--text-2); font-size: clamp(.98rem, 1.5vw, 1.08rem); line-height: 1.75; text-wrap: pretty; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2.25rem; }
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: .82rem 1.35rem;
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-weight: 700;
+      transition: transform .25s var(--ease), background .25s ease, border-color .25s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible, .mock-tab:focus-visible, .nav a:focus-visible { outline: 2px solid var(--rose-light); outline-offset: 3px; }
+    .btn-primary { border: 1px solid var(--rose); background: var(--rose); color: white; }
+    .btn-primary:hover { background: hsl(5 38% 51%); }
+    .btn-secondary { border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); }
+    .btn-secondary:hover { border-color: hsl(5 8% 100% / .28); background: var(--surface-2); }
+    .btn svg { width: 18px; height: 18px; }
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .fact { padding-left: .8rem; border-left: 1px solid var(--border-strong); }
+    .fact-label { margin-bottom: .18rem; color: var(--text-muted); font-size: .66rem; font-weight: 600; }
+    .fact-value { color: var(--text); font-size: .86rem; font-weight: 600; }
+
+    .browser-mockup {
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      background: hsl(224 18% 8%);
+      animation: mockup-in 1s .15s var(--ease) both;
+    }
+    @keyframes mockup-in { from { opacity: .65; transform: translateY(22px) scale(.985); } }
+    .browser-bar { height: 42px; display: flex; align-items: center; gap: .5rem; padding: 0 .85rem; border-bottom: 1px solid hsl(0 0% 100% / .08); background: hsl(224 15% 10%); }
+    .browser-dot { width: 7px; height: 7px; border-radius: 50%; background: hsl(0 0% 100% / .18); }
+    .browser-address { width: 48%; height: 20px; margin-left: .5rem; border-radius: 5px; background: hsl(0 0% 100% / .055); }
+    .mock-page { min-height: 438px; display: flex; flex-direction: column; background: linear-gradient(145deg, hsl(221 24% 11%), hsl(217 25% 7%)); color: hsl(215 25% 95%); }
+    .mock-nav { min-height: 54px; display: flex; align-items: center; gap: 1rem; padding: 0 1.35rem; border-bottom: 1px solid hsl(0 0% 100% / .07); }
+    .mock-logo { margin-right: auto; display: flex; align-items: center; gap: .45rem; font-family: Georgia, serif; font-size: .78rem; font-weight: 700; }
+    .mock-logo-mark { display: grid; place-items: center; width: 22px; height: 22px; border: 1px solid hsl(40 44% 62% / .6); border-radius: 50%; color: hsl(40 44% 72%); font-size: .55rem; }
+    .mock-nav-link { color: hsl(215 18% 70%); font-size: .48rem; }
+    .mock-nav-cta { padding: .32rem .65rem; border-radius: 5px; background: hsl(40 38% 55%); color: hsl(220 25% 9%); font-size: .48rem; font-weight: 700; }
+    .mock-hero { flex: 1; display: grid; grid-template-columns: 1.1fr .9fr; min-height: 290px; }
+    .mock-content { display: flex; flex-direction: column; justify-content: center; padding: 2.25rem 1.4rem 2rem 1.75rem; }
+    .mock-kicker { margin-bottom: .75rem; color: hsl(40 44% 69%); font-size: .46rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .mock-title { max-width: 10ch; margin-bottom: .8rem; font-family: Georgia, serif; font-size: clamp(1.45rem, 3vw, 2.25rem); line-height: 1.03; letter-spacing: -.025em; }
+    .mock-text { max-width: 32ch; margin-bottom: 1rem; color: hsl(215 15% 70%); font-size: .58rem; line-height: 1.65; }
+    .mock-buttons { display: flex; gap: .45rem; }
+    .mock-button { padding: .48rem .7rem; border-radius: 5px; font-size: .5rem; font-weight: 700; }
+    .mock-button.primary { background: hsl(40 38% 55%); color: hsl(220 25% 9%); }
+    .mock-button.ghost { border: 1px solid hsl(0 0% 100% / .15); color: hsl(215 20% 88%); }
+    .mock-visual { position: relative; overflow: hidden; background: hsl(218 24% 9%); }
+    .mock-visual::before { content: ""; position: absolute; inset: 12% 8% -4% 12%; border: 1px solid hsl(40 44% 62% / .25); border-radius: 48% 48% 0 0; }
+    .law-symbol { position: absolute; inset: 0; display: grid; place-items: center; color: hsl(40 36% 60% / .74); }
+    .law-symbol svg { width: 62%; max-width: 160px; }
+    .mock-proof { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid hsl(0 0% 100% / .07); }
+    .mock-proof-item { padding: .8rem 1rem; border-right: 1px solid hsl(0 0% 100% / .07); }
+    .mock-proof-item:last-child { border-right: 0; }
+    .mock-proof-strong { display: block; margin-bottom: .12rem; color: hsl(40 44% 70%); font-size: .58rem; font-weight: 700; }
+    .mock-proof-small { display: block; color: hsl(215 14% 64%); font-size: .43rem; }
+    .mock-tabs { position: absolute; right: .75rem; bottom: .75rem; z-index: 2; display: flex; gap: .3rem; padding: .3rem; border-radius: 8px; background: hsl(220 20% 5% / .85); }
+    .mock-tab { min-height: 28px; padding: .25rem .55rem; border: 0; border-radius: 5px; background: transparent; color: hsl(215 15% 62%); cursor: pointer; font-size: .47rem; }
+    .mock-tab.active { background: hsl(40 38% 55%); color: hsl(220 25% 8%); font-weight: 700; }
+
+    .section-heading { max-width: 700px; margin-bottom: 3rem; }
+    .section-heading h2 { margin-bottom: 1rem; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
+    .section-heading p { max-width: 66ch; margin-bottom: 0; color: var(--text-2); font-size: 1rem; line-height: 1.75; text-wrap: pretty; }
+    .section-heading.center { margin-inline: auto; text-align: center; }
+    .section-heading.center p { margin-inline: auto; }
+    .overline { display: block; margin-bottom: .9rem; color: var(--rose-light); font-size: .72rem; font-weight: 700; }
+
+    .overview-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2.5rem, 7vw, 6rem); align-items: start; }
+    .overview-quote { position: sticky; top: calc(var(--header-height) + 2rem); }
+    .overview-quote p { margin-bottom: 1.5rem; font-size: clamp(1.45rem, 3vw, 2.1rem); line-height: 1.28; letter-spacing: -.02em; text-wrap: balance; }
+    .overview-quote span { color: var(--text-muted); font-size: .82rem; }
+    .deliverables { border-top: 1px solid var(--border-strong); }
+    .deliverable { display: grid; grid-template-columns: 1fr 1.45fr; gap: 1.5rem; padding: 1.35rem 0; border-bottom: 1px solid var(--border); }
+    .deliverable strong { font-size: .92rem; }
+    .deliverable p { margin: 0; color: var(--text-2); font-size: .88rem; line-height: 1.65; }
+
+    .scope-shell { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+    .scope-row { display: grid; grid-template-columns: 72px .75fr 1.4fr; gap: 1rem; align-items: start; padding: 1.4rem 1.6rem; border-bottom: 1px solid var(--border); transition: background .2s ease; }
+    .scope-row:last-child { border-bottom: 0; }
+    .scope-row:hover { background: var(--surface-2); }
+    .scope-num { color: var(--rose-light); font-size: .72rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .scope-row h3 { margin-bottom: 0; font-size: 1rem; line-height: 1.4; }
+    .scope-row p { margin: 0; color: var(--text-2); font-size: .86rem; line-height: 1.65; }
+
+    .value-panel { display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border-radius: var(--radius-lg); background: var(--rose-soft); }
+    .value-lead { display: flex; flex-direction: column; justify-content: space-between; min-height: 390px; padding: clamp(2rem, 5vw, 3.5rem); background: var(--rose-dark); }
+    .value-lead h2 { max-width: 12ch; margin-bottom: 1rem; font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.08; letter-spacing: -.03em; }
+    .value-lead p { max-width: 42ch; margin-bottom: 0; color: hsl(5 22% 78%); }
+    .value-mark { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid hsl(5 35% 70% / .32); border-radius: 50%; color: var(--rose-light); }
+    .value-mark svg { width: 22px; height: 22px; }
+    .value-list { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 5vw, 3.5rem); }
+    .value-item { display: grid; grid-template-columns: 30px 1fr; gap: .75rem; padding: 1rem 0; border-bottom: 1px solid hsl(5 30% 80% / .1); }
+    .value-item:last-child { border-bottom: 0; }
+    .value-check { width: 22px; height: 22px; display: grid; place-items: center; margin-top: .1rem; border-radius: 50%; background: hsl(5 38% 45% / .18); color: var(--rose-light); font-size: .7rem; font-weight: 700; }
+    .value-item strong { display: block; margin-bottom: .25rem; font-size: .9rem; }
+    .value-item p { margin: 0; color: var(--text-2); font-size: .82rem; line-height: 1.55; }
+
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 900px; margin: 0 auto; }
+    .price-card { position: relative; padding: clamp(1.7rem, 4vw, 2.5rem); border-radius: var(--radius-lg); background: var(--surface); }
+    .price-card.pix { background: hsl(5 38% 22% / .35); border: 1px solid hsl(5 42% 58% / .28); }
+    .price-card.card { border: 1px solid var(--border); }
+    .price-badge { display: inline-flex; margin-bottom: 1.5rem; padding: .3rem .65rem; border-radius: 999px; background: hsl(5 38% 45% / .18); color: var(--rose-light); font-size: .66rem; font-weight: 700; }
+    .price-card h3 { margin-bottom: .4rem; font-size: 1.2rem; }
+    .price-intro { min-height: 48px; margin-bottom: 1.5rem; color: var(--text-2); font-size: .84rem; }
+    .price { display: flex; align-items: baseline; gap: .28rem; margin-bottom: .45rem; }
+    .currency { color: var(--text-2); font-size: 1.05rem; font-weight: 600; }
+    .amount { font-size: clamp(2.7rem, 7vw, 4.5rem); line-height: 1; letter-spacing: -.04em; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .pix .amount { color: var(--rose-light); }
+    .price-caption { margin-bottom: 1.8rem; color: var(--text-muted); font-size: .76rem; }
+    .installment { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .95rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .installment span { color: var(--text-2); font-size: .8rem; }
+    .installment strong { white-space: nowrap; font-size: .94rem; }
+    .fee-note { margin: 1rem 0 0; color: var(--text-muted); font-size: .75rem; line-height: 1.6; }
+    .price-card .btn { width: 100%; margin-top: 1.5rem; }
+
+    .conditions { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(2.5rem, 7vw, 6rem); align-items: start; }
+    .conditions-title { position: sticky; top: calc(var(--header-height) + 2rem); }
+    .conditions-title h2 { margin-bottom: 1rem; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -.03em; }
+    .conditions-title p { color: var(--text-2); }
+    .condition-list { border-top: 1px solid var(--border-strong); }
+    .condition-item { display: grid; grid-template-columns: 18px 1fr; gap: .9rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+    .condition-icon { width: 18px; height: 18px; margin-top: .2rem; color: var(--rose-light); }
+    .condition-item p { margin: 0; color: var(--text-2); font-size: .9rem; line-height: 1.7; }
+    .condition-item strong { color: var(--text); }
+
+    .delivery-box { position: relative; overflow: hidden; padding: clamp(2rem, 6vw, 4.5rem); border-radius: var(--radius-lg); background: var(--bg-3); }
+    .delivery-box::after { content: "LP"; position: absolute; right: -1rem; bottom: -5rem; color: hsl(5 38% 45% / .07); font-size: 18rem; font-weight: 700; line-height: 1; letter-spacing: -.08em; pointer-events: none; }
+    .delivery-content { position: relative; z-index: 1; max-width: 700px; }
+    .delivery-content h2 { margin-bottom: 1rem; font-size: clamp(2rem, 4.5vw, 3.3rem); line-height: 1.08; letter-spacing: -.03em; }
+    .delivery-content p { max-width: 62ch; margin-bottom: 1.8rem; color: var(--text-2); font-size: 1rem; line-height: 1.75; }
+    .delivery-tags { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .delivery-tag { padding: .45rem .75rem; border: 1px solid var(--border-strong); border-radius: 999px; color: var(--text-2); font-size: .75rem; }
+
+    .final-cta { position: relative; padding: clamp(6rem, 12vw, 10rem) 0; text-align: center; }
+    .final-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 48%, hsl(5 38% 22% / .42), transparent 48%); pointer-events: none; }
+    .final-inner { position: relative; z-index: 1; }
+    .final-cta h2 { max-width: 14ch; margin: 0 auto 1rem; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -.038em; text-wrap: balance; }
+    .final-cta p { max-width: 56ch; margin: 0 auto 2rem; color: var(--text-2); line-height: 1.75; }
+    .final-cta .btn { padding-inline: 1.8rem; }
+
+    footer { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 2rem; align-items: flex-start; }
+    .footer-tagline, .footer-meta { color: var(--text-muted); font-size: .75rem; line-height: 1.75; }
+    .footer-brand { margin-bottom: .45rem; }
+    .footer-meta { text-align: right; }
+
+    .mobile-cta { display: none; }
+    .reveal { transform: translateY(18px); transition: transform .7s var(--ease), opacity .7s var(--ease); opacity: .82; }
+    .reveal.in-view { transform: none; opacity: 1; }
+
+    @media (max-width: 920px) {
+      .nav { display: none; }
+      .hero { min-height: auto; padding-top: calc(var(--header-height) + 5rem); }
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-copy-block { max-width: 720px; }
+      .browser-mockup { min-height: 450px; }
+      .overview-grid, .conditions { grid-template-columns: 1fr; }
+      .overview-quote, .conditions-title { position: static; }
+      .overview-quote p { max-width: 24ch; }
+      .value-panel { grid-template-columns: 1fr; }
+      .value-lead { min-height: 300px; }
+      .value-lead h2 { max-width: 15ch; }
+    }
+
+    @media (max-width: 680px) {
+      :root { --header-height: 58px; }
+      .container, .container-narrow { width: min(100% - 2rem, 1120px); }
+      .client-tag { max-width: 130px; }
+      .hero { padding-top: calc(var(--header-height) + 3.75rem); }
+      h1 { max-width: none; font-size: clamp(2.25rem, 11vw, 3.3rem); }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+      .hero-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .browser-mockup { min-height: 392px; }
+      .mock-page { min-height: 350px; }
+      .mock-nav { padding-inline: .85rem; }
+      .mock-nav-link { display: none; }
+      .mock-hero { grid-template-columns: 1fr; }
+      .mock-content { padding: 1.6rem 1.2rem; }
+      .mock-title { max-width: 12ch; font-size: 1.8rem; }
+      .mock-visual { display: none; }
+      .mock-proof-item { padding: .65rem; }
+      .mock-tabs { right: .5rem; bottom: .5rem; }
+      .deliverable { grid-template-columns: 1fr; gap: .45rem; }
+      .scope-row { grid-template-columns: 38px 1fr; padding: 1.2rem 1rem; }
+      .scope-row p { grid-column: 2; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .amount { font-size: 3.4rem; }
+      .delivery-box::after { font-size: 12rem; }
+      .footer-inner { flex-direction: column; }
+      .footer-meta { text-align: left; }
+      .mobile-cta {
+        position: fixed;
+        z-index: 35;
+        right: .75rem;
+        bottom: .75rem;
+        left: .75rem;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid hsl(5 40% 65% / .3);
+        border-radius: var(--radius);
+        background: hsl(5 38% 42% / .96);
+        color: white;
+        font-size: .86rem;
+        font-weight: 700;
+        backdrop-filter: blur(12px);
+        transform: translateY(80px);
+        transition: transform .35s var(--ease);
+      }
+      .mobile-cta.visible { transform: translateY(0); }
+      footer { padding-bottom: 5.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { transform: none; opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="read-progress" aria-hidden="true"></div>
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="VS Experience — voltar ao início">
+        <span class="brand-dot" aria-hidden="true"></span>
+        VS Experience
+      </a>
+      <span class="client-tag">Proposta · Advocacia</span>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#visao-geral">Visão geral</a>
+        <a href="#escopo">Escopo</a>
+        <a href="#investimento">Investimento</a>
+        <a href="#condicoes">Condições</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="hero-copy-block">
+          <span class="proposal-label">Proposta comercial exclusiva · Advocacia</span>
+          <h1>Uma presença jurídica que transmite <span class="accent">confiança.</span></h1>
+          <p class="hero-copy">Desenvolvimento de uma landing page profissional, moderna e responsiva para apresentar sua atuação com clareza e conduzir potenciais clientes ao contato pelo WhatsApp.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#investimento">Ver investimento</a>
+            <a class="btn btn-secondary" href="#escopo">Conhecer o escopo</a>
+          </div>
+          <div class="hero-facts" aria-label="Resumo da proposta">
+            <div class="fact">
+              <div class="fact-label">Formato</div>
+              <div class="fact-value">Página única</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Experiência</div>
+              <div class="fact-value">100% responsiva</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">À vista</div>
+              <div class="fact-value">R$ 750 via PIX</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="browser-mockup" aria-label="Mockup de uma landing page para advocacia">
+          <div class="browser-bar" aria-hidden="true">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+            <span class="browser-address"></span>
+          </div>
+          <div class="mock-page">
+            <div class="mock-nav">
+              <div class="mock-logo"><span class="mock-logo-mark">A</span> Advocacia</div>
+              <span class="mock-nav-link">Início</span><span class="mock-nav-link">Atuação</span><span class="mock-nav-link">Sobre</span>
+              <span class="mock-nav-cta">Falar com advogado</span>
+            </div>
+            <div class="mock-hero">
+              <div class="mock-content">
+                <div class="mock-kicker" id="mock-kicker">Atuação jurídica responsável</div>
+                <div class="mock-title" id="mock-title">Orientação clara para decisões seguras.</div>
+                <p class="mock-text" id="mock-text">Atendimento próximo e estratégico para compreender cada situação e indicar os caminhos jurídicos possíveis.</p>
+                <div class="mock-buttons"><span class="mock-button primary">Solicitar atendimento</span><span class="mock-button ghost">Conhecer atuação</span></div>
+              </div>
+              <div class="mock-visual" aria-hidden="true">
+                <div class="law-symbol">
+                  <svg viewBox="0 0 180 180" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M90 26v118M55 144h70M68 154h44M42 55h96M90 38L52 55l-18 40h36L52 55M90 38l38 17 18 40h-36l18-40"/>
+                    <path d="M30 95c4 12 12 18 22 18s18-6 22-18M106 95c4 12 12 18 22 18s18-6 22-18"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="mock-proof">
+              <div class="mock-proof-item"><span class="mock-proof-strong">Clareza</span><span class="mock-proof-small">Comunicação acessível</span></div>
+              <div class="mock-proof-item"><span class="mock-proof-strong">Proximidade</span><span class="mock-proof-small">Atendimento humano</span></div>
+              <div class="mock-proof-item"><span class="mock-proof-strong">Responsabilidade</span><span class="mock-proof-small">Atuação ética</span></div>
+            </div>
+          </div>
+          <div class="mock-tabs" aria-label="Alternar exemplo de área jurídica">
+            <button class="mock-tab active" type="button" data-area="civil">Civil</button>
+            <button class="mock-tab" type="button" data-area="familia">Família</button>
+            <button class="mock-tab" type="button" data-area="empresarial">Empresarial</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" id="visao-geral">
+      <div class="container overview-grid">
+        <div class="overview-quote reveal">
+          <span class="overline">Objetivo do projeto</span>
+          <p>Transformar conhecimento jurídico em uma apresentação digital clara, profissional e pronta para gerar conversas.</p>
+          <span>VS Experience · Desenvolvimento Web & UX/UI</span>
+        </div>
+        <div class="deliverables reveal">
+          <div class="deliverable"><strong>Presença profissional</strong><p>Layout moderno e adaptado à identidade visual, com uma leitura organizada do profissional, escritório, serviço ou área de atuação.</p></div>
+          <div class="deliverable"><strong>Estrutura estratégica</strong><p>Informações organizadas para responder às principais dúvidas e conduzir o visitante até a ação de contato.</p></div>
+          <div class="deliverable"><strong>Conversão direta</strong><p>Chamadas para ação distribuídas nos pontos certos, com integração ao WhatsApp, redes sociais e formulário quando necessário.</p></div>
+          <div class="deliverable"><strong>Experiência completa</strong><p>Responsividade, SEO básico, otimização de carregamento, publicação e ajustes finais para conclusão do projeto.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" id="escopo">
+      <div class="container-narrow">
+        <div class="section-heading reveal">
+          <span class="overline">Estrutura da landing page</span>
+          <h2>Uma narrativa pensada para levar da primeira impressão ao contato.</h2>
+          <p>A composição poderá ser personalizada de acordo com as informações e materiais do profissional, mantendo uma jornada objetiva e coerente.</p>
+        </div>
+        <div class="scope-shell reveal">
+          <article class="scope-row"><span class="scope-num">01</span><h3>Destaque inicial</h3><p>Apresentação da principal área de atuação, proposta de valor e chamada para contato.</p></article>
+          <article class="scope-row"><span class="scope-num">02</span><h3>Sobre / apresentação</h3><p>Contexto sobre o profissional ou escritório, sua abordagem e forma de atendimento.</p></article>
+          <article class="scope-row"><span class="scope-num">03</span><h3>Serviços ou soluções</h3><p>Exposição objetiva das áreas de atuação ou dos serviços jurídicos oferecidos.</p></article>
+          <article class="scope-row"><span class="scope-num">04</span><h3>Benefícios e diferenciais</h3><p>Aspectos que ajudam o visitante a compreender a experiência e o posicionamento profissional.</p></article>
+          <article class="scope-row"><span class="scope-num">05</span><h3>Prova social</h3><p>Projetos, resultados, avaliações ou depoimentos quando houver material disponível e adequado.</p></article>
+          <article class="scope-row"><span class="scope-num">06</span><h3>Chamada para ação</h3><p>Direcionamento estratégico para contato, atendimento ou solicitação de informações.</p></article>
+          <article class="scope-row"><span class="scope-num">07</span><h3>Contato</h3><p>WhatsApp, redes sociais, formulário quando necessário e demais informações relevantes.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" aria-labelledby="incluido-title">
+      <div class="container">
+        <div class="value-panel reveal">
+          <div class="value-lead">
+            <div>
+              <span class="overline">Escopo contemplado</span>
+              <h2 id="incluido-title">Do layout à publicação.</h2>
+              <p>A entrega cobre as etapas essenciais para colocar a landing page no ar com acabamento profissional.</p>
+            </div>
+            <div class="value-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+          </div>
+          <div class="value-list">
+            <div class="value-item"><span class="value-check">✓</span><div><strong>Design e desenvolvimento</strong><p>Landing page de página única, moderna e adaptada à identidade visual.</p></div></div>
+            <div class="value-item"><span class="value-check">✓</span><div><strong>Responsividade completa</strong><p>Experiência ajustada para desktop, tablet e celular.</p></div></div>
+            <div class="value-item"><span class="value-check">✓</span><div><strong>Conteúdo e integrações</strong><p>Inserção dos materiais fornecidos, CTAs, WhatsApp, redes sociais e formulário quando necessário.</p></div></div>
+            <div class="value-item"><span class="value-check">✓</span><div><strong>Preparação técnica</strong><p>SEO básico e otimização inicial de carregamento e desempenho.</p></div></div>
+            <div class="value-item"><span class="value-check">✓</span><div><strong>Publicação e conclusão</strong><p>Configuração no domínio e hospedagem do cliente, além dos ajustes finais acordados.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" id="investimento">
+      <div class="container">
+        <div class="section-heading center reveal">
+          <span class="overline">Investimento</span>
+          <h2>Escolha a forma de pagamento que faz mais sentido.</h2>
+          <p>O escopo e a entrega são os mesmos nas duas modalidades. O valor do cartão já contempla as taxas do parcelamento.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card pix reveal">
+            <span class="price-badge">Melhor condição</span>
+            <h3>Pagamento via PIX</h3>
+            <p class="price-intro">Pagamento integral para confirmação e início do projeto.</p>
+            <div class="price"><span class="currency">R$</span><span class="amount">750,00</span></div>
+            <p class="price-caption">à vista via PIX</p>
+            <div class="installment"><span>Modalidade</span><strong>Pagamento à vista</strong></div>
+            <a class="btn btn-primary" href="#fechamento">Escolher PIX</a>
+          </article>
+
+          <article class="price-card card reveal">
+            <span class="price-badge">Flexibilidade</span>
+            <h3>Cartão de crédito</h3>
+            <p class="price-intro">Possibilidade de parcelamento para distribuir o investimento.</p>
+            <div class="price"><span class="currency">R$</span><span class="amount">812,80</span></div>
+            <p class="price-caption">valor total no cartão</p>
+            <div class="installment"><span>Parcelamento</span><strong>até 10x de R$ 81,28</strong></div>
+            <p class="fee-note">As taxas referentes ao parcelamento já estão incluídas no valor apresentado.</p>
+            <a class="btn btn-secondary" href="#fechamento">Escolher cartão</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" id="condicoes">
+      <div class="container conditions">
+        <div class="conditions-title reveal">
+          <span class="overline">Condições do projeto</span>
+          <h2>Transparência em cada etapa.</h2>
+          <p>Os pontos abaixo ajudam a manter o processo organizado e a entrega alinhada ao escopo aprovado.</p>
+        </div>
+        <div class="condition-list reveal">
+          <div class="condition-item"><svg class="condition-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><p>O desenvolvimento será iniciado <strong>após a confirmação do pagamento</strong>.</p></div>
+          <div class="condition-item"><svg class="condition-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><p>O cliente deverá disponibilizar <strong>logotipo, informações, imagens e demais materiais</strong> necessários para a construção da página.</p></div>
+          <div class="condition-item"><svg class="condition-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><p><strong>Domínio, hospedagem, licenças, plugins ou ferramentas externas pagas</strong> não estão inclusos no investimento.</p></div>
+          <div class="condition-item"><svg class="condition-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><p>Funcionalidades ou integrações adicionais não previstas neste escopo poderão ser <strong>orçadas separadamente</strong>.</p></div>
+          <div class="condition-item"><svg class="condition-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg><p>Alterações estruturais solicitadas após a aprovação da página poderão gerar <strong>orçamento complementar</strong>.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-line" aria-labelledby="entrega-title">
+      <div class="container">
+        <div class="delivery-box reveal">
+          <div class="delivery-content">
+            <span class="overline">Entrega final</span>
+            <h2 id="entrega-title">Publicada, responsiva e pronta para utilização comercial.</h2>
+            <p>Ao final do projeto, o cliente receberá uma landing page com foco em boa experiência de navegação, apresentação profissional e acesso simples aos principais canais de contato.</p>
+            <div class="delivery-tags" aria-label="Características da entrega">
+              <span class="delivery-tag">Página publicada</span>
+              <span class="delivery-tag">Desktop, tablet e celular</span>
+              <span class="delivery-tag">Contato integrado</span>
+              <span class="delivery-tag">SEO básico</span>
+              <span class="delivery-tag">Ajustes finais</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta section-line" id="fechamento">
+      <div class="container final-inner reveal">
+        <span class="overline">Próximo passo</span>
+        <h2>Vamos construir essa presença digital?</h2>
+        <p>Confirme a aprovação pelo WhatsApp para iniciarmos o alinhamento dos materiais e as próximas etapas do projeto.</p>
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor%21%20Vi%20a%20proposta%20da%20landing%20page%20para%20advocacia%20e%20quero%20dar%20continuidade%20ao%20projeto." target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785a9.87 9.87 0 0 1-5.034-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884M20.464 3.488A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Aprovar proposta pelo WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="brand footer-brand"><span class="brand-dot" aria-hidden="true"></span>VS Experience</div>
+        <div class="footer-tagline">Desenvolvimento Web · UX/UI · Soluções Digitais</div>
+      </div>
+      <div class="footer-meta">
+        <div>Victor Santos · CNPJ: 63.282.462/0001-69</div>
+        <div>vtorsilvasantos@gmail.com · (12) 99183-3641</div>
+        <div>© 2026 VS Experience · Proposta confidencial</div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="mobile-cta" id="mobile-cta" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor%21%20Vi%20a%20proposta%20da%20landing%20page%20para%20advocacia%20e%20quero%20dar%20continuidade%20ao%20projeto." target="_blank" rel="noopener noreferrer">Aprovar proposta pelo WhatsApp</a>
+
+  <script>
+    const progress = document.getElementById('read-progress');
+    const header = document.getElementById('header');
+    const mobileCta = document.getElementById('mobile-cta');
+
+    let mobileCtaSuppressed = false;
+
+    const updateScrollUI = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progress.style.width = `${Math.min(100, percentage)}%`;
+      header.classList.toggle('scrolled', window.scrollY > 32);
+      mobileCta.classList.toggle('visible', window.scrollY > window.innerHeight * .65 && !mobileCtaSuppressed);
+    };
+
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+    updateScrollUI();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .08, rootMargin: '0px 0px -24px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+
+    const ctaBlockingSections = new Set();
+    const ctaObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) ctaBlockingSections.add(entry.target);
+        else ctaBlockingSections.delete(entry.target);
+      });
+      mobileCtaSuppressed = ctaBlockingSections.size > 0;
+      updateScrollUI();
+    }, { threshold: .08 });
+
+    document.querySelectorAll('#investimento, #fechamento').forEach((section) => ctaObserver.observe(section));
+
+    const mockContent = {
+      civil: {
+        kicker: 'Atuação jurídica responsável',
+        title: 'Orientação clara para decisões seguras.',
+        text: 'Atendimento próximo e estratégico para compreender cada situação e indicar os caminhos jurídicos possíveis.'
+      },
+      familia: {
+        kicker: 'Direito de família',
+        title: 'Cuidado jurídico em momentos delicados.',
+        text: 'Escuta atenta, orientação transparente e condução responsável para proteger o que realmente importa.'
+      },
+      empresarial: {
+        kicker: 'Direito empresarial',
+        title: 'Segurança jurídica para seguir em frente.',
+        text: 'Apoio preventivo e estratégico para decisões empresariais mais consistentes e relações mais seguras.'
+      }
+    };
+
+    const kicker = document.getElementById('mock-kicker');
+    const title = document.getElementById('mock-title');
+    const text = document.getElementById('mock-text');
+
+    document.querySelectorAll('.mock-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const content = mockContent[tab.dataset.area];
+        document.querySelectorAll('.mock-tab').forEach((item) => item.classList.remove('active'));
+        tab.classList.add('active');
+        kicker.textContent = content.kicker;
+        title.textContent = content.title;
+        text.textContent = content.text;
+      });
+    });
+  </script>
+</body>
+</html>
