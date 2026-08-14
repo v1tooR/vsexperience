@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#120d0d">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Proposta para desenvolvimento completo de e-commerce a partir do projeto aprovado no Figma.">
-  <title>Proposta E-commerce · Do Figma à loja no ar · VS Experience</title>
+  <meta name="description" content="Proposta para desenvolvimento de e-commerce B2C e portal B2B para lojistas em WordPress e WooCommerce.">
+  <title>Proposta E-commerce B2C + Portal B2B · VS Experience</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 
   <style>
     /* ============================================================
-       VS EXPERIENCE — SEVEN VISUAL SYSTEM / E-COMMERCE PROPOSAL
+       VS EXPERIENCE — SEVEN VISUAL SYSTEM / B2C + B2B PROPOSAL
        ============================================================ */
     :root {
       --rose: oklch(0.54 0.12 25);
@@ -756,6 +756,187 @@
     .signature .brand { color: var(--bg); }
     .signature .brand-mark { box-shadow: none; }
 
+    /* B2C + B2B proposal extensions */
+    :focus-visible { outline: 2px solid var(--rose-soft); outline-offset: 3px; }
+    .channel-switch {
+      display: inline-flex;
+      gap: 3px;
+      margin-left: auto;
+      padding: 3px;
+      border-radius: 9px;
+      background: var(--surface);
+    }
+    .channel-switch button {
+      min-height: 28px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .channel-switch button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+    .commerce-view[hidden] { display: none; }
+    .commerce-view { animation: panelIn .4s var(--ease-out) both; }
+    .dealer-view { padding: 14px; }
+    .dealer-welcome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 17px 18px;
+      border-radius: 12px;
+      background: var(--wine-deep);
+    }
+    .dealer-welcome small, .dealer-price small { display: block; color: var(--text-muted); font-size: 8px; }
+    .dealer-welcome strong { display: block; margin-top: 3px; font-size: 16px; letter-spacing: -.025em; }
+    .dealer-status {
+      padding: 5px 8px;
+      border-radius: 8px;
+      background: color-mix(in oklch, #52c787 13%, transparent);
+      color: #72d69d;
+      font-size: 8px;
+      font-weight: 700;
+    }
+    .dealer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+    .dealer-card { padding: 14px; border-radius: 10px; background: var(--surface); }
+    .dealer-card-head { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+    .dealer-card-head strong { font-size: 10px; }
+    .dealer-card-head span { color: var(--rose-soft); font-size: 8px; font-weight: 700; }
+    .dealer-line { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); }
+    .dealer-line b { font-size: 9px; }
+    .dealer-line small { display: block; color: var(--text-muted); font-size: 7px; }
+    .dealer-price { text-align: right; }
+    .dealer-price strong { color: var(--rose-soft); font-size: 11px; }
+    .dealer-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--line);
+    }
+    .dealer-summary div { padding: 11px; background: var(--surface); }
+    .dealer-summary strong { display: block; font-size: 11px; }
+    .dealer-summary small { color: var(--text-muted); font-size: 7px; }
+
+    .platform-map {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px minmax(0, 1fr);
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 58px;
+    }
+    .channel-panel, .platform-core {
+      position: relative;
+      min-height: 220px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+    }
+    .channel-panel::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 1px;
+      background: var(--rose);
+    }
+    .channel-panel:first-child::after { right: -20px; }
+    .channel-panel:last-child::after { left: -20px; }
+    .channel-label { display: flex; align-items: center; gap: 9px; color: var(--rose-soft); font-size: 11px; font-weight: 700; }
+    .channel-label svg { width: 17px; }
+    .channel-panel h3 { margin: 34px 0 8px; font-size: 24px; letter-spacing: -.03em; }
+    .channel-panel p { margin: 0; color: var(--text-muted); font-size: 13px; }
+    .platform-core {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--rose);
+      color: white;
+    }
+    .platform-core svg { width: 34px; margin-bottom: 20px; }
+    .platform-core strong { font-size: 18px; }
+    .platform-core small { margin-top: 6px; opacity: .78; font-size: 10px; }
+
+    .purchase-flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      margin-top: 48px;
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .purchase-step { position: relative; min-height: 170px; padding: 24px 18px; border-right: 1px solid var(--line); }
+    .purchase-step:last-child { border-right: 0; }
+    .purchase-step .step-num { color: var(--rose-soft); font-size: 11px; font-weight: 700; }
+    .purchase-step strong { display: block; margin-top: 48px; font-size: 15px; }
+    .purchase-step small { display: block; margin-top: 5px; color: var(--text-muted); font-size: 10px; }
+    .purchase-step::after {
+      content: '→';
+      position: absolute;
+      top: 22px;
+      right: -8px;
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--bg);
+      color: var(--rose-soft);
+      font-size: 10px;
+    }
+    .purchase-step:last-child::after { display: none; }
+
+    .quantity-demo {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      gap: clamp(32px, 7vw, 84px);
+      align-items: center;
+    }
+    .quantity-controls { padding: 30px; border-radius: var(--radius-lg); background: var(--bg-elevated); }
+    .quantity-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .quantity-header span { color: var(--text-muted); font-size: 12px; }
+    .quantity-picker { display: flex; gap: 8px; }
+    .quantity-picker button {
+      min-width: 48px;
+      min-height: 40px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text-soft);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .quantity-picker button[aria-pressed="true"] { background: var(--rose); color: white; }
+    .lead-result { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; padding-top: 24px; border-top: 1px solid var(--line); }
+    .lead-days { min-width: 92px; display: flex; align-items: baseline; gap: 4px; color: var(--rose-soft); font-size: 48px; line-height: .9; letter-spacing: -.04em; font-weight: 700; }
+    .lead-days small { color: var(--text-muted); font-size: 10px; letter-spacing: 0; }
+    .lead-result strong { display: block; font-size: 15px; }
+    .lead-result small { display: block; margin-top: 4px; color: var(--text-muted); font-size: 11px; }
+
+    .stage-prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+    .stage-price-card { padding: 28px; border-radius: var(--radius-lg); background: var(--surface); }
+    .stage-price-card header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 34px; }
+    .stage-price-card .stage-number { color: var(--rose-soft); font-size: 11px; font-weight: 700; }
+    .stage-price-card .stage-time { color: var(--text-muted); font-size: 11px; }
+    .stage-price-card h3 { margin-bottom: 8px; font-size: 24px; letter-spacing: -.03em; }
+    .stage-price-card p { min-height: 52px; margin-bottom: 28px; color: var(--text-muted); font-size: 13px; }
+    .stage-price { display: flex; align-items: flex-start; gap: 6px; }
+    .stage-price span { padding-top: 5px; font-size: 13px; }
+    .stage-price strong { font-size: 44px; line-height: .9; letter-spacing: -.045em; }
+    .stage-price-card:first-child { background: var(--rose); color: white; }
+    .stage-price-card:first-child p, .stage-price-card:first-child .stage-time, .stage-price-card:first-child .stage-number { color: color-mix(in oklch, white 78%, transparent); }
+    .contract-note { margin: 16px 0 34px; color: var(--text-soft); font-size: 13px; text-align: center; }
+    .pricing-section::after { content: '4.150'; }
+
     /* Toast */
     .toast {
       position: fixed;
@@ -804,6 +985,10 @@
       .scope-layout { grid-template-columns: 260px minmax(0, 1fr); gap: 32px; }
       .table-head { align-items: start; }
       .provide-grid { grid-template-columns: 1fr 1fr; }
+      .purchase-flow { grid-template-columns: repeat(3, 1fr); }
+      .purchase-step:nth-child(3) { border-right: 0; }
+      .purchase-step:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+      .purchase-step:nth-child(3)::after { display: none; }
     }
 
     @media (max-width: 780px) {
@@ -839,6 +1024,10 @@
       .service-row { grid-template-columns: minmax(0, 1fr) 150px; }
       .closing-grid { gap: 48px; }
       .signature { margin-top: 68px; }
+      .platform-map { grid-template-columns: 1fr 150px 1fr; gap: 12px; }
+      .channel-panel { padding: 22px; }
+      .quantity-demo { grid-template-columns: 1fr; }
+      .stage-prices { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 520px) {
@@ -873,6 +1062,28 @@
       .service-tag { display: none; }
       .partnership-note { grid-template-columns: 1fr; }
       .meta-row, .signature { align-items: flex-start; flex-direction: column; }
+      .channel-switch { order: 3; width: 100%; margin-left: 0; }
+      .channel-switch button { flex: 1; }
+      .shop-header { flex-wrap: wrap; }
+      .shop-tools { margin-left: 0; }
+      .dealer-grid { grid-template-columns: 1fr; }
+      .dealer-card:nth-child(2) { display: none; }
+      .dealer-summary { grid-template-columns: 1fr; }
+      .dealer-summary div:nth-child(n+2) { display: none; }
+      .platform-map { grid-template-columns: 1fr; }
+      .channel-panel::after { display: none; }
+      .platform-core { min-height: 150px; order: -1; }
+      .purchase-flow { grid-template-columns: 1fr 1fr; }
+      .purchase-step { min-height: 142px; }
+      .purchase-step:nth-child(odd) { border-right: 1px solid var(--line); }
+      .purchase-step:nth-child(even) { border-right: 0; }
+      .purchase-step:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+      .purchase-step:nth-child(3)::after { display: grid; }
+      .purchase-step:nth-child(even)::after { display: none; }
+      .quantity-header { align-items: flex-start; flex-direction: column; }
+      .quantity-picker { width: 100%; }
+      .quantity-picker button { flex: 1; min-width: 0; }
+      .stage-price-card { padding: 24px 20px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -902,12 +1113,12 @@
         <span class="brand-mark" aria-hidden="true"></span>
         <span>VS Experience</span>
       </a>
-      <span class="client-chip">Proposta · Desenvolvimento de E-commerce</span>
+      <span class="client-chip">Proposta · E-commerce B2C + Portal B2B</span>
       <nav class="nav-links" aria-label="Navegação da proposta">
-        <a href="#solucao">Solução</a>
+        <a href="#solucao">Visão geral</a>
         <a href="#escopo">Escopo</a>
         <a href="#investimento">Investimento</a>
-        <a href="#servicos">Opções</a>
+        <a href="#condicoes">Condições</a>
         <a class="nav-cta js-whatsapp" href="#" target="_blank" rel="noopener">
           <span>Aprovar proposta</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -920,12 +1131,12 @@
     <section class="hero" id="inicio">
       <div class="container hero-layout">
         <div class="hero-copy">
-          <div class="context-line reveal">Desenvolvimento de e-commerce</div>
-          <h1 class="display reveal delay-1">Do Figma aprovado <em>à loja vendendo.</em></h1>
-          <p class="hero-subtitle reveal delay-2">Transformação do projeto visual já desenvolvido em uma loja virtual completa: fiel ao layout, responsiva, integrada a pagamento e frete e pronta para operar comercialmente.</p>
+          <div class="context-line reveal">WordPress + WooCommerce · duas etapas</div>
+          <h1 class="display reveal delay-1">Uma plataforma. <em>Dois canais de venda.</em></h1>
+          <p class="hero-subtitle reveal delay-2">E-commerce profissional para vender em todo o Brasil, com jornada completa para o consumidor final e uma área exclusiva para lojistas com preços, mínimos e condições comerciais próprias.</p>
           <div class="hero-actions reveal delay-2">
             <a class="button button-primary" href="#investimento">
-              Ver projeto completo
+              Ver investimento
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
             <button class="button button-secondary" type="button" id="copyLink">
@@ -935,48 +1146,53 @@
           </div>
           <div class="hero-note reveal delay-2">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            Páginas, catálogo, checkout, frete, pagamento e publicação
+            B2C em até 30 dias · B2B em até 30 dias · etapas independentes
           </div>
         </div>
 
-        <div class="partner-os reveal delay-2" aria-label="Mockup da loja virtual desenvolvida a partir do Figma">
+        <div class="partner-os reveal delay-2" aria-label="Mockup interativo da loja B2C e do portal para lojistas">
           <div class="os-topbar">
             <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
-            <span class="os-title">sualoja.com.br/novidades</span>
-            <span class="os-live">Loja online</span>
+            <span class="os-title" id="mockupUrl">sualoja.com.br/produtos</span>
+            <span class="os-live">Operação online</span>
           </div>
 
-          <div class="shop-header" aria-hidden="true">
+          <div class="shop-header">
             <span class="shop-logo"><i></i>SUA LOJA</span>
-            <span class="shop-nav"><span>Novidades</span><span>Categorias</span><span>Ofertas</span><span>Contato</span></span>
+            <span class="shop-nav" aria-hidden="true"><span>Produtos</span><span>Categorias</span><span>Institucional</span></span>
             <span class="shop-tools">
               <span class="shop-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar</span>
               <span class="shop-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6 5 2H2"/></svg><span class="cart-badge">3</span></span>
             </span>
+            <span class="channel-switch" role="group" aria-label="Alternar visualização do mockup">
+              <button type="button" aria-pressed="true" data-commerce-mode="b2c">Consumidor</button>
+              <button type="button" aria-pressed="false" data-commerce-mode="b2b">Lojista</button>
+            </span>
           </div>
 
+          <div class="commerce-view" data-commerce-view="b2c">
           <div class="shop-banner" aria-hidden="true">
-            <small>COLEÇÃO DESTAQUE</small>
-            <strong>O layout do Figma, agora vendendo.</strong>
+            <small>COMPRA DIRETA · B2C</small>
+            <strong>Produtos disponíveis para todo o Brasil.</strong>
             <span>Comprar agora →</span>
           </div>
 
           <div class="shop-filters" aria-hidden="true">
             <span class="filter-chip active">Todos</span>
             <span class="filter-chip">Mais vendidos</span>
-            <span class="filter-chip">Tamanho</span>
-            <span class="filter-chip">Cor</span>
+            <span class="filter-chip">Categoria</span>
+            <span class="filter-chip">Disponibilidade</span>
             <span class="filter-chip">Preço</span>
           </div>
 
           <div class="shop-grid" aria-hidden="true">
             <div class="pcard">
               <div class="pcard-media"><span class="pcard-tag">-20%</span><span class="pcard-fav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.5-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.5-7 9-7 9Z"/></svg></span></div>
-              <div class="pcard-body"><b>Produto em destaque</b><small>3 variações</small><span class="pcard-price"><strong>R$ 189,90</strong><s>R$ 239</s></span></div>
+              <div class="pcard-body"><b>Produto em destaque</b><small>Produção: 3 dias</small><span class="pcard-price"><strong>R$ 189,90</strong><s>R$ 239</s></span></div>
             </div>
             <div class="pcard">
               <div class="pcard-media"><span class="pcard-fav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.5-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.5-7 9-7 9Z"/></svg></span></div>
-              <div class="pcard-body"><b>Item da coleção</b><small>Em estoque</small><span class="pcard-price"><strong>R$ 129,90</strong></span></div>
+              <div class="pcard-body"><b>Item da coleção</b><small>Pronta entrega</small><span class="pcard-price"><strong>R$ 129,90</strong></span></div>
             </div>
             <div class="pcard">
               <div class="pcard-media"><span class="pcard-tag">NOVO</span></div>
@@ -998,13 +1214,35 @@
 
           <div class="shop-checkout" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
-            <span><strong>3 itens · R$ 486,70</strong><small>Frete calculado · cupom aplicado</small></span>
+            <span><strong>3 itens · R$ 486,70</strong><small>Frete calculado · PIX ou cartão</small></span>
             <span class="checkout-cta">Finalizar compra</span>
           </div>
+          </div>
 
-          <div class="floating-label">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-            Pedido confirmado
+          <div class="commerce-view dealer-view" data-commerce-view="b2b" hidden>
+            <div class="dealer-welcome">
+              <span><small>ÁREA EXCLUSIVA</small><strong>Olá, Lojista Aurora</strong></span>
+              <span class="dealer-status">Cadastro aprovado</span>
+            </div>
+            <div class="dealer-grid" aria-hidden="true">
+              <div class="dealer-card">
+                <div class="dealer-card-head"><strong>Tabela comercial A</strong><span>Pedido mín. R$ 800</span></div>
+                <div class="dealer-line"><span><b>Produto Essencial</b><small>Mínimo 12 unidades</small></span><span class="dealer-price"><strong>R$ 78,00</strong><small>varejo R$ 129</small></span></div>
+                <div class="dealer-line"><span><b>Produto Premium</b><small>Mínimo 6 unidades</small></span><span class="dealer-price"><strong>R$ 114,00</strong><small>varejo R$ 189</small></span></div>
+                <div class="dealer-line"><span><b>Kit Expositor</b><small>Lote fechado</small></span><span class="dealer-price"><strong>R$ 420,00</strong><small>condição B2B</small></span></div>
+              </div>
+              <div class="dealer-card">
+                <div class="dealer-card-head"><strong>Condições da conta</strong><span>Grupo Ouro</span></div>
+                <div class="dealer-line"><span><b>Pagamento</b><small>Conforme integração</small></span><span class="dealer-price"><strong>PIX</strong><small>ou cartão</small></span></div>
+                <div class="dealer-line"><span><b>Produção</b><small>48 unidades no pedido</small></span><span class="dealer-price"><strong>12 dias</strong><small>estimativa</small></span></div>
+                <div class="dealer-line"><span><b>Frete</b><small>CEP cadastrado</small></span><span class="dealer-price"><strong>R$ 89</strong><small>calculado</small></span></div>
+              </div>
+            </div>
+            <div class="dealer-summary" aria-hidden="true">
+              <div><strong>48 unidades</strong><small>quantidade do pedido</small></div>
+              <div><strong>R$ 3.744</strong><small>total comercial</small></div>
+              <div><strong>Pedido #1842</strong><small>mesmo painel da loja</small></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1014,12 +1252,12 @@
       <div class="container thesis-grid">
         <div>
           <div class="context-line reveal">A ideia central</div>
-          <h2 class="section-title reveal delay-1">O Figma define a experiência. O desenvolvimento entrega a <span class="accent">operação de vendas</span>.</h2>
+          <h2 class="section-title reveal delay-1">Varejo e atacado entram por portas diferentes. A gestão acontece <span class="accent">no mesmo lugar</span>.</h2>
         </div>
         <div class="thesis-copy reveal delay-2">
-          <p>Cada tela aprovada vira código responsivo, com a tipografia, os espaçamentos, as cores e os componentes definidos no projeto de interface.</p>
-          <p><strong>Por trás da vitrine, uma loja configurada para cadastrar produtos, controlar estoque, calcular frete, aplicar cupons e receber pagamentos.</strong></p>
-          <div class="not-sum">Do layout aprovado.<br><span>À primeira venda.</span></div>
+          <p>O consumidor encontra o catálogo, calcula o frete e finaliza a compra. O lojista aprovado acessa outra camada de preços, mínimos e condições comerciais.</p>
+          <p><strong>Produtos, clientes, perfis e pedidos permanecem centralizados no WooCommerce, simplificando a rotina da empresa.</strong></p>
+          <div class="not-sum">Duas experiências de compra.<br><span>Uma operação centralizada.</span></div>
         </div>
       </div>
     </section>
@@ -1028,32 +1266,48 @@
       <div class="container">
         <div class="model-head">
           <div>
-            <div class="context-line reveal">Como o projeto acontece</div>
-            <h2 class="section-title reveal delay-1" id="modelo-title">Quatro etapas, do arquivo à loja publicada.</h2>
+            <div class="context-line reveal">Arquitetura comercial</div>
+            <h2 class="section-title reveal delay-1" id="modelo-title">Cada público vê a condição certa. A empresa vê tudo.</h2>
           </div>
-          <p class="section-lead reveal delay-2">Um caminho previsível: interpretar o projeto visual, desenvolver as páginas, configurar a operação e publicar com tudo testado.</p>
+          <p class="section-lead reveal delay-2">O mesmo catálogo sustenta duas experiências de compra, com regras próprias por perfil e pedidos reunidos no painel administrativo.</p>
         </div>
 
-        <div class="flow-track reveal">
-          <div class="flow-step">
-            <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M8 2h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8Z"/><path d="M8 10h4v8a4 4 0 1 1-4-4Z"/></svg></div>
-            <h3>Leitura do Figma</h3><p>Mapeamento de páginas, componentes, tokens, estados e comportamento responsivo.</p>
-            <span class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div class="platform-map reveal">
+          <article class="channel-panel">
+            <div class="channel-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18l-1.5 11h-15z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>B2C · consumidor final</div>
+            <h3>Compra direta</h3>
+            <p>Preço de varejo, carrinho, frete, PIX, cartão e acompanhamento do pedido.</p>
+          </article>
+          <div class="platform-core">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 20V10"/></svg>
+            <strong>WooCommerce</strong>
+            <small>catálogo · clientes · pedidos</small>
           </div>
-          <div class="flow-step">
-            <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 8-5 4 5 4M16 8l5 4-5 4"/></svg></div>
-            <h3>Desenvolvimento</h3><p>Construção das páginas do e-commerce com fidelidade ao layout em desktop, tablet e celular.</p>
-            <span class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <article class="channel-panel">
+            <div class="channel-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V9l8-5 8 5v11"/><path d="M8 20v-6h8v6"/></svg>B2B · lojistas</div>
+            <h3>Acesso comercial</h3>
+            <p>Cadastro aprovado, tabela de preço, pedido mínimo e condições por perfil.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight" aria-labelledby="fluxo-title">
+      <div class="container">
+        <div class="model-head">
+          <div>
+            <div class="context-line reveal">Jornada B2C</div>
+            <h2 class="section-title reveal delay-1" id="fluxo-title">Da escolha ao pedido, sem desvios.</h2>
           </div>
-          <div class="flow-step">
-            <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 10h18M7 15h4"/></svg></div>
-            <h3>Loja e integrações</h3><p>Catálogo, estoque, cupons, pedidos, clientes, frete, pagamento e ferramentas de análise.</p>
-            <span class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-          <div class="flow-step">
-            <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
-            <h3>Testes e publicação</h3><p>Validação dos fluxos de compra e publicação no domínio definitivo do cliente.</p>
-          </div>
+          <p class="section-lead reveal delay-2">O fluxo principal será configurado e testado ponta a ponta antes da publicação.</p>
+        </div>
+        <div class="purchase-flow reveal" aria-label="Fluxo de compra: produto, quantidade, carrinho, frete, pagamento e pedido">
+          <div class="purchase-step"><span class="step-num">01</span><strong>Produto</strong><small>Informações e variações</small></div>
+          <div class="purchase-step"><span class="step-num">02</span><strong>Quantidade</strong><small>Prazo conforme volume</small></div>
+          <div class="purchase-step"><span class="step-num">03</span><strong>Carrinho</strong><small>Itens e resumo</small></div>
+          <div class="purchase-step"><span class="step-num">04</span><strong>Frete</strong><small>Cálculo automático</small></div>
+          <div class="purchase-step"><span class="step-num">05</span><strong>Pagamento</strong><small>PIX, cartão e gateway</small></div>
+          <div class="purchase-step"><span class="step-num">06</span><strong>Pedido</strong><small>Gestão centralizada</small></div>
         </div>
       </div>
     </section>
@@ -1061,155 +1315,153 @@
     <section class="section scope-section" id="escopo">
       <div class="container">
         <div class="context-line reveal">Escopo do projeto</div>
-        <h2 class="section-title reveal delay-1">Vitrine, operação e performance no mesmo entregável.</h2>
-        <p class="section-lead reveal delay-2">Explore as quatro frentes do desenvolvimento: as páginas da loja, a estrutura comercial, a fidelidade ao projeto no Figma e a preparação técnica para busca e velocidade.</p>
+        <h2 class="section-title reveal delay-1">O que entra em cada etapa — e o que fica fora.</h2>
+        <p class="section-lead reveal delay-2">Navegue entre a loja para o consumidor, a área comercial dos lojistas, a base tecnológica e os limites deste investimento.</p>
 
         <div class="scope-layout">
-          <div class="scope-tabs reveal" role="tablist" aria-label="Frentes do desenvolvimento">
+          <div class="scope-tabs reveal" role="tablist" aria-label="Etapas e condições do projeto">
             <button class="scope-tab" role="tab" id="tab-pages" aria-selected="true" aria-controls="panel-pages" data-panel="pages">
               <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></span>
-              <span class="tab-copy"><strong>Páginas da loja</strong><small>Da home ao checkout</small></span>
+              <span class="tab-copy"><strong>Etapa 1 · B2C</strong><small>Loja para consumidor final</small></span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
             <button class="scope-tab" role="tab" id="tab-store" aria-selected="false" aria-controls="panel-store" data-panel="store">
               <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18l-1.5 11h-15z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg></span>
-              <span class="tab-copy"><strong>Loja virtual</strong><small>Catálogo, pedidos e frete</small></span>
+              <span class="tab-copy"><strong>Etapa 2 · B2B</strong><small>Portal exclusivo para lojistas</small></span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
             <button class="scope-tab" role="tab" id="tab-figma" aria-selected="false" aria-controls="panel-figma" data-panel="figma">
               <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M8 2h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8Z"/><path d="M8 10h4v8a4 4 0 1 1-4-4Z"/></svg></span>
-              <span class="tab-copy"><strong>Fidelidade ao Figma</strong><small>Tokens e componentes</small></span>
+              <span class="tab-copy"><strong>Tecnologia</strong><small>Stack e integrações</small></span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
             <button class="scope-tab" role="tab" id="tab-seo" aria-selected="false" aria-controls="panel-seo" data-panel="seo">
               <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
-              <span class="tab-copy"><strong>Performance e SEO</strong><small>Velocidade e indexação</small></span>
+              <span class="tab-copy"><strong>Limites</strong><small>O que não está incluso</small></span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </button>
           </div>
 
           <div class="scope-stage reveal delay-1">
-            <div class="stage-toolbar"><span></span><span></span><span></span><div class="stage-title">Projeto E-commerce · Figma → Loja virtual</div><div class="stage-status">Escopo completo</div></div>
+            <div class="stage-toolbar"><span></span><span></span><span></span><div class="stage-title">Projeto · E-commerce B2C + Portal B2B</div><div class="stage-status">2 etapas</div></div>
 
             <div class="stage-panel active" id="panel-pages" role="tabpanel" aria-labelledby="tab-pages">
-              <div class="stage-label">PÁGINAS E JORNADA DE COMPRA</div>
-              <h3 class="stage-heading">Todo o caminho do visitante até o pedido concluído.</h3>
+              <div class="stage-label">ETAPA 1 · E-COMMERCE B2C</div>
+              <h3 class="stage-heading">A loja completa para vender ao consumidor final.</h3>
               <div class="journey">
-                <div class="journey-step"><span class="num">01</span><span class="journey-tag">DESCOBERTA</span><h4>Home</h4><p>Banners, destaques, coleções e entradas para as categorias.</p></div>
-                <div class="journey-step"><span class="num">02</span><span class="journey-tag">NAVEGAÇÃO</span><h4>Categoria e busca</h4><p>Listagem de produtos, filtros e resultados de pesquisa.</p></div>
-                <div class="journey-step"><span class="num">03</span><span class="journey-tag">DECISÃO</span><h4>Produto</h4><p>Fotos, descrição, variações, estoque e adição ao carrinho.</p></div>
-                <div class="journey-step"><span class="num">04</span><span class="journey-tag">CONVERSÃO</span><h4>Carrinho e checkout</h4><p>Resumo, cupom, frete, dados e finalização do pedido.</p></div>
+                <div class="journey-step"><span class="num">01</span><span class="journey-tag">VITRINE</span><h4>Home e catálogo</h4><p>Apresentação da empresa, produtos, categorias e busca.</p></div>
+                <div class="journey-step"><span class="num">02</span><span class="journey-tag">DECISÃO</span><h4>Página do produto</h4><p>Informações, quantidade e prazo de produção.</p></div>
+                <div class="journey-step"><span class="num">03</span><span class="journey-tag">CONVERSÃO</span><h4>Carrinho e frete</h4><p>Resumo dos itens e cálculo automático da entrega.</p></div>
+                <div class="journey-step"><span class="num">04</span><span class="journey-tag">PEDIDO</span><h4>Checkout e pagamento</h4><p>Cadastro, PIX, cartão e meios aceitos pelo gateway.</p></div>
               </div>
               <div class="chip-list">
-                <span>Minha conta</span><span>Login e cadastro</span><span>Pedidos do cliente</span><span>Páginas institucionais</span><span>Política de privacidade</span><span>Trocas e devoluções</span><span>Termos de uso</span><span>Contato</span><span>Página 404</span><span>Estados auxiliares</span>
+                <span>Cadastro de clientes</span><span>Gestão de pedidos</span><span>Painel administrativo</span><span>PIX e cartão</span><span>Gateway de pagamento</span><span>Cálculo de frete</span><span>Responsivo</span><span>Prazo por quantidade</span>
               </div>
               <div class="panel-note">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-                Implementação das principais páginas previstas no projeto do Figma, com estados auxiliares quando necessários.
+                Prazo estimado da Etapa 1: até 30 dias, contado a partir do recebimento dos materiais e acessos necessários.
               </div>
             </div>
 
             <div class="stage-panel" id="panel-store" role="tabpanel" aria-labelledby="tab-store" hidden>
-              <div class="stage-label">ESTRUTURA DA LOJA VIRTUAL</div>
-              <h3 class="stage-heading">A operação configurada para vender desde o primeiro dia.</h3>
+              <div class="stage-label">ETAPA 2 · PORTAL B2B</div>
+              <h3 class="stage-heading">Uma área comercial exclusiva para lojistas aprovados.</h3>
               <div class="release-grid">
                 <div class="store-card">
-                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 20V10"/></svg></span><span><strong>Catálogo</strong><small>Produtos e organização</small></span></div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Cadastro e organização de produtos</div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Categorias e subcategorias</div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Produtos com variações</div>
+                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 20V10"/></svg></span><span><strong>Acesso</strong><small>Entrada controlada</small></span></div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Login e senha para lojistas</div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Aprovação de acessos</div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Perfil específico de lojista</div>
                 </div>
                 <div class="store-card">
-                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></span><span><strong>Gestão</strong><small>Rotina comercial</small></span></div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Controle de estoque</div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Cupons de desconto</div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Gestão de pedidos e clientes</div>
+                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></span><span><strong>Preços</strong><small>Condição de atacado</small></span></div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Preços diferenciados do varejo</div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Tabelas ou grupos de preços</div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Condições comerciais diferenciadas</div>
                 </div>
                 <div class="store-card">
-                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h13v9H2z"/><path d="M15 11h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></span><span><strong>Frete</strong><small>Entrega e logística</small></span></div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Cálculo de frete no carrinho</div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Transportadora ou plataforma de cálculo</div>
+                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h13v9H2z"/><path d="M15 11h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></span><span><strong>Regras de pedido</strong><small>Controle comercial</small></span></div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Quantidades mínimas por produto</div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Valor mínimo do pedido</div>
                 </div>
                 <div class="store-card">
-                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 10h18"/></svg></span><span><strong>Pagamento</strong><small>Recebimento</small></span></div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Integração com meios de pagamento</div>
-                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Gateway configurado e testado</div>
+                  <div class="store-head"><span class="store-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 10h18"/></svg></span><span><strong>Pagamento e gestão</strong><small>Operação integrada</small></span></div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Formas específicas, quando suportadas</div>
+                  <div class="release-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Pedidos no mesmo painel do B2C</div>
                 </div>
               </div>
               <div class="dev-support">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h6l2 5 3-10 2 5h5"/></svg>
-                <span><strong>Fluxo completo de compra</strong><small>Do produto na vitrine ao pedido pago e registrado na loja.</small></span>
+                <span><strong>Prazo estimado: até 30 dias</strong><small>A Etapa 2 pode ser contratada separadamente e começa após o recebimento das regras comerciais.</small></span>
               </div>
             </div>
 
             <div class="stage-panel" id="panel-figma" role="tabpanel" aria-labelledby="tab-figma" hidden>
-              <div class="stage-label">IMPLEMENTAÇÃO DO PROJETO VISUAL</div>
-              <h3 class="stage-heading">Máxima fidelidade ao design aprovado.</h3>
+              <div class="stage-label">STACK E INTEGRAÇÕES</div>
+              <h3 class="stage-heading">Tecnologia consolidada, extensível e administrável.</h3>
               <div class="token-grid">
                 <div class="token-card">
-                  <small>CORES</small>
-                  <div class="swatch-row"><span class="swatch"></span><span class="swatch"></span><span class="swatch"></span><span class="swatch"></span></div>
-                  <div class="swatch-legend"><span>Primária</span><span>Apoio</span><span>Fundo</span><span>Texto</span></div>
+                  <small>COMÉRCIO</small>
+                  <div class="comp-stack"><span class="comp-btn primary">WordPress</span><span class="comp-btn ghost">WooCommerce</span><span class="comp-input">Painel administrativo</span></div>
                 </div>
                 <div class="token-card">
-                  <small>TIPOGRAFIA</small>
-                  <div class="type-sample"><b>Aa</b><i>Título · 32/1.05</i><u>Corpo de texto · 16/1.6 com espaçamentos definidos no projeto.</u></div>
+                  <small>DESENVOLVIMENTO</small>
+                  <div class="type-sample"><b>&lt;/&gt;</b><i>PHP + JavaScript</i><u>HTML5 e CSS3 para a experiência responsiva.</u></div>
                 </div>
                 <div class="token-card">
-                  <small>COMPONENTES</small>
+                  <small>DADOS E REGRAS</small>
                   <div class="comp-stack">
-                    <span class="comp-btn primary">Comprar</span>
-                    <span class="comp-btn hover">Comprar · hover</span>
-                    <span class="comp-btn ghost">Ver detalhes</span>
-                    <span class="comp-input">Buscar produtos…</span>
+                    <span class="comp-btn hover">MySQL / MariaDB</span>
+                    <span class="comp-btn ghost">Plugins compatíveis</span>
+                    <span class="comp-input">Customizações próprias</span>
                   </div>
                 </div>
               </div>
               <div class="dev-support">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="14" height="10" rx="1.5"/><rect x="17" y="9" width="5" height="11" rx="1.5"/><path d="M6 18h6"/></svg>
-                <span><strong>Responsividade completa</strong><small>Cards, banners, menus, ícones, botões e estados de interação.</small></span>
-                <span class="breakpoints"><span>Desktop</span><span>Tablet</span><span>Celular</span></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"/></svg>
+                <span><strong>Integrações compatíveis com WooCommerce</strong><small>Pagamento, frete, área B2B, preços diferenciados e regras comerciais.</small></span>
+                <span class="breakpoints"><span>PIX</span><span>Cartão</span><span>Frete</span></span>
               </div>
               <div class="panel-note">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-                Eventuais adaptações podem ser feitas quando necessárias para melhorar responsividade, performance ou funcionamento da loja.
+                Quando uma regra específica não for atendida por integrações compatíveis, a necessidade será avaliada para customização própria.
               </div>
             </div>
 
             <div class="stage-panel" id="panel-seo" role="tabpanel" aria-labelledby="tab-seo" hidden>
-              <div class="stage-label">CONFIGURAÇÕES TÉCNICAS INICIAIS</div>
-              <h3 class="stage-heading">Preparada para carregar rápido e ser encontrada.</h3>
+              <div class="stage-label">LIMITES DO INVESTIMENTO</div>
+              <h3 class="stage-heading">Custos de terceiros e sistemas avançados não estão inclusos.</h3>
               <div class="serp">
-                <div class="serp-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>sualoja.com.br › categoria › produto</div>
-                <div class="serp-title">Nome do produto · Sua Loja Oficial</div>
-                <p class="serp-desc">Meta descrição configurada para cada página, com URLs amigáveis e estrutura correta de headings para indexação pelos mecanismos de busca.</p>
+                <div class="serp-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Custos externos contratados diretamente pela empresa</div>
+                <div class="serp-title">Domínio, hospedagem, licenças, gateways e transportadoras</div>
+                <p class="serp-desc">Mensalidades, anuidades e taxas de operação desses fornecedores não fazem parte dos R$ 4.150 do desenvolvimento.</p>
               </div>
               <div class="perf-grid">
                 <div class="perf-card">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-9 12h7l-1 8 9-12h-7Z"/></svg>
-                  <strong>Performance</strong>
-                  <span>Boa performance de carregamento</span>
-                  <span>Otimização básica de imagens</span>
-                  <span>Estrutura responsiva</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m8 8 8 8M16 8l-8 8"/></svg>
+                  <strong>ERP e financeiro</strong>
+                  <span>Integrações complexas com ERP</span>
+                  <span>Sistema financeiro próprio</span>
+                  <span>Limite de crédito individual</span>
                 </div>
                 <div class="perf-card">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                  <strong>SEO técnico</strong>
-                  <span>URLs amigáveis</span>
-                  <span>Meta títulos e descrições</span>
-                  <span>Headings e indexação</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>
+                  <strong>B2B avançado</strong>
+                  <span>Aprovação financeira de pedidos</span>
+                  <span>Gestão de representantes</span>
+                  <span>Regras financeiras complexas</span>
                 </div>
                 <div class="perf-card">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20h-20"/></svg>
-                  <strong>Medição</strong>
-                  <span>Google Analytics</span>
-                  <span>Google Tag Manager</span>
-                  <span>Meta Pixel, quando aplicável</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="M3 10h18"/></svg>
+                  <strong>Serviços de terceiros</strong>
+                  <span>Licenças de plugins premium</span>
+                  <span>Taxas de gateways</span>
+                  <span>Taxas de transportadoras</span>
                 </div>
               </div>
               <div class="panel-note">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-                As integrações de análise dependem das contas serem disponibilizadas pelo cliente.
+                Funcionalidades B2B avançadas e integrações profundas serão avaliadas e orçadas separadamente.
               </div>
             </div>
           </div>
@@ -1217,28 +1469,53 @@
 
         <div class="deliverable-groups reveal">
           <div class="deliverable-row">
-            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>Páginas</div>
-            <div class="deliverable-list"><span>Página inicial</span><span>Categorias</span><span>Página de produto</span><span>Busca de produtos</span><span>Carrinho</span><span>Checkout</span><span>Minha conta</span><span>Login e cadastro</span><span>Pedidos do cliente</span><span>Institucionais</span><span>Privacidade, trocas e termos</span><span>Contato</span><span>Página 404</span></div>
+            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>Experiência B2C</div>
+            <div class="deliverable-list"><span>Página inicial</span><span>Apresentação da empresa</span><span>Catálogo</span><span>Página de produto</span><span>Carrinho</span><span>Checkout</span><span>Cadastro de clientes</span><span>Responsividade completa</span></div>
           </div>
           <div class="deliverable-row">
-            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18l-1.5 11h-15z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>Loja virtual</div>
-            <div class="deliverable-list"><span>Cadastro de produtos</span><span>Categorias e subcategorias</span><span>Produtos com variações</span><span>Controle de estoque</span><span>Cupons de desconto</span><span>Gestão de pedidos</span><span>Gestão de clientes</span><span>Cálculo de frete</span><span>Meios de pagamento</span><span>Fluxo completo de compra</span></div>
+            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18l-1.5 11h-15z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>Operação B2C</div>
+            <div class="deliverable-list"><span>Gateway de pagamento</span><span>PIX e cartão</span><span>Cálculo de frete</span><span>Gestão de pedidos</span><span>Painel administrativo</span><span>Prazo por quantidade</span></div>
           </div>
           <div class="deliverable-row">
-            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M8 2h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8Z"/><path d="M8 10h4v8a4 4 0 1 1-4-4Z"/></svg>Implementação do Figma</div>
-            <div class="deliverable-list"><span>Tipografia</span><span>Espaçamentos</span><span>Cores</span><span>Componentes</span><span>Cards de produtos</span><span>Banners</span><span>Menus</span><span>Ícones</span><span>Botões</span><span>Estados de interação</span><span>Desktop, tablet e celular</span></div>
+            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M8 2h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8Z"/><path d="M8 10h4v8a4 4 0 1 1-4-4Z"/></svg>Acesso B2B</div>
+            <div class="deliverable-list"><span>Login de lojistas</span><span>Aprovação de acesso</span><span>Perfil comercial</span><span>Área restrita</span><span>Pedidos no mesmo painel</span></div>
           </div>
           <div class="deliverable-row">
-            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-9 12h7l-1 8 9-12h-7Z"/></svg>Performance e SEO</div>
-            <div class="deliverable-list"><span>Carregamento otimizado</span><span>Estrutura responsiva</span><span>URLs amigáveis</span><span>Meta títulos e descrições</span><span>Estrutura de headings</span><span>Imagens otimizadas</span><span>Indexação</span><span>Google Analytics</span><span>Google Tag Manager</span></div>
+            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-9 12h7l-1 8 9-12h-7Z"/></svg>Regras B2B</div>
+            <div class="deliverable-list"><span>Preço de atacado</span><span>Grupos de preços</span><span>Quantidade mínima</span><span>Pedido mínimo</span><span>Condições diferenciadas</span><span>Pagamento quando suportado</span></div>
           </div>
           <div class="deliverable-row">
-            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"/></svg>Integrações</div>
-            <div class="deliverable-list"><span>Gateway de pagamento</span><span>Transportadora / cálculo de frete</span><span>WhatsApp</span><span>Google Analytics</span><span>Google Tag Manager</span><span>Meta Pixel, quando aplicável</span></div>
+            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"/></svg>Tecnologia</div>
+            <div class="deliverable-list"><span>WordPress</span><span>WooCommerce</span><span>PHP</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>MySQL / MariaDB</span></div>
           </div>
           <div class="deliverable-row">
-            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Testes e publicação</div>
-            <div class="deliverable-list"><span>Responsividade</span><span>Navegação</span><span>Cadastro</span><span>Carrinho</span><span>Checkout</span><span>Pagamentos</span><span>Frete</span><span>Formulários</span><span>Links</span><span>Principais fluxos de compra</span><span>Publicação no domínio definitivo</span></div>
+            <div class="deliverable-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Gestão unificada</div>
+            <div class="deliverable-list"><span>Produtos</span><span>Consumidores</span><span>Lojistas</span><span>Perfis</span><span>Pedidos B2C</span><span>Pedidos B2B</span><span>Um único painel</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="producao" aria-labelledby="producao-title">
+      <div class="container quantity-demo">
+        <div>
+          <div class="context-line reveal">Regra operacional importante</div>
+          <h2 class="section-title reveal delay-1" id="producao-title">A quantidade comprada informa o prazo de produção.</h2>
+          <p class="section-lead reveal delay-2">A loja poderá exibir prazos diferentes conforme o volume do pedido, alinhando expectativa de entrega antes do pagamento.</p>
+        </div>
+        <div class="quantity-controls reveal delay-1">
+          <div class="quantity-header">
+            <span>Simulação visual da regra</span>
+            <div class="quantity-picker" role="group" aria-label="Escolha uma quantidade para simular o prazo">
+              <button type="button" aria-pressed="true" data-quantity="1" data-days="3">1</button>
+              <button type="button" aria-pressed="false" data-quantity="12" data-days="7">12</button>
+              <button type="button" aria-pressed="false" data-quantity="48" data-days="12">48</button>
+              <button type="button" aria-pressed="false" data-quantity="100" data-days="20">100+</button>
+            </div>
+          </div>
+          <div class="lead-result" aria-live="polite">
+            <div class="lead-days"><span id="leadDays">3</span><small> dias</small></div>
+            <span><strong id="leadTitle">Produção para 1 unidade</strong><small id="leadCopy">Estimativa exibida na página do produto e confirmada no pedido.</small></span>
           </div>
         </div>
       </div>
@@ -1249,31 +1526,31 @@
         <div class="model-head">
           <div>
             <div class="context-line reveal">Responsabilidades do cliente</div>
-            <h2 class="section-title reveal delay-1" id="responsabilidades-title">O que precisa estar em mãos para o projeto fluir.</h2>
+            <h2 class="section-title reveal delay-1" id="responsabilidades-title">O cronograma começa com os insumos certos.</h2>
           </div>
-          <p class="section-lead reveal delay-2">Com esses materiais disponíveis desde o início, o desenvolvimento acontece sem pausas e o cronograma se mantém previsível.</p>
+          <p class="section-lead reveal delay-2">Os prazos de até 30 dias por etapa consideram o envio completo dos materiais, acessos, produtos e regras pela contratante.</p>
         </div>
 
         <div class="provide-grid reveal">
           <div class="provide-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M8 2h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8Z"/><path d="M8 10h4v8a4 4 0 1 1-4-4Z"/></svg>
-            <strong>Projeto e marca</strong>
-            <ul><li>Figma final aprovado</li><li>Identidade visual</li><li>Logotipo</li></ul>
+            <strong>Marca e empresa</strong>
+            <ul><li>Logotipo e identidade visual</li><li>Textos institucionais</li><li>Dados legais da empresa</li></ul>
           </div>
           <div class="provide-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m6 16 4-4 3 3 2-2 3 3"/><circle cx="9" cy="9" r="1.4"/></svg>
-            <strong>Conteúdo</strong>
-            <ul><li>Textos</li><li>Fotografias</li><li>Informações dos produtos</li></ul>
+            <strong>Catálogo</strong>
+            <ul><li>Fotos e descrições</li><li>Preços e categorias</li><li>Variações e quantidades</li></ul>
           </div>
           <div class="provide-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20h-20"/></svg>
-            <strong>Dados comerciais</strong>
-            <ul><li>Preços</li><li>Categorias</li><li>Dados da empresa</li></ul>
+            <strong>Regras B2B</strong>
+            <ul><li>Tabelas de preços</li><li>Mínimos por item e pedido</li><li>Condições comerciais</li></ul>
           </div>
           <div class="provide-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-            <strong>Acessos</strong>
-            <ul><li>Meios de pagamento</li><li>Frete e logística</li><li>Contas para integrações</li></ul>
+            <strong>Acessos e serviços</strong>
+            <ul><li>Hospedagem e domínio</li><li>Gateway de pagamento</li><li>Frete e integrações</li></ul>
           </div>
         </div>
       </div>
@@ -1284,57 +1561,71 @@
         <div class="pricing-intro">
           <div>
             <div class="context-line reveal">Investimento do projeto</div>
-            <h2 class="section-title reveal delay-1">Um e-commerce completo, entregue pronto para operar.</h2>
+            <h2 class="section-title reveal delay-1">Contrate por etapa ou implemente a plataforma completa.</h2>
           </div>
-          <p class="reveal delay-2">Desenvolvimento, configuração da loja, implementação do projeto do Figma, integrações, testes e publicação no domínio definitivo.</p>
+          <p class="reveal delay-2">A Etapa 1 coloca o canal B2C em operação. A Etapa 2 adiciona o acesso restrito e as regras comerciais para lojistas.</p>
         </div>
+
+        <div class="stage-prices reveal">
+          <article class="stage-price-card">
+            <header><span class="stage-number">ETAPA 1</span><span class="stage-time">até 30 dias</span></header>
+            <h3>E-commerce B2C</h3>
+            <p>Loja completa para consumidor final, com catálogo, carrinho, checkout, pagamento, frete, clientes e pedidos.</p>
+            <div class="stage-price"><span>R$</span><strong>2.800</strong></div>
+          </article>
+          <article class="stage-price-card">
+            <header><span class="stage-number">ETAPA 2</span><span class="stage-time">até 30 dias</span></header>
+            <h3>Portal B2B</h3>
+            <p>Área aprovada para lojistas, com preços, mínimos, condições comerciais e pedidos no painel central.</p>
+            <div class="stage-price"><span>R$</span><strong>1.350</strong></div>
+          </article>
+        </div>
+        <p class="contract-note reveal">As etapas podem ser contratadas e desenvolvidas separadamente.</p>
 
         <div class="plan reveal">
           <div class="plan-price">
-            <div class="plan-badge">Projeto completo</div>
+            <div class="plan-badge">Plataforma completa</div>
             <div class="price-prefix">Investimento total</div>
-            <div class="price-line"><span class="price-currency">R$</span><strong class="price-value">6.500</strong></div>
-            <p class="price-caption">A transformação do projeto do Figma em uma loja virtual funcional, responsiva e preparada para vendas.</p>
+            <div class="price-line"><span class="price-currency">R$</span><strong class="price-value">4.150</strong></div>
+            <p class="price-caption">B2C e B2B conectados em uma única instalação WordPress + WooCommerce.</p>
           </div>
           <div class="plan-content">
-            <h3>Desenvolvimento de E-commerce</h3>
-            <p>Todas as páginas previstas no projeto visual, a estrutura comercial da loja, as integrações de pagamento e frete e a preparação técnica de performance e SEO em uma única entrega.</p>
+            <h3>E-commerce B2C + Portal para Lojistas</h3>
+            <p>Uma plataforma para vender diretamente ao consumidor e permitir que lojistas aprovados realizem pedidos com condições comerciais específicas.</p>
             <div class="plan-facts">
-              <div class="plan-fact"><strong>R$ 3.250</strong><small>50% para início do projeto</small></div>
-              <div class="plan-fact"><strong>R$ 3.250</strong><small>50% na entrega e publicação</small></div>
-              <div class="plan-fact"><strong>PIX + cartão</strong><small>parcelamento a combinar</small></div>
+              <div class="plan-fact"><strong>R$ 2.800</strong><small>Etapa 1 · E-commerce B2C</small></div>
+              <div class="plan-fact"><strong>R$ 1.350</strong><small>Etapa 2 · Portal B2B</small></div>
+              <div class="plan-fact"><strong>Até 60 dias</strong><small>duas etapas sequenciais</small></div>
             </div>
-            <div class="plan-smallprint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Não estão inclusas taxas e mensalidades de terceiros, como plataforma de e-commerce, gateway de pagamento, domínio, hospedagem e serviços externos.</span></div>
+            <div class="plan-smallprint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Os prazos dependem do envio de materiais, acessos, catálogo e regras comerciais. Licenças e taxas de terceiros não estão inclusas.</span></div>
           </div>
         </div>
 
         <div class="partnership-note reveal delay-1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6Z"/><path d="M8.5 12.5 11 15l4.5-5"/></svg>
-          <div><strong>Uma loja entregue testada e publicada.</strong><p>Antes da publicação são validados responsividade, navegação, cadastro, carrinho, checkout, pagamentos, frete, formulários, links e os principais fluxos de compra. Após a aprovação, a loja vai ao ar no domínio definitivo.</p></div>
+          <div><strong>Uma base única, pronta para evoluir.</strong><p>A Etapa 1 estabelece catálogo, clientes, pedidos, frete e pagamento. A Etapa 2 reutiliza essa operação para aplicar os perfis, preços e mínimos dos lojistas sem criar um segundo sistema isolado.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="servicos">
+    <section class="section" id="condicoes">
       <div class="container">
         <div class="table-head">
           <div>
-            <div class="context-line reveal">Fora do valor inicial</div>
-            <h2 class="section-title reveal delay-1">Itens que podem ser contratados à parte.</h2>
+            <div class="context-line reveal">Condições e exclusões</div>
+            <h2 class="section-title reveal delay-1">O investimento cobre o desenvolvimento descrito.</h2>
           </div>
-          <p class="section-lead reveal delay-2">Não fazem parte do investimento do desenvolvimento. Podem ser avaliados e orçados separadamente, antes ou depois da publicação.</p>
+          <p class="section-lead reveal delay-2">Serviços recorrentes, licenças e funcionalidades avançadas dependem de fornecedores ou de avaliação específica.</p>
         </div>
 
-        <div class="services-table reveal" role="table" aria-label="Itens não inclusos no valor inicial">
-          <div class="service-row featured" role="row"><div class="service-name" role="cell">Desenvolvimento completo do e-commerce <span class="service-tag">ESTE PROJETO</span><span class="service-included">Páginas, loja virtual, integrações, testes e publicação</span></div><div class="service-price" role="cell">R$ 6.500</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Criação do design no Figma<span class="service-included">O projeto visual já desenvolvido é o ponto de partida deste orçamento</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Produção de fotografias e conteúdo<span class="service-included">Fotos de produto e produção massiva de textos</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Cadastro de grande volume de produtos<span class="service-included">Importação e cadastro em massa do catálogo</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Integrações personalizadas com ERP<span class="service-included">Sistemas externos e APIs específicas</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Integração com marketplaces<span class="service-included">Canais de venda além da loja própria</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Desenvolvimento de aplicativos<span class="service-included">Apps nativos ou automações externas complexas</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Gestão de tráfego<span class="service-included">Campanhas e mídia paga</span></div><div class="service-price" role="cell">Sob consulta</div></div>
-          <div class="service-row" role="row"><div class="service-name" role="cell">Manutenção mensal<span class="service-included">Após o período de suporte incluído no projeto</span></div><div class="service-price" role="cell">Sob consulta</div></div>
+        <div class="services-table reveal" role="table" aria-label="Condições e itens não inclusos">
+          <div class="service-row featured" role="row"><div class="service-name" role="cell">Etapas 1 + 2 <span class="service-tag">ESTE PROJETO</span><span class="service-included">Desenvolvimento B2C e B2B conforme o escopo desta proposta</span></div><div class="service-price" role="cell">R$ 4.150</div></div>
+          <div class="service-row" role="row"><div class="service-name" role="cell">Domínio e hospedagem<span class="service-included">Contratação e renovação pela empresa</span></div><div class="service-price" role="cell">Não incluso</div></div>
+          <div class="service-row" role="row"><div class="service-name" role="cell">Licenças de plugins premium<span class="service-included">Quando necessárias para pagamento, frete ou B2B</span></div><div class="service-price" role="cell">Não incluso</div></div>
+          <div class="service-row" role="row"><div class="service-name" role="cell">Taxas de gateways e transportadoras<span class="service-included">Custos cobrados diretamente pelos fornecedores</span></div><div class="service-price" role="cell">Não incluso</div></div>
+          <div class="service-row" role="row"><div class="service-name" role="cell">Integrações complexas com ERP<span class="service-included">APIs, sincronizações profundas e sistemas externos</span></div><div class="service-price" role="cell">Avaliação separada</div></div>
+          <div class="service-row" role="row"><div class="service-name" role="cell">Sistema financeiro próprio<span class="service-included">Contas a receber, conciliação ou gestão financeira customizada</span></div><div class="service-price" role="cell">Avaliação separada</div></div>
+          <div class="service-row" role="row"><div class="service-name" role="cell">B2B avançado<span class="service-included">Crédito individual, aprovação de pedidos, representantes e regras financeiras complexas</span></div><div class="service-price" role="cell">Avaliação separada</div></div>
         </div>
       </div>
     </section>
@@ -1343,20 +1634,20 @@
       <div class="container">
         <div class="closing-grid">
           <div class="closing-copy reveal">
-            <h2 class="closing-title">Vamos tirar essa loja <span>do Figma e colocar no ar?</span></h2>
-            <p>A aprovação inicia o desenvolvimento e confirma a primeira parcela de R$ 3.250.</p>
+            <h2 class="closing-title">Vamos abrir os dois canais <span>na mesma plataforma?</span></h2>
+            <p>A aprovação pode iniciar pela Etapa 1, pelo projeto completo ou pela etapa que fizer mais sentido para a operação.</p>
             <a class="button button-primary js-whatsapp" href="#" target="_blank" rel="noopener">
-              Aprovar e iniciar o projeto
+              Aprovar proposta no WhatsApp
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
             </a>
           </div>
           <div class="proposal-meta reveal delay-1">
-            <div class="meta-row"><span>Proposta</span><strong id="proposalCode">VS-ECOM-001</strong></div>
+            <div class="meta-row"><span>Proposta</span><strong id="proposalCode">VS-ECOM-B2B-001</strong></div>
             <div class="meta-row"><span>Emissão</span><strong id="issuedAt">Carregando</strong></div>
             <div class="meta-row"><span>Validade</span><strong id="validUntil">Carregando</strong></div>
-            <div class="meta-row"><span>Projeto</span><strong>Desenvolvimento de E-commerce</strong></div>
-            <div class="meta-row"><span>Base</span><strong>Figma aprovado pelo cliente</strong></div>
-            <div class="meta-row"><span>Investimento</span><strong>R$ 6.500</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>E-commerce B2C + Portal B2B</strong></div>
+            <div class="meta-row"><span>Prazo</span><strong>Até 30 dias por etapa</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 4.150</strong></div>
           </div>
         </div>
         <div class="signature">
@@ -1376,10 +1667,10 @@
   <script>
     (function () {
       var CONFIG = {
-        proposal: 'VS-ECOM-001',
+        proposal: 'VS-ECOM-B2B-001',
         validityDays: 10,
         whatsapp: '5512991833641',
-        message: 'Olá, Victor! Analisei a proposta VS-ECOM-001 para o desenvolvimento do e-commerce a partir do Figma, no investimento total de R$ 6.500, e quero avançar com o projeto.'
+        message: 'Olá, Victor! Analisei a proposta VS-ECOM-B2B-001 para o e-commerce B2C + portal para lojistas, no investimento total de R$ 4.150, e quero avançar com o projeto.'
       };
 
       var formatDate = function (date) {
@@ -1424,6 +1715,29 @@
           var delta = event.key === 'ArrowDown' || event.key === 'ArrowRight' ? 1 : -1;
           var next = tabs[(index + delta + tabs.length) % tabs.length];
           next.focus(); activateTab(next);
+        });
+      });
+
+      var channelButtons = Array.from(document.querySelectorAll('[data-commerce-mode]'));
+      var channelViews = Array.from(document.querySelectorAll('[data-commerce-view]'));
+      var mockupUrl = document.getElementById('mockupUrl');
+      channelButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var mode = button.dataset.commerceMode;
+          channelButtons.forEach(function (item) { item.setAttribute('aria-pressed', item === button ? 'true' : 'false'); });
+          channelViews.forEach(function (view) { view.hidden = view.dataset.commerceView !== mode; });
+          mockupUrl.textContent = mode === 'b2b' ? 'sualoja.com.br/portal-lojista' : 'sualoja.com.br/produtos';
+        });
+      });
+
+      var quantityButtons = Array.from(document.querySelectorAll('[data-quantity]'));
+      var leadDays = document.getElementById('leadDays');
+      var leadTitle = document.getElementById('leadTitle');
+      quantityButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          quantityButtons.forEach(function (item) { item.setAttribute('aria-pressed', item === button ? 'true' : 'false'); });
+          leadDays.textContent = button.dataset.days;
+          leadTitle.textContent = 'Produção para ' + button.dataset.quantity + (button.dataset.quantity === '1' ? ' unidade' : ' unidades');
         });
       });
 

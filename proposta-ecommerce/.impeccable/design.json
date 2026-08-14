@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-14T12:00:00-03:00",
+  "title": "Design System: Propostas VS Experience",
+  "extensions": {
+    "colorMeta": {
+      "rose": {
+        "role": "primary",
+        "displayName": "Rosé de decisão",
+        "canonical": "oklch(0.54 0.12 25)",
+        "tonalRamp": ["oklch(0.42 0.10 25)", "oklch(0.54 0.12 25)", "oklch(0.63 0.15 25)", "oklch(0.76 0.08 25)"]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Vinho de fundo",
+        "canonical": "oklch(0.13 0.012 25)",
+        "tonalRamp": ["oklch(0.13 0.012 25)", "oklch(0.165 0.014 25)", "oklch(0.19 0.016 25)", "oklch(0.22 0.018 25)"]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Texto luminoso",
+        "canonical": "oklch(0.96 0.006 25)",
+        "tonalRamp": ["oklch(0.63 0.012 25)", "oklch(0.78 0.012 25)", "oklch(0.96 0.006 25)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display comercial",
+        "purpose": "Teses principais e encerramento da proposta."
+      },
+      "headline": {
+        "displayName": "Headline de seção",
+        "purpose": "Mudanças de assunto e decisões de escopo."
+      },
+      "body": {
+        "displayName": "Texto de leitura",
+        "purpose": "Explicações contratuais e operacionais em até 68ch."
+      }
+    },
+    "shadows": [
+      {
+        "name": "mockup-structural",
+        "value": "0 8px 0 color-mix(in oklch, black 28%, transparent)",
+        "purpose": "Separar mockups de produto do fundo sem criar cartões flutuantes."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Trocas de estado, hover e entrada curta de painéis."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "520px" },
+      { "name": "tablet", "value": "780px" },
+      { "name": "compact-desktop", "value": "1040px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal de investimento ou aprovação.",
+      "html": "<button class=\"ds-btn-primary\">Ver investimento →</button>",
+      "css": ".ds-btn-primary{min-height:50px;padding:0 22px;border:0;border-radius:8px;background:var(--rose);color:#fff;font:650 15px 'Space Grotesk',sans-serif;transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s}.ds-btn-primary:hover{transform:translateY(-2px);background:var(--rose-strong)}.ds-btn-primary:focus-visible{outline:2px solid var(--rose-soft);outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação auxiliar de baixo risco.",
+      "html": "<button class=\"ds-btn-secondary\">Copiar link</button>",
+      "css": ".ds-btn-secondary{min-height:50px;padding:0 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);color:var(--text);font:650 15px 'Space Grotesk',sans-serif}.ds-btn-secondary:hover{background:var(--surface-hover)}.ds-btn-secondary:focus-visible{outline:2px solid var(--rose-soft);outline-offset:3px}"
+    },
+    {
+      "name": "Scope Tab",
+      "kind": "button",
+      "refersTo": "panel",
+      "description": "Navegação acessível entre etapas, tecnologia e limites.",
+      "html": "<button class=\"ds-scope-tab\" aria-selected=\"true\">Etapa 1 · B2C</button>",
+      "css": ".ds-scope-tab{min-height:62px;padding:14px 16px;border:0;border-radius:12px;background:var(--surface);color:var(--text);font:600 15px 'Space Grotesk',sans-serif;text-align:left}.ds-scope-tab:hover{background:var(--surface-hover)}.ds-scope-tab:focus-visible{outline:2px solid var(--rose-soft);outline-offset:3px}"
+    },
+    {
+      "name": "Browser Mockup",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "Artefato visual que demonstra a operação B2C ou B2B.",
+      "html": "<div class=\"ds-mockup\"><span></span><strong>sualoja.com.br</strong></div>",
+      "css": ".ds-mockup{min-height:180px;padding:18px;border:1px solid var(--line-strong);border-radius:16px;background:var(--bg-elevated);color:var(--text);font:600 12px 'Space Grotesk',sans-serif}.ds-mockup span{display:inline-block;width:8px;height:8px;margin-right:10px;border-radius:50%;background:var(--rose)}"
+    },
+    {
+      "name": "Stage Price",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Preço e prazo de uma etapa contratável separadamente.",
+      "html": "<article class=\"ds-stage-price\"><small>ETAPA 1 · ATÉ 30 DIAS</small><strong>E-commerce B2C</strong><b>R$ 2.800</b></article>",
+      "css": ".ds-stage-price{display:grid;gap:16px;padding:28px;border-radius:16px;background:var(--rose);color:#fff;font-family:'Space Grotesk',sans-serif}.ds-stage-price small{font-size:11px;font-weight:700}.ds-stage-price strong{font-size:24px}.ds-stage-price b{font-size:44px;letter-spacing:-.04em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Sala de decisão digital",
+    "overview": "Uma proposta executiva que se comporta como produto: narrativa escaneável, artefatos visuais úteis, contraste alto e informação comercial sem ambiguidades. O fundo vinho quase preto, o acento rosé e a tipografia Space Grotesk preservam o sistema observado nos orçamentos Seven, SeaAds e Jeff.",
+    "keyCharacteristics": [
+      "Mockups operacionais construídos em HTML e CSS",
+      "Escopo explorável por abas acessíveis",
+      "Investimento por etapa com total inequívoco",
+      "CTA de aprovação persistente"
+    ],
+    "rules": [
+      {
+        "name": "Acento funcional",
+        "body": "Rosé indica ação, estado ou prioridade; nunca decoração difusa.",
+        "section": "colors"
+      },
+      {
+        "name": "Plano por padrão",
+        "body": "Profundidade vem de camadas tonais; sombras são estruturais e raras.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Preservar tokens e ritmo dos orçamentos Seven, SeaAds e Jeff.",
+      "Usar artefatos visuais para explicar diferenças entre B2C e B2B.",
+      "Manter contraste WCAG AA, foco por teclado e redução de movimento."
+    ],
+    "donts": [
+      "Não parecer um PDF jurídico convertido em página ou um template SaaS azul.",
+      "Não usar gradiente em texto, glassmorphism decorativo ou sombras largas sobre bordas.",
+      "Não repetir grades de cartões idênticos como estrutura principal.",
+      "Não esconder conteúdo até uma animação disparar."
+    ]
+  }
+}
