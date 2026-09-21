@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120d0d">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Landing page da VS Experience: o que é, como funciona o processo e quanto custa, com valores de referência baseados em projetos recentes.">
+  <title>Landing Page · Serviços VS Experience</title>
+  <link rel="icon" href="../../assets/images/logo/vslogo.webp" type="image/webp">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/servicos.css">
+  <style>
+    /* Mockup · Solare Energia (cliente fictício) */
+    .screen.lp { --c-accent: oklch(0.74 0.16 62); --c-on-accent: oklch(0.24 0.06 55); --c-ink: oklch(0.22 0.045 255); --c-tint: oklch(0.965 0.014 255); --c-deep: oklch(0.25 0.06 255); }
+    .lp-sun { width: 14px; height: 14px; border-radius: 50%; background: var(--c-accent); box-shadow: 0 0 0 3px color-mix(in oklch, var(--c-accent) 28%, transparent); }
+    .lp-hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; align-items: center; min-height: 340px; padding: 24px 22px 20px 26px; background: linear-gradient(180deg, var(--c-tint), #fff 88%); }
+    .lp-hero .m-title b { color: oklch(0.58 0.16 50); }
+    .lp-actions { display: flex; gap: 6px; margin-top: 13px; }
+    .lp-trust { display: flex; align-items: center; gap: 6px; margin-top: 15px; color: var(--m-muted); font-size: 6.5px; }
+    .lp-stars { color: oklch(0.7 0.16 75); font-size: 8px; letter-spacing: 1px; }
+    .lp-sim { padding: 14px; border-radius: 10px; background: #fff; box-shadow: 0 18px 30px -20px oklch(0.3 0.06 255 / .5), 0 0 0 1px var(--m-line); }
+    .lp-sim small { display: block; color: var(--m-muted); font-size: 6.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .lp-sim strong { display: block; margin: 5px 0 9px; font-size: 10px; line-height: 1.25; }
+    .lp-input { display: flex; align-items: baseline; gap: 4px; padding: 7px 9px; border-radius: 6px; background: var(--c-tint); font-size: 15px; font-weight: 700; letter-spacing: -.02em; }
+    .lp-input span { color: var(--m-muted); font-size: 8px; font-weight: 600; }
+    .lp-slider { position: relative; height: 4px; margin: 12px 2px 12px; border-radius: 4px; background: var(--m-line); }
+    .lp-slider i { position: absolute; inset: 0 auto 0 0; width: 46%; border-radius: 4px; background: var(--c-accent); }
+    .lp-slider i::after { content: ''; position: absolute; right: -5px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px var(--c-accent); }
+    .motion-ready .lp-slider i { animation: lpSlide 1.6s 1.3s var(--ease) both; }
+    @keyframes lpSlide { from { width: 14%; } }
+    .lp-result { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0 10px; border-top: 1px dashed var(--m-line); }
+    .lp-result span { color: var(--m-muted); font-size: 7px; }
+    .lp-result b { color: oklch(0.5 0.13 150); font-size: 12px; }
+    .lp-block { display: flex; width: 100%; }
+    .lp-strip { display: flex; justify-content: space-between; gap: 10px; padding: 11px 26px; background: var(--c-deep); color: oklch(0.9 0.02 255); font-size: 6.5px; font-weight: 600; }
+    .lp-strip span::before { content: '✓'; margin-right: 4px; color: var(--c-accent); }
+
+    .lp-bill { display: grid; gap: 8px; margin: 4px 0 18px; }
+    .lp-bill div { display: grid; grid-template-columns: 34px 1fr 38px; gap: 8px; align-items: center; font-size: 7px; }
+    .lp-bill span { color: var(--m-muted); font-weight: 600; }
+    .lp-bill i { display: block; width: var(--w); height: 12px; border-radius: 3px; background: oklch(0.82 0.03 255); }
+    .lp-bill i.is-after { background: var(--c-accent); }
+    .lp-bill b { font-size: 9px; text-align: right; }
+    .lp-quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .lp-quotes figure { margin: 0; padding: 11px; border-radius: 8px; background: var(--c-tint); }
+    .lp-quotes blockquote { margin: 0 0 9px; font-size: 7.5px; line-height: 1.45; }
+    .lp-quotes figcaption { display: flex; align-items: center; gap: 5px; color: var(--m-muted); font-size: 6px; }
+    .lp-quotes figcaption i { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: var(--c-deep); color: #fff; font-size: 5.5px; font-style: normal; font-weight: 700; }
+
+    .lp-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .lp-steps li { padding: 11px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--m-line); }
+    .lp-steps b { width: 17px; height: 17px; display: grid; place-items: center; margin-bottom: 8px; border-radius: 50%; background: var(--c-accent); color: var(--c-on-accent); font-size: 7px; }
+    .lp-steps strong { display: block; font-size: 8.5px; }
+    .lp-steps span { color: var(--m-muted); font-size: 6.5px; }
+    .lp-faq div { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--m-line); font-size: 7.5px; font-weight: 600; }
+    .lp-faq div span { color: var(--m-muted); }
+    .lp-final { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; padding: 13px 14px; border-radius: 9px; background: var(--c-deep); color: #fff; }
+    .lp-final strong { font-size: 10px; }
+
+    .lp-lead { left: -3%; bottom: 92px; }
+
+    /* Anatomia: wireframe da página */
+    .wire { max-width: 1000px; }
+    .wire-row { display: grid; grid-template-columns: minmax(150px, 300px) 1fr; gap: clamp(28px, 6vw, 72px); align-items: stretch; }
+    .wire-note { align-self: center; }
+    .wire-block { display: flex; flex-direction: column; justify-content: center; gap: 7px; min-height: var(--h, 84px); padding: 16px 20px; background: var(--surface-dark); border-inline: 1px solid var(--dark-line-strong); border-top: 1px solid var(--dark-line); transition: background .3s ease; }
+    .wire-row:first-child .wire-block { border-top-color: var(--dark-line-strong); border-radius: 14px 14px 0 0; }
+    .wire-row:last-child .wire-block { border-bottom: 1px solid var(--dark-line-strong); border-radius: 0 0 14px 14px; }
+    .wire-block i { display: block; width: var(--w, 70%); height: 6px; border-radius: 6px; background: color-mix(in oklch, var(--text) 17%, transparent); }
+    .wire-block i.is-title { height: 11px; background: color-mix(in oklch, var(--text) 34%, transparent); }
+    .wire-block b { display: block; width: 72px; height: 17px; margin-top: 3px; border-radius: 5px; background: var(--rose); }
+    .wire-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 2px; }
+    .wire-cols span { height: 28px; border-radius: 6px; background: color-mix(in oklch, var(--text) 9%, transparent); }
+    .wire-note { position: relative; padding: 14px 0; }
+    .wire-note::before { content: ''; position: absolute; top: 50%; right: calc(100% + 12px); width: clamp(12px, 4vw, 48px); height: 1px; background: var(--dark-line-strong); transition: background .3s ease; }
+    .wire-note span { color: var(--rose-soft); font-size: 12px; font-weight: 700; }
+    .wire-note h3 { margin: 2px 0 4px; font-size: 20px; letter-spacing: -.02em; }
+    .wire-note p { max-width: 50ch; margin: 0; color: var(--text-soft); font-size: 14px; }
+    .wire-row:hover .wire-block { background: var(--surface-hover); }
+    .wire-row:hover .wire-note::before { background: var(--rose); }
+
+    @media (max-width: 540px) {
+      .lp-hero { grid-template-columns: 1fr; min-height: 305px; padding: 20px 18px; }
+      .lp-sim { display: none; }
+      .lp-strip { padding: 10px 16px; }
+      .lp-strip span:nth-child(3) { display: none; }
+      .lp-quotes, .lp-steps { grid-template-columns: 1fr 1fr; }
+      .lp-quotes figure:nth-child(3), .lp-steps li:nth-child(3) { display: none; }
+      .wire-row { grid-template-columns: 92px 1fr; gap: 22px; }
+      .wire-block { padding: 10px; gap: 5px; min-height: calc(var(--h, 84px) * .8); }
+      .wire-block b { width: 40px; height: 12px; }
+      .wire-cols span { height: 18px; }
+      .wire-note h3 { font-size: 17px; }
+      .wire-note p { font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body data-whatsapp="Olá, Victor! Vi a página de Landing Page da VS Experience e quero conversar sobre um projeto.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="VS Experience · todos os serviços"><span class="brand-mark"></span><span>VS Experience</span></a>
+      <span class="client-chip">Serviços · Landing Page</span>
+      <nav class="nav-links" aria-label="Navegação da página">
+        <a href="#servico" data-spy-link="servico">O serviço</a>
+        <a href="#processo" data-spy-link="processo">Processo</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a class="nav-cta" href="#contato"><span>Solicitar orçamento</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="context-line">Landing page</div>
+          <h1 class="display">Uma página, um objetivo, <em>nenhuma distração.</em></h1>
+          <p class="hero-lead">Páginas de conversão construídas para transformar visitas em contatos, orçamentos e vendas, com estratégia, copy e design pensados para a sua oferta.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#processo">Como funciona</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Do briefing à página no ar em 10 a 15 dias úteis.</span></div>
+        </div>
+
+        <div class="stage" role="group" aria-label="Exemplo interativo de landing page para um cliente fictício de energia solar">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">solareenergia.com.br</span><span class="browser-live">No ar</span></div>
+              <div class="screen lp">
+                <div class="m-nav"><span class="m-logo"><span class="lp-sun"></span>solare</span><div class="m-links"><span>Como funciona</span><span>Resultados</span><span>Dúvidas</span><b class="m-btn">Simular economia</b></div></div>
+
+                <div class="mock-page" id="lp-hero" role="tabpanel" aria-labelledby="lp-tab-hero">
+                  <div class="lp-hero">
+                    <div>
+                      <span class="m-label">Energia solar residencial</span>
+                      <h3 class="m-title">Sua conta de luz até <b>95% menor</b>.</h3>
+                      <p class="m-text">Projeto, instalação e homologação completos, com financiamento em até 72x e economia a partir do primeiro mês.</p>
+                      <div class="lp-actions"><span class="m-btn">Simular minha economia →</span><span class="m-btn is-ghost">Como funciona</span></div>
+                      <div class="lp-trust"><span class="lp-stars">★★★★★</span><span>4,9 no Google · 1.200 sistemas instalados</span></div>
+                    </div>
+                    <div class="lp-sim">
+                      <small>Simulação gratuita</small>
+                      <strong>Quanto você paga de luz por mês?</strong>
+                      <div class="lp-input"><span>R$</span>480</div>
+                      <div class="lp-slider"><i></i></div>
+                      <div class="lp-result"><span>Economia estimada</span><b>R$ 5.470/ano</b></div>
+                      <span class="m-btn lp-block">Receber proposta no WhatsApp</span>
+                    </div>
+                  </div>
+                  <div class="lp-strip"><span>Painéis com 25 anos de garantia</span><span>Homologação inclusa</span><span>Instalação em 2 dias</span></div>
+                </div>
+
+                <div class="mock-page" id="lp-prova" role="tabpanel" aria-labelledby="lp-tab-prova" hidden>
+                  <div class="m-inner">
+                    <span class="m-label">Quem já economiza</span>
+                    <h3 class="m-title">Contas reais, economia real.</h3>
+                    <div class="lp-bill">
+                      <div><span>Antes</span><i style="--w:100%"></i><b>R$ 612</b></div>
+                      <div><span>Depois</span><i class="is-after" style="--w:9%"></i><b>R$ 54</b></div>
+                    </div>
+                    <div class="lp-quotes">
+                      <figure><blockquote>“Instalaram em dois dias e a conta caiu já no mês seguinte.”</blockquote><figcaption><i>RM</i>Renato M. · residência</figcaption></figure>
+                      <figure><blockquote>“A simulação bateu com a economia real. Atendimento impecável.”</blockquote><figcaption><i>CA</i>Carla A. · comércio</figcaption></figure>
+                      <figure><blockquote>“Financiei e a parcela ficou menor do que a conta antiga.”</blockquote><figcaption><i>JP</i>João P. · residência</figcaption></figure>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page" id="lp-oferta" role="tabpanel" aria-labelledby="lp-tab-oferta" hidden>
+                  <div class="m-inner">
+                    <span class="m-label">Como funciona</span>
+                    <h3 class="m-title">Do orçamento à economia em 3 passos.</h3>
+                    <ol class="lp-steps">
+                      <li><b>1</b><strong>Visita técnica</strong><span>Análise do telhado e do consumo, sem custo.</span></li>
+                      <li><b>2</b><strong>Instalação</strong><span>Equipe própria e sistema pronto em 2 dias.</span></li>
+                      <li><b>3</b><strong>Economia</strong><span>Homologação com a concessionária e conta reduzida.</span></li>
+                    </ol>
+                    <div class="lp-faq"><div>Preciso reformar o telhado? <span>+</span></div><div>Funciona em dias nublados? <span>+</span></div></div>
+                    <div class="lp-final"><strong>Receba sua proposta em 24 horas.</strong><span class="m-btn">Simular agora</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float-card lp-lead" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><strong>Novo contato recebido</strong><span>Mariana S. · conta de R$ 480</span><small>via WhatsApp · agora</small></div>
+            </div>
+            <div class="stage-badge"><strong>10 a 15</strong><span>dias úteis do briefing à publicação</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Seções do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="lp-tab-hero" aria-controls="lp-hero" aria-selected="true">Hero</button>
+            <button class="mockup-tab" type="button" role="tab" id="lp-tab-prova" aria-controls="lp-prova" aria-selected="false">Prova</button>
+            <button class="mockup-tab" type="button" role="tab" id="lp-tab-oferta" aria-controls="lp-oferta" aria-selected="false">Oferta</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-band" aria-label="Resumo do serviço">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Prazo médio</span><strong>10 a 15 dias úteis</strong></div>
+        <div class="spec-item"><span>Investimento médio</span><strong>R$ 1.260</strong></div>
+        <div class="spec-item"><span>Formato</span><strong>Página única, 6 a 9 seções</strong></div>
+        <div class="spec-item"><span>Revisões</span><strong>1 rodada consolidada</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="servico" data-spy="servico">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal">Uma página construída para levar o visitante a uma única ação.</h2>
+          <p class="reveal delay-1">Landing page é uma página única com um objetivo claro: pedir orçamento, agendar, se inscrever ou comprar. Cada seção existe para sustentar essa decisão, sem menus que levam para longe e sem conteúdo que dispersa.</p>
+        </div>
+        <div class="outcomes">
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div><h3>Estratégia antes do layout</h3><p>Oferta, público e principal objeção definidos antes da primeira tela.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><h3>Copy de conversão</h3><p>Textos escritos para o seu cliente, com os argumentos na ordem certa.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Design exclusivo e responsivo</h3><p>Layout criado do zero e pensado primeiro para o celular, onde está a maior parte do tráfego.</p></article>
+          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></div><h3>Pronta para medir</h3><p>WhatsApp, formulário, Analytics e pixel configurados na entrega.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anatomy" data-spy="servico" aria-labelledby="anatomia-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="anatomia-titulo">Cada dobra tem um trabalho a fazer.</h2>
+          <p class="reveal delay-1">Uma landing page não é um site encolhido. É uma sequência de argumentos, montada na ordem em que o visitante precisa ouvir cada um antes de decidir.</p>
+        </div>
+        <ol class="wire">
+          <li class="wire-row reveal"><div class="wire-block" style="--h:150px" aria-hidden="true"><i class="is-title" style="--w:78%"></i><i style="--w:60%"></i><i style="--w:48%"></i><b></b></div><div class="wire-note"><span>Atenção</span><h3>Hero</h3><p>Promessa clara, prova rápida e o primeiro convite para agir, tudo visível sem rolar.</p></div></li>
+          <li class="wire-row reveal"><div class="wire-block" style="--h:72px" aria-hidden="true"><i class="is-title" style="--w:52%"></i><i style="--w:74%"></i></div><div class="wire-note"><span>Interesse</span><h3>Problema</h3><p>O cenário do visitante descrito com as palavras dele, para que ele se reconheça.</p></div></li>
+          <li class="wire-row reveal"><div class="wire-block" style="--h:96px" aria-hidden="true"><i class="is-title" style="--w:46%"></i><div class="wire-cols"><span></span><span></span><span></span></div></div><div class="wire-note"><span>Interesse</span><h3>Solução</h3><p>Como o serviço resolve, em etapas simples de entender e de imaginar.</p></div></li>
+          <li class="wire-row reveal"><div class="wire-block" style="--h:90px" aria-hidden="true"><i class="is-title" style="--w:40%"></i><div class="wire-cols"><span></span><span></span><span></span></div></div><div class="wire-note"><span>Desejo</span><h3>Prova social</h3><p>Depoimentos, números, logos e casos reais que tiram o risco da decisão.</p></div></li>
+          <li class="wire-row reveal"><div class="wire-block" style="--h:92px" aria-hidden="true"><i class="is-title" style="--w:56%"></i><i style="--w:66%"></i><b></b></div><div class="wire-note"><span>Desejo</span><h3>Oferta</h3><p>O que está incluso, condições, garantias e diferenciais em relação à concorrência.</p></div></li>
+          <li class="wire-row reveal"><div class="wire-block" style="--h:78px" aria-hidden="true"><i style="--w:80%"></i><i style="--w:80%"></i><i style="--w:80%"></i></div><div class="wire-note"><span>Ação</span><h3>Objeções</h3><p>Perguntas frequentes que respondem o que ainda trava a decisão.</p></div></li>
+          <li class="wire-row reveal"><div class="wire-block" style="--h:70px" aria-hidden="true"><i class="is-title" style="--w:58%"></i><b></b></div><div class="wire-note"><span>Ação</span><h3>CTA final</h3><p>WhatsApp ou formulário em destaque, sem distração, para quem chegou até o fim.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" data-spy="servico" aria-labelledby="indicado-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="indicado-titulo">Quando uma landing page é a escolha certa.</h2></div>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Faz sentido quando</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Você tem uma oferta principal e quer transformar visitas em contatos.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vai investir em anúncios e precisa de uma página que aproveite cada clique pago.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Está lançando um produto, serviço, evento ou campanha com data marcada.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Precisa estar no ar rápido, com investimento enxuto e resultado mensurável.</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Outro formato serve melhor quando</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>A empresa tem vários serviços que merecem páginas próprias: veja <a class="text-link" href="../site-institucional/">Site Institucional</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>Você quer vender produtos com carrinho e pagamento online: veja <a class="text-link" href="../e-commerce/">E-commerce</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>O que você precisa é de uma ferramenta com login e dados: veja <a class="text-link" href="../sistemas-saas/">Sistemas e SaaS</a>.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="processo" data-spy="processo">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal">Cinco etapas, com aprovação em cada uma.</h2>
+          <p class="section-lead reveal delay-1">Você acompanha cada entrega e aprova antes de avançar. Sem sumiço e sem surpresa no final.</p>
+          <div class="process-total reveal delay-2"><strong>10 a 15</strong><span>dias úteis, contados a partir do envio dos materiais</span></div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Dias 1 e 2</span><h3>Diagnóstico</h3><p>Conversa sobre oferta, público, diferenciais e objetivo da página. Reunimos referências, materiais e acessos.</p><div class="step-deliverable"><strong>Você recebe</strong><span>briefing validado e mapa de seções</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">02</span><div><span class="step-time">Dias 2 a 5</span><h3>Estrutura e copy</h3><p>Ordem dos argumentos, títulos, textos e chamadas. O conteúdo é aprovado antes do visual, para o design nascer sobre algo sólido.</p><div class="step-deliverable"><strong>Você recebe</strong><span>documento de copy para aprovação</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">03</span><div><span class="step-time">Dias 5 a 9</span><h3>Design</h3><p>Layout exclusivo no desktop e no celular, com a identidade da marca aplicada em cada seção.</p><div class="step-deliverable"><strong>Você recebe</strong><span>protótipo navegável</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">04</span><div><span class="step-time">Dias 9 a 13</span><h3>Desenvolvimento</h3><p>Código leve e responsivo, com WhatsApp, formulário, Analytics e pixel configurados.</p><div class="step-deliverable"><strong>Você recebe</strong><span>link de homologação para testar</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">05</span><div><span class="step-time">Dias 13 a 15</span><h3>Ajustes e publicação</h3><p>Uma rodada consolidada de ajustes, testes em dispositivos reais e publicação no seu domínio.</p><div class="step-deliverable"><strong>Você recebe</strong><span>página no ar e acessos entregues</span></div></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="investimento" data-spy="investimento">
+      <div class="container">
+        <div class="section-head">
+          <div class="context-line reveal">Valores de referência</div>
+          <h2 class="section-title reveal delay-1">Quanto custa uma landing page.</h2>
+          <p class="section-lead reveal delay-2">A média abaixo vem de landing pages orçadas recentemente pela VS Experience. O valor final é fechado depois do diagnóstico, com escopo por escrito.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value"><span>Investimento médio</span><strong>R$ 1.260</strong><small>Média de 8 landing pages orçadas nos últimos meses.</small></div>
+          <div class="range" role="img" aria-label="Faixa praticada de R$ 750 a R$ 1.800, com média de R$ 1.260">
+            <div class="range-track" aria-hidden="true">
+              <span class="range-dot" style="--p:0%;--i:0"></span>
+              <span class="range-dot" style="--p:23.8%;--i:1"></span>
+              <span class="range-dot" style="--p:32.4%;--i:2"></span>
+              <span class="range-dot" style="--p:42.9%;--i:3"></span>
+              <span class="range-dot" style="--p:66.7%;--i:4"></span>
+              <span class="range-dot" style="--p:81%;--i:5"></span>
+              <span class="range-dot" style="--p:100%;--i:6"></span>
+              <span class="range-avg" style="--p:48.6%"><b>média R$ 1.260</b></span>
+            </div>
+            <div class="range-scale" aria-hidden="true"><div>menor valor<strong>R$ 750</strong></div><div>maior valor<strong>R$ 1.800</strong></div></div>
+            <p class="range-caption">Cada ponto é um projeto real. A variação vem do número de seções, da copy e das integrações.</p>
+          </div>
+        </div>
+
+        <div class="plans-grid reveal">
+          <article class="plan">
+            <span class="plan-label">Essencial</span>
+            <h3>Direta ao ponto.</h3>
+            <p class="plan-intro">Para validar uma oferta ou marcar presença com uma página objetiva.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Página única com até 6 seções</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Layout exclusivo e responsivo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Botão de WhatsApp e formulário</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Publicação no seu domínio</li>
+            </ul>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price">R$ 750 <em>a</em> 1.090</strong><p class="plan-note">Textos enviados por você, revisados e organizados na página.</p></div>
+          </article>
+          <article class="plan is-common">
+            <span class="common-badge">Faixa mais comum</span>
+            <span class="plan-label">Estratégica</span>
+            <h3>Feita para converter tráfego.</h3>
+            <p class="plan-intro">Para quem vai investir em anúncios e precisa que cada visita conte.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico e mapa de seções</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Copy de conversão incluso</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design exclusivo desktop e mobile</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Analytics, pixel e Microsoft Clarity</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO técnico básico</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1 rodada de revisão consolidada</li>
+            </ul>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price">R$ 1.200 <em>a</em> 1.600</strong><p class="plan-note">Onde está a maior parte dos projetos, incluindo a média de R$ 1.260.</p></div>
+          </article>
+          <article class="plan">
+            <span class="plan-label">Campanha</span>
+            <h3>Mais argumentos, mais integrações.</h3>
+            <p class="plan-intro">Para lançamentos e campanhas que precisam de narrativa longa e automação.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo da Estratégica</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Narrativa longa e animações sob medida</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Integração com CRM, e-mail ou automação</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Análise de comportamento após o lançamento</li>
+            </ul>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price"><em>a partir de</em> R$ 1.800</strong><p class="plan-note">Valor definido pelo volume de seções e integrações.</p></div>
+          </article>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>O que muda o valor</h3>
+            <ul class="factor-list">
+              <li>Número de seções</li><li>Copy inclusa ou enviada por você</li><li>Animações e interações</li><li>Integrações com CRM e automação</li><li>Versões em outros idiomas</li><li>Prazo de urgência</li>
+            </ul>
+            <div class="extras">
+              <h3>Complementos</h3>
+              <div class="pay-rows">
+                <div class="pay-row"><span>Link na bio personalizado</span><strong>a partir de R$ 500</strong></div>
+                <div class="pay-row"><span>Pacote recorrente de até 4 landing pages</span><strong>R$ 4.000 por mês</strong></div>
+                <div class="pay-row"><span>Manutenção semestral</span><strong>R$ 390 por semestre</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Formas de pagamento</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Pix em duas etapas</span><strong>50% na aprovação, 50% na entrega</strong></div>
+              <div class="pay-row"><span>Pix à vista</span><strong>5% a 10% de desconto</strong></div>
+              <div class="pay-row"><span>Cartão de crédito</span><strong>Até 10x, com taxas da operadora</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="case-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Landing pages que já estão no ar.</h2></div>
+        <div class="case-grid">
+          <figure class="case-media reveal" style="margin:0"><img src="../../assets/images/cases/eleva.webp" alt="Landing page da Eleva Isenções no desktop, com o título sobre desconto na compra de carro zero km e a lista de marcas atendidas" width="1350" height="808" loading="lazy" decoding="async"></figure>
+          <div class="case-copy reveal delay-1">
+            <span class="case-tag">Landing Page · Assessoria PCD</span>
+            <h3>Eleva Isenções</h3>
+            <dl class="case-facts">
+              <div><dt>Foco</dt><dd>Transformar a assessoria para isenção PCD em uma jornada clara, humana e orientada para contato.</dd></div>
+              <div><dt>Entregas</dt><dd>Copy de conversão, explicação de benefícios, prova de processo e CTAs para análise pelo WhatsApp.</dd></div>
+              <div><dt>Impacto</dt><dd>Proposta mais objetiva para quem busca carro zero km com isenções de IPI, IOF, ICMS e IPVA.</dd></div>
+            </dl>
+            <a class="button button-secondary" href="https://elevaisencoes.com.br/" target="_blank" rel="noopener noreferrer">Ver projeto no ar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+          </div>
+        </div>
+        <a class="case-more reveal" href="https://alugaaquimaquinas.com.br/" target="_blank" rel="noopener noreferrer">
+          <img src="../../assets/images/cases/alugaaqui.webp" alt="" width="1350" height="808" loading="lazy" decoding="async">
+          <div><strong>Aluga Aqui Máquinas</strong><span>Catálogo de máquinas, fluxo de orçamento e CTAs para contato imediato.</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="entrega-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="entrega-titulo">Depois que a página vai ao ar.</h2></div>
+        <div class="care-grid">
+          <article class="care-block reveal"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><h3>Tudo fica no nome da sua empresa.</h3><p>Domínio, hospedagem e contas de Analytics são contratados em nome do cliente. Você mantém a propriedade e o controle, sem depender de ninguém para acessar o que é seu.</p><p>Os custos de domínio e hospedagem são pagos diretamente aos fornecedores e não fazem parte do valor do projeto.</p></article>
+          <article class="care-block is-accent reveal delay-1"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 7h-5V2M4 17h5v5"/><path d="M5.7 9A7 7 0 0 1 17 5l3 2M4 17l3 2a7 7 0 0 0 11.3-4"/></svg></div><h3>Manutenção semestral</h3><p>Para manter a página atualizada, segura e funcionando enquanto as campanhas mudam.</p><ul class="care-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Textos e imagens</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ofertas e condições</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Segurança e backups</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pequenos ajustes de layout</li></ul><div class="care-price"><strong>R$ 390</strong><span>por semestre, opcional</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="faq-titulo">
+      <div class="container faq-layout">
+        <h2 class="section-title reveal" id="faq-titulo">Perguntas antes de começar.</h2>
+        <div class="faq-list reveal delay-1">
+          <details class="faq-item"><summary>Preciso ter os textos prontos?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não. Na faixa Estratégica a copy está inclusa: os textos são escritos a partir do diagnóstico e enviados para sua aprovação antes do design. Na Essencial, você envia o conteúdo e ele é revisado e organizado na página.</p></details>
+          <details class="faq-item"><summary>Landing page funciona sem anúncios?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Funciona como destino de qualquer tráfego: Instagram, link na bio, Google, indicações ou campanhas. Com anúncios ela rende mais, porque transforma cliques pagos em contatos em vez de desperdiçá-los.</p></details>
+          <details class="faq-item"><summary>Consigo editar a página depois?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. Pequenas alterações entram na manutenção semestral e mudanças maiores são orçadas à parte. Quando a página é feita em WordPress, você também edita textos e imagens direto pelo painel.</p></details>
+          <details class="faq-item"><summary>Em quanto tempo a página fica no ar?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Entre 10 e 15 dias úteis a partir do envio dos materiais. O que mais influencia o prazo é a velocidade das aprovações em cada etapa.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Sua próxima campanha merece uma página à <span>altura.</span></h2>
+            <p>Conte o que você vende, para quem e qual ação o visitante deve tomar. A resposta vem com um caminho claro e um valor fechado.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Serviço</span><strong>Landing Page</strong></div>
+            <div class="meta-row"><span>Prazo médio</span><strong>10 a 15 dias úteis</strong></div>
+            <div class="meta-row"><span>Investimento médio</span><strong>R$ 1.260</strong></div>
+            <div class="meta-row"><span>Faixa praticada</span><strong>R$ 750 a R$ 1.800</strong></div>
+            <div class="meta-row"><span>Pagamento</span><strong>Pix ou cartão em até 10x</strong></div>
+          </div>
+        </div>
+        <nav class="other-services" aria-labelledby="outros-titulo">
+          <h2 id="outros-titulo">Outros serviços</h2>
+          <div class="other-grid">
+            <a href="../site-institucional/"><strong>Site Institucional <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 2.350</small></a>
+            <a href="../e-commerce/"><strong>E-commerce <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 3.740</small></a>
+            <a href="../sistemas-saas/"><strong>Sistemas e SaaS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 6.950</small></a>
+            <a href="../design-system/"><strong>Design System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>a partir de R$ 3.000</small></a>
+          </div>
+        </nav>
+        <div class="signature"><span class="brand"><span class="brand-mark"></span><span>VS Experience</span></span><span>Design, tecnologia e experiências digitais.</span><span>Valores de referência · setembro de 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/servicos.js"></script>
+</body>
+</html>

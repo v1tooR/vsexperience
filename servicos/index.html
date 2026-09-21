@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120d0d">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Serviços da VS Experience: landing page, site institucional, e-commerce, sistemas e design system, com processo e valores de referência.">
+  <title>Serviços · VS Experience</title>
+  <link rel="icon" href="../assets/images/logo/vslogo.webp" type="image/webp">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/servicos.css">
+  <style>
+    /* Hero com retrato */
+    .portrait { position: absolute; z-index: 2; right: 6%; top: 0; width: min(420px, 82%); aspect-ratio: 1314 / 1801; overflow: hidden; border: 1px solid var(--dark-line-strong); border-radius: var(--radius-lg); background: oklch(0.1 0.01 25); box-shadow: 0 34px 70px -34px #000; transform: rotate(1.5deg); }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .hub-stage { min-height: 590px; }
+    .hub-card { left: 0; bottom: 70px; }
+    .hub-card .float-icon { background: color-mix(in oklch, var(--rose) 18%, #fff); color: var(--rose); }
+
+    /* Índice de serviços */
+    .svc-list { border-top: 1px solid var(--dark-line-strong); counter-reset: none; }
+    .svc-row { position: relative; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, .8fr) minmax(0, .7fr) 44px; gap: 28px; align-items: center; padding: 30px 14px; border-bottom: 1px solid var(--dark-line); isolation: isolate; }
+    .svc-row::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklch, var(--rose) 14%, transparent), transparent 62%); opacity: 0; transition: opacity .4s ease; }
+    .svc-row:hover::before, .svc-row:focus-visible::before { opacity: 1; }
+    .svc-name { transition: transform .5s var(--ease); }
+    .svc-row:hover .svc-name { transform: translateX(10px); }
+    .svc-name strong { display: block; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.04; letter-spacing: -.035em; }
+    .svc-name small { display: block; max-width: 52ch; margin-top: 8px; color: var(--text-muted); font-size: 15px; }
+    .svc-meta { font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+    .svc-meta small { display: block; margin-bottom: 2px; color: var(--text-muted); font-size: 12px; font-weight: 500; letter-spacing: 0; }
+    .svc-arrow { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--dark-line-strong); border-radius: 50%; color: var(--rose-soft); transition: background .3s ease, color .3s ease, border-color .3s ease, transform .5s var(--ease); }
+    .svc-arrow svg { width: 18px; }
+    .svc-row:hover .svc-arrow, .svc-row:focus-visible .svc-arrow { background: var(--rose); border-color: var(--rose); color: #fff; transform: rotate(-45deg); }
+
+    .svc-preview { position: fixed; left: 0; top: 0; z-index: 15; width: 320px; aspect-ratio: 1350 / 808; overflow: hidden; border: 1px solid var(--dark-line-strong); border-radius: var(--radius); background: var(--wine); box-shadow: 0 30px 60px -24px #000; pointer-events: none; opacity: 0; transform: scale(.82) rotate(-6deg); transition: opacity .3s ease, transform .55s var(--ease); }
+    .svc-preview.is-on { opacity: 1; transform: scale(1) rotate(-2deg); }
+    .svc-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-preview .preview-tokens { display: none; height: 100%; grid-template-columns: repeat(5, 1fr); }
+    .svc-preview .preview-tokens span { background: var(--s); }
+    .svc-preview.is-tokens img { display: none; }
+    .svc-preview.is-tokens .preview-tokens { display: grid; }
+
+    /* Método */
+    .method { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+    .method::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; height: 1px; background: var(--dark-line-strong); }
+    .method li { position: relative; }
+    .method .step-dot { margin-bottom: 22px; }
+    .method li:first-child .step-dot { background: var(--rose); border-color: var(--rose); color: #fff; }
+    .method h3 { margin-bottom: 8px; font-size: 19px; letter-spacing: -.02em; }
+    .method p { margin: 0; color: var(--text-muted); font-size: 14px; }
+
+    .reading { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(40px, 7vw, 96px); align-items: start; }
+    .reading .pay-rows + h3 { margin-top: 40px; }
+    .reading h3 { margin-bottom: 16px; font-size: 20px; letter-spacing: -.02em; }
+
+    @media (max-width: 1040px) {
+      .method { grid-template-columns: 1fr 1fr 1fr; row-gap: 40px; }
+      .method::before { display: none; }
+      .reading { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 780px) {
+      .svc-row { grid-template-columns: 1fr 1fr; gap: 18px 20px; padding: 26px 4px; }
+      .svc-name { grid-column: 1 / -1; }
+      .svc-arrow { display: none; }
+      .method { grid-template-columns: 1fr 1fr; }
+      .portrait { right: 0; }
+    }
+    @media (max-width: 540px) {
+      .hub-stage { min-height: 400px; }
+      .portrait { width: 78%; right: 4%; }
+      .method { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body data-whatsapp="Olá, Victor! Vi a página de serviços da VS Experience e quero conversar sobre um projeto.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="VS Experience · site principal"><span class="brand-mark"></span><span>VS Experience</span></a>
+      <span class="client-chip">Serviços e valores de referência</span>
+      <nav class="nav-links" aria-label="Navegação da página">
+        <a href="#servicos" data-spy-link="servicos">Serviços</a>
+        <a href="#metodo" data-spy-link="metodo">Método</a>
+        <a href="#valores" data-spy-link="valores">Valores</a>
+        <a class="nav-cta" href="#contato"><span>Conversar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="context-line">Serviços</div>
+          <h1 class="display">Cinco formas de transformar estratégia em <em>produto digital.</em></h1>
+          <p class="hero-lead">Veja o que é cada serviço, como o processo funciona e quanto ele costuma custar, com médias calculadas a partir de projetos reais da VS Experience.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#servicos">Ver os serviços <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Conversar no WhatsApp</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Valores de referência atualizados em setembro de 2026.</span></div>
+        </div>
+        <div class="stage hub-stage">
+          <div class="stage-inner">
+            <figure class="portrait" style="margin:0"><img src="assets/img/victor-santos.webp" alt="Victor Santos, designer e desenvolvedor da VS Experience, sorrindo em retrato de estúdio com fundo escuro" width="1314" height="1801" fetchpriority="high"></figure>
+            <div class="float-card hub-card" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><strong>Do diagnóstico ao código</strong><span>Estratégia, UX, UI e desenvolvimento</span><small>sem handoff entre profissionais</small></div>
+            </div>
+            <div class="stage-badge"><strong>5 serviços</strong><span>com processo e valores abertos</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicos" data-spy="servicos" aria-labelledby="servicos-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="servicos-titulo">Escolha o serviço para ver os detalhes.</h2>
+          <p class="section-lead reveal delay-1">Cada página explica o que é o serviço, para quem ele faz sentido, como funciona cada etapa e as faixas de investimento.</p>
+        </div>
+        <ol class="svc-list">
+          <li class="reveal"><a class="svc-row" href="landing-page/" data-glow data-preview="../assets/images/cases/eleva.webp">
+            <span class="svc-name"><strong>Landing Page</strong><small>Uma página, um objetivo: transformar visitas em contatos, orçamentos e vendas.</small></span>
+            <span class="svc-meta"><small>Prazo médio</small>10 a 15 dias úteis</span>
+            <span class="svc-meta"><small>Investimento médio</small>R$ 1.260</span>
+            <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li class="reveal"><a class="svc-row" href="site-institucional/" data-glow data-preview="../assets/images/cases/costaflores.webp">
+            <span class="svc-name"><strong>Site Institucional</strong><small>Páginas próprias para apresentar a empresa, os serviços e as provas antes da reunião.</small></span>
+            <span class="svc-meta"><small>Prazo médio</small>15 a 30 dias úteis</span>
+            <span class="svc-meta"><small>Investimento médio</small>R$ 2.350</span>
+            <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li class="reveal"><a class="svc-row" href="e-commerce/" data-glow data-preview="../assets/images/cases/multivegetal.webp">
+            <span class="svc-name"><strong>E-commerce</strong><small>Loja virtual com checkout, pagamento, frete e integrações com estoque e marketplaces.</small></span>
+            <span class="svc-meta"><small>Prazo médio</small>20 a 30 dias úteis</span>
+            <span class="svc-meta"><small>Investimento médio</small>R$ 3.740</span>
+            <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li class="reveal"><a class="svc-row" href="sistemas-saas/" data-glow data-preview="../assets/images/cases/facilorgapp.webp">
+            <span class="svc-name"><strong>Sistemas e SaaS</strong><small>CRMs, painéis de gestão, plataformas e MVPs feitos a partir do processo real.</small></span>
+            <span class="svc-meta"><small>Prazo médio</small>30 a 60 dias</span>
+            <span class="svc-meta"><small>Investimento médio</small>R$ 6.950</span>
+            <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+          <li class="reveal"><a class="svc-row" href="design-system/" data-glow>
+            <span class="svc-name"><strong>Design System</strong><small>Tokens, componentes e documentação para manter cada tela no mesmo padrão.</small></span>
+            <span class="svc-meta"><small>Prazo médio</small>3 a 8 semanas</span>
+            <span class="svc-meta"><small>Projeto típico</small>R$ 6.800</span>
+            <span class="svc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section anatomy" id="metodo" data-spy="metodo" aria-labelledby="metodo-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="metodo-titulo">O mesmo método em todos os serviços.</h2>
+          <p class="reveal delay-1">Muitos projetos começam pelo visual e terminam em retrabalho. Aqui a ordem é outra: clareza primeiro, depois estrutura, e só então o acabamento.</p>
+        </div>
+        <ol class="method">
+          <li class="reveal"><span class="step-dot">01</span><h3>Diagnóstico</h3><p>O que precisa acontecer: leads, vendas, ativação, retenção ou confiança.</p></li>
+          <li class="reveal delay-1"><span class="step-dot">02</span><h3>Arquitetura e narrativa</h3><p>Hierarquia, fluxos, estrutura e a história que guia o usuário.</p></li>
+          <li class="reveal delay-1"><span class="step-dot">03</span><h3>UI premium</h3><p>Visual consistente, microdecisões e componentes reaproveitáveis.</p></li>
+          <li class="reveal delay-2"><span class="step-dot">04</span><h3>Construção e refinamento</h3><p>Implementação com padrão, performance e fidelidade ao design.</p></li>
+          <li class="reveal delay-3"><span class="step-dot">05</span><h3>Ajustes e validação</h3><p>Evolução orientada por uso real: cliques, funil e feedback.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="valores" data-spy="valores" aria-labelledby="valores-titulo">
+      <div class="container reading">
+        <div>
+          <div class="context-line reveal">Valores de referência</div>
+          <h2 class="section-title reveal delay-1" id="valores-titulo">Como ler os valores de cada página.</h2>
+          <p class="section-lead reveal delay-2">Os números vêm de propostas reais. Eles servem para você planejar o investimento antes da primeira conversa, não para substituir o orçamento.</p>
+        </div>
+        <div class="reveal delay-1">
+          <h3>O que cada número significa</h3>
+          <div class="pay-rows">
+            <div class="pay-row"><span>Investimento médio</span><strong>Média dos projetos orçados recentemente</strong></div>
+            <div class="pay-row"><span>Faixa praticada</span><strong>Do menor ao maior valor desses projetos</strong></div>
+            <div class="pay-row"><span>Faixa mais comum</span><strong>Onde a maior parte dos projetos se concentra</strong></div>
+            <div class="pay-row"><span>Valor final</span><strong>Fechado após o diagnóstico, com escopo por escrito</strong></div>
+          </div>
+          <h3>Condições de pagamento</h3>
+          <div class="pay-rows">
+            <div class="pay-row"><span>Pix em duas etapas</span><strong>50% na aprovação, 50% na entrega</strong></div>
+            <div class="pay-row"><span>Pix à vista</span><strong>Desconto no pagamento único</strong></div>
+            <div class="pay-row"><span>Cartão de crédito</span><strong>Até 10x, com taxas da operadora</strong></div>
+            <div class="pay-row"><span>Sistemas e plataformas</span><strong>Entrada e parcelas por marco</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Não sabe qual serviço faz sentido? <span>Vamos conversar.</span></h2>
+            <p>Me mande o que você vende, para quem e qual é o objetivo. Eu respondo com um caminho claro do que faria primeiro, sem compromisso.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Conversar no WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>WhatsApp</span><strong>(12) 99183-3641</strong></div>
+            <div class="meta-row"><span>Portfólio</span><strong><a class="text-link" href="../#portfolio">vsexperience.com.br</a></strong></div>
+            <div class="meta-row"><span>Instagram</span><strong><a class="text-link" href="https://www.instagram.com/victorssantos.ux/" target="_blank" rel="noopener noreferrer">@victorssantos.ux</a></strong></div>
+            <div class="meta-row"><span>Serviços</span><strong>5, do diagnóstico ao código</strong></div>
+          </div>
+        </div>
+        <div class="signature"><span class="brand"><span class="brand-mark"></span><span>VS Experience</span></span><span>Design, tecnologia e experiências digitais.</span><span>Valores de referência · setembro de 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="svc-preview" id="svcPreview" aria-hidden="true">
+    <img src="../assets/images/cases/eleva.webp" alt="" width="1350" height="808">
+    <div class="preview-tokens"><span style="--s:var(--bg)"></span><span style="--s:var(--wine-deep)"></span><span style="--s:var(--rose)"></span><span style="--s:var(--rose-soft)"></span><span style="--s:var(--text)"></span></div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="assets/servicos.js"></script>
+  <script>
+    /* Prévia do case que acompanha o ponteiro sobre cada serviço */
+    (function () {
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var preview = document.getElementById('svcPreview');
+      var img = preview.querySelector('img');
+      var target = { x: 0, y: 0 };
+      var pos = { x: 0, y: 0 };
+      var active = false;
+      var frame = null;
+      var W = 320;
+
+      function place(event) {
+        target.x = Math.min(event.clientX + 32, window.innerWidth - W - 24);
+        target.y = Math.max(event.clientY - 110, 84);
+      }
+      function loop() {
+        pos.x += (target.x - pos.x) * 0.16;
+        pos.y += (target.y - pos.y) * 0.16;
+        preview.style.translate = pos.x.toFixed(1) + 'px ' + pos.y.toFixed(1) + 'px';
+        var moving = Math.abs(target.x - pos.x) > 0.4 || Math.abs(target.y - pos.y) > 0.4;
+        frame = (active || moving) ? window.requestAnimationFrame(loop) : null;
+      }
+      document.querySelectorAll('.svc-row').forEach(function (row) {
+        var src = row.getAttribute('data-preview');
+        if (src) { var pre = new Image(); pre.src = src; }
+        row.addEventListener('pointerenter', function (event) {
+          if (event.pointerType !== 'mouse') return;
+          if (src) { img.src = src; preview.classList.remove('is-tokens'); }
+          else preview.classList.add('is-tokens');
+          place(event);
+          if (!active) { pos.x = target.x; pos.y = target.y; }
+          active = true;
+          preview.classList.add('is-on');
+          if (!frame) frame = window.requestAnimationFrame(loop);
+        });
+        row.addEventListener('pointermove', place);
+        row.addEventListener('pointerleave', function () {
+          active = false;
+          preview.classList.remove('is-on');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

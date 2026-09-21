@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120d0d">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Site institucional da VS Experience: o que é, como funciona o processo e quanto custa, com valores de referência baseados em projetos recentes.">
+  <title>Site Institucional · Serviços VS Experience</title>
+  <link rel="icon" href="../../assets/images/logo/vslogo.webp" type="image/webp">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/servicos.css">
+  <style>
+    /* Mockup · Vértice Engenharia (cliente fictício) */
+    .screen.vt { --c-accent: oklch(0.52 0.1 235); --c-on-accent: #fff; --c-ink: oklch(0.2 0.03 240); --c-tint: oklch(0.965 0.01 235); --c-deep: oklch(0.21 0.04 240); --c-soft: oklch(0.8 0.03 235); }
+    .vt-mark { width: 13px; height: 13px; background: var(--c-accent); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+    .vt-home { display: grid; grid-template-columns: 1fr 1fr; min-height: 406px; }
+    .vt-home-copy { display: flex; flex-direction: column; justify-content: center; padding: 26px 22px 26px 26px; background: var(--c-deep); color: #fff; }
+    .vt-home-copy .m-label { color: var(--c-soft); }
+    .vt-home-copy .m-text { color: oklch(0.82 0.02 240); }
+    .vt-home-copy .m-btn { align-self: flex-start; margin-top: 14px; background: #fff; color: var(--c-deep); }
+    .vt-stats { display: flex; gap: 16px; margin-top: 22px; padding-top: 14px; border-top: 1px solid oklch(1 0 0 / .16); }
+    .vt-stats strong { display: block; font-size: 15px; letter-spacing: -.03em; }
+    .vt-stats small { color: oklch(0.8 0.02 240); font-size: 6px; }
+    .vt-blueprint { --grid: oklch(0.52 0.1 235 / .12); position: relative; display: grid; place-items: end center; padding: 30px 18px 0; background-color: var(--c-tint); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 16px 16px; }
+    .vt-blueprint svg { width: 100%; height: auto; color: var(--c-accent); }
+    .vt-blueprint svg .fill { fill: oklch(0.52 0.1 235 / .1); }
+    .motion-ready .vt-blueprint .draw { stroke-dasharray: 1; animation: draw 2.2s 1s var(--ease) both; }
+    @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    .vt-tag { position: absolute; top: 16px; right: 16px; padding: 5px 7px; border-radius: 4px; background: #fff; color: var(--c-ink); font-size: 6px; font-weight: 700; box-shadow: 0 6px 14px -8px oklch(0.2 0.03 240 / .5); }
+
+    .vt-timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0 20px; padding-top: 14px; }
+    .vt-timeline::before { content: ''; position: absolute; top: 3px; left: 3px; right: 3px; height: 1px; background: var(--m-line); }
+    .vt-timeline div { position: relative; }
+    .vt-timeline div::before { content: ''; position: absolute; top: -14px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--c-accent); box-shadow: 0 0 0 3px #fff; }
+    .vt-timeline b { display: block; font-size: 12px; letter-spacing: -.02em; }
+    .vt-timeline span { color: var(--m-muted); font-size: 6.5px; }
+    .vt-team { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: var(--c-tint); }
+    .vt-avatars { display: flex; }
+    .vt-avatars span { width: 22px; height: 22px; display: grid; place-items: center; margin-left: -6px; border-radius: 50%; background: var(--c-deep); color: #fff; font-size: 6px; font-weight: 700; box-shadow: 0 0 0 2px var(--c-tint); }
+    .vt-avatars span:first-child { margin-left: 0; }
+    .vt-avatars span:last-child { background: var(--c-accent); }
+    .vt-team p { margin: 0; color: var(--m-soft); font-size: 7.5px; }
+    .vt-values { display: flex; gap: 6px; margin-top: 12px; }
+    .vt-values span { padding: 5px 8px; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--m-line); color: var(--m-soft); font-size: 6.5px; font-weight: 600; }
+
+    .vt-services { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0 14px; }
+    .vt-services div { display: grid; grid-template-columns: 26px 1fr; gap: 3px 10px; padding: 12px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--m-line); }
+    .vt-services i { grid-row: span 2; width: 26px; height: 26px; border-radius: 6px; background: var(--c-tint); box-shadow: inset 0 0 0 6px var(--c-tint), inset 0 0 0 20px var(--c-accent); }
+    .vt-services div:nth-child(2) i { border-radius: 50%; }
+    .vt-services div:nth-child(3) i { clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 0; }
+    .vt-services div:nth-child(4) i { transform: rotate(45deg) scale(.8); }
+    .vt-services strong { font-size: 9px; }
+    .vt-services span { color: var(--m-muted); font-size: 6.5px; }
+    .vt-cta { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 8px; background: var(--c-deep); color: #fff; font-size: 9px; font-weight: 700; }
+    .vt-cta .m-btn { background: #fff; color: var(--c-deep); }
+
+    .vt-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+    .vt-field { margin-bottom: 7px; padding: 8px 9px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--m-line); color: var(--m-muted); font-size: 7px; }
+    .vt-field.is-area { height: 44px; }
+    .vt-map { position: relative; min-height: 150px; overflow: hidden; border-radius: 8px; background: oklch(0.94 0.012 150); }
+    .vt-map::before { content: ''; position: absolute; inset: -20%; background: linear-gradient(90deg, transparent 46%, #fff 46% 50%, transparent 50%), linear-gradient(0deg, transparent 58%, #fff 58% 61%, transparent 61%), linear-gradient(35deg, transparent 30%, oklch(1 0 0 / .8) 30% 32%, transparent 32%); }
+    .vt-pin { position: absolute; left: 50%; top: 42%; width: 16px; height: 16px; margin: -16px 0 0 -8px; border-radius: 50% 50% 50% 0; background: var(--c-accent); transform: rotate(-45deg); box-shadow: 0 6px 10px -4px oklch(0.2 0.05 240 / .6); }
+    .vt-pin::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: #fff; }
+    .vt-address { margin-top: 8px; color: var(--m-soft); font-size: 7px; }
+    .vt-address strong { display: block; color: var(--c-ink); font-size: 8px; }
+
+    .vt-phone { left: -2%; bottom: 36px; transition: opacity .35s ease, translate .6s var(--ease), visibility .35s; }
+    .stage:has(#vt-home[hidden]) .vt-phone { opacity: 0; visibility: hidden; translate: -14px 18px; }
+    .vt-phone-nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 10px 8px; }
+    .vt-phone-nav i { width: 12px; height: 8px; border-block: 1.5px solid var(--c-ink); position: relative; }
+    .vt-phone-nav i::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -.75px; background: var(--c-ink); }
+    .vt-phone-hero { margin: 0 6px; padding: 16px 10px; border-radius: 12px; background: var(--c-deep); color: #fff; }
+    .vt-phone-hero .m-label { color: var(--c-soft); font-size: 5px; }
+    .vt-phone-hero strong { display: block; margin: 5px 0 6px; font-size: 13px; line-height: 1.05; letter-spacing: -.03em; }
+    .vt-phone-hero p { margin: 0 0 10px; color: oklch(0.82 0.02 240); font-size: 5.5px; }
+    .vt-phone-hero .vt-phone-btn { display: inline-block; padding: 5px 7px; border-radius: 4px; background: #fff; color: var(--c-deep); font-size: 5.5px; font-weight: 700; }
+    .vt-phone-list { display: grid; gap: 5px; padding: 8px 6px; }
+    .vt-phone-list div { display: flex; align-items: center; gap: 6px; padding: 7px; border-radius: 7px; box-shadow: inset 0 0 0 1px var(--m-line); font-size: 6px; font-weight: 600; }
+    .vt-phone-list div::before { content: ''; width: 12px; height: 12px; border-radius: 3px; background: var(--c-accent); }
+    .vt-phone-wa { position: absolute; right: 10px; bottom: 12px; width: 22px; height: 22px; border-radius: 50%; background: oklch(0.62 0.15 150); box-shadow: 0 6px 12px -4px oklch(0.4 0.1 150 / .6); }
+
+    /* Anatomia: mapa do site */
+    .site-map { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: stretch; }
+    .home-node { display: flex; flex-direction: column; justify-content: space-between; min-height: 280px; padding: 26px; border-radius: var(--radius); background: var(--rose); color: #fff; }
+    .home-node svg { width: 27px; }
+    .home-node small { display: block; margin-bottom: 7px; color: color-mix(in oklch, #fff 76%, transparent); font-size: 12px; line-height: 1.3; }
+    .home-node strong { display: block; font-size: 32px; line-height: 1; letter-spacing: -.04em; }
+    .map-pages { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .map-pages::before { content: ''; position: absolute; top: 50%; left: -40px; width: 40px; height: 1px; background: var(--dark-line-strong); }
+    .page-node { min-height: 136px; padding: 20px; border-radius: var(--radius); background: var(--surface-dark); border: 1px solid transparent; transition: transform .35s var(--ease), border-color .3s ease; }
+    .page-node:hover { transform: translateY(-3px); border-color: var(--dark-line-strong); }
+    .page-node span { display: block; margin-bottom: 22px; color: var(--rose-soft); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+    .page-node strong { display: block; margin-bottom: 5px; font-size: 18px; }
+    .page-node small { display: block; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+    .page-node.is-optional { background: transparent; border: 1px dashed var(--dark-line-strong); }
+    .page-node.is-optional span::after { content: ' · opcional'; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
+    .page-node.is-contact { background: color-mix(in oklch, var(--rose) 42%, var(--surface-dark)); }
+    .page-node.is-contact span, .page-node.is-contact small { color: color-mix(in oklch, #fff 80%, transparent); }
+
+    @media (max-width: 780px) {
+      .site-map { grid-template-columns: 1fr; gap: 12px; }
+      .home-node { min-height: 170px; }
+      .map-pages::before { display: none; }
+      .map-pages { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .vt-home { grid-template-columns: 1fr; min-height: 311px; }
+      .vt-blueprint { display: none; }
+      .vt-home-copy { padding: 22px 18px; }
+      .vt-timeline { grid-template-columns: 1fr 1fr; row-gap: 22px; }
+      .vt-timeline::before { display: none; }
+      .vt-services { grid-template-columns: 1fr; }
+      .vt-services div:nth-child(n+3) { display: none; }
+      .vt-contact { grid-template-columns: 1fr; }
+      .vt-map { display: none; }
+      .map-pages { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body data-whatsapp="Olá, Victor! Vi a página de Site Institucional da VS Experience e quero conversar sobre um projeto.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="VS Experience · todos os serviços"><span class="brand-mark"></span><span>VS Experience</span></a>
+      <span class="client-chip">Serviços · Site Institucional</span>
+      <nav class="nav-links" aria-label="Navegação da página">
+        <a href="#servico" data-spy-link="servico">O serviço</a>
+        <a href="#processo" data-spy-link="processo">Processo</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a class="nav-cta" href="#contato"><span>Solicitar orçamento</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="context-line">Site institucional</div>
+          <h1 class="display">Sua empresa apresentada <em>antes da primeira reunião.</em></h1>
+          <p class="hero-lead">Páginas organizadas para contar quem você é, o que faz e por que confiar, com um caminho curto até o contato comercial em qualquer dispositivo.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#estrutura">Ver estrutura típica</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v14H4zM4 9h16"/></svg><span>Desenvolvido do zero, no domínio da sua empresa.</span></div>
+        </div>
+
+        <div class="stage" role="group" aria-label="Exemplo interativo de site institucional para uma construtora fictícia">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">vertice.eng.br</span><span class="browser-live">No ar</span></div>
+              <div class="screen vt">
+                <div class="m-nav"><span class="m-logo"><span class="vt-mark"></span>VÉRTICE</span><div class="m-links"><span>Empresa</span><span>Serviços</span><span>Obras</span><b class="m-btn">Solicitar visita</b></div></div>
+
+                <div class="mock-page" id="vt-home" role="tabpanel" aria-labelledby="vt-tab-home">
+                  <div class="vt-home">
+                    <div class="vt-blueprint">
+                      <span class="vt-tag">Galpão logístico · 2026</span>
+                      <svg viewBox="0 0 220 180" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+                        <rect class="fill" x="36" y="46" width="64" height="133" stroke="none"/>
+                        <rect class="draw" pathLength="1" x="36" y="46" width="64" height="133"/>
+                        <rect class="draw" pathLength="1" x="100" y="96" width="84" height="83"/>
+                        <path class="draw" pathLength="1" d="M4 179h212"/>
+                        <path class="draw" pathLength="1" d="M46 60h16M74 60h16M46 76h16M74 76h16M46 92h16M74 92h16M46 108h16M74 108h16M46 124h16M74 124h16M46 140h16M74 140h16"/>
+                        <path class="draw" pathLength="1" d="M112 112h60M112 128h60M112 144h60"/>
+                        <path class="draw" pathLength="1" d="M128 179v-20h28v20"/>
+                        <path class="draw" pathLength="1" d="M196 179V14M160 18h56M196 18l-30 22M184 18v-8h14"/>
+                        <path class="draw" pathLength="1" d="M168 18v28" stroke-dasharray="2 3"/>
+                        <path class="draw" pathLength="1" d="M26 46v133M22 46h8M22 179h8" stroke-width=".8"/>
+                      </svg>
+                    </div>
+                    <div class="vt-home-copy">
+                      <span class="m-label">Engenharia e construção</span>
+                      <h3 class="m-title">Obras que terminam no prazo combinado.</h3>
+                      <p class="m-text">Projetos corporativos e industriais com gestão própria, do terreno à entrega das chaves.</p>
+                      <span class="m-btn">Conhecer a Vértice →</span>
+                      <div class="vt-stats"><div><strong>28</strong><small>anos de mercado</small></div><div><strong>340</strong><small>obras entregues</small></div><div><strong>12</strong><small>cidades atendidas</small></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page" id="vt-empresa" role="tabpanel" aria-labelledby="vt-tab-empresa" hidden>
+                  <div class="m-inner">
+                    <span class="m-label">Sobre a Vértice</span>
+                    <h3 class="m-title">28 anos construindo com previsibilidade.</h3>
+                    <p class="m-text">Nascemos para entregar obras sem surpresa: orçamento claro, cronograma acompanhado e equipe técnica própria.</p>
+                    <div class="vt-timeline"><div><b>1998</b><span>Fundação da empresa</span></div><div><b>2009</b><span>Primeiro galpão industrial</span></div><div><b>2017</b><span>Certificação ISO 9001</span></div><div><b>2026</b><span>340 obras entregues</span></div></div>
+                    <div class="vt-team"><div class="vt-avatars"><span>MR</span><span>AL</span><span>PC</span><span>+18</span></div><p>Engenheiros e arquitetos próprios, sem terceirizar a gestão da obra.</p></div>
+                    <div class="vt-values"><span>Prazo</span><span>Transparência</span><span>Segurança</span><span>Qualidade</span></div>
+                  </div>
+                </div>
+
+                <div class="mock-page" id="vt-servicos" role="tabpanel" aria-labelledby="vt-tab-servicos" hidden>
+                  <div class="m-inner">
+                    <span class="m-label">O que fazemos</span>
+                    <h3 class="m-title">Da fundação à entrega das chaves.</h3>
+                    <div class="vt-services">
+                      <div><i></i><strong>Obras corporativas</strong><span>Sedes, escritórios e lojas.</span></div>
+                      <div><i></i><strong>Galpões industriais</strong><span>Estruturas metálicas e pré-moldadas.</span></div>
+                      <div><i></i><strong>Retrofit</strong><span>Modernização sem parar a operação.</span></div>
+                      <div><i></i><strong>Gerenciamento</strong><span>Cronograma, custos e fornecedores.</span></div>
+                    </div>
+                    <div class="vt-cta"><span>Tem um projeto em vista?</span><span class="m-btn">Solicitar visita técnica</span></div>
+                  </div>
+                </div>
+
+                <div class="mock-page" id="vt-contato" role="tabpanel" aria-labelledby="vt-tab-contato" hidden>
+                  <div class="m-inner">
+                    <span class="m-label">Contato</span>
+                    <h3 class="m-title">Vamos conversar sobre a sua obra.</h3>
+                    <div class="vt-contact">
+                      <div><div class="vt-field">Nome</div><div class="vt-field">E-mail corporativo</div><div class="vt-field is-area">Conte sobre o projeto</div><span class="m-btn">Enviar mensagem</span></div>
+                      <div><div class="vt-map"><span class="vt-pin"></span></div><div class="vt-address"><strong>Escritório central</strong>Av. das Indústrias, 1200 · atendimento em 12 cidades</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="phone vt-phone" aria-hidden="true">
+              <div class="phone-screen screen vt" style="min-height:0">
+                <div class="vt-phone-nav"><span class="m-logo" style="font-size:8px"><span class="vt-mark" style="width:9px;height:9px"></span>VÉRTICE</span><i></i></div>
+                <div class="vt-phone-hero"><span class="m-label">Engenharia e construção</span><strong>Obras que terminam no prazo.</strong><p>Gestão própria do terreno à entrega.</p><span class="vt-phone-btn">Conhecer →</span></div>
+                <div class="vt-phone-list"><div>Obras corporativas</div><div>Galpões industriais</div><div>Retrofit</div></div>
+                <span class="vt-phone-wa"></span>
+              </div>
+            </div>
+            <div class="stage-badge"><strong>2 a 4</strong><span>semanas do briefing ao site no ar</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Páginas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="vt-tab-home" aria-controls="vt-home" aria-selected="true">Home</button>
+            <button class="mockup-tab" type="button" role="tab" id="vt-tab-empresa" aria-controls="vt-empresa" aria-selected="false">Empresa</button>
+            <button class="mockup-tab" type="button" role="tab" id="vt-tab-servicos" aria-controls="vt-servicos" aria-selected="false">Serviços</button>
+            <button class="mockup-tab" type="button" role="tab" id="vt-tab-contato" aria-controls="vt-contato" aria-selected="false">Contato</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-band" aria-label="Resumo do serviço">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Prazo médio</span><strong>15 a 30 dias úteis</strong></div>
+        <div class="spec-item"><span>Investimento médio</span><strong>R$ 2.350</strong></div>
+        <div class="spec-item"><span>Formato</span><strong>4 a 8 páginas</strong></div>
+        <div class="spec-item"><span>Revisões</span><strong>1 rodada por etapa</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="servico" data-spy="servico">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal">O endereço oficial da sua reputação.</h2>
+          <p class="reveal delay-1">O site institucional reúne história, serviços, provas e canais de contato em páginas próprias. É onde clientes, parceiros e candidatos confirmam que a sua empresa é do tamanho que parece.</p>
+        </div>
+        <div class="outcomes">
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div><h3>Arquitetura de conteúdo</h3><p>Cada informação no lugar certo, sem uma página única sobrecarregada.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.7 0 2-1.3 1.3-2.3-.7-1-.2-2.7 1.4-2.7H17a5 5 0 0 0 5-5c0-5.5-4.5-10-10-10Z"/></svg></div><h3>Identidade aplicada com critério</h3><p>Cores, tipografia e fotos da marca organizadas em um sistema consistente.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3>SEO técnico e performance</h3><p>Estrutura que o Google entende e que carrega rápido no celular.</p></article>
+          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></div><h3>Caminhos para o comercial</h3><p>WhatsApp, formulário e localização presentes em todas as páginas.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anatomy" id="estrutura" data-spy="servico" aria-labelledby="anatomia-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="anatomia-titulo">Cada informação encontra o seu lugar.</h2>
+          <p class="reveal delay-1">A arquitetura evita uma página única sobrecarregada e leva cada visitante rápido ao que procura, seja cliente, parceiro ou candidato.</p>
+        </div>
+        <div class="site-map reveal">
+          <div class="home-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 11 9-8 9 8v10H3z"/><path d="M9 21v-7h6v7"/></svg><div><small>Página principal</small><strong>Home</strong></div></div>
+          <div class="map-pages">
+            <article class="page-node"><span>CONHECER</span><strong>Empresa</strong><small>História, posicionamento, estrutura e diferenciais.</small></article>
+            <article class="page-node"><span>ENTENDER</span><strong>Serviços</strong><small>Uma seção ou página para cada frente de atuação.</small></article>
+            <article class="page-node"><span>CONFIAR</span><strong>Portfólio</strong><small>Projetos, cases, clientes e depoimentos.</small></article>
+            <article class="page-node is-optional"><span>APROXIMAR</span><strong>Equipe</strong><small>Pessoas, especialistas e cultura da empresa.</small></article>
+            <article class="page-node is-optional"><span>ENCONTRAR</span><strong>Conteúdo</strong><small>Blog e artigos que trazem visitas pelo Google.</small></article>
+            <article class="page-node is-contact"><span>CONVERSAR</span><strong>Contato</strong><small>WhatsApp, formulário, endereço e mapa.</small></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-spy="servico" aria-labelledby="indicado-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="indicado-titulo">Quando um site institucional é a escolha certa.</h2></div>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Faz sentido quando</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>A empresa oferece vários serviços, atende públicos diferentes ou tem mais de uma unidade.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Você vende para outras empresas e precisa passar credibilidade antes da reunião.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Quer ser encontrado no Google por serviço, cidade ou especialidade.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>O site atual está desatualizado e já não representa o tamanho da empresa.</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Outro formato serve melhor quando</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>Você tem uma oferta única e precisa de conversão rápida: veja <a class="text-link" href="../landing-page/">Landing Page</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>O objetivo é vender produtos direto pelo site: veja <a class="text-link" href="../e-commerce/">E-commerce</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>Você precisa de área logada, propostas online ou gestão interna: veja <a class="text-link" href="../sistemas-saas/">Sistemas e SaaS</a>.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="processo" data-spy="processo">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal">Da imersão à publicação, em cinco etapas.</h2>
+          <p class="section-lead reveal delay-1">Cada etapa termina com uma entrega concreta para você aprovar. O site só avança quando a base anterior está validada.</p>
+          <div class="process-total reveal delay-2"><strong>15 a 30</strong><span>dias úteis, conforme o número de páginas</span></div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Semana 1</span><h3>Imersão</h3><p>Entrevista sobre história, serviços, diferenciais e público. Levantamento de materiais, fotos e acessos.</p><div class="step-deliverable"><strong>Você recebe</strong><span>briefing e inventário de conteúdo</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">02</span><div><span class="step-time">Semana 1</span><h3>Arquitetura</h3><p>Mapa do site, hierarquia de cada página e os caminhos que levam o visitante até o contato.</p><div class="step-deliverable"><strong>Você recebe</strong><span>mapa do site para aprovação</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">03</span><div><span class="step-time">Semanas 2 e 3</span><h3>Design</h3><p>Home e modelos das páginas internas, no desktop e no celular, com a identidade da marca aplicada.</p><div class="step-deliverable"><strong>Você recebe</strong><span>protótipo navegável</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">04</span><div><span class="step-time">Semanas 3 e 4</span><h3>Desenvolvimento</h3><p>Páginas responsivas, formulários, SEO técnico, Google Analytics e Search Console configurados.</p><div class="step-deliverable"><strong>Você recebe</strong><span>site em ambiente de homologação</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">05</span><div><span class="step-time">Semana 4</span><h3>Publicação</h3><p>Revisão consolidada, testes em dispositivos reais e publicação no seu domínio, com orientação de uso.</p><div class="step-deliverable"><strong>Você recebe</strong><span>site no ar e acessos entregues</span></div></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="investimento" data-spy="investimento">
+      <div class="container">
+        <div class="section-head">
+          <div class="context-line reveal">Valores de referência</div>
+          <h2 class="section-title reveal delay-1">Quanto custa um site institucional.</h2>
+          <p class="section-lead reveal delay-2">A média abaixo vem de sites institucionais orçados recentemente pela VS Experience. O valor final é fechado depois da imersão, com escopo por escrito.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value"><span>Investimento médio</span><strong>R$ 2.350</strong><small>Média de 9 sites institucionais orçados nos últimos meses.</small></div>
+          <div class="range" role="img" aria-label="Faixa praticada de R$ 1.000 a R$ 5.500, com média de R$ 2.350">
+            <div class="range-track" aria-hidden="true">
+              <span class="range-dot" style="--p:0%;--i:0"></span>
+              <span class="range-dot" style="--p:4.4%;--i:1"></span>
+              <span class="range-dot" style="--p:11.1%;--i:2"></span>
+              <span class="range-dot" style="--p:13.3%;--i:3"></span>
+              <span class="range-dot" style="--p:17.8%;--i:4"></span>
+              <span class="range-dot" style="--p:24.2%;--i:5"></span>
+              <span class="range-dot" style="--p:88.9%;--i:6"></span>
+              <span class="range-dot" style="--p:100%;--i:7"></span>
+              <span class="range-avg" style="--p:30.1%"><b>média R$ 2.350</b></span>
+            </div>
+            <div class="range-scale" aria-hidden="true"><div>menor valor<strong>R$ 1.000</strong></div><div>maior valor<strong>R$ 5.500</strong></div></div>
+            <p class="range-caption">Os projetos se concentram entre R$ 1.000 e R$ 2.100. Os valores acima de R$ 5.000 incluem estratégia, copy e identidade.</p>
+          </div>
+        </div>
+
+        <div class="plans-grid reveal">
+          <article class="plan">
+            <span class="plan-label">One page</span>
+            <h3>A empresa inteira em uma página.</h3>
+            <p class="plan-intro">Para negócios com poucos serviços que querem uma presença sólida e objetiva.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Seções de empresa, serviços e diferenciais</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Área de atendimento e mapa</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Formulário e WhatsApp</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Opção de painel para editar conteúdo</li>
+            </ul>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price">R$ 1.000 <em>a</em> 1.600</strong><p class="plan-note">A opção com painel editável fica no topo da faixa.</p></div>
+          </article>
+          <article class="plan is-common">
+            <span class="common-badge">Faixa mais comum</span>
+            <span class="plan-label">Multipáginas</span>
+            <h3>Uma presença completa.</h3>
+            <p class="plan-intro">Páginas próprias para empresa, serviços e contato, com base preparada para crescer.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Home comercial estratégica</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Páginas Empresa, Serviços e Contato</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Portfólio ou cases</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO técnico por página</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Analytics e Search Console</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Base preparada para novas páginas</li>
+            </ul>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price">R$ 1.800 <em>a</em> 3.000</strong><p class="plan-note">Onde a média de R$ 2.350 se encaixa. Varia com o número de páginas.</p></div>
+          </article>
+          <article class="plan">
+            <span class="plan-label">Presença estratégica</span>
+            <h3>Marca, conteúdo e site juntos.</h3>
+            <p class="plan-intro">Para quem precisa reposicionar a empresa, não só trocar o layout.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo da Multipáginas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Arquitetura estratégica de conteúdo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Copywriting e UX de todas as páginas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Integrações e mensuração avançada</li>
+            </ul>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price"><em>a partir de</em> R$ 5.000</strong><p class="plan-note">Identidade visual, quando necessária, é orçada à parte.</p></div>
+          </article>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>O que muda o valor</h3>
+            <ul class="factor-list">
+              <li>Número de páginas</li><li>Conteúdo pronto ou a criar</li><li>Painel editável</li><li>Blog e área de conteúdo</li><li>Versões em outros idiomas</li><li>Integrações com CRM e agenda</li>
+            </ul>
+            <div class="extras">
+              <h3>Complementos</h3>
+              <div class="pay-rows">
+                <div class="pay-row"><span>Página adicional</span><strong>a partir de R$ 400</strong></div>
+                <div class="pay-row"><span>Inserção de conteúdo em volume</span><strong>R$ 60 por página</strong></div>
+                <div class="pay-row"><span>Manutenção semestral</span><strong>R$ 390 por semestre</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Formas de pagamento</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Pix em duas etapas</span><strong>50% na aprovação, 50% na entrega</strong></div>
+              <div class="pay-row"><span>Pix à vista</span><strong>5% a 10% de desconto</strong></div>
+              <div class="pay-row"><span>Cartão de crédito</span><strong>Até 10x, com taxas da operadora</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="case-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Sites institucionais que já estão no ar.</h2></div>
+        <div class="case-grid">
+          <figure class="case-media reveal" style="margin:0"><img src="../../assets/images/cases/costaflores.webp" alt="Site da Costa Flores com cozinha planejada em madeira na home e a seção institucional com a fachada da fábrica" width="2025" height="1212" loading="lazy" decoding="async"></figure>
+          <div class="case-copy reveal delay-1">
+            <span class="case-tag">Institucional · Móveis planejados</span>
+            <h3>Costa Flores</h3>
+            <dl class="case-facts">
+              <div><dt>Foco</dt><dd>Elevar a percepção premium da marca e guiar o visitante até o atendimento com menos atrito.</dd></div>
+              <div><dt>Entregas</dt><dd>Narrativa, organização de seções, UI consistente e CTAs bem posicionados.</dd></div>
+              <div><dt>Impacto</dt><dd>Mais autoridade na apresentação e uma jornada mais objetiva até o contato.</dd></div>
+            </dl>
+            <a class="button button-secondary" href="https://costaflores.com.br/" target="_blank" rel="noopener noreferrer">Ver projeto no ar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+          </div>
+        </div>
+        <a class="case-more reveal" href="https://moriahclinic.com.br/" target="_blank" rel="noopener noreferrer">
+          <img src="../../assets/images/cases/moriah.webp" alt="" width="1350" height="808" loading="lazy" decoding="async">
+          <div><strong>Moriah Clínica</strong><span>Especialidades, perfil dos médicos e agendamento pelo WhatsApp.</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="entrega-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="entrega-titulo">Depois que o site vai ao ar.</h2></div>
+        <div class="care-grid">
+          <article class="care-block reveal"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><h3>O domínio continua sendo da sua empresa.</h3><p>O projeto usa o endereço que já pertence à empresa, ou um novo registrado em nome dela. Domínio, hospedagem e contas de Analytics ficam sob seu controle.</p><p>Os custos de domínio e hospedagem são pagos direto aos fornecedores e não fazem parte do valor do projeto.</p></article>
+          <article class="care-block is-accent reveal delay-1"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 7h-5V2M4 17h5v5"/><path d="M5.7 9A7 7 0 0 1 17 5l3 2M4 17l3 2a7 7 0 0 0 11.3-4"/></svg></div><h3>Manutenção semestral</h3><p>Atualizações de conteúdo, segurança, backups, revisão de funcionamento e pequenos ajustes de layout.</p><ul class="care-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Textos e imagens</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Serviços e portfólio</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Segurança e backups</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acompanhamento técnico</li></ul><div class="care-price"><strong>R$ 390</strong><span>por semestre, opcional</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="faq-titulo">
+      <div class="container faq-layout">
+        <h2 class="section-title reveal" id="faq-titulo">Perguntas antes de começar.</h2>
+        <div class="faq-list reveal delay-1">
+          <details class="faq-item"><summary>Qual a diferença para uma landing page?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A landing page tem uma oferta e um objetivo. O site institucional apresenta a empresa inteira, com páginas próprias para cada assunto, e serve a públicos diferentes: clientes, parceiros, fornecedores e candidatos.</p></details>
+          <details class="faq-item"><summary>Vou conseguir atualizar o site sozinho?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim, quando o projeto inclui painel editável: textos, imagens, serviços e portfólio ficam acessíveis sem mexer em código. Sem painel, as alterações entram na manutenção semestral.</p></details>
+          <details class="faq-item"><summary>O site vai aparecer no Google?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O site é entregue com SEO técnico: estrutura de títulos, metadados, velocidade, sitemap e Search Console configurado. A posição nos resultados depende também de conteúdo, concorrência e tempo, por isso ninguém sério garante o primeiro lugar.</p></details>
+          <details class="faq-item"><summary>Os textos e as fotos estão inclusos?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A copy de todas as páginas está inclusa na Presença estratégica. Nas outras faixas, o conteúdo enviado por você é revisado e organizado. As fotos vêm do acervo da empresa ou de bancos de imagem licenciados; produção fotográfica não está inclusa.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos construir o endereço oficial da sua <span>empresa?</span></h2>
+            <p>Conte quem é a empresa, o que ela oferece e para quem. A resposta vem com uma estrutura sugerida de páginas e um valor fechado.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Serviço</span><strong>Site Institucional</strong></div>
+            <div class="meta-row"><span>Prazo médio</span><strong>15 a 30 dias úteis</strong></div>
+            <div class="meta-row"><span>Investimento médio</span><strong>R$ 2.350</strong></div>
+            <div class="meta-row"><span>Faixa praticada</span><strong>R$ 1.000 a R$ 5.500</strong></div>
+            <div class="meta-row"><span>Pagamento</span><strong>Pix ou cartão em até 10x</strong></div>
+          </div>
+        </div>
+        <nav class="other-services" aria-labelledby="outros-titulo">
+          <h2 id="outros-titulo">Outros serviços</h2>
+          <div class="other-grid">
+            <a href="../landing-page/"><strong>Landing Page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 1.260</small></a>
+            <a href="../e-commerce/"><strong>E-commerce <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 3.740</small></a>
+            <a href="../sistemas-saas/"><strong>Sistemas e SaaS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 6.950</small></a>
+            <a href="../design-system/"><strong>Design System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>a partir de R$ 3.000</small></a>
+          </div>
+        </nav>
+        <div class="signature"><span class="brand"><span class="brand-mark"></span><span>VS Experience</span></span><span>Design, tecnologia e experiências digitais.</span><span>Valores de referência · setembro de 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/servicos.js"></script>
+</body>
+</html>
