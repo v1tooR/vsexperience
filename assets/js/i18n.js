@@ -7,11 +7,11 @@ var currentLang = 'pt';
 var translations = {
   pt: {
     meta: {
-      title: 'VS Experience - Criando experiências únicas | UX/UI e Desenvolvimento',
-      description: 'Criando experiências únicas — pensadas para validar, converter e escalar. UX/UI e execução técnica para SaaS, dashboards e produtos digitais.',
-      ogTitle: 'VS Experience - Criando experiências únicas',
-      ogDesc: 'UX/UI e execução técnica para SaaS, dashboards e produtos digitais.',
-      twDesc: 'UX/UI e execução técnica premium para produtos digitais.',
+      title: 'Victor Santos · Designer UX/UI & Desenvolvedor Frontend | VS Experience',
+      description: 'Criação de landing pages, sites institucionais, e-commerces, SaaS e Design Systems com UX estratégico e desenvolvimento premium. Do diagnóstico ao código — sem perder a intenção.',
+      ogTitle: 'Victor Santos · Designer UX/UI & Desenvolvedor Frontend',
+      ogDesc: 'Landing pages, sites, e-commerces e SaaS com design estratégico e execução técnica premium. Do Figma ao código — sem perder a intenção.',
+      twDesc: 'Landing pages, sites, e-commerces e SaaS com design estratégico e execução técnica premium.',
     },
     nav: {
       services: 'Serviços',
@@ -55,6 +55,11 @@ var translations = {
       s5tag: 'Design System',
       s5title: 'Fundação que escala com você',
       s5desc: 'Consistência em cada tela e sprint.',
+      s1more: 'Landing page: processo e valores',
+      s2more: 'Site institucional: processo e valores',
+      s3more: 'E-commerce: processo e valores',
+      s4more: 'Sistemas e SaaS: processo e valores',
+      s5more: 'Design system: processo e valores',
     },
     differentials: {
       title: 'Design com lógica de negócio.<br><span class="text-gradient-primary">Execução com padrão de engenharia.</span>',
@@ -237,6 +242,7 @@ var translations = {
     },
     footer: {
       copyright: '© 2026 Victor Santos. Todos os direitos reservados.',
+      services: 'Serviços e valores',
     },
   },
 
@@ -290,6 +296,11 @@ var translations = {
       s5tag: 'Design System',
       s5title: 'Foundation that scales with you',
       s5desc: 'Consistency across every screen and sprint.',
+      s1more: 'Landing page: process and pricing',
+      s2more: 'Institutional website: process and pricing',
+      s3more: 'E-commerce: process and pricing',
+      s4more: 'Systems and SaaS: process and pricing',
+      s5more: 'Design system: process and pricing',
     },
     differentials: {
       title: 'Design with business logic.<br><span class="text-gradient-primary">Execution with engineering standards.</span>',
@@ -472,6 +483,7 @@ var translations = {
     },
     footer: {
       copyright: '© 2026 Victor Santos. All rights reserved.',
+      services: 'Services and pricing',
     },
   },
 };

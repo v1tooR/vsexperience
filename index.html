@@ -65,7 +65,7 @@
        ============================================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="assets/images/capaseo.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/images/hero/victorsemfundo.webp" as="image" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
@@ -131,40 +131,100 @@
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Serviços de Design e Desenvolvimento",
+          "url": "https://vsexperience.com.br/servicos/",
           "itemListElement": [
             {
               "@type": "Offer",
               "name": "Landing Page",
-              "description": "Landing page com UX estratégico, narrativa de conversão e desenvolvimento responsivo",
-              "price": "1000",
+              "url": "https://vsexperience.com.br/servicos/landing-page/",
+              "description": "Landing page com estratégia, copy de conversão, design exclusivo e desenvolvimento responsivo",
               "priceCurrency": "BRL",
-              "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1000", "priceCurrency": "BRL" }
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "BRL",
+                "minPrice": 750,
+                "maxPrice": 1800
+              },
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://vsexperience.com.br/servicos/landing-page/#servico",
+                "name": "Landing Page",
+                "url": "https://vsexperience.com.br/servicos/landing-page/"
+              }
             },
             {
               "@type": "Offer",
               "name": "Site Institucional",
-              "description": "Site institucional com múltiplas páginas, identidade de marca e SEO técnico",
-              "priceSpecification": { "@type": "PriceSpecification", "minPrice": "2000", "maxPrice": "3000", "priceCurrency": "BRL" }
+              "url": "https://vsexperience.com.br/servicos/site-institucional/",
+              "description": "Site institucional com páginas próprias, identidade aplicada e SEO técnico",
+              "priceCurrency": "BRL",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "BRL",
+                "minPrice": 1000,
+                "maxPrice": 5500
+              },
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://vsexperience.com.br/servicos/site-institucional/#servico",
+                "name": "Site Institucional",
+                "url": "https://vsexperience.com.br/servicos/site-institucional/"
+              }
             },
             {
               "@type": "Offer",
               "name": "E-commerce",
-              "description": "Loja virtual com jornada de compra otimizada, vitrine, carrinho e checkout",
-              "priceSpecification": { "@type": "PriceSpecification", "minPrice": "3000", "maxPrice": "6000", "priceCurrency": "BRL" }
+              "url": "https://vsexperience.com.br/servicos/e-commerce/",
+              "description": "Loja virtual com checkout, Pix, frete e integração com Bling e Mercado Livre",
+              "priceCurrency": "BRL",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "BRL",
+                "minPrice": 2800
+              },
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://vsexperience.com.br/servicos/e-commerce/#servico",
+                "name": "E-commerce",
+                "url": "https://vsexperience.com.br/servicos/e-commerce/"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Sistemas e SaaS",
+              "url": "https://vsexperience.com.br/servicos/sistemas-saas/",
+              "description": "Sistemas web, CRMs, SaaS e MVPs sob medida, com entrega por marcos",
+              "priceCurrency": "BRL",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "BRL",
+                "minPrice": 3000
+              },
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://vsexperience.com.br/servicos/sistemas-saas/#servico",
+                "name": "Sistemas e SaaS",
+                "url": "https://vsexperience.com.br/servicos/sistemas-saas/"
+              }
             },
             {
               "@type": "Offer",
               "name": "Design System",
-              "description": "Design System com tokens, biblioteca de componentes e documentação",
-              "price": "3000",
+              "url": "https://vsexperience.com.br/servicos/design-system/",
+              "description": "Design system com tokens, componentes em Figma e código e documentação",
               "priceCurrency": "BRL",
-              "priceSpecification": { "@type": "PriceSpecification", "minPrice": "3000", "priceCurrency": "BRL" }
-            },
-            {
-              "@type": "Offer",
-              "name": "SaaS / Produto Digital",
-              "description": "Design e desenvolvimento de SaaS com discovery, arquitetura de produto e UI premium por módulo",
-              "priceSpecification": { "@type": "PriceSpecification", "minPrice": "6000", "priceCurrency": "BRL" }
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "BRL",
+                "minPrice": 3000,
+                "maxPrice": 9000
+              },
+              "itemOffered": {
+                "@type": "Service",
+                "@id": "https://vsexperience.com.br/servicos/design-system/#servico",
+                "name": "Design System",
+                "url": "https://vsexperience.com.br/servicos/design-system/"
+              }
             }
           ]
         },
@@ -332,7 +392,7 @@
             <!-- Right column: image + floating boxes -->
             <div class="hero-right">
               <div class="hero-image">
-                <img src="assets/images/hero/victorsemfundo.webp" alt="Victor Santos" />
+                <img src="assets/images/hero/victorsemfundo.webp" alt="Victor Santos, designer UX/UI e desenvolvedor frontend da VS Experience" width="2084" height="2567" fetchpriority="high" />
 
                 <div class="floating-box floating-figma">
                   <div class="floating-icon">
@@ -413,6 +473,7 @@
             <h3 data-i18n="services.s1title">Página que vende, não só impressiona</h3>
             <p data-i18n="services.s1desc">Estrutura pensada para guiar o visitante da atenção à ação — copy estratégico, prova social e CTA no timing certo. Sem "bonita que não converte".</p>
             <div class="bento-outcome" data-i18n="services.s1outcome">Visitante → Lead qualificado</div>
+            <a class="bento-link" href="servicos/landing-page/"><span data-i18n="services.s1more">Landing page: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
 
           <!-- Institucional -->
@@ -426,6 +487,7 @@
             </div>
             <h3 data-i18n="services.s2title">Presença que fecha antes da reunião</h3>
             <p data-i18n="services.s2desc">O lead já chega posicionado. Um site que comunica autoridade antes de você precisar explicar quem é.</p>
+            <a class="bento-link" href="servicos/site-institucional/"><span data-i18n="services.s2more">Site institucional: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
 
           <!-- E-commerce -->
@@ -439,6 +501,7 @@
             </div>
             <h3 data-i18n="services.s3title">Jornada de compra sem atrito</h3>
             <p data-i18n="services.s3desc">Design orientado à conversão real — menos abandono de carrinho, mais receita.</p>
+            <a class="bento-link" href="servicos/e-commerce/"><span data-i18n="services.s3more">E-commerce: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
 
           <!-- SaaS / Produto -->
@@ -452,6 +515,7 @@
             </div>
             <h3 data-i18n="services.s4title">Produto que o usuário entende e volta</h3>
             <p data-i18n="services.s4desc">UX que reduz confusão e sustenta crescimento.</p>
+            <a class="bento-link" href="servicos/sistemas-saas/"><span data-i18n="services.s4more">Sistemas e SaaS: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
 
           <!-- Design System -->
@@ -465,6 +529,7 @@
             </div>
             <h3 data-i18n="services.s5title">Fundação que escala com você</h3>
             <p data-i18n="services.s5desc">Consistência em cada tela e sprint.</p>
+            <a class="bento-link" href="servicos/design-system/"><span data-i18n="services.s5more">Design system: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
       </div>
@@ -1334,6 +1399,7 @@
         </div>
         
         <nav class="footer-links">
+          <a href="servicos/" class="footer-link" data-i18n="footer.services">Serviços e valores</a>
           <a href="https://www.linkedin.com/in/victor-santos-670525232/" class="footer-link" target="_blank" rel="noopener noreferrer">
             LinkedIn
             <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
