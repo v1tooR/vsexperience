@@ -137,7 +137,8 @@
     .lab-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 2s ease-in-out infinite; }
     .lab-canvas { position: relative; min-height: 540px; padding: 28px; }
     .client-board { position: absolute; inset: 30px 26px 28px 34%; border-radius: 20px; overflow: hidden; background: var(--mv-mist); color: var(--mv-ink); }
-    .client-board::after { content: ''; position: absolute; width: 240px; height: 240px; border: 1px solid color-mix(in srgb,var(--mv-leaf) 25%,transparent); border-radius: 50%; right: -110px; bottom: -100px; box-shadow: 0 0 0 30px color-mix(in srgb,var(--mv-leaf) 8%,transparent), 0 0 0 60px color-mix(in srgb,var(--mv-leaf) 5%,transparent); }
+    .client-board::after { display: none; }
+    .board-post { width: 100%; height: 100%; object-fit: cover; }
     .board-copy { position: relative; z-index: 2; width: 64%; padding: 30px 0 0 33px; }
     .board-copy span { color: var(--mv-leaf); font-size: 8px; font-weight: 700; }
     .board-copy h2 { margin: 11px 0 12px; font-family: var(--font-client); font-size: 30px; line-height: .98; letter-spacing: -.035em; }
@@ -155,8 +156,8 @@
     .phone-post { border-top: 1px solid #ecefec; }
     .post-meta { display: flex; align-items: center; gap: 7px; padding: 8px 10px; font-size: 6px; font-weight: 700; }
     .post-meta i { width: 16px; height: 16px; border-radius: 50%; background: var(--mv-green); }
-    .post-media { position: relative; height: 218px; overflow: hidden; background: var(--mv-peach); }
-    .post-media img { position: absolute; right: -8px; bottom: -17px; width: 69%; }
+    .post-media { position: relative; height: 250px; overflow: hidden; background: var(--mv-peach); }
+    .post-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .post-copy { position: absolute; z-index: 2; left: 15px; top: 18px; width: 48%; }
     .post-copy small { color: var(--mv-hibiscus); font-size: 6px; font-weight: 700; }
     .post-copy strong { display: block; margin-top: 8px; font-family: var(--font-client); font-size: 18px; line-height: 1; letter-spacing: -.03em; }
@@ -216,13 +217,13 @@
     .preview-social-head { height: 50px; display: flex; align-items: center; gap: 9px; padding: 0 15px; border-bottom: 1px solid #e7ebe6; font-size: 9px; font-weight: 700; }
     .preview-social-head i { width: 24px; height: 24px; border-radius: 50%; background: var(--mv-green); }
     .preview-social-head span { margin-left: auto; font-size: 15px; }
-    .preview-media { position: relative; height: 388px; overflow: hidden; background: var(--mv-mist); transition: background .28s ease; }
+    .preview-media { position: relative; height: 360px; overflow: hidden; background: var(--mv-mist); transition: background .28s ease; }
     .preview-media[data-tone="peach"] { background: var(--mv-peach); }
     .preview-media[data-tone="green"] { background: var(--mv-mist); }
     .preview-media[data-tone="hibiscus"] { background: #ead3d8; }
-    .preview-media.is-changing img, .preview-media.is-changing .preview-copy { opacity: 0; transform: translateY(8px); }
-    .preview-media img { position: absolute; right: -2%; bottom: -8%; width: 72%; max-height: 88%; object-fit: contain; transition: opacity .25s ease, transform .35s var(--ease); filter: drop-shadow(0 22px 20px rgba(24,50,38,.18)); }
-    .preview-copy { position: absolute; z-index: 2; left: 24px; top: 28px; width: 57%; transition: opacity .25s ease, transform .35s var(--ease); }
+    .preview-media.is-changing img { opacity: 0; transform: scale(.985); }
+    .preview-media img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; transition: opacity .25s ease, transform .35s var(--ease); }
+    .preview-copy { display: none; }
     .preview-copy small { color: var(--mv-hibiscus); font-size: 9px; font-weight: 700; }
     .preview-copy h3 { margin: 12px 0 0; font-family: var(--font-client); font-size: 34px; line-height: .96; letter-spacing: -.04em; }
     .preview-ui { padding: 14px 15px 17px; }
@@ -371,7 +372,7 @@
       .phone { left: 14px; top: 48px; width: 180px; min-height: 357px; border-radius: 25px; }
       .phone-screen { min-height: 339px; border-radius: 18px; }
       .stories { display: none; }
-      .post-media { height: 183px; }
+      .post-media { height: 218px; }
       .client-board { inset: 24px 14px 22px 34%; }
       .board-copy { width: 66%; padding: 24px 0 0 24px; }
       .board-copy h2 { font-size: 23px; }
@@ -390,7 +391,7 @@
       .studio-stage { min-height: 590px; }
       .preview-phone { width: 270px; }
       .preview-screen { min-height: 528px; }
-      .preview-media { height: 335px; }
+      .preview-media { height: 312px; }
       .preview-copy h3 { font-size: 29px; }
       .preview-badge { right: -6px; top: 28px; width: 130px; }
       .preview-rail { left: -4px; bottom: 38px; }
@@ -474,8 +475,7 @@
             <div class="lab-top"><i></i><i></i><i></i><span class="lab-title">VS Content Lab / Multi Vegetal</span><span class="lab-live">Conceito ativo</span></div>
             <div class="lab-canvas">
               <div class="client-board">
-                <div class="board-copy"><span>Rotina capilar</span><h2>Cuidado natural, passo a passo.</h2><p>Uma narrativa que conecta necessidade, uso e resultado antes de apresentar a oferta.</p></div>
-                <img class="board-product" src="assets/kit-hidratacao.webp" alt="Kit capilar Multi Vegetal">
+                <img class="board-post" src="assets/post-educar.png" alt="Post educativo da Multi Vegetal sobre hidratação, nutrição e restauração">
               </div>
 
               <div class="phone" aria-hidden="true">
@@ -485,8 +485,7 @@
                   <article class="phone-post">
                     <div class="post-meta"><i></i><span>multi vegetal · conteúdo educativo</span></div>
                     <div class="post-media">
-                      <div class="post-copy"><small>3 passos</small><strong>Uma rotina para hidratar e finalizar.</strong></div>
-                      <img src="assets/dupla-finalizacao.webp" alt="">
+                      <img src="assets/post-rotina.png" alt="Post da Multi Vegetal sobre rotina de finalização">
                     </div>
                     <div class="post-actions">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6a5.5 5.5 0 0 0 1-8.8Z"/></svg>
@@ -572,7 +571,7 @@
               <div class="preview-social-head"><i></i><span>multivegetal</span><span>•••</span></div>
               <div class="preview-media" id="previewMedia" data-tone="green">
                 <div class="preview-copy"><small id="previewLabel">Conteúdo educativo</small><h3 id="previewTitle">Hidratação, nutrição ou restauração?</h3></div>
-                <img id="previewImage" src="assets/kit-hidratacao.webp" alt="Kit de hidratação Multi Vegetal">
+                <img id="previewImage" src="assets/post-educar.png" alt="Post educativo da Multi Vegetal sobre hidratação, nutrição e restauração">
               </div>
               <div class="preview-ui">
                 <div class="preview-icons">
@@ -587,7 +586,7 @@
             </div>
           </div>
           <div class="preview-badge"><span>Função ativa</span><strong id="previewPurpose">Gerar clareza e salvamentos</strong></div>
-          <div class="preview-rail" aria-hidden="true"><span class="preview-thumb"><img src="assets/shampoo-ervas.webp" alt=""></span><span class="preview-thumb"><img src="assets/dupla-sabonetes.webp" alt=""></span></div>
+          <div class="preview-rail" aria-hidden="true"><span class="preview-thumb"><img src="assets/post-produto.png" alt=""></span><span class="preview-thumb"><img src="assets/post-demonstracao.png" alt=""></span></div>
         </div>
       </div>
     </section>
@@ -798,11 +797,11 @@
       };
 
       var PREVIEWS = {
-        educar: { label: 'Conteúdo educativo', title: 'Hidratação, nutrição ou restauração?', meta: 'Salvável · educativo · descoberta', caption: 'Entender a necessidade vem antes de escolher o produto. Um guia visual aproxima a marca de quem ainda está descobrindo sua rotina.', purpose: 'Gerar clareza e salvamentos', image: 'assets/kit-hidratacao.webp', alt: 'Kit de hidratação Multi Vegetal', tone: 'green' },
-        rotina: { label: 'Rotina em 3 passos', title: 'Do banho à finalização, sem complicar.', meta: 'Carrossel · rotina · consideração', caption: 'Produtos deixam de competir isoladamente e passam a compor uma solução completa para uma necessidade real.', purpose: 'Ampliar valor percebido', image: 'assets/dupla-finalizacao.webp', alt: 'Dupla de finalização Multi Vegetal', tone: 'peach' },
-        prova: { label: 'Demonstração real', title: 'Textura, aplicação e resultado.', meta: 'Reel · prova · confiança', caption: 'A câmera aproxima o público da experiência do produto e ajuda a responder dúvidas antes da compra.', purpose: 'Reduzir objeções', image: 'assets/gel-capilar.webp', alt: 'Gel capilar Multi Vegetal', tone: 'hibiscus' },
-        produto: { label: 'Produto + propósito', title: 'Fortalecimento começa no cuidado diário.', meta: 'Produto · benefício · consideração', caption: 'A comunicação parte do problema e do benefício. A embalagem entra como resposta, não como única protagonista.', purpose: 'Conectar dor e solução', image: 'assets/shampoo-ervas.webp', alt: 'Shampoo de ervas Multi Vegetal', tone: 'green' },
-        converter: { label: 'Kit por necessidade', title: 'Uma rotina completa. Uma escolha mais simples.', meta: 'Oferta · kit · conversão', caption: 'O kit ganha valor pela conveniência e pela lógica da combinação, sem depender apenas de desconto aberto.', purpose: 'Conduzir a compra', image: 'assets/kit-hidratacao.webp', alt: 'Kit capilar completo Multi Vegetal', tone: 'peach' }
+        educar: { label: 'Conteúdo educativo', title: 'Hidratação, nutrição ou restauração?', meta: 'Salvável · educativo · descoberta', caption: 'Entender a necessidade vem antes de escolher o produto. Um guia visual aproxima a marca de quem ainda está descobrindo sua rotina.', purpose: 'Gerar clareza e salvamentos', image: 'assets/post-educar.png', alt: 'Post educativo da Multi Vegetal sobre hidratação, nutrição e restauração', tone: 'green' },
+        rotina: { label: 'Rotina em 3 passos', title: 'Do banho à finalização, sem complicar.', meta: 'Carrossel · rotina · consideração', caption: 'Produtos deixam de competir isoladamente e passam a compor uma solução completa para uma necessidade real.', purpose: 'Ampliar valor percebido', image: 'assets/post-rotina.png', alt: 'Post da Multi Vegetal sobre rotina de finalização', tone: 'peach' },
+        prova: { label: 'Demonstração real', title: 'Textura, aplicação e resultado.', meta: 'Reel · prova · confiança', caption: 'A câmera aproxima o público da experiência do produto e ajuda a responder dúvidas antes da compra.', purpose: 'Reduzir objeções', image: 'assets/post-demonstracao.png', alt: 'Post demonstrativo da Multi Vegetal sobre textura e definição', tone: 'hibiscus' },
+        produto: { label: 'Produto + propósito', title: 'Fortalecimento começa no cuidado diário.', meta: 'Produto · benefício · consideração', caption: 'A comunicação parte do problema e do benefício. A embalagem entra como resposta, não como única protagonista.', purpose: 'Conectar dor e solução', image: 'assets/post-produto.png', alt: 'Post da Multi Vegetal sobre ativos e propósito do Shampoo de Ervas', tone: 'green' },
+        converter: { label: 'Kit por necessidade', title: 'Uma rotina completa. Uma escolha mais simples.', meta: 'Oferta · kit · conversão', caption: 'O kit ganha valor pela conveniência e pela lógica da combinação, sem depender apenas de desconto aberto.', purpose: 'Conduzir a compra', image: 'assets/post-conversao.png', alt: 'Post da Multi Vegetal apresentando um kit por necessidade', tone: 'peach' }
       };
 
       var formatDate = function (date) {
