@@ -189,14 +189,28 @@
     .opportunity-layout { display: grid; grid-template-columns: .86fr 1.14fr; gap: clamp(48px,8vw,110px); align-items: start; }
     .opportunity-copy { position: sticky; top: calc(var(--header-h) + 34px); }
     .opportunity-copy .section-title { font-size: clamp(36px,4.5vw,57px); }
-    .function-flow { border-top: 1px solid var(--mv-line); }
-    .function-row { display: grid; grid-template-columns: 46px 1fr auto; gap: 18px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--mv-line); }
-    .function-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--mv-mist); color: var(--mv-green); }
-    .function-icon svg { width: 19px; }
-    .function-row strong { display: block; margin-bottom: 3px; font-size: 17px; }
-    .function-row p { margin: 0; color: color-mix(in srgb,var(--mv-ink) 64%,transparent); font-size: 13px; }
-    .function-result { color: var(--mv-leaf); font-size: 11px; font-weight: 700; }
-    .diagnostic-note { grid-column: 1/-1; margin-top: 12px; padding: 15px 17px; border-left: 3px solid var(--mv-hibiscus); background: #fff; color: color-mix(in srgb,var(--mv-ink) 72%,transparent); font-size: 12px; }
+    .function-flow { border-block: 1px solid var(--mv-line); }
+    .function-flow-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 15px 0 14px; color: var(--mv-leaf); font-size: 10px; font-weight: 700; letter-spacing: .075em; text-transform: uppercase; }
+    .function-flow-head span:last-child { display: inline-flex; align-items: center; gap: 10px; color: color-mix(in srgb,var(--mv-ink) 55%,transparent); letter-spacing: .035em; }
+    .function-flow-head span:last-child::before { content: ''; width: 34px; height: 1px; background: var(--mv-line); }
+    .function-row { position: relative; display: grid; grid-template-columns: 56px minmax(0,1fr) 138px; gap: 20px; align-items: center; padding: 25px 0; border-top: 1px solid var(--mv-line); }
+    .function-icon { position: relative; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px; background: color-mix(in srgb,var(--mv-mist) 82%,#fff); box-shadow: inset 0 0 0 1px color-mix(in srgb,var(--mv-green) 11%,transparent); color: var(--mv-green); transition: color .28s var(--ease), background .28s var(--ease), transform .32s var(--ease); }
+    .function-icon::after { content: ''; position: absolute; right: -3px; bottom: 8px; width: 8px; height: 8px; border: 2px solid var(--mv-paper); border-radius: 50%; background: var(--mv-hibiscus); }
+    .function-icon svg { width: 24px; height: 24px; stroke-linecap: round; stroke-linejoin: round; }
+    .function-step { display: block; margin-bottom: 5px; color: var(--mv-leaf); font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .function-copy > strong { display: block; margin-bottom: 4px; color: var(--mv-ink); font-size: 18px; line-height: 1.25; letter-spacing: -.018em; }
+    .function-row p { max-width: 52ch; margin: 0; color: color-mix(in srgb,var(--mv-ink) 70%,transparent); font-size: 13px; line-height: 1.55; }
+    .function-result { justify-self: end; width: 138px; display: grid; grid-template-columns: 1fr 28px; align-items: center; gap: 10px; color: var(--mv-leaf); }
+    .function-result span { grid-column: 1; display: block; color: color-mix(in srgb,var(--mv-ink) 52%,transparent); font-size: 8px; font-weight: 700; letter-spacing: .08em; line-height: 1; text-transform: uppercase; }
+    .function-result strong { grid-column: 1; display: block; margin-top: -4px; font-size: 11px; line-height: 1.25; }
+    .function-result svg { grid-column: 2; grid-row: 1/3; width: 28px; height: 28px; padding: 7px; border-radius: 50%; background: var(--mv-green); color: #fff; transition: transform .3s var(--ease), background .3s ease; }
+    @media (hover: hover) {
+      .function-row:hover .function-icon { background: var(--mv-green); color: #fff; transform: translateY(-2px); }
+      .function-row:hover .function-result svg { background: var(--mv-hibiscus); transform: translateX(3px); }
+    }
+    .diagnostic-note { grid-column: 1/-1; display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; margin-top: 18px; padding: 17px 18px; border: 1px solid color-mix(in srgb,var(--mv-hibiscus) 20%,var(--mv-line)); border-radius: var(--radius); background: #fff; color: color-mix(in srgb,var(--mv-ink) 76%,transparent); }
+    .diagnostic-note svg { width: 38px; height: 38px; padding: 10px; border-radius: 10px; background: color-mix(in srgb,var(--mv-hibiscus) 9%,#fff); color: var(--mv-hibiscus); stroke-linecap: round; stroke-linejoin: round; }
+    .diagnostic-note p { margin: 0; font-size: 12px; line-height: 1.55; }
 
     /* Interactive content studio */
     .studio { overflow: clip; background: var(--wine-deep); }
@@ -384,8 +398,15 @@
       .evidence-grid { grid-template-columns: 1fr; }
       .evidence-intro, .evidence-item { min-height: auto; padding: 25px 20px; border-left: 0; border-top: 1px solid var(--line); }
       .evidence-intro { border-top: 0; }
-      .function-row { grid-template-columns: 42px 1fr; }
-      .function-result { grid-column: 2; }
+      .function-flow-head { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .function-flow-head span:last-child::before { display: none; }
+      .function-row { grid-template-columns: 52px minmax(0,1fr); gap: 15px; padding: 22px 0; }
+      .function-result { grid-column: 2; justify-self: start; width: auto; grid-template-columns: auto 24px; gap: 9px; margin-top: 2px; }
+      .function-result span { display: none; }
+      .function-result strong { margin: 0; font-size: 11px; }
+      .function-result svg { grid-column: 2; grid-row: 1; width: 24px; height: 24px; padding: 6px; }
+      .diagnostic-note { grid-template-columns: 34px 1fr; padding: 15px; }
+      .diagnostic-note svg { width: 34px; height: 34px; padding: 9px; }
       .studio-tab { grid-template-columns: 28px 1fr; }
       .studio-tab svg { display: none; }
       .studio-stage { min-height: 590px; }
@@ -524,27 +545,33 @@
         </div>
 
         <div class="function-flow reveal" aria-label="Funções estratégicas do conteúdo">
+          <div class="function-flow-head" aria-hidden="true"><span>Jornada editorial</span><span>Da descoberta à decisão</span></div>
           <article class="function-row">
-            <span class="function-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>
-            <div><strong>Educar</strong><p>Traduzir cabelo, pele, ativos e hábitos em orientação simples.</p></div><span class="function-result">Gera clareza</span>
+            <span class="function-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 6.5A4.5 4.5 0 0 0 7.5 3H4v16h3.5a4.5 4.5 0 0 1 4.5 3Z"/><path d="M12 6.5A4.5 4.5 0 0 1 16.5 3H20v16h-3.5a4.5 4.5 0 0 0-4.5 3Z"/><path d="M12 6.5V22"/></svg></span>
+            <div class="function-copy"><span class="function-step">01 · Entender</span><strong>Educar</strong><p>Traduzir cabelo, pele, ativos e hábitos em orientação simples.</p></div>
+            <span class="function-result"><span>Efeito</span><strong>Gera clareza</strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
           </article>
           <article class="function-row">
-            <span class="function-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="9"/></svg></span>
-            <div><strong>Mostrar a rotina</strong><p>Conectar produtos em combinações que resolvem uma necessidade.</p></div><span class="function-result">Amplia valor</span>
+            <span class="function-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 7V3l-2 2a8 8 0 0 0-13.3 3"/><path d="M4 17v4l2-2a8 8 0 0 0 13.3-3"/><circle cx="8" cy="12" r="1.25"/><circle cx="12" cy="12" r="1.25"/><circle cx="16" cy="12" r="1.25"/></svg></span>
+            <div class="function-copy"><span class="function-step">02 · Organizar</span><strong>Mostrar a rotina</strong><p>Conectar produtos em combinações que resolvem uma necessidade.</p></div>
+            <span class="function-result"><span>Efeito</span><strong>Amplia valor</strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
           </article>
           <article class="function-row">
-            <span class="function-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 3-3 4 4L18 4l3 3"/><path d="M21 7v6a8 8 0 0 1-16 0V8"/></svg></span>
-            <div><strong>Construir prova</strong><p>Usar aplicação, textura, experiência e resultado para reduzir objeções.</p></div><span class="function-result">Cria confiança</span>
+            <span class="function-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/><path d="m8 12 2.5 2.5L16 9"/></svg></span>
+            <div class="function-copy"><span class="function-step">03 · Comprovar</span><strong>Construir prova</strong><p>Usar aplicação, textura, experiência e resultado para reduzir objeções.</p></div>
+            <span class="function-result"><span>Efeito</span><strong>Cria confiança</strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
           </article>
           <article class="function-row">
-            <span class="function-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7h-9M14 17H5M17 4l3 3-3 3M8 14l-3 3 3 3"/></svg></span>
-            <div><strong>Aproximar pessoas</strong><p>Trazer presença humana e uma comunicação mais direta.</p></div><span class="function-result">Gera conexão</span>
+            <span class="function-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 7h5v7h-3l-3 2V8a1 1 0 0 1 1-1Z"/></svg></span>
+            <div class="function-copy"><span class="function-step">04 · Conectar</span><strong>Aproximar pessoas</strong><p>Trazer presença humana e uma comunicação mais direta.</p></div>
+            <span class="function-result"><span>Efeito</span><strong>Gera conexão</strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
           </article>
           <article class="function-row">
-            <span class="function-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M3 4h2l2.3 10.4A2 2 0 0 0 9.3 16H18a2 2 0 0 0 2-1.6L21 8H6"/></svg></span>
-            <div><strong>Conduzir a compra</strong><p>Fazer o interesse avançar até a descoberta do produto e do kit certo.</p></div><span class="function-result">Move a jornada</span>
+            <span class="function-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 8h12l1 13H5Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/><path d="m10 15 2 2 4-4"/></svg></span>
+            <div class="function-copy"><span class="function-step">05 · Direcionar</span><strong>Conduzir a compra</strong><p>Fazer o interesse avançar até a descoberta do produto e do kit certo.</p></div>
+            <span class="function-result"><span>Efeito</span><strong>Move a jornada</strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></span>
           </article>
-          <p class="diagnostic-note">Esta leitura sustenta a proposta comercial. Personas, pilares, tom de voz, calendário e estratégia detalhada serão construídos após a contratação do plano correspondente.</p>
+          <aside class="diagnostic-note"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><p>Esta leitura sustenta a proposta comercial. Personas, pilares, tom de voz, calendário e estratégia detalhada serão construídos após a contratação do plano correspondente.</p></aside>
         </div>
       </div>
     </section>
