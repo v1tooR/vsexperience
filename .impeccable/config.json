@@ -1,0 +1,143 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "createdAt": "2026-10-03T17:45:09.160Z",
+        "reason": "brand commitment: Plus Jakarta Sans is part of the VS identity deck supplied by the user (PRODUCT.md Brand Commitments)"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "assets/css/home.css"
+        ],
+        "createdAt": "2026-10-03T17:45:10.227Z",
+        "reason": "remaining hit is the FAQ details::details-content height disclosure with interpolate-size, the platform's intended pattern for accordion height"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-03T17:45:10.441Z",
+        "reason": "false positive: editorial hairline rules above/below rows whose items carry their own vertical padding, and colored sections whose .wrap child holds the gutter; verified in screenshots"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-03T17:45:25.439Z",
+        "reason": "only hit is the reviews pull quote set at display size (28-52px) with intentional 1.1 display leading"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:52.351Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:52.574Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "repeated-container-text",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:52.816Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:53.065Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:53.250Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:53.427Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:53.614Z",
+        "reason": "service pages: hits are inside the miniature fictional-client mockups (.screen/.phone, role=group, data-nosnippet) rendered at reduced scale by design; page UI verified separately"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "servicos/*/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:53.835Z",
+        "reason": "static scan resolves --text/--surface tokens from :root instead of the dark .anatomy/.closing/.plan contexts; rendered-contrast audit (Playwright, all visible non-mockup text) found only the common-badge, which was fixed"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "servicos/index.html"
+        ],
+        "createdAt": "2026-10-03T19:55:54.039Z",
+        "reason": "static scan resolves context tokens from :root; rendered-contrast audit of servicos/index.html found 0 failures"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "servicos/assets/servicos.css"
+        ],
+        "createdAt": "2026-10-03T19:55:54.266Z",
+        "reason": "only hit is the FAQ details::details-content height disclosure with interpolate-size, same sanctioned pattern as home.css"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.34, 1.4, 0.64, 1)",
+        "createdAt": "2026-10-04T02:47:18.987Z",
+        "reason": "sanctioned: the user asked for Apple-style spring interactions (and the kinetic menu's back-out shape entrance); overshoot is limited to small UI feedback (lang thumb, glass morph, menu shapes) and disabled under reduced motion"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "createdAt": "2026-10-04T02:47:19.225Z",
+        "reason": "sanctioned: the user asked for Apple-style spring interactions (and the kinetic menu's back-out shape entrance); overshoot is limited to small UI feedback (lang thumb, glass morph, menu shapes) and disabled under reduced motion"
+      }
+    ]
+  }
+}

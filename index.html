@@ -1,1456 +1,684 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-lang="pt">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#371616">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <!-- ============================================
-       SEO — Primary Meta Tags
-       ============================================ -->
-  <title>Victor Santos · Designer UX/UI & Desenvolvedor Frontend | VS Experience</title>
-  <meta name="description" content="Criação de landing pages, sites institucionais, e-commerces, SaaS e Design Systems com UX estratégico e desenvolvimento premium. Do diagnóstico ao código — sem perder a intenção.">
-  <meta name="keywords" content="designer UX UI, desenvolvedor frontend, landing page profissional, criação de site, site institucional, e-commerce, SaaS, design system, freelancer design, Victor Santos, VS Experience, UI UX designer Brazil, web developer, produto digital, conversão, Figma">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Victor Santos · VS Experience | UX/UI e desenvolvimento</title>
+  <meta name="description" content="Estratégia, UX/UI e desenvolvimento para sites e produtos digitais. Auditoria e consultoria com Victor Santos; criação com a VS Experience.">
   <meta name="author" content="Victor Santos">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="language" content="pt-BR">
-  <meta name="geo.region" content="BR">
-  <meta name="geo.placename" content="Brasil">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#efefef">
+  <meta name="color-scheme" content="light">
 
-  <!-- Canonical & Hreflang -->
   <link rel="canonical" href="https://vsexperience.com.br/">
   <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/">
   <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/">
 
-  <!-- ============================================
-       Open Graph — Facebook, LinkedIn, WhatsApp
-       ============================================ -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="VS Experience">
   <meta property="og:url" content="https://vsexperience.com.br/">
-  <meta property="og:title" content="Victor Santos · Designer UX/UI & Desenvolvedor Frontend">
-  <meta property="og:description" content="Landing pages, sites, e-commerces e SaaS com design estratégico e execução técnica premium. Do Figma ao código — sem perder a intenção.">
+  <meta property="og:title" content="Victor Santos · Experiências para validar, converter e escalar">
+  <meta property="og:description" content="Conecto visão de negócio, design e desenvolvimento para criar e evoluir experiências digitais. Conheça os projetos e vamos conversar.">
   <meta property="og:image" content="https://vsexperience.com.br/assets/images/capaseo.webp">
-  <meta property="og:image:secure_url" content="https://vsexperience.com.br/assets/images/capaseo.webp">
-  <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="VS Experience — Projetar com propósito. Entregar com precisão.">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
-
-  <!-- ============================================
-       Twitter / X Card
-       ============================================ -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@victorssantos">
-  <meta name="twitter:url" content="https://vsexperience.com.br/">
-  <meta name="twitter:title" content="Victor Santos · Designer UX/UI & Desenvolvedor Frontend">
-  <meta name="twitter:description" content="Landing pages, sites, e-commerces e SaaS com design estratégico e execução técnica premium.">
+  <meta name="twitter:title" content="Victor Santos · Experiências para validar, converter e escalar">
+  <meta name="twitter:description" content="Conecto visão de negócio, design e desenvolvimento para criar e evoluir experiências digitais. Conheça os projetos e vamos conversar.">
   <meta name="twitter:image" content="https://vsexperience.com.br/assets/images/capaseo.webp">
-  <meta name="twitter:image:alt" content="VS Experience — Projetar com propósito. Entregar com precisão.">
 
-  <!-- ============================================
-       Favicon & App Icons
-       ============================================ -->
-  <link rel="icon" type="image/webp" href="assets/images/logo/vslogo.webp">
-  <link rel="shortcut icon" type="image/webp" href="assets/images/logo/vslogo.webp">
-  <link rel="apple-touch-icon" href="assets/images/logo/vslogo.webp">
+  <link rel="icon" type="image/svg+xml" href="assets/images/brand/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/brand/apple-touch-icon.png">
 
-  <!-- ============================================
-       Performance — Preconnect & Preload
-       ============================================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="assets/images/hero/victorsemfundo.webp" as="image" fetchpriority="high">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..700&family=Roboto+Flex:GRAD,opsz,wdth,wght@-200..150,8..144,25..151,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script>
+    (function () {
+      try {
+        var d = document.documentElement;
+        if (!location.hash && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.classList.add('is-loading');
+          // segurança: nunca prender a página se o script principal falhar
+          setTimeout(function () { d.classList.remove('is-loading'); }, 6000);
+        }
+      } catch (e) {}
+    })();
+  </script>
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/styles.css">
-
-  <!-- ============================================
-       Schema Markup — Structured Data (JSON-LD)
-       ============================================ -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://vsexperience.com.br/#website",
-        "name": "VS Experience",
-        "url": "https://vsexperience.com.br/",
-        "description": "Portfólio e serviços de design UX/UI e desenvolvimento frontend por Victor Santos",
-        "inLanguage": ["pt-BR", "en-US"],
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://vsexperience.com.br/?s={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://vsexperience.com.br/#website",
+      "name": "VS Experience",
+      "url": "https://vsexperience.com.br/",
+      "description": "Estratégia, UX/UI e desenvolvimento para sites e produtos digitais. Auditoria e consultoria com Victor Santos; criação com a VS Experience.",
+      "inLanguage": [
+        "pt-BR",
+        "en-US"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://vsexperience.com.br/#person",
+      "name": "Victor Santos",
+      "givenName": "Victor",
+      "familyName": "Santos",
+      "url": "https://vsexperience.com.br/",
+      "image": "https://vsexperience.com.br/assets/images/hero/victorsemfundo.webp",
+      "jobTitle": "Product Designer & Design Engineer",
+      "description": "Product Designer e Design Engineer. Une visão de negócio, experiência de uso e desenvolvimento; atua com auditoria e consultoria e com criação de sites e produtos digitais.",
+      "knowsAbout": [
+        "UX Design",
+        "UI Design",
+        "Product Design",
+        "Frontend Development",
+        "Landing Pages",
+        "SaaS",
+        "Design Systems",
+        "Figma",
+        "React",
+        "Next.js"
+      ],
+      "award": "1º lugar em UI/UX Design — SPSKILLS",
+      "sameAs": [
+        "https://www.linkedin.com/in/victor-santos-670525232/",
+        "https://www.instagram.com/victorssantos.ux/",
+        "https://github.com/v1tooR"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
       },
-      {
-        "@type": "Person",
-        "@id": "https://vsexperience.com.br/#person",
-        "name": "Victor Santos",
-        "givenName": "Victor",
-        "familyName": "Santos",
-        "url": "https://vsexperience.com.br/",
-        "image": "https://vsexperience.com.br/assets/images/capaseo.webp",
-        "jobTitle": "UX/UI Designer & Desenvolvedor Frontend",
-        "description": "Designer e desenvolvedor especialista em landing pages, sites institucionais, e-commerces, SaaS e Design Systems com foco em conversão e posicionamento de marca.",
-        "knowsAbout": ["UX Design", "UI Design", "Frontend Development", "Landing Pages", "SaaS", "Design Systems", "Figma", "React", "Next.js"],
-        "sameAs": [
-          "https://www.linkedin.com/in/victor-santos-670525232/",
-          "https://www.instagram.com/victorssantos.ux/",
-          "https://github.com/v1tooR"
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": [
+          "Portuguese",
+          "English"
         ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "BR"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "availableLanguage": ["Portuguese", "English"],
-          "url": "https://api.whatsapp.com/send?phone=5512991833641"
-        }
+        "url": "https://api.whatsapp.com/send?phone=5512991833641"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://vsexperience.com.br/#service",
+      "name": "VS Experience",
+      "url": "https://vsexperience.com.br/",
+      "logo": "https://vsexperience.com.br/assets/images/brand/monograma-cadmio.svg",
+      "image": "https://vsexperience.com.br/assets/images/capaseo.webp",
+      "founder": {
+        "@id": "https://vsexperience.com.br/#person"
       },
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://vsexperience.com.br/#service",
-        "name": "VS Experience",
-        "url": "https://vsexperience.com.br/",
-        "logo": "https://vsexperience.com.br/assets/images/logo/vslogo.webp",
-        "image": "https://vsexperience.com.br/assets/images/capaseo.webp",
-        "founder": { "@id": "https://vsexperience.com.br/#person" },
-        "description": "Serviços de design UX/UI e desenvolvimento frontend: landing pages, sites institucionais, e-commerces, SaaS e Design Systems.",
-        "areaServed": ["BR", "PT", "US"],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Serviços de Design e Desenvolvimento",
-          "url": "https://vsexperience.com.br/servicos/",
-          "itemListElement": [
-            {
-              "@type": "Offer",
+      "description": "Criação de landing pages, sites institucionais, e-commerces, sistemas e SaaS e design systems, do diagnóstico ao código.",
+      "areaServed": [
+        "BR",
+        "PT",
+        "US"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Serviços de design e desenvolvimento",
+        "url": "https://vsexperience.com.br/servicos/",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://vsexperience.com.br/servicos/landing-page/#servico",
               "name": "Landing Page",
-              "url": "https://vsexperience.com.br/servicos/landing-page/",
-              "description": "Landing page com estratégia, copy de conversão, design exclusivo e desenvolvimento responsivo",
-              "priceCurrency": "BRL",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "BRL",
-                "minPrice": 750,
-                "maxPrice": 1800
-              },
-              "itemOffered": {
-                "@type": "Service",
-                "@id": "https://vsexperience.com.br/servicos/landing-page/#servico",
-                "name": "Landing Page",
-                "url": "https://vsexperience.com.br/servicos/landing-page/"
-              }
-            },
-            {
-              "@type": "Offer",
+              "url": "https://vsexperience.com.br/servicos/landing-page/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://vsexperience.com.br/servicos/site-institucional/#servico",
               "name": "Site Institucional",
-              "url": "https://vsexperience.com.br/servicos/site-institucional/",
-              "description": "Site institucional com páginas próprias, identidade aplicada e SEO técnico",
-              "priceCurrency": "BRL",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "BRL",
-                "minPrice": 1000,
-                "maxPrice": 5500
-              },
-              "itemOffered": {
-                "@type": "Service",
-                "@id": "https://vsexperience.com.br/servicos/site-institucional/#servico",
-                "name": "Site Institucional",
-                "url": "https://vsexperience.com.br/servicos/site-institucional/"
-              }
-            },
-            {
-              "@type": "Offer",
+              "url": "https://vsexperience.com.br/servicos/site-institucional/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://vsexperience.com.br/servicos/e-commerce/#servico",
               "name": "E-commerce",
-              "url": "https://vsexperience.com.br/servicos/e-commerce/",
-              "description": "Loja virtual com checkout, Pix, frete e integração com Bling e Mercado Livre",
-              "priceCurrency": "BRL",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "BRL",
-                "minPrice": 2800
-              },
-              "itemOffered": {
-                "@type": "Service",
-                "@id": "https://vsexperience.com.br/servicos/e-commerce/#servico",
-                "name": "E-commerce",
-                "url": "https://vsexperience.com.br/servicos/e-commerce/"
-              }
-            },
-            {
-              "@type": "Offer",
+              "url": "https://vsexperience.com.br/servicos/e-commerce/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://vsexperience.com.br/servicos/sistemas-saas/#servico",
               "name": "Sistemas e SaaS",
-              "url": "https://vsexperience.com.br/servicos/sistemas-saas/",
-              "description": "Sistemas web, CRMs, SaaS e MVPs sob medida, com entrega por marcos",
-              "priceCurrency": "BRL",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "BRL",
-                "minPrice": 3000
-              },
-              "itemOffered": {
-                "@type": "Service",
-                "@id": "https://vsexperience.com.br/servicos/sistemas-saas/#servico",
-                "name": "Sistemas e SaaS",
-                "url": "https://vsexperience.com.br/servicos/sistemas-saas/"
-              }
-            },
-            {
-              "@type": "Offer",
+              "url": "https://vsexperience.com.br/servicos/sistemas-saas/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://vsexperience.com.br/servicos/design-system/#servico",
               "name": "Design System",
-              "url": "https://vsexperience.com.br/servicos/design-system/",
-              "description": "Design system com tokens, componentes em Figma e código e documentação",
-              "priceCurrency": "BRL",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "priceCurrency": "BRL",
-                "minPrice": 3000,
-                "maxPrice": 9000
-              },
-              "itemOffered": {
-                "@type": "Service",
-                "@id": "https://vsexperience.com.br/servicos/design-system/#servico",
-                "name": "Design System",
-                "url": "https://vsexperience.com.br/servicos/design-system/"
-              }
-            }
-          ]
-        },
-        "sameAs": [
-          "https://www.linkedin.com/in/victor-santos-670525232/",
-          "https://www.instagram.com/victorssantos.ux/"
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://vsexperience.com.br/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Você faz só design ou também desenvolve o site?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Entrego ponta a ponta: diagnóstico, UX, UI e desenvolvimento. O código sai fiel ao design — sem perda de intenção no caminho. Você não precisa contratar dois profissionais nem gerenciar handoff."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Quanto tempo leva um projeto?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Depende do escopo. Landing pages levam de 1 a 2 semanas. Sites institucionais de 2 a 4 semanas. E-commerces e SaaS variam conforme a complexidade — sempre definimos prazo no diagnóstico, antes de começar."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Posso contratar só o design, sem o desenvolvimento?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sim. Se você já tem um time de desenvolvimento, posso entregar o design completo no Figma — com componentes organizados, tokens definidos e documentação para facilitar o handoff."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Como funciona a comunicação durante o projeto?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Trabalho com checkpoints claros por etapa. Você acompanha o progresso, dá feedback em momentos definidos e aprova antes de avançar. Sem sumiço, sem entrega-surpresa no final."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Quantas rodadas de revisão estão inclusas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Cada entrega inclui uma rodada de revisão consolidada. O processo de feedback por etapa garante que ajustes sejam pontuais — não estruturais. Revisões além do escopo são acordadas previamente."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Como começo um projeto com você?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Me mande uma mensagem no WhatsApp contando o que você vende, pra quem e qual o objetivo. Eu te respondo com um caminho claro do que faria primeiro — sem compromisso."
+              "url": "https://vsexperience.com.br/servicos/design-system/"
             }
           }
         ]
-      }
-    ]
-  }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/victor-santos-670525232/",
+        "https://www.instagram.com/victorssantos.ux/"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vsexperience.com.br/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Você também desenvolve o site ou produto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Na VS Experience, cuido do diagnóstico, da experiência de uso, do design e do desenvolvimento. Você tem continuidade entre o que foi planejado, o que foi aprovado e o que chega à entrega."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo leva um projeto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo depende do tipo de projeto, da complexidade e do envio dos materiais e aprovações. Em Serviços e valores, você encontra os prazos de referência de cada entrega. O cronograma final é combinado antes de começar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso contratar apenas o design?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Se você já tem uma equipe de desenvolvimento, entrego o projeto no Figma com componentes, estilos e orientações organizados para a implementação. O nível de documentação é definido no escopo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona a comunicação durante o projeto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você acompanha o andamento por etapas, envia feedback nos momentos combinados e aprova as entregas antes de avançarmos. As decisões ficam claras ao longo do projeto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quantas rodadas de revisão estão inclusas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cada entrega inclui uma rodada de revisão consolidada. Os pontos para ajuste são reunidos em um único feedback. Novas demandas e revisões além do escopo são combinadas à parte, antes de serem executadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Onde vejo os valores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As referências para projetos de criação estão em Serviços e valores. O orçamento final considera o diagnóstico e o escopo. Para auditoria e consultoria, conversamos primeiro sobre a necessidade e o formato do trabalho."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como começamos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Me conte pelo WhatsApp o que você oferece, para quem e o que quer alcançar. Se já tiver um site ou produto, envie o link. A primeira conversa ajuda a entender se o próximo passo é avaliar, criar ou evoluir a experiência."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Já tenho um site. Você pode ajudar a melhorá-lo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Na frente Victor Santos, avalio a experiência existente e ajudo a priorizar melhorias. Se a necessidade incluir design ou desenvolvimento, podemos definir um projeto de criação com a VS Experience. O caminho depende do diagnóstico."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="header-container">
-      <nav class="nav-surface">
-        <a href="#" class="logo">
-          <div class="logo-icon">
-            <img src="assets/images/logo/vslogo.webp" alt="VS Experience logo">
-          </div>
-          <span class="logo-text">VS Experience</span>
-        </a>
+  <a class="skip" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
 
-        <div class="nav-desktop">
-          <a href="#servicos" class="nav-link" data-i18n="nav.services">Serviços</a>
-          <a href="#processo" class="nav-link" data-i18n="nav.process">Processo</a>
-          <a href="#portfolio" class="nav-link" data-i18n="nav.cases">Cases</a>
-          <a href="#investimento" class="nav-link" data-i18n="nav.investment">Investimento</a>
-          <a href="#sobre" class="nav-link" data-i18n="nav.about">Sobre</a>
+  <!-- Cabeçalho: barra de vidro que muda de tom conforme a seção por trás -->
+  <header class="top" data-top>
+    <div class="top__row">
+      <a class="top__brand" href="#topo" aria-label="Victor Santos, início">
+        <img class="top__logo" src="assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24">
+        <img class="top__logo top__logo--paper" src="assets/images/brand/logotipo-linho.svg" alt="" width="198" height="24">
+      </a>
+      <div class="top__end">
+        <div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label:lang.label">
+          <span class="lang__thumb" aria-hidden="true"></span>
+          <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
-
-        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
-          <span class="lang-opt active" id="langPT">PT</span>
-          <span class="lang-sep">|</span>
-          <span class="lang-opt" id="langEN">EN</span>
+        <a class="btn btn--ink btn--sm top__cta" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20Vim%20pelo%20site%20e%20quero%20entender%20como%20voc%C3%AA%20pode%20ajudar%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-wa="wa.general" data-magnetic>
+          <span data-i18n="nav.cta">Conversar</span>
+        </a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn data-magnetic>
+          <span class="sr-only" data-i18n="nav.menu">Menu</span>
+          <span class="menu-btn__text" aria-hidden="true"><span data-i18n="nav.open">Menu</span><span data-i18n="nav.close">Fechar</span></span>
+          <svg class="menu-btn__icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M7.33 16V0h1.34v16z"/><path d="M16 8.67H0V7.33h16z"/>
+            <path d="M6 7.33h1.33V6c0 .74-.6 1.33-1.33 1.33z"/><path d="M10 7.33H8.67V6c0 .74.6 1.33 1.33 1.33z"/>
+            <path d="M6 8.67h1.33V10c0-.74-.6-1.33-1.33-1.33z"/><path d="M10 8.67H8.67V10c0-.74.6-1.33 1.33-1.33z"/>
+          </svg>
         </button>
-
-        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer" data-i18n="nav.cta">Conversar</a>
-
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <nav class="mobile-nav">
-        <a href="#servicos" class="mobile-nav-link" data-i18n="nav.services">Serviços</a>
-        <a href="#processo" class="mobile-nav-link" data-i18n="nav.process">Processo</a>
-        <a href="#portfolio" class="mobile-nav-link" data-i18n="nav.cases">Cases</a>
-        <a href="#investimento" class="mobile-nav-link" data-i18n="nav.investment">Investimento</a>
-        <a href="#sobre" class="mobile-nav-link" data-i18n="nav.about">Sobre</a>
-        <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-primary" target="_blank" rel="noopener noreferrer" data-i18n="nav.cta">Conversar</a>
-      </nav>
+      </div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-      <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-glow"></div>
-
-        <div class="container-tight">
-          <div class="hero-grid">
-            <!-- Left column: content -->
-            <div class="hero-left">
-              <div class="hero-content">
-                <h1 class="hero-title animate-fade-up" data-i18n="hero.title">
-                  Criando experiências únicas —
-                  <br>
-                  <span class="text-gradient-primary">pensadas para validar, converter e escalar.</span>
-                </h1>
-
-                <p class="hero-subtitle animate-fade-up delay-100" data-i18n="hero.subtitle">
-                  Eu uno estratégia, UX/UI e execução técnica para transformar ideias em interfaces claras, consistentes e orientadas a resultado.
-                </p>
-
-                <ul class="hero-bullets animate-fade-up delay-200">
-                  <li>
-                    <span class="bullet-icon">✓</span>
-                    <span data-i18n="hero.bullet1">Clareza de proposta em segundos (sem ruído)</span>
-                  </li>
-
-                  <li>
-                    <span class="bullet-icon">✓</span>
-                    <span data-i18n="hero.bullet2">Decisões guiadas por objetivo e mensuração</span>
-                  </li>
-                </ul>
-
-                <div class="hero-ctas animate-fade-up delay-300">
-                  <a href="#portfolio" class="btn-primary">
-                    <span data-i18n="hero.ctaPrimary">Ver Cases</span>
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </a>
-                  <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-secondary" target="_blank" rel="noopener noreferrer" data-i18n="hero.ctaSecondary">Conversar sobre um projeto</a>
-                </div>
-
-                <p class="hero-microcopy animate-fade-up delay-400" data-i18n="hero.microcopy">
-                  Sem achismo. Sem estética vazia. Só experiência que funciona.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right column: image + floating boxes -->
-            <div class="hero-right">
-              <div class="hero-image">
-                <img src="assets/images/hero/victorsemfundo.webp" alt="Victor Santos, designer UX/UI e desenvolvedor frontend da VS Experience" width="2084" height="2567" fetchpriority="high" />
-
-                <div class="floating-box floating-figma">
-                  <div class="floating-icon">
-                    <!-- Simple Figma-like mark -->
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g fill="currentColor">
-                        <circle cx="7" cy="6" r="2" />
-                        <circle cx="11" cy="6" r="2" />
-                        <circle cx="7" cy="10" r="2" />
-                        <circle cx="11" cy="10" r="2" />
-                        <circle cx="11" cy="14" r="2" />
-                      </g>
-                    </svg>
-                  </div>
-                  <div class="floating-label" data-i18n="hero.floatingUX">Experiência de Usuário</div>
-                </div>
-
-                <div class="floating-box floating-dev">
-                  <div class="floating-icon">
-                    <!-- simple code icon -->
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 18l6-6-6-6" />
-                      <path d="M8 6l-6 6 6 6" />
-                    </svg>
-                  </div>
-                  <div class="floating-label" data-i18n="hero.floatingDev">Sites, SaaS e Aplicações</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <!-- Positioning Section -->
-    <section class="section positioning">
-      <div class="positioning-bg"></div>
-      
-      <div class="container-tight">
-        <div class="positioning-content">
-          <h2 class="section-title animate-fade-up" data-i18n="positioning.title">
-            Não é sobre "fazer tela".
-            <br>
-            <span class="text-gradient-primary">É sobre construir confiança.</span>
-          </h2>
-
-          <p class="section-text animate-fade-up delay-100" data-i18n="positioning.text">
-            Quando a experiência é bem desenhada, o usuário entende, acredita e avança.
-            <br>
-            Meu foco é fazer seu site/app não ser só bonito, mas
-            <span class="text-highlight">vender, captar e fortalecer sua marca.</span>
-          </p>
-          
+  <!-- Menu: três camadas da marca entram em cascata; cada link acende uma forma do ecossistema -->
+  <div class="nav" id="menu" hidden data-nav>
+    <div class="nav__overlay" data-nav-close></div>
+    <nav class="nav__panel" aria-label="Menu" data-i18n-attr="aria-label:nav.menu" data-nav-panel>
+      <div class="nav__bg" aria-hidden="true">
+        <span class="nav__layer"></span>
+        <span class="nav__layer"></span>
+        <span class="nav__layer"></span>
+        <div class="nav__shapes">
+          <svg class="nav__shape" data-shape-for="1" viewBox="0 0 400 400">
+            <rect class="nav__el is-carmim" x="40" y="96" width="320" height="96"/>
+            <rect class="nav__el is-line" x="40" y="208" width="320" height="96"/>
+          </svg>
+          <svg class="nav__shape" data-shape-for="2" viewBox="0 0 400 400">
+            <path class="nav__el is-stroke" d="M30 70c120-60 190 10 130 70s-70 120 40 110 170 40 150 120"/>
+            <rect class="nav__el is-line" x="146" y="128" width="20" height="20"/>
+            <rect class="nav__el is-line" x="292" y="282" width="20" height="20"/>
+          </svg>
+          <svg class="nav__shape" data-shape-for="3" viewBox="0 0 400 400">
+            <rect class="nav__el is-line" x="40" y="40" width="96" height="96"/><rect class="nav__el is-line" x="152" y="40" width="96" height="96"/><rect class="nav__el is-carmim" x="264" y="40" width="96" height="96"/>
+            <rect class="nav__el is-line" x="40" y="152" width="96" height="96"/><rect class="nav__el is-carmim" x="152" y="152" width="96" height="96"/><rect class="nav__el is-line" x="264" y="152" width="96" height="96"/>
+            <rect class="nav__el is-carmim" x="40" y="264" width="96" height="96"/><rect class="nav__el is-line" x="152" y="264" width="96" height="96"/><rect class="nav__el is-line" x="264" y="264" width="96" height="96"/>
+          </svg>
+          <svg class="nav__shape" data-shape-for="4" viewBox="0 0 400 400">
+            <path class="nav__el is-carmim" transform="translate(30 86) scale(.66)" d="M267.25,131.96l-120.23,207.96c-2.45,4.25-7.13,6.88-12.21,6.88H6.97c-3.85,0-6.97-2.98-6.97-6.66V6.66C0,2.98,3.12,0,6.97,0h106c3.85,0,6.97,2.98,6.97,6.66v91.92c0,6.84,9.52,9.24,13.04,3.28l40.29-68.04C185.65,12.92,208.85,0,233.99,0h273.74c3.85,0,6.97,2.98,6.97,6.66v108.32c0,3.68-3.12,6.66-6.97,6.66h-64.44c-5.47,0-8.81,5.74-5.92,10.18l46.97,72.11c18.75,28.78,19.71,65,2.52,94.65h0c-17.25,29.75-50.05,48.22-85.67,48.22h-155.88c-3.85,0-6.97-2.98-6.97-6.66v-109.19c0-3.68,3.12-6.66,6.97-6.66h77.96c5.37,0,8.73-5.55,6.04-9.99l-49.92-82.46c-2.72-4.49-9.52-4.42-12.14.11Z"/>
+          </svg>
+          <svg class="nav__shape" data-shape-for="5" viewBox="0 0 400 400">
+            <path class="nav__el is-carmim" d="M0 300 300 0h70L70 300z"/>
+            <path class="nav__el is-line" d="M90 340 390 40v70L160 340z"/>
+            <path class="nav__el is-carmim" d="M200 380 400 180v70L270 380z"/>
+          </svg>
         </div>
       </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section" id="servicos">
-      <div class="container-wide">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="services.title">
-            O que eu entrego <span class="text-gradient-primary">na prática</span>
-          </h2>
-          <p class="section-subtitle animate-fade-up delay-100" data-i18n="services.subtitle">
-            Cada entrega tem um objetivo de negócio por trás. Trabalho para isso — não só para a tela ficar bonita.
-          </p>
-        </div>
-
-        <div class="bento-grid">
-          <!-- Landing Page -->
-          <div class="bento-item bento-lg animate-fade-up">
-            <span class="bento-service-tag" data-i18n="services.s1tag">Landing Page · Conversão</span>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-              </svg>
-            </div>
-            <h3 data-i18n="services.s1title">Página que vende, não só impressiona</h3>
-            <p data-i18n="services.s1desc">Estrutura pensada para guiar o visitante da atenção à ação — copy estratégico, prova social e CTA no timing certo. Sem "bonita que não converte".</p>
-            <div class="bento-outcome" data-i18n="services.s1outcome">Visitante → Lead qualificado</div>
-            <a class="bento-link" href="servicos/landing-page/"><span data-i18n="services.s1more">Landing page: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-
-          <!-- Institucional -->
-          <div class="bento-item bento-md animate-fade-up delay-100">
-            <span class="bento-service-tag" data-i18n="services.s2tag">Institucional</span>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-            </div>
-            <h3 data-i18n="services.s2title">Presença que fecha antes da reunião</h3>
-            <p data-i18n="services.s2desc">O lead já chega posicionado. Um site que comunica autoridade antes de você precisar explicar quem é.</p>
-            <a class="bento-link" href="servicos/site-institucional/"><span data-i18n="services.s2more">Site institucional: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-
-          <!-- E-commerce -->
-          <div class="bento-item bento-md animate-fade-up delay-200">
-            <span class="bento-service-tag" data-i18n="services.s3tag">E-commerce</span>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-              </svg>
-            </div>
-            <h3 data-i18n="services.s3title">Jornada de compra sem atrito</h3>
-            <p data-i18n="services.s3desc">Design orientado à conversão real — menos abandono de carrinho, mais receita.</p>
-            <a class="bento-link" href="servicos/e-commerce/"><span data-i18n="services.s3more">E-commerce: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-
-          <!-- SaaS / Produto -->
-          <div class="bento-item bento-sm animate-fade-up delay-300">
-            <span class="bento-service-tag" data-i18n="services.s4tag">SaaS · MVP</span>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4"/>
-              </svg>
-            </div>
-            <h3 data-i18n="services.s4title">Produto que o usuário entende e volta</h3>
-            <p data-i18n="services.s4desc">UX que reduz confusão e sustenta crescimento.</p>
-            <a class="bento-link" href="servicos/sistemas-saas/"><span data-i18n="services.s4more">Sistemas e SaaS: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-
-          <!-- Design System -->
-          <div class="bento-item bento-xs animate-fade-up delay-400">
-            <span class="bento-service-tag" data-i18n="services.s5tag">Design System</span>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-                <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
-              </svg>
-            </div>
-            <h3 data-i18n="services.s5title">Fundação que escala com você</h3>
-            <p data-i18n="services.s5desc">Consistência em cada tela e sprint.</p>
-            <a class="bento-link" href="servicos/design-system/"><span data-i18n="services.s5more">Design system: processo e valores</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Differentials Section -->
-    <section class="section differentials">
-      <div class="differentials-bg"></div>
-      
-      <div class="container-tight">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="differentials.title">
-            Design com lógica de negócio.
-            <br>
-            <span class="text-gradient-primary">Execução com padrão de engenharia.</span>
-          </h2>
-
-          <p class="section-text animate-fade-up delay-100" data-i18n="differentials.text">
-            O problema de muitos projetos é simples: começam pelo visual e terminam com retrabalho.
-            <br>
-            Eu começo pela clareza (objetivo + usuário + oferta), traduzo isso em arquitetura e UX,
-            e só então elevo com um UI premium — pronto para ser construído de verdade.
-          </p>
-        </div>
-        
-        <div class="pillars-grid">
-          <div class="liquid-glass pillar-card animate-fade-up delay-200">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18h6M10 22h4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
-              </svg>
-            </div>
-            <h3 data-i18n="differentials.p1title">Clareza</h3>
-            <p data-i18n="differentials.p1desc">O usuário entende rápido e decide com menos fricção.</p>
-          </div>
-
-          <div class="liquid-glass pillar-card animate-fade-up delay-300">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3 data-i18n="differentials.p2title">Consistência</h3>
-            <p data-i18n="differentials.p2desc">Padrão visual e funcional que transmite autoridade.</p>
-          </div>
-
-          <div class="liquid-glass pillar-card animate-fade-up delay-400">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M23 6l-9.5 9.5-5-5L1 18"/>
-                <path d="M17 6h6v6"/>
-              </svg>
-            </div>
-            <h3 data-i18n="differentials.p3title">Resultado</h3>
-            <p data-i18n="differentials.p3desc">Decisões feitas para melhorar conversão, engajamento e retenção.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="section" id="processo">
-      <div class="container-tight">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="process.title">
-            Processo <span class="text-gradient-primary">enxuto, profundo e sem surpresa</span>
-          </h2>
-        </div>
-        
-        <div class="process-timeline">
-          <div class="process-step animate-fade-up">
-            <div class="step-number">01</div>
-            <div class="step-content">
-              <h3 data-i18n="process.step1title">Diagnóstico</h3>
-              <p class="step-subtitle" data-i18n="process.step1sub">(objetivo e contexto real)</p>
-              <p data-i18n="process.step1desc">O que precisa acontecer: leads? vendas? ativação? retenção? confiança?</p>
-            </div>
-            <div class="process-spacer hidden md:block"></div>
-          </div>
-
-          <div class="process-step animate-fade-up delay-100">
-            <div class="step-number">02</div>
-            <div class="step-content">
-              <h3 data-i18n="process.step2title">Arquitetura e narrativa</h3>
-              <p class="step-subtitle" data-i18n="process.step2sub">(UX)</p>
-              <p data-i18n="process.step2desc">Hierarquia, fluxos, estrutura e "história" que guia o usuário.</p>
-            </div>
-            <div class="process-spacer hidden md:block"></div>
-          </div>
-
-          <div class="process-step animate-fade-up delay-200">
-            <div class="step-number">03</div>
-            <div class="step-content">
-              <h3 data-i18n="process.step3title">UI premium</h3>
-              <p class="step-subtitle" data-i18n="process.step3sub">(sistema de componentes)</p>
-              <p data-i18n="process.step3desc">Visual consistente, microdecisões e componentes reaproveitáveis.</p>
-            </div>
-            <div class="process-spacer hidden md:block"></div>
-          </div>
-
-          <div class="process-step animate-fade-up delay-300">
-            <div class="step-number">04</div>
-            <div class="step-content">
-              <h3 data-i18n="process.step4title">Construção e refinamento</h3>
-              <p data-i18n="process.step4desc">Implementação com padrão, performance e fidelidade ao design.</p>
-            </div>
-            <div class="process-spacer hidden md:block"></div>
-          </div>
-
-          <div class="process-step animate-fade-up delay-400">
-            <div class="step-number">05</div>
-            <div class="step-content">
-              <h3 data-i18n="process.step5title">Ajustes e validação</h3>
-              <p data-i18n="process.step5desc">Evolução orientada por uso real: cliques, funil, feedback e melhoria contínua.</p>
-            </div>
-            <div class="process-spacer hidden md:block"></div>
-          </div>
-        </div>
-
-        <p class="section-microcopy animate-fade-up" data-i18n="process.microcopy">
-          Checkpoints claros do início ao fim. Você sabe o que está acontecendo.
-        </p>
-      </div>
-    </section>
-
-    <!-- Cases Section -->
-    <section class="section cases" id="portfolio">
-      <div class="container-wide">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="cases.title">
-            Cases <span class="text-gradient-primary">em destaque</span>
-          </h2>
-          <p class="section-subtitle animate-fade-up delay-100" data-i18n="cases.subtitle">
-            Projetos reais com estratégia, experiência e execução voltadas para clareza, confiança e conversão.
-          </p>
-        </div>
-        
-        <div class="cases-grid">
-          <article class="case-card animate-fade-up delay-200">
-            <div class="case-image">
-              <img src="assets/images/cases/g4.webp" alt="G4 Business" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.g4tag">Institucional - Com Falcotec</span>
-              <h3>G4 Business</h3>
-              <p class="case-focus" data-i18n="cases.g4focus"><strong>Foco:</strong> experiência, consistência e conversão em páginas e jornadas.</p>
-              <p class="case-deliverables" data-i18n="cases.g4deliverables"><strong>Entregas:</strong> estrutura de navegação/UX, UI e implementação com ajuste fino e responsividade.</p>
-              <p class="case-impact" data-i18n="cases.g4impact"><strong>Impacto:</strong> comunicação mais clara e base sólida para aquisição e escala.</p>
-              <a href="https://g4business.com/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-300">
-            <div class="case-image">
-              <img src="assets/images/cases/costaflores.webp" alt="Costa Flores" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.cfTag">Institucional - VS Experience</span>
-              <h3>Costa Flores</h3>
-              <p class="case-focus" data-i18n="cases.cfFocus"><strong>Foco:</strong> elevar percepção premium e guiar o usuário até a ação com menos atrito.</p>
-              <p class="case-deliverables" data-i18n="cases.cfDeliverables"><strong>Entregas:</strong> narrativa, organização de seções, UI consistente e CTAs bem posicionados.</p>
-              <p class="case-impact" data-i18n="cases.cfImpact"><strong>Impacto:</strong> mais autoridade na apresentação e jornada mais objetiva até o contato.</p>
-              <a href="https://costaflores.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-400">
-            <div class="case-image">
-              <img src="assets/images/cases/ocasafloresta.webp" alt="Casa Floresta" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.casaTag">Landing Page - com Voia Agency</span>
-              <h3>Casa Floresta</h3>
-              <p class="case-focus" data-i18n="cases.casaFocus"><strong>Foco:</strong> presença digital memorável, com refinamento e fluidez.</p>
-              <p class="case-deliverables" data-i18n="cases.casaDeliverables"><strong>Entregas:</strong> hierarquia de informação, UI premium e experiência focada em confiança.</p>
-              <p class="case-impact" data-i18n="cases.casaImpact"><strong>Impacto:</strong> site com "cara de marca forte" e intenção clara de conversão.</p>
-              <a href="https://ocasafloresta.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-200">
-            <div class="case-image">
-              <img src="assets/images/cases/inter.png" alt="Inter Store" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.interTag">E-commerce - Banco Inter</span>
-              <h3>Inter Store</h3>
-              <p class="case-focus" data-i18n="cases.interFocus"><strong>Foco:</strong> experiência de compra clara, responsiva e orientada para conversão.</p>
-              <p class="case-deliverables" data-i18n="cases.interDeliverables"><strong>Entregas:</strong> UI, ajustes de jornada, organização visual e refinamento de componentes.</p>
-              <p class="case-impact" data-i18n="cases.interImpact"><strong>Impacto:</strong> navegação mais fluida e apresentação mais objetiva para produtos e ofertas.</p>
-              <a href="https://www.interstore.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-300">
-            <div class="case-image">
-              <img src="assets/images/cases/sbmarketing.webp" alt="SB Marketing" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.sbTag">Marketing Digital - VS Experience</span>
-              <h3>SB Marketing</h3>
-              <p class="case-focus" data-i18n="cases.sbFocus"><strong>Foco:</strong> presença digital profissional, com leitura rápida e oferta bem posicionada.</p>
-              <p class="case-deliverables" data-i18n="cases.sbDeliverables"><strong>Entregas:</strong> estrutura de página, UI responsiva, hierarquia visual e CTAs de contato.</p>
-              <p class="case-impact" data-i18n="cases.sbImpact"><strong>Impacto:</strong> comunicação mais direta e jornada preparada para geração de oportunidades.</p>
-              <a href="https://sbmarketing.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-200">
-            <div class="case-image">
-              <img src="assets/images/cases/octaverta.webp" alt="Octaverta" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.octTag">B2B Industrial - VS Experience</span>
-              <h3>Octaverta</h3>
-              <p class="case-focus" data-i18n="cases.octFocus"><strong>Foco:</strong> posicionar a marca como distribuidora Headman no Brasil para filtros, dentes e peças de máquinas pesadas.</p>
-              <p class="case-deliverables" data-i18n="cases.octDeliverables"><strong>Entregas:</strong> landing page institucional, organização de portfólio, narrativa comercial e fluxo de orçamento.</p>
-              <p class="case-impact" data-i18n="cases.octImpact"><strong>Impacto:</strong> comunicação técnica mais clara para compradores e atendimento mais direto para operações de linha amarela.</p>
-              <a href="https://octaverta.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-300">
-            <div class="case-image">
-              <img src="assets/images/cases/multivegetal.webp" alt="Multi Vegetal" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.mvTag">E-commerce - VS Experience</span>
-              <h3>Multi Vegetal</h3>
-              <p class="case-focus" data-i18n="cases.mvFocus"><strong>Foco:</strong> destacar fitocosméticos naturais, veganos e cruelty free com navegação simples por categorias e ofertas.</p>
-              <p class="case-deliverables" data-i18n="cases.mvDeliverables"><strong>Entregas:</strong> experiência de loja, vitrine de produtos, banners promocionais e hierarquia visual para compra.</p>
-              <p class="case-impact" data-i18n="cases.mvImpact"><strong>Impacto:</strong> jornada mais fluida para descobrir produtos, entender diferenciais da marca e avançar para o carrinho.</p>
-              <a href="https://multivegetal.com/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-400">
-            <div class="case-image">
-              <img src="assets/images/cases/eleva.webp" alt="Eleva Isenções" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.elevTag">Landing Page - VS Experience</span>
-              <h3>Eleva Isenções</h3>
-              <p class="case-focus" data-i18n="cases.elevFocus"><strong>Foco:</strong> transformar a assessoria para isenção PCD em uma jornada clara, humana e orientada para contato.</p>
-              <p class="case-deliverables" data-i18n="cases.elevDeliverables"><strong>Entregas:</strong> copy de conversão, explicação de benefícios, prova de processo e CTAs para análise pelo WhatsApp.</p>
-              <p class="case-impact" data-i18n="cases.elevImpact"><strong>Impacto:</strong> proposta mais objetiva para quem busca carro zero km com isenções de IPI, IOF, ICMS e IPVA.</p>
-              <a href="https://elevaisencoes.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-200">
-            <div class="case-image">
-              <img src="assets/images/cases/thistorres.webp" alt="ThisTorres Seguros" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.ttTag">Institucional - VS Experience</span>
-              <h3>ThisTorres Seguros</h3>
-              <p class="case-focus" data-i18n="cases.ttFocus"><strong>Foco:</strong> comunicar proteção, planejamento e consultoria em seguros com mais autoridade e transparência.</p>
-              <p class="case-deliverables" data-i18n="cases.ttDeliverables"><strong>Entregas:</strong> site institucional, arquitetura de soluções, blocos de confiança e jornada para falar com consultor.</p>
-              <p class="case-impact" data-i18n="cases.ttImpact"><strong>Impacto:</strong> experiência mais consultiva para empresas, famílias e indivíduos entenderem coberturas, benefícios e investimentos.</p>
-              <a href="https://thistorres.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-300">
-            <div class="case-image">
-              <img src="assets/images/cases/alugaaqui.webp" alt="Aluga Aqui Máquinas" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.aaTag">Landing Page - VS Experience</span>
-              <h3>Aluga Aqui Máquinas</h3>
-              <p class="case-focus" data-i18n="cases.aaFocus"><strong>Foco:</strong> apresentar o portfólio de equipamentos com clareza e converter visitantes em pedidos de orçamento.</p>
-              <p class="case-deliverables" data-i18n="cases.aaDeliverables"><strong>Entregas:</strong> landing page institucional, catálogo de máquinas, fluxo de orçamento e CTAs para contato imediato.</p>
-              <p class="case-impact" data-i18n="cases.aaImpact"><strong>Impacto:</strong> clientes encontram o equipamento certo com mais facilidade e iniciam a locação com menos barreiras.</p>
-              <a href="https://alugaaquimaquinas.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-400">
-            <div class="case-image">
-              <img src="assets/images/cases/moriah.webp" alt="Moriah Clínica" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.moriahTag">Institucional - VS Experience</span>
-              <h3>Moriah Clínica</h3>
-              <p class="case-focus" data-i18n="cases.moriahFocus"><strong>Foco:</strong> comunicar especialidades e equipe médica com credibilidade, humanidade e facilidade de agendamento.</p>
-              <p class="case-deliverables" data-i18n="cases.moriahDeliverables"><strong>Entregas:</strong> site institucional, apresentação de especialidades, perfil de médicos e agendamento via WhatsApp.</p>
-              <p class="case-impact" data-i18n="cases.moriahImpact"><strong>Impacto:</strong> pacientes chegam ao agendamento com mais confiança e menos barreiras no caminho.</p>
-              <a href="https://moriahclinic.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-200">
-            <div class="case-image">
-              <img src="assets/images/cases/beyoundspeak.webp" alt="Beyond Speaking" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.bsTag">Landing Page · Cliente Internacional</span>
-              <h3>Beyond Speaking</h3>
-              <p class="case-focus" data-i18n="cases.bsFocus"><strong>Foco:</strong> posicionar o programa de inglês com clareza e converter profissionais que precisam se comunicar com liderança e times globais.</p>
-              <p class="case-deliverables" data-i18n="cases.bsDeliverables"><strong>Entregas:</strong> landing page de produto, estrutura de seções, prova social, FAQ e integração com checkout.</p>
-              <p class="case-impact" data-i18n="cases.bsImpact"><strong>Impacto:</strong> comunicação clara do valor do programa reduz barreiras de decisão e direciona o público certo à conversão.</p>
-              <a href="https://fernandaqueiroga.com/bs-nv/" target="_blank" rel="noopener noreferrer" class="btn-primary case-button">
-                <span data-i18n="cases.viewProject">Ver projeto</span>
-                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card animate-fade-up delay-300">
-            <div class="case-image">
-              <img src="assets/images/cases/facilorgapp.webp" alt="Facil Organização" class="case-img" />
-            </div>
-            <div class="case-content">
-              <span class="case-tag" data-i18n="cases.foTag">SaaS · Produto Digital - VS Experience</span>
-              <h3>Facil Organização</h3>
-              <p class="case-focus" data-i18n="cases.foFocus"><strong>Foco:</strong> criar um app completo de gestão para autônomos e freelancers, centralizando tarefas, projetos, clientes e financeiro em uma interface só.</p>
-              <p class="case-deliverables" data-i18n="cases.foDeliverables"><strong>Entregas:</strong> módulos de tarefas, projetos, clientes, financeiro e notas em Next.js 14 com Supabase e design system próprio.</p>
-              <p class="case-impact" data-i18n="cases.foImpact"><strong>Impacto:</strong> autônomos centralizam toda a operação em um único lugar, eliminando a necessidade de múltiplas ferramentas.</p>
-              <span class="btn-primary case-button" style="opacity:0.55; cursor:default; pointer-events:none; justify-content:center;">
-                <span data-i18n="cases.comingSoon">Em breve</span>
-              </span>
-            </div>
-          </article>
-        </div>
-        
-        <!--<div class="section-cta animate-fade-up">
-          <a href="#" class="btn-secondary">
-            Ver todos os projetos
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+      <div class="nav__inner" data-lenis-prevent>
+        <p class="nav__label" data-nav-fade data-i18n="nav.label">Ecossistema VS</p>
+        <ul class="nav__list">
+          <li data-shape="1"><a class="nav__link" href="#frentes"><span class="nav__num num">01</span><span class="nav__mask"><span class="nav__text" data-i18n="nav.fronts">Como posso ajudar</span></span></a></li>
+          <li data-shape="2"><a class="nav__link" href="#processo"><span class="nav__num num">02</span><span class="nav__mask"><span class="nav__text" data-i18n="nav.process">Processo</span></span></a></li>
+          <li data-shape="3"><a class="nav__link" href="#cases"><span class="nav__num num">03</span><span class="nav__mask"><span class="nav__text" data-i18n="nav.cases">Projetos</span></span></a></li>
+          <li data-shape="4"><a class="nav__link" href="#sobre"><span class="nav__num num">04</span><span class="nav__mask"><span class="nav__text" data-i18n="nav.about">Sobre</span></span></a></li>
+          <li data-shape="5"><a class="nav__link" href="servicos/"><span class="nav__num num">05</span><span class="nav__mask"><span class="nav__text" data-i18n="nav.services">Serviços e valores</span></span></a></li>
+        </ul>
+        <div class="nav__foot">
+          <a class="btn btn--paper" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20Vim%20pelo%20site%20e%20quero%20entender%20como%20voc%C3%AA%20pode%20ajudar%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" data-wa="wa.general" data-nav-fade data-magnetic>
+            <span data-i18n="nav.wa">Conversar no WhatsApp</span>
+            <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg>
           </a>
-        </div> -->
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="section testimonials">
-      <div class="container-tight">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="testimonials.title">
-            O que clientes dizem <span class="text-gradient-primary">(no Google)</span>
-          </h2>
-        </div>
-        
-        <div class="testimonials-grid">
-          <div class="glass-card testimonial-card animate-fade-up delay-100">
-            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <p class="testimonial-text" data-i18n="testimonials.t1">
-              "O site ficou lindo, moderno, profissional e exatamente como imaginávamos. Ficamos muito satisfeitos com o resultado final e com todo o suporte prestado durante o processo."
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">K</div>
-              <div>
-                <p class="author-name" data-i18n="testimonials.t1name">Kelly Roberta</p>
-                <p class="author-segment" data-i18n="testimonials.t1seg">Avaliação Google - 5 estrelas</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card testimonial-card animate-fade-up delay-200">
-            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <p class="testimonial-text" data-i18n="testimonials.t2">
-              "Profissional que sabe o que faz! Passa segurança do início ao fim e entrega resultados extraordinários."
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">S</div>
-              <div>
-                <p class="author-name" data-i18n="testimonials.t2name">Samuel Ferreira</p>
-                <p class="author-segment" data-i18n="testimonials.t2seg">Avaliação Google - 5 estrelas</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card testimonial-card animate-fade-up delay-300">
-            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <p class="testimonial-text" data-i18n="testimonials.t3">
-              "Ele tem um conhecimento em Experiência de Usuário muito sólido e uma capacidade de análise que realmente fazem a diferença. A consultoria dele é de altíssimo nível."
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">G</div>
-              <div>
-                <p class="author-name" data-i18n="testimonials.t3name">Giovana Zucareli</p>
-                <p class="author-segment" data-i18n="testimonials.t3seg">Avaliação Google - 5 estrelas</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card testimonial-card animate-fade-up delay-100">
-            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <p class="testimonial-text" data-i18n="testimonials.t4">
-              "O Victor é simplesmente excelente! Cria sites modernos, bonitos e com uma estrutura profissional de verdade. Dá pra ver o cuidado em cada detalhe."
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">G</div>
-              <div>
-                <p class="author-name" data-i18n="testimonials.t4name">Guilherme Silva</p>
-                <p class="author-segment" data-i18n="testimonials.t4seg">Avaliação Google - 5 estrelas</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card testimonial-card animate-fade-up delay-200">
-            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <p class="testimonial-text" data-i18n="testimonials.t5">
-              "Trabalho sensacional. Profissional que entrega muito mais do que o esperado. Atenção no pós-venda que nunca vi neste meio."
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">B</div>
-              <div>
-                <p class="author-name" data-i18n="testimonials.t5name">Bruna Santos</p>
-                <p class="author-segment" data-i18n="testimonials.t5seg">Avaliação Google - 5 estrelas</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card testimonial-card animate-fade-up delay-300">
-            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-            </svg>
-            <p class="testimonial-text" data-i18n="testimonials.t6">
-              "Trabalho espetacular! Dedicado e caprichoso! Sempre tira minhas dúvidas e deixa o projeto como esperado e até mais."
-            </p>
-            <div class="testimonial-author">
-              <div class="author-avatar">D</div>
-              <div>
-                <p class="author-name" data-i18n="testimonials.t6name">Debora Gouveia</p>
-                <p class="author-segment" data-i18n="testimonials.t6seg">Avaliação Google - 5 estrelas</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section about" id="sobre">
-      <div class="container-tight">
-        <div class="about-grid">
-          <div class="about-image animate-fade-up">
-            <img src="assets/images/about/victor2.webp" alt="Victor Santos" class="about-photo">
-          </div>
-          
-          <div class="about-content">
-            <h2 class="section-title animate-fade-up" data-i18n="about.title">
-              Quem é o <span class="text-gradient-primary">Victor</span>
-            </h2>
-
-            <p class="about-text animate-fade-up delay-100" data-i18n="about.p1">
-              Sou Product Designer focado em Web e Apps, com atuação ponta a ponta: discovery, protótipo e entrega. Meu objetivo é simples: construir experiências que vendem, captam e fortalecem marca — com clareza, consistência e execução técnica.
-            </p>
-
-            <p class="about-text animate-fade-up delay-200" data-i18n="about.p2">
-              Hoje atuo como CEO na VS Experience, e também como Desenvolvedor Full Stack, trabalhando com evolução de páginas, performance, SEO técnico e integrações orientadas à conversão quando aplicável.
-            </p>
-
-            <ul class="about-highlights animate-fade-up delay-300">
-              <li>
-                <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 15l-2 5l9-11h-5l2-5l-9 11h5z"/>
-                </svg>
-                <span data-i18n="about.h1">1º lugar em UI/UX Design (SPSKILLS) — interface para app bancário.</span>
-              </li>
-              <li>
-                <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                  <path d="M22 4L12 14.01l-3-3"/>
-                </svg>
-                <span data-i18n="about.h2">Experiência em projetos para G4 Educação e Banco Inter.</span>
-              </li>
-              <li>
-                <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
-                </svg>
-                <span data-i18n="about.h3">Base técnica: HTML/CSS/JS, Tailwind, React/Next, Figma, MySQL.</span>
-              </li>
-            </ul>
-          </div>
+          <ul class="nav__social">
+            <li data-nav-fade><a href="https://www.linkedin.com/in/victor-santos-670525232/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li data-nav-fade><a href="https://www.instagram.com/victorssantos.ux/" target="_blank" rel="noopener">Instagram</a></li>
+            <li data-nav-fade><a href="https://github.com/v1tooR" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
         </div>
       </div>
-    </section>
+    </nav>
+  </div>
 
-    <!-- Blog CTA Section 
-    <section class="section blog-cta">
-      <div class="blog-cta-bg"></div>
-      
-      <div class="container-tight">
-        <div class="liquid-glass blog-cta-card animate-fade-up">
-          <div class="blog-cta-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-          </div>
-          
-          <h2 class="blog-cta-title">
-            Bastidores de produto, UX e crescimento
-          </h2>
-          
-          <p class="blog-cta-text">
-            Eu escrevo sobre decisões reais: estrutura, UX/UI, conversão, performance e evolução de produto — sem teoria vazia.
-          </p>
-          
-          <a href="#" class="btn-secondary">
-            Ir para o Blog
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section> -->
+  <main id="conteudo">
 
-    <!-- Investment Section -->
-    <section class="section investment" id="investimento">
-      <div class="container-wide">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="investment.title">
-            Investimento <span class="text-gradient-primary">por entrega</span>
-          </h2>
-          <p class="section-subtitle animate-fade-up delay-100" data-i18n="investment.subtitle">
-            Escopo fechado, entrega previsível, sem surpresa no final.
-          </p>
+    <!-- Portal: o monograma VS é uma janela para o gradiente -->
+    <section class="portal" id="topo" data-portal aria-labelledby="hero-title">
+      <div class="portal__pin" data-portal-pin>
+        <canvas class="portal__canvas" data-gradient="rasgo" aria-hidden="true"></canvas>
+        <div class="grain" aria-hidden="true"></div>
+
+        <svg class="portal__paper" data-portal-paper aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.1" fill="#212121" fill-opacity=".16"/>
+            </pattern>
+            <clipPath id="loader-fill" clipPathUnits="userSpaceOnUse">
+              <path data-loader-level d="M-40 -80H560V420H-40Z"/>
+            </clipPath>
+            <mask id="portal-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+              <rect width="100%" height="100%" fill="#fff"/>
+              <path data-portal-glyph fill="#000" d="M267.25,131.96l-120.23,207.96c-2.45,4.25-7.13,6.88-12.21,6.88H6.97c-3.85,0-6.97-2.98-6.97-6.66V6.66C0,2.98,3.12,0,6.97,0h106c3.85,0,6.97,2.98,6.97,6.66v91.92c0,6.84,9.52,9.24,13.04,3.28l40.29-68.04C185.65,12.92,208.85,0,233.99,0h273.74c3.85,0,6.97,2.98,6.97,6.66v108.32c0,3.68-3.12,6.66-6.97,6.66h-64.44c-5.47,0-8.81,5.74-5.92,10.18l46.97,72.11c18.75,28.78,19.71,65,2.52,94.65h0c-17.25,29.75-50.05,48.22-85.67,48.22h-155.88c-3.85,0-6.97-2.98-6.97-6.66v-109.19c0-3.68,3.12-6.66,6.97-6.66h77.96c5.37,0,8.73-5.55,6.04-9.99l-49.92-82.46c-2.72-4.49-9.52-4.42-12.14.11Z"/>
+            </mask>
+          </defs>
+          <g mask="url(#portal-mask)">
+            <rect width="100%" height="100%" fill="#efefef"/>
+            <rect width="100%" height="100%" fill="url(#dots)"/>
+          </g>
+          <path class="loader-ink" data-loader-ink clip-path="url(#loader-fill)" fill="#212121" d="M267.25,131.96l-120.23,207.96c-2.45,4.25-7.13,6.88-12.21,6.88H6.97c-3.85,0-6.97-2.98-6.97-6.66V6.66C0,2.98,3.12,0,6.97,0h106c3.85,0,6.97,2.98,6.97,6.66v91.92c0,6.84,9.52,9.24,13.04,3.28l40.29-68.04C185.65,12.92,208.85,0,233.99,0h273.74c3.85,0,6.97,2.98,6.97,6.66v108.32c0,3.68-3.12,6.66-6.97,6.66h-64.44c-5.47,0-8.81,5.74-5.92,10.18l46.97,72.11c18.75,28.78,19.71,65,2.52,94.65h0c-17.25,29.75-50.05,48.22-85.67,48.22h-155.88c-3.85,0-6.97-2.98-6.97-6.66v-109.19c0-3.68,3.12-6.66,6.97-6.66h77.96c5.37,0,8.73-5.55,6.04-9.99l-49.92-82.46c-2.72-4.49-9.52-4.42-12.14.11Z"/>
+        </svg>
+
+        <div class="loader" data-loader hidden aria-hidden="true">
+          <span class="loader__count num" data-loader-count>000</span>
+          <span class="loader__side">
+            <span class="loader__brand">Victor Santos · VS Experience</span>
+            <span class="loader__hint" data-loader-hint>Clique para entrar</span>
+          </span>
         </div>
 
-        <div class="pricing-grid">
-          <div class="pricing-card animate-fade-up delay-100" data-service="landing">
-            <div class="pricing-top-bar"></div>
-            <div class="pricing-card-inner">
-              <div class="pricing-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <path d="M3 9h18"/>
-                </svg>
-              </div>
-              <span class="pricing-type" data-i18n="investment.p1type">Landing Page</span>
-              <ul class="pricing-includes">
-                <li data-i18n="investment.p1i1">Diagnóstico e estratégia</li>
-                <li data-i18n="investment.p1i2">UX + narrativa de conversão</li>
-                <li data-i18n="investment.p1i3">UI premium responsivo</li>
-                <li data-i18n="investment.p1i4">Desenvolvimento e entrega</li>
-              </ul>
-              <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20interesse%20em%20uma%20Landing%20Page.%20Pode%20me%20contar%20mais%20sobre%20o%20processo%3F" class="pricing-cta" target="_blank" rel="noopener noreferrer" data-i18n="investment.cta">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Falar sobre esse projeto
-              </a>
-            </div>
-          </div>
-
-          <div class="pricing-card animate-fade-up delay-200" data-service="institucional">
-            <div class="pricing-top-bar"></div>
-            <div class="pricing-card-inner">
-              <div class="pricing-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                  <polyline points="9,22 9,12 15,12 15,22"/>
-                </svg>
-              </div>
-              <span class="pricing-type" data-i18n="investment.p2type">Institucional</span>
-              <ul class="pricing-includes">
-                <li data-i18n="investment.p2i1">Múltiplas páginas e seções</li>
-                <li data-i18n="investment.p2i2">Identidade e narrativa de marca</li>
-                <li data-i18n="investment.p2i3">Sistema de componentes básico</li>
-                <li data-i18n="investment.p2i4">SEO técnico e performance</li>
-              </ul>
-              <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20interesse%20em%20um%20Site%20Institucional.%20Pode%20me%20contar%20mais%20sobre%20o%20processo%3F" class="pricing-cta" target="_blank" rel="noopener noreferrer" data-i18n="investment.cta">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Falar sobre esse projeto
-              </a>
-            </div>
-          </div>
-
-          <div class="pricing-card animate-fade-up delay-300" data-service="ecommerce">
-            <div class="pricing-top-bar"></div>
-            <div class="pricing-card-inner">
-              <div class="pricing-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                </svg>
-              </div>
-              <span class="pricing-type" data-i18n="investment.p3type">E-commerce</span>
-              <ul class="pricing-includes">
-                <li data-i18n="investment.p3i1">Experiência de loja completa</li>
-                <li data-i18n="investment.p3i2">Jornada de compra otimizada</li>
-                <li data-i18n="investment.p3i3">Vitrine, carrinho e checkout</li>
-                <li data-i18n="investment.p3i4">Integrações e performance</li>
-              </ul>
-              <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20interesse%20em%20um%20E-commerce.%20Pode%20me%20contar%20mais%20sobre%20o%20processo%3F" class="pricing-cta" target="_blank" rel="noopener noreferrer" data-i18n="investment.cta">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Falar sobre esse projeto
-              </a>
-            </div>
-          </div>
-
-          <div class="pricing-card animate-fade-up delay-100" data-service="design-system">
-            <div class="pricing-top-bar"></div>
-            <div class="pricing-card-inner">
-              <div class="pricing-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="3"/>
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                </svg>
-              </div>
-              <span class="pricing-type" data-i18n="investment.p4type">Design System</span>
-              <ul class="pricing-includes">
-                <li data-i18n="investment.p4i1">Tokens e variáveis base</li>
-                <li data-i18n="investment.p4i2">Biblioteca de componentes</li>
-                <li data-i18n="investment.p4i3">Documentação de uso</li>
-                <li data-i18n="investment.p4i4">Padrão reaproveitável para escalar</li>
-              </ul>
-              <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20interesse%20em%20um%20Design%20System.%20Pode%20me%20contar%20mais%20sobre%20o%20processo%3F" class="pricing-cta" target="_blank" rel="noopener noreferrer" data-i18n="investment.cta">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Falar sobre esse projeto
-              </a>
-            </div>
-          </div>
-
-          <div class="pricing-card pricing-featured animate-fade-up delay-200" data-service="saas">
-            <div class="pricing-top-bar"></div>
-            <span class="pricing-badge" data-i18n="investment.badge">Mais estratégico</span>
-            <div class="pricing-card-inner pricing-featured-inner">
-              <div class="pricing-featured-left">
-                <div class="pricing-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                    <path d="M3 9h18M9 21V9"/>
-                  </svg>
-                </div>
-                <span class="pricing-type" data-i18n="investment.p5type">SaaS / Produto Digital</span>
-                <p class="pricing-featured-desc" data-i18n="investment.p5desc">
-                  Projetos com maior complexidade de fluxo, múltiplos perfis de usuário e evolução contínua são orçados após diagnóstico.
-                </p>
-                <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Ol%C3%A1%2C%20Victor%21%20Tenho%20interesse%20em%20um%20SaaS%20%2F%20Produto%20Digital.%20Pode%20me%20contar%20mais%20sobre%20o%20processo%3F" class="pricing-cta" target="_blank" rel="noopener noreferrer" data-i18n="investment.cta">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Falar sobre esse projeto
-                </a>
-              </div>
-              <div class="pricing-featured-right">
-                <ul class="pricing-includes">
-                  <li data-i18n="investment.p5i1">Discovery e mapeamento de fluxos</li>
-                  <li data-i18n="investment.p5i2">Arquitetura de produto (UX)</li>
-                  <li data-i18n="investment.p5i3">Design system completo</li>
-                  <li data-i18n="investment.p5i4">UI premium por módulo</li>
-                  <li data-i18n="investment.p5i5">Desenvolvimento com padrão</li>
-                  <li data-i18n="investment.p5i6">Iteração orientada a dados</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p class="section-microcopy animate-fade-up" data-i18n="investment.note">
-          Projetos com escopos customizados são orçados individualmente. Me conte o que você precisa.
-        </p>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq" id="faq">
-      <div class="container-tight">
-        <div class="section-header">
-          <h2 class="section-title animate-fade-up" data-i18n="faq.title">
-            Perguntas <span class="text-gradient-primary">frequentes</span>
-          </h2>
-        </div>
-
-        <div class="faq-list">
-          <div class="faq-item glass-card animate-fade-up">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="faq.q1">Você faz só design ou também desenvolve o site?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a1">Entrego ponta a ponta: diagnóstico, UX, UI e desenvolvimento. O código sai fiel ao design — sem perda de intenção no caminho. Você não precisa contratar dois profissionais nem gerenciar handoff.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-card animate-fade-up delay-100">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="faq.q2">Quanto tempo leva um projeto?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a2">Depende do escopo. Landing pages levam de 1 a 2 semanas. Sites institucionais de 2 a 4 semanas. E-commerces e SaaS variam conforme a complexidade — sempre definimos prazo no diagnóstico, antes de começar.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-card animate-fade-up delay-200">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="faq.q3">Posso contratar só o design, sem o desenvolvimento?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a3">Sim. Se você já tem um time de desenvolvimento, posso entregar o design completo no Figma — com componentes organizados, tokens definidos e documentação para facilitar o handoff.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-card animate-fade-up delay-300">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="faq.q4">Como funciona a comunicação durante o projeto?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a4">Trabalho com checkpoints claros por etapa. Você acompanha o progresso, dá feedback em momentos definidos e aprova antes de avançar. Sem sumiço, sem entrega-surpresa no final.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-card animate-fade-up delay-400">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="faq.q5">Quantas rodadas de revisão estão inclusas?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a5">Cada entrega inclui uma rodada de revisão consolidada. O processo de feedback por etapa garante que ajustes sejam pontuais — não estruturais. Revisões além do escopo são acordadas previamente.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-card animate-fade-up delay-500">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="faq.q6">Como começo um projeto com você?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a6">Me mande uma mensagem no WhatsApp contando o que você vende, pra quem e qual o objetivo. Eu te respondo com um caminho claro do que faria primeiro — sem compromisso.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="section final-cta" id="contato">
-      <div class="final-cta-bg"></div>
-      <div class="final-cta-glow"></div>
-      
-      <div class="container-tight">
-        <div class="final-cta-content">
-          <h2 class="section-title animate-fade-up" data-i18n="cta.title">
-            Quer elevar o padrão do seu produto
-            <br>
-            <span class="text-gradient-primary">e transformar isso em resultado?</span>
-          </h2>
-
-          <p class="final-cta-text animate-fade-up delay-100" data-i18n="cta.text">
-            Me mande: <span class="text-highlight">o que você vende, pra quem e qual o objetivo.</span>
-          </p>
-
-          <p class="final-cta-subtext animate-fade-up delay-200" data-i18n="cta.subtext">
-            Eu te respondo com um caminho claro do que faria primeiro — e como conduziria a construção.
-          </p>
-
-          <div class="final-cta-buttons animate-fade-up delay-300">
-            <a href="https://api.whatsapp.com/send?phone=5512991833641&text=Quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20VS%20Experience" class="btn-primary btn-glow" target="_blank" rel="noopener noreferrer">
-              <svg class="btn-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-              </svg>
-              <span data-i18n="cta.primary">Conversar agora</span>
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
+        <div class="portal__front" data-portal-front>
+          <h1 class="portal__title" id="hero-title" data-i18n="hero.title">Criando experiências únicas. Pensadas para validar, converter e escalar.</h1>
+          <p class="portal__sub" data-i18n="hero.lede">Uno estratégia, UX/UI e desenvolvimento para criar sites e produtos digitais que comuniquem seu valor, facilitem decisões e apoiem o crescimento do seu negócio.</p>
+          <div class="portal__actions">
+            <a class="btn btn--ink" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20Ofere%C3%A7o%20___%20para%20___%20e%20quero%20___.%20Podemos%20conversar%20sobre%20meu%20projeto%3F" target="_blank" rel="noopener" data-wa="wa.project">
+              <span data-i18n="hero.cta">Conversar sobre meu projeto</span>
+              <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg>
             </a>
-            <a href="#portfolio" class="btn-secondary" data-i18n="cta.secondary">Ver projetos em destaques</a>
+            <a class="link" href="#cases"><span data-i18n="hero.cases">Conhecer os projetos</span></a>
           </div>
-
-          <p class="section-microcopy animate-fade-up delay-400" data-i18n="cta.microcopy">
-            Sem achismo. Sem enrolação. Decisão bem feita + execução de verdade.
+          <p class="portal__meta" aria-hidden="true">
+            <span data-i18n="hero.signature">Clareza para decidir. Cuidado para construir.</span>
+            <span class="portal__hint"><span data-i18n="hero.scroll">Conheça como posso ajudar</span><svg class="i" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4"/></svg></span>
           </p>
+        </div>
+
+        <div class="portal__after" data-portal-after>
+          <p class="portal__statement" data-i18n="after.title">Seu negócio define<br>por onde começar.</p>
+          <p class="portal__after-lede" data-i18n="after.lede">Uma ideia para tirar do papel ou uma experiência que precisa evoluir? Nas duas frentes do ecossistema VS, eu conecto o que seu negócio precisa ao que seu cliente espera.</p>
+          <ul class="portal__routes">
+            <li><a href="#frente-consultoria"><strong>Victor Santos</strong><span data-i18n="after.r1">Auditoria e consultoria</span></a></li>
+            <li><a href="#frente-construcao"><strong>VS Experience</strong><span data-i18n="after.r2">Sites, apps e design systems</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frentes do ecossistema -->
+    <section class="fronts" id="frentes" aria-labelledby="fronts-title" data-fronts>
+      <h2 class="sr-only" id="fronts-title" data-i18n="fronts.title">Como posso ajudar seu negócio</h2>
+
+      <article class="front front--consult" id="frente-consultoria" data-front="a">
+        <div class="front__head">
+          <p class="front__role" data-i18n="fronts.a.role">Auditoria e consultoria</p>
+          <h3 class="front__name" aria-label="Victor Santos"><span>Victor</span><span>Santos</span></h3>
+        </div>
+        <div class="front__body">
+          <p class="front__lede" data-i18n="fronts.a.lede">Seu site ou produto já existe, mas a jornada deixa dúvidas, o contato não acontece ou o time não sabe por onde começar? Eu ajudo a identificar barreiras e priorizar o que merece atenção.</p>
+          <ul class="front__list">
+            <li data-i18n="fronts.a.i1">Avaliação da experiência e da jornada de conversão</li>
+            <li data-i18n="fronts.a.i2">Orientação para decisões de produto e interface</li>
+            <li data-i18n="fronts.a.i3">Prioridades com contexto para o seu time agir</li>
+          </ul>
+          <a class="btn btn--paper" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20J%C3%A1%20tenho%20um%20site%20ou%20produto%20e%20quero%20conversar%20sobre%20auditoria%20e%20consultoria.%20O%20link%20%C3%A9%3A%20___" target="_blank" rel="noopener" data-wa="wa.consult">
+            <span data-i18n="fronts.a.cta">Conversar sobre consultoria</span>
+            <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="front front--build" id="frente-construcao" data-front="b">
+        <div class="front__head">
+          <p class="front__role" data-i18n="fronts.b.role">Sites, apps e design systems</p>
+          <h3 class="front__name" aria-label="VS Experience"><span>VS</span><span>Experience</span></h3>
+        </div>
+        <div class="front__body">
+          <p class="front__lede" data-i18n="fronts.b.lede">Para transformar uma ideia em uma experiência pronta para uso. Eu cuido da estratégia, do design e do desenvolvimento, com o objetivo do negócio guiando cada etapa.</p>
+          <ul class="front__services">
+            <li><a href="servicos/landing-page/"><span class="front__service-copy"><span data-i18n="svc.lp">Landing page</span><small data-i18n="svc.lp.desc">Sua oferta clara, com um caminho direto até o contato ou a compra.</small></span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+            <li><a href="servicos/site-institucional/"><span class="front__service-copy"><span data-i18n="svc.inst">Site institucional</span><small data-i18n="svc.inst.desc">Uma presença que apresenta seu valor e constrói confiança antes da reunião.</small></span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+            <li><a href="servicos/e-commerce/"><span class="front__service-copy"><span>E-commerce</span><small data-i18n="svc.ec.desc">Uma jornada de compra fácil de seguir, da descoberta ao pagamento.</small></span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+            <li><a href="servicos/sistemas-saas/"><span class="front__service-copy"><span data-i18n="svc.saas">Sistemas e SaaS</span><small data-i18n="svc.saas.desc">Fluxos que fazem sentido para quem usa e para a operação do negócio.</small></span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+            <li><a href="servicos/design-system/"><span class="front__service-copy"><span>Design System</span><small data-i18n="svc.ds.desc">Uma base comum para o produto crescer com consistência.</small></span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+          </ul>
+          <div class="front__actions">
+            <a class="btn btn--paper" href="servicos/">
+              <span data-i18n="fronts.b.cta">Ver serviços e valores</span>
+              <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg>
+            </a>
+            <a class="link link--paper" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20Quero%20criar%20ou%20evoluir%20um%20projeto%20com%20a%20VS%20Experience.%20Ofere%C3%A7o%20___%20para%20___%20e%20meu%20objetivo%20%C3%A9%20___." target="_blank" rel="noopener" data-wa="wa.build"><span data-i18n="fronts.b.cta2">Conversar sobre meu projeto</span></a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Princípios: espécimes tipográficos -->
+    <section class="principles" aria-labelledby="principles-title">
+      <div class="wrap principles__head layers" data-layers>
+        <h2 class="sr-only" id="principles-title" data-i18n="pr.title">Design que constrói confiança. Experiência que faz avançar.</h2>
+        <div class="layers__stage" aria-hidden="true">
+          <ul class="layers__stack" data-layers-stack></ul>
+        </div>
+        <p class="principles__lede" data-i18n="pr.lede">Quando o usuário entende sua oferta, encontra o que procura e sabe qual é o próximo passo, a experiência trabalha a favor do negócio. Por isso, eu começo pelo objetivo, pelo público e pela mensagem. O visual e o código dão forma a essa direção.</p>
+      </div>
+
+      <ol class="specimens" data-specimens>
+        <li class="specimen">
+          <p class="specimen__word" data-specimen data-i18n="pr.w1">Clareza</p>
+          <div class="specimen__meta">
+            <p data-i18n="pr.d1">Seu cliente entende o que você oferece e qual é o próximo passo.</p>
+            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>400</span></p>
+          </div>
+        </li>
+        <li class="specimen">
+          <p class="specimen__word" data-specimen data-i18n="pr.w2">Consistência</p>
+          <div class="specimen__meta">
+            <p data-i18n="pr.d2">Sua marca mantém a mesma qualidade em cada tela e interação.</p>
+            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>400</span></p>
+          </div>
+        </li>
+        <li class="specimen">
+          <p class="specimen__word" data-specimen data-i18n="pr.w3">Resultado</p>
+          <div class="specimen__meta">
+            <p data-i18n="pr.d3">Cada decisão tem um objetivo: captar, vender ou facilitar o uso.</p>
+            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>400</span></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Processo -->
+    <section class="process" id="processo" aria-labelledby="process-title" data-process>
+      <div class="wrap process__grid">
+        <div class="process__aside">
+          <h2 class="h2" id="process-title" data-i18n="ps.title">Clareza em cada etapa. Cuidado em cada entrega.</h2>
+          <p class="process__count num" aria-hidden="true"><span data-process-num>01</span><span class="process__total">/05</span></p>
+          <div class="process__bar" aria-hidden="true"><span data-process-bar></span></div>
+        </div>
+        <ol class="steps">
+          <li class="step is-active" data-step>
+            <h3><span data-i18n="ps.s1">Diagnóstico</span> <em data-i18n="ps.s1b">negócio, público e objetivo</em></h3>
+            <p data-i18n="ps.s1d">Entendo o que você oferece, para quem e o que precisa melhorar. Definimos o objetivo, as prioridades e o escopo antes de desenhar a solução.</p>
+          </li>
+          <li class="step" data-step>
+            <h3><span data-i18n="ps.s2">Estrutura e narrativa</span> <em>UX</em></h3>
+            <p data-i18n="ps.s2d">Organizo conteúdo, navegação e fluxos para que o usuário encontre os argumentos e as ações de que precisa para avançar.</p>
+          </li>
+          <li class="step" data-step>
+            <h3><span data-i18n="ps.s3">Design de interface</span> <em data-i18n="ps.s3b">identidade e consistência</em></h3>
+            <p data-i18n="ps.s3d">Traduzo sua identidade em telas claras e componentes consistentes, com atenção à leitura, à interação e ao uso no celular.</p>
+          </li>
+          <li class="step" data-step>
+            <h3><span data-i18n="ps.s4">Desenvolvimento e refinamento</span></h3>
+            <p data-i18n="ps.s4d">Construo a experiência com fidelidade ao design, atenção ao carregamento e às integrações previstas no escopo.</p>
+          </li>
+          <li class="step" data-step>
+            <h3><span data-i18n="ps.s5">Validação e entrega</span></h3>
+            <p data-i18n="ps.s5d">Reviso navegação, conteúdo e funcionamento antes da entrega. O uso real e o feedback ajudam a orientar os próximos ajustes, conforme o escopo combinado.</p>
+          </li>
+        </ol>
+      </div>
+      <p class="wrap process__note" data-i18n="ps.note">Esse é o caminho dos projetos de criação. Na auditoria e consultoria, o trabalho se concentra no diagnóstico e nas recomendações. Em ambos, você acompanha as etapas e sabe o que está sendo decidido.</p>
+    </section>
+
+    <!-- Cases -->
+    <section class="cases" id="cases" aria-labelledby="cases-title" data-cases>
+      <div class="wrap cases__head">
+        <h2 class="h2" id="cases-title" data-i18n="cs.title">Estratégia que ganha forma.</h2>
+        <p data-i18n="cs.lede">Sites, lojas e produtos digitais com objetivos diferentes e o mesmo cuidado com a experiência. Explore os projetos e conheça também o produto próprio em desenvolvimento.</p>
+      </div>
+      <ul class="cases__list wrap">
+        <li class="case"><a href="https://g4business.com/" target="_blank" rel="noopener" data-case-img="assets/images/cases/g4.webp"><span class="case__name">G4 Business</span><span class="case__kind" data-i18n="cs.c1">Institucional · com Falcotec</span><img class="case__thumb" src="assets/images/cases/g4.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://costaflores.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/costaflores.webp"><span class="case__name">Costa Flores</span><span class="case__kind" data-i18n="cs.c2">Institucional · mobiliário de alto padrão</span><img class="case__thumb" src="assets/images/cases/costaflores.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://ocasafloresta.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/ocasafloresta.webp"><span class="case__name">Casa Floresta</span><span class="case__kind" data-i18n="cs.c3">Landing page · com Voia Agency</span><img class="case__thumb" src="assets/images/cases/ocasafloresta.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://www.interstore.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/inter.png"><span class="case__name">Inter Store</span><span class="case__kind" data-i18n="cs.c4">E-commerce · Banco Inter</span><img class="case__thumb" src="assets/images/cases/inter.png" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://multivegetal.com/" target="_blank" rel="noopener" data-case-img="assets/images/cases/multivegetal.webp"><span class="case__name">Multi Vegetal</span><span class="case__kind" data-i18n="cs.c5">E-commerce · fitocosméticos</span><img class="case__thumb" src="assets/images/cases/multivegetal.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://octaverta.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/octaverta.webp"><span class="case__name">Octaverta</span><span class="case__kind" data-i18n="cs.c6">B2B industrial · peças de linha amarela</span><img class="case__thumb" src="assets/images/cases/octaverta.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://elevaisencoes.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/eleva.webp"><span class="case__name">Eleva Isenções</span><span class="case__kind" data-i18n="cs.c7">Landing page · isenção PCD</span><img class="case__thumb" src="assets/images/cases/eleva.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://thistorres.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/thistorres.webp"><span class="case__name">ThisTorres Seguros</span><span class="case__kind" data-i18n="cs.c8">Institucional · seguros</span><img class="case__thumb" src="assets/images/cases/thistorres.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://moriahclinic.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/moriah.webp"><span class="case__name">Moriah Clínica</span><span class="case__kind" data-i18n="cs.c9">Institucional · saúde</span><img class="case__thumb" src="assets/images/cases/moriah.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://alugaaquimaquinas.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/alugaaqui.webp"><span class="case__name">Aluga Aqui</span><span class="case__kind" data-i18n="cs.c10">Landing page · locação de máquinas</span><img class="case__thumb" src="assets/images/cases/alugaaqui.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://fernandaqueiroga.com/bs-nv/" target="_blank" rel="noopener" data-case-img="assets/images/cases/beyoundspeak.webp"><span class="case__name">Beyond Speaking</span><span class="case__kind" data-i18n="cs.c11">Landing page · cliente internacional</span><img class="case__thumb" src="assets/images/cases/beyoundspeak.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case"><a href="https://sbmarketing.com.br/" target="_blank" rel="noopener" data-case-img="assets/images/cases/sbmarketing.webp"><span class="case__name">SB Marketing</span><span class="case__kind" data-i18n="cs.c12">Institucional · marketing digital</span><img class="case__thumb" src="assets/images/cases/sbmarketing.webp" alt="" loading="lazy" decoding="async"><svg class="i case__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg></a></li>
+        <li class="case case--soon"><div data-case-img="assets/images/cases/facilorgapp.webp"><span class="case__name">Fácil Organização</span><span class="case__kind" data-i18n="cs.c13">SaaS próprio · em breve</span><img class="case__thumb" src="assets/images/cases/facilorgapp.webp" alt="" loading="lazy" decoding="async"></div></li>
+      </ul>
+      <div class="case-peek" aria-hidden="true" data-case-peek><img src="assets/images/cases/g4.webp" alt="" data-case-peek-img></div>
+    </section>
+
+    <!-- Avaliações -->
+    <section class="reviews" aria-labelledby="reviews-title" data-reviews>
+      <div class="wrap reviews__grid">
+        <div class="reviews__head">
+          <h2 class="h2" id="reviews-title" data-i18n="rv.title">Confiança construída no trabalho.</h2>
+          <div class="reviews__tabs" role="tablist" aria-label="Avaliações" data-i18n-attr="aria-label:rv.tabs">
+            <button role="tab" id="rv-t1" aria-controls="rv-p1" aria-selected="true">Kelly Roberta</button>
+            <button role="tab" id="rv-t2" aria-controls="rv-p2" aria-selected="false" tabindex="-1">Samuel Ferreira</button>
+            <button role="tab" id="rv-t3" aria-controls="rv-p3" aria-selected="false" tabindex="-1">Giovana Zucareli</button>
+            <button role="tab" id="rv-t4" aria-controls="rv-p4" aria-selected="false" tabindex="-1">Guilherme Silva</button>
+            <button role="tab" id="rv-t5" aria-controls="rv-p5" aria-selected="false" tabindex="-1">Bruna Santos</button>
+            <button role="tab" id="rv-t6" aria-controls="rv-p6" aria-selected="false" tabindex="-1">Debora Gouveia</button>
+          </div>
+        </div>
+        <div class="reviews__stage">
+          <figure class="quote" role="tabpanel" id="rv-p1" aria-labelledby="rv-t1"><blockquote>“O site ficou lindo, moderno, profissional e exatamente como imaginávamos. Ficamos muito satisfeitos com o resultado final e com todo o suporte prestado durante o processo.”</blockquote><figcaption>Kelly Roberta · <span data-i18n="rv.src">Avaliação no Google · 5 estrelas</span></figcaption></figure>
+          <figure class="quote" role="tabpanel" id="rv-p2" aria-labelledby="rv-t2" hidden><blockquote>“Profissional que sabe o que faz! Passa segurança do início ao fim e entrega resultados extraordinários.”</blockquote><figcaption>Samuel Ferreira · <span data-i18n="rv.src">Avaliação no Google · 5 estrelas</span></figcaption></figure>
+          <figure class="quote" role="tabpanel" id="rv-p3" aria-labelledby="rv-t3" hidden><blockquote>“Ele tem um conhecimento em Experiência de Usuário muito sólido e uma capacidade de análise que realmente fazem a diferença. A consultoria dele é de altíssimo nível.”</blockquote><figcaption>Giovana Zucareli · <span data-i18n="rv.src">Avaliação no Google · 5 estrelas</span></figcaption></figure>
+          <figure class="quote" role="tabpanel" id="rv-p4" aria-labelledby="rv-t4" hidden><blockquote>“O Victor é simplesmente excelente! Cria sites modernos, bonitos e com uma estrutura profissional de verdade. Dá pra ver o cuidado em cada detalhe.”</blockquote><figcaption>Guilherme Silva · <span data-i18n="rv.src">Avaliação no Google · 5 estrelas</span></figcaption></figure>
+          <figure class="quote" role="tabpanel" id="rv-p5" aria-labelledby="rv-t5" hidden><blockquote>“Trabalho sensacional. Profissional que entrega muito mais do que o esperado. Atenção no pós-venda que nunca vi neste meio.”</blockquote><figcaption>Bruna Santos · <span data-i18n="rv.src">Avaliação no Google · 5 estrelas</span></figcaption></figure>
+          <figure class="quote" role="tabpanel" id="rv-p6" aria-labelledby="rv-t6" hidden><blockquote>“Trabalho espetacular! Dedicado e caprichoso! Sempre tira minhas dúvidas e deixa o projeto como esperado e até mais.”</blockquote><figcaption>Debora Gouveia · <span data-i18n="rv.src">Avaliação no Google · 5 estrelas</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="about" id="sobre" aria-labelledby="about-title">
+      <div class="wrap about__grid">
+        <figure class="about__visual" data-about>
+          <svg class="about__svg" viewBox="0 0 640 860" role="img" aria-labelledby="about-img-title">
+            <title id="about-img-title" data-i18n="ab.alt">Victor Santos sorrindo, de óculos e blazer escuro, saindo do monograma VS</title>
+            <defs>
+              <clipPath id="about-clip">
+                <rect x="-400" y="-600" width="1440" height="1120" data-about-sky/>
+                <path data-about-mono transform="translate(40 472) scale(1.088)" d="M267.25,131.96l-120.23,207.96c-2.45,4.25-7.13,6.88-12.21,6.88H6.97c-3.85,0-6.97-2.98-6.97-6.66V6.66C0,2.98,3.12,0,6.97,0h106c3.85,0,6.97,2.98,6.97,6.66v91.92c0,6.84,9.52,9.24,13.04,3.28l40.29-68.04C185.65,12.92,208.85,0,233.99,0h273.74c3.85,0,6.97,2.98,6.97,6.66v108.32c0,3.68-3.12,6.66-6.97,6.66h-64.44c-5.47,0-8.81,5.74-5.92,10.18l46.97,72.11c18.75,28.78,19.71,65,2.52,94.65h0c-17.25,29.75-50.05,48.22-85.67,48.22h-155.88c-3.85,0-6.97-2.98-6.97-6.66v-109.19c0-3.68,3.12-6.66,6.97-6.66h77.96c5.37,0,8.73-5.55,6.04-9.99l-49.92-82.46c-2.72-4.49-9.52-4.42-12.14.11Z"/>
+              </clipPath>
+            </defs>
+            <path class="about__mono" data-about-mono transform="translate(40 472) scale(1.088)" d="M267.25,131.96l-120.23,207.96c-2.45,4.25-7.13,6.88-12.21,6.88H6.97c-3.85,0-6.97-2.98-6.97-6.66V6.66C0,2.98,3.12,0,6.97,0h106c3.85,0,6.97,2.98,6.97,6.66v91.92c0,6.84,9.52,9.24,13.04,3.28l40.29-68.04C185.65,12.92,208.85,0,233.99,0h273.74c3.85,0,6.97,2.98,6.97,6.66v108.32c0,3.68-3.12,6.66-6.97,6.66h-64.44c-5.47,0-8.81,5.74-5.92,10.18l46.97,72.11c18.75,28.78,19.71,65,2.52,94.65h0c-17.25,29.75-50.05,48.22-85.67,48.22h-155.88c-3.85,0-6.97-2.98-6.97-6.66v-109.19c0-3.68,3.12-6.66,6.97-6.66h77.96c5.37,0,8.73-5.55,6.04-9.99l-49.92-82.46c-2.72-4.49-9.52-4.42-12.14.11Z"/>
+            <g clip-path="url(#about-clip)">
+              <image data-about-person href="assets/images/about/victor-recorte.webp" x="-7" y="0" width="628" height="860" preserveAspectRatio="xMidYMid meet"/>
+            </g>
+          </svg>
+        </figure>
+        <div class="about__text">
+          <h2 class="h2" id="about-title" data-i18n="ab.title">Prazer, Victor Santos.</h2>
+          <p data-i18n="ab.p1">Sou Product Designer e Design Engineer. Trabalho com sites e aplicativos, unindo visão de negócio, experiência de uso e desenvolvimento. Meu papel é entender o que seu projeto precisa alcançar e transformar essa direção em uma experiência clara, consistente e pronta para uso.</p>
+          <p data-i18n="ab.p2">À frente da VS Experience, acompanho o projeto do diagnóstico à entrega. Na frente Victor Santos, ajudo empresas e times com auditoria e consultoria. Você conversa com quem pensa a solução e conhece o que será necessário para construí-la.</p>
+          <ul class="creds">
+            <li><strong data-i18n="ab.c1a">1º lugar em UI/UX Design</strong> <span data-i18n="ab.c1b">SPSKILLS, com a interface de um app bancário</span></li>
+            <li><strong data-i18n="ab.c2a">G4 Educação e Banco Inter</strong> <span data-i18n="ab.c2b">experiência em projetos para as duas empresas</span></li>
+            <li><strong data-i18n="ab.c3a">Base técnica</strong> <span>HTML, CSS, JS, Tailwind, React, Next.js, Figma, MySQL</span></li>
+          </ul>
+          <ul class="social">
+            <li><a href="https://www.linkedin.com/in/victor-santos-670525232/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/victorssantos.ux/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://github.com/v1tooR" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perguntas frequentes -->
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="wrap faq__grid">
+        <h2 class="h2" id="faq-title" data-i18n="fq.title">Perguntas frequentes</h2>
+        <div class="faq__list">
+          <details><summary><span data-i18n="fq.q1">Você também desenvolve o site ou produto?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a1">Sim. Na VS Experience, cuido do diagnóstico, da experiência de uso, do design e do desenvolvimento. Você tem continuidade entre o que foi planejado, o que foi aprovado e o que chega à entrega.</p></details>
+          <details><summary><span data-i18n="fq.q2">Quanto tempo leva um projeto?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a2">O prazo depende do tipo de projeto, da complexidade e do envio dos materiais e aprovações. Em <a href="servicos/">Serviços e valores</a>, você encontra os prazos de referência de cada entrega. O cronograma final é combinado antes de começar.</p></details>
+          <details><summary><span data-i18n="fq.q3">Posso contratar apenas o design?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a3">Sim. Se você já tem uma equipe de desenvolvimento, entrego o projeto no Figma com componentes, estilos e orientações organizados para a implementação. O nível de documentação é definido no escopo.</p></details>
+          <details><summary><span data-i18n="fq.q4">Como funciona a comunicação durante o projeto?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a4">Você acompanha o andamento por etapas, envia feedback nos momentos combinados e aprova as entregas antes de avançarmos. As decisões ficam claras ao longo do projeto.</p></details>
+          <details><summary><span data-i18n="fq.q5">Quantas rodadas de revisão estão inclusas?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a5">Cada entrega inclui uma rodada de revisão consolidada. Os pontos para ajuste são reunidos em um único feedback. Novas demandas e revisões além do escopo são combinadas à parte, antes de serem executadas.</p></details>
+          <details><summary><span data-i18n="fq.q6">Onde vejo os valores?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a6">As referências para projetos de criação estão em <a href="servicos/">Serviços e valores</a>. O orçamento final considera o diagnóstico e o escopo. Para auditoria e consultoria, conversamos primeiro sobre a necessidade e o formato do trabalho.</p></details>
+          <details><summary><span data-i18n="fq.q7">Como começamos?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a7">Me conte pelo WhatsApp o que você oferece, para quem e o que quer alcançar. Se já tiver um site ou produto, envie o link. A primeira conversa ajuda a entender se o próximo passo é avaliar, criar ou evoluir a experiência.</p></details>
+          <details><summary><span data-i18n="fq.q8">Já tenho um site. Você pode ajudar a melhorá-lo?</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></summary><p data-i18n="fq.a8">Sim. Na frente Victor Santos, avalio a experiência existente e ajudo a priorizar melhorias. Se a necessidade incluir design ou desenvolvimento, podemos definir um projeto de criação com a VS Experience. O caminho depende do diagnóstico.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Traço: do emaranhado ao caminho claro -->
+    <section class="trace" aria-labelledby="trace-title" data-trace>
+      <div class="wrap trace__head">
+        <h2 class="trace__title" id="trace-title" data-i18n="tr.title">Do emaranhado ao caminho claro.</h2>
+        <p class="trace__lede" data-i18n="tr.lede">Todo projeto chega com dúvidas, referências e prioridades misturadas. Meu trabalho é organizar isso até virar uma experiência que o usuário entende de primeira.</p>
+      </div>
+      <div class="trace__art" aria-hidden="true">
+        <svg class="trace__svg" viewBox="0 0 1278 2319" overflow="visible" fill="none">
+          <path class="trace__ghost" data-trace-ghost d="M876.605 394.131C788.982 335.917 696.198 358.139 691.836 416.303C685.453 501.424 853.722 498.43 941.95 409.714C1016.1 335.156 1008.64 186.907 906.167 142.846C807.014 100.212 712.699 198.494 789.049 245.127C889.053 306.207 986.062 116.979 840.548 43.3233C743.932 -5.58141 678.027 57.1682 672.279 112.188C666.53 167.208 712.538 172.943 736.353 163.088C760.167 153.234 764.14 120.924 746.651 93.3868C717.461 47.4252 638.894 77.8642 601.018 116.979C568.164 150.908 557 201.079 576.467 246.924C593.342 286.664 630.24 310.55 671.68 302.614C756.114 286.446 729.747 206.546 681.86 186.442C630.54 164.898 492 209.318 495.026 287.644C496.837 334.494 518.402 366.466 582.455 367.287C680.013 368.538 771.538 299.456 898.634 292.434C1007.02 286.446 1192.67 309.384 1242.36 382.258C1266.99 418.39 1273.65 443.108 1247.75 474.477C1217.32 511.33 1149.4 511.259 1096.84 466.093C1044.29 420.928 1029.14 380.576 1033.97 324.172C1038.31 273.428 1069.55 228.986 1117.2 216.384C1152.2 207.128 1188.29 213.629 1194.45 245.127C1201.49 281.062 1132.22 280.104 1100.44 272.673C1065.32 264.464 1044.22 234.837 1032.77 201.413C1019.29 162.061 1029.71 131.126 1056.44 100.965C1086.19 67.4032 1143.96 54.5526 1175.78 86.1513C1207.02 117.17 1186.81 143.379 1156.22 166.691C1112.57 199.959 1052.57 186.238 999.784 155.164C957.312 130.164 899.171 63.7054 931.284 26.3214C952.068 2.12513 996.288 3.87363 1007.22 43.58C1018.15 83.2749 1003.56 122.644 975.969 163.376C948.377 204.107 907.272 255.122 913.558 321.045C919.727 385.734 990.968 497.068 1063.84 503.35C1111.46 507.456 1166.79 511.984 1175.68 464.527C1191.52 379.956 1101.26 334.985 1030.29 377.017C971.109 412.064 956.297 483.647 953.797 561.655C947.587 755.413 1197.56 941.828 936.039 1140.66C745.771 1285.32 321.926 950.737 134.536 1202.19C-6.68295 1391.68 -53.4837 1655.38 131.935 1760.5C478.381 1956.91 1124.19 1515 1201.28 1997.83C1273.66 2451.23 100.805 1864.7 303.794 2668.89"/>
+          <path class="trace__line" data-trace-line d="M876.605 394.131C788.982 335.917 696.198 358.139 691.836 416.303C685.453 501.424 853.722 498.43 941.95 409.714C1016.1 335.156 1008.64 186.907 906.167 142.846C807.014 100.212 712.699 198.494 789.049 245.127C889.053 306.207 986.062 116.979 840.548 43.3233C743.932 -5.58141 678.027 57.1682 672.279 112.188C666.53 167.208 712.538 172.943 736.353 163.088C760.167 153.234 764.14 120.924 746.651 93.3868C717.461 47.4252 638.894 77.8642 601.018 116.979C568.164 150.908 557 201.079 576.467 246.924C593.342 286.664 630.24 310.55 671.68 302.614C756.114 286.446 729.747 206.546 681.86 186.442C630.54 164.898 492 209.318 495.026 287.644C496.837 334.494 518.402 366.466 582.455 367.287C680.013 368.538 771.538 299.456 898.634 292.434C1007.02 286.446 1192.67 309.384 1242.36 382.258C1266.99 418.39 1273.65 443.108 1247.75 474.477C1217.32 511.33 1149.4 511.259 1096.84 466.093C1044.29 420.928 1029.14 380.576 1033.97 324.172C1038.31 273.428 1069.55 228.986 1117.2 216.384C1152.2 207.128 1188.29 213.629 1194.45 245.127C1201.49 281.062 1132.22 280.104 1100.44 272.673C1065.32 264.464 1044.22 234.837 1032.77 201.413C1019.29 162.061 1029.71 131.126 1056.44 100.965C1086.19 67.4032 1143.96 54.5526 1175.78 86.1513C1207.02 117.17 1186.81 143.379 1156.22 166.691C1112.57 199.959 1052.57 186.238 999.784 155.164C957.312 130.164 899.171 63.7054 931.284 26.3214C952.068 2.12513 996.288 3.87363 1007.22 43.58C1018.15 83.2749 1003.56 122.644 975.969 163.376C948.377 204.107 907.272 255.122 913.558 321.045C919.727 385.734 990.968 497.068 1063.84 503.35C1111.46 507.456 1166.79 511.984 1175.68 464.527C1191.52 379.956 1101.26 334.985 1030.29 377.017C971.109 412.064 956.297 483.647 953.797 561.655C947.587 755.413 1197.56 941.828 936.039 1140.66C745.771 1285.32 321.926 950.737 134.536 1202.19C-6.68295 1391.68 -53.4837 1655.38 131.935 1760.5C478.381 1956.91 1124.19 1515 1201.28 1997.83C1273.66 2451.23 100.805 1864.7 303.794 2668.89"/>
+        </svg>
+        <ol class="trace__marks">
+          <li data-trace-mark="0.60" class="is-left"><span class="trace__tag"><span class="num">01</span> <span data-i18n="tr.m1">Diagnóstico</span></span></li>
+          <li data-trace-mark="0.67" class="is-above"><span class="trace__tag"><span class="num">02</span> <span data-i18n="tr.m2">Estrutura</span></span></li>
+          <li data-trace-mark="0.80" class="is-above"><span class="trace__tag"><span class="num">03</span> <span data-i18n="tr.m3">Interface</span></span></li>
+          <li data-trace-mark="0.92" class="is-above"><span class="trace__tag"><span class="num">04</span> <span data-i18n="tr.m4">Entrega</span></span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Fechamento -->
+    <section class="close" aria-labelledby="close-title" data-close>
+      <canvas class="close__canvas" data-gradient="cortina" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="wrap close__inner">
+        <h2 class="close__title" id="close-title" data-i18n="cl.title">Qual é o próximo passo<br>para o seu negócio?</h2>
+        <div class="close__row">
+          <p data-i18n="cl.lede">Me conte o que você oferece, para quem e o que quer alcançar. Eu ajudo a entender por onde começar, seja para avaliar o que já existe ou construir algo novo. A primeira conversa é sem compromisso.</p>
+          <a class="btn btn--paper btn--lg" href="https://api.whatsapp.com/send?phone=5512991833641&amp;text=Ol%C3%A1%2C%20Victor!%20Ofere%C3%A7o%20___%20para%20___%20e%20quero%20alcan%C3%A7ar%20___.%20Meu%20site%20ou%20produto%20atual%20%C3%A9%3A%20___" target="_blank" rel="noopener" data-wa="wa.close">
+            <span data-i18n="cl.cta">Conversar sobre meu projeto</span>
+            <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.75 4.5h5.75v5.75"/></svg>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container-wide">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <div class="logo-icon">
-              <img src="assets/images/logo/vslogo.webp" alt="VS Experience logo">
-            </div>
-            <span class="logo-text">VS Experience</span>
-          </a>
-          <p class="footer-copyright" data-i18n="footer.copyright">© 2026 Victor Santos. Todos os direitos reservados.</p>
-        </div>
-        
-        <nav class="footer-links">
-          <a href="servicos/" class="footer-link" data-i18n="footer.services">Serviços e valores</a>
-          <a href="https://www.linkedin.com/in/victor-santos-670525232/" class="footer-link" target="_blank" rel="noopener noreferrer">
-            LinkedIn
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/victorssantos.ux/" class="footer-link" target="_blank" rel="noopener noreferrer">
-            Instagram
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </a>
-          <a href="https://github.com/v1tooR" class="footer-link" target="_blank" rel="noopener noreferrer">
-            GitHub
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </a>
-        </nav>
-      </div>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <img class="foot__logo" src="assets/images/brand/logotipo-linho.svg" alt="Victor Santos" width="264" height="32" loading="lazy">
+      <nav class="foot__nav" aria-label="Rodapé">
+        <a href="#frentes" data-i18n="nav.fronts">Como posso ajudar</a>
+        <a href="#cases" data-i18n="nav.cases">Projetos</a>
+        <a href="servicos/" data-i18n="nav.services">Serviços e valores</a>
+        <a href="https://www.linkedin.com/in/victor-santos-670525232/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/victorssantos.ux/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/v1tooR" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="foot__legal">© 2026 Victor Santos · VS Experience. <span data-i18n="ft.rights">Todos os direitos reservados.</span></p>
     </div>
   </footer>
 
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/script.js"></script>
-  <script>
-    // Pricing card tilt + select interaction
-    (function () {
-      const cards = document.querySelectorAll('.pricing-card');
-      cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const r = card.getBoundingClientRect();
-          const x = ((e.clientX - r.left) / r.width  - 0.5) * 10;
-          const y = ((e.clientY - r.top)  / r.height - 0.5) * -10;
-          card.style.transition = 'transform 0.08s ease, border-color 0.35s, box-shadow 0.45s';
-          card.style.transform = `perspective(900px) rotateX(${y}deg) rotateY(${x}deg) translateY(-8px) scale(1.015)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transition = 'transform 0.55s cubic-bezier(0.34,1.4,0.64,1), border-color 0.35s, box-shadow 0.45s';
-          card.style.transform = '';
-        });
-        card.addEventListener('click', e => {
-          if (e.target.closest('.pricing-cta')) return;
-          cards.forEach(c => c.classList.remove('pricing-selected'));
-          card.classList.toggle('pricing-selected');
-        });
-      });
-    })();
-  </script>
-  <div id="cursor">
-    <div class="cursor__circle"></div>
-  </div>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
+  <script src="assets/js/vs-gradient.js" defer></script>
+  <script src="assets/js/home.js" defer></script>
 </body>
 </html>

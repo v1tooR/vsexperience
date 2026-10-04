@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#120d0d">
+  <meta name="theme-color" content="#efefef">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="author" content="Victor Santos">
   <meta name="description" content="Desenvolvimento de sistemas web, CRMs, SaaS e MVPs sob medida, com entrega por marcos. Primeira versão em 30 a 60 dias e investimento médio de R$ 6.950.">
@@ -24,12 +24,12 @@
   <meta name="twitter:title" content="Desenvolvimento de sistemas e SaaS: processo e valores">
   <meta name="twitter:description" content="O que é, como funciona e quanto custa um sistema sob medida: média de R$ 6.950 e primeira versão em 30 a 60 dias.">
   <meta name="twitter:image" content="https://vsexperience.com.br/servicos/assets/og/sistemas-saas.jpg">
-  <link rel="icon" href="../../assets/images/logo/vslogo.webp" type="image/webp">
-  <link rel="apple-touch-icon" href="../../assets/images/logo/vslogo.webp">
+  <link rel="icon" href="../../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/images/brand/apple-touch-icon.png">
   <script>document.documentElement.classList.add('motion-ready');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/servicos.css">
   <style>
     /* Mockup · Rota, gestão de serviços (produto fictício) */
@@ -125,7 +125,7 @@
     .layer h3 small { display: block; margin-top: 4px; color: var(--text-muted); font-size: 13px; font-weight: 400; letter-spacing: 0; }
     .layer ul { display: flex; flex-wrap: wrap; gap: 8px; }
     .layer li { padding: 8px 12px; border-radius: var(--radius-sm); background: var(--bg-soft); border: 1px solid var(--dark-line); color: var(--text-soft); font-size: 13px; }
-    .layer.is-core { background: color-mix(in oklch, var(--rose) 38%, var(--surface-dark)); }
+    .layer.is-core { background: var(--carmim); }
     .layer.is-core h3 small { color: color-mix(in oklch, #fff 76%, transparent); }
     .layer.is-core li { background: color-mix(in oklch, #000 20%, transparent); border-color: color-mix(in oklch, #fff 14%, transparent); color: #fff; }
     .layer.is-edge { background: transparent; border: 1px dashed var(--dark-line-strong); }
@@ -295,7 +295,7 @@
             "name": "Quanto custa um sistema sob medida?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "O investimento médio é de R$ 6.950, com projetos entre R$ 3.000 e R$ 11.900. Ferramentas internas ficam entre R$ 3.000 e R$ 5.000; sistemas de gestão e CRMs, entre R$ 6.000 e R$ 9.000; e plataformas SaaS partem de R$ 10.000. O valor final sai do discovery, módulo a módulo."
+              "text": "O investimento médio é de R$ 6.950, com projetos entre R$ 3.000 e R$ 11.900. Ferramentas internas ficam entre R$ 3.000 e R$ 5.000; sistemas de gestão e CRMs, entre R$ 6.000 e R$ 9.000; e plataformas SaaS partem de R$ 10.000. O valor final sai do diagnóstico, módulo a módulo."
             }
           },
           {
@@ -311,7 +311,7 @@
             "name": "Como o valor é definido?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Depois do discovery, com o escopo dividido em módulos. Cada módulo tem esforço estimado, e você decide o que entra na primeira versão e o que fica para depois."
+              "text": "Depois do diagnóstico, com o escopo dividido em módulos. Cada módulo tem esforço estimado, e você decide o que entra na primeira versão e o que fica para depois."
             }
           },
           {
@@ -342,7 +342,7 @@
   <div class="read-progress" id="readProgress" aria-hidden="true"></div>
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
-      <a class="brand" href="../../" aria-label="VS Experience · página inicial"><span class="brand-mark"></span><span>VS Experience</span></a>
+      <a class="brand" href="../../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
       <nav class="client-chip" aria-label="Trilha de navegação"><a href="../">Serviços</a> · <span aria-current="page">Sistemas e SaaS</span></nav>
       <nav class="nav-links" aria-label="Navegação da página">
         <a href="#servico" data-spy-link="servico">O serviço</a>
@@ -355,10 +355,11 @@
 
   <main id="conteudo">
     <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Sistemas e SaaS</p></div>
       <div class="container hero-layout">
         <div class="hero-copy">
-          <h1 class="hero-title"><span class="context-line">Desenvolvimento de sistemas web e SaaS</span> <span class="display">O sistema que a sua operação <em>já pede todo dia.</em></span></h1>
-          <p class="hero-lead">CRMs, painéis de gestão, plataformas e MVPs desenhados a partir do seu processo real, com uma interface que a equipe entende no primeiro uso.</p>
+          <h1 class="hero-title"><span class="context-line">Desenvolvimento de sistemas web e SaaS</span> <span class="display">Seu processo mais claro. <em>Seu produto pronto para evoluir.</em></span></h1>
+          <p class="hero-lead">CRMs, sistemas de gestão, plataformas e MVPs desenhados a partir de um problema real. Organizo fluxos, regras e prioridades para criar uma ferramenta útil para a equipe ou para seus clientes.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="button button-secondary" href="#arquitetura">Como um sistema é organizado</a>
@@ -488,7 +489,7 @@
           <p class="reveal delay-1">Quando planilhas, grupos de WhatsApp e ferramentas soltas começam a travar a operação, chega a hora de um sistema próprio. Ele organiza os dados, automatiza tarefas repetitivas e mostra o negócio em tempo real.</p>
         </div>
         <div class="outcomes">
-          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6M18 15V9a3 3 0 0 0-3-3h-3"/></svg></div><h3>Discovery antes do código</h3><p>Fluxos, perfis de usuário e regras mapeados para construir só o que importa.</p></article>
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6M18 15V9a3 3 0 0 0-3-3h-3"/></svg></div><h3>Diagnóstico antes do código</h3><p>Fluxos, perfis de usuário e regras mapeados para construir só o que importa.</p></article>
           <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Interface que a equipe adota</h3><p>Telas simples para quem opera e painéis claros para quem decide.</p></article>
           <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Automações e integrações</h3><p>WhatsApp, pagamentos, e-mail e ERP conectados ao fluxo do dia a dia.</p></article>
           <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Pronto para evoluir</h3><p>Arquitetura em módulos, com dados organizados e base para as próximas versões.</p></article>
@@ -499,12 +500,12 @@
     <section class="section anatomy" id="arquitetura" data-spy="servico" aria-labelledby="anatomia-titulo">
       <div class="container">
         <div class="anatomy-head">
-          <h2 class="section-title reveal" id="anatomia-titulo">Camadas pensadas para crescer sem reescrever.</h2>
+          <h2 class="section-title reveal" id="anatomia-titulo">Uma base organizada para as próximas versões.</h2>
           <p class="reveal delay-1">Cada sistema é organizado em módulos independentes sobre uma base segura. O MVP nasce enxuto e ganha novas funções sem refazer o que já funciona.</p>
         </div>
         <div class="layers">
           <div class="layer reveal"><h3>Interface<small>o que cada pessoa vê e usa</small></h3><ul><li>Web app responsivo</li><li>PWA instalável no celular</li><li>Painel administrativo</li><li>Área do cliente</li></ul></div>
-          <div class="layer reveal delay-1"><h3>Módulos do negócio<small>escolhidos no discovery</small></h3><ul><li>Cadastros</li><li>Pedidos e OS</li><li>Agenda</li><li>Financeiro</li><li>Relatórios</li><li>Notificações</li></ul></div>
+          <div class="layer reveal delay-1"><h3>Módulos do negócio<small>escolhidos no diagnóstico</small></h3><ul><li>Cadastros</li><li>Pedidos e OS</li><li>Agenda</li><li>Financeiro</li><li>Relatórios</li><li>Notificações</li></ul></div>
           <div class="layer is-core reveal delay-2"><h3>Base<small>segura e compartilhada por tudo</small></h3><ul><li>Login e perfis</li><li>Permissões por função</li><li>Banco de dados</li><li>API</li><li>Registro de atividades</li><li>Backups</li></ul></div>
           <div class="layer is-edge reveal delay-3"><h3>Integrações<small>quando o fluxo pede</small></h3><ul><li>WhatsApp via Evolution API</li><li>Pagamentos com Asaas</li><li>E-mail transacional</li><li>ERP e planilhas</li></ul></div>
         </div>
@@ -549,7 +550,7 @@
           <div class="process-total reveal delay-2"><strong>30 a 60</strong><span>dias para a primeira versão; plataformas podem chegar a 90</span></div>
         </div>
         <ol class="process-list">
-          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Semana 1</span><h3>Discovery</h3><p>Entrevistas com quem vai usar, mapeamento de fluxos, perfis e regras de negócio. Definição do que entra no MVP.</p><div class="step-deliverable"><strong>Você recebe</strong><span>escopo priorizado e mapa de módulos</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Semana 1</span><h3>Diagnóstico</h3><p>Entrevistas com quem vai usar, mapeamento de fluxos, perfis e regras de negócio. Definição do que entra no MVP.</p><div class="step-deliverable"><strong>Você recebe</strong><span>escopo priorizado e mapa de módulos</span></div></div></li>
           <li class="process-step reveal"><span class="step-dot">02</span><div><span class="step-time">Semana 2</span><h3>Arquitetura de produto</h3><p>Fluxos de tela, modelo de dados, permissões e integrações necessárias.</p><div class="step-deliverable"><strong>Você recebe</strong><span>fluxograma e plano de marcos</span></div></div></li>
           <li class="process-step reveal"><span class="step-dot">03</span><div><span class="step-time">Semanas 2 e 3</span><h3>Protótipo</h3><p>Telas-chave desenhadas e validadas com a equipe antes de qualquer linha de código.</p><div class="step-deliverable"><strong>Você recebe</strong><span>protótipo navegável aprovado</span></div></div></li>
           <li class="process-step reveal"><span class="step-dot">04</span><div><span class="step-time">Semanas 3 a 7</span><h3>Desenvolvimento por marcos</h3><p>Entregas funcionais em ambiente de homologação, módulo a módulo, com acompanhamento semanal.</p><div class="step-deliverable"><strong>Você recebe</strong><span>acesso à homologação a cada marco</span></div></div></li>
@@ -562,9 +563,8 @@
     <section class="section" id="investimento" data-spy="investimento">
       <div class="container">
         <div class="section-head">
-          <div class="context-line reveal">Valores de referência</div>
-          <h2 class="section-title reveal delay-1">Quanto custa um sistema sob medida.</h2>
-          <p class="section-lead reveal delay-2">A média abaixo vem de sistemas orçados recentemente pela VS Experience. O valor final é fechado depois do discovery, com os módulos priorizados por escrito.</p>
+          <h2 class="section-title reveal">Quanto custa um sistema sob medida.</h2>
+          <p class="section-lead reveal delay-2">A média abaixo vem de sistemas orçados recentemente pela VS Experience. O valor final é fechado depois do diagnóstico, com os módulos priorizados por escrito.</p>
         </div>
 
         <div class="avg-panel reveal">
@@ -592,7 +592,7 @@
             <h3>Um fluxo, bem resolvido.</h3>
             <p class="plan-intro">Um processo específico digitalizado, com poucos perfis de acesso.</p>
             <ul class="plan-features">
-              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Discovery enxuto</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico enxuto</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até 3 módulos principais</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Login e perfis básicos</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Web app responsivo ou PWA</li>
@@ -606,7 +606,7 @@
             <h3>A operação em um só lugar.</h3>
             <p class="plan-intro">CRM, gestão operacional ou MVP com automações e integrações.</p>
             <ul class="plan-features">
-              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Discovery completo e protótipo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico completo e protótipo</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Operação, financeiro e relatórios</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Perfis e permissões por função</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Integração com WhatsApp ou pagamentos</li>
@@ -626,7 +626,7 @@
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design system do produto</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Roadmap de evolução</li>
             </ul>
-            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price"><em>a partir de</em> R$ 10.000</strong><p class="plan-note">Orçado por módulo, depois do discovery.</p></div>
+            <div class="plan-bottom"><span>Investimento</span><strong class="plan-price"><em>a partir de</em> R$ 10.000</strong><p class="plan-note">Orçado por módulo, depois do diagnóstico.</p></div>
           </article>
         </div>
 
@@ -659,7 +659,7 @@
 
     <section class="section plans-section" aria-labelledby="case-titulo">
       <div class="container">
-        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Um produto que já está em uso.</h2></div>
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Um produto próprio em desenvolvimento.</h2></div>
         <div class="case-grid">
           <figure class="case-media reveal" style="margin:0"><img src="../../assets/images/cases/facilorgapp.webp" alt="App Fácil Organização aberto em um notebook e em um celular, com o painel de tarefas do dia, projetos em andamento e saldo do mês" width="1350" height="808" loading="lazy" decoding="async"></figure>
           <div class="case-copy reveal delay-1">
@@ -689,9 +689,9 @@
       <div class="container faq-layout">
         <h2 class="section-title reveal" id="faq-titulo">Perguntas frequentes sobre sistemas sob medida.</h2>
         <div class="faq-list reveal delay-1">
-          <details class="faq-item"><summary>Quanto custa um sistema sob medida?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O investimento médio é de R$ 6.950, com projetos entre R$ 3.000 e R$ 11.900. Ferramentas internas ficam entre R$ 3.000 e R$ 5.000; sistemas de gestão e CRMs, entre R$ 6.000 e R$ 9.000; e plataformas SaaS partem de R$ 10.000. O valor final sai do discovery, módulo a módulo.</p></details>
+          <details class="faq-item"><summary>Quanto custa um sistema sob medida?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O investimento médio é de R$ 6.950, com projetos entre R$ 3.000 e R$ 11.900. Ferramentas internas ficam entre R$ 3.000 e R$ 5.000; sistemas de gestão e CRMs, entre R$ 6.000 e R$ 9.000; e plataformas SaaS partem de R$ 10.000. O valor final sai do diagnóstico, módulo a módulo.</p></details>
           <details class="faq-item"><summary>O que é um MVP?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>É a menor versão do produto que resolve o problema central e já pode ser usada de verdade. Serve para validar a ideia com usuários reais antes de investir em todas as funções.</p></details>
-          <details class="faq-item"><summary>Como o valor é definido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Depois do discovery, com o escopo dividido em módulos. Cada módulo tem esforço estimado, e você decide o que entra na primeira versão e o que fica para depois.</p></details>
+          <details class="faq-item"><summary>Como o valor é definido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Depois do diagnóstico, com o escopo dividido em módulos. Cada módulo tem esforço estimado, e você decide o que entra na primeira versão e o que fica para depois.</p></details>
           <details class="faq-item"><summary>Os dados ficam comigo?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. O banco de dados fica em infraestrutura contratada em nome da sua empresa. As condições de propriedade e licença do código são definidas em contrato antes do início.</p></details>
           <details class="faq-item"><summary>Funciona no celular?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. Todo sistema é responsivo e pode ser instalado como aplicativo (PWA) sem passar pelas lojas. A publicação na App Store e no Google Play é orçada à parte.</p></details>
         </div>
@@ -699,11 +699,13 @@
     </section>
 
     <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
       <div class="container">
         <div class="closing-grid">
           <div class="closing-copy reveal">
-            <h2 class="closing-title" id="contato-titulo">Vamos tirar a sua operação das <span>planilhas?</span></h2>
-            <p>Conte qual processo trava hoje, quem participa dele e o que precisaria acontecer sozinho. A resposta vem com um primeiro recorte de MVP e uma faixa de investimento.</p>
+            <h2 class="closing-title" id="contato-titulo">Qual problema seu próximo sistema precisa <span>resolver?</span></h2>
+            <p>Me conte onde a rotina trava, quem usa o processo e o que precisa melhorar. Definimos o recorte da primeira versão e as prioridades para estimar o investimento.</p>
             <div class="closing-actions">
               <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
               <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
@@ -726,12 +728,14 @@
             <a href="../design-system/"><strong>Design System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>a partir de R$ 3.000</small></a>
           </div>
         </nav>
-        <div class="signature"><span class="brand"><span class="brand-mark"></span><span>VS Experience</span></span><span>Design, tecnologia e experiências digitais.</span><span>Valores de referência · setembro de 2026</span></div>
+        <div class="signature"><img src="../../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Estratégia, design e desenvolvimento para o seu negócio.</span><span>Valores de referência · setembro de 2026</span></div>
       </div>
     </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="../../assets/js/vs-gradient.js"></script>
   <script src="../assets/servicos.js"></script>
 </body>
 </html>

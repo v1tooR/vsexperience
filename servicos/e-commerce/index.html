@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#120d0d">
+  <meta name="theme-color" content="#efefef">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="author" content="Victor Santos">
   <meta name="description" content="Criação de loja virtual com checkout, Pix, frete e integração com Bling e Mercado Livre. Prazo de 20 a 30 dias úteis e investimento médio de R$ 3.740.">
@@ -24,12 +24,12 @@
   <meta name="twitter:title" content="Criação de e-commerce: processo e valores">
   <meta name="twitter:description" content="O que é, como funciona e quanto custa uma loja virtual: média de R$ 3.740 e prazo de 20 a 30 dias úteis.">
   <meta name="twitter:image" content="https://vsexperience.com.br/servicos/assets/og/e-commerce.jpg">
-  <link rel="icon" href="../../assets/images/logo/vslogo.webp" type="image/webp">
-  <link rel="apple-touch-icon" href="../../assets/images/logo/vslogo.webp">
+  <link rel="icon" href="../../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/images/brand/apple-touch-icon.png">
   <script>document.documentElement.classList.add('motion-ready');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/servicos.css">
   <style>
     /* Mockup · Verde Lume, loja de plantas (cliente fictício) */
@@ -145,7 +145,7 @@
     .journey li { position: relative; padding: 22px 20px 24px; border-radius: var(--radius); background: var(--surface-dark); transition: background .3s ease, transform .35s var(--ease); }
     .journey li:hover { background: var(--surface-hover); transform: translateY(-3px); }
     .journey li:not(:last-child)::after { content: ''; position: absolute; z-index: 1; top: 34px; right: -9px; width: 8px; height: 8px; border-top: 1.5px solid var(--rose-soft); border-right: 1.5px solid var(--rose-soft); transform: rotate(45deg); }
-    .journey li:last-child { background: color-mix(in oklch, var(--rose) 42%, var(--surface-dark)); }
+    .journey li:last-child { background: var(--carmim); }
     .journey svg { width: 24px; margin-bottom: 30px; color: var(--rose-soft); }
     .journey li:last-child svg { color: #fff; }
     .journey strong { display: block; margin-bottom: 6px; font-size: 18px; letter-spacing: -.02em; }
@@ -352,7 +352,7 @@
             "name": "Dá para vender no Mercado Livre e na loja ao mesmo tempo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sim. Com o Bling como central, estoque, pedidos e produtos ficam sincronizados entre a loja própria e o marketplace, sem vender o que já acabou."
+              "text": "Sim. Com a integração ao Bling, estoque, pedidos e produtos podem ser sincronizados entre a loja própria e o marketplace. A configuração considera os canais, as regras e os produtos da sua operação."
             }
           }
         ]
@@ -367,7 +367,7 @@
   <div class="read-progress" id="readProgress" aria-hidden="true"></div>
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
-      <a class="brand" href="../../" aria-label="VS Experience · página inicial"><span class="brand-mark"></span><span>VS Experience</span></a>
+      <a class="brand" href="../../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
       <nav class="client-chip" aria-label="Trilha de navegação"><a href="../">Serviços</a> · <span aria-current="page">E-commerce</span></nav>
       <nav class="nav-links" aria-label="Navegação da página">
         <a href="#servico" data-spy-link="servico">O serviço</a>
@@ -380,10 +380,11 @@
 
   <main id="conteudo">
     <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>E-commerce</p></div>
       <div class="container hero-layout">
         <div class="hero-copy">
-          <h1 class="hero-title"><span class="context-line">Criação de loja virtual</span> <span class="display">Da vitrine ao Pix aprovado, <em>sem atrito no caminho.</em></span></h1>
-          <p class="hero-lead">Loja virtual com catálogo, carrinho, checkout, pagamento e frete configurados, integrada ao seu estoque e pronta para vender em novos canais.</p>
+          <h1 class="hero-title"><span class="context-line">Criação de loja virtual</span> <span class="display">Da descoberta ao pagamento, <em>uma compra fácil de seguir.</em></span></h1>
+          <p class="hero-lead">Uma loja que ajuda o cliente a encontrar, entender e comprar seus produtos. Catálogo, carrinho, pagamento, frete e integrações definidos a partir da sua operação.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="button button-secondary" href="#jornada">Ver a jornada de compra</a>
@@ -480,14 +481,14 @@
     <section class="section" id="servico" data-spy="servico">
       <div class="container">
         <div class="intro-head">
-          <h2 class="section-title reveal">Uma operação de vendas, não só uma vitrine bonita.</h2>
+          <h2 class="section-title reveal">A experiência de compra e a operação trabalhando juntas.</h2>
           <p class="reveal delay-1">E-commerce é a loja virtual completa: produtos, estoque, pagamento, frete, pedidos e clientes funcionando juntos. O design conduz a compra, e a estrutura por trás sustenta a operação do dia a dia.</p>
         </div>
         <div class="outcomes">
-          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h2l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h3>Jornada de compra sem atrito</h3><p>Busca, categorias, página de produto e carrinho pensados para reduzir o abandono.</p></article>
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h2l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h3>Jornada de compra clara</h3><p>Busca, categorias, página de produto e carrinho pensados para reduzir o abandono.</p></article>
           <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div><h3>Checkout com Pix, cartão e boleto</h3><p>Pagamento configurado, cálculo de frete e cupons de desconto funcionando desde o primeiro dia.</p></article>
           <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><h3>Integrada à operação</h3><p>Bling, Mercado Livre, Correios e Melhor Envio conectados conforme a necessidade.</p></article>
-          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Painel e treinamento</h3><p>Sua equipe cadastra produtos, acompanha pedidos e publica promoções sem depender de ninguém.</p></article>
+          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Painel e treinamento</h3><p>Sua equipe aprende a cadastrar produtos, acompanhar pedidos e publicar promoções pelo painel.</p></article>
         </div>
       </div>
     </section>
@@ -496,7 +497,7 @@
       <div class="container">
         <div class="anatomy-head">
           <h2 class="section-title reveal" id="anatomia-titulo">A jornada inteira, do primeiro clique ao pós-venda.</h2>
-          <p class="reveal delay-1">Cada etapa responde uma dúvida do comprador. As integrações garantem que o pedido chegue certo ao estoque, ao financeiro e à expedição.</p>
+          <p class="reveal delay-1">Cada etapa responde às dúvidas do comprador. As integrações previstas no escopo conectam os pedidos ao estoque, ao financeiro e à expedição.</p>
         </div>
         <ol class="journey">
           <li class="reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><strong>Descoberta</strong><p>Home, busca, categorias, filtros e banners de campanha.</p></li>
@@ -562,8 +563,7 @@
     <section class="section" id="investimento" data-spy="investimento">
       <div class="container">
         <div class="section-head">
-          <div class="context-line reveal">Valores de referência</div>
-          <h2 class="section-title reveal delay-1">Quanto custa um e-commerce.</h2>
+          <h2 class="section-title reveal">Quanto custa um e-commerce.</h2>
           <p class="section-lead reveal delay-2">A média abaixo vem de lojas orçadas recentemente pela VS Experience. O valor final é fechado depois do diagnóstico da operação, com escopo por escrito.</p>
         </div>
 
@@ -657,7 +657,7 @@
 
     <section class="section plans-section" aria-labelledby="case-titulo">
       <div class="container">
-        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Lojas que já estão vendendo.</h2></div>
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Projetos que conectam marca e compra.</h2></div>
         <div class="case-grid">
           <figure class="case-media reveal" style="margin:0"><img src="../../assets/images/cases/multivegetal.webp" alt="Loja virtual da Multi Vegetal com banner de cupom de primeira compra, faixa de valores da marca e categorias de cabelo, massagem, corpo e kits" width="1350" height="808" loading="lazy" decoding="async"></figure>
           <div class="case-copy reveal delay-1">
@@ -697,17 +697,19 @@
           <details class="faq-item"><summary>Qual plataforma vocês usam?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Na maioria dos projetos, WordPress com WooCommerce: sem mensalidade de plataforma, com painel conhecido e muitas integrações disponíveis. Operações com regras muito específicas podem pedir uma solução sob medida, definida no diagnóstico.</p></details>
           <details class="faq-item"><summary>As taxas de pagamento e frete estão inclusas?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não. Taxas do gateway, frete, hospedagem e ERP são contratadas em nome da sua empresa e pagas direto aos fornecedores. O valor do projeto cobre o desenvolvimento e a configuração.</p></details>
           <details class="faq-item"><summary>Quem cadastra os produtos?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A entrega inclui o cadastro inicial e o treinamento para a sua equipe continuar. Catálogos grandes podem ser importados por planilha, com valor calculado pelo volume.</p></details>
-          <details class="faq-item"><summary>Dá para vender no Mercado Livre e na loja ao mesmo tempo?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. Com o Bling como central, estoque, pedidos e produtos ficam sincronizados entre a loja própria e o marketplace, sem vender o que já acabou.</p></details>
+          <details class="faq-item"><summary>Dá para vender no Mercado Livre e na loja ao mesmo tempo?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. Com a integração ao Bling, estoque, pedidos e produtos podem ser sincronizados entre a loja própria e o marketplace. A configuração considera os canais, as regras e os produtos da sua operação.</p></details>
         </div>
       </div>
     </section>
 
     <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
       <div class="container">
         <div class="closing-grid">
           <div class="closing-copy reveal">
-            <h2 class="closing-title" id="contato-titulo">Vamos abrir o seu canal próprio de <span>vendas?</span></h2>
-            <p>Conte o que você vende, onde vende hoje e quantos produtos tem. A resposta vem com a plataforma indicada e um valor fechado.</p>
+            <h2 class="closing-title" id="contato-titulo">Vamos criar uma loja que faça sentido para sua <span>operação?</span></h2>
+            <p>Me conte o que você vende, em quais canais e como organiza estoque e pedidos. Essa conversa orienta a plataforma, as integrações e o escopo do orçamento.</p>
             <div class="closing-actions">
               <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
               <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
@@ -730,12 +732,14 @@
             <a href="../design-system/"><strong>Design System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>a partir de R$ 3.000</small></a>
           </div>
         </nav>
-        <div class="signature"><span class="brand"><span class="brand-mark"></span><span>VS Experience</span></span><span>Design, tecnologia e experiências digitais.</span><span>Valores de referência · setembro de 2026</span></div>
+        <div class="signature"><img src="../../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Estratégia, design e desenvolvimento para o seu negócio.</span><span>Valores de referência · setembro de 2026</span></div>
       </div>
     </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="../../assets/js/vs-gradient.js"></script>
   <script src="../assets/servicos.js"></script>
 </body>
 </html>
