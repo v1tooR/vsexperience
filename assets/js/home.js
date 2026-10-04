@@ -108,70 +108,21 @@
     'meta.title': 'Victor Santos · VS Experience | UX/UI and development',
     'meta.desc': 'Strategy, UX/UI and development for websites and digital products. Audits and consulting with Victor Santos; design and development with VS Experience.'
   };
-  var PT = {};
-  var lang = 'pt';
-  var textEls = $$('[data-i18n]');
-  var attrEls = $$('[data-i18n-attr]');
-  var waEls = $$('[data-wa]');
-
-  textEls.forEach(function (el) { el.dataset.pt = el.innerHTML; });
-  attrEls.forEach(function (el) {
-    el.dataset.i18nAttr.split(';').forEach(function (pair) {
-      var a = pair.split(':')[0];
-      el.setAttribute('data-pt-' + a, el.getAttribute(a) || '');
-    });
-  });
-  waEls.forEach(function (el) { el.dataset.ptHref = el.getAttribute('href'); });
-  var socialMeta = [
-    ['meta[property="og:title"]', 'meta.socialTitle'],
-    ['meta[property="og:description"]', 'meta.socialDesc'],
-    ['meta[name="twitter:title"]', 'meta.socialTitle'],
-    ['meta[name="twitter:description"]', 'meta.socialDesc'],
-    ['meta[property="og:locale"]', 'meta.locale'],
-    ['meta[property="og:locale:alternate"]', 'meta.localeAlt']
-  ];
-  EN['meta.locale'] = 'en_US'; EN['meta.localeAlt'] = 'pt_BR';
-  socialMeta.forEach(function (pair) { var el = $(pair[0]); if (el) PT[pair[1]] = el.content; });
-  PT['meta.title'] = document.title;
-  var metaDesc = $('meta[name="description"]');
-  PT['meta.desc'] = metaDesc ? metaDesc.content : '';
-
-  function setLang(next, silent) {
-    lang = next === 'en' ? 'en' : 'pt';
-    var en = lang === 'en';
-    textEls.forEach(function (el) {
-      var k = el.dataset.i18n;
-      el.innerHTML = en && EN[k] != null ? EN[k] : el.dataset.pt;
-    });
-    attrEls.forEach(function (el) {
-      el.dataset.i18nAttr.split(';').forEach(function (pair) {
-        var p = pair.split(':');
-        el.setAttribute(p[0], en && EN[p[1]] != null ? EN[p[1]] : el.getAttribute('data-pt-' + p[0]));
-      });
-    });
-    waEls.forEach(function (el) {
-      el.setAttribute('href', en && EN[el.dataset.wa] ? WA + encodeURIComponent(EN[el.dataset.wa]) : el.dataset.ptHref);
-    });
-    socialMeta.forEach(function (pair) { var el = $(pair[0]); if (el) el.content = en ? EN[pair[1]] : PT[pair[1]]; });
-    document.documentElement.lang = en ? 'en' : 'pt-BR';
-    document.title = en ? EN['meta.title'] : PT['meta.title'];
-    if (metaDesc) metaDesc.content = en ? EN['meta.desc'] : PT['meta.desc'];
-    $$('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
-    try { localStorage.setItem('vs-lang', lang); } catch (e) { /* armazenamento indisponível */ }
-    if (!silent) {
-      var url = new URL(location.href);
-      en ? url.searchParams.set('lang', 'en') : url.searchParams.delete('lang');
-      history.replaceState(null, '', url);
-    }
-    document.dispatchEvent(new CustomEvent('vs:lang'));
+  // Each language has static HTML and its own canonical URL.
+  var lang = document.documentElement.lang === 'en' ? 'en' : 'pt';
+  function setLang(next) {
+    var destination = next === 'en' ? '/en/' : '/';
+    if (next !== lang) location.assign(destination + location.hash);
   }
-  $$('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+  $$('[data-lang]').forEach(function (b) {
+    b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+    b.addEventListener('click', function () { setLang(b.dataset.lang); });
+  });
   (function initialLang() {
+    // Compatibility with old shared links; the server also issues a 301.
     var q = new URLSearchParams(location.search).get('lang');
-    var stored = null;
-    try { stored = localStorage.getItem('vs-lang'); } catch (e) { /* sem armazenamento */ }
-    var l = q || stored;
-    if (l === 'en') setLang('en', !q);
+    if (q === 'en' && lang !== 'en') location.replace('/en/' + location.hash);
+    else if (q === 'pt' && lang !== 'pt') location.replace('/' + location.hash);
   })();
 
   /* ---------------------------------------------------------------- rolagem suave */
@@ -474,7 +425,8 @@
     if (heroGrad && heroGrad.ok) {
       // ao entrar, o brilho volta para a direita e deixa o lado do texto escuro
       heroGrad.p.posX = 0.04 + (0.42 - 0.04) * e;
-      heroGrad.p.posY = P.glowY + (0.02 - P.glowY) * e;
+      // no celular o texto ocupa a largura toda: o brilho desce para trás dos cartões, longe do parágrafo
+      heroGrad.p.posY = P.glowY + ((P.W <= 700 ? -0.34 : 0.02) - P.glowY) * e;
     }
     var f = 1 - smooth(0, 0.11, p);
     var a = P.live ? smooth(0.8, 0.93, p) : 1;

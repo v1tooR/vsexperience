@@ -4,26 +4,6 @@
    Cádmio e Carmim em campos inteiros, shader VS como única imagem de fundo.
    ========================================================================== */
 
-/* fontes hospedadas no próprio site (subconjunto latino, cobre PT e EN):
-   sem a ida ao Google antes da primeira pintura */
-@font-face {
-  font-family: 'Roboto Flex';
-  font-style: normal;
-  font-weight: 100 1000;
-  font-stretch: 25% 151%;
-  font-display: swap;
-  src: url(../fonts/roboto-flex-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url(../fonts/plus-jakarta-sans-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 :root {
   /* Marca */
   --cadmio: #ee2324;
@@ -255,10 +235,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   transition: color 0.35s var(--ease), background-color 0.35s var(--ease), translate 0.7s var(--spring), scale 0.5s var(--spring);
 }
 .menu-btn:hover { background: rgba(33, 33, 33, 0.06); }
-.menu-btn__text { display: grid; height: 1.2em; overflow: hidden; line-height: 1.2; }
+/* recorta só na vertical: com overflow hidden, o Safari do iOS cortava a última letra */
+.menu-btn__text { display: grid; height: 1.2em; line-height: 1.2; clip-path: inset(0 -8px); }
 .menu-btn__text > span { transition: transform 0.7s var(--ease-main); }
 .menu-btn[aria-expanded="true"] .menu-btn__text > span { transform: translateY(-100%); }
-.menu-btn__icon { width: 15px; height: 15px; fill: currentColor; transition: transform 0.7s var(--ease-main); }
+.menu-btn__icon { flex: none; width: 15px; height: 15px; fill: currentColor; transition: transform 0.7s var(--ease-main); }
 .menu-btn[aria-expanded="true"] .menu-btn__icon { transform: rotate(315deg); }
 
 /* tom escuro */
@@ -978,3 +959,22 @@ html.is-loading .portal__front > * { opacity: 0; transform: translateY(36px); tr
 .faq, .foot { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 /* sem Lenis no toque, o menu aberto trava a rolagem pelo próprio documento */
 html.nav-open { overflow: hidden; }
+
+/* ==========================================================================
+   Hero no celular: menos rolagem para atravessar e o estado final cabendo inteiro na tela
+   ========================================================================== */
+@media (max-width: 700px) {
+  .portal.is-live { --portal-len: 2.1; }
+  .portal__after {
+    justify-content: flex-end;
+    padding: calc(var(--header-h) + 20px) var(--gutter) max(28px, env(safe-area-inset-bottom));
+  }
+  /* o texto ocupa a largura toda: o véu escurece de cima a baixo, não só à esquerda */
+  .portal__after::before { background: linear-gradient(180deg, rgba(33, 33, 33, 0.72) 0%, rgba(33, 33, 33, 0.5) 40%, rgba(33, 33, 33, 0.82) 100%); }
+  .portal__statement { font-size: clamp(2.5rem, 12vw, 3.6rem); }
+  .portal__after-lede { margin-top: 18px; font-size: 1rem; line-height: 1.5; }
+  .portal__routes { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .portal__routes a { min-width: 0; padding: 12px 14px; }
+  .portal__routes strong { font-size: 1.05rem; }
+  .portal__routes span { font-size: 0.8rem; line-height: 1.3; }
+}

@@ -6,6 +6,37 @@
   AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript text/javascript application/json image/svg+xml application/xml
 </IfModule>
 
+# Canonical URLs and compatibility with old language links.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{HTTP_HOST} ^www\.vsexperience\.com\.br$ [NC]
+  RewriteRule ^ https://vsexperience.com.br%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{HTTP_HOST} ^vsexperience\.com\.br$ [NC]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+  RewriteRule ^ https://vsexperience.com.br%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{QUERY_STRING} (^|&)lang=en(&|$) [NC]
+  RewriteRule ^(?:index\.html)?$ /en/ [R=301,L,QSD]
+  RewriteCond %{QUERY_STRING} (^|&)lang=pt(&|$) [NC]
+  RewriteRule ^en/(?:index\.html)?$ / [R=301,L,QSD]
+
+  # THE_REQUEST prevents a loop when Apache serves DirectoryIndex internally.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html(?:[?\s]) [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]
+</IfModule>
+
+# Do not index proposals or internal utilities. Allow robots to read this header.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/(proposta-[^/]+|Praado|qr-generator|remove-paragraph)(/|$)" VS_NOINDEX=1
+  SetEnvIf Request_URI "^/case-mockup-test\.html$" VS_NOINDEX=1
+</IfModule>
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, follow" env=VS_NOINDEX
+</IfModule>
+
 <IfModule mod_mime.c>
   AddType font/woff2 .woff2
   AddType image/webp .webp

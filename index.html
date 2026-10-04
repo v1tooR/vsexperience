@@ -3,39 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Victor Santos · VS Experience | UX/UI e desenvolvimento</title>
-  <meta name="description" content="Estratégia, UX/UI e desenvolvimento para sites e produtos digitais. Auditoria e consultoria com Victor Santos; criação com a VS Experience.">
+  <title>Criação de sites e UX/UI | Victor Santos · VS Experience</title>
+  <meta name="description" content="Estratégia, UX/UI e desenvolvimento de sites e produtos digitais. Conheça os projetos da VS Experience e a consultoria de Victor Santos.">
   <meta name="author" content="Victor Santos">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#efefef">
   <meta name="color-scheme" content="light">
 
   <link rel="canonical" href="https://vsexperience.com.br/">
-  <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/">
-  <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/?lang=en">
-  <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/">
-
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="VS Experience">
   <meta property="og:url" content="https://vsexperience.com.br/">
-  <meta property="og:title" content="Victor Santos · Experiências para validar, converter e escalar">
-  <meta property="og:description" content="Conecto visão de negócio, design e desenvolvimento para criar e evoluir experiências digitais. Conheça os projetos e vamos conversar.">
-  <meta property="og:image" content="https://vsexperience.com.br/assets/images/capaseo.webp">
+  <meta property="og:title" content="Criação de sites e UX/UI | Victor Santos · VS Experience">
+  <meta property="og:description" content="Estratégia, UX/UI e desenvolvimento de sites e produtos digitais. Conheça os projetos da VS Experience e a consultoria de Victor Santos.">
+  <meta property="og:image" content="https://vsexperience.com.br/assets/images/og/home-vs.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Victor Santos · Experiências para validar, converter e escalar">
-  <meta name="twitter:description" content="Conecto visão de negócio, design e desenvolvimento para criar e evoluir experiências digitais. Conheça os projetos e vamos conversar.">
-  <meta name="twitter:image" content="https://vsexperience.com.br/assets/images/capaseo.webp">
+  <meta name="twitter:title" content="Criação de sites e UX/UI | Victor Santos · VS Experience">
+  <meta name="twitter:description" content="Estratégia, UX/UI e desenvolvimento de sites e produtos digitais. Conheça os projetos da VS Experience e a consultoria de Victor Santos.">
+  <meta name="twitter:image" content="https://vsexperience.com.br/assets/images/og/home-vs.jpg">
 
   <link rel="icon" type="image/svg+xml" href="assets/images/brand/favicon.svg">
   <link rel="apple-touch-icon" href="assets/images/brand/apple-touch-icon.png">
 
   <link rel="preload" href="assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/home.css">
+  <!-- fontes no próprio HTML: nunca dependem de um CSS em cache. O Google fica como reserva, só baixado se o arquivo local falhar -->
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(assets/fonts/roboto-flex-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotoflex/v30/NaNeepOXO_NexZs0b5QrzlOHb8wCikXpYqmZsWI-__OGbt8jZktqc2V3Zs0KvDLdBP8SBZtOs2IifRuUZQMsPJtUsR4DEK6cULNeUx9XgTnH37Ha_FIAp4Fm0PP1hw45DntW2x0wZGzhPmr1YNMYKYn9_1IQXGwJAiUJVUMdN5YUW4O8HtSoXjC79QRyaLshNDUf9-EmFw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="assets/css/home.css?v=2e8be5f5">
   <script>
     (function () {
       try {
@@ -57,15 +58,45 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://vsexperience.com.br/#webpage",
+      "url": "https://vsexperience.com.br/",
+      "isPartOf": {
+        "@id": "https://vsexperience.com.br/#website"
+      },
+      "mainEntity": {
+        "@id": "https://vsexperience.com.br/#person"
+      },
+      "author": {
+        "@id": "https://vsexperience.com.br/#person"
+      },
+      "publisher": {
+        "@id": "https://vsexperience.com.br/#service"
+      },
+      "name": "Criação de sites e UX/UI | Victor Santos · VS Experience",
+      "description": "Estratégia, UX/UI e desenvolvimento de sites e produtos digitais. Conheça os projetos da VS Experience e a consultoria de Victor Santos.",
+      "inLanguage": "pt-BR",
+      "dateModified": "2026-10-04",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://vsexperience.com.br/assets/images/og/home-vs.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    {
       "@type": "WebSite",
       "@id": "https://vsexperience.com.br/#website",
       "name": "VS Experience",
       "url": "https://vsexperience.com.br/",
-      "description": "Estratégia, UX/UI e desenvolvimento para sites e produtos digitais. Auditoria e consultoria com Victor Santos; criação com a VS Experience.",
+      "description": "Estratégia, UX/UI e desenvolvimento de sites e produtos digitais. Conheça os projetos da VS Experience e a consultoria de Victor Santos.",
       "inLanguage": [
         "pt-BR",
         "en-US"
-      ]
+      ],
+      "publisher": {
+        "@id": "https://vsexperience.com.br/#service"
+      }
     },
     {
       "@type": "Person",
@@ -115,7 +146,7 @@
       "name": "VS Experience",
       "url": "https://vsexperience.com.br/",
       "logo": "https://vsexperience.com.br/assets/images/brand/monograma-cadmio.svg",
-      "image": "https://vsexperience.com.br/assets/images/capaseo.webp",
+      "image": "https://vsexperience.com.br/assets/images/og/home-vs.jpg",
       "founder": {
         "@id": "https://vsexperience.com.br/#person"
       },
@@ -255,6 +286,18 @@
   ]
 }
   </script>
+
+  <meta property="og:image:secure_url" content="https://vsexperience.com.br/assets/images/og/home-vs.jpg">
+
+  <meta property="og:image:type" content="image/jpeg">
+
+  <meta property="og:image:alt" content="Victor Santos · VS Experience — Design e tecnologia para o seu negócio.">
+
+  <meta name="twitter:image:alt" content="Victor Santos · VS Experience — Design e tecnologia para o seu negócio.">
+
+  <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/">
+  <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/">
+  <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/">
 </head>
 <body>
   <a class="skip" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
@@ -471,21 +514,21 @@
           <p class="specimen__word" data-specimen data-i18n="pr.w1">Clareza</p>
           <div class="specimen__meta">
             <p data-i18n="pr.d1">Seu cliente entende o que você oferece e qual é o próximo passo.</p>
-            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>400</span></p>
+            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>300</span></p>
           </div>
         </li>
         <li class="specimen">
           <p class="specimen__word" data-specimen data-i18n="pr.w2">Consistência</p>
           <div class="specimen__meta">
             <p data-i18n="pr.d2">Sua marca mantém a mesma qualidade em cada tela e interação.</p>
-            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>400</span></p>
+            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>300</span></p>
           </div>
         </li>
         <li class="specimen">
           <p class="specimen__word" data-specimen data-i18n="pr.w3">Resultado</p>
           <div class="specimen__meta">
             <p data-i18n="pr.d3">Cada decisão tem um objetivo: captar, vender ou facilitar o uso.</p>
-            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>400</span></p>
+            <p class="specimen__axes num" aria-hidden="true">wdth <span data-axis-wdth>100</span> · wght <span data-axis-wght>300</span></p>
           </div>
         </li>
       </ol>
@@ -679,8 +722,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/vendor/lenis.min.js" defer></script>
-  <script src="assets/js/vs-gradient.js" defer></script>
-  <script src="assets/js/home.js" defer></script>
+  <script src="assets/js/vendor/lenis.min.js?v=06586536" defer></script>
+  <script src="assets/js/vs-gradient.js?v=ccf7558b" defer></script>
+  <script src="assets/js/home.js?v=1aca72c2" defer></script>
 </body>
 </html>

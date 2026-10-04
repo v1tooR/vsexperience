@@ -1,41 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url>
-    <loc>https://vsexperience.com.br/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/capaseo.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://vsexperience.com.br/servicos/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/servicos/assets/img/victor-santos.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://vsexperience.com.br/servicos/landing-page/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/eleva.webp</image:loc></image:image>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/alugaaqui.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://vsexperience.com.br/servicos/site-institucional/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/costaflores.webp</image:loc></image:image>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/moriah.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://vsexperience.com.br/servicos/e-commerce/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/multivegetal.webp</image:loc></image:image>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/inter.png</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://vsexperience.com.br/servicos/sistemas-saas/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/facilorgapp.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://vsexperience.com.br/servicos/design-system/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <image:image><image:loc>https://vsexperience.com.br/assets/images/cases/facilorgapp.webp</image:loc></image:image>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://vsexperience.com.br/</loc><lastmod>2026-10-04</lastmod><xhtml:link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/"/><xhtml:link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/"/></url>
+  <url><loc>https://vsexperience.com.br/en/</loc><lastmod>2026-10-04</lastmod><xhtml:link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/"/><xhtml:link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/"/></url>
+  <url><loc>https://vsexperience.com.br/servicos/</loc><lastmod>2026-10-04</lastmod></url>
+  <url><loc>https://vsexperience.com.br/servicos/landing-page/</loc><lastmod>2026-10-04</lastmod></url>
+  <url><loc>https://vsexperience.com.br/servicos/site-institucional/</loc><lastmod>2026-10-04</lastmod></url>
+  <url><loc>https://vsexperience.com.br/servicos/e-commerce/</loc><lastmod>2026-10-04</lastmod></url>
+  <url><loc>https://vsexperience.com.br/servicos/sistemas-saas/</loc><lastmod>2026-10-04</lastmod></url>
+  <url><loc>https://vsexperience.com.br/servicos/design-system/</loc><lastmod>2026-10-04</lastmod></url>
+  <url><loc>https://vsexperience.com.br/bio.html</loc><lastmod>2026-10-04</lastmod></url>
 </urlset>

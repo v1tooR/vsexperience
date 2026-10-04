@@ -1,10 +1,20 @@
-# VS Experience · robots.txt
+# VS Experience
 User-agent: *
 Allow: /
 
-# Arquivos internos do projeto
+# Internal files. Proposals remain crawlable so their noindex header can be read.
 Disallow: /config/
 Disallow: /docs/
+Disallow: /scripts/
+Disallow: /tools/
+Disallow: /tmp/
+Disallow: /.git/
+Disallow: /.agents/
+Disallow: /.codex/
+Disallow: /.claude/
+Disallow: /.cursor/
+Disallow: /.gemini/
+Disallow: /.impeccable/
 Disallow: /*.md$
 
 Sitemap: https://vsexperience.com.br/sitemap.xml
