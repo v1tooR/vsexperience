@@ -137,6 +137,12 @@
         "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
         "createdAt": "2026-10-04T02:47:19.225Z",
         "reason": "sanctioned: the user asked for Apple-style spring interactions (and the kinetic menu's back-out shape entrance); overshoot is limited to small UI feedback (lang thumb, glass morph, menu shapes) and disabled under reduced motion"
+      },
+      {
+        "rule": "overused-font",
+        "value": "roboto",
+        "createdAt": "2026-10-04T13:56:06.833Z",
+        "reason": "false positive: the hit is the self-hosted 'Roboto Flex' @font-face, the variable display face from the VS identity deck (PRODUCT.md Brand Commitments); plain Roboto is not used"
       }
     ]
   }

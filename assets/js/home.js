@@ -5,6 +5,14 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var clamp = function (n, a, b) { return Math.min(b == null ? 1 : b, Math.max(a || 0, n)); };
+  // cada quadro lê todas as caixas de uma vez, antes de qualquer escrita: um cálculo de layout por quadro, não vários
+  var rects = new Map();
+  function rect(el) { var r = rects.get(el); if (!r) { r = el.getBoundingClientRect(); rects.set(el, r); } return r; }
+  // escritas que só tocam o DOM quando o valor muda (quadros parados ficam quase de graça)
+  function setAttr(el, name, v) { var k = '_a' + name; if (el[k] !== v) { el[k] = v; el.setAttribute(name, v); } }
+  function setVar(el, name, v) { var k = '_v' + name; if (el[k] !== v) { el[k] = v; el.style.setProperty(name, v); } }
+  // nível de desempenho decidido no <head> (núcleos, memória, economia de dados)
+  var perfLow = document.documentElement.classList.contains('perf-low');
   var smooth = function (a, b, n) { var t = clamp((n - a) / (b - a)); return t * t * (3 - 2 * t); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -168,7 +176,8 @@
 
   /* ---------------------------------------------------------------- rolagem suave */
   var lenis = null;
-  if (window.Lenis && !reduce.matches) {
+  // no toque a rolagem nativa já é suave; o Lenis só custaria uma leitura de layout a cada evento
+  if (window.Lenis && !reduce.matches && fine.matches) {
     lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true });
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
   }
@@ -321,7 +330,7 @@
     var y = 8 + 29, dark = navOpen || portalDark;
     if (!dark) {
       for (var i = 0; i < darkZones.length; i++) {
-        var r = darkZones[i].getBoundingClientRect();
+        var r = rect(darkZones[i]);
         if (r.top <= y && r.bottom >= y) { dark = true; break; }
       }
     }
@@ -339,7 +348,7 @@
   (function refract() {
     var brands = navigator.userAgentData && navigator.userAgentData.brands;
     var chromium = brands && brands.some(function (b) { return /Chromium/.test(b.brand); });
-    if (!chromium || reduce.matches) return;
+    if (!chromium || reduce.matches || perfLow) return;
     var svgNS = 'http://www.w3.org/2000/svg';
     var svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('aria-hidden', 'true');
@@ -369,7 +378,11 @@
       img.setAttribute('width', w); img.setAttribute('height', h);
     }
     buildMap();
-    window.addEventListener('resize', buildMap);
+    var mapW = innerWidth, mapT = 0;
+    window.addEventListener('resize', function () {
+      clearTimeout(mapT);
+      mapT = setTimeout(function () { if (innerWidth !== mapW) { mapW = innerWidth; buildMap(); } }, 150);
+    });
     document.documentElement.classList.add('has-refract');
   })();
 
@@ -397,7 +410,14 @@
   var heroCanvas = $('.portal__canvas');
   var closeCanvas = $('.close__canvas');
   var heroGrad = window.VSGradient ? window.VSGradient.create(heroCanvas, 'rasgo', { scale: 0.6, params: { blobCount: 5, blobSize: 0.3, spread: 1.25, posX: 0.04, posY: -0.3, density: 90 } }) : null;
-  if (window.VSGradient) window.VSGradient.create(closeCanvas, 'cortina', { scale: 0.45, duration: 18 });
+  if (window.VSGradient && closeCanvas) {
+    var closeIO = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      closeIO.disconnect();
+      window.VSGradient.create(closeCanvas, 'cortina', { scale: 0.45, duration: 18 });
+    }, { rootMargin: '100% 0px' });
+    closeIO.observe(closeCanvas);
+  }
 
   /* ---------------------------------------------------------------- portal */
   var portal = $('[data-portal]');
@@ -435,7 +455,9 @@
 
   function portalPaint() {
     if (L.on) { loaderPaint(); return; }
-    var p = P.live ? clamp(-portal.getBoundingClientRect().top / P.travel) : 0;
+    if (!portalNear) return;
+    var pr = rect(portal);
+    var p = P.live ? clamp(-pr.top / P.travel) : 0;
     var t = clamp(p / 0.78);
     var e = easeInOut(t);
     var s = Math.exp(Math.log(P.s0) + (Math.log(P.s1) - Math.log(P.s0)) * e);
@@ -447,8 +469,8 @@
     var par = (1 - e) * (fine.matches ? 1 : 0);
     var tx = cx - MONO.fx * s + mouse.sx * 10 * par;
     var ty = cy - MONO.fy * s + mouse.sy * 6 * par;
-    glyph.setAttribute('transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) + ') scale(' + s.toFixed(4) + ')');
-    paper.style.visibility = t >= 1 ? 'hidden' : 'visible';
+    setAttr(glyph, 'transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) + ') scale(' + s.toFixed(4) + ')');
+    setVar(paper, 'visibility', t >= 1 ? 'hidden' : 'visible');
     if (heroGrad && heroGrad.ok) {
       // ao entrar, o brilho volta para a direita e deixa o lado do texto escuro
       heroGrad.p.posX = 0.04 + (0.42 - 0.04) * e;
@@ -456,12 +478,11 @@
     }
     var f = 1 - smooth(0, 0.11, p);
     var a = P.live ? smooth(0.8, 0.93, p) : 1;
-    pin.style.setProperty('--front', f.toFixed(3));
-    pin.style.setProperty('--front-hit', f > 0.6 ? 'auto' : 'none');
-    pin.style.setProperty('--after', a.toFixed(3));
-    pin.style.setProperty('--after-hit', a > 0.6 ? 'auto' : 'none');
-    portalDark = P.live && t > 0.62 && portal.getBoundingClientRect().bottom > 40;
-    toneHeader();
+    setVar(pin, '--front', f.toFixed(3));
+    setVar(pin, '--front-hit', f > 0.6 ? 'auto' : 'none');
+    setVar(pin, '--after', a.toFixed(3));
+    setVar(pin, '--after-hit', a > 0.6 ? 'auto' : 'none');
+    portalDark = P.live && t > 0.62 && pr.bottom > 40;
   }
 
   /* ---------------------------------------------------------------- carregamento
@@ -623,49 +644,76 @@
         letters: splitLetters($('[data-specimen]', li)),
         wdthOut: $('[data-axis-wdth]', li),
         wghtOut: $('[data-axis-wght]', li),
-        px: null
+        px: null, cx: [], fs: 120, key: ''
       };
     });
+    measureSpecimens();
   }
-  function shapeSpecimen(sp, x) {
+  // centro de cada letra em repouso, relativo à linha
+  function measureSpecimens() {
+    specs.forEach(function (sp) {
+      var base = sp.li.getBoundingClientRect().left;
+      sp.cx = sp.letters.map(function (l) { var b = l.getBoundingClientRect(); return b.left - base + b.width / 2; });
+      sp.fs = parseFloat(getComputedStyle(sp.letters[0] || sp.li).fontSize) || 120;
+    });
+  }
+  // amp (0 a 1) é a intensidade do efeito: o cursor a leva a 1 ao entrar e a 0 ao sair
+  function shapeSpecimen(sp, x, left, amp) {
     var maxW = 100, maxG = 300;
-    var fs = parseFloat(getComputedStyle(sp.letters[0] || sp.li).fontSize) || 120;
-    sp.letters.forEach(function (l) {
+    if (amp == null) amp = 1;
+    var key = x == null || amp < 0.002 ? 'rest' : Math.round(x - left) + ':' + Math.round(amp * 100);
+    if (key === sp.key) return;
+    sp.key = key;
+    sp.letters.forEach(function (l, i) {
       var f = 0;
       if (x != null) {
-        var b = l.getBoundingClientRect();
-        var d = (b.left + b.width / 2 - x) / (fs * 0.85);
-        f = Math.exp(-d * d);
+        var d = (left + sp.cx[i] - x) / (sp.fs * 0.85);
+        f = Math.exp(-d * d) * amp;
       }
-      var w = 100 + 51 * f, g = 300 + 600 * f;
-      l.style.setProperty('--lw', w.toFixed(1));
-      l.style.setProperty('--lg', Math.round(g));
-      l.classList.toggle('is-hot', f > 0.72);
+      // valores inteiros (largura) e em passos de 10 (peso): menos instâncias da fonte para montar,
+      // e só as letras que mudaram são reescritas. A suavização é feita no laço, não em transição CSS:
+      // com transição, cada atualização reiniciava dezenas de animações ao mesmo tempo
+      var w = Math.round(100 + 51 * f), g = Math.round((300 + 600 * f) / 10) * 10;
+      setVar(l, '--lw', w + '');
+      setVar(l, '--lg', g + '');
+      var hot = f > 0.72;
+      if (l._hot !== hot) { l._hot = hot; l.classList.toggle('is-hot', hot); }
       if (w > maxW) { maxW = w; maxG = g; }
     });
-    sp.wdthOut.textContent = Math.round(maxW);
-    sp.wghtOut.textContent = Math.round(maxG);
+    var wt = Math.round(maxW) + '', gt = Math.round(maxG) + '';
+    if (sp.wdthOut._t !== wt) { sp.wdthOut._t = wt; sp.wdthOut.textContent = wt; }
+    if (sp.wghtOut._t !== gt) { sp.wghtOut._t = gt; sp.wghtOut.textContent = gt; }
   }
+  // o cursor só define o alvo; o laço único aproxima posição e intensidade quadro a quadro
   specimens.forEach(function (li, i) {
     li.addEventListener('pointermove', function (e) {
       if (!fine.matches || reduce.matches) return;
-      specs[i].px = e.clientX;
-      shapeSpecimen(specs[i], e.clientX);
+      var sp = specs[i];
+      sp.tx = e.clientX; sp.ampT = 1; sp.live = true;
     });
     li.addEventListener('pointerleave', function () {
       if (!fine.matches) return;
-      specs[i].px = null;
-      shapeSpecimen(specs[i], null);
+      specs[i].ampT = 0;
     });
   });
+  function stepSpecimens() {
+    specs.forEach(function (sp) {
+      if (!sp.live) return;
+      var left = rect(sp.li).left;
+      if (sp.tx != null) sp.xr = (sp.xr == null ? sp.tx - left : sp.xr + (sp.tx - left - sp.xr) * 0.2);
+      sp.amp = (sp.amp || 0) + (sp.ampT - (sp.amp || 0)) * 0.12;
+      if (sp.ampT === 0 && sp.amp < 0.002) { sp.amp = 0; sp.live = false; sp.xr = null; }
+      shapeSpecimen(sp, sp.live ? left + sp.xr : null, left, sp.amp);
+    });
+  }
   function paintSpecimensByScroll() {
     if (fine.matches || reduce.matches) return;
     var vh = window.innerHeight;
     specs.forEach(function (sp) {
-      var r = sp.li.getBoundingClientRect();
+      var r = rect(sp.li);
       if (r.bottom < 0 || r.top > vh) return;
       var prog = clamp((vh - r.top) / (vh + r.height));
-      shapeSpecimen(sp, r.left + r.width * (prog * 1.4 - 0.2));
+      shapeSpecimen(sp, r.left + r.width * (prog * 1.4 - 0.2), r.left);
     });
   }
 
@@ -714,7 +762,7 @@
   }
   function paintLayersByScroll() {
     if (!layers || fine.matches) return;
-    var r = layers.getBoundingClientRect();
+    var r = rect(layers);
     setLayers(r.top < window.innerHeight * 0.55 && r.bottom > window.innerHeight * 0.2);
   }
 
@@ -723,42 +771,42 @@
   var trace = $('[data-trace]');
   var traceLine = $('[data-trace-line]');
   var traceMarks = $$('[data-trace-mark]');
-  var traceLen = 0, traceSvg = null, traceV = [], traceStep = 0, trTarget = 0, trCur = 0, trShown = -1;
-  var TRACE_N = 800, TRACE_KNOT_Y = 540;
+  // tabela do traçado em unidades do viewBox (1278 × 2319), gerada uma vez a partir do próprio path:
+  // L é o comprimento; V, a altura "virtual" monotônica de N + 1 pontos (no nó, distribuída pela altura do nó);
+  // marks, [fração, x, y] de cada marco. Calcular isso no navegador custava mais de 1 s em aparelhos modestos.
+  // Se o path mudar, gere a tabela de novo.
+  var TRACE = {"L":10919,"N":400,"V":[0,2,5,7,10,12,14,17,19,21,24,26,29,31,33,36,38,40,43,45,48,50,52,55,57,59,62,64,67,69,71,74,76,79,81,83,86,88,90,93,95,98,100,102,105,107,109,112,114,117,119,121,124,126,128,131,133,136,138,140,143,145,147,150,152,155,157,159,162,164,167,169,171,174,176,178,181,183,186,188,190,193,195,197,200,202,205,207,209,212,214,216,219,221,224,226,228,231,233,236,238,240,243,245,247,250,252,255,257,259,262,264,266,269,271,274,276,278,281,283,285,288,290,293,295,297,300,302,304,307,309,312,314,316,319,321,324,326,328,331,333,335,338,340,343,345,347,350,352,354,357,359,362,364,366,369,371,373,376,378,381,383,385,388,390,393,395,397,400,402,404,407,409,412,414,416,419,421,423,426,428,431,433,435,438,440,442,445,447,450,452,454,457,459,461,464,466,469,471,473,476,478,481,483,485,488,490,492,495,497,500,502,504,507,509,511,514,516,519,521,523,526,528,530,533,535,538,543,571,598,625,651,677,703,728,754,779,804,830,856,882,909,936,964,991,1016,1041,1064,1085,1105,1123,1140,1155,1166,1173,1177,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1179,1180,1201,1224,1246,1270,1294,1318,1343,1368,1394,1420,1447,1473,1501,1528,1555,1582,1609,1635,1660,1684,1706,1726,1743,1759,1771,1782,1791,1799,1804,1809,1812,1813,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1814,1821,1840,1861,1884,1909,1935,1961,1988,2015,2042,2069,2095,2118,2138,2154,2166,2174,2181,2186,2190,2193,2195,2196,2197,2198,2199,2199,2200,2200,2201,2202,2203,2205,2207,2209,2213,2217,2223,2229,2237,2247,2258,2272,2288,2306,2327,2349,2374,2399,2426,2453,2480,2507,2534,2562,2589,2616,2642,2669],"marks":[[0.6,1049.3,882.3],[0.67,486,1121.2],[0.8,528.4,1804.1],[0.92,816.9,2199]]};
+  var traceLen = 0, traceSvg = null, traceV = TRACE.V, traceStep = 0, trTarget = 0, trCur = 0, trShown = -1;
+  var TRACE_N = TRACE.N;
   function layoutTrace() {
     if (!traceLine) return;
     traceSvg = traceLine.ownerSVGElement;
-    traceLen = traceLine.getTotalLength();
+    traceLen = TRACE.L;
     traceStep = traceLen / TRACE_N;
+    // pathLength normaliza o tracejado: o comprimento medido varia um pouco entre navegadores
+    traceLine.setAttribute('pathLength', traceLen);
     traceLine.style.strokeDasharray = traceLen + ' ' + traceLen;
-    // altura "virtual" monotônica de cada ponto do traçado
-    var ys = [], knot = TRACE_N, maxY = 0, i;
-    for (i = 0; i <= TRACE_N; i++) {
-      var y = traceLine.getPointAtLength(i * traceStep).y;
-      maxY = Math.max(maxY, y); ys.push(maxY);
-      if (knot === TRACE_N && maxY > TRACE_KNOT_Y) knot = i;
-    }
-    traceV = ys.map(function (v, k) { return k < knot ? TRACE_KNOT_Y * k / knot : v; });
-    var vb = traceSvg.viewBox.baseVal, box = traceSvg.getBoundingClientRect(), vw = document.documentElement.clientWidth;
-    traceMarks.forEach(function (li) {
-      var f = parseFloat(li.dataset.traceMark), p = traceLine.getPointAtLength(traceLen * f);
-      li.len = traceLen * f;
-      li.style.setProperty('--mx', (p.x / vb.width * 100) + '%');
-      li.style.setProperty('--my', (p.y / vb.height * 100) + '%');
-      // o rótulo nunca sai da tela
-      var tag = li.lastElementChild;
-      tag.style.removeProperty('--nx');
-      var r = tag.getBoundingClientRect(), nx = 0;
-      if (r.left < 16) nx = 16 - r.left; else if (r.right > vw - 16) nx = vw - 16 - r.right;
-      if (nx) tag.style.setProperty('--nx', nx.toFixed(0) + 'px');
+    var vb = traceSvg.viewBox.baseVal, vw = document.documentElement.clientWidth;
+    traceMarks.forEach(function (li, i) {
+      var m = TRACE.marks[i];
+      li.len = traceLen * m[0];
+      li.style.setProperty('--mx', (m[1] / vb.width * 100) + '%');
+      li.style.setProperty('--my', (m[2] / vb.height * 100) + '%');
+      li.lastElementChild.style.removeProperty('--nx');
     });
+    // o rótulo nunca sai da tela: mede todos depois de posicionar, numa leitura só
+    var nudges = traceMarks.map(function (li) {
+      var r = li.lastElementChild.getBoundingClientRect();
+      return r.left < 16 ? 16 - r.left : (r.right > vw - 16 ? vw - 16 - r.right : 0);
+    });
+    traceMarks.forEach(function (li, i) { if (nudges[i]) li.lastElementChild.style.setProperty('--nx', nudges[i].toFixed(0) + 'px'); });
     trShown = -1;
     dirty = true;
   }
   function aimTrace() {
     if (!traceLen) return;
     if (reduce.matches) { trTarget = trCur = traceLen; return; }
-    var box = traceSvg.getBoundingClientRect();
+    var box = rect(traceSvg);
     var yT = (window.innerHeight * 0.62 - box.top) / (box.height / traceSvg.viewBox.baseVal.height);
     var lo = 0, hi = TRACE_N;
     if (yT < traceV[0]) { trTarget = 0; return; }
@@ -827,9 +875,16 @@
   });
   casesList.addEventListener('pointerleave', function () { pk.on = false; peek.classList.remove('is-on'); });
   // pré-carrega as prévias quando o navegador estiver livre
-  (window.requestIdleCallback || setTimeout)(function () {
-    $$('[data-case-img]').forEach(function (r) { var i = new Image(); i.src = r.dataset.caseImg; });
-  });
+  if (fine.matches) {
+    var peekIO = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      peekIO.disconnect();
+      (window.requestIdleCallback || setTimeout)(function () {
+        $$('[data-case-img]').forEach(function (r) { var i = new Image(); i.decoding = 'async'; i.src = r.dataset.caseImg; });
+      });
+    }, { rootMargin: '100% 0px' });
+    peekIO.observe(casesList);
+  }
 
   /* ---------------------------------------------------------------- sobre: o retrato sai de dentro do monograma */
   var about = $('[data-about]');
@@ -839,9 +894,9 @@
   var AB = { x: 40, y: 472, s: 1.088, px: -7, py: 0, mx: 0, my: 0, neck: 520 };
   var easeOut = function (t) { return 1 - Math.pow(1 - t, 4); };
   function paintAbout() {
-    if (!about) return;
+    if (!about || !aboutNear) return;
     var vh = window.innerHeight;
-    var r = about.getBoundingClientRect();
+    var r = rect(about);
     if (r.bottom < -50 || r.top > vh + 50) return;
     // o progresso conta a partir da borda do monograma, não do topo da imagem
     var monoTop = r.top + r.height * (AB.y / 860);
@@ -858,16 +913,16 @@
     // escala a partir do centro do monograma
     var cx = mx + (514.7 * (AB.s - ms)) / 2;
     var t = 'translate(' + cx.toFixed(2) + ' ' + my.toFixed(2) + ') scale(' + ms.toFixed(4) + ')';
-    aboutMonos.forEach(function (el) { el.setAttribute('transform', t); });
+    aboutMonos.forEach(function (el) { setAttr(el, 'transform', t); });
     var py = AB.py + (1 - u) * 540 + AB.my * 8;
     // quando o retrato termina de subir, a área livre desce até o pescoço,
     // para o queixo não ser cortado no vão do V; durante a subida a borda é a do monograma
     var neck = py + AB.neck;
     var k = smooth(my + 110, my + 70, neck);
     var sky = my + Math.max(0, neck - my) * k;
-    aboutSky.setAttribute('height', (sky + 600 + 1).toFixed(2));
-    aboutPerson.setAttribute('x', (AB.px + AB.mx * 14).toFixed(2));
-    aboutPerson.setAttribute('y', py.toFixed(2));
+    setAttr(aboutSky, 'height', (sky + 600 + 1).toFixed(1));
+    setAttr(aboutPerson, 'x', (AB.px + AB.mx * 14).toFixed(1));
+    setAttr(aboutPerson, 'y', py.toFixed(1));
   }
 
   /* ---------------------------------------------------------------- avaliações */
@@ -906,29 +961,68 @@
       if (specXY) {
         var gx = heroGrad.p.posX + heroGrad.offset.x, gy = heroGrad.p.posY + heroGrad.offset.y;
         var f2 = function (v) { return (Math.abs(v) < 0.005 ? 0 : v).toFixed(2); };
-        specXY.textContent = f2(gx) + ' / ' + f2(gy);
+        var xy = f2(gx) + ' / ' + f2(gy);
+        if (specXY._t !== xy) { specXY._t = xy; specXY.textContent = xy; }
       }
     }
-    // o portal acompanha a rolagem e o cursor; o resto, só a rolagem
+    // leituras primeiro: tudo o que o quadro vai medir, num único cálculo de layout
+    rects.clear();
+    var wasDirty = dirty;
+    if (portalNear) rect(portal);
+    if (aboutNear) rect(about);
+    specs.forEach(function (sp) { if (sp.live) rect(sp.li); });
+    if (wasDirty) {
+      darkZones.forEach(rect);
+      if (traceSvg && traceNear) rect(traceSvg);
+      if (layers && !fine.matches) rect(layers);
+      if (!fine.matches) specs.forEach(function (sp) { rect(sp.li); });
+    }
+    // depois as escritas: o portal acompanha a rolagem e o cursor; o resto, só a rolagem
     portalPaint();
     paintAbout();
     drawTrace();
-    if (dirty) {
+    stepSpecimens();
+    if (wasDirty) {
       dirty = false;
+      toneHeader();
       paintStatement();
       paintLayersByScroll();
       paintSpecimensByScroll();
-      aimTrace();
+      if (traceNear) aimTrace();
     }
   }
+  // quem está perto da tela: o resto do quadro nem é medido
+  var portalNear = true, aboutNear = false, traceNear = false;
+  var nearIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.target === portal) portalNear = en.isIntersecting;
+      else if (en.target === about) aboutNear = en.isIntersecting;
+      else if (en.target === trace) traceNear = en.isIntersecting;
+    });
+    dirty = true;
+  }, { rootMargin: '25% 0px' });
+  [portal, about, trace].forEach(function (el) { if (el) nearIO.observe(el); });
   window.addEventListener('scroll', function () { dirty = true; }, { passive: true });
 
-  function relayout() { portalLayout(); if (stWords.length) measureStatement(); buildLayers(); layoutTrace(); dirty = true; }
+  var lastW = 0, resizeT = 0;
+  function relayout(force) {
+    var w = window.innerWidth;
+    portalLayout();
+    if (force === true || w !== lastW) {
+      lastW = w;
+      if (stWords.length) measureStatement();
+      buildLayers();
+      measureSpecimens();
+      layoutTrace();
+    }
+    dirty = true;
+  }
+  function relayoutAll() { relayout(true); }
   function prepText() { prepStatement(); prepSpecimens(); buildLayers(); dirty = true; }
-  document.addEventListener('vs:lang', function () { prepText(); relayout(); });
-  window.addEventListener('resize', relayout);
-  reduce.addEventListener('change', relayout);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+  document.addEventListener('vs:lang', function () { prepText(); relayout(true); });
+  window.addEventListener('resize', function () { clearTimeout(resizeT); resizeT = setTimeout(relayout, 120); });
+  reduce.addEventListener('change', relayoutAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayoutAll);
 
   prepText();
   relayout();

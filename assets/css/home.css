@@ -4,6 +4,26 @@
    Cádmio e Carmim em campos inteiros, shader VS como única imagem de fundo.
    ========================================================================== */
 
+/* fontes hospedadas no próprio site (subconjunto latino, cobre PT e EN):
+   sem a ida ao Google antes da primeira pintura */
+@font-face {
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+  font-display: swap;
+  src: url(../fonts/roboto-flex-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(../fonts/plus-jakarta-sans-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   /* Marca */
   --cadmio: #ee2324;
@@ -549,16 +569,26 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   white-space: nowrap;
   padding-top: 8px;
   cursor: default;
+  height: calc(1.04em + 8px);
 }
+/* a largura variável das letras recalcula só este bloco, não a página.
+   O Chrome não usa item de grid como fronteira de recálculo; por isso a contenção fica no bloco interno */
+.specimen__word > span { display: block; height: 100%; contain: size layout paint; }
 .specimen__word .l {
   display: inline-block;
   font-variation-settings: "wdth" var(--lw, 100), "wght" var(--lg, 300), "opsz" 144;
-  transition: font-variation-settings 0.6s var(--ease), color 0.6s var(--ease);
+  /* os eixos são suavizados no laço de JS; aqui só a cor transiciona */
+  transition: color 0.6s var(--ease);
 }
 .specimen__word .l.is-hot { color: var(--carmim); }
-.specimen__meta { padding-bottom: clamp(18px, 2.4vw, 34px); display: grid; gap: 10px; }
+.specimen__meta { padding-bottom: clamp(18px, 2.4vw, 34px); }
+.specimen__meta p + p { margin-top: 10px; }
 .specimen__meta p:first-child { font-size: 1rem; color: var(--ink-soft); }
-.specimen__axes { font-size: 0.8rem; color: var(--ink-mute); }
+.specimen__axes {
+  font-size: 0.8rem; color: var(--ink-mute);
+  /* os números mudam a cada quadro: altura fixa + contenção mantêm o recálculo dentro do rótulo */
+  height: 1.6em; line-height: 1.6; contain: size layout paint;
+}
 
 /* ==========================================================================
    Processo
@@ -873,7 +903,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
 @media (max-width: 900px), (hover: none) {
   .case > a, .case > div { grid-template-columns: 88px minmax(0, 1fr) 20px; gap: 16px; min-height: 84px; }
-  .case__thumb { display: block; grid-row: 1 / span 2; width: 88px; aspect-ratio: 5 / 3; object-fit: cover; border-radius: 4px; }
+  .case__thumb { display: block; grid-row: 1 / span 2; width: 88px; height: auto; aspect-ratio: 5 / 3; object-fit: cover; border-radius: 4px; }
   .case__name { grid-column: 2; font-size: clamp(1.5rem, 6.4vw, 2.5rem); }
   .case__kind { grid-column: 2; text-align: left; font-size: 0.85rem; }
   .case__arrow { grid-column: 3; grid-row: 1 / span 2; }
@@ -938,3 +968,13 @@ html.is-loading .top { transform: translateY(-110%); }
 .portal__front > :nth-child(3) { --i: 2; }
 .portal__front > :nth-child(4) { --i: 3; }
 html.is-loading .portal__front > * { opacity: 0; transform: translateY(36px); transition: none; }
+
+/* ==========================================================================
+   Aparelhos modestos: as mesmas animações, com vidro mais barato de compor
+   ========================================================================== */
+.perf-low .top__row::before { -webkit-backdrop-filter: blur(10px) saturate(130%); backdrop-filter: blur(10px) saturate(130%); }
+.perf-low .nav__overlay { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+/* seções longe da tela não são renderizadas até se aproximarem (sem medições de JS dentro delas) */
+.faq, .foot { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+/* sem Lenis no toque, o menu aberto trava a rolagem pelo próprio documento */
+html.nav-open { overflow: hidden; }

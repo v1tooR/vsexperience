@@ -141,11 +141,25 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  // nível de desempenho: a home decide no <head>; nas outras páginas, decide aqui
+  var root = document.documentElement;
+  if (!root.classList.contains('perf-low')) {
+    var nc = navigator.hardwareConcurrency || 8, dm = navigator.deviceMemory || 8, cn = navigator.connection;
+    if (nc <= 4 || dm <= 4 || (cn && cn.saveData)) root.classList.add('perf-low');
+  }
+  var PERF_LOW = root.classList.contains('perf-low');
+  // o gradiente é macio: em telas de toque com 3x de densidade, acima de 1,5x não se vê diferença, só se paga por ela
+  var TOUCH = window.matchMedia('(hover: none)').matches;
+  var DPR_CAP = PERF_LOW ? 1 : (TOUCH ? 1.5 : 2);
+
   function Gradient(canvas, preset, opts) {
     opts = opts || {};
     this.canvas = canvas;
     this.p = Object.assign({}, PRESETS[preset] || PRESETS.rasgo, opts.params || {});
-    this.scale = opts.scale || 0.5;
+    this.scale = (opts.scale || 0.5) * (PERF_LOW ? 0.75 : 1);
+    this.minScale = this.scale * 0.45;
+    // em aparelhos modestos o shader desenha a 30 quadros; o movimento é lento, a diferença não aparece
+    this.step = PERF_LOW ? 2 : 1;
     this.duration = (opts.duration || 14) * 1000;
     this.speed = opts.speed == null ? 1 : opts.speed;
     this.offset = { x: 0, y: 0 };
@@ -241,9 +255,10 @@
 
   Gradient.prototype.resize = function () {
     var r = this.canvas.getBoundingClientRect();
-    var k = this.scale * Math.min(window.devicePixelRatio || 1, 2);
+    var k = this.scale * Math.min(window.devicePixelRatio || 1, DPR_CAP);
     var w = Math.max(2, Math.round(r.width * k)), h = Math.max(2, Math.round(r.height * k));
-    if (w > 1280) { h = Math.round(h * 1280 / w); w = 1280; }
+    var maxW = PERF_LOW ? 720 : 1280;
+    if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
     if (this.canvas.width !== w || this.canvas.height !== h) { this.canvas.width = w; this.canvas.height = h; }
   };
 
@@ -284,13 +299,19 @@
     if (!this.ok || this.raf) return;
     var self = this;
     if (reduceMotion.matches) { this.draw(); return; }
-    var last = 0, slow = 0;
+    var last = 0, slow = 0, n = 0;
     function loop(now) {
       self.raf = requestAnimationFrame(loop);
-      // degrada a resolução se o aparelho não acompanhar
-      if (last && now - last > 40) { if (++slow > 20 && self.scale > 0.45) { self.scale = 0.45; self.resize(); slow = 0; } }
-      else slow = Math.max(0, slow - 1);
+      // degrada aos poucos se o aparelho não acompanhar: primeiro a resolução, depois a cadência
+      if (last && now - last > 34) {
+        if (++slow > 24) {
+          slow = 0;
+          if (self.scale > self.minScale) { self.scale = Math.max(self.minScale, self.scale * 0.8); self.resize(); }
+          else if (self.step < 3) self.step++;
+        }
+      } else slow = Math.max(0, slow - 1);
       last = now;
+      if (++n % self.step) return;
       self.draw(now);
     }
     this.raf = requestAnimationFrame(loop);

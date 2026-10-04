@@ -1,0 +1,29 @@
+# Desempenho: compressão e cache no Apache.
+# Tudo protegido por IfModule: se o módulo não existir no servidor, a regra é ignorada sem erro.
+
+# compressão de texto (HTML, CSS, JS, SVG, JSON)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript text/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+</IfModule>
+
+# cache
+<IfModule mod_headers.c>
+  # HTML, CSS e JS: o navegador guarda, mas confere a cada visita (resposta 304 barata);
+  # os nomes não mudam a cada deploy, então nada de cache longo aqui
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # fontes: nunca mudam com o mesmo nome
+  <FilesMatch "\.(woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # imagens: um mês
+  <FilesMatch "\.(webp|png|jpg|jpeg|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
