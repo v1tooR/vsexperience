@@ -1,5 +1,7 @@
 # VS Experience - Production Build
 
+> Documento histórico de fevereiro de 2026. Para o site atual, usar [DEPLOY-SEO.md](DEPLOY-SEO.md) e [SEO.md](SEO.md). O domínio correto é `https://vsexperience.com.br/`; a estrutura, o cache e as configurações abaixo são antigos.
+
 ## 📁 Estrutura de Pastas
 
 ```

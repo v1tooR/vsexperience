@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const crypto = require('node:crypto');
 const { origin, pages } = require('./pages.cjs');
 const root = path.resolve(__dirname, '../..');
 const playwright = require(process.env.VS_PLAYWRIGHT_MODULE || 'C:/Users/Usuario/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
@@ -36,7 +37,13 @@ function head(html, p) {
     link('icon', '/assets/images/brand/favicon.svg');
     link('apple-touch-icon', '/assets/images/brand/apple-touch-icon.png');
   }
-  return h + tail;
+  h = h.replace(/^[ \t]+(?=\r?$)/gm, '').replace(/\n(?:[ \t]*\r?\n){2,}/g, '\n\n').trimEnd() + '\n';
+  return (h + tail).replace(/(href|src)="(?!https?:|\/\/)([^"?#]+\.(?:css|js))(?:\?v=[^"]*)?"/g, (match, attr, ref) => {
+    const asset = ref.startsWith('/') ? path.join(root, ref.slice(1)) : path.resolve(root, path.dirname(p.file), ref);
+    if (!fs.existsSync(asset)) return match;
+    const version = crypto.createHash('md5').update(fs.readFileSync(asset)).digest('hex').slice(0, 8);
+    return attr + '="' + ref + '?v=' + version + '"';
+  });
 }
 function schema(html, p) {
   const re = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/;
@@ -45,6 +52,8 @@ function schema(html, p) {
   const graph = data['@graph'];
   function walk(obj) {
     if (!obj || typeof obj !== 'object') return;
+    // ProfessionalService was deprecated; the studio is an Organization.
+    if (obj['@type'] === 'ProfessionalService') obj['@type'] = 'Organization';
     for (const [k, v] of Object.entries(obj)) {
       if (typeof v === 'string' && /(?:capaseo\.webp|servicos\/assets\/og\/[^/]+\.jpg)$/.test(v)) obj[k] = p.image;
       else if (k === 'dateModified') obj[k] = date;
@@ -65,6 +74,10 @@ function schema(html, p) {
   if (p.key === 'home') {
     graph.find(n => n['@type'] === 'WebSite').description = p.description;
     graph.find(n => n['@type'] === 'WebSite').publisher = { '@id': origin + '/#service' };
+    const organization = graph.find(n => n['@type'] === 'Organization');
+    organization.logo = { '@type': 'ImageObject', url: origin + '/assets/images/brand/apple-touch-icon.png', width: 180, height: 180 };
+    organization.telephone = '+5512991833641';
+    organization.contactPoint = { '@type': 'ContactPoint', contactType: 'customer service', url: 'https://api.whatsapp.com/send?phone=5512991833641', availableLanguage: ['Portuguese', 'English'] };
   }
   if (p.key === 'bio') {
     const home = JSON.parse(read('index.html').match(re)[1]);

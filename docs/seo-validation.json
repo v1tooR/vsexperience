@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-10-04T15:20:51.685Z",
+  "environment": "local Python HTTP server; Apache rules require production verification",
+  "pages": [
+    {
+      "path": "/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/home-vs.jpg",
+      "h1": "Criando experiências únicas. Pensadas para validar, converter e escalar."
+    },
+    {
+      "path": "/en/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/home-en-vs.jpg",
+      "h1": "Creating distinctive experiences. Built to validate, convert and scale."
+    },
+    {
+      "path": "/servicos/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Serviços de design e desenvolvimento web O que seu negócio precisa ganha forma aqui."
+    },
+    {
+      "path": "/servicos/landing-page/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/landing-page-vs.jpg",
+      "h1": "Criação de landing page Sua oferta clara. O próximo passo também."
+    },
+    {
+      "path": "/servicos/site-institucional/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/site-institucional-vs.jpg",
+      "h1": "Criação de site institucional Uma presença que constrói confiança antes da reunião."
+    },
+    {
+      "path": "/servicos/e-commerce/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg",
+      "h1": "Criação de loja virtual Da descoberta ao pagamento, uma compra fácil de seguir."
+    },
+    {
+      "path": "/servicos/sistemas-saas/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg",
+      "h1": "Desenvolvimento de sistemas web e SaaS Seu processo mais claro. Seu produto pronto para evoluir."
+    },
+    {
+      "path": "/servicos/design-system/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/design-system-vs.jpg",
+      "h1": "Criação de design system Seu produto cresce. A consistência acompanha."
+    },
+    {
+      "path": "/bio.html",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/bio-vs.jpg",
+      "h1": "Interfaces com\n          intenção.\n          Código com\n          precisão."
+    }
+  ],
+  "distinctResourcesChecked": 53,
+  "runtimeErrors": [],
+  "languageNavigation": "pass",
+  "sitemap": "pass",
+  "unknownRoute": 404
+}

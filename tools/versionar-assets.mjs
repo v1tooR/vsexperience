@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pages = [
   'index.html',
+  'en/index.html',
   'servicos/index.html',
   ...['design-system', 'e-commerce', 'landing-page', 'sistemas-saas', 'site-institucional'].map((s) => `servicos/${s}/index.html`),
 ];
@@ -23,7 +24,7 @@ for (const page of pages) {
   let count = 0;
   // href="…​.css" e src="…​.js" relativos (ignora http, https e //)
   html = html.replace(/(href|src)="(?!https?:|\/\/)([^"?#]+\.(?:css|js))(?:\?v=[^"]*)?"/g, (m, attr, ref) => {
-    const file = path.join(path.dirname(pagePath), ref);
+    const file = ref.startsWith('/') ? path.join(root, ref.slice(1)) : path.join(path.dirname(pagePath), ref);
     if (!fs.existsSync(file)) return m;
     count++;
     return `${attr}="${ref}?v=${hash(file)}"`;

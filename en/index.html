@@ -140,11 +140,16 @@
       }
     },
     {
-      "@type": "ProfessionalService",
+      "@type": "Organization",
       "@id": "https://vsexperience.com.br/#service",
       "name": "VS Experience",
       "url": "https://vsexperience.com.br/",
-      "logo": "https://vsexperience.com.br/assets/images/brand/monograma-cadmio.svg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://vsexperience.com.br/assets/images/brand/apple-touch-icon.png",
+        "width": 180,
+        "height": 180
+      },
       "image": "https://vsexperience.com.br/assets/images/og/home-en-vs.jpg",
       "founder": {
         "@id": "https://vsexperience.com.br/#person"
@@ -210,7 +215,17 @@
       "sameAs": [
         "https://www.linkedin.com/in/victor-santos-670525232/",
         "https://www.instagram.com/victorssantos.ux/"
-      ]
+      ],
+      "telephone": "+5512991833641",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "url": "https://api.whatsapp.com/send?phone=5512991833641",
+        "availableLanguage": [
+          "Portuguese",
+          "English"
+        ]
+      }
     },
     {
       "@type": "FAQPage",
@@ -295,7 +310,6 @@
 
   <meta name="twitter:image:alt" content="Victor Santos · VS Experience — Design and technology for your business.">
 
-  
   <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/">
   <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/">
   <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/">
@@ -725,7 +739,7 @@
 
   <script src="/assets/js/vendor/lenis.min.js?v=06586536" defer=""></script>
   <script src="/assets/js/vs-gradient.js?v=ccf7558b" defer=""></script>
-  <script src="/assets/js/home.js?v=1aca72c2" defer=""></script>
+  <script src="/assets/js/home.js?v=9a6bda6d" defer=""></script>
 
 
 </body></html>

@@ -1,82 +1,56 @@
-# VS Experience - .htaccess
-# Configurações de Performance e Segurança
+# Desempenho: compressão e cache no Apache.
+# Tudo protegido por IfModule: se o módulo não existir no servidor, a regra é ignorada sem erro.
 
-# Habilitar mod_rewrite
+# compressão de texto (HTML, CSS, JS, SVG, JSON)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript text/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+# Canonical URLs and compatibility with old language links.
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
-  
-  # Remove .html da URL (opcional - se usar SPA)
-  # RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.html\ HTTP
-  # RewriteRule ^/?(.*)\.html$ /$1 [L,R=301]
-  
-  # Redireciona URLs sem trailing slash para com trailing slash (raiz)
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.+)$ /$1/ [L,R=301]
+
+  RewriteCond %{HTTP_HOST} ^www\.vsexperience\.com\.br$ [NC]
+  RewriteRule ^ https://vsexperience.com.br%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{HTTP_HOST} ^vsexperience\.com\.br$ [NC]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+  RewriteRule ^ https://vsexperience.com.br%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{QUERY_STRING} (^|&)lang=en(&|$) [NC]
+  RewriteRule ^(?:index\.html)?$ /en/ [R=301,L,QSD]
+  RewriteCond %{QUERY_STRING} (^|&)lang=pt(&|$) [NC]
+  RewriteRule ^en/(?:index\.html)?$ / [R=301,L,QSD]
+
+  # THE_REQUEST prevents a loop when Apache serves DirectoryIndex internally.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html(?:[?\s]) [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]
 </IfModule>
 
-# Habilitar compressão GZIP
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
-  AddOutputFilterByType DEFLATE font/truetype font/opentype application/vnd.ms-fontobject image/svg+xml
-</IfModule>
-
-# Cache no Browser
-<IfModule mod_expires.c>
-  ExpiresActive On
-  
-  # Cache para arquivos estáticos (1 ano)
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType font/truetype "access plus 1 year"
-  ExpiresByType font/opentype "access plus 1 year"
-  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
-  ExpiresByType application/x-font-woff "access plus 1 year"
-  ExpiresByType application/x-font-woff2 "access plus 1 year"
-  
-  # Cache para CSS e JS (1 mês)
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-  
-  # Cache para HTML (1 dia)
-  ExpiresByType text/html "access plus 1 day"
-  
-  # Default
-  ExpiresDefault "access plus 2 days"
-</IfModule>
-
-# Headers de Segurança
+# Do not index proposals or internal utilities. Allow robots to read this header.
 <IfModule mod_headers.c>
-  # Previne clickjacking
-  Header always set X-Frame-Options "SAMEORIGIN"
-  
-  # Ativa proteção contra MIME-sniffing
-  Header always set X-Content-Type-Options "nosniff"
-  
-  # Ativa XSS protection
-  Header always set X-XSS-Protection "1; mode=block"
-  
-  # Referrer Policy
-  Header always set Referrer-Policy "no-referrer-when-downgrade"
-  
-  # Permissions Policy
-  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set X-Robots-Tag "noindex, follow" "expr=%{REQUEST_URI} =~ m#^/(proposta-[^/]+|Praado|qr-generator|remove-paragraph)(/|$)|^/case-mockup-test\.html$#"
 </IfModule>
 
-# Desabilitar index listing
-Options -Indexes
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+</IfModule>
 
-# Bloquear acesso a arquivos sensíveis
-<FilesMatch "\.(env|config|yaml|yml|json|lock|git)$">
-  Order allow,deny
-  Deny from all
-</FilesMatch>
-
-# Force HTTPS (descomente se usar SSL)
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# cache
+<IfModule mod_headers.c>
+  # HTML, CSS e JS: o navegador guarda, mas confere a cada visita (resposta 304 barata);
+  # os nomes não mudam a cada deploy, então nada de cache longo aqui
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # fontes: nunca mudam com o mesmo nome
+  <FilesMatch "\.(woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # imagens: um mês
+  <FilesMatch "\.(webp|png|jpg|jpeg|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
