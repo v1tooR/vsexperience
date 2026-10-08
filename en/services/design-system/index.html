@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Design system with tokens, components and documentation for consistent interfaces. See the Figma and code deliverables and the investment ranges.">
+  <title>Design system creation: Figma and code | VS Experience</title>
+  <link rel="canonical" href="https://vsexperience.com.br/en/services/design-system/">
+  <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/servicos/design-system/">
+  <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/services/design-system/">
+  <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/servicos/design-system/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://vsexperience.com.br/en/services/design-system/">
+  <meta property="og:title" content="Design system creation: Figma and code | VS Experience">
+  <meta property="og:description" content="Design system with tokens, components and documentation for consistent interfaces. See the Figma and code deliverables and the investment ranges.">
+  <meta property="og:image" content="https://vsexperience.com.br/assets/images/og/design-system-vs.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Design system creation — Consistency for your product to grow.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Design system creation: Figma and code | VS Experience">
+  <meta name="twitter:description" content="Design system with tokens, components and documentation for consistent interfaces. See the Figma and code deliverables and the investment ranges.">
+  <meta name="twitter:image" content="https://vsexperience.com.br/assets/images/og/design-system-vs.jpg">
+  <link rel="icon" href="/assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="/assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- fontes no próprio HTML: nunca dependem de um CSS em cache. O Google fica como reserva, só baixado se o arquivo local falhar -->
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../../assets/fonts/roboto-flex-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotoflex/v30/NaNeepOXO_NexZs0b5QrzlOHb8wCikXpYqmZsWI-__OGbt8jZktqc2V3Zs0KvDLdBP8SBZtOs2IifRuUZQMsPJtUsR4DEK6cULNeUx9XgTnH37Ha_FIAp4Fm0PP1hw45DntW2x0wZGzhPmr1YNMYKYn9_1IQXGwJAiUJVUMdN5YUW4O8HtSoXjC79QRyaLshNDUf9-EmFw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="/servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* Mockup · Nimbus UI, documentação de design system (produto fictício) */
+    .screen.ds { --c-accent: oklch(0.52 0.19 295); --c-on-accent: #fff; --c-ink: oklch(0.21 0.03 290); --c-tint: oklch(0.96 0.02 295); --c-danger: oklch(0.56 0.19 25); display: grid; grid-template-columns: 112px minmax(0, 1fr); }
+    .ds-side { padding: 14px 9px; border-right: 1px solid var(--m-line); background: var(--m-canvas); font-size: 7px; }
+    .ds-logo { display: flex; align-items: center; gap: 6px; margin: 0 5px 12px; font-size: 10px; font-weight: 700; }
+    .ds-logo i { width: 14px; height: 14px; border-radius: 50%; background: conic-gradient(var(--c-accent) 0 50%, oklch(0.8 0.1 295) 0); }
+    .ds-group { margin: 10px 6px 4px; color: var(--m-muted); font-size: 5.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .ds-item { display: block; padding: 5px 6px; border-radius: 5px; color: var(--m-soft); font-weight: 600; }
+    .screen.ds:has(#ds-tokens:not([hidden])) .ds-item[data-for="tokens"],
+    .screen.ds:has(#ds-componentes:not([hidden])) .ds-item[data-for="componentes"],
+    .screen.ds:has(#ds-docs:not([hidden])) .ds-item[data-for="docs"] { background: var(--c-tint); color: var(--c-accent); }
+    .ds-main { min-width: 0; }
+    .ds-top { height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--m-line); font-size: 6.5px; color: var(--m-muted); }
+    .ds-top-right { display: flex; align-items: center; gap: 6px; }
+    .ds-version { padding: 3px 6px; border-radius: 99px; background: var(--c-tint); color: var(--c-accent); font-weight: 700; }
+    .ds-switch { display: flex; padding: 2px; border-radius: 5px; background: var(--m-canvas); box-shadow: inset 0 0 0 1px var(--m-line); font-weight: 700; }
+    .ds-switch span { padding: 3px 6px; border-radius: 4px; }
+    .ds-switch span:first-child { background: #fff; color: var(--c-ink); box-shadow: 0 1px 2px oklch(0 0 0 / .1); }
+    .ds-body { padding: 14px 16px 16px; }
+    .ds-body .ds-h { font-weight: 700; margin: 0 0 3px; font-size: 14px; letter-spacing: -.02em; }
+    .ds-lead { margin: 0 0 12px; color: var(--m-muted); font-size: 7px; }
+    .ds-sub { margin: 12px 0 6px; font-size: 7px; font-weight: 700; }
+
+    .ds-ramp { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; }
+    .ds-ramp span { display: block; height: 30px; border-radius: 5px; background: var(--s); }
+    .ds-ramp small { display: block; margin-top: 3px; color: var(--m-muted); font-size: 5.5px; text-align: center; }
+    .motion-ready .ds-ramp div { animation: swatchIn .6s var(--ease) both; animation-delay: calc(1s + var(--i) * 60ms); }
+    @keyframes swatchIn { from { opacity: 0; transform: translateY(6px); } }
+    .ds-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ds-semantic { display: grid; gap: 5px; }
+    .ds-semantic div { display: flex; align-items: center; gap: 7px; font-size: 6.5px; }
+    .ds-semantic i { width: 14px; height: 14px; border-radius: 4px; background: var(--s); }
+    .ds-semantic code { color: var(--m-soft); font-family: inherit; }
+    .ds-type div { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; border-bottom: 1px solid var(--m-line); }
+    .ds-type b { font-weight: 700; letter-spacing: -.02em; }
+    .ds-type span { color: var(--m-muted); font-size: 5.5px; }
+
+    .ds-buttons { display: grid; grid-template-columns: 46px repeat(4, 1fr); gap: 5px 6px; align-items: center; font-size: 6px; }
+    .ds-buttons > span:not(.ds-btn) { color: var(--m-muted); font-weight: 600; }
+    .ds-buttons > b { color: var(--m-muted); font-size: 5.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; text-align: center; }
+    .ds-btn { display: flex; align-items: center; justify-content: center; gap: 4px; height: 18px; border-radius: 5px; background: var(--c-accent); color: #fff; font-size: 6.5px; font-weight: 700; }
+    .ds-btn.is-hover { background: oklch(0.44 0.19 295); }
+    .ds-btn.is-off { background: var(--m-line); color: var(--m-muted); }
+    .ds-btn.is-sec { background: #fff; color: var(--c-ink); box-shadow: inset 0 0 0 1px var(--m-line); }
+    .ds-btn.is-sec.is-hover { background: var(--m-canvas); }
+    .ds-btn.is-ghost { background: transparent; color: var(--c-accent); }
+    .ds-btn.is-ghost.is-hover { background: var(--c-tint); }
+    .ds-btn.is-danger { background: var(--c-danger); }
+    .ds-btn.is-danger.is-hover { background: oklch(0.48 0.19 25); }
+    .ds-btn i { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; animation: spin .9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ds-inputs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .ds-input label { display: block; margin-bottom: 3px; font-size: 6px; font-weight: 700; }
+    .ds-input span { display: block; padding: 6px 7px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--m-line); color: var(--m-muted); font-size: 6.5px; }
+    .ds-input.is-focus span { box-shadow: inset 0 0 0 1.5px var(--c-accent), 0 0 0 3px oklch(0.52 0.19 295 / .18); color: var(--c-ink); }
+    .ds-input.is-error span { box-shadow: inset 0 0 0 1.5px var(--c-danger); color: var(--c-ink); }
+    .ds-input small { display: block; margin-top: 3px; color: var(--c-danger); font-size: 5.5px; }
+    .ds-misc { display: flex; align-items: center; gap: 12px; margin-top: 12px; font-size: 6.5px; }
+    .ds-toggle { position: relative; width: 22px; height: 12px; border-radius: 99px; background: var(--c-accent); }
+    .ds-toggle::after { content: ''; position: absolute; top: 2px; right: 2px; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+    .ds-check { width: 11px; height: 11px; display: grid; place-items: center; border-radius: 3px; background: var(--c-accent); color: #fff; font-size: 7px; }
+    .ds-badge { padding: 2px 6px; border-radius: 99px; background: var(--c-tint); color: var(--c-accent); font-weight: 700; }
+    .ds-badge.is-ok { background: oklch(0.95 0.05 150); color: oklch(0.45 0.12 150); }
+    .ds-avatars { display: flex; }
+    .ds-avatars span { width: 16px; height: 16px; margin-left: -5px; border-radius: 50%; background: var(--s); box-shadow: 0 0 0 2px #fff; }
+    .ds-avatars span:first-child { margin-left: 0; }
+
+    .ds-doc-head { display: flex; align-items: center; gap: 7px; }
+    .ds-anatomy { position: relative; display: grid; place-items: center; height: 74px; margin: 10px 0 12px; border-radius: 8px; background: var(--m-canvas); background-image: radial-gradient(oklch(0.85 0.01 290) .8px, transparent .8px); background-size: 8px 8px; }
+    .ds-anatomy .ds-btn { height: 26px; padding: 0 16px; font-size: 8px; outline: 1px dashed oklch(0.52 0.19 295 / .5); outline-offset: 4px; }
+    .ds-anatomy .ds-btn::before { content: '+'; font-size: 10px; }
+    .ds-callout { position: absolute; width: 13px; height: 13px; display: grid; place-items: center; border-radius: 50%; background: var(--c-ink); color: #fff; font-size: 6px; font-weight: 700; }
+    .ds-props { overflow: hidden; border-radius: 7px; box-shadow: 0 0 0 1px var(--m-line); font-size: 6.5px; }
+    .ds-props div { display: grid; grid-template-columns: 50px 1fr 44px; gap: 8px; padding: 5px 8px; border-bottom: 1px solid var(--m-line); }
+    .ds-props div:last-child { border-bottom: 0; }
+    .ds-props div:first-child { background: var(--m-canvas); color: var(--m-muted); font-size: 5.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    .ds-props code { color: var(--c-accent); font-family: inherit; font-weight: 700; }
+    .ds-dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 10px; }
+    .ds-dodont div { padding: 8px; border-radius: 7px; font-size: 6.5px; }
+    .ds-dodont .is-do { background: oklch(0.96 0.03 150); box-shadow: inset 0 3px 0 oklch(0.55 0.12 150); }
+    .ds-dodont .is-dont { background: oklch(0.96 0.02 25); box-shadow: inset 0 3px 0 var(--c-danger); }
+    .ds-dodont strong { display: block; margin: 3px 0 5px; font-size: 7px; }
+    .ds-dodont .ds-btn { display: inline-flex; height: 16px; padding: 0 8px; }
+
+    /* Leque de tokens atrás do navegador */
+    .ds-fan { position: absolute; z-index: 1; inset: 6% auto auto -1%; width: 180px; height: 440px; transform: rotate(-14deg); }
+    .ds-swatch { position: absolute; inset: 0 auto auto 70px; width: 84px; height: 400px; padding: 12px 10px; border-radius: 12px; background: var(--s); transform-origin: 42px 368px; color: var(--t, #fff); font-size: 8px; font-weight: 700; }
+    .ds-swatch:nth-child(1) { transform: rotate(-16deg); }
+    .ds-swatch:nth-child(2) { transform: rotate(-5deg); }
+    .ds-swatch:nth-child(3) { transform: rotate(6deg); }
+    .ds-swatch:nth-child(4) { transform: rotate(17deg); }
+    .ds-swatch small { display: block; margin-top: 2px; opacity: .72; font-size: 7px; font-weight: 500; }
+    .motion-ready .ds-swatch { animation: fanOut 1.3s .9s var(--ease) both; }
+    @keyframes fanOut { from { transform: rotate(0deg); } }
+    .ds-token { left: -2%; bottom: 60px; }
+    .ds-token .float-icon { background: oklch(0.94 0.04 295); color: oklch(0.45 0.17 295); }
+
+    /* Anatomia: do token à tela */
+    .ds-stack { display: grid; gap: 12px; }
+    .ds-level { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(24px, 5vw, 64px); align-items: center; }
+    .ds-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: var(--w); min-height: 82px; padding: 18px 22px; border-radius: var(--radius); background: var(--bg-c); transition: transform .45s var(--ease); }
+    .ds-level:hover .ds-bar { transform: translateX(6px); }
+    .ds-bar strong { font-size: 20px; letter-spacing: -.02em; }
+    .ds-level p { margin: 0; color: var(--text-soft); font-size: 15px; }
+    .ds-level p b { display: block; margin-bottom: 2px; color: var(--rose-soft); font-size: 12px; font-weight: 700; }
+    .mini { display: flex; align-items: center; gap: 6px; }
+    .mini-swatch { width: 18px; height: 18px; border-radius: 5px; background: var(--s); }
+    .mini-btn { width: 44px; height: 16px; border-radius: 5px; background: var(--rose); }
+    .mini-input { width: 58px; height: 16px; border-radius: 5px; border: 1.5px solid color-mix(in oklch, var(--text) 30%, transparent); }
+    .mini-toggle { position: relative; width: 26px; height: 14px; border-radius: 99px; background: var(--rose-soft); }
+    .mini-toggle::after { content: ''; position: absolute; top: 3px; right: 3px; width: 8px; height: 8px; border-radius: 50%; background: var(--wine-deep); }
+    .mini-form { display: grid; gap: 4px; width: 90px; }
+    .mini-form i { height: 5px; border-radius: 4px; background: color-mix(in oklch, var(--text) 26%, transparent); }
+    .mini-form i:last-child { width: 40px; height: 9px; background: var(--rose); }
+    .mini-screen { width: 42px; height: 30px; border-radius: 5px; border: 1.5px solid color-mix(in oklch, var(--text) 32%, transparent); background: linear-gradient(color-mix(in oklch, var(--text) 32%, transparent) 0 0) 0 6px / 100% 1.5px no-repeat; }
+    .propagate { display: flex; align-items: center; gap: 12px; margin-top: 34px; color: var(--text-muted); font-size: 14px; }
+    .propagate svg { width: 20px; color: var(--rose-soft); flex: 0 0 auto; }
+
+    /* Composição do investimento */
+    .compose-bar { display: flex; gap: 3px; height: 46px; }
+    .compose-bar span { flex: var(--h) 1 0; min-width: 0; display: grid; place-items: center; border-radius: 6px; background: var(--c); color: #fff; font-size: 12px; font-weight: 700; transform-origin: left center; transition: transform .9s var(--ease), opacity .6s ease; transition-delay: calc(var(--i) * 90ms + 150ms); }
+    .compose-bar span:last-child { color: var(--wine-deep); }
+    .motion-ready .compose:not(.is-visible) .compose-bar span { opacity: .4; transform: scaleX(.35); }
+    .compose-legend { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+    .compose-legend div { font-size: 12px; color: var(--text-muted); }
+    .compose-legend strong { display: flex; align-items: center; gap: 6px; color: var(--text); font-size: 13px; font-weight: 600; }
+    .compose-legend i { width: 8px; height: 8px; border-radius: 2px; background: var(--c); flex: 0 0 auto; }
+
+    .case-more .token-thumb { display: grid; grid-template-columns: repeat(5, 1fr); width: 120px; aspect-ratio: 1350 / 808; overflow: hidden; border-radius: var(--radius-sm); border: 1px solid var(--dark-line-strong); }
+    .token-thumb span { background: var(--s); }
+
+    @media (max-width: 1040px) {
+      .ds-level { grid-template-columns: 1fr; gap: 12px; }
+      .ds-bar { width: 100%; }
+    }
+    @media (max-width: 780px) {
+      .compose-legend { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px) {
+      .screen.ds { grid-template-columns: 1fr; }
+      .ds-side { display: none; }
+      .ds-fan { display: none; }
+      .ds-split, .ds-dodont { grid-template-columns: 1fr; }
+      .ds-type { display: none; }
+      .ds-inputs { grid-template-columns: 1fr 1fr; }
+      .ds-input:nth-child(3) { display: none; }
+      .ds-buttons { grid-template-columns: 40px repeat(3, 1fr); }
+      .ds-buttons > :nth-child(5n) { display: none; }
+      .ds-props div { grid-template-columns: 44px 1fr; }
+      .ds-props div > :nth-child(3) { display: none; }
+      .compose-bar span { font-size: 10px; }
+      .compose-legend { grid-template-columns: 1fr 1fr; }
+      .case-more .token-thumb { width: 84px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://vsexperience.com.br/en/services/design-system/#webpage",
+        "url": "https://vsexperience.com.br/en/services/design-system/",
+        "name": "Design system creation: Figma and code | VS Experience",
+        "description": "Design system with tokens, components and documentation for consistent interfaces. See the Figma and code deliverables and the investment ranges.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://vsexperience.com.br/en/#website",
+          "name": "VS Experience",
+          "url": "https://vsexperience.com.br/en/"
+        },
+        "about": {
+          "@id": "https://vsexperience.com.br/en/services/design-system/#servico"
+        },
+        "breadcrumb": {
+          "@id": "https://vsexperience.com.br/en/services/design-system/#breadcrumb"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://vsexperience.com.br/assets/images/og/design-system-vs.jpg",
+          "width": 1200,
+          "height": 630
+        },
+        "dateModified": "2026-10-04"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://vsexperience.com.br/en/services/design-system/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://vsexperience.com.br/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Serviços",
+            "item": "https://vsexperience.com.br/en/services/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Design System",
+            "item": "https://vsexperience.com.br/en/services/design-system/"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://vsexperience.com.br/en/services/design-system/#servico",
+        "name": "Design system creation",
+        "serviceType": "Design system creation",
+        "description": "Design system with tokens, components and documentation for consistent interfaces. See the Figma and code deliverables and the investment ranges.",
+        "url": "https://vsexperience.com.br/en/services/design-system/",
+        "image": "https://vsexperience.com.br/assets/images/og/design-system-vs.jpg",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://vsexperience.com.br/en/#service",
+          "name": "VS Experience",
+          "url": "https://vsexperience.com.br/en/",
+          "founder": {
+            "@type": "Person",
+            "@id": "https://vsexperience.com.br/en/#person",
+            "name": "Victor Santos"
+          }
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        },
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://wa.me/5512991833641",
+          "availableLanguage": "pt-BR"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Design System: investment ranges",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Foundation design system",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 540,
+                "maxPrice": 810
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Product design system",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 1100,
+                "maxPrice": 1600
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Ongoing monthly partnership",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 400,
+                "maxPrice": 680,
+                "unitCode": "MON",
+                "unitText": "mês"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vsexperience.com.br/en/services/design-system/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does a design system cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A typical project, with about 25 components in Figma and code, comes to around $1,200. Foundation ranges from $540 to $810; Product system, from $1,100 to $1,600; and the ongoing partnership costs from $400 to $680 per month."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is a design system only for large companies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. A small product with a well-built foundation grows without piling up inconsistencies. The Foundation tier exists precisely for those just starting out who want to avoid rework later."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you deliver in code or only in Figma?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both are possible. Foundation is delivered in Figma; Product system includes the components in code (React and CSS), with the same names and tokens as in Figma."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can it be built from an existing product?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, and that's the most common case. The audit starts from the current screens, keeps what works and consolidates what's duplicated, without requiring the product to be rebuilt from scratch."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is it different from a brand guide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A brand guide defines the logo, colors and tone of voice. A design system turns that into ready-to-use interface pieces, with states, behavior rules and code."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <meta property="og:image:secure_url" content="https://vsexperience.com.br/assets/images/og/design-system-vs.jpg">
+
+  <meta name="twitter:image:alt" content="Design system creation — Consistency for your product to grow.">
+</head>
+
+<body data-whatsapp="Hi Victor! I saw the VS Experience Design System page and would like to talk about a project.">
+  <a class="skip-link" href="#conteudo">Skip to content</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="/en/" aria-label="Victor Santos · VS Experience, home page"><img src="/assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <nav class="client-chip" aria-label="Breadcrumb"><a href="/en/services/">Services</a> · <span aria-current="page">Design System</span></nav>
+      <div class="lang-switch" role="group" aria-label="Language"><a href="/servicos/design-system/" lang="pt-BR" hreflang="pt-BR">PT</a><a href="/en/services/design-system/" lang="en" hreflang="en" aria-current="true">EN</a></div>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#servico" data-spy-link="servico">The service</a>
+        <a href="#processo" data-spy-link="processo">Process</a>
+        <a href="#investimento" data-spy-link="investimento">Investment</a>
+        <a class="nav-cta" href="#contato"><span>Request a quote</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Design System</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Design system creation</span> <span class="display">Your product grows. <em>Consistency keeps up.</em></span></h1>
+          <p class="hero-lead">A foundation of rules, components and documentation so your team can make decisions with more clarity and create new screens in the same language. The scope can include Figma, code or both.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">See investment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#camadas">From token to screen</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span>Figma and code (React and CSS), with usage documentation.</span></div>
+        </div>
+
+        <div class="stage" data-nosnippet role="group" aria-label="Interactive design system documentation example for a fictional product">
+          <div class="stage-inner">
+            <div class="ds-fan" aria-hidden="true">
+              <span class="ds-swatch" style="--s:oklch(0.86 0.08 295);--t:oklch(0.3 0.1 295)">violet.200<small>#D6C8FA</small></span>
+              <span class="ds-swatch" style="--s:oklch(0.7 0.15 295)">violet.400<small>#A47BEF</small></span>
+              <span class="ds-swatch" style="--s:oklch(0.52 0.19 295)">violet.600<small>#6F3FD1</small></span>
+              <span class="ds-swatch" style="--s:oklch(0.32 0.12 295)">violet.800<small>#3A1F75</small></span>
+            </div>
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">design.nimbus.app</span><span class="browser-live">v2.4</span></div>
+              <div class="screen ds">
+                <aside class="ds-side" aria-hidden="true">
+                  <span class="ds-logo"><i></i>nimbus ui</span>
+                  <span class="ds-group">Foundations</span>
+                  <span class="ds-item" data-for="tokens">Colors</span>
+                  <span class="ds-item">Typography</span>
+                  <span class="ds-item">Spacing</span>
+                  <span class="ds-item">Motion</span>
+                  <span class="ds-group">Components</span>
+                  <span class="ds-item" data-for="componentes">Overview</span>
+                  <span class="ds-item" data-for="docs">Button</span>
+                  <span class="ds-item">Input</span>
+                  <span class="ds-item">Modal</span>
+                  <span class="ds-item">Toast</span>
+                </aside>
+                <div class="ds-main">
+                  <div class="ds-top"><span>Nimbus UI / Documentation</span><div class="ds-top-right"><span class="ds-switch"><span>Figma</span><span>Code</span></span><span class="ds-version">v2.4.0</span></div></div>
+
+                  <div class="mock-page" id="ds-tokens" role="tabpanel" aria-labelledby="ds-tab-tokens">
+                    <div class="ds-body">
+                      <p class="ds-h">Colors</p>
+                      <p class="ds-lead">Scales from 50 to 900, with contrast validated for text and interface.</p>
+                      <div class="ds-ramp">
+                        <div style="--i:0"><span style="--s:oklch(0.97 0.015 295)"></span><small>50</small></div>
+                        <div style="--i:1"><span style="--s:oklch(0.93 0.04 295)"></span><small>100</small></div>
+                        <div style="--i:2"><span style="--s:oklch(0.86 0.08 295)"></span><small>200</small></div>
+                        <div style="--i:3"><span style="--s:oklch(0.78 0.12 295)"></span><small>300</small></div>
+                        <div style="--i:4"><span style="--s:oklch(0.7 0.15 295)"></span><small>400</small></div>
+                        <div style="--i:5"><span style="--s:oklch(0.61 0.18 295)"></span><small>500</small></div>
+                        <div style="--i:6"><span style="--s:oklch(0.52 0.19 295)"></span><small>600</small></div>
+                        <div style="--i:7"><span style="--s:oklch(0.42 0.16 295)"></span><small>700</small></div>
+                        <div style="--i:8"><span style="--s:oklch(0.32 0.12 295)"></span><small>800</small></div>
+                      </div>
+                      <div class="ds-ramp" style="margin-top:6px">
+                        <div style="--i:2"><span style="--s:oklch(0.98 0.003 290)"></span><small>50</small></div>
+                        <div style="--i:3"><span style="--s:oklch(0.95 0.005 290)"></span><small>100</small></div>
+                        <div style="--i:4"><span style="--s:oklch(0.9 0.008 290)"></span><small>200</small></div>
+                        <div style="--i:5"><span style="--s:oklch(0.82 0.01 290)"></span><small>300</small></div>
+                        <div style="--i:6"><span style="--s:oklch(0.7 0.012 290)"></span><small>400</small></div>
+                        <div style="--i:7"><span style="--s:oklch(0.56 0.014 290)"></span><small>500</small></div>
+                        <div style="--i:8"><span style="--s:oklch(0.44 0.016 290)"></span><small>600</small></div>
+                        <div style="--i:9"><span style="--s:oklch(0.32 0.02 290)"></span><small>700</small></div>
+                        <div style="--i:10"><span style="--s:oklch(0.21 0.03 290)"></span><small>800</small></div>
+                      </div>
+                      <div class="ds-split">
+                        <div><p class="ds-sub">Semantic</p><div class="ds-semantic"><div><i style="--s:oklch(0.55 0.12 150)"></i><code>feedback.success</code></div><div><i style="--s:oklch(0.75 0.14 75)"></i><code>feedback.warning</code></div><div><i style="--s:oklch(0.56 0.19 25)"></i><code>feedback.danger</code></div><div><i style="--s:oklch(0.55 0.13 245)"></i><code>feedback.info</code></div></div></div>
+                        <div class="ds-type"><p class="ds-sub">Type scale</p><div><b style="font-size:17px">Display</b><span>32 / 40</span></div><div><b style="font-size:13px">Title</b><span>24 / 32</span></div><div><b style="font-size:9px">Body</b><span>14 / 22</span></div><div><b style="font-size:7px">Caption</b><span>11 / 16</span></div></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mock-page" id="ds-componentes" role="tabpanel" aria-labelledby="ds-tab-componentes" hidden>
+                    <div class="ds-body">
+                      <p class="ds-h">Buttons, variants and states</p>
+                      <p class="ds-lead">Every component is born with all its states defined.</p>
+                      <div class="ds-buttons">
+                        <b></b><b>Default</b><b>Hover</b><b>Disabled</b><b>Loading</b>
+                        <span>Primary</span><span class="ds-btn">Save</span><span class="ds-btn is-hover">Save</span><span class="ds-btn is-off">Save</span><span class="ds-btn"><i></i>Saving</span>
+                        <span>Secondary</span><span class="ds-btn is-sec">Cancel</span><span class="ds-btn is-sec is-hover">Cancel</span><span class="ds-btn is-off">Cancel</span><span class="ds-btn is-sec"><i></i>Please wait</span>
+                        <span>Ghost</span><span class="ds-btn is-ghost">See more</span><span class="ds-btn is-ghost is-hover">See more</span><span class="ds-btn is-off">See more</span><span class="ds-btn is-ghost"><i></i>Opening</span>
+                        <span>Danger</span><span class="ds-btn is-danger">Delete</span><span class="ds-btn is-danger is-hover">Delete</span><span class="ds-btn is-off">Delete</span><span class="ds-btn is-danger"><i></i>Deleting</span>
+                      </div>
+                      <p class="ds-sub">Fields</p>
+                      <div class="ds-inputs">
+                        <div class="ds-input"><label>Name</label><span>Enter your name</span></div>
+                        <div class="ds-input is-focus"><label>Email</label><span>ana@company.com|</span></div>
+                        <div class="ds-input is-error"><label>Tax ID</label><span>123.456.789</span><small>Incomplete tax ID</small></div>
+                      </div>
+                      <div class="ds-misc"><span class="ds-toggle"></span><span class="ds-check">✓</span><span class="ds-badge">New</span><span class="ds-badge is-ok">Active</span><span class="ds-avatars"><span style="--s:oklch(0.52 0.19 295)"></span><span style="--s:oklch(0.7 0.15 295)"></span><span style="--s:oklch(0.86 0.08 295)"></span></span></div>
+                    </div>
+                  </div>
+
+                  <div class="mock-page" id="ds-docs" role="tabpanel" aria-labelledby="ds-tab-docs" hidden>
+                    <div class="ds-body">
+                      <div class="ds-doc-head"><p class="ds-h">Button</p><span class="ds-badge is-ok">Stable</span></div>
+                      <p class="ds-lead" style="margin-bottom:0">Triggers an action. Use one primary button per decision area.</p>
+                      <div class="ds-anatomy"><span class="ds-btn">Save changes</span><span class="ds-callout" style="left:31%;top:12px">1</span><span class="ds-callout" style="left:40%;bottom:10px">2</span><span class="ds-callout" style="left:62%;top:12px">3</span></div>
+                      <div class="ds-props">
+                        <div><span>Prop</span><span>Pricing</span><span>Default</span></div>
+                        <div><code>variant</code><span>primary · secondary · ghost · danger</span><span>primary</span></div>
+                        <div><code>size</code><span>sm · md · lg</span><span>md</span></div>
+                        <div><code>loading</code><span>true · false</span><span>false</span></div>
+                      </div>
+                      <div class="ds-dodont">
+                        <div class="is-do">Do<strong>Clear verb in the label</strong><span class="ds-btn">Save changes</span></div>
+                        <div class="is-dont">Avoid<strong>Generic label</strong><span class="ds-btn">Click here</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float-card ds-token" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-5V2M4 17h5v5"/><path d="M5.7 9A7 7 0 0 1 17 5l3 2M4 17l3 2a7 7 0 0 0 11.3-4"/></svg></span>
+              <div><strong>Token updated</strong><span>color.brand.primary · violet.600</span><small>applied to 148 screens and 32 components</small></div>
+            </div>
+            <div class="stage-badge"><strong>Figma + code</strong><span>the same source of truth for design and development</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Example pages">
+            <button class="mockup-tab" type="button" role="tab" id="ds-tab-tokens" aria-controls="ds-tokens" aria-selected="true">Tokens</button>
+            <button class="mockup-tab" type="button" role="tab" id="ds-tab-componentes" aria-controls="ds-componentes" aria-selected="false">Components</button>
+            <button class="mockup-tab" type="button" role="tab" id="ds-tab-docs" aria-controls="ds-docs" aria-selected="false">Documentation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-band" aria-label="Service summary">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Average timeline</span><strong>3 to 8 weeks</strong></div>
+        <div class="spec-item"><span>Typical project</span><strong>$1,200</strong></div>
+        <div class="spec-item"><span>Delivery</span><strong>Figma, code and documentation</strong></div>
+        <div class="spec-item"><span>Model</span><strong>Project or monthly partnership</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="servico" data-spy="servico">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal">A language shared by the whole team.</h2>
+          <p class="reveal delay-1">A design system is the set of rules and reusable pieces that define how your product looks and behaves. Instead of redesigning buttons and forms on every screen, the team assembles interfaces from pieces that have already been tested.</p>
+        </div>
+        <div class="outcomes">
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Visible consistency</h3><p>The same language on the website, the system and the app, reinforcing the brand on every screen.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Delivery speed</h3><p>New screens ship faster, with less rework between design and development.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 7a5 5 0 0 1 0 10" fill="currentColor"/></svg></div><h3>Accessibility by default</h3><p>Contrast, focus and states defined once and inherited by every component.</p></article>
+          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div><h3>Continuity between design and code</h3><p>Names and rules aligned in Figma and in code to make implementation and maintenance easier.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anatomy" id="camadas" data-spy="servico" aria-labelledby="anatomia-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="anatomia-titulo">From token to screen, a single source of truth.</h2>
+          <p class="reveal delay-1">A color or spacing change made in the token reaches every component and screen that uses it. That's what keeps a product consistent as it grows.</p>
+        </div>
+        <div class="ds-stack">
+          <div class="ds-level reveal"><div class="ds-bar" style="--w:46%;--bg-c:var(--wine)"><strong>Tokens</strong><span class="mini" aria-hidden="true"><i class="mini-swatch" style="--s:var(--rose)"></i><i class="mini-swatch" style="--s:var(--rose-soft)"></i><i class="mini-swatch" style="--s:var(--text)"></i><i class="mini-swatch" style="--s:var(--surface-hover)"></i></span></div><p><b>Foundation</b>Color, typography, space, radius, shadow and motion, with clear names.</p></div>
+          <div class="ds-level reveal delay-1"><div class="ds-bar" style="--w:64%;--bg-c:color-mix(in oklch, var(--rose) 22%, var(--surface-dark))"><strong>Components</strong><span class="mini" aria-hidden="true"><i class="mini-btn"></i><i class="mini-input"></i><i class="mini-toggle"></i></span></div><p><b>Pieces</b>Button, field, select, card, modal and toast, each with variants and states.</p></div>
+          <div class="ds-level reveal delay-2"><div class="ds-bar" style="--w:82%;--bg-c:color-mix(in oklch, var(--rose) 34%, var(--surface-dark))"><strong>Patterns</strong><span class="mini" aria-hidden="true"><span class="mini-form"><i></i><i></i><i></i></span></span></div><p><b>Combinations</b>Forms, tables, navigation, feedback and empty states solved once.</p></div>
+          <div class="ds-level reveal delay-3"><div class="ds-bar" style="--w:100%;--bg-c:color-mix(in oklch, var(--rose) 50%, var(--surface-dark))"><strong>Screens</strong><span class="mini" aria-hidden="true"><i class="mini-screen"></i><i class="mini-screen"></i><i class="mini-screen"></i></span></div><p><b>Product</b>Dashboard, sign-up, checkout and onboarding assembled from the pieces above.</p></div>
+        </div>
+        <p class="propagate reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Change the token at the top and the change flows down, on its own, to the last screen.</p>
+      </div>
+    </section>
+
+    <section class="section" data-spy="servico" aria-labelledby="indicado-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="indicado-titulo">When a design system is the right choice.</h2></div>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>It makes sense when</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your digital product has many screens and more than one person designing or developing.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>The interface has become inconsistent and every new screen creates rework.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You'll launch new modules, products or versions in the coming months.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Several brands or products need to share the same foundation.</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Another path works better when</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>Only a few pages: the basic component system already comes with the <a class="text-link" href="/en/services/institutional-website/">Company Website</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>The brand doesn't exist yet: logo and identity come before the system, starting at $450.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>The product hasn't been built yet: start with <a class="text-link" href="/en/services/saas-systems/">MVP</a>, which already includes the visual foundation.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="processo" data-spy="processo">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal">From audit to team adoption.</h2>
+          <p class="section-lead reveal delay-1">A design system only works if it's used. That's why the process ends with the pieces applied to real screens and the team trained.</p>
+          <div class="process-total reveal delay-2"><strong>3 to 8</strong><span>weeks, depending on the number of components</span></div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Week 1</span><h3>Audit</h3><p>Inventory of existing screens, inconsistencies, duplicated components and the team's needs.</p><div class="step-deliverable"><strong>You receive</strong><span>audit report and scope</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">02</span><div><span class="step-time">Weeks 1 and 2</span><h3>Foundations</h3><p>Color, typography, spacing, radius, shadow and motion tokens, with validated contrast.</p><div class="step-deliverable"><strong>You receive</strong><span>token library</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">03</span><div><span class="step-time">Weeks 2 to 5</span><h3>Components</h3><p>Pieces with variants and states: default, hover, focus, disabled, error and loading.</p><div class="step-deliverable"><strong>You receive</strong><span>library in Figma and in code</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">04</span><div><span class="step-time">Weeks 5 and 6</span><h3>Documentation</h3><p>Usage rules, do and don't examples, accessibility and a contribution guide.</p><div class="step-deliverable"><strong>You receive</strong><span>browsable documentation</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">05</span><div><span class="step-time">Weeks 6 to 8</span><h3>Adoption</h3><p>Applied to real screens, team training and a system maintenance routine.</p><div class="step-deliverable"><strong>You receive</strong><span>trained team and evolution plan</span></div></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="investimento" data-spy="investimento">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal">How much a design system costs.</h2>
+          <p class="section-lead reveal delay-2">The price follows the hours of work, which depend on the number of components and where they will live. The breakdown below shows a typical project; the real scope is defined in the audit. Prices in US dollars.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value"><span>Typical project</span><strong>$1,200</strong><small>Product system with about 25 components, in Figma and code.</small></div>
+          <div class="compose" role="img" aria-label="Breakdown of a typical 68-hour project: audit 6 hours, foundations 10, components 36, documentation 10 and adoption 6">
+            <div class="compose-bar" aria-hidden="true">
+              <span style="--h:6;--i:0;--c:oklch(0.36 0.08 25)">6h</span>
+              <span style="--h:10;--i:1;--c:oklch(0.45 0.1 25)">10h</span>
+              <span style="--h:36;--i:2;--c:var(--rose)">36h</span>
+              <span style="--h:10;--i:3;--c:oklch(0.66 0.11 25)">10h</span>
+              <span style="--h:6;--i:4;--c:var(--rose-soft)">6h</span>
+            </div>
+            <div class="compose-legend" aria-hidden="true">
+              <div><strong><i style="--c:oklch(0.36 0.08 25)"></i>Audit</strong>6 hours</div>
+              <div><strong><i style="--c:oklch(0.45 0.1 25)"></i>Foundations</strong>10 hours</div>
+              <div><strong><i style="--c:var(--rose)"></i>Components</strong>36 hours</div>
+              <div><strong><i style="--c:oklch(0.66 0.11 25)"></i>Documentation</strong>10 hours</div>
+              <div><strong><i style="--c:var(--rose-soft)"></i>Adoption</strong>6 hours</div>
+            </div>
+            <p class="range-caption">About 68 hours of work. More components, themes or brands mainly increase the components share.</p>
+          </div>
+        </div>
+
+        <div class="plans-grid reveal">
+          <article class="plan">
+            <span class="plan-label">Foundation</span>
+            <h3>Consistency from the start.</h3>
+            <p class="plan-intro">Base tokens and components for a product that is starting to grow.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Quick audit</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Color, typography and space tokens</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>About 15 essential components</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Figma library</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Condensed usage guide</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price">$540 <em>to</em> 810</strong><p class="plan-note">Between 30 and 45 hours of work.</p></div>
+          </article>
+          <article class="plan is-common">
+            <span class="common-badge">Most common range</span>
+            <span class="plan-label">Product system</span>
+            <h3>A complete library.</h3>
+            <p class="plan-intro">Documented Figma and code for the whole team to use.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Full audit</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Semantic tokens and light and dark themes</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>25 to 40 components with states</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Components in code (React and CSS)</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Documentation with examples</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Team training</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price">$1,100 <em>to</em> 1,600</strong><p class="plan-note">Where the typical $1,200 project fits.</p></div>
+          </article>
+          <article class="plan">
+            <span class="plan-label">Ongoing partnership</span>
+            <h3>A system that evolves.</h3>
+            <p class="plan-intro">Hours reserved every month to evolve the system and the product's screens.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>20 to 40 hours per month</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>New components and patterns</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Review of the team's screens</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Priorities set month by month</li>
+            </ul>
+            <div class="plan-bottom"><span>Monthly investment</span><strong class="plan-price">$400 <em>to</em> 680</strong><p class="plan-note">20 hours for $400 or 40 hours for $680.</p></div>
+          </article>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>What changes the price</h3>
+            <ul class="factor-list">
+              <li>Number of components</li><li>Figma, code or both</li><li>Themes and brands</li><li>Documentation level</li><li>Applying to existing screens</li><li>Accessibility requirements</li>
+            </ul>
+            <div class="extras">
+              <h3>Add-ons</h3>
+              <div class="pay-rows">
+                <div class="pay-row"><span>Visual identity before the system</span><strong>from $450</strong></div>
+                <div class="pay-row"><span>Strategic ecosystem architecture</span><strong>from $540</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Payment options</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Two-phase project</span><strong>50% at the start, 50% on delivery</strong></div>
+              <div class="pay-row"><span>Ongoing partnership</span><strong>Monthly, with reserved hours</strong></div>
+              <div class="pay-row"><span>Credit card</span><strong>Up to 10 installments, card fees apply</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="case-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">A foundation applied to a product of our own.</h2></div>
+        <div class="case-grid">
+          <figure class="case-media reveal" style="margin:0"><img src="/assets/images/cases/facilorgapp.webp" alt="The Fácil Organização app on a laptop and a phone, with the same navigation components, cards and buttons on both screens" width="1350" height="808" loading="lazy" decoding="async"></figure>
+          <div class="case-copy reveal delay-1">
+            <span class="case-tag">In-house design system · SaaS</span>
+            <h3>Fácil Organização</h3>
+            <dl class="case-facts">
+              <div><dt>Focus</dt><dd>A single language for an app with five modules: tasks, projects, clients, finance and notes.</dd></div>
+              <div><dt>Deliverables</dt><dd>In-house design system applied in Next.js 14, with components shared between desktop and mobile.</dd></div>
+              <div><dt>Impact</dt><dd>Every module follows the same visual logic, on desktop and on mobile.</dd></div>
+            </dl>
+          </div>
+        </div>
+        <a class="case-more reveal" href="/en/services/">
+          <span class="token-thumb" aria-hidden="true"><span style="--s:var(--bg)"></span><span style="--s:var(--wine-deep)"></span><span style="--s:var(--rose)"></span><span style="--s:var(--rose-soft)"></span><span style="--s:var(--text)"></span></span>
+          <div><strong>This page</strong><span>VS Experience's service pages and proposals share the same tokens, components and motion.</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="entrega-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="entrega-titulo">After delivery.</h2></div>
+        <div class="care-grid">
+          <article class="care-block reveal"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14Z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></div><h3>A system with an owner.</h3><p>Delivery includes contribution rules, versioning and a changelog. The team knows how to propose a new component and how to update an existing one without breaking what already works.</p><p>Figma files and repository stay in your company's account.</p></article>
+          <article class="care-block is-accent reveal delay-1"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 7h-5V2M4 17h5v5"/><path d="M5.7 9A7 7 0 0 1 17 5l3 2M4 17l3 2a7 7 0 0 0 11.3-4"/></svg></div><h3>Evolution partnership</h3><p>For products that ship screens every week and need the system to keep up.</p><ul class="care-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>New components</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Screen review</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Documentation updates</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Product UX/UI</li></ul><div class="care-price"><strong>$400</strong><span>per month, 20 hours reserved</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="faq-titulo">
+      <div class="container faq-layout">
+        <h2 class="section-title reveal" id="faq-titulo">Design system FAQ.</h2>
+        <div class="faq-list reveal delay-1">
+          <details class="faq-item"><summary>How much does a design system cost?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A typical project, with about 25 components in Figma and code, comes to around $1,200. Foundation ranges from $540 to $810; Product system, from $1,100 to $1,600; and the ongoing partnership costs from $400 to $680 per month.</p></details>
+          <details class="faq-item"><summary>Is a design system only for large companies?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. A small product with a well-built foundation grows without piling up inconsistencies. The Foundation tier exists precisely for those just starting out who want to avoid rework later.</p></details>
+          <details class="faq-item"><summary>Do you deliver in code or only in Figma?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Both are possible. Foundation is delivered in Figma; Product system includes the components in code (React and CSS), with the same names and tokens as in Figma.</p></details>
+          <details class="faq-item"><summary>Can it be built from an existing product?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes, and that's the most common case. The audit starts from the current screens, keeps what works and consolidates what's duplicated, without requiring the product to be rebuilt from scratch.</p></details>
+          <details class="faq-item"><summary>How is it different from a brand guide?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A brand guide defines the logo, colors and tone of voice. A design system turns that into ready-to-use interface pieces, with states, behavior rules and code.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Shall we organize the foundation for your product to <span>grow?</span></h2>
+            <p>Tell me the size of the product, who designs and who develops. The conversation helps identify inconsistencies and the component scope to estimate the work.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copy link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Service</span><strong>Design System</strong></div>
+            <div class="meta-row"><span>Average timeline</span><strong>3 to 8 weeks</strong></div>
+            <div class="meta-row"><span>Typical project</span><strong>$1,200</strong></div>
+            <div class="meta-row"><span>Project range</span><strong>$540 to $1,600</strong></div>
+            <div class="meta-row"><span>Monthly partnership</span><strong>$400 to $680</strong></div>
+          </div>
+        </div>
+        <nav class="other-services" aria-labelledby="outros-titulo">
+          <h2 id="outros-titulo">Other services</h2>
+          <div class="other-grid">
+            <a href="/en/services/landing-page/"><strong>Landing Page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $230</small></a>
+            <a href="/en/services/institutional-website/"><strong>Company Website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $420</small></a>
+            <a href="/en/services/e-commerce/"><strong>E-commerce <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $670</small></a>
+            <a href="/en/services/saas-systems/"><strong>Systems & SaaS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $1,250</small></a>
+          </div>
+        </nav>
+        <div class="signature"><img src="/assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Strategy, design and development for your business.</span><span>Reference prices · October 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copied</div>
+  <script src="/assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="/assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="/servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>

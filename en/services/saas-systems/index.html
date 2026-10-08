@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Design and development of web systems and SaaS, from scope to interfaces and integrations. See VS Experience's process and investment ranges.">
+  <title>Web systems and SaaS development | VS Experience</title>
+  <link rel="canonical" href="https://vsexperience.com.br/en/services/saas-systems/">
+  <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/servicos/sistemas-saas/">
+  <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/services/saas-systems/">
+  <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/servicos/sistemas-saas/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://vsexperience.com.br/en/services/saas-systems/">
+  <meta property="og:title" content="Web systems and SaaS development | VS Experience">
+  <meta property="og:description" content="Design and development of web systems and SaaS, from scope to interfaces and integrations. See VS Experience's process and investment ranges.">
+  <meta property="og:image" content="https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Web systems and SaaS — From workflow to digital product.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Web systems and SaaS development | VS Experience">
+  <meta name="twitter:description" content="Design and development of web systems and SaaS, from scope to interfaces and integrations. See VS Experience's process and investment ranges.">
+  <meta name="twitter:image" content="https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg">
+  <link rel="icon" href="/assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="/assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- fontes no próprio HTML: nunca dependem de um CSS em cache. O Google fica como reserva, só baixado se o arquivo local falhar -->
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../../assets/fonts/roboto-flex-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotoflex/v30/NaNeepOXO_NexZs0b5QrzlOHb8wCikXpYqmZsWI-__OGbt8jZktqc2V3Zs0KvDLdBP8SBZtOs2IifRuUZQMsPJtUsR4DEK6cULNeUx9XgTnH37Ha_FIAp4Fm0PP1hw45DntW2x0wZGzhPmr1YNMYKYn9_1IQXGwJAiUJVUMdN5YUW4O8HtSoXjC79QRyaLshNDUf9-EmFw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="/servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* Mockup · Rota, gestão de serviços (produto fictício) */
+    .screen.rt { --c-accent: oklch(0.55 0.1 195); --c-on-accent: #fff; --c-ink: oklch(0.2 0.02 220); --c-tint: oklch(0.955 0.02 195); --c-side: oklch(0.19 0.02 220); display: grid; grid-template-columns: 106px minmax(0, 1fr); }
+    .rt-side { display: flex; flex-direction: column; gap: 2px; padding: 14px 9px 10px; background: var(--c-side); color: oklch(0.8 0.01 220); }
+    .rt-logo { display: flex; align-items: center; gap: 6px; margin: 0 5px 14px; color: #fff; font-size: 10px; font-weight: 700; }
+    .rt-logo i { width: 14px; height: 14px; border-radius: 4px; background: var(--c-accent); box-shadow: inset -5px -5px 0 oklch(0.42 0.08 195); }
+    .rt-nav-label { margin: 8px 6px 4px; color: oklch(0.6 0.01 220); font-size: 5.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .rt-link { display: flex; align-items: center; gap: 6px; padding: 6px 7px; border-radius: 5px; font-size: 7px; font-weight: 600; }
+    .rt-link::before { content: ''; width: 8px; height: 8px; border-radius: 2px; border: 1.2px solid currentColor; opacity: .75; }
+    .screen.rt:has(#rt-painel:not([hidden])) .rt-link[data-for="painel"],
+    .screen.rt:has(#rt-pipeline:not([hidden])) .rt-link[data-for="pipeline"],
+    .screen.rt:has(#rt-permissoes:not([hidden])) .rt-link[data-for="permissoes"] { background: oklch(1 0 0 / .1); color: #fff; }
+    .rt-link b { margin-left: auto; padding: 1px 4px; border-radius: 99px; background: var(--c-accent); color: #fff; font-size: 5.5px; }
+    .rt-user { display: flex; align-items: center; gap: 6px; margin-top: auto; padding: 6px; border-radius: 6px; background: oklch(1 0 0 / .06); font-size: 6.5px; }
+    .rt-user b { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: var(--c-accent); color: #fff; font-size: 5.5px; }
+    .rt-user small { display: block; color: oklch(0.6 0.01 220); font-size: 5.5px; }
+    .rt-main { display: flex; flex-direction: column; min-width: 0; background: var(--m-canvas); }
+    .rt-top { height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border-bottom: 1px solid var(--m-line); background: #fff; }
+    .rt-search { width: 140px; padding: 5px 8px; border-radius: 5px; background: var(--m-canvas); color: var(--m-muted); font-size: 6.5px; }
+    .rt-actions { display: flex; align-items: center; gap: 7px; }
+    .rt-bell { position: relative; width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--m-line); }
+    .rt-bell::after { content: ''; position: absolute; top: 0; right: 0; width: 5px; height: 5px; border-radius: 50%; background: oklch(0.62 0.18 25); }
+    .rt-body { padding: 13px 14px 14px; }
+    .rt-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px; }
+    .rt-head .rt-h { font-weight: 700; margin: 0; font-size: 13px; letter-spacing: -.02em; }
+    .rt-head small { display: block; color: var(--m-muted); font-size: 6.5px; }
+    .rt-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 8px; }
+    .rt-kpi { padding: 9px 10px; border-radius: 7px; background: #fff; box-shadow: 0 0 0 1px var(--m-line); }
+    .rt-kpi span { color: var(--m-muted); font-size: 6px; }
+    .rt-kpi strong { display: block; margin: 3px 0 2px; font-size: 14px; letter-spacing: -.03em; }
+    .rt-kpi small { color: oklch(0.5 0.12 150); font-size: 6px; font-weight: 700; }
+    .rt-kpi small.is-down { color: oklch(0.55 0.16 25); }
+    .rt-split { display: grid; grid-template-columns: 1.55fr 1fr; gap: 7px; }
+    .rt-panel { padding: 10px; border-radius: 7px; background: #fff; box-shadow: 0 0 0 1px var(--m-line); }
+    .rt-panel-head { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 7px; font-weight: 700; }
+    .rt-panel-head span { color: var(--m-muted); font-weight: 500; }
+    .rt-chart { width: 100%; height: 118px; overflow: visible; }
+    .rt-chart .grid { stroke: var(--m-line); stroke-width: 1; }
+    .rt-chart .area { fill: url(#rtArea); }
+    .rt-chart .line { fill: none; stroke: var(--c-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .rt-chart .dot { fill: #fff; stroke: var(--c-accent); stroke-width: 2; }
+    .motion-ready .rt-chart .line { stroke-dasharray: 1; animation: rtDraw 1.8s 1.1s var(--ease) both; }
+    .motion-ready .rt-chart .area, .motion-ready .rt-chart .dot { animation: rtFade .8s 2.2s ease both; }
+    @keyframes rtDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes rtFade { from { opacity: 0; } }
+    .rt-agenda { display: grid; gap: 6px; }
+    .rt-agenda div { display: grid; grid-template-columns: 26px 1fr; gap: 6px; align-items: center; font-size: 6.5px; }
+    .rt-agenda b { padding: 3px 0; border-radius: 4px; background: var(--c-tint); color: var(--c-accent); font-size: 6px; text-align: center; }
+    .rt-agenda strong { display: block; font-size: 7px; }
+    .rt-agenda span { color: var(--m-muted); }
+
+    .rt-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .rt-col { padding: 8px; border-radius: 7px; background: oklch(0.94 0.006 220); }
+    .rt-col .rt-colh { font-weight: 700; display: flex; justify-content: space-between; margin: 0 0 7px; font-size: 7px; }
+    .rt-col .rt-colh span { color: var(--m-muted); font-weight: 500; }
+    .rt-card { margin-bottom: 6px; padding: 8px; border-radius: 6px; background: #fff; box-shadow: 0 1px 2px oklch(0.2 0.02 220 / .08), 0 0 0 1px var(--m-line); font-size: 7px; }
+    .rt-card strong { display: block; font-size: 7.5px; }
+    .rt-card > span { color: var(--m-muted); font-size: 6px; }
+    .rt-card footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .rt-tag { padding: 2px 5px; border-radius: 3px; background: var(--c-tint); color: var(--c-accent); font-size: 5.5px; font-weight: 700; }
+    .rt-tag.is-warm { background: oklch(0.95 0.04 75); color: oklch(0.48 0.1 60); }
+    .rt-tag.is-hot { background: oklch(0.95 0.03 25); color: oklch(0.52 0.15 25); }
+    .rt-avatar { width: 14px; height: 14px; display: grid; place-items: center; border-radius: 50%; background: var(--c-side); color: #fff; font-size: 5px; font-weight: 700; }
+    .rt-card.is-moving { position: relative; z-index: 1; transform: rotate(-3deg) translate(-6px, -3px); box-shadow: 0 12px 20px -8px oklch(0.2 0.02 220 / .45), 0 0 0 1.5px var(--c-accent); }
+    .rt-drop { height: 30px; border-radius: 6px; border: 1.5px dashed var(--c-accent); background: var(--c-tint); }
+
+    .rt-table { overflow: hidden; border-radius: 7px; background: #fff; box-shadow: 0 0 0 1px var(--m-line); }
+    .rt-row { display: grid; grid-template-columns: 1.5fr 1fr repeat(3, 40px); gap: 8px; align-items: center; padding: 8px 10px; border-bottom: 1px solid var(--m-line); font-size: 7px; }
+    .rt-row:last-child { border-bottom: 0; }
+    .rt-row.is-head { background: var(--m-canvas); color: var(--m-muted); font-size: 5.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .rt-person { display: flex; align-items: center; gap: 6px; }
+    .rt-person strong { display: block; font-size: 7px; }
+    .rt-person small { display: block; color: var(--m-muted); font-size: 5.5px; }
+    .rt-role { justify-self: start; padding: 3px 6px; border-radius: 99px; background: var(--c-tint); color: var(--c-accent); font-size: 6px; font-weight: 700; }
+    .rt-role.is-admin { background: var(--c-side); color: #fff; }
+    .rt-role.is-field { background: oklch(0.95 0.04 75); color: oklch(0.48 0.1 60); }
+    .rt-toggle { position: relative; width: 20px; height: 11px; border-radius: 99px; background: var(--m-line); }
+    .rt-toggle::after { content: ''; position: absolute; left: 2px; top: 2px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px oklch(0 0 0 / .2); }
+    .rt-toggle.is-on { background: var(--c-accent); }
+    .rt-toggle.is-on::after { left: 11px; }
+    .rt-note { display: flex; gap: 8px; align-items: center; margin-top: 9px; padding: 9px 10px; border-radius: 7px; background: var(--c-tint); color: var(--m-soft); font-size: 6.5px; }
+    .rt-note b { color: var(--c-accent); }
+
+    .rt-auto { left: -6%; bottom: 74px; }
+    .rt-auto .float-icon { background: oklch(0.94 0.03 195); color: oklch(0.45 0.09 195); }
+
+    /* Anatomia: camadas e versões */
+    .layers { display: grid; gap: 10px; }
+    .layer { display: grid; grid-template-columns: 240px 1fr; gap: 28px; align-items: center; padding: 24px 26px; border-radius: var(--radius); background: var(--surface-dark); border: 1px solid transparent; transition: border-color .3s ease; }
+    .layer:hover { border-color: var(--dark-line-strong); }
+    .layer h3 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
+    .layer h3 small { display: block; margin-top: 4px; color: var(--text-muted); font-size: 13px; font-weight: 400; letter-spacing: 0; }
+    .layer ul { display: flex; flex-wrap: wrap; gap: 8px; }
+    .layer li { padding: 8px 12px; border-radius: var(--radius-sm); background: var(--bg-soft); border: 1px solid var(--dark-line); color: var(--text-soft); font-size: 13px; }
+    .layer.is-core { background: var(--carmim); }
+    .layer.is-core h3 small { color: color-mix(in oklch, #fff 76%, transparent); }
+    .layer.is-core li { background: color-mix(in oklch, #000 20%, transparent); border-color: color-mix(in oklch, #fff 14%, transparent); color: #fff; }
+    .layer.is-edge { background: transparent; border: 1px dashed var(--dark-line-strong); }
+    .versions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; border-top: 1px solid var(--dark-line-strong); }
+    .versions div { position: relative; padding: 26px 28px 0 0; }
+    .versions div::before { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 0 4px color-mix(in oklch, var(--rose) 22%, transparent); }
+    .versions div:nth-child(2)::before { background: var(--rose-soft); }
+    .versions div:nth-child(3)::before { background: var(--wine-deep); border: 1.5px solid var(--rose-soft); }
+    .versions span { display: block; margin-bottom: 6px; font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+    .versions p { margin: 0; max-width: 34ch; color: var(--text-soft); font-size: 14px; }
+
+    @media (max-width: 780px) {
+      .layer { grid-template-columns: 1fr; gap: 16px; }
+      .versions { grid-template-columns: 1fr; gap: 26px; border-top: 0; }
+      .versions div { padding: 0 0 0 26px; }
+      .versions div::before { top: 7px; }
+    }
+    @media (max-width: 540px) {
+      .screen.rt { grid-template-columns: 1fr; }
+      .rt-side { display: none; }
+      .rt-search { width: 100px; }
+      .rt-kpis { grid-template-columns: 1fr 1fr; }
+      .rt-kpi:nth-child(3) { display: none; }
+      .rt-split { grid-template-columns: 1fr; }
+      .rt-split .rt-panel:last-child { display: none; }
+      .rt-board { grid-template-columns: 1fr 1fr; }
+      .rt-col:nth-child(3) { display: none; }
+      .rt-row { grid-template-columns: 1.5fr 1fr 40px; }
+      .rt-row > :nth-child(n+4) { display: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://vsexperience.com.br/en/services/saas-systems/#webpage",
+        "url": "https://vsexperience.com.br/en/services/saas-systems/",
+        "name": "Web systems and SaaS development | VS Experience",
+        "description": "Design and development of web systems and SaaS, from scope to interfaces and integrations. See VS Experience's process and investment ranges.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://vsexperience.com.br/en/#website",
+          "name": "VS Experience",
+          "url": "https://vsexperience.com.br/en/"
+        },
+        "about": {
+          "@id": "https://vsexperience.com.br/en/services/saas-systems/#servico"
+        },
+        "breadcrumb": {
+          "@id": "https://vsexperience.com.br/en/services/saas-systems/#breadcrumb"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg",
+          "width": 1200,
+          "height": 630
+        },
+        "dateModified": "2026-10-04"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://vsexperience.com.br/en/services/saas-systems/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://vsexperience.com.br/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Serviços",
+            "item": "https://vsexperience.com.br/en/services/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Systems & SaaS",
+            "item": "https://vsexperience.com.br/en/services/saas-systems/"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://vsexperience.com.br/en/services/saas-systems/#servico",
+        "name": "Web systems and SaaS development",
+        "serviceType": "Custom software development",
+        "description": "Design and development of web systems and SaaS, from scope to interfaces and integrations. See VS Experience's process and investment ranges.",
+        "url": "https://vsexperience.com.br/en/services/saas-systems/",
+        "image": "https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://vsexperience.com.br/en/#service",
+          "name": "VS Experience",
+          "url": "https://vsexperience.com.br/en/",
+          "founder": {
+            "@type": "Person",
+            "@id": "https://vsexperience.com.br/en/#person",
+            "name": "Victor Santos"
+          }
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        },
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://wa.me/5512991833641",
+          "availableLanguage": "pt-BR"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Systems & SaaS: investment ranges",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Internal tool",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 540,
+                "maxPrice": 900
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Management system",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 1100,
+                "maxPrice": 1600
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "SaaS platform",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 1800
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vsexperience.com.br/en/services/saas-systems/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does custom software cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The average investment is $1,250, with projects between $540 and $2,150. Internal tools range from $540 to $900; management systems and CRMs, from $1,100 to $1,600; and SaaS platforms start at $1,800. The final price comes from discovery, module by module."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is an MVP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It's the smallest version of the product that solves the core problem and can already be used for real. It validates the idea with real users before investing in every feature."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is the price defined?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After discovery, with the scope split into modules. Each module has an estimated effort, and you decide what goes into the first version and what comes later."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I own the data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The database runs on infrastructure contracted in your company's name. Code ownership and license terms are defined in the contract before work starts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work on mobile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every system is responsive and can be installed as an app (PWA) without going through the app stores. Publishing on the App Store and Google Play is quoted separately."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <meta property="og:image:secure_url" content="https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg">
+
+  <meta name="twitter:image:alt" content="Web systems and SaaS — From workflow to digital product.">
+</head>
+
+<body data-whatsapp="Hi Victor! I saw the VS Experience Systems & SaaS page and would like to talk about a project.">
+  <a class="skip-link" href="#conteudo">Skip to content</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="/en/" aria-label="Victor Santos · VS Experience, home page"><img src="/assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <nav class="client-chip" aria-label="Breadcrumb"><a href="/en/services/">Services</a> · <span aria-current="page">Systems & SaaS</span></nav>
+      <div class="lang-switch" role="group" aria-label="Language"><a href="/servicos/sistemas-saas/" lang="pt-BR" hreflang="pt-BR">PT</a><a href="/en/services/saas-systems/" lang="en" hreflang="en" aria-current="true">EN</a></div>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#servico" data-spy-link="servico">The service</a>
+        <a href="#processo" data-spy-link="processo">Process</a>
+        <a href="#investimento" data-spy-link="investimento">Investment</a>
+        <a class="nav-cta" href="#contato"><span>Request a quote</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Systems & SaaS</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Web systems and SaaS development</span> <span class="display">Your process, clearer. <em>Your product, ready to evolve.</em></span></h1>
+          <p class="hero-lead">CRMs, management systems, platforms and MVPs designed around a real problem. I organize flows, rules and priorities to build a tool that's genuinely useful for your team or your customers.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">See investment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#arquitetura">How a system is organized</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg><span>Next.js, Node and Postgres, with a PWA when it makes sense.</span></div>
+        </div>
+
+        <div class="stage" data-nosnippet role="group" aria-label="Interactive management system example for a fictional product">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">app.rota.com</span><span class="browser-live">Online</span></div>
+              <div class="screen rt">
+                <aside class="rt-side" aria-hidden="true">
+                  <span class="rt-logo"><i></i>rota</span>
+                  <span class="rt-nav-label">Operations</span>
+                  <span class="rt-link" data-for="painel">Dashboard</span>
+                  <span class="rt-link">Orders <b>12</b></span>
+                  <span class="rt-link">Schedule</span>
+                  <span class="rt-link" data-for="pipeline">Sales</span>
+                  <span class="rt-nav-label">Management</span>
+                  <span class="rt-link">Finance</span>
+                  <span class="rt-link">Reports</span>
+                  <span class="rt-link" data-for="permissoes">Team</span>
+                  <span class="rt-user"><b>CL</b><span>Camila L.<small>Manager</small></span></span>
+                </aside>
+                <div class="rt-main">
+                  <div class="rt-top"><span class="rt-search">Search customer, order or work order…</span><div class="rt-actions"><span class="rt-bell"></span><span class="m-btn">+ New order</span></div></div>
+
+                  <div class="mock-page" id="rt-painel" role="tabpanel" aria-labelledby="rt-tab-painel">
+                    <div class="rt-body">
+                      <div class="rt-head"><div><small>Monday, September 21</small><p class="rt-h">Good afternoon, Camila</p></div><small>Updated just now</small></div>
+                      <div class="rt-kpis">
+                        <div class="rt-kpi"><span>Orders today</span><strong>48</strong><small>+12% vs. yesterday</small></div>
+                        <div class="rt-kpi"><span>Monthly revenue</span><strong>$6.9k</strong><small>+8% vs. August</small></div>
+                        <div class="rt-kpi"><span>Overdue</span><strong>3</strong><small class="is-down">2 more than yesterday</small></div>
+                      </div>
+                      <div class="rt-split">
+                        <div class="rt-panel">
+                          <div class="rt-panel-head">Orders per week<span>last 8 weeks</span></div>
+                          <svg class="rt-chart" viewBox="0 0 240 110" preserveAspectRatio="none" aria-hidden="true">
+                            <defs><linearGradient id="rtArea" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="oklch(0.55 0.1 195)" stop-opacity=".28"/><stop offset="1" stop-color="oklch(0.55 0.1 195)" stop-opacity="0"/></linearGradient></defs>
+                            <path class="grid" d="M0 20h240M0 50h240M0 80h240M0 108h240"/>
+                            <path class="area" d="M4 86 L37 78 L70 82 L103 60 L136 64 L169 42 L202 46 L236 22 L236 108 L4 108 Z"/>
+                            <path class="line" pathLength="1" d="M4 86 L37 78 L70 82 L103 60 L136 64 L169 42 L202 46 L236 22"/>
+                            <circle class="dot" cx="236" cy="22" r="3.5"/>
+                          </svg>
+                        </div>
+                        <div class="rt-panel">
+                          <div class="rt-panel-head">Upcoming appointments</div>
+                          <div class="rt-agenda">
+                            <div><b>14h</b><span><strong>Site visit</strong>88 Palm Street</span></div>
+                            <div><b>15h</b><span><strong>Delivery · order 1182</strong>Vista Verde Residences</span></div>
+                            <div><b>16h</b><span><strong>Quote follow-up</strong>Marcos A. · WhatsApp</span></div>
+                            <div><b>17h</b><span><strong>Installation</strong>Downtown store</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mock-page" id="rt-pipeline" role="tabpanel" aria-labelledby="rt-tab-pipeline" hidden>
+                    <div class="rt-body">
+                      <div class="rt-head"><div><small>Sales</small><p class="rt-h">Quote pipeline</p></div><small>$11.6k open</small></div>
+                      <div class="rt-board">
+                        <div class="rt-col"><p class="rt-colh">New <span>4</span></p>
+                          <div class="rt-card"><strong>Horizonte Clinic</strong><span>Monthly maintenance</span><footer><span class="rt-tag">$430</span><span class="rt-avatar">JP</span></footer></div>
+                          <div class="rt-card is-moving"><strong>Trigo Bom Bakery</strong><span>Full installation</span><footer><span class="rt-tag is-hot">$1,400</span><span class="rt-avatar">CL</span></footer></div>
+                          <div class="rt-card"><strong>Aprender School</strong><span>Annual contract</span><footer><span class="rt-tag">$2,150</span><span class="rt-avatar">MA</span></footer></div>
+                        </div>
+                        <div class="rt-col"><p class="rt-colh">Negotiating <span>3</span></p>
+                          <div class="rt-drop"></div>
+                          <div class="rt-card"><strong>Maré Alta Hotel</strong><span>Proposal sent yesterday</span><footer><span class="rt-tag is-warm">$3,350</span><span class="rt-avatar">CL</span></footer></div>
+                          <div class="rt-card"><strong>Pulso Gym</strong><span>Awaiting visit</span><footer><span class="rt-tag is-warm">$950</span><span class="rt-avatar">JP</span></footer></div>
+                        </div>
+                        <div class="rt-col"><p class="rt-colh">Closed <span>9</span></p>
+                          <div class="rt-card"><strong>Bom Preço Market</strong><span>Signed · starts on the 28th</span><footer><span class="rt-tag">$1,800</span><span class="rt-avatar">MA</span></footer></div>
+                          <div class="rt-card"><strong>Studio Leve</strong><span>Paid via instant transfer</span><footer><span class="rt-tag">$580</span><span class="rt-avatar">CL</span></footer></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mock-page" id="rt-permissoes" role="tabpanel" aria-labelledby="rt-tab-permissoes" hidden>
+                    <div class="rt-body">
+                      <div class="rt-head"><div><small>Settings</small><p class="rt-h">Team and permissions</p></div><span class="m-btn is-ghost">Invite person</span></div>
+                      <div class="rt-table">
+                        <div class="rt-row is-head"><span>Person</span><span>Role</span><span>View</span><span>Edit</span><span>Finance</span></div>
+                        <div class="rt-row"><span class="rt-person"><span class="rt-avatar">CL</span><span><strong>Camila Lopes</strong><small>camila@rota.com</small></span></span><span class="rt-role is-admin">Administrator</span><span class="rt-toggle is-on"></span><span class="rt-toggle is-on"></span><span class="rt-toggle is-on"></span></div>
+                        <div class="rt-row"><span class="rt-person"><span class="rt-avatar">JP</span><span><strong>João Pedro</strong><small>joao@rota.com</small></span></span><span class="rt-role">Sales</span><span class="rt-toggle is-on"></span><span class="rt-toggle is-on"></span><span class="rt-toggle"></span></div>
+                        <div class="rt-row"><span class="rt-person"><span class="rt-avatar">MA</span><span><strong>Marcos Alves</strong><small>marcos@rota.com</small></span></span><span class="rt-role is-field">Field technician</span><span class="rt-toggle is-on"></span><span class="rt-toggle"></span><span class="rt-toggle"></span></div>
+                        <div class="rt-row"><span class="rt-person"><span class="rt-avatar">RS</span><span><strong>Renata Souza</strong><small>renata@rota.com</small></span></span><span class="rt-role">Finance</span><span class="rt-toggle is-on"></span><span class="rt-toggle"></span><span class="rt-toggle is-on"></span></div>
+                      </div>
+                      <div class="rt-note"><b>Activity log</b>Every change is logged with author, date and time.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float-card rt-auto" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+              <div><strong>Automation executed</strong><span>32 reminders sent via WhatsApp</span><small>tomorrow's schedule · 6:00 PM</small></div>
+            </div>
+            <div class="stage-badge"><strong>30 to 60</strong><span>days to the first version in production</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Example screens">
+            <button class="mockup-tab" type="button" role="tab" id="rt-tab-painel" aria-controls="rt-painel" aria-selected="true">Dashboard</button>
+            <button class="mockup-tab" type="button" role="tab" id="rt-tab-pipeline" aria-controls="rt-pipeline" aria-selected="false">Pipeline</button>
+            <button class="mockup-tab" type="button" role="tab" id="rt-tab-permissoes" aria-controls="rt-permissoes" aria-selected="false">Permissions</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-band" aria-label="Service summary">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Average timeline</span><strong>30 to 60 days</strong></div>
+        <div class="spec-item"><span>Average investment</span><strong>$1,250</strong></div>
+        <div class="spec-item"><span>Delivery</span><strong>In milestones, with staging</strong></div>
+        <div class="spec-item"><span>Format</span><strong>Responsive web app or PWA</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="servico" data-spy="servico">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal">Custom software for the way you work.</h2>
+          <p class="reveal delay-1">When spreadsheets, WhatsApp groups and scattered tools start holding the operation back, it's time for a system of your own. It organizes data, automates repetitive tasks and shows the business in real time.</p>
+        </div>
+        <div class="outcomes">
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6M18 15V9a3 3 0 0 0-3-3h-3"/></svg></div><h3>Discovery before code</h3><p>Flows, user profiles and rules mapped so we only build what matters.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>An interface your team adopts</h3><p>Simple screens for operators and clear dashboards for decision-makers.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Automations and integrations</h3><p>WhatsApp, payments, email and ERP connected to the daily workflow.</p></article>
+          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Ready to evolve</h3><p>Modular architecture, with organized data and a foundation for the next versions.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anatomy" id="arquitetura" data-spy="servico" aria-labelledby="anatomia-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="anatomia-titulo">An organized foundation for the next versions.</h2>
+          <p class="reveal delay-1">Each system is organized in independent modules on a secure foundation. The MVP starts lean and gains new features without redoing what already works.</p>
+        </div>
+        <div class="layers">
+          <div class="layer reveal"><h3>Interface<small>what each person sees and uses</small></h3><ul><li>Responsive web app</li><li>PWA installable on mobile</li><li>Admin dashboard</li><li>Customer area</li></ul></div>
+          <div class="layer reveal delay-1"><h3>Business modules<small>chosen during discovery</small></h3><ul><li>Records</li><li>Orders and work orders</li><li>Schedule</li><li>Finance</li><li>Reports</li><li>Notifications</li></ul></div>
+          <div class="layer is-core reveal delay-2"><h3>Foundation<small>secure and shared by everything</small></h3><ul><li>Login and profiles</li><li>Role-based permissions</li><li>Database</li><li>API</li><li>Activity log</li><li>Backups</li></ul></div>
+          <div class="layer is-edge reveal delay-3"><h3>Integrations<small>when the flow calls for it</small></h3><ul><li>WhatsApp via Evolution API</li><li>Payments with Asaas</li><li>Transactional email</li><li>ERP and spreadsheets</li></ul></div>
+        </div>
+        <div class="versions reveal">
+          <div><span>MVP</span><p>Solves the core problem with the fewest screens, to validate with real users.</p></div>
+          <div><span>Version 1</span><p>Completes the operation with secondary modules, reports and adjustments from real use.</p></div>
+          <div><span>Scale</span><p>Automation, new profiles, integrations and an app, as the business grows.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-spy="servico" aria-labelledby="indicado-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="indicado-titulo">When a custom system is the right choice.</h2></div>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>It makes sense when</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>A repetitive process lives in spreadsheets and depends on someone's memory.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Several people, with different roles, need to access the same data.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You have a product idea and want to validate it with real users.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your routine needs to connect with WhatsApp, payments or an ERP without rework.</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Another path works better when</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>An off-the-shelf tool solves almost everything for a low monthly fee. Discovery will tell you that honestly.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>The goal is to present the company and generate leads: see <a class="text-link" href="/en/services/institutional-website/">Company Website</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>What you need is to sell products online: see <a class="text-link" href="/en/services/e-commerce/">E-commerce</a>.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="processo" data-spy="processo">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal">Built in milestones, validated at each one.</h2>
+          <p class="section-lead reveal delay-1">You use the system on staging at every milestone, before it reaches your team. Decisions are made with the product in hand, not on assumptions.</p>
+          <div class="process-total reveal delay-2"><strong>30 to 60</strong><span>days to the first version; platforms can take up to 90</span></div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Week 1</span><h3>Discovery</h3><p>Interviews with the people who will use it, mapping of flows, profiles and business rules. Defining what goes into the MVP.</p><div class="step-deliverable"><strong>You receive</strong><span>prioritized scope and module map</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">02</span><div><span class="step-time">Week 2</span><h3>Product architecture</h3><p>Screen flows, data model, permissions and required integrations.</p><div class="step-deliverable"><strong>You receive</strong><span>flowchart and milestone plan</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">03</span><div><span class="step-time">Weeks 2 and 3</span><h3>Prototype</h3><p>Key screens designed and validated with the team before any line of code.</p><div class="step-deliverable"><strong>You receive</strong><span>approved clickable prototype</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">04</span><div><span class="step-time">Weeks 3 to 7</span><h3>Development in milestones</h3><p>Working deliverables on staging, module by module, with weekly check-ins.</p><div class="step-deliverable"><strong>You receive</strong><span>staging access at every milestone</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">05</span><div><span class="step-time">Weeks 7 and 8</span><h3>Launch</h3><p>Final testing, data migration, team training and launch.</p><div class="step-deliverable"><strong>You receive</strong><span>system in production and initial support</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">06</span><div><span class="step-time">Ongoing</span><h3>Evolution</h3><p>New versions guided by real use: metrics, team feedback and business priorities.</p><div class="step-deliverable"><strong>You receive</strong><span>roadmap for the next versions</span></div></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="investimento" data-spy="investimento">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal">How much custom software costs.</h2>
+          <p class="section-lead reveal delay-2">The average below comes from systems recently quoted by VS Experience. Prices in US dollars. The final price is set after discovery, with the prioritized modules in writing.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value"><span>Average investment</span><strong>$1,250</strong><small>Average of 8 systems and platforms quoted in recent months.</small></div>
+          <div class="range" role="img" aria-label="Price range from $540 to $2,150, averaging $1,250">
+            <div class="range-track" aria-hidden="true">
+              <span class="range-dot" style="--p:0%;--i:0"></span>
+              <span class="range-dot" style="--p:1.2%;--i:1"></span>
+              <span class="range-dot" style="--p:16.9%;--i:2"></span>
+              <span class="range-dot" style="--p:32.6%;--i:3"></span>
+              <span class="range-dot" style="--p:56.2%;--i:4"></span>
+              <span class="range-dot" style="--p:66.3%;--i:5"></span>
+              <span class="range-dot" style="--p:83.5%;--i:6"></span>
+              <span class="range-dot" style="--p:100%;--i:7"></span>
+              <span class="range-avg" style="--p:44.4%"><b>average $1,250</b></span>
+            </div>
+            <div class="range-scale" aria-hidden="true"><div>lowest<strong>$540</strong></div><div>highest<strong>$2,150</strong></div></div>
+            <p class="range-caption">Platforms with multiple profiles and an app can exceed $2,700. One-off automations, like a digital intake form, start at $110.</p>
+          </div>
+        </div>
+
+        <div class="plans-grid reveal">
+          <article class="plan">
+            <span class="plan-label">Internal tool</span>
+            <h3>One flow, well solved.</h3>
+            <p class="plan-intro">A specific process digitized, with few access profiles.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lean discovery</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Up to 3 main modules</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Login and basic profiles</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Responsive web app or PWA</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Team training</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price">$540 <em>to</em> 900</strong><p class="plan-note">Re-enrollments, service management and proposal systems.</p></div>
+          </article>
+          <article class="plan is-common">
+            <span class="common-badge">Most common range</span>
+            <span class="plan-label">Management system</span>
+            <h3>The operation in one place.</h3>
+            <p class="plan-intro">CRM, operations management or MVP with automations and integrations.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Full discovery and prototype</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Operations, finance and reports</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Role-based profiles and permissions</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp or payments integration</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Milestone delivery with staging</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Initial support after launch</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price">$1,100 <em>to</em> 1,600</strong><p class="plan-note">Where the $1,250 average fits: CRMs, management and MVPs.</p></div>
+          </article>
+          <article class="plan">
+            <span class="plan-label">SaaS platform</span>
+            <h3>A product built to scale.</h3>
+            <p class="plan-intro">A product with multiple profiles, a customer area and continuous evolution.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Management system</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Customer area and multiple profiles</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Subscriptions and recurring billing</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Product design system</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Evolution roadmap</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price"><em>starting at</em> $1,800</strong><p class="plan-note">Quoted per module, after discovery.</p></div>
+          </article>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>What changes the price</h3>
+            <ul class="factor-list">
+              <li>Number of modules and screens</li><li>User profiles</li><li>External integrations</li><li>Data migration</li><li>App or PWA</li><li>Complexity of the rules</li>
+            </ul>
+            <div class="extras">
+              <h3>Add-ons</h3>
+              <div class="pay-rows">
+                <div class="pay-row"><span>Infrastructure and monthly maintenance</span><strong>from $110 per month</strong></div>
+                <div class="pay-row"><span>One-off automations</span><strong>from $110</strong></div>
+                <div class="pay-row"><span>Publishing on the app stores</span><strong>$220 per app</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Payment options</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Down payment and balance</span><strong>40% at the start, balance in 3 installments</strong></div>
+              <div class="pay-row"><span>By milestones</span><strong>Approval, working structure and staging</strong></div>
+              <div class="pay-row"><span>Credit card</span><strong>Up to 10 installments, card fees apply</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="case-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">A product of our own in development.</h2></div>
+        <div class="case-grid">
+          <figure class="case-media reveal" style="margin:0"><img src="/assets/images/cases/facilorgapp.webp" alt="The Fácil Organização app open on a laptop and a phone, showing the day's task board, ongoing projects and the monthly balance" width="1350" height="808" loading="lazy" decoding="async"></figure>
+          <div class="case-copy reveal delay-1">
+            <span class="case-tag">SaaS · Digital product</span>
+            <h3>Fácil Organização</h3>
+            <dl class="case-facts">
+              <div><dt>Focus</dt><dd>Build a complete management app for self-employed professionals and freelancers, centralizing tasks, projects, clients and finances.</dd></div>
+              <div><dt>Deliverables</dt><dd>Tasks, projects, clients, finance and notes modules in Next.js 14 with Supabase and its own design system.</dd></div>
+              <div><dt>Impact</dt><dd>The whole operation in one place, without juggling several separate tools.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="entrega-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="entrega-titulo">After the system goes into use.</h2></div>
+        <div class="care-grid">
+          <article class="care-block reveal"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></div><h3>Infrastructure in your company's name.</h3><p>Server, database, domain and external services are contracted in your company's name. The data is under your control from day one.</p><p>Monthly infrastructure costs vary with usage and are paid directly to the providers.</p></article>
+          <article class="care-block is-accent reveal delay-1"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 7h-5V2M4 17h5v5"/><path d="M5.7 9A7 7 0 0 1 17 5l3 2M4 17l3 2a7 7 0 0 0 11.3-4"/></svg></div><h3>Maintenance and evolution</h3><p>To keep the system stable, secure and keeping pace with your operation's growth.</p><ul class="care-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Monitoring and fixes</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Backups and security</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Small improvements</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Team support</li></ul><div class="care-price"><strong>$110</strong><span>per month, from</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="faq-titulo">
+      <div class="container faq-layout">
+        <h2 class="section-title reveal" id="faq-titulo">Custom software FAQ.</h2>
+        <div class="faq-list reveal delay-1">
+          <details class="faq-item"><summary>How much does custom software cost?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>The average investment is $1,250, with projects between $540 and $2,150. Internal tools range from $540 to $900; management systems and CRMs, from $1,100 to $1,600; and SaaS platforms start at $1,800. The final price comes from discovery, module by module.</p></details>
+          <details class="faq-item"><summary>What is an MVP?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>It's the smallest version of the product that solves the core problem and can already be used for real. It validates the idea with real users before investing in every feature.</p></details>
+          <details class="faq-item"><summary>How is the price defined?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>After discovery, with the scope split into modules. Each module has an estimated effort, and you decide what goes into the first version and what comes later.</p></details>
+          <details class="faq-item"><summary>Do I own the data?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. The database runs on infrastructure contracted in your company's name. Code ownership and license terms are defined in the contract before work starts.</p></details>
+          <details class="faq-item"><summary>Does it work on mobile?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. Every system is responsive and can be installed as an app (PWA) without going through the app stores. Publishing on the App Store and Google Play is quoted separately.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">What problem does your next system need to <span>solve?</span></h2>
+            <p>Tell me where the routine gets stuck, who uses the process and what needs to improve. We define the scope of the first version and the priorities to estimate the investment.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copy link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Service</span><strong>Systems & SaaS</strong></div>
+            <div class="meta-row"><span>Average timeline</span><strong>30 to 60 days</strong></div>
+            <div class="meta-row"><span>Average investment</span><strong>$1,250</strong></div>
+            <div class="meta-row"><span>Price range</span><strong>$540 to $2,150</strong></div>
+            <div class="meta-row"><span>Payment</span><strong>Down payment plus milestone installments</strong></div>
+          </div>
+        </div>
+        <nav class="other-services" aria-labelledby="outros-titulo">
+          <h2 id="outros-titulo">Other services</h2>
+          <div class="other-grid">
+            <a href="/en/services/landing-page/"><strong>Landing Page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $230</small></a>
+            <a href="/en/services/institutional-website/"><strong>Company Website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $420</small></a>
+            <a href="/en/services/e-commerce/"><strong>E-commerce <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $670</small></a>
+            <a href="/en/services/design-system/"><strong>Design System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>from $540</small></a>
+          </div>
+        </nav>
+        <div class="signature"><img src="/assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Strategy, design and development for your business.</span><span>Reference prices · October 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copied</div>
+  <script src="/assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="/assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="/servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>

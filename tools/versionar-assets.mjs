@@ -12,6 +12,8 @@ const pages = [
   'en/index.html',
   'servicos/index.html',
   ...['design-system', 'e-commerce', 'landing-page', 'sistemas-saas', 'site-institucional'].map((s) => `servicos/${s}/index.html`),
+  'en/services/index.html',
+  ...['design-system', 'e-commerce', 'landing-page', 'saas-systems', 'institutional-website'].map((s) => `en/services/${s}/index.html`),
 ];
 
 const hash = (file) => crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex').slice(0, 8);

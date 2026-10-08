@@ -636,3 +636,24 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .process-aside { position: static; }
 }
+
+/* ---------- Seletor de idioma (PT/EN) ---------- */
+.lang-switch { display: inline-flex; align-items: center; padding: 3px; border: 1px solid var(--dark-line-strong); border-radius: 8px; flex: none; }
+.lang-switch a {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 38px; min-height: 32px;
+  border-radius: 5px; font-size: 12.5px; font-weight: 650; letter-spacing: .02em; color: var(--text-muted);
+  transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+.lang-switch a:hover { color: var(--text); }
+.lang-switch a[aria-current="true"] { background: var(--grafite); color: var(--linho); }
+@media (max-width: 780px) {
+  .lang-switch { margin-left: auto; }
+  .lang-switch + .nav-links { margin-left: 0; }
+}
+/* celular: logotipo, idioma e o botão de orçamento precisam caber lado a lado */
+@media (max-width: 540px) {
+  .nav-wrap { gap: 10px; }
+  .brand img { height: 16px; }
+  .lang-switch a { min-width: 30px; min-height: 30px; font-size: 12px; }
+  .nav-cta { margin-left: 0; padding: 0 10px; font-size: 12.5px; }
+}

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Online store design with design, development and the integrations defined in the scope. See VS Experience's process and investment ranges.">
+  <title>Online store and e-commerce design | VS Experience</title>
+  <link rel="canonical" href="https://vsexperience.com.br/en/services/e-commerce/">
+  <link rel="alternate" hreflang="pt-BR" href="https://vsexperience.com.br/servicos/e-commerce/">
+  <link rel="alternate" hreflang="en" href="https://vsexperience.com.br/en/services/e-commerce/">
+  <link rel="alternate" hreflang="x-default" href="https://vsexperience.com.br/servicos/e-commerce/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://vsexperience.com.br/en/services/e-commerce/">
+  <meta property="og:title" content="Online store and e-commerce design | VS Experience">
+  <meta property="og:description" content="Online store design with design, development and the integrations defined in the scope. See VS Experience's process and investment ranges.">
+  <meta property="og:image" content="https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="E-commerce design — A store designed for buying.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Online store and e-commerce design | VS Experience">
+  <meta name="twitter:description" content="Online store design with design, development and the integrations defined in the scope. See VS Experience's process and investment ranges.">
+  <meta name="twitter:image" content="https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg">
+  <link rel="icon" href="/assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="/assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- fontes no próprio HTML: nunca dependem de um CSS em cache. O Google fica como reserva, só baixado se o arquivo local falhar -->
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../../assets/fonts/roboto-flex-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotoflex/v30/NaNeepOXO_NexZs0b5QrzlOHb8wCikXpYqmZsWI-__OGbt8jZktqc2V3Zs0KvDLdBP8SBZtOs2IifRuUZQMsPJtUsR4DEK6cULNeUx9XgTnH37Ha_FIAp4Fm0PP1hw45DntW2x0wZGzhPmr1YNMYKYn9_1IQXGwJAiUJVUMdN5YUW4O8HtSoXjC79QRyaLshNDUf9-EmFw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'), url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="/servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* Mockup · Verde Lume, loja de plantas (cliente fictício) */
+    .screen.gl { --c-accent: oklch(0.45 0.09 155); --c-on-accent: #fff; --c-ink: oklch(0.22 0.03 160); --c-tint: oklch(0.955 0.018 150); --c-sale: oklch(0.64 0.16 40); }
+    .gl-leaf { width: 12px; height: 12px; border-radius: 0 60% 0 60%; background: var(--c-accent); }
+    .gl-search { flex: 1; max-width: 150px; margin-left: 10px; padding: 6px 9px; border-radius: 99px; background: var(--m-canvas); color: var(--m-muted); font-size: 6.5px; }
+    .gl-cart { position: relative; width: 18px; height: 16px; border: 1.5px solid var(--c-ink); border-top: 0; border-radius: 0 0 4px 4px; }
+    .gl-cart::before { content: ''; position: absolute; left: 3px; right: 3px; top: -5px; height: 6px; border: 1.5px solid var(--c-ink); border-bottom: 0; border-radius: 6px 6px 0 0; }
+    .gl-cart b { position: absolute; top: -9px; right: -8px; width: 12px; height: 12px; display: grid; place-items: center; border-radius: 50%; background: var(--c-sale); color: #fff; font-size: 6px; }
+    .motion-ready .gl-cart b { animation: cartPop .6s 2s var(--ease) both; }
+    @keyframes cartPop { from { transform: scale(0); } 60% { transform: scale(1.3); } }
+
+    .screen.gl .mock-page { display: flex; flex-direction: column; min-height: 406px; }
+    .screen.gl .mock-page[hidden] { display: none; }
+    .gl-trust { display: flex; justify-content: space-between; gap: 10px; margin-top: auto; padding: 11px 18px; border-top: 1px solid var(--m-line); background: var(--m-canvas); color: var(--m-soft); font-size: 6.5px; font-weight: 600; }
+    .gl-trust span { display: flex; align-items: center; gap: 5px; }
+    .gl-trust span::before { content: ''; width: 7px; height: 7px; border-radius: 2px; background: var(--c-accent); }
+    .gl-banner { display: flex; justify-content: space-between; align-items: center; margin: 14px 18px 10px; padding: 14px 16px; border-radius: 10px; background: var(--c-accent); color: #fff; }
+    .gl-banner strong { display: block; font-size: 15px; line-height: 1.05; letter-spacing: -.03em; }
+    .gl-banner span { color: oklch(0.9 0.04 150); font-size: 7px; }
+    .gl-banner .m-btn { background: #fff; color: var(--c-accent); }
+    .gl-chips { display: flex; gap: 5px; padding: 0 18px 10px; }
+    .gl-chips span { padding: 5px 8px; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--m-line); color: var(--m-soft); font-size: 6.5px; font-weight: 600; }
+    .gl-chips span:first-child { background: var(--c-ink); color: #fff; box-shadow: none; }
+    .gl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; padding: 0 18px 18px; }
+    .gl-product { position: relative; }
+    .gl-shot { position: relative; height: 112px; overflow: hidden; border-radius: 8px; background: var(--c-tint); }
+    .gl-product:nth-child(2) .gl-shot { background: oklch(0.95 0.02 70); }
+    .gl-product:nth-child(3) .gl-shot { background: oklch(0.95 0.015 250); }
+    .gl-off { position: absolute; z-index: 2; top: 6px; left: 6px; padding: 3px 5px; border-radius: 4px; background: var(--c-sale); color: #fff; font-size: 6px; font-weight: 700; }
+    .gl-product strong { display: block; margin-top: 6px; font-size: 7.5px; }
+    .gl-price { display: flex; align-items: baseline; gap: 4px; margin-top: 2px; }
+    .gl-price b { font-size: 10px; }
+    .gl-price s { color: var(--m-muted); font-size: 6.5px; }
+    .gl-add { position: absolute; right: 6px; top: 90px; width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: var(--c-ink); color: #fff; font-size: 10px; line-height: 1; }
+
+    /* Plantas desenhadas em CSS */
+    .plant { position: absolute; left: 50%; bottom: 10px; width: 46px; margin-left: -23px; }
+    .plant .pot { position: relative; z-index: 1; height: 30px; margin: 0 6px; background: var(--pot, oklch(0.62 0.12 45)); clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%); }
+    .plant .pot::before { content: ''; position: absolute; left: -2px; right: -2px; top: 0; height: 6px; background: color-mix(in oklch, var(--pot, oklch(0.62 0.12 45)) 80%, #000); }
+    .plant i { position: absolute; bottom: 24px; left: 50%; width: 16px; height: 36px; margin-left: -8px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: var(--leaf, oklch(0.52 0.12 150)); transform-origin: 50% 100%; }
+    .plant i:nth-child(2) { transform: rotate(-32deg); height: 32px; background: color-mix(in oklch, var(--leaf, oklch(0.52 0.12 150)) 85%, #fff); }
+    .plant i:nth-child(3) { transform: rotate(30deg); height: 30px; }
+    .plant i:nth-child(4) { transform: rotate(-62deg); height: 24px; }
+    .plant i:nth-child(5) { transform: rotate(64deg); height: 22px; background: color-mix(in oklch, var(--leaf, oklch(0.52 0.12 150)) 80%, #000); }
+    .plant.is-tall i { width: 10px; margin-left: -5px; height: 50px; border-radius: 40% 40% 10% 10%; }
+    .plant.is-tall i:nth-child(2) { height: 42px; transform: rotate(-14deg); }
+    .plant.is-tall i:nth-child(3) { height: 38px; transform: rotate(16deg); }
+    .plant.is-round i { width: 14px; height: 14px; border-radius: 50%; bottom: 26px; }
+    .plant.is-round i:nth-child(1) { transform: translate(0, -14px); }
+    .plant.is-round i:nth-child(2) { transform: translate(-10px, -4px); }
+    .plant.is-round i:nth-child(3) { transform: translate(10px, -4px); }
+    .plant.is-round i:nth-child(4) { transform: translate(-6px, -22px); }
+    .plant.is-round i:nth-child(5) { transform: translate(7px, -24px); }
+    .plant.is-big { width: 110px; margin-left: -55px; bottom: 18px; }
+    .plant.is-big .pot { height: 64px; margin: 0 16px; }
+    .plant.is-big i { bottom: 54px; width: 36px; height: 86px; margin-left: -18px; }
+    .plant.is-big i:nth-child(2) { height: 76px; }
+    .plant.is-big i:nth-child(3) { height: 72px; }
+    .plant.is-big i:nth-child(4) { height: 56px; }
+    .plant.is-big i:nth-child(5) { height: 50px; }
+
+    .gl-pdp { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 18px; }
+    .gl-pdp-shot { position: relative; height: 290px; border-radius: 10px; background: var(--c-tint); }
+    .gl-thumbs { position: absolute; left: 8px; bottom: 8px; display: flex; gap: 4px; }
+    .gl-thumbs span { width: 22px; height: 22px; border-radius: 5px; background: #fff; box-shadow: 0 0 0 1px var(--m-line); }
+    .gl-thumbs span:first-child { box-shadow: 0 0 0 1.5px var(--c-accent); }
+    .gl-crumbs { color: var(--m-muted); font-size: 6px; }
+    .gl-pdp-title { font-weight: 700; margin: 6px 0 4px; font-size: 16px; line-height: 1.1; letter-spacing: -.03em; }
+    .gl-rating { color: oklch(0.7 0.15 75); font-size: 7px; }
+    .gl-rating span { color: var(--m-muted); }
+    .gl-bigprice { margin: 10px 0 2px; font-size: 20px; font-weight: 700; letter-spacing: -.03em; }
+    .gl-install { color: var(--m-muted); font-size: 7px; }
+    .gl-pix { display: inline-block; margin-top: 5px; padding: 3px 6px; border-radius: 4px; background: var(--c-tint); color: var(--c-accent); font-size: 6.5px; font-weight: 700; }
+    .gl-opt { margin: 12px 0 5px; font-size: 7px; font-weight: 700; }
+    .gl-sizes { display: flex; gap: 5px; }
+    .gl-sizes span { padding: 6px 10px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--m-line); font-size: 7px; font-weight: 600; }
+    .gl-sizes span.is-on { box-shadow: inset 0 0 0 1.5px var(--c-ink); }
+    .gl-buy { display: flex; gap: 6px; margin-top: 14px; }
+    .gl-qty { display: flex; align-items: center; gap: 9px; padding: 0 9px; border-radius: 5px; box-shadow: inset 0 0 0 1px var(--m-line); font-size: 8px; font-weight: 700; }
+    .gl-buy .m-btn { flex: 1; padding-block: 9px; }
+    .gl-ship { margin-top: 10px; padding: 9px; border-radius: 6px; background: var(--m-canvas); font-size: 6.5px; color: var(--m-soft); }
+    .gl-ship b { color: var(--c-ink); }
+
+    .gl-checkout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; padding: 18px; }
+    .gl-steps { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; font-size: 7px; font-weight: 700; color: var(--m-muted); }
+    .gl-steps span { display: flex; align-items: center; gap: 4px; }
+    .gl-steps span::before { content: '✓'; width: 13px; height: 13px; display: grid; place-items: center; border-radius: 50%; background: var(--c-accent); color: #fff; font-size: 6px; }
+    .gl-steps span.is-now { color: var(--c-ink); }
+    .gl-steps span.is-now::before { content: '3'; background: var(--c-ink); }
+    .gl-steps i { width: 18px; height: 1px; background: var(--m-line); }
+    .gl-pay { display: grid; gap: 6px; }
+    .gl-pay div { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-radius: 7px; box-shadow: inset 0 0 0 1px var(--m-line); font-size: 8px; font-weight: 600; }
+    .gl-pay div.is-on { box-shadow: inset 0 0 0 1.5px var(--c-accent); background: var(--c-tint); }
+    .gl-pay div span { display: flex; align-items: center; gap: 7px; }
+    .gl-pay div span::before { content: ''; width: 9px; height: 9px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--m-line); }
+    .gl-pay div.is-on span::before { box-shadow: inset 0 0 0 3px var(--c-accent); }
+    .gl-pay small { color: var(--c-accent); font-size: 6.5px; font-weight: 700; }
+    .gl-qr { display: flex; gap: 10px; align-items: center; margin-top: 8px; padding: 10px; border-radius: 7px; background: var(--m-canvas); color: var(--m-soft); font-size: 6.5px; }
+    .gl-qr i { width: 36px; height: 36px; flex: 0 0 auto; background: conic-gradient(var(--c-ink) 25%, transparent 0 50%, var(--c-ink) 0 75%, transparent 0) 0 0 / 8px 8px; border-radius: 3px; box-shadow: 0 0 0 3px #fff; }
+    .gl-summary { padding: 12px; border-radius: 8px; background: var(--m-canvas); font-size: 7px; }
+    .gl-summary strong { display: block; margin-bottom: 8px; font-size: 9px; }
+    .gl-line { display: flex; justify-content: space-between; padding: 4px 0; color: var(--m-soft); }
+    .gl-line.is-off { color: var(--c-accent); font-weight: 600; }
+    .gl-total { display: flex; justify-content: space-between; margin: 6px 0 10px; padding-top: 8px; border-top: 1px solid var(--m-line); font-size: 11px; font-weight: 700; }
+    .gl-summary .m-btn { display: flex; width: 100%; padding-block: 9px; }
+
+    .gl-order { right: -4%; bottom: 96px; left: auto; }
+    .gl-order .float-icon { background: oklch(0.93 0.05 150); color: oklch(0.42 0.1 150); }
+
+    /* Anatomia: jornada de compra */
+    .journey { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; counter-reset: none; }
+    .journey li { position: relative; padding: 22px 20px 24px; border-radius: var(--radius); background: var(--surface-dark); transition: background .3s ease, transform .35s var(--ease); }
+    .journey li:hover { background: var(--surface-hover); transform: translateY(-3px); }
+    .journey li:not(:last-child)::after { content: ''; position: absolute; z-index: 1; top: 34px; right: -9px; width: 8px; height: 8px; border-top: 1.5px solid var(--rose-soft); border-right: 1.5px solid var(--rose-soft); transform: rotate(45deg); }
+    .journey li:last-child { background: var(--carmim); }
+    .journey svg { width: 24px; margin-bottom: 30px; color: var(--rose-soft); }
+    .journey li:last-child svg { color: #fff; }
+    .journey strong { display: block; margin-bottom: 6px; font-size: 18px; letter-spacing: -.02em; }
+    .journey p { margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+    .journey li:last-child p { color: color-mix(in oklch, #fff 80%, transparent); }
+    .integrations { display: grid; grid-template-columns: 170px 1fr; gap: 28px; align-items: start; margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--dark-line-strong); }
+    .integrations h3 { margin: 0; font-size: 17px; letter-spacing: -.02em; }
+    .integrations h3 small { display: block; margin-top: 6px; color: var(--text-muted); font-size: 13px; font-weight: 400; letter-spacing: 0; }
+    .integration-rows { display: grid; gap: 14px; }
+    .integration-row { display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: center; }
+    .integration-row > span { color: var(--rose-soft); font-size: 13px; font-weight: 600; }
+    .integration-row ul { display: flex; flex-wrap: wrap; gap: 8px; }
+    .integration-row li { padding: 7px 12px; border-radius: 999px; border: 1px solid var(--dark-line-strong); color: var(--text-soft); font-size: 13px; }
+
+    @media (max-width: 1040px) {
+      .journey { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .journey li:nth-child(3)::after { display: none; }
+    }
+    @media (max-width: 780px) {
+      .journey { grid-template-columns: 1fr 1fr; }
+      .journey li::after { display: none; }
+      .integrations { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .screen.gl .mock-page { min-height: 311px; }
+      .gl-trust span:nth-child(3) { display: none; }
+      .gl-search { display: none; }
+      .gl-grid { grid-template-columns: 1fr 1fr; }
+      .gl-product:nth-child(3) { display: none; }
+      .gl-pdp, .gl-checkout { grid-template-columns: 1fr; }
+      .gl-pdp-shot { display: none; }
+      .gl-summary { display: none; }
+      .journey { grid-template-columns: 1fr; }
+      .integration-row { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://vsexperience.com.br/en/services/e-commerce/#webpage",
+        "url": "https://vsexperience.com.br/en/services/e-commerce/",
+        "name": "Online store and e-commerce design | VS Experience",
+        "description": "Online store design with design, development and the integrations defined in the scope. See VS Experience's process and investment ranges.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://vsexperience.com.br/en/#website",
+          "name": "VS Experience",
+          "url": "https://vsexperience.com.br/en/"
+        },
+        "about": {
+          "@id": "https://vsexperience.com.br/en/services/e-commerce/#servico"
+        },
+        "breadcrumb": {
+          "@id": "https://vsexperience.com.br/en/services/e-commerce/#breadcrumb"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg",
+          "width": 1200,
+          "height": 630
+        },
+        "dateModified": "2026-10-04"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://vsexperience.com.br/en/services/e-commerce/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://vsexperience.com.br/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Serviços",
+            "item": "https://vsexperience.com.br/en/services/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "E-commerce",
+            "item": "https://vsexperience.com.br/en/services/e-commerce/"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://vsexperience.com.br/en/services/e-commerce/#servico",
+        "name": "Online store design",
+        "serviceType": "E-commerce design",
+        "description": "Online store design with design, development and the integrations defined in the scope. See VS Experience's process and investment ranges.",
+        "url": "https://vsexperience.com.br/en/services/e-commerce/",
+        "image": "https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://vsexperience.com.br/en/#service",
+          "name": "VS Experience",
+          "url": "https://vsexperience.com.br/en/",
+          "founder": {
+            "@type": "Person",
+            "@id": "https://vsexperience.com.br/en/#person",
+            "name": "Victor Santos"
+          }
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Brasil"
+        },
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://wa.me/5512991833641",
+          "availableLanguage": "pt-BR"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "E-commerce: investment ranges",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Essential store",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 500,
+                "maxPrice": 810
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Integrated store",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 810,
+                "maxPrice": 1600
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Advanced operation",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "USD",
+                "minPrice": 1800
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vsexperience.com.br/en/services/e-commerce/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does an e-commerce store cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The average investment is $670. The essential store, with catalog, checkout, Pix, card and shipping, ranges from $500 to $810; the store integrated with Bling and Mercado Livre, from $810 to $1,600; and advanced operations start at $1,800. Payment, shipping and hosting fees are paid separately."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which platform do you use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In most projects, WordPress with WooCommerce: no platform subscription, a familiar dashboard and many available integrations. Operations with very specific rules may call for a custom solution, defined during discovery."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are payment and shipping fees included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Gateway fees, shipping, hosting and ERP are contracted in your company's name and paid directly to the providers. The project price covers development and setup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who adds the products?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Delivery includes the initial product setup and training so your team can carry on. Large catalogs can be imported via spreadsheet, priced by volume."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I sell on a marketplace and in my own store at the same time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. With the Bling integration, stock, orders and products can be synced between your own store and the marketplace. The setup takes your operation's channels, rules and products into account."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <meta property="og:image:secure_url" content="https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg">
+
+  <meta name="twitter:image:alt" content="E-commerce design — A store designed for buying.">
+</head>
+
+<body data-whatsapp="Hi Victor! I saw the VS Experience E-commerce page and would like to talk about an online store.">
+  <a class="skip-link" href="#conteudo">Skip to content</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="/en/" aria-label="Victor Santos · VS Experience, home page"><img src="/assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <nav class="client-chip" aria-label="Breadcrumb"><a href="/en/services/">Services</a> · <span aria-current="page">E-commerce</span></nav>
+      <div class="lang-switch" role="group" aria-label="Language"><a href="/servicos/e-commerce/" lang="pt-BR" hreflang="pt-BR">PT</a><a href="/en/services/e-commerce/" lang="en" hreflang="en" aria-current="true">EN</a></div>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#servico" data-spy-link="servico">The service</a>
+        <a href="#processo" data-spy-link="processo">Process</a>
+        <a href="#investimento" data-spy-link="investimento">Investment</a>
+        <a class="nav-cta" href="#contato"><span>Request a quote</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>E-commerce</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Online store design</span> <span class="display">From discovery to payment, <em>a purchase that's easy to follow.</em></span></h1>
+          <p class="hero-lead">A store that helps customers find, understand and buy your products. Catalog, cart, payment, shipping and integrations defined around your operation.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">See investment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#jornada">See the shopping journey</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h2l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg><span>WooCommerce or a custom solution, depending on the operation.</span></div>
+        </div>
+
+        <div class="stage" data-nosnippet role="group" aria-label="Interactive online store example for a fictional plant shop">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">verdelume.com</span><span class="browser-live">Live</span></div>
+              <div class="screen gl">
+                <div class="m-nav"><span class="m-logo"><span class="gl-leaf"></span>verde lume</span><span class="gl-search">Search plants, pots, kits…</span><div class="m-links"><span>Plants</span><span>Pots</span><span>Kits</span><span class="gl-cart"><b>2</b></span></div></div>
+
+                <div class="mock-page" id="gl-vitrine" role="tabpanel" aria-labelledby="gl-tab-vitrine">
+                  <div class="gl-banner"><div><strong>Free shipping over $36</strong><span>Plants carefully packed and shipped nationwide</span></div><span class="m-btn">See deals</span></div>
+                  <div class="gl-chips"><span>All</span><span>Partial shade</span><span>Pet friendly</span><span>Large</span><span>Kits</span></div>
+                  <div class="gl-grid">
+                    <div class="gl-product"><div class="gl-shot"><span class="gl-off">-15%</span><div class="plant"><i></i><i></i><i></i><i></i><i></i><div class="pot"></div></div></div><span class="gl-add">+</span><strong>Monstera · 21cm pot</strong><div class="gl-price"><b>$23.90</b><s>$27.90</s></div></div>
+                    <div class="gl-product"><div class="gl-shot"><div class="plant is-tall" style="--leaf:oklch(0.55 0.1 140);--pot:oklch(0.9 0.01 80)"><i></i><i></i><i></i><div class="pot"></div></div></div><span class="gl-add">+</span><strong>Snake plant</strong><div class="gl-price"><b>$11.90</b></div></div>
+                    <div class="gl-product"><div class="gl-shot"><div class="plant is-round" style="--leaf:oklch(0.6 0.12 135);--pot:oklch(0.35 0.03 250)"><i></i><i></i><i></i><i></i><i></i><div class="pot"></div></div></div><span class="gl-add">+</span><strong>Succulent kit · 3 pots</strong><div class="gl-price"><b>$16.90</b></div></div>
+                  </div>
+                  <div class="gl-trust"><span>Nationwide shipping</span><span>5% off with instant payment</span><span>7-day exchange guarantee</span></div>
+                </div>
+
+                <div class="mock-page" id="gl-produto" role="tabpanel" aria-labelledby="gl-tab-produto" hidden>
+                  <div class="gl-pdp">
+                    <div class="gl-pdp-shot"><div class="plant is-big"><i></i><i></i><i></i><i></i><i></i><div class="pot"></div></div><div class="gl-thumbs"><span></span><span></span><span></span></div></div>
+                    <div>
+                      <span class="gl-crumbs">Plants · Partial shade</span>
+                      <p class="gl-pdp-title">Monstera with 21cm ceramic pot</p>
+                      <div class="gl-rating">★★★★★ <span>4.8 · 126 reviews</span></div>
+                      <div class="gl-bigprice">$23.90</div>
+                      <div class="gl-install">or 3 interest-free payments of $7.90</div>
+                      <span class="gl-pix">5% off with instant payment · $22.90</span>
+                      <div class="gl-opt">Size</div>
+                      <div class="gl-sizes"><span>P</span><span class="is-on">M</span><span>G</span></div>
+                      <div class="gl-buy"><span class="gl-qty">− 1 +</span><span class="m-btn">Add to cart</span></div>
+                      <div class="gl-ship">Ship to <b>08780-000</b>: <b>$3.90</b> · arrives in 2 business days</div>
+                    </div>
+                  </div>
+                  <div class="gl-trust"><span>Nationwide shipping</span><span>5% off with instant payment</span><span>7-day exchange guarantee</span></div>
+                </div>
+
+                <div class="mock-page" id="gl-checkout" role="tabpanel" aria-labelledby="gl-tab-checkout" hidden>
+                  <div class="gl-checkout">
+                    <div>
+                      <div class="gl-steps"><span>Cart</span><i></i><span>Delivery</span><i></i><span class="is-now">Payment</span></div>
+                      <div class="gl-pay">
+                        <div class="is-on"><span>Pix</span><small>5% discount</small></div>
+                        <div><span>Credit card</span><small style="color:var(--m-muted)">up to 6 interest-free installments</small></div>
+                        <div><span>Boleto</span></div>
+                      </div>
+                      <div class="gl-qr"><i></i><span>The QR code appears after confirmation. The order is released as soon as the payment is approved.</span></div>
+                    </div>
+                    <div class="gl-summary">
+                      <strong>Order summary</strong>
+                      <div class="gl-line"><span>Monstera M</span><span>$23.90</span></div>
+                      <div class="gl-line"><span>Succulent kit</span><span>$16.90</span></div>
+                      <div class="gl-line"><span>Shipping</span><span>$3.90</span></div>
+                      <div class="gl-line is-off"><span>Coupon FIRST10</span><span>− $3.90</span></div>
+                      <div class="gl-total"><span>Total</span><span>$39.90</span></div>
+                      <span class="m-btn">Place order</span>
+                    </div>
+                  </div>
+                  <div class="gl-trust"><span>Secure payment</span><span>Protected data</span><span>Invoice on every order</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="float-card gl-order" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><strong>Order #1043 approved</strong><span>Pix · $39.90 · 2 items</span><small>stock updated in Bling</small></div>
+            </div>
+            <div class="stage-badge"><strong>20 to 30</strong><span>business days for the complete store to go live</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Example screens">
+            <button class="mockup-tab" type="button" role="tab" id="gl-tab-vitrine" aria-controls="gl-vitrine" aria-selected="true">Storefront</button>
+            <button class="mockup-tab" type="button" role="tab" id="gl-tab-produto" aria-controls="gl-produto" aria-selected="false">Product</button>
+            <button class="mockup-tab" type="button" role="tab" id="gl-tab-checkout" aria-controls="gl-checkout" aria-selected="false">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-band" aria-label="Service summary">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Average timeline</span><strong>20 to 30 business days</strong></div>
+        <div class="spec-item"><span>Average investment</span><strong>$670</strong></div>
+        <div class="spec-item"><span>Platform</span><strong>WooCommerce or custom</strong></div>
+        <div class="spec-item"><span>At delivery</span><strong>Team training</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="servico" data-spy="servico">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal">The shopping experience and the operation working together.</h2>
+          <p class="reveal delay-1">E-commerce is the complete online store: products, stock, payment, shipping, orders and customers working together. The design drives the purchase, and the structure behind it supports day-to-day operations.</p>
+        </div>
+        <div class="outcomes">
+          <article class="outcome reveal"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h2l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h3>A clear shopping journey</h3><p>Search, categories, product page and cart designed to reduce abandonment.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div><h3>Checkout with instant payment, card and bank slip</h3><p>Payment set up, shipping calculation and discount coupons working from day one.</p></article>
+          <article class="outcome reveal delay-1"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><h3>Integrated with the operation</h3><p>Bling, Mercado Livre, Correios and Melhor Envio connected as needed (Brazilian services; equivalents for other markets are defined in discovery).</p></article>
+          <article class="outcome reveal delay-2"><div class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Dashboard and training</h3><p>Your team learns to add products, track orders and publish promotions from the dashboard.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anatomy" id="jornada" data-spy="servico" aria-labelledby="anatomia-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="anatomia-titulo">The whole journey, from first click to after-sales.</h2>
+          <p class="reveal delay-1">Each step answers the buyer's questions. The integrations included in the scope connect orders to stock, finance and fulfillment.</p>
+        </div>
+        <ol class="journey">
+          <li class="reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><strong>Discovery</strong><p>Home, search, categories, filters and campaign banners.</p></li>
+          <li class="reveal delay-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.5"/></svg><strong>Product</strong><p>Photos, variations, stock, reviews and shipping calculation.</p></li>
+          <li class="reveal delay-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg><strong>Cart</strong><p>Coupon, shipping and a clear summary, with no hidden costs.</p></li>
+          <li class="reveal delay-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><strong>Checkout</strong><p>Instant payment, card and bank slip with as few fields as possible.</p></li>
+          <li class="reveal delay-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><strong>After-sales</strong><p>Automated emails, order tracking and an invitation to buy again.</p></li>
+        </ol>
+        <div class="integrations reveal">
+          <h3>Integrations<small>connected according to the operation</small></h3>
+          <div class="integration-rows">
+            <div class="integration-row"><span>Payment</span><ul><li>Mercado Pago</li><li>Pagar.me</li><li>Asaas</li></ul></div>
+            <div class="integration-row"><span>Shipping</span><ul><li>Correios</li><li>Melhor Envio</li></ul></div>
+            <div class="integration-row"><span>Management</span><ul><li>Bling ERP</li><li>Synced stock</li><li>Invoicing</li></ul></div>
+            <div class="integration-row"><span>Channels</span><ul><li>Mercado Livre</li><li>B2B portal for retailers</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-spy="servico" aria-labelledby="indicado-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="indicado-titulo">When e-commerce is the right choice.</h2></div>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>It makes sense when</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You sell products and want your own channel, with your brand and your rules.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You depend on marketplaces and want to reduce the weight of fees on revenue.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You serve both consumers and retailers, with different prices and minimums.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You need to centralize stock and orders from several channels in one place.</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Another format works better when</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>You have few items and sell better through WhatsApp conversations: see <a class="text-link" href="/en/services/landing-page/">Landing Page</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>The catalog exists to present, not to sell online: see <a class="text-link" href="/en/services/institutional-website/">Company Website</a>.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg><span>The operation has very specific rules, such as subscriptions or its own marketplace: see <a class="text-link" href="/en/services/saas-systems/">Systems & SaaS</a>.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="processo" data-spy="processo">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal">From the operation to the first order.</h2>
+          <p class="section-lead reveal delay-1">The project starts by understanding how you sell today. Only then is the store designed, built and tested with real orders.</p>
+          <div class="process-total reveal delay-2"><strong>20 to 30</strong><span>business days; phased operations can take up to 60</span></div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step reveal"><span class="step-dot">01</span><div><span class="step-time">Days 1 to 3</span><h3>Operations discovery</h3><p>Catalog, variations, shipping, payment methods, ERP and current sales channels. The platform is chosen based on this.</p><div class="step-deliverable"><strong>You receive</strong><span>scope and platform defined</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">02</span><div><span class="step-time">Days 3 to 10</span><h3>Architecture and design</h3><p>Home, categories, product page, cart and checkout designed for desktop and mobile.</p><div class="step-deliverable"><strong>You receive</strong><span>prototype of the main screens</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">03</span><div><span class="step-time">Days 10 to 20</span><h3>Development</h3><p>Store configured, custom theme, payment, shipping, coupons and transactional emails.</p><div class="step-deliverable"><strong>You receive</strong><span>store on a staging environment</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">04</span><div><span class="step-time">Days 18 to 26</span><h3>Integrations and product setup</h3><p>Connection to ERP and marketplace, initial product setup and end-to-end test orders.</p><div class="step-deliverable"><strong>You receive</strong><span>order flow tested</span></div></div></li>
+          <li class="process-step reveal"><span class="step-dot">05</span><div><span class="step-time">Days 26 to 30</span><h3>Launch</h3><p>Publishing, team training and monitoring of the first sales.</p><div class="step-deliverable"><strong>You receive</strong><span>store live and team trained</span></div></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="investimento" data-spy="investimento">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal">How much an e-commerce store costs.</h2>
+          <p class="section-lead reveal delay-2">The average below comes from stores recently quoted by VS Experience. Prices in US dollars. The final price is set after the operations discovery, with the scope in writing.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value"><span>Average investment</span><strong>$670</strong><small>Average of 5 online stores quoted in recent months.</small></div>
+          <div class="range" role="img" aria-label="Price range from $500 to $810, averaging $670">
+            <div class="range-track" aria-hidden="true">
+              <span class="range-dot" style="--p:0%;--i:0"></span>
+              <span class="range-dot" style="--p:11.1%;--i:1"></span>
+              <span class="range-dot" style="--p:79.4%;--i:2"></span>
+              <span class="range-dot" style="--p:85.3%;--i:3"></span>
+              <span class="range-dot" style="--p:100%;--i:4"></span>
+              <span class="range-avg" style="--p:55.2%"><b>average $670</b></span>
+            </div>
+            <div class="range-scale" aria-hidden="true"><div>lowest<strong>$500</strong></div><div>highest<strong>$810</strong></div></div>
+            <p class="range-caption">Advanced operations, with CRM, loyalty and automations, are quoted from $1,800 and are outside this average.</p>
+          </div>
+        </div>
+
+        <div class="plans-grid reveal">
+          <article class="plan is-common">
+            <span class="common-badge">Most common range</span>
+            <span class="plan-label">Essential store</span>
+            <h3>Ready to sell.</h3>
+            <p class="plan-intro">A complete store to start selling online with a professional structure.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom, responsive theme</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Catalog, cart and checkout</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instant payment, card and bank slip</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Shipping calculation and coupons</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Initial products added</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Team training</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price">$500 <em>to</em> 810</strong><p class="plan-note">Where most projects land, including the $670 average.</p></div>
+          </article>
+          <article class="plan">
+            <span class="plan-label">Integrated store</span>
+            <h3>Every channel in sync.</h3>
+            <p class="plan-intro">For those already selling on other channels who need everything synced.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Essential store</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Integration with Bling ERP</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sync with Mercado Livre</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>B2B portal with retailer price list</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Automated emails by order status</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price">$810 <em>to</em> 1,600</strong><p class="plan-note">Varies with the number of integrations and wholesale rules.</p></div>
+          </article>
+          <article class="plan">
+            <span class="plan-label">Advanced operation</span>
+            <h3>Scale with automation.</h3>
+            <p class="plan-intro">For operations with volume, their own rules and a focus on repeat purchases.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Integrated store</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Points and loyalty program</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>CRM integration</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Abandoned cart recovery</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Decision-making reports</li>
+            </ul>
+            <div class="plan-bottom"><span>Investment</span><strong class="plan-price"><em>starting at</em> $1,800</strong><p class="plan-note">Quoted per module, after discovery.</p></div>
+          </article>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>What changes the price</h3>
+            <ul class="factor-list">
+              <li>Number of products and variations</li><li>Platform</li><li>ERP and marketplace integrations</li><li>Wholesale and B2B rules</li><li>Migration of an existing store</li><li>Product setup volume</li>
+            </ul>
+            <div class="extras">
+              <h3>Add-ons</h3>
+              <div class="pay-rows">
+                <div class="pay-row"><span>Bling and Mercado Livre integration, without your own store</span><strong>$300</strong></div>
+                <div class="pay-row"><span>Restructuring an existing store</span><strong>from $770</strong></div>
+                <div class="pay-row"><span>Bulk product setup</span><strong>from $1 per item</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Payment options</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Two payments</span><strong>50% at the start, 50% on delivery</strong></div>
+              <div class="pay-row"><span>Single payment</span><strong>Discount for paying upfront</strong></div>
+              <div class="pay-row"><span>Credit card</span><strong>Up to 10 installments, card fees apply</strong></div>
+              <div class="pay-row"><span>Phased projects</span><strong>Each phase contracted separately</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="case-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="case-titulo">Projects that connect brand and purchase.</h2></div>
+        <div class="case-grid">
+          <figure class="case-media reveal" style="margin:0"><img src="/assets/images/cases/multivegetal.webp" alt="Multi Vegetal online store with a first-purchase coupon banner, a strip of brand values and hair, massage, body and kit categories" width="1350" height="808" loading="lazy" decoding="async"></figure>
+          <div class="case-copy reveal delay-1">
+            <span class="case-tag">E-commerce · Plant-based cosmetics</span>
+            <h3>Multi Vegetal</h3>
+            <dl class="case-facts">
+              <div><dt>Focus</dt><dd>Highlight natural, vegan and cruelty-free plant-based cosmetics with simple navigation by category and offers.</dd></div>
+              <div><dt>Deliverables</dt><dd>Store experience, product showcase, promotional banners and visual hierarchy for buying.</dd></div>
+              <div><dt>Impact</dt><dd>A smoother journey to discover products, understand the brand's differentiators and move on to the cart.</dd></div>
+            </dl>
+            <a class="button button-secondary" href="https://multivegetal.com/" target="_blank" rel="noopener noreferrer">See the live store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+          </div>
+        </div>
+        <a class="case-more reveal" href="https://www.interstore.com.br/" target="_blank" rel="noopener noreferrer">
+          <img src="/assets/images/cases/inter.webp" alt="" width="1350" height="808" loading="lazy" decoding="async">
+          <div><strong>Inter Store · Banco Inter</strong><span>UI, journey adjustments and refinement of store components.</span></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="entrega-titulo">
+      <div class="container">
+        <div class="section-head"><h2 class="section-title reveal" id="entrega-titulo">After the store goes live.</h2></div>
+        <div class="care-grid">
+          <article class="care-block reveal"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>The operation stays in your company's name.</h3><p>Domain, hosting, payment gateway, shipping and ERP are contracted in the company's name, with full access for you.</p><p>Subscriptions and fees for these providers are paid directly to them and are not part of the development price.</p></article>
+          <article class="care-block is-accent reveal delay-1"><div class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></div><h3>Ongoing support</h3><p>For those who want to evolve the store alongside their campaigns, without opening a new quote for every adjustment.</p><ul class="care-list"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Banners and campaigns</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Journey adjustments</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Updates and security</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Support for questions</li></ul><div class="care-price"><strong>$90</strong><span>per month, optional</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" aria-labelledby="faq-titulo">
+      <div class="container faq-layout">
+        <h2 class="section-title reveal" id="faq-titulo">E-commerce FAQ.</h2>
+        <div class="faq-list reveal delay-1">
+          <details class="faq-item"><summary>How much does an e-commerce store cost?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>The average investment is $670. The essential store, with catalog, checkout, Pix, card and shipping, ranges from $500 to $810; the store integrated with Bling and Mercado Livre, from $810 to $1,600; and advanced operations start at $1,800. Payment, shipping and hosting fees are paid separately.</p></details>
+          <details class="faq-item"><summary>Which platform do you use?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>In most projects, WordPress with WooCommerce: no platform subscription, a familiar dashboard and many available integrations. Operations with very specific rules may call for a custom solution, defined during discovery.</p></details>
+          <details class="faq-item"><summary>Are payment and shipping fees included?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. Gateway fees, shipping, hosting and ERP are contracted in your company's name and paid directly to the providers. The project price covers development and setup.</p></details>
+          <details class="faq-item"><summary>Who adds the products?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Delivery includes the initial product setup and training so your team can carry on. Large catalogs can be imported via spreadsheet, priced by volume.</p></details>
+          <details class="faq-item"><summary>Can I sell on a marketplace and in my own store at the same time?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. With the Bling integration, stock, orders and products can be synced between your own store and the marketplace. The setup takes your operation's channels, rules and products into account.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Shall we build a store that makes sense for your <span>operation?</span></h2>
+            <p>Tell me what you sell, on which channels and how you manage stock and orders. This conversation guides the platform, the integrations and the scope of the quote.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copy link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Service</span><strong>E-commerce</strong></div>
+            <div class="meta-row"><span>Average timeline</span><strong>20 to 30 business days</strong></div>
+            <div class="meta-row"><span>Average investment</span><strong>$670</strong></div>
+            <div class="meta-row"><span>Price range</span><strong>$500 to $810</strong></div>
+            <div class="meta-row"><span>Payment</span><strong>Transfer or card, up to 10 installments</strong></div>
+          </div>
+        </div>
+        <nav class="other-services" aria-labelledby="outros-titulo">
+          <h2 id="outros-titulo">Other services</h2>
+          <div class="other-grid">
+            <a href="/en/services/landing-page/"><strong>Landing Page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $230</small></a>
+            <a href="/en/services/institutional-website/"><strong>Company Website <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $420</small></a>
+            <a href="/en/services/saas-systems/"><strong>Systems & SaaS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>average $1,250</small></a>
+            <a href="/en/services/design-system/"><strong>Design System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>from $540</small></a>
+          </div>
+        </nav>
+        <div class="signature"><img src="/assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Strategy, design and development for your business.</span><span>Reference prices · October 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copied</div>
+  <script src="/assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="/assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="/servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>
