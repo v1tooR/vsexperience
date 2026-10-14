@@ -1,18 +1,20 @@
 /* Extensão local do sistema de páginas de serviço VS. */
-.social-hero .hero-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(32px, 4vw, 64px); }
+.social-hero .hero-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); grid-template-rows: auto 1fr; gap: 0 clamp(32px, 3.5vw, 56px); }
+.social-word { grid-column: 1; grid-row: 1; min-width: 0; }
+.social-hero .hero-copy { grid-column: 1; grid-row: 2; }
 .social-hero .display { max-width: 22ch; font-size: clamp(32px, 3.35vw, 51px); line-height: 1.03; }
 .social-hero .hero-copy { padding-top: 8px; }
 .social-start { margin: 0 0 26px; font-size: 15px; color: var(--text-soft); }
 .social-start strong { display: inline-block; margin-left: 6px; color: var(--carmim); font-family: var(--font-display); font-size: 29px; font-weight: 760; }
 .social-start strong span { font-family: var(--font); font-size: 14px; font-weight: 600; }
 .social-personal { max-width: 49ch; padding-top: 20px; margin: 0; border-top: 1px solid var(--dark-line); font-size: 14px; color: var(--text-muted); }
-.social-stage { min-height: 625px; margin: 0; }
-.social-portrait { position: absolute; top: 0; bottom: 58px; right: 0; width: 68%; margin: 0; overflow: hidden; border-radius: var(--radius); background: #151515; }
+.social-stage { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; min-height: 760px; margin: 0; }
+.social-portrait { position: absolute; top: 0; bottom: 58px; right: 0; width: 76%; margin: 0; overflow: hidden; border-radius: var(--radius); background: #151515; }
 .social-portrait img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% 28%; }
 .social-credit { position: absolute; right: 20px; bottom: 78px; margin: 0; padding: 10px 14px; background: var(--grafite); color: var(--linho); font-size: 14px; font-weight: 650; }
 .social-credit span { display: block; margin-top: 3px; color: #c4c4c4; font-size: 12px; font-weight: 400; }
 .social-demo-caption { position: absolute; left: 0; bottom: -32px; margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
-.social-browser { top: auto; left: 0; right: auto; bottom: 93px; width: 54%; transform: rotate(-3deg); }
+.social-browser { top: auto; left: 0; right: auto; bottom: 110px; width: 60%; transform: rotate(-3deg); }
 .social-screen { --c-accent: #285148; --c-on-accent: #fafafa; --c-ink: #21392f; min-height: 313px; background: #fafafa; }
 .social-profile { display: flex; align-items: center; gap: 8px; padding: 15px 12px; border-bottom: 1px solid #d8dfdb; }
 .flora-mark { display: grid; place-items: center; width: 33px; height: 33px; flex-shrink: 0; border-radius: 50%; background: #285148; color: #fafafa; font-family: var(--font-display); font-size: 19px; font-weight: 650; }
@@ -127,7 +129,9 @@
 .social-journey svg { width: 17px; color: #ff7a7b; }
 .social-contact-note { color: var(--text-muted) !important; font-size: 14px !important; margin-top: 20px !important; }
 @media (max-width: 1080px) {
- .social-hero .hero-layout { grid-template-columns: 1fr 1fr; gap: 30px; }
+ .social-hero .hero-layout { grid-template-columns: 1fr 1fr; gap: 0 30px; }
+ .social-word { grid-column: 1 / -1; }
+ .social-stage { grid-row: 2; }
  .social-hero .display { font-size: 36px; }
  .social-stage { min-height: 610px; }
  .social-browser { width: 74%; }
@@ -144,6 +148,7 @@
 @media (max-width: 780px) {
  .social-hero .hero-layout, .social-intro-layout, .social-care-layout, .social-connection-grid { grid-template-columns: 1fr; }
  .social-hero .display { font-size: clamp(34px, 6.5vw, 48px); }
+ .social-word, .social-hero .hero-copy, .social-stage { grid-column: auto; grid-row: auto; }
  .social-stage { min-height: 620px; margin-top: 18px; }
  .social-portrait { width: 78%; }
  .social-browser { width: 58%; top: auto; }
