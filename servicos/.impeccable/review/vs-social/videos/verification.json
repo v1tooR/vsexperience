@@ -1,0 +1,64 @@
+[
+  {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "plans": [
+      {
+        "plan": "Essencial",
+        "summary": "1 vídeo/Reel por semana\nRoteiro e edição inclusos.\n8 artes e carrosséis por mês\n6 artes estáticas + 2 carrosséis\n4 peças de stories por mês\nVídeos adicionais às artes e aos carrosséis.",
+        "price": "R$ 790\n/mês",
+        "video": [
+          "Criação de conteúdo em vídeo: 1 vídeo/Reel por semana."
+        ]
+      },
+      {
+        "plan": "Estratégico",
+        "summary": "2 vídeos/Reels por semana\nRoteiros e edição inclusos.\n10 artes e carrosséis por mês\n6 artes estáticas + 4 carrosséis\n12 peças de stories por mês\nVídeos adicionais às artes e aos carrosséis.",
+        "price": "R$ 1.390\n/mês",
+        "video": [
+          "Criação de conteúdo em vídeo: 2 vídeos/Reels por semana."
+        ]
+      },
+      {
+        "plan": "Presença Completa",
+        "summary": "3 vídeos/Reels por semana\nRoteiros e edição inclusos.\n12 artes e carrosséis por mês\n6 artes estáticas + 6 carrosséis\n20 peças de stories por mês\nVídeos adicionais às artes e aos carrosséis.",
+        "price": "R$ 2.190\n/mês",
+        "video": [
+          "Criação de conteúdo em vídeo: 3 vídeos/Reels por semana."
+        ]
+      }
+    ],
+    "scope": "As quantidades de artes, carrosséis e stories são mensais. Os vídeos/Reels seguem a frequência semanal de cada plano: 1 no Essencial, 2 no Estratégico e 3 no Presença Completa.\nOs Reels são publicados no feed e se somam às artes estáticas e aos carrosséis indicados em cada plano. A quantidade de vídeos no mês acompanha as semanas do calendário editorial aprovado.\nCada carrossel inclui até 5 telas.\nCada peça de story corresponde a 1 tela. Sequências utilizam a quantidade de telas produzidas.\nOs Reels incluem roteiro e edição de vídeos de até 60 segundos, a partir de materiais enviados pela empresa.\nO espelhamento no Facebook utiliza o mesmo conteúdo do Instagram e não representa uma produção adicional.\nCada lote de conteúdo inclui 1 rodada de ajustes, reunidos em um único feedback.\nO agendamento acontece após a aprovação e conforme os recursos disponíveis nas plataformas.\nAs horas mensais de ajustes do site não são cumulativas. Novas páginas e funcionalidades são orçadas separadamente."
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "plans": [
+      {
+        "plan": "Essencial",
+        "summary": "1 vídeo/Reel por semana\nRoteiro e edição inclusos.\n8 artes e carrosséis por mês\n6 artes estáticas + 2 carrosséis\n4 peças de stories por mês\nVídeos adicionais às artes e aos carrosséis.",
+        "price": "R$ 790\n/mês",
+        "video": [
+          "Criação de conteúdo em vídeo: 1 vídeo/Reel por semana."
+        ]
+      },
+      {
+        "plan": "Estratégico",
+        "summary": "2 vídeos/Reels por semana\nRoteiros e edição inclusos.\n10 artes e carrosséis por mês\n6 artes estáticas + 4 carrosséis\n12 peças de stories por mês\nVídeos adicionais às artes e aos carrosséis.",
+        "price": "R$ 1.390\n/mês",
+        "video": [
+          "Criação de conteúdo em vídeo: 2 vídeos/Reels por semana."
+        ]
+      },
+      {
+        "plan": "Presença Completa",
+        "summary": "3 vídeos/Reels por semana\nRoteiros e edição inclusos.\n12 artes e carrosséis por mês\n6 artes estáticas + 6 carrosséis\n20 peças de stories por mês\nVídeos adicionais às artes e aos carrosséis.",
+        "price": "R$ 2.190\n/mês",
+        "video": [
+          "Criação de conteúdo em vídeo: 3 vídeos/Reels por semana."
+        ]
+      }
+    ],
+    "scope": "As quantidades de artes, carrosséis e stories são mensais. Os vídeos/Reels seguem a frequência semanal de cada plano: 1 no Essencial, 2 no Estratégico e 3 no Presença Completa.\nOs Reels são publicados no feed e se somam às artes estáticas e aos carrosséis indicados em cada plano. A quantidade de vídeos no mês acompanha as semanas do calendário editorial aprovado.\nCada carrossel inclui até 5 telas.\nCada peça de story corresponde a 1 tela. Sequências utilizam a quantidade de telas produzidas.\nOs Reels incluem roteiro e edição de vídeos de até 60 segundos, a partir de materiais enviados pela empresa.\nO espelhamento no Facebook utiliza o mesmo conteúdo do Instagram e não representa uma produção adicional.\nCada lote de conteúdo inclui 1 rodada de ajustes, reunidos em um único feedback.\nO agendamento acontece após a aprovação e conforme os recursos disponíveis nas plataformas.\nAs horas mensais de ajustes do site não são cumulativas. Novas páginas e funcionalidades são orçadas separadamente."
+  }
+]

@@ -1,0 +1,111 @@
+[
+  {
+    "width": 390,
+    "errors": [],
+    "state": {
+      "status": "Estratégico · 2 de 3",
+      "trackHeight": 1628,
+      "cards": [
+        {
+          "name": "Essencial",
+          "inert": true,
+          "padding": "26px 22px",
+          "height": 1381
+        },
+        {
+          "name": "Estratégico",
+          "inert": false,
+          "padding": "26px 22px",
+          "height": 1628
+        },
+        {
+          "name": "Presença Completa",
+          "inert": true,
+          "padding": "26px 22px",
+          "height": 1822
+        }
+      ],
+      "viewport": 390,
+      "documentWidth": 390
+    },
+    "expandedHeight": 2502,
+    "initialHeight": 1823,
+    "desktop": {
+      "display": "grid",
+      "height": "",
+      "allAvailable": true
+    }
+  },
+  {
+    "width": 768,
+    "errors": [],
+    "state": {
+      "status": "Essencial · 1 de 3",
+      "trackHeight": 1120,
+      "cards": [
+        {
+          "name": "Essencial",
+          "inert": false,
+          "padding": "28px",
+          "height": 1120
+        },
+        {
+          "name": "Estratégico",
+          "inert": true,
+          "padding": "28px",
+          "height": 1184
+        },
+        {
+          "name": "Presença Completa",
+          "inert": true,
+          "padding": "28px",
+          "height": 1388
+        }
+      ],
+      "viewport": 768,
+      "documentWidth": 768
+    },
+    "expandedHeight": 1860,
+    "initialHeight": 1389,
+    "desktop": {
+      "display": "grid",
+      "height": "",
+      "allAvailable": true
+    }
+  },
+  {
+    "width": 1440,
+    "errors": [],
+    "state": {
+      "display": "grid",
+      "cards": [
+        {
+          "left": 57,
+          "inert": false
+        },
+        {
+          "left": 499,
+          "inert": false
+        },
+        {
+          "left": 941,
+          "inert": false
+        }
+      ],
+      "documentWidth": 1440
+    }
+  },
+  {
+    "smoothMotion": true,
+    "directSelection": true,
+    "previousButton": true,
+    "endKeyboard": true
+  },
+  {
+    "noJS": {
+      "scrollable": true,
+      "cards": 3,
+      "controlsHidden": true
+    }
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "width": 1440,
+    "feeds": [
+      {
+        "src": "assets/flora-ambiente.png",
+        "loaded": true,
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "src": "assets/flora-planta.png",
+        "loaded": true,
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "src": "assets/flora-cultivo.png",
+        "loaded": true,
+        "width": 1254,
+        "height": 1254
+      }
+    ],
+    "errors": [],
+    "failed": [],
+    "storyOverflows": [],
+    "wholeOverflow": false,
+    "calendar": true
+  },
+  {
+    "width": 390,
+    "feeds": [
+      {
+        "src": "assets/flora-ambiente.png",
+        "loaded": true,
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "src": "assets/flora-planta.png",
+        "loaded": true,
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "src": "assets/flora-cultivo.png",
+        "loaded": true,
+        "width": 1254,
+        "height": 1254
+      }
+    ],
+    "errors": [],
+    "failed": [],
+    "storyOverflows": [],
+    "wholeOverflow": false,
+    "calendar": true
+  }
+]
