@@ -143,6 +143,33 @@
         "value": "roboto",
         "createdAt": "2026-10-04T13:56:06.833Z",
         "reason": "false positive: the hit is the self-hosted 'Roboto Flex' @font-face, the variable display face from the VS identity deck (PRODUCT.md Brand Commitments); plain Roboto is not used"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "proposta-educakids/index.html"
+        ],
+        "createdAt": "2026-10-21T00:24:47.926Z",
+        "reason": "proposal page: hits are inside the miniature school mockup (.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as servicos/*/index.html; rendered contrast audit of page UI found 0 failures"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "proposta-educakids/index.html"
+        ],
+        "createdAt": "2026-10-21T00:24:48.189Z",
+        "reason": "proposal page: hits are inside the miniature school mockup (.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as servicos/*/index.html; rendered contrast audit of page UI found 0 failures"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-educakids/index.html"
+        ],
+        "createdAt": "2026-10-21T00:24:53.825Z",
+        "reason": "static scan resolves --text/--rose-soft from :root instead of the dark .anatomy/.closing/.plan.is-common contexts; rendered-contrast audit (Playwright, desktop and 390px, all visible non-mockup text) found 0 failures after fixing .module-num"
       }
     ]
   }

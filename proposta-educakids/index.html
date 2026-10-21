@@ -137,7 +137,7 @@
     .loop-step span { display: block; margin-bottom: 10px; color: var(--carmim); font-size: 13px; font-weight: 700; }
     .loop-step h3 { margin-bottom: 10px; font-family: var(--font-display); font-size: clamp(22px, 2vw, 27px); font-weight: 720; font-variation-settings: "wdth" 110; line-height: 1.05; letter-spacing: -.02em; }
     .loop-step p { margin: 0; color: var(--text-soft); font-size: 15px; }
-    .social-qty { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-bottom: 28px; border-block: 1px solid var(--dark-line); }
+    .social-qty { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-bottom: 28px; border-block: 1px solid var(--dark-line); }
     .social-qty div { padding: 16px 12px 16px 0; }
     .social-qty div + div { padding-left: 14px; border-left: 1px solid var(--dark-line); }
     .social-qty strong { display: block; font-family: var(--font-display); font-size: clamp(34px, 3.4vw, 46px); font-weight: 860; font-variation-settings: "wdth" 120; line-height: 1; letter-spacing: -.02em; }
@@ -166,7 +166,6 @@
     .legend b { color: var(--text); font-weight: 650; }
 
     .plan-price small { display: block; margin-top: 6px; color: var(--text-muted); font-family: var(--font); font-size: 13px; font-weight: 600; letter-spacing: 0; }
-    .plan-was { color: var(--text-muted); text-decoration: line-through; }
     .pay-row.is-total { border-bottom-color: var(--grafite); }
     .pay-row.is-total span, .pay-row.is-total strong { color: var(--text); font-weight: 700; }
 
@@ -204,8 +203,9 @@
     @media (max-width: 540px) {
       .months { height: 150px; }
       .month-labels { font-size: 10px; }
-      .social-qty { grid-template-columns: 1fr; }
-      .social-qty div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--dark-line); }
+      .social-qty { grid-template-columns: 1fr 1fr; }
+      .social-qty div:nth-child(3) { padding-left: 0; border-left: 0; }
+      .social-qty div:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
       .ed-caption { position: static; margin-top: 12px; }
     }
     @media print {
@@ -353,7 +353,7 @@
         <div class="spec-item"><span>Mensalidade única</span><strong>R$ 3.500</strong></div>
         <div class="spec-item"><span>Nova plataforma</span><strong>10× de R$ 500</strong></div>
         <div class="spec-item"><span>Portal completo</span><strong>Até 60 dias</strong></div>
-        <div class="spec-item"><span>Redes sociais</span><strong>Presença Completa</strong></div>
+        <div class="spec-item"><span>Redes sociais</span><strong>Plano sob medida</strong></div>
       </div>
     </section>
 
@@ -471,20 +471,20 @@
 
         <div class="fit-grid">
           <div class="fit-col reveal">
-            <h3>Plano Presença Completa</h3>
+            <h3>Plano personalizado para a escola</h3>
             <div class="social-qty">
-              <div><strong>6</strong><span>Reels por mês, com roteiro e edição</span></div>
-              <div><strong>12</strong><span>artes e carrosséis por mês</span></div>
+              <div><strong>4</strong><span>Reels por mês, com roteiro e edição</span></div>
+              <div><strong>9</strong><span>artes estáticas para o feed</span></div>
+              <div><strong>4</strong><span>carrosséis de até 5 telas</span></div>
               <div><strong>20</strong><span>stories por mês</span></div>
             </div>
             <ul class="fit-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instagram, com espelhamento no Facebook</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Gestão do Instagram da escola</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendário editorial mensal, alinhado ao calendário escolar</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Legendas, chamadas e roteiros para a equipe gravar no celular</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ajuste da bio e destaques com até 5 capas</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aprovação da escola antes de publicar e agendamento</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relatório mensal com os pedidos de visita vindos das redes</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1 reunião mensal de até 45 minutos</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aprovação da escola antes de publicar e agendamento</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relatório mensal com análise, próximos ajustes e os pedidos de visita vindos das redes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1 reunião mensal de até 30 minutos</li>
             </ul>
           </div>
           <div class="fit-col is-alt reveal delay-1">
@@ -621,20 +621,19 @@
             </div>
           </article>
           <article class="plan is-common reveal delay-2">
-            <span class="common-badge">Condição de pacote</span>
             <p class="plan-label">VS Social</p>
-            <h3>Presença Completa</h3>
-            <p class="plan-intro">Gestão do Instagram e do Facebook da escola, com foco em levar famílias até a visita.</p>
+            <h3>Plano personalizado</h3>
+            <p class="plan-intro">Gestão do Instagram da escola, montada para levar famílias até a visita.</p>
             <ul class="plan-features">
-              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>6 Reels, 12 artes e carrosséis, 20 stories</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>4 Reels, 9 artes, 4 carrosséis e 20 stories</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendário alinhado ao ano letivo</li>
               <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relatório mensal ligado às visitas</li>
-              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Reunião mensal de até 45 minutos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Reunião mensal de até 30 minutos</li>
             </ul>
             <div class="plan-bottom">
-              <span>Mensal · tabela <span class="plan-was">R$ 2.190</span></span>
+              <span>Mensal</span>
               <strong class="plan-price num">R$ 2.000 <em>/mês</em></strong>
-              <p class="plan-note">Valor de pacote, contratado junto com a plataforma.</p>
+              <p class="plan-note">Quantidades definidas para o momento da escola, revisadas na reunião mensal.</p>
             </div>
           </article>
         </div>
@@ -645,7 +644,7 @@
             <div class="pay-rows">
               <div class="pay-row"><span>Plataforma (parcela)</span><strong class="num">R$ 500</strong></div>
               <div class="pay-row"><span>Manutenção contínua</span><strong class="num">R$ 1.000</strong></div>
-              <div class="pay-row"><span>VS Social · Presença Completa</span><strong class="num">R$ 2.000</strong></div>
+              <div class="pay-row"><span>VS Social · plano personalizado</span><strong class="num">R$ 2.000</strong></div>
               <div class="pay-row is-total"><span>Mensalidade do 1º ao 10º mês</span><strong class="num">R$ 3.500</strong></div>
               <div class="pay-row is-total"><span>Mensalidade a partir do 11º mês</span><strong class="num">R$ 3.000</strong></div>
             </div>
