@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para a Educa Baby e Kids: portal de matrículas, agenda digital para as famílias, manutenção contínua e gestão de redes sociais com a VS Social, em uma mensalidade única.">
+  <title>Proposta · Portal Educa e VS Social | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · Portal Educa e VS Social">
+  <meta property="og:description" content="Matrícula, agenda e redes sociais trabalhando juntas pela Educa Baby e Kids.">
+  <link rel="icon" href="../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta Educa Baby e Kids
+       Só o que é desta página: mockup da escola (--c-*), módulos,
+       ciclo do social e gráfico da mensalidade.
+       ============================================================ */
+
+    /* ---------- Mockup da escola ---------- */
+    .screen.ed {
+      --c-accent: hsl(222 69% 34%);
+      --c-sky: hsl(198 76% 52%);
+      --c-sky-soft: hsl(198 78% 94%);
+      --c-pink: hsl(334 80% 90%);
+      --c-pink-ink: hsl(334 55% 38%);
+      --c-ok: hsl(162 72% 28%);
+      --c-ok-soft: hsl(162 50% 92%);
+      --c-warn: hsl(32 92% 36%);
+      --c-warn-soft: hsl(38 90% 92%);
+      background: hsl(205 45% 99%);
+    }
+    .ed .m-logo img { width: 22px; height: 22px; }
+    .ed .m-logo { color: var(--c-accent); }
+    .ed-hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px; padding: 24px 22px 20px; }
+    .ed-hero .m-title { font-size: 21px; color: var(--c-accent); }
+    .ed-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+    .ed-chip { padding: 4px 8px; border-radius: 99px; background: var(--c-sky-soft); color: hsl(210 72% 27%); font-size: 6.5px; font-weight: 700; }
+    .ed-chip.is-pink { background: var(--c-pink); color: var(--c-pink-ink); }
+    .ed-photo { margin-top: 14px; height: 92px; border-radius: 8px; background: hsl(198 60% 91%); border: 1px dashed hsl(205 32% 78%); display: grid; place-items: end start; padding: 8px; color: hsl(222 40% 30%); font-size: 6.5px; font-weight: 600; }
+    .ed-form { padding: 14px; border: 1px solid var(--m-line); border-radius: 8px; background: #fff; }
+    .ed-form-title { margin: 0 0 2px; font-size: 11px; font-weight: 700; letter-spacing: -.02em; }
+    .ed-field { display: block; margin-top: 8px; }
+    .ed-field small { display: block; margin-bottom: 3px; color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .ed-field span { display: block; padding: 6px 8px; border: 1px solid var(--m-line); border-radius: 5px; font-size: 7.5px; }
+    .ed-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 4px 0 10px; }
+    .ed-slots span { padding: 5px 0; border: 1px solid var(--m-line); border-radius: 5px; text-align: center; font-size: 6.5px; font-weight: 600; }
+    .ed-slots .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .ed-form .m-btn { width: 100%; padding: 8px; }
+
+    .ed-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 20px; border-bottom: 1px solid var(--m-line); background: #fff; }
+    .ed-top p { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: -.02em; }
+    .ed-top small { display: block; color: var(--m-muted); font-size: 7px; font-weight: 500; letter-spacing: 0; }
+    .ed-bell { position: relative; width: 22px; height: 22px; border-radius: 50%; background: var(--c-sky-soft); }
+    .ed-bell::after { content: '2'; position: absolute; top: -3px; right: -3px; width: 11px; height: 11px; display: grid; place-items: center; border-radius: 50%; background: hsl(0 72% 50%); color: #fff; font-size: 6px; font-weight: 700; }
+    .ed-cols { display: grid; grid-template-columns: .95fr 1.05fr; gap: 12px; padding: 14px 20px 18px; }
+    .ed-card { padding: 12px; border: 1px solid var(--m-line); border-radius: 8px; background: #fff; }
+    .ed-card-h { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 8px; font-size: 8.5px; font-weight: 700; }
+    .ed-card-h span { color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .ed-day .ed-photo { height: 62px; margin: 0 0 8px; }
+    .ed-tl { display: grid; gap: 6px; }
+    .ed-tl div { display: grid; grid-template-columns: 18px 1fr auto; gap: 7px; align-items: center; }
+    .ed-tl i { width: 18px; height: 18px; border-radius: 50%; background: var(--c-sky-soft); }
+    .ed-tl i.is-pink { background: var(--c-pink); }
+    .ed-tl i.is-ok { background: var(--c-ok-soft); }
+    .ed-tl strong { display: block; font-size: 7.5px; }
+    .ed-tl span { color: var(--m-muted); font-size: 6.5px; }
+    .ed-tl b { color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .ed-msgs { display: grid; gap: 7px; }
+    .ed-msg { padding: 9px 10px; border: 1px solid var(--m-line); border-radius: 7px; background: #fff; }
+    .ed-msg.is-new { border-color: color-mix(in oklch, var(--c-accent) 40%, white); box-shadow: inset 2px 0 0 var(--c-accent); }
+    .ed-msg-k { display: flex; justify-content: space-between; color: var(--m-muted); font-size: 6.2px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .ed-msg-k em { color: var(--c-accent); font-style: normal; }
+    .ed-msg strong { display: block; margin: 3px 0 2px; font-size: 8px; }
+    .ed-msg p { margin: 0 0 6px; color: var(--m-soft); font-size: 7px; }
+    .ed-msg-actions { display: flex; gap: 5px; }
+    .ed-msg-actions .m-btn { padding: 5px 8px; font-size: 6.5px; }
+    .ed-msg-actions .m-btn.is-ok { background: var(--c-ok); }
+
+    .ed-panel { padding: 16px 20px 18px; }
+    .ed-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-bottom: 12px; }
+    .ed-head small { display: block; color: var(--m-muted); font-size: 7px; font-weight: 600; }
+    .ed-head p { margin: 2px 0 0; font-size: 13px; font-weight: 700; letter-spacing: -.03em; }
+    .ed-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+    .ed-kpi { padding: 9px 10px; border: 1px solid var(--m-line); border-radius: 7px; background: #fff; }
+    .ed-kpi span { display: block; color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .ed-kpi strong { display: block; margin-top: 2px; font-size: 16px; letter-spacing: -.03em; }
+    .ed-kpi:last-child strong { color: var(--c-ok); }
+    .ed-table { border: 1px solid var(--m-line); border-radius: 7px; overflow: hidden; background: #fff; }
+    .ed-row { display: grid; grid-template-columns: 1.1fr 1fr .8fr .95fr; gap: 8px; align-items: center; padding: 7px 10px; border-top: 1px solid var(--m-line); font-size: 7px; }
+    .ed-row.is-head { border-top: 0; background: var(--m-canvas); color: var(--m-muted); font-size: 6.2px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .ed-row strong { display: block; font-size: 7.5px; }
+    .ed-row small { color: var(--m-muted); font-size: 6.5px; }
+    .ed-src { justify-self: start; padding: 3px 6px; border-radius: 99px; background: var(--c-pink); color: var(--c-pink-ink); font-size: 6.3px; font-weight: 700; }
+    .ed-src.is-g { background: var(--c-sky-soft); color: hsl(210 72% 27%); }
+    .ed-src.is-i { background: var(--c-ok-soft); color: var(--c-ok); }
+    .ed-stage { justify-self: start; padding: 3px 6px; border-radius: 4px; background: var(--m-canvas); color: var(--m-soft); font-size: 6.3px; font-weight: 700; }
+    .ed-stage.is-ok { background: var(--c-ok-soft); color: var(--c-ok); }
+    .ed-stage.is-warn { background: var(--c-warn-soft); color: var(--c-warn); }
+    .ed-caption { position: absolute; left: 0; bottom: 8px; color: var(--text-muted); font-size: 12px; }
+    .ed-float { left: -18px; bottom: 96px; }
+    .ed-float .float-icon { background: hsl(334 80% 92%); color: hsl(334 55% 38%); }
+
+    /* ---------- Ponto de partida ---------- */
+    .base-note { margin-top: 28px; color: var(--text-muted); font-size: 14px; max-width: 62ch; }
+
+    /* ---------- Módulos (faixa Grafite) ---------- */
+    .modules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--dark-line-strong); }
+    .module { display: flex; flex-direction: column; padding: 32px 26px 36px 0; }
+    .module + .module { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .module-num { color: var(--rose-soft); font-family: var(--font-display); font-size: 15px; font-weight: 800; font-variation-settings: "wdth" 120; }
+    .module h3 { margin: 14px 0 12px; font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 30px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.02; letter-spacing: -.02em; }
+    .module > p { margin-bottom: 22px; color: var(--text-soft); font-size: 15px; }
+    .module .plan-features { margin-bottom: 0; }
+    .privacy-line { display: flex; gap: 12px; align-items: flex-start; margin-top: clamp(40px, 5vw, 56px); padding-top: 22px; border-top: 1px solid var(--dark-line); color: var(--text-soft); font-size: 15px; max-width: 80ch; }
+    .privacy-line svg { width: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--cadmio); }
+
+    /* ---------- Ciclo do social ---------- */
+    .loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: clamp(56px, 7vw, 88px); border-top: 1px solid var(--grafite); counter-reset: loop; }
+    .loop-step { position: relative; padding: 26px 26px 30px 0; }
+    .loop-step + .loop-step { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .loop-step::after { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 2px; background: var(--carmim); }
+    .loop-step + .loop-step::after { left: -5px; }
+    .loop-step span { display: block; margin-bottom: 10px; color: var(--carmim); font-size: 13px; font-weight: 700; }
+    .loop-step h3 { margin-bottom: 10px; font-family: var(--font-display); font-size: clamp(22px, 2vw, 27px); font-weight: 720; font-variation-settings: "wdth" 110; line-height: 1.05; letter-spacing: -.02em; }
+    .loop-step p { margin: 0; color: var(--text-soft); font-size: 15px; }
+    .social-qty { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-bottom: 28px; border-block: 1px solid var(--dark-line); }
+    .social-qty div { padding: 16px 12px 16px 0; }
+    .social-qty div + div { padding-left: 14px; border-left: 1px solid var(--dark-line); }
+    .social-qty strong { display: block; font-family: var(--font-display); font-size: clamp(34px, 3.4vw, 46px); font-weight: 860; font-variation-settings: "wdth" 120; line-height: 1; letter-spacing: -.02em; }
+    .social-qty span { display: block; margin-top: 6px; color: var(--text-soft); font-size: 13px; line-height: 1.35; }
+    .fit-col.is-alt .factor-list { margin-bottom: 30px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note + .fit-note { margin-top: 14px; }
+
+    /* ---------- Gráfico da mensalidade (painel Carmim) ---------- */
+    .bill { padding-top: 6px; }
+    .months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(4px, .8vw, 10px); align-items: end; height: 200px; }
+    .month { display: flex; flex-direction: column-reverse; height: calc(var(--v) / 3500 * 100%); transform-origin: bottom; transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 50ms + 150ms); }
+    .motion-ready .bill:not(.is-visible) .month { transform: scaleY(0); }
+    .month i { display: block; }
+    .seg-s { flex: 2000; background: var(--linho); }
+    .seg-m { flex: 1000; background: rgba(239, 239, 239, .5); }
+    .seg-p { flex: 500; background: repeating-linear-gradient(-45deg, rgba(239, 239, 239, .95) 0 2px, transparent 2px 6px); box-shadow: inset 0 0 0 1px rgba(239, 239, 239, .95); }
+    .month i + i { margin-bottom: 2px; }
+    .month-labels { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(4px, .8vw, 10px); margin-top: 8px; color: var(--text-soft); font-size: 12px; text-align: center; }
+    .month-split { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--dark-line-strong); font-size: 13px; color: var(--text-soft); }
+    .month-split strong { display: block; color: var(--text); font-family: var(--font-display); font-size: 20px; font-weight: 720; }
+    .month-split div:last-child { text-align: right; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 20px; color: var(--text-soft); font-size: 13px; }
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend i { width: 14px; height: 14px; border-radius: 2px; }
+    .legend b { color: var(--text); font-weight: 650; }
+
+    .plan-price small { display: block; margin-top: 6px; color: var(--text-muted); font-family: var(--font); font-size: 13px; font-weight: 600; letter-spacing: 0; }
+    .plan-was { color: var(--text-muted); text-decoration: line-through; }
+    .pay-row.is-total { border-bottom-color: var(--grafite); }
+    .pay-row.is-total span, .pay-row.is-total strong { color: var(--text); font-weight: 700; }
+
+    /* ---------- Perguntas ---------- */
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1040px) {
+      .modules { grid-template-columns: 1fr 1fr; }
+      .module:nth-child(3) { padding-left: 0; border-left: 0; }
+      .module:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
+      .loop { grid-template-columns: 1fr 1fr; }
+      .loop-step:nth-child(3) { padding-left: 0; border-left: 0; }
+      .loop-step:nth-child(3)::after { left: 0; }
+      .loop-step:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
+      .faq-aside { position: static; }
+    }
+    @media (max-width: 780px) {
+      .modules, .loop { grid-template-columns: 1fr; }
+      .module, .module + .module { padding-left: 0; border-left: 0; }
+      .module + .module { border-top: 1px solid var(--dark-line); }
+      .loop-step, .loop-step + .loop-step { padding-left: 0; border-left: 0; }
+      .loop-step::after, .loop-step + .loop-step::after { left: 0; }
+      .loop-step + .loop-step { border-top: 1px solid var(--dark-line); }
+      .ed-hero { grid-template-columns: 1fr; }
+      .ed-hero > div:first-child .ed-photo { display: none; }
+      .ed-cols { grid-template-columns: 1fr; }
+      .ed-day { display: none; }
+      .ed-kpis { grid-template-columns: 1fr 1fr; }
+      .ed-row { grid-template-columns: 1.2fr .8fr .9fr; }
+      .ed-row > :nth-child(2) { display: none; }
+    }
+    @media (max-width: 540px) {
+      .months { height: 150px; }
+      .month-labels { font-size: 10px; }
+      .social-qty { grid-template-columns: 1fr; }
+      .social-qty div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--dark-line); }
+      .ed-caption { position: static; margin-top: 12px; }
+    }
+    @media print {
+      .seg-s { background: #212121; }
+      .seg-m { background: #888; }
+      .seg-p { background: repeating-linear-gradient(-45deg, #212121 0 2px, transparent 2px 6px); box-shadow: inset 0 0 0 1px #212121; }
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Li a proposta do Portal Educa com a VS Social e quero avançar.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Educa Baby e Kids</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#plataforma" data-spy-link="plataforma">Plataforma</a>
+        <a href="#social" data-spy-link="social">Redes sociais</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#cronograma" data-spy-link="cronograma">Prazos</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Portal Educa</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para a Educa Baby e Kids</span> <span class="display">Matrícula, agenda e redes sociais. <em>Trabalhando juntas pela escola.</em></span></h1>
+          <p class="hero-lead">A partir do portal de rematrícula que já está no ar, proponho uma plataforma completa: matrícula de alunos novos, agenda digital com recados para as famílias e um plano da VS Social para levar mais famílias até a visita. Tudo em uma mensalidade única.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#plataforma">O que será construído</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 20 de outubro de 2026 · válida até 4 de novembro de 2026.</span></div>
+        </div>
+
+        <div class="stage" data-nosnippet role="group" aria-label="Exemplo das telas do Portal Educa">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">colegioeducakids.com.br</span><span class="browser-live">No ar</span></div>
+              <div class="screen ed">
+
+                <div class="mock-page" id="ed-matricula" role="tabpanel" aria-labelledby="ed-tab-matricula">
+                  <div class="m-nav"><span class="m-logo"><img src="assets/educa-logo.png" alt="" width="22" height="22">Educa Baby e Kids</span><span class="m-links"><span>A escola</span><span>Segmentos</span><span>Estrutura</span><span class="m-btn is-ghost">Área do responsável</span></span></div>
+                  <div class="ed-hero">
+                    <div>
+                      <span class="m-label">Matrículas 2027 abertas</span>
+                      <p class="m-title">Um lugar seguro para crescer e aprender.</p>
+                      <p class="m-text">Do berçário ao 8º ano, com a família acompanhando o dia da criança pelo celular.</p>
+                      <div class="ed-chips"><span class="ed-chip">Berçário</span><span class="ed-chip is-pink">Educação Infantil</span><span class="ed-chip">Fundamental</span></div>
+                      <div class="ed-photo">foto da escola</div>
+                    </div>
+                    <div class="ed-form">
+                      <p class="ed-form-title">Agende uma visita</p>
+                      <p class="m-text">A secretaria confirma pelo WhatsApp.</p>
+                      <label class="ed-field"><small>Nome do responsável</small><span>Renata Alves</span></label>
+                      <label class="ed-field"><small>Idade da criança</small><span>3 anos · Infantil II</span></label>
+                      <label class="ed-field"><small>Como conheceu a escola</small><span>Instagram</span></label>
+                      <label class="ed-field"><small>Melhor horário</small></label>
+                      <div class="ed-slots"><span>Seg 9h</span><span class="is-on">Ter 14h</span><span>Qua 10h</span></div>
+                      <span class="m-btn">Pedir visita</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page" id="ed-agenda" role="tabpanel" aria-labelledby="ed-tab-agenda" hidden>
+                  <div class="ed-top"><p>Olá, Juliana<small>Théo · Maternal II · Educa Baby</small></p><span class="ed-bell" aria-hidden="true"></span></div>
+                  <div class="ed-cols">
+                    <div class="ed-card ed-day">
+                      <p class="ed-card-h">O dia do Théo <span>hoje</span></p>
+                      <div class="ed-photo">foto do dia</div>
+                      <div class="ed-tl">
+                        <div><i></i><span><strong>Almoço</strong>Comeu bem</span><b>11h40</b></div>
+                        <div><i class="is-pink"></i><span><strong>Soneca</strong>1h20 de sono</span><b>13h</b></div>
+                        <div><i class="is-ok"></i><span><strong>Troca</strong>Tudo certo</span><b>14h30</b></div>
+                      </div>
+                    </div>
+                    <div class="ed-msgs">
+                      <div class="ed-msg is-new">
+                        <span class="ed-msg-k"><em>Recado da professora</em>15h10</span>
+                        <strong>Mandar uma muda de roupa amanhã</strong>
+                        <p>Vamos brincar com tinta no pátio. Obrigada!</p>
+                        <div class="ed-msg-actions"><span class="m-btn">Confirmar leitura</span><span class="m-btn is-ghost">Responder</span></div>
+                      </div>
+                      <div class="ed-msg">
+                        <span class="ed-msg-k">Autorização<span>até 02/12</span></span>
+                        <strong>Passeio ao sítio · 05/12</strong>
+                        <div class="ed-msg-actions"><span class="m-btn is-ok">Autorizar</span><span class="m-btn is-ghost">Ler tudo</span></div>
+                      </div>
+                      <div class="ed-msg">
+                        <span class="ed-msg-k">Comunicado · Maternal II<span>seg</span></span>
+                        <strong>Reunião de pais em 26/11, às 19h</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page" id="ed-painel" role="tabpanel" aria-labelledby="ed-tab-painel" hidden>
+                  <div class="ed-panel">
+                    <div class="ed-head"><div><small>Secretaria · Matrículas 2027</small><p>Interessados</p></div><span class="m-btn">Confirmar visita</span></div>
+                    <div class="ed-kpis">
+                      <div class="ed-kpi"><span>Novos</span><strong>7</strong></div>
+                      <div class="ed-kpi"><span>Visita marcada</span><strong>4</strong></div>
+                      <div class="ed-kpi"><span>Em matrícula</span><strong>2</strong></div>
+                      <div class="ed-kpi"><span>Matriculados</span><strong>3</strong></div>
+                    </div>
+                    <div class="ed-table">
+                      <div class="ed-row is-head"><span>Criança</span><span>Responsável</span><span>Veio de</span><span>Etapa</span></div>
+                      <div class="ed-row"><span><strong>Pedro H.</strong><small>3 anos</small></span><span>Renata Alves</span><span class="ed-src">Instagram</span><span class="ed-stage is-warn">Visita ter 14h</span></div>
+                      <div class="ed-row"><span><strong>Beatriz C.</strong><small>1 ano</small></span><span>Aline Camargo</span><span class="ed-src is-i">Indicação</span><span class="ed-stage">Em matrícula</span></div>
+                      <div class="ed-row"><span><strong>Luiz O.</strong><small>6 anos</small></span><span>Marcos Ribeiro</span><span class="ed-src is-g">Google</span><span class="ed-stage">Novo</span></div>
+                      <div class="ed-row"><span><strong>Cecília M.</strong><small>4 anos</small></span><span>Paula Moraes</span><span class="ed-src">Instagram</span><span class="ed-stage is-ok">Matriculada</span></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="float-card ed-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
+              <div><strong>Novo pedido de visita</strong><span>Veio de um Reel no Instagram</span><small>Infantil II · terça, 14h</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 3.500</strong><span>por mês: plataforma, manutenção e redes sociais</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Telas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="ed-tab-matricula" aria-controls="ed-matricula" aria-selected="true">Matrícula</button>
+            <button class="mockup-tab" type="button" role="tab" id="ed-tab-agenda" aria-controls="ed-agenda" aria-selected="false">Agenda</button>
+            <button class="mockup-tab" type="button" role="tab" id="ed-tab-painel" aria-controls="ed-painel" aria-selected="false">Secretaria</button>
+          </div>
+          <p class="ed-caption">Telas ilustrativas · nomes fictícios</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Mensalidade única</span><strong>R$ 3.500</strong></div>
+        <div class="spec-item"><span>Nova plataforma</span><strong>10× de R$ 500</strong></div>
+        <div class="spec-item"><span>Portal completo</span><strong>Até 60 dias</strong></div>
+        <div class="spec-item"><span>Redes sociais</span><strong>Presença Completa</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ PONTO DE PARTIDA ============ -->
+    <section class="section" id="base" aria-labelledby="base-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="base-titulo">Não começamos do zero.</h2>
+          <p class="reveal delay-1">A rematrícula 2027 rodou neste portal, com as famílias da escola. Acesso, etapas, pagamento e painel já estão prontos e testados. Por isso a nova plataforma custa R$ 5.000, e não o preço de um sistema construído do início.</p>
+        </div>
+        <ul class="outcomes">
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+            <h3>Acesso sem senha</h3>
+            <p>A família entra com o CPF e um código enviado por e-mail.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
+            <h3>Jornada em etapas pelo celular</h3>
+            <p>Salva sozinha se a pessoa parar no meio e reúne os irmãos na mesma família.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <h3>Contratos gerados pelo painel</h3>
+            <p>A secretaria gera o contrato com os dados que a família enviou.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>
+            <h3>Pagamento integrado ao Asaas</h3>
+            <p>Cartão, boleto ou Pix, com confirmação automática do pagamento.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>
+            <h3>Painel da secretaria</h3>
+            <p>Rematrículas, valores, contratos, cobranças, atividades complementares e comunicados.</p>
+          </li>
+        </ul>
+        <p class="base-note reveal">Tudo isso continua funcionando durante a construção. Cada parte nova é somada ao sistema atual, sem interromper o que já está no ar.</p>
+      </div>
+    </section>
+
+    <!-- ============ PLATAFORMA ============ -->
+    <section class="section anatomy" id="plataforma" data-spy="plataforma" aria-labelledby="plataforma-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="plataforma-titulo">O que a nova plataforma acrescenta.</h2>
+          <p class="reveal delay-1">Quatro frentes construídas sobre a mesma base, com o mesmo acesso por CPF que as famílias já conhecem.</p>
+        </div>
+        <div class="modules">
+          <article class="module reveal">
+            <span class="module-num">01</span>
+            <h3>Matrícula de alunos novos</h3>
+            <p>Hoje o portal atende só quem já é aluno. A matrícula nova passa a começar no site e terminar no portal.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Página de matrículas com os segmentos da escola</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pedido de visita com os horários que a escola abrir</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lista de interessados no painel, com a etapa de cada família</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Origem do contato: Instagram, Google ou indicação</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Matrícula online com dados, contrato e pagamento</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-1">
+            <span class="module-num">02</span>
+            <h3>Agenda da família</h3>
+            <p>O dia da criança e os recados da escola chegam no celular, sem depender do bilhete na mochila.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recados da escola para a turma ou para um aluno</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recados da família para a escola, com resposta</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diário do berçário e do infantil: alimentação, sono, trocas e foto</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Autorizações: passeio, saída antecipada e uso de imagem</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendário de eventos, reuniões e feriados</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-2">
+            <span class="module-num">03</span>
+            <h3>Área da equipe</h3>
+            <p>Cada professora acessa só a própria turma. A secretaria e a direção acompanham tudo.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acesso individual para professoras</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diário da turma preenchido em poucos toques</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Comunicados por turma, segmento ou unidade</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Quem já leu e quem ainda não leu cada recado</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-3">
+            <span class="module-num">04</span>
+            <h3>Aplicativo no celular</h3>
+            <p>O portal vira um aplicativo instalável, com o ícone da escola na tela e avisos na hora.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instalado pelo navegador, sem loja de aplicativos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aviso de recado, comunicado e diário atualizado</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Android e iPhone, no mesmo endereço</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Atualiza sozinho, sem a família baixar nada de novo</li>
+            </ul>
+          </article>
+        </div>
+        <p class="privacy-line reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Fotos, diário e recados ficam visíveis só para os responsáveis de cada aluno e para a equipe autorizada, com o mesmo controle de acesso que já protege a rematrícula.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ VS SOCIAL ============ -->
+    <section class="section" id="social" data-spy="social" aria-labelledby="social-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="social-titulo">Redes que levam famílias até a visita.</h2>
+          <p class="section-lead reveal delay-1">A plataforma organiza a matrícula. A VS Social trabalha para que mais famílias conheçam a escola e cheguem até ela. As duas se conectam: cada pedido de visita mostra de onde a família veio, e esse dado orienta o conteúdo do mês seguinte.</p>
+        </div>
+
+        <ol class="loop">
+          <li class="loop-step reveal"><span>01</span><h3>Conteúdo no Instagram</h3><p>Reels, carrosséis e stories mostram a rotina, a estrutura e a proposta da escola.</p></li>
+          <li class="loop-step reveal delay-1"><span>02</span><h3>Página de matrículas</h3><p>O link da bio e as chamadas levam direto para a página da escola.</p></li>
+          <li class="loop-step reveal delay-2"><span>03</span><h3>Pedido de visita</h3><p>A família escolhe um horário e a secretaria recebe na hora.</p></li>
+          <li class="loop-step reveal delay-3"><span>04</span><h3>Origem no painel</h3><p>A escola vê quantas visitas vieram das redes, e o calendário se ajusta.</p></li>
+        </ol>
+
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Plano Presença Completa</h3>
+            <div class="social-qty">
+              <div><strong>6</strong><span>Reels por mês, com roteiro e edição</span></div>
+              <div><strong>12</strong><span>artes e carrosséis por mês</span></div>
+              <div><strong>20</strong><span>stories por mês</span></div>
+            </div>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instagram, com espelhamento no Facebook</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendário editorial mensal, alinhado ao calendário escolar</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Legendas, chamadas e roteiros para a equipe gravar no celular</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ajuste da bio e destaques com até 5 capas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aprovação da escola antes de publicar e agendamento</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relatório mensal com os pedidos de visita vindos das redes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1 reunião mensal de até 45 minutos</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Temas pensados para a escola</h3>
+            <ul class="factor-list">
+              <li>Campanha de matrículas 2027</li>
+              <li>Rotina do berçário</li>
+              <li>Proposta pedagógica</li>
+              <li>Estrutura e segurança</li>
+              <li>Ballet, Judô, Jazz, Futsal e Vôlei</li>
+              <li>Equipe e professoras</li>
+              <li>Eventos e datas do calendário</li>
+              <li>Depoimentos de famílias</li>
+              <li>Dúvidas comuns dos pais</li>
+            </ul>
+            <p class="fit-note">Imagens de alunos só são publicadas com autorização de uso de imagem, que passa a ficar registrada no próprio portal.</p>
+            <p class="fit-note">Captação presencial de fotos e vídeos, atendimento de mensagens e anúncios pagos não fazem parte do plano.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MANUTENÇÃO ============ -->
+    <section class="section section-tight" id="manutencao" aria-labelledby="manutencao-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="manutencao-titulo">Manutenção contínua, como já fazemos hoje.</h2>
+          <p class="section-lead reveal delay-1">O portal da rematrícula já é acompanhado de perto: ajustes de valores, casos especiais de famílias, correções e apoio à secretaria. A proposta mantém esse acompanhamento para a plataforma inteira.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><path d="M6 6.5h.01M6 17.5h.01"/></svg></span>
+            <h3>Plataforma no ar e protegida</h3>
+            <p>A estrutura técnica fica comigo. A escola não precisa contratar nem administrar nenhum serviço à parte.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Servidor, banco de dados e arquivos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>E-mails de acesso das famílias</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Backups e monitoramento</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Atualizações de segurança</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Correção de qualquer erro do que foi entregue</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Integração com o Asaas acompanhada</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+            <h3>Evolução junto com a escola</h3>
+            <p>Todo mês combinamos as prioridades. O que a secretaria pede no dia a dia entra na fila e é resolvido.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Apoio em casos especiais de famílias</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Campanhas novas, como a rematrícula 2028</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ajustes de textos, regras e valores</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pequenas melhorias priorizadas no mês</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Orientação da equipe e das professoras</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Contato direto comigo pelo WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Uma mensalidade. Três frentes.</h2>
+          <p class="section-lead reveal delay-1">O desenvolvimento da plataforma é dividido em 10 parcelas dentro da mensalidade. Depois da décima, a plataforma está quitada e a mensalidade diminui.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Mensalidade única</span>
+            <strong class="num">R$ 3.500</strong>
+            <small>do 1º ao 10º mês. A partir do 11º mês, R$ 3.000.</small>
+          </div>
+          <div class="bill reveal" role="img" aria-label="Gráfico da mensalidade: do mês 1 ao 10, R$ 3.500, somando R$ 500 da plataforma, R$ 1.000 de manutenção e R$ 2.000 de redes sociais. A partir do mês 11, R$ 3.000, sem a parcela da plataforma.">
+            <div class="months" aria-hidden="true">
+              <div class="month" style="--v:3500;--i:0"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:1"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:2"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:3"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:4"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:5"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:6"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:7"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:8"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3500;--i:9"><i class="seg-s"></i><i class="seg-m"></i><i class="seg-p"></i></div>
+              <div class="month" style="--v:3000;--i:10"><i class="seg-s"></i><i class="seg-m"></i></div>
+              <div class="month" style="--v:3000;--i:11"><i class="seg-s"></i><i class="seg-m"></i></div>
+            </div>
+            <div class="month-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+            <div class="month-split" aria-hidden="true">
+              <div><strong>R$ 3.500</strong>mês 1 ao 10</div>
+              <div><strong>R$ 3.000</strong>mês 11 em diante</div>
+            </div>
+            <div class="legend" aria-hidden="true">
+              <span><i class="seg-p"></i>Plataforma <b>R$ 500</b></span>
+              <span><i class="seg-m"></i>Manutenção <b>R$ 1.000</b></span>
+              <span><i class="seg-s"></i>Redes sociais <b>R$ 2.000</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="plans-grid">
+          <article class="plan reveal">
+            <p class="plan-label">Plataforma</p>
+            <h3>Portal Educa</h3>
+            <p class="plan-intro">Matrícula de alunos novos, agenda da família, área da equipe e aplicativo, construídos sobre a base atual.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Planejamento, interface e desenvolvimento</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Testes com a secretaria antes de liberar</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Publicação no endereço da escola</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Treinamento da equipe e guia para as famílias</li>
+            </ul>
+            <div class="plan-bottom">
+              <span>Investimento total de R$ 5.000</span>
+              <strong class="plan-price num">10× R$ 500 <small>sem juros, dentro da mensalidade</small></strong>
+              <p class="plan-note">As parcelas vão do 1º ao 10º mês.</p>
+            </div>
+          </article>
+          <article class="plan reveal delay-1">
+            <p class="plan-label">Manutenção contínua</p>
+            <h3>Plataforma sempre cuidada</h3>
+            <p class="plan-intro">Infraestrutura, correções, suporte à secretaria e evolução da plataforma, todos os meses.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Servidor, banco, e-mails e backups</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Correções e atualizações de segurança</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Apoio em casos especiais e campanhas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pequenas melhorias priorizadas no mês</li>
+            </ul>
+            <div class="plan-bottom">
+              <span>Mensal</span>
+              <strong class="plan-price num">R$ 1.000 <em>/mês</em></strong>
+              <p class="plan-note">Começa no 1º mês e segue enquanto a parceria durar.</p>
+            </div>
+          </article>
+          <article class="plan is-common reveal delay-2">
+            <span class="common-badge">Condição de pacote</span>
+            <p class="plan-label">VS Social</p>
+            <h3>Presença Completa</h3>
+            <p class="plan-intro">Gestão do Instagram e do Facebook da escola, com foco em levar famílias até a visita.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>6 Reels, 12 artes e carrosséis, 20 stories</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendário alinhado ao ano letivo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relatório mensal ligado às visitas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Reunião mensal de até 45 minutos</li>
+            </ul>
+            <div class="plan-bottom">
+              <span>Mensal · tabela <span class="plan-was">R$ 2.190</span></span>
+              <strong class="plan-price num">R$ 2.000 <em>/mês</em></strong>
+              <p class="plan-note">Valor de pacote, contratado junto com a plataforma.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Como fica mês a mês</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Plataforma (parcela)</span><strong class="num">R$ 500</strong></div>
+              <div class="pay-row"><span>Manutenção contínua</span><strong class="num">R$ 1.000</strong></div>
+              <div class="pay-row"><span>VS Social · Presença Completa</span><strong class="num">R$ 2.000</strong></div>
+              <div class="pay-row is-total"><span>Mensalidade do 1º ao 10º mês</span><strong class="num">R$ 3.500</strong></div>
+              <div class="pay-row is-total"><span>Mensalidade a partir do 11º mês</span><strong class="num">R$ 3.000</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Condições</h3>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Pagamento</span><strong>Pix ou boleto, com vencimento combinado</strong></div>
+              <div class="pay-row"><span>Início</span><strong>Logo após a aprovação</strong></div>
+              <div class="pay-row"><span>Encerramento</span><strong>Aviso de 30 dias</strong></div>
+              <div class="pay-row"><span>Antes da 10ª parcela</span><strong>As parcelas restantes da plataforma continuam devidas</strong></div>
+              <div class="pay-row"><span>Custos de terceiros</span><strong>Taxas do Asaas e verba de anúncios, se houver</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CRONOGRAMA ============ -->
+    <section class="section" id="cronograma" data-spy="cronograma" aria-labelledby="cronograma-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="cronograma-titulo">Da aprovação ao ano letivo de 2027.</h2>
+          <p class="section-lead reveal delay-1">As redes e a página de matrículas começam primeiro, para aproveitar a temporada de matrículas. A agenda chega antes da volta às aulas.</p>
+          <div class="process-total reveal delay-2">
+            <strong>60 dias</strong>
+            <span>para o portal completo, contados a partir do alinhamento inicial.</span>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">Semana 1</span>
+              <h3>Alinhamento na escola</h3>
+              <p>Regras da matrícula nova, turmas e professoras, rotina do berçário, tom de voz da escola e acessos às redes.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">Até 10 dias úteis</span>
+              <h3>Primeiro calendário das redes</h3>
+              <p>A escola aprova o primeiro mês de conteúdo, com a campanha de matrículas 2027 no centro, e as publicações começam.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">Até 30 dias</span>
+              <h3>Matrícula de alunos novos no ar</h3>
+              <p>Página de matrículas, pedido de visita, lista de interessados e matrícula online. As redes passam a apontar para ela.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> famílias novas pedindo visita pelo site, com a origem registrada.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">Até 60 dias</span>
+              <h3>Agenda, equipe e aplicativo</h3>
+              <p>Recados, diário, autorizações, calendário e área das professoras, com treinamento da equipe e guia para as famílias.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> portal completo pronto para o primeiro dia de aula.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">Todo mês</span>
+              <h3>Acompanhar e ajustar</h3>
+              <p>Relatório das redes, reunião mensal, prioridades da manutenção e melhorias combinadas com a escola.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo" style="padding-top: 0">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Fora desta proposta</h3>
+          <ul class="factor-list reveal">
+            <li>WhatsApp oficial da escola</li>
+            <li>Financeiro completo de mensalidades</li>
+            <li>Notas e boletim</li>
+            <li>Aplicativo nas lojas</li>
+            <li>Anúncios pagos</li>
+            <li>Captação presencial de fotos</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>A rematrícula que já funciona vai parar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. Rematrícula, contratos e pagamentos continuam no ar durante toda a construção. As partes novas são somadas ao sistema atual.</p>
+          </details>
+          <details class="faq-item">
+            <summary>As famílias precisam baixar um aplicativo? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. O portal é instalado pelo próprio navegador, em um toque, e ganha o ícone da escola na tela inicial. No iPhone, os avisos na tela funcionam depois que o portal é adicionado à tela inicial; o guia para as famílias explica o passo a passo.</p>
+          </details>
+          <details class="faq-item">
+            <summary>O que acontece depois da 10ª parcela? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>A plataforma está quitada e a mensalidade passa para R$ 3.000, com manutenção contínua e redes sociais.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E se a escola quiser encerrar a parceria? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Manutenção e redes sociais encerram com aviso de 30 dias. Se isso acontecer antes da 10ª parcela, as parcelas restantes da plataforma continuam devidas e podem ser quitadas de uma vez.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Os dados das famílias são da escola? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. Cadastros, contratos, recados e históricos pertencem à escola e podem ser exportados quando ela quiser.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Recados e avisos podem chegar pelo WhatsApp? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Nesta proposta, os avisos chegam pelo aplicativo e por e-mail. O WhatsApp oficial pode ser adicionado depois, com orçamento à parte; o custo por mensagem cobrado pela Meta fica direto com a escola.</p>
+          </details>
+          <details class="faq-item">
+            <summary>As redes sociais garantem novas matrículas? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não existe essa garantia. O trabalho organiza a presença da escola, mantém frequência e leva quem se interessa até a página de matrículas. A visita, o atendimento e a proposta da escola continuam decisivos, e o painel mostra com clareza o que veio das redes.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos preparar a Educa para <span>2027?</span></h2>
+            <p>Com a aprovação, marcamos o alinhamento na escola na mesma semana e o primeiro calendário das redes sai em até 10 dias úteis.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Educa Baby e Kids</strong></div>
+            <div class="meta-row"><span>Mensalidade</span><strong>R$ 3.500 · depois R$ 3.000</strong></div>
+            <div class="meta-row"><span>Plataforma</span><strong>R$ 5.000 em 10× de R$ 500</strong></div>
+            <div class="meta-row"><span>Portal completo</span><strong>Até 60 dias</strong></div>
+            <div class="meta-row"><span>Validade</span><strong>4 de novembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 20 de outubro de 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>
