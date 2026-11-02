@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-04T15:20:51.685Z",
+  "checkedAt": "2026-10-23T13:36:28.366Z",
   "environment": "local Python HTTP server; Apache rules require production verification",
   "pages": [
     {
@@ -64,9 +64,135 @@
       "noJavaScript": true,
       "socialImage": "https://vsexperience.com.br/assets/images/og/bio-vs.jpg",
       "h1": "Interfaces com\n          intenção.\n          Código com\n          precisão."
+    },
+    {
+      "path": "/servicos/design-digital/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Design Digital · VS ExperienceUma boa ideia merece uma experiência à altura."
+    },
+    {
+      "path": "/en/services/digital-design/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Digital Design · VS ExperienceA good idea deserves an experience to match."
+    },
+    {
+      "path": "/servicos/ia-criativa/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "IA Criativa · VS ExperienceMenos tarefa repetida. Mais espaço para criar."
+    },
+    {
+      "path": "/en/services/creative-ai/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Creative AI · VS ExperienceLess repetitive work. More room to create."
+    },
+    {
+      "path": "/servicos/sites/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Sites · VS ExperienceSeu valor fica claro. O próximo passo também."
+    },
+    {
+      "path": "/en/services/websites/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Websites · VS ExperienceYour value is clear. So is the next step."
+    },
+    {
+      "path": "/servicos/branding/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Branding · VS ExperienceUma marca com direção. Uma presença com sentido."
+    },
+    {
+      "path": "/en/services/branding/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Branding · VS ExperienceA brand with direction. A presence with meaning."
+    },
+    {
+      "path": "/servicos/consultoria/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Consultoria · VS ExperienceClareza para decidir. Direção para avançar."
+    },
+    {
+      "path": "/en/services/consulting/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Consulting · VS ExperienceClarity to decide. Direction to move forward."
+    },
+    {
+      "path": "/servicos/educacao/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Educação · VS ExperienceAprender, aplicar e construir seu próximo passo."
+    },
+    {
+      "path": "/en/services/education/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Education · VS ExperienceLearn, apply and build your next step."
+    },
+    {
+      "path": "/en/services/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/servicos-vs.jpg",
+      "h1": "Web design and development services What your business needs takes shape here."
+    },
+    {
+      "path": "/en/services/landing-page/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/landing-page-vs.jpg",
+      "h1": "Landing page design Your offer, clear. The next step, too."
+    },
+    {
+      "path": "/en/services/institutional-website/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/site-institucional-vs.jpg",
+      "h1": "Company website design A presence that builds trust before the meeting."
+    },
+    {
+      "path": "/en/services/e-commerce/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/e-commerce-vs.jpg",
+      "h1": "Online store design From discovery to payment, a purchase that's easy to follow."
+    },
+    {
+      "path": "/en/services/saas-systems/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/sistemas-saas-vs.jpg",
+      "h1": "Web systems and SaaS development Your process, clearer. Your product, ready to evolve."
+    },
+    {
+      "path": "/en/services/design-system/",
+      "status": "pass",
+      "noJavaScript": true,
+      "socialImage": "https://vsexperience.com.br/assets/images/og/design-system-vs.jpg",
+      "h1": "Design system creation Your product grows. Consistency keeps up."
     }
   ],
-  "distinctResourcesChecked": 53,
+  "distinctResourcesChecked": 75,
   "runtimeErrors": [],
   "languageNavigation": "pass",
   "sitemap": "pass",

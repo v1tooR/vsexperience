@@ -170,6 +170,42 @@
         ],
         "createdAt": "2026-10-21T00:24:53.825Z",
         "reason": "static scan resolves --text/--rose-soft from :root instead of the dark .anatomy/.closing/.plan.is-common contexts; rendered-contrast audit (Playwright, desktop and 390px, all visible non-mockup text) found 0 failures after fixing .module-num"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-mmk-midia/index.html"
+        ],
+        "createdAt": "2026-11-01T20:52:36.101Z",
+        "reason": "static scan resolves --text/--rose-soft from :root instead of the dark .step-pay/.closing/.care-block.is-accent contexts and counts .process-total (88px display) as body text; rendered-contrast audit (Playwright, 1440/768/390, all visible non-mockup text) found 0 failures after fixing .step-pay"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "proposta-mmk-midia/index.html"
+        ],
+        "createdAt": "2026-11-01T20:53:01.179Z",
+        "reason": "proposal page: hits are the .mk-page/.mk-tabbar layers inside the phone mockup .screen (role=group, data-nosnippet), clipped on purpose to the rounded phone screen; same sanctioned pattern as servicos/*/index.html; verified in screenshots at 1440/768/390"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-webapp-barbearias/index.html"
+        ],
+        "createdAt": "2026-11-02T01:49:25.479Z",
+        "reason": "same template as proposta-mmk-midia: static scan resolves --text/--rose-soft from :root instead of the dark .step-pay/.closing/.care-block.is-accent contexts and counts .process-total (88px display) as body text; rendered-contrast audit (Playwright, 1440/768/390, all visible non-mockup text) found 0 failures"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "proposta-webapp-barbearias/index.html"
+        ],
+        "createdAt": "2026-11-02T01:49:25.709Z",
+        "reason": "proposal page: hits are the .bb-page/.bb-tabbar layers inside the phone mockup .screen and the pins inside the decorative .bb-map, clipped on purpose; same sanctioned pattern as proposta-mmk-midia and servicos/*/index.html; verified in screenshots at 1440/768/390"
       }
     ]
   }

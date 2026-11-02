@@ -14,7 +14,9 @@ Pessoas que chegam pelo WhatsApp, Instagram, indicação ou pelo site principal 
 
 ## Product Purpose
 
-Explicar cada serviço (Landing Page, Site Institucional, E-commerce, Sistemas e SaaS, Design System) de forma clara: o que é, para quem faz sentido, como o processo funciona e quanto costuma custar. A página índice (`servicos/`) liga os cinco serviços e explica como ler os valores.
+Organizar a oferta em sete categorias: Design Digital, IA Criativa, Sites, Design System, Branding, Consultoria e Educação. O índice (`servicos/`) leva às categorias, que apresentam especialidades, exemplos, processo e contato contextual. As páginas individuais existentes de Landing Page, Site Institucional, E-commerce e Sistemas e SaaS permanecem acessíveis; Design System reúne a categoria e a oferta atual. Novas páginas individuais ficam para uma próxima etapa.
+
+O catálogo contempla os 64 serviços do arquivo Produtos-Variados.md e preserva E-commerce, Sistemas e SaaS e o acesso relacionado à VS Social. O conteúdo central em português e inglês está em `scripts/catalog/categories.cjs`; `node scripts/catalog/build.cjs` atualiza as páginas estáticas. Demonstrações são identificadas como exemplos e não comprovam resultados de clientes.
 
 ## Positioning
 
@@ -27,6 +29,8 @@ Design com lógica de negócio e execução com padrão de engenharia, do diagn�
 - Provas: cases reais do portfólio (Eleva, Aluga Aqui, Costa Flores, Moriah, Multi Vegetal, Inter Store, Fácil Organização).
 
 ## Pricing source
+
+Decisão do usuário em outubro de 2026: os valores de Produtos-Variados.md são referências a avaliar antes de publicar. As categorias novas trabalham com escopo e proposta; as referências atuais abaixo permanecem nas páginas originais, sem adoção automática dos novos valores.
 
 As médias e faixas vêm das propostas reais do repositório (pastas `proposta-*` e `Praado`), levantadas em setembro de 2026:
 

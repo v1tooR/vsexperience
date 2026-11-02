@@ -278,42 +278,68 @@
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Design System: faixas de investimento",
+        "@id": "https://vsexperience.com.br/servicos/design-system/#catalog",
+        "name": "Design System",
         "itemListElement": [
           {
-            "@type": "Offer",
-            "name": "Design system Fundação",
-            "priceCurrency": "BRL",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "priceCurrency": "BRL",
-              "minPrice": 3000,
-              "maxPrice": 4500
-            }
+            "@type": "Service",
+            "name": "Auditoria de DS",
+            "description": "Inventário de padrões e inconsistências para definir o que manter, consolidar e criar.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#auditoria-de-ds"
           },
           {
-            "@type": "Offer",
-            "name": "Design system de produto",
-            "priceCurrency": "BRL",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "priceCurrency": "BRL",
-              "minPrice": 6000,
-              "maxPrice": 9000
-            }
+            "@type": "Service",
+            "name": "Criação de tokens",
+            "description": "Fundações de cor, tipografia, espaço e movimento com nomes e regras compartilhados.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#criacao-de-tokens"
           },
           {
-            "@type": "Offer",
-            "name": "Parceria contínua mensal",
-            "priceCurrency": "BRL",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "priceCurrency": "BRL",
-              "minPrice": 2200,
-              "maxPrice": 3800,
-              "unitCode": "MON",
-              "unitText": "mês"
-            }
+            "@type": "Service",
+            "name": "Biblioteca de componentes",
+            "description": "Componentes reutilizáveis com estados e comportamento, em design, código ou ambos.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#biblioteca-de-componentes"
+          },
+          {
+            "@type": "Service",
+            "name": "UI Kit Figma",
+            "description": "Biblioteca de interface no Figma, com componentes, variantes e organização para o time.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#ui-kit-figma"
+          },
+          {
+            "@type": "Service",
+            "name": "Zeroheight/Storybook",
+            "description": "Estruturação da documentação em uma plataforma adequada ao fluxo de design e desenvolvimento.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#zeroheight-storybook"
+          },
+          {
+            "@type": "Service",
+            "name": "Governança",
+            "description": "Processos de contribuição, aprovação e manutenção para o sistema continuar útil.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#governanca"
+          },
+          {
+            "@type": "Service",
+            "name": "Documentação",
+            "description": "Regras de uso, exemplos e orientações para decisões consistentes no dia a dia.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#documentacao"
+          },
+          {
+            "@type": "Service",
+            "name": "DS agnóstico",
+            "description": "Fundações e regras independentes de tecnologia, com implementações delimitadas por contexto.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#ds-agnostico"
+          },
+          {
+            "@type": "Service",
+            "name": "Treinamento de times",
+            "description": "Orientação para adotar, usar e contribuir com o design system da equipe.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#treinamento-de-times"
+          },
+          {
+            "@type": "Service",
+            "name": "DS white label",
+            "description": "Um sistema preparado para diferentes marcas e temas, com regras de adaptação.",
+            "url": "https://vsexperience.com.br/servicos/design-system/#ds-white-label"
           }
         ]
       }
@@ -366,14 +392,14 @@
     }
   ]
 }
-  </script>
+</script>
 
   <meta property="og:image:secure_url" content="https://vsexperience.com.br/assets/images/og/design-system-vs.jpg">
 
   <meta name="twitter:image:alt" content="Criação de design system — Consistência para o produto crescer.">
-</head>
+<link rel="stylesheet" href="../assets/categorias.css?v=20261023"></head>
 
-<body data-whatsapp="Olá, Victor! Vi a página de Design System da VS Experience e quero conversar sobre um projeto.">
+<body class="category-ds" data-whatsapp="Olá, Victor! Vi a página de Design System da VS Experience e quero conversar sobre um projeto.">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <div class="read-progress" id="readProgress" aria-hidden="true"></div>
   <header class="site-header" id="siteHeader">
@@ -382,7 +408,7 @@
       <nav class="client-chip" aria-label="Trilha de navegação"><a href="../">Serviços</a> · <span aria-current="page">Design System</span></nav>
       <div class="lang-switch" role="group" aria-label="Idioma"><a href="/servicos/design-system/" lang="pt-BR" hreflang="pt-BR" aria-current="true">PT</a><a href="/en/services/design-system/" lang="en" hreflang="en">EN</a></div>
       <nav class="nav-links" aria-label="Navegação da página">
-        <a href="#servico" data-spy-link="servico">O serviço</a>
+        <a href="#especialidades" data-spy-link="especialidades">Serviços</a>
         <a href="#processo" data-spy-link="processo">Processo</a>
         <a href="#investimento" data-spy-link="investimento">Investimento</a>
         <a class="nav-cta" href="#contato"><span>Solicitar orçamento</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
@@ -529,6 +555,48 @@
         <div class="spec-item"><span>Modelo</span><strong>Projeto ou parceria mensal</strong></div>
       </div>
     </section>
+<section class="section category-catalog" id="especialidades" data-spy="especialidades" aria-labelledby="especialidades-titulo">
+    <div class="container"><div class="catalog-intro"><h2 class="section-title reveal" id="especialidades-titulo">Encontre a entrega que faz sentido agora.</h2><p class="reveal">Explore as especialidades. Podemos trabalhar uma necessidade específica ou conectar etapas no mesmo projeto. O escopo é definido antes de começar.</p></div>
+    <div class="catalog-list"><details class="catalog-item" id="auditoria-de-ds" open>
+      <summary><h3>Auditoria de DS</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Inventário de padrões e inconsistências para definir o que manter, consolidar e criar.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Auditoria%20de%20DS%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="criacao-de-tokens">
+      <summary><h3>Criação de tokens</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Fundações de cor, tipografia, espaço e movimento com nomes e regras compartilhados.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Cria%C3%A7%C3%A3o%20de%20tokens%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="biblioteca-de-componentes">
+      <summary><h3>Biblioteca de componentes</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Componentes reutilizáveis com estados e comportamento, em design, código ou ambos.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Biblioteca%20de%20componentes%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="ui-kit-figma">
+      <summary><h3>UI Kit Figma</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Biblioteca de interface no Figma, com componentes, variantes e organização para o time.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20UI%20Kit%20Figma%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="zeroheight-storybook">
+      <summary><h3>Zeroheight/Storybook</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Estruturação da documentação em uma plataforma adequada ao fluxo de design e desenvolvimento.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Zeroheight%2FStorybook%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="governanca">
+      <summary><h3>Governança</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Processos de contribuição, aprovação e manutenção para o sistema continuar útil.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Governan%C3%A7a%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="documentacao">
+      <summary><h3>Documentação</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Regras de uso, exemplos e orientações para decisões consistentes no dia a dia.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Documenta%C3%A7%C3%A3o%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="ds-agnostico">
+      <summary><h3>DS agnóstico</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Fundações e regras independentes de tecnologia, com implementações delimitadas por contexto.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20DS%20agn%C3%B3stico%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="treinamento-de-times">
+      <summary><h3>Treinamento de times</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Orientação para adotar, usar e contribuir com o design system da equipe.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20Treinamento%20de%20times%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details>
+<details class="catalog-item" id="ds-white-label">
+      <summary><h3>DS white label</h3><span class="catalog-toggle" aria-hidden="true"></span></summary>
+      <div class="catalog-detail"><p>Um sistema preparado para diferentes marcas e temas, com regras de adaptação.</p><a href="https://wa.me/5512991833641?text=Ol%C3%A1%2C%20Victor!%20Quero%20conversar%20sobre%20DS%20white%20label%2C%20na%20categoria%20Design%20System.%20Meu%20objetivo%20%C3%A9%3A%20" target="_blank" rel="noopener">Conversar sobre esta entrega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+    </details></div></div></section>
 
     <section class="section" id="servico" data-spy="servico">
       <div class="container">
@@ -769,12 +837,7 @@
         </div>
         <nav class="other-services" aria-labelledby="outros-titulo">
           <h2 id="outros-titulo">Outros serviços</h2>
-          <div class="other-grid">
-            <a href="../landing-page/"><strong>Landing Page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 1.260</small></a>
-            <a href="../site-institucional/"><strong>Site Institucional <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 2.350</small></a>
-            <a href="../e-commerce/"><strong>E-commerce <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 3.740</small></a>
-            <a href="../sistemas-saas/"><strong>Sistemas e SaaS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></strong><small>média de R$ 6.950</small></a>
-          </div>
+          <nav class="category-nav" aria-label="Outras categorias"><a href="/servicos/design-digital/">Design Digital<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a href="/servicos/ia-criativa/">IA Criativa<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a href="/servicos/sites/">Sites<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a href="/servicos/branding/">Branding<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a href="/servicos/consultoria/">Consultoria<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a><a href="/servicos/educacao/">Educação<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></nav>
         </nav>
         <div class="signature"><img src="../../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Estratégia, design e desenvolvimento para o seu negócio.</span><span>Valores de referência · setembro de 2026</span></div>
       </div>
@@ -785,5 +848,5 @@
   <script src="../../assets/js/vendor/lenis.min.js?v=06586536"></script>
   <script src="../../assets/js/vs-gradient.js?v=ccf7558b"></script>
   <script src="../assets/servicos.js?v=be2356e0"></script>
-</body>
+<script src="../assets/categorias.js?v=20261023"></script></body>
 </html>

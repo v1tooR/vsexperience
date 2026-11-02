@@ -18,7 +18,7 @@ const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
       const type = { '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.js': 'application/javascript' }[path.extname(file)] || 'text/plain';
       await route.fulfill({ contentType: type, body: fs.readFileSync(file) });
     });
-    for (const p of pages) {
+    for (const p of pages.filter(p => !p.imageKey)) {
       await page.setContent(`<!DOCTYPE html><html lang="${p.lang || 'pt-BR'}"><head><base href="https://vs-seo.local/"><style>
       @font-face{font-family:Display;src:url('/assets/fonts/roboto-flex-latin.woff2');font-weight:100 1000;font-stretch:25% 151%}
       @font-face{font-family:Body;src:url('/assets/fonts/plus-jakarta-sans-latin.woff2');font-weight:400 700}

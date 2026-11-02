@@ -1,0 +1,72 @@
+﻿[
+  {
+    "antipattern": "gray-on-color",
+    "name": "Gray text on colored background",
+    "description": "Gray text looks washed out on colored backgrounds. Use a darker shade of the background color instead, or white/near-white for contrast.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\servicos\\branding\\index.html",
+    "line": 0,
+    "snippet": "text #303e2b on bg #d4b38d"
+  },
+  {
+    "antipattern": "gray-on-color",
+    "name": "Gray text on colored background",
+    "description": "Gray text looks washed out on colored backgrounds. Use a darker shade of the background color instead, or white/near-white for contrast.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\servicos\\branding\\index.html",
+    "line": 0,
+    "snippet": "text #303e2b on bg #d4b38d"
+  },
+  {
+    "antipattern": "skipped-heading",
+    "name": "Skipped heading level",
+    "description": "Heading levels should not skip (e.g. h1 then h3 with no h2). Screen readers use heading hierarchy for navigation. Skipping levels breaks the document outline.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\servicos\\educacao\\index.html",
+    "line": 0,
+    "snippet": "<h1> \"Educação · VS ExperienceAprender, aplicar e construir seu pr\" followed by <h3> \"Aprender fazendo.\" (missing h2)"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\index.html",
+    "line": 0,
+    "snippet": "2.6:1 (need 4.5:1) — text #949494 on #efefef"
+  },
+  {
+    "antipattern": "buried-raster",
+    "name": "Raster buried under a wash or opacity",
+    "description": "A background image under a near-opaque gradient wash, or a raster on an element at near-zero opacity, never reaches the screen: the page shows the wash, and the produced texture or photo ships as a compliance token. Let the material show (a tint under 0.9 alpha, a blend mode, an opacity you can see) or remove the file.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\index.html",
+    "line": 0,
+    "snippet": "<img> at opacity 0"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\en\\index.html",
+    "line": 0,
+    "snippet": "2.6:1 (need 4.5:1) — text #949494 on #efefef"
+  },
+  {
+    "antipattern": "buried-raster",
+    "name": "Raster buried under a wash or opacity",
+    "description": "A background image under a near-opaque gradient wash, or a raster on an element at near-zero opacity, never reaches the screen: the page shows the wash, and the produced texture or photo ships as a compliance token. Let the material show (a tint under 0.9 alpha, a blend mode, an opacity you can see) or remove the file.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\Usuario\\vsexperience\\en\\index.html",
+    "line": 0,
+    "snippet": "<img> at opacity 0"
+  }
+]

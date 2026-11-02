@@ -1,0 +1,126 @@
+{
+  "routes": [
+    {
+      "route": "/servicos/",
+      "services": null,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/design-digital/",
+      "services": 11,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/ia-criativa/",
+      "services": 9,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/sites/",
+      "services": 8,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/design-system/",
+      "services": 10,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/branding/",
+      "services": 9,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/consultoria/",
+      "services": 9,
+      "status": "pass"
+    },
+    {
+      "route": "/servicos/educacao/",
+      "services": 10,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/",
+      "services": null,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/digital-design/",
+      "services": 11,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/creative-ai/",
+      "services": 9,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/websites/",
+      "services": 8,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/design-system/",
+      "services": 10,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/branding/",
+      "services": 9,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/consulting/",
+      "services": 9,
+      "status": "pass"
+    },
+    {
+      "route": "/en/services/education/",
+      "services": 10,
+      "status": "pass"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\hub-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\hub-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\design-digital-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\design-digital-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\ia-criativa-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\ia-criativa-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\sites-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\sites-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\design-system-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\design-system-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\branding-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\branding-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\consultoria-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\consultoria-mobile.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\educacao-desktop.png",
+    "C:\\Users\\Usuario\\vsexperience\\.impeccable\\review\\categories\\educacao-mobile.png"
+  ],
+  "interaction": [
+    "All category catalogues work with JavaScript disabled",
+    "Tabs support ArrowRight, Home and End with focus management",
+    "Explicit pause stops automatic tab changes",
+    "Direct service anchors open the relevant native disclosure",
+    "WhatsApp carries the chosen service and category"
+  ],
+  "preservedPrices": [
+    "servicos/landing-page/index.html",
+    "servicos/site-institucional/index.html",
+    "servicos/e-commerce/index.html",
+    "servicos/sistemas-saas/index.html",
+    "servicos/design-system/index.html",
+    "en/services/design-system/index.html"
+  ],
+  "sourceCoverage": {
+    "source": 64,
+    "catalog": 64,
+    "extraServices": [
+      "Sistemas e SaaS",
+      "E-commerce"
+    ]
+  },
+  "errors": []
+}

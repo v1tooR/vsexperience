@@ -36,7 +36,7 @@ One person who covers the whole chain: diagnosis, UX, UI and production-grade co
 ## Operating Context
 
 - Main CTA: WhatsApp conversation (`5512991833641`), currently with a message that asks "o que você vende, pra quem e qual o objetivo".
-- Pricing ranges live only in `/servicos` (and its five service pages). The home does not show prices and links to `/servicos` for them.
+- `/servicos/` now routes to seven categories: Design Digital, IA Criativa, Sites, Design System, Branding, Consultoria and Educação. Existing pricing references remain in the original five service pages; the home links to categories and does not show prices.
 - PT/EN language switch through `assets/js/i18n.js`.
 - Sibling surfaces in the same repo: `/servicos` (has its own PRODUCT.md and DESIGN.md), `bio.html`, client proposals in `proposta-*` folders (each one is its own mini-project), `qr-generator`.
 - SEO: JSON-LD (Person, ProfessionalService, FAQPage), sitemap and robots are already in place and must be kept and updated.
@@ -46,7 +46,15 @@ One person who covers the whole chain: diagnosis, UX, UI and production-grade co
 - Services offered: Landing Page, Site Institucional, E-commerce (Pix, shipping, Bling and Mercado Livre integration), Sistemas e SaaS, Design System, design-only delivery in Figma for teams with their own developers.
 - Process: Diagnóstico, Arquitetura e narrativa (UX), UI (component system), Construção e refinamento, Ajustes e validação, with checkpoints and one consolidated revision round per delivery.
 - Timelines stated in the FAQ: landing page in 1 to 2 weeks, institutional site in 2 to 4 weeks, e-commerce and SaaS defined in the diagnosis.
-- **Open:** the specific offer of the Victor Santos audit and consulting front (formats, deliverables, pricing) is not defined yet. Don't invent packages.
+- The category catalogue defines the consulting specialities, but fixed packages, availability and new pricing still require a scoped proposal. Do not invent packages or imply every education product is ready to purchase.
+
+## Service category expansion · October 2026
+
+- The user approved seven category pages, preserving the existing design system. Individual pages for the remaining specialities are a later task.
+- `scripts/catalog/categories.cjs` is the shared PT/EN content source for all 64 services from `Produtos-Variados.md`, plus the existing E-commerce and Systems/SaaS offers. VS Social remains a related offer from Branding and Education.
+- `node scripts/catalog/build.cjs` generates six new category pages per language and extends the existing Design System category. It updates both category indexes, homepage links and the sitemap. The legacy SEO and English builders run it after their own generation to preserve this structure.
+- The prices in the supplied Markdown are references to evaluate before publication, explicitly confirmed by the user. Existing public prices remain unchanged; do not adopt the Markdown prices automatically.
+- Real cases support Sites and Design Digital. Branding, IA, Consulting and Education use labelled examples, not invented client work or results. Fácil Organização is an own product in development. Partner participation is scoped per project.
 
 ## Brand Commitments
 

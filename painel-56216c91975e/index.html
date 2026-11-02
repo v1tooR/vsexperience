@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faturas Novembro 2026</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: bento de 12 colunas em duas abas (visão geral e plano); resumo primeiro, detalhe depois; uma coluna no celular */
+:root{
+  --bg:#eceef1; --tile:#fbfcfd; --tile-2:#f3f5f7; --ink:#12161c; --ink-2:#4f5764; --ink-3:#6f7784; --line:#dce0e6;
+  --s-btg:#2a78d6; --s-nu:#eb6834; --s-pp:#1baf7a; --s-other:#9aa2ae;
+  --good:#0a7d0a; --good-bg:#e3f3e3; --warn:#8a5f00; --warn-bg:#fdf1d6; --crit:#b83030; --crit-bg:#fbe6e6; --info:#2a5fa8; --info-bg:#e4edf9;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r:20px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d0f12; --tile:#171a1f; --tile-2:#1f232a; --ink:#eef0f3; --ink-2:#b3bac5; --ink-3:#8f98a7; --line:#2a2f37;
+  --s-btg:#3987e5; --s-nu:#d95926; --s-pp:#199e70; --s-other:#5d6573;
+  --good:#4cc94c; --good-bg:#16301a; --warn:#f0b43a; --warn-bg:#352a10; --crit:#ef7070; --crit-bg:#3a1b1b; --info:#7fb0f0; --info-bg:#172840;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d0f12; --tile:#171a1f; --tile-2:#1f232a; --ink:#eef0f3; --ink-2:#b3bac5; --ink-3:#8f98a7; --line:#2a2f37;
+  --s-btg:#3987e5; --s-nu:#d95926; --s-pp:#199e70; --s-other:#5d6573;
+  --good:#4cc94c; --good-bg:#16301a; --warn:#f0b43a; --warn-bg:#352a10; --crit:#ef7070; --crit-bg:#3a1b1b; --info:#7fb0f0; --info-bg:#172840;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.num{font-variant-numeric:tabular-nums}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:16px}
+header.top h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.4vw,36px);letter-spacing:-.02em;line-height:1.1;margin:0;text-wrap:balance}
+header.top p{margin:4px 0 0;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12.5px;padding:5px 11px;border-radius:999px;background:var(--tile);border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.chip b{color:var(--ink);font-weight:600}
+
+/* Abas */
+.tabs{display:inline-flex;gap:4px;padding:4px;background:var(--tile);border:1px solid var(--line);border-radius:14px;margin-bottom:16px;max-width:100%;overflow-x:auto}
+.tabs button{font:inherit;font-weight:600;font-size:14px;border:0;background:transparent;color:var(--ink-2);padding:8px 16px;border-radius:10px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabs button:not([aria-selected="true"]):hover{background:var(--tile-2);color:var(--ink)}
+.tabs button:focus-visible{outline:2px solid var(--s-btg);outline-offset:2px}
+.tabs .count{font-size:11.5px;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--good-bg);color:var(--good)}
+
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;grid-auto-flow:dense}
+.tile{background:var(--tile);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.span-6{grid-column:span 6}
+.rows-2{grid-row:span 2}
+@media (max-width:1020px){.span-8,.span-7,.span-5,.span-6{grid-column:span 12}.span-4{grid-column:span 6}.span-3{grid-column:span 6}.rows-2{grid-row:auto}}
+@media (max-width:640px){.span-4,.span-3{grid-column:span 12}.tile{padding:18px}}
+
+.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0}
+.tile h2{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em;margin:0;line-height:1.25;text-wrap:balance}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+
+/* Hero */
+.hero-figs{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end}
+.big{font-family:var(--display);font-weight:700;font-size:clamp(44px,7vw,72px);letter-spacing:-.035em;line-height:.95;color:var(--good)}
+.big.neg{color:var(--crit)}
+.mid{font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:-.02em;line-height:1.1}
+.fig-l{font-size:13px;color:var(--ink-2);margin-top:6px}
+.flow{display:flex;gap:2px;height:44px;border-radius:12px;overflow:hidden}
+.flow > div{min-width:0;height:100%;transition:flex-grow .35s ease}
+.flow .left{background:repeating-linear-gradient(135deg,var(--good-bg) 0 8px,transparent 8px 14px),var(--tile-2);border:1px dashed var(--good);border-radius:0 12px 12px 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:10px;height:10px;border-radius:3px;flex:none;display:inline-block}
+.sw.left{background:var(--good-bg);border:1px dashed var(--good)}
+.extras-line{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 14px;border-radius:14px;background:var(--tile-2);font-size:13.5px;color:var(--ink-2)}
+.extras-line b{color:var(--ink)}
+.link-btn{font:inherit;font-size:13.5px;font-weight:600;color:var(--info);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link-btn:focus-visible{outline:2px solid var(--s-btg);outline-offset:2px;border-radius:4px}
+.note{font-size:12.5px;color:var(--ink-3);margin:0}
+
+/* Cartões */
+.cards{display:flex;flex-direction:column;gap:10px}
+.card-row{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;padding:12px 14px;border-radius:14px;background:var(--tile-2)}
+.card-row .sw{width:12px;height:12px;border-radius:4px}
+.card-row .n{font-weight:600}
+.card-row .v{font-family:var(--display);font-weight:600;font-size:18px;text-align:right}
+.card-row .d{grid-column:2 / 4;font-size:12.5px;color:var(--ink-3)}
+.split{display:flex;gap:2px;height:10px;border-radius:99px;overflow:hidden}
+
+/* Categorias */
+.seg-btns{display:inline-flex;background:var(--tile-2);border-radius:10px;padding:3px;gap:2px}
+.seg-btns button{font:inherit;font-size:13px;font-weight:500;border:0;background:transparent;color:var(--ink-2);padding:5px 12px;border-radius:8px;cursor:pointer}
+.seg-btns button[aria-pressed="true"]{background:var(--tile);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.seg-btns button:focus-visible{outline:2px solid var(--s-btg);outline-offset:1px}
+.cat-list{display:flex;flex-direction:column;gap:4px}
+.cat{display:grid;grid-template-columns:minmax(120px,190px) 1fr 92px 50px;gap:12px;align-items:center;padding:7px 8px;border-radius:10px;cursor:default}
+.cat:hover,.cat:focus-visible{background:var(--tile-2);outline:none}
+.cat .lbl{font-size:14px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat .track{display:flex;gap:2px;height:18px;min-width:0}
+.cat .track i{display:block;height:100%}
+.cat .track i:last-child{border-radius:0 4px 4px 0}
+.cat .val{text-align:right;font-weight:600;font-size:14px}
+.cat .pct{text-align:right;font-size:13px;color:var(--ink-3)}
+@media (max-width:640px){.cat{grid-template-columns:1fr auto;grid-template-areas:"l v" "t t";gap:6px 10px}.cat .lbl{grid-area:l}.cat .track{grid-area:t}.cat .val{grid-area:v}.cat .pct{display:none}}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+tfoot td{font-weight:700;border-bottom:0}
+.tip{position:fixed;pointer-events:none;z-index:20;background:var(--ink);color:var(--bg);font-size:12.5px;padding:9px 11px;border-radius:10px;line-height:1.45;opacity:0;transition:opacity .12s;max-width:240px}
+.tip.on{opacity:1}
+.tip b{font-weight:600}
+
+/* Alertas */
+.alerts{display:flex;flex-direction:column;gap:10px}
+.alert{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:13px 14px;border-radius:14px;background:var(--tile-2)}
+.pill{grid-row:span 2;align-self:start;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.crit{background:var(--crit-bg);color:var(--crit)}
+.pill.info{background:var(--info-bg);color:var(--info)}
+.pill.good{background:var(--good-bg);color:var(--good)}
+.alert strong{font-weight:600;font-size:14.5px;line-height:1.35}
+.alert span{font-size:13px;color:var(--ink-2)}
+
+/* Listas */
+.list{display:flex;flex-direction:column}
+.li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.li:last-child{border-bottom:0}
+.li .who{display:flex;align-items:center;gap:9px;min-width:0;flex-wrap:wrap}
+.li .who > span:first-of-type{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.li .amt{font-weight:600;white-space:nowrap}
+.tag{font-size:11px;font-weight:600;padding:2px 7px;border-radius:6px;white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good)}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}
+.tag.mute{background:var(--tile-2);color:var(--ink-3)}
+.subhead{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;padding:4px 0 2px;margin-top:4px}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+
+/* Mini stats */
+.stat .v{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-.02em;line-height:1}
+.stat p{margin:0;font-size:13px;color:var(--ink-2)}
+
+/* Plano */
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;counter-reset:st}
+.step{display:grid;grid-template-columns:34px 1fr;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line);counter-increment:st}
+.step:last-child{border-bottom:0}
+.step::before{content:counter(st);grid-row:span 3;width:30px;height:30px;border-radius:9px;background:var(--tile-2);color:var(--ink);font-family:var(--display);font-weight:700;font-size:15px;display:grid;place-items:center}
+.step h3{margin:0;font-size:15.5px;font-weight:600;line-height:1.35;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.step p{margin:0;font-size:14px;color:var(--ink-2);max-width:68ch}
+.step .meta{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.cut-sum{font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:-.02em;line-height:1;color:var(--good)}
+
+/* Calculadora */
+.calc-form{display:grid;grid-template-columns:1fr 150px auto;gap:8px}
+@media (max-width:520px){.calc-form{grid-template-columns:1fr 1fr}.calc-form .btn{grid-column:span 2}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:12px;font-weight:600;color:var(--ink-3)}
+input[type="text"],input[type="number"]{font:inherit;font-size:15px;color:var(--ink);background:var(--tile-2);border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;min-width:0}
+input[type="text"]:focus,input[type="number"]:focus{outline:2px solid var(--s-btg);outline-offset:0;border-color:transparent}
+.btn{font:inherit;font-weight:600;font-size:14px;border:0;border-radius:10px;padding:10px 16px;background:var(--ink);color:var(--bg);cursor:pointer;align-self:end;white-space:nowrap}
+.btn:hover{opacity:.88}
+.btn:focus-visible{outline:2px solid var(--s-btg);outline-offset:2px}
+.btn.ghost{background:transparent;color:var(--ink-2);border:1px solid var(--line)}
+.btn.danger{background:var(--crit);color:#fff}
+.quick{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.quick > span{font-size:12.5px;color:var(--ink-3);margin-right:2px}
+.qchip{font:inherit;font-size:12.5px;font-weight:500;padding:5px 10px;border-radius:99px;border:1px dashed var(--line);background:transparent;color:var(--ink-2);cursor:pointer}
+.qchip:hover{border-style:solid;color:var(--ink)}
+.qchip:focus-visible{outline:2px solid var(--s-btg);outline-offset:1px}
+.err{font-size:12.5px;color:var(--crit);margin:0;min-height:1em}
+.xlist{display:flex;flex-direction:column}
+.xrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.xrow .rm{font:inherit;font-size:12.5px;border:0;background:transparent;color:var(--ink-3);cursor:pointer;padding:4px 6px;border-radius:6px}
+.xrow .rm:hover{color:var(--crit);background:var(--crit-bg)}
+.xrow .rm:focus-visible{outline:2px solid var(--s-btg)}
+.empty{font-size:13.5px;color:var(--ink-3);padding:14px;border:1px dashed var(--line);border-radius:12px;text-align:center}
+.sumgrid{display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:14px;padding-top:4px}
+.sumgrid .k{color:var(--ink-2)}
+.sumgrid .v{text-align:right;font-weight:600}
+.sumgrid .tot{border-top:1px solid var(--line);padding-top:10px;font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.01em}
+.sumgrid .tot.good{color:var(--good)}
+.sumgrid .tot.neg{color:var(--crit)}
+.confirm{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
+.alloc{display:flex;flex-direction:column;gap:10px}
+.arow{display:grid;grid-template-columns:1fr 78px 120px;gap:10px;align-items:center;font-size:14px}
+.arow input{text-align:right;padding:7px 9px}
+.arow .amt{text-align:right;font-weight:600}
+.abar{display:flex;gap:2px;height:12px;border-radius:99px;overflow:hidden;background:var(--tile-2)}
+.abar i{display:block;height:100%}
+footer{margin-top:22px;font-size:12.5px;color:var(--ink-3);max-width:80ch}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Faturas de novembro</h1>
+      <p>Cartões BTG, Nubank e PicPay, compras de 27/09 a 24/10/2026</p>
+    </div>
+    <div class="chips">
+      <span class="chip">BTG fecha <b>28/10</b>, vence <b>01/11</b></span>
+      <span class="chip">Nubank vence <b>04/11</b></span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Seções">
+    <button type="button" role="tab" id="tab-visao" aria-controls="painel-visao" aria-selected="true">Visão geral</button>
+    <button type="button" role="tab" id="tab-plano" aria-controls="painel-plano" aria-selected="false" tabindex="-1">Plano e calculadora <span class="count num" id="tab-count" hidden></span></button>
+  </nav>
+
+  <!-- ===================== VISÃO GERAL ===================== -->
+  <main class="bento" id="painel-visao" role="tabpanel" aria-labelledby="tab-visao">
+    <section class="tile span-8" aria-labelledby="h-sobra">
+      <p class="eyebrow" id="h-sobra">Sobra depois de quitar os cartões</p>
+      <div class="hero-figs">
+        <div>
+          <div class="big num" id="sobra">R$ 7.931,89</div>
+          <div class="fig-l" id="sobra-pct">65% do que entra fica livre</div>
+        </div>
+        <div>
+          <div class="mid num">R$ 12.258,21</div>
+          <div class="fig-l">Entrada do mês</div>
+        </div>
+        <div>
+          <div class="mid num" id="total-faturas">R$ 4.326,32</div>
+          <div class="fig-l" id="total-lbl">Faturas somadas</div>
+        </div>
+      </div>
+      <div class="flow" id="flow" role="img" aria-label="Divisão da entrada do mês entre faturas, contas extras e sobra"></div>
+      <div class="legend" id="flow-legend"></div>
+      <div class="extras-line">
+        <span id="extras-txt">Nenhuma conta extra somada ainda.</span>
+        <button type="button" class="link-btn" data-goto="plano">Somar outras contas</button>
+      </div>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="h-cartoes">
+      <p class="eyebrow" id="h-cartoes">Por cartão</p>
+      <div class="split" id="split"></div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section class="tile span-8 rows-2" aria-labelledby="h-cat">
+      <div class="head">
+        <div>
+          <p class="eyebrow">Categorias macro</p>
+          <h2 id="h-cat">Para onde foram os R$ 4.326,32</h2>
+        </div>
+        <div class="seg-btns" role="group" aria-label="Modo de visualização">
+          <button type="button" id="btn-graf" aria-pressed="true">Gráfico</button>
+          <button type="button" id="btn-tab" aria-pressed="false">Tabela</button>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--s-btg)"></i>BTG</span>
+        <span><i class="sw" style="background:var(--s-nu)"></i>Nubank</span>
+        <span><i class="sw" style="background:var(--s-pp)"></i>PicPay</span>
+      </div>
+      <div id="view-graf" class="cat-list"></div>
+      <div id="view-tab" class="tbl-wrap" hidden></div>
+      <p class="note">CVS foi tratada como farmácia (R$ 357,75 em 8 compras). Se for mercado, esse valor passa de Saúde para Alimentação.</p>
+    </section>
+
+    <section class="tile span-4 rows-2" aria-labelledby="h-alertas">
+      <div>
+        <p class="eyebrow">Pontos de atenção</p>
+        <h2 id="h-alertas">O que vale conferir</h2>
+      </div>
+      <div class="alerts">
+        <div class="alert"><span class="pill crit">Conferir</span><strong>Internet paga duas vezes em outubro</strong><span>Vello: R$ 101,87 em 07/10 pela conta da Lauany e R$ 99,90 em 16/10 pela do Victor.</span></div>
+        <div class="alert"><span class="pill warn">Taxa</span><strong>Pix no crédito: R$ 254,93 em 4 envios</strong><span>No par visível, R$ 15,00 virou R$ 16,09 na fatura, cerca de 7% só de taxa.</span></div>
+        <div class="alert"><span class="pill warn">Dívida antiga</span><strong>Parcelamentos são 26% da fatura</strong><span>R$ 1.130,88 de compras de meses anteriores. Jo Calçados termina agora e libera R$ 149,99.</span></div>
+        <div class="alert"><span class="pill info">Revisar</span><strong>Duas IAs pagas: R$ 224,54/mês</strong><span>Claude R$ 116,65 e ChatGPT R$ 107,89 com IOF. Vale decidir se os dois se pagam.</span></div>
+        <div class="alert"><span class="pill info">Cortar</span><strong>Taxas pequenas recorrentes</strong><span>Seguro do cartão Itaú (R$ 10,28) e Pix protegido (R$ 6,99). Possível YouTube Premium em dobro entre os cartões.</span></div>
+      </div>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="h-ass">
+      <div><p class="eyebrow">Assinaturas</p><h2 id="h-ass">R$ 531,11 por mês</h2></div>
+      <div class="list" id="assin"></div>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="h-parc">
+      <div><p class="eyebrow">Parcelamentos</p><h2 id="h-parc">R$ 1.130,88 este mês</h2></div>
+      <div class="list" id="parc"></div>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="h-top">
+      <div><p class="eyebrow">Maiores gastos</p><h2 id="h-top">Onde o dinheiro concentrou</h2></div>
+      <div class="list" id="top"></div>
+    </section>
+
+    <section class="tile stat span-3"><p class="eyebrow">Transporte</p><div class="v num">R$ 180,72</div><p>10 corridas de Uber e 99, mais um estacionamento.</p></section>
+    <section class="tile stat span-3"><p class="eyebrow">Pet</p><div class="v num">R$ 233,41</div><p>R$ 99 do plano Lifeplan e R$ 134,41 em 4 compras em pet shops.</p></section>
+    <section class="tile stat span-3"><p class="eyebrow">Alimentação</p><div class="v num">R$ 399,51</div><p>Quase metade é o Outback (R$ 181,10). O resto são lanches e mercado.</p></section>
+    <section class="tile stat span-3"><p class="eyebrow">Investimentos BTG</p><div class="v num">R$ 24,14</div><p>Rendimento de FIIs no mês. CDBs resgatados (R$ 4.089,42) e reaplicados (R$ 3.383,85).</p></section>
+  </main>
+
+  <!-- ===================== PLANO E CALCULADORA ===================== -->
+  <div class="bento" id="painel-plano" role="tabpanel" aria-labelledby="tab-plano" hidden>
+
+    <!-- Calculadora -->
+    <section class="tile span-5" aria-labelledby="h-calc">
+      <div>
+        <p class="eyebrow">Calculadora</p>
+        <h2 id="h-calc">Chegou outra conta? Some aqui</h2>
+      </div>
+      <form class="calc-form" id="calc-form" novalidate>
+        <div class="field"><label for="x-nome">Conta</label><input type="text" id="x-nome" placeholder="Ex.: DAS do MEI" autocomplete="off"></div>
+        <div class="field"><label for="x-valor">Valor (R$)</label><input type="text" id="x-valor" inputmode="decimal" placeholder="0,00" autocomplete="off" class="num"></div>
+        <button type="submit" class="btn">Somar</button>
+      </form>
+      <p class="err" id="x-err" role="alert"></p>
+      <div class="quick">
+        <span>Atalhos:</span>
+        <button type="button" class="qchip" data-n="Cartão da lista (Totalpass, celular, Spotify, Moriah e outros)" data-v="561.57">Cartão da lista · R$ 561,57</button>
+        <button type="button" class="qchip" data-n="Internet (Vello)" data-v="99.90">Internet · R$ 99,90</button>
+        <button type="button" class="qchip" data-n="DAS do MEI" data-v="">DAS do MEI</button>
+      </div>
+      <div class="xlist" id="xlist"></div>
+      <div class="sumgrid num">
+        <span class="k">Entrada do mês</span><span class="v">R$ 12.258,21</span>
+        <span class="k">Faturas BTG, Nubank e PicPay</span><span class="v">− R$ 4.326,32</span>
+        <span class="k">Contas extras</span><span class="v" id="c-extras">− R$ 0,00</span>
+        <span class="k tot">Sobra</span><span class="v tot good" id="c-sobra">R$ 7.931,89</span>
+      </div>
+      <div class="confirm" id="clear-wrap" hidden>
+        <button type="button" class="btn ghost" id="clear-ask">Limpar contas extras</button>
+        <span id="clear-confirm" hidden>Apagar todas as contas extras? <button type="button" class="btn danger" id="clear-yes">Apagar</button> <button type="button" class="btn ghost" id="clear-no">Cancelar</button></span>
+      </div>
+      <p class="note">As contas ficam salvas só neste navegador.</p>
+    </section>
+
+    <!-- Divisão da sobra -->
+    <section class="tile span-7" aria-labelledby="h-alloc">
+      <div class="head">
+        <div>
+          <p class="eyebrow">Exemplo de divisão da sobra</p>
+          <h2 id="h-alloc">Para onde mandar <span class="num" id="alloc-base">R$ 7.931,89</span></h2>
+        </div>
+      </div>
+      <p class="note" style="font-size:13.5px;color:var(--ink-2)">Os percentuais são um ponto de partida. Ajuste conforme o tamanho das contas fixas de vocês e o que já existe guardado.</p>
+      <div class="abar" id="abar" role="img" aria-label="Divisão da sobra entre os destinos"></div>
+      <div class="alloc" id="alloc"></div>
+      <p class="err" id="alloc-err" role="status"></p>
+    </section>
+
+    <!-- Passo a passo -->
+    <section class="tile span-8" aria-labelledby="h-plano">
+      <div>
+        <p class="eyebrow">Sugestões do Claude</p>
+        <h2 id="h-plano">Ordem para usar o dinheiro que entra</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <h3>Pagar as três faturas inteiras, antes do vencimento <span class="tag warn">até 30/10</span></h3>
+          <p>O vencimento do BTG cai num domingo (01/11). Pagando até sexta, 30/10, não fica dependendo de compensação. Nunca pagar o mínimo: os juros do rotativo estão entre os mais altos do país e transformam uma fatura de R$ 2,7 mil em dívida.</p>
+          <p class="meta num">R$ 4.326,32 · BTG R$ 2.707,47 · Nubank R$ 1.286,85 · PicPay R$ 332,00</p>
+        </li>
+        <li class="step">
+          <h3>Separar as contas fixas de novembro</h3>
+          <p>Internet, celular, remédios, academia, o cartão da lista e o DAS do MEI saem antes de qualquer outra decisão. Some cada uma na calculadora ao lado para ver a sobra real.</p>
+          <p class="meta">Esse valor é o que define o tamanho da reserva no passo 4.</p>
+        </li>
+        <li class="step">
+          <h3>Resolver os vazamentos da fatura <span class="tag good">até R$ 268/mês</span></h3>
+          <p>Conferir se a internet foi paga em dobro, parar de usar Pix no crédito, escolher uma das duas IAs, cancelar o seguro do cartão Itaú e o Pix protegido, e checar o YouTube Premium repetido.</p>
+          <p class="meta">Detalhe de cada corte no bloco ao lado.</p>
+        </li>
+        <li class="step">
+          <h3>Montar ou completar a reserva de emergência</h3>
+          <p>A referência mais usada é de 3 a 6 meses de gastos essenciais. Com renda de MEI, que varia, o lado de 6 meses é mais seguro. O lugar certo é uma aplicação com liquidez diária, separada dos investimentos de prazo longo.</p>
+          <p class="meta">Assim vocês não precisam resgatar CDB antes da hora. Em outubro saíram R$ 20,12 de IR em resgates; o imposto cai de 22,5% (até 180 dias) para 15% (após 2 anos).</p>
+        </li>
+        <li class="step">
+          <h3>Separar o dinheiro da VS Experience do pessoal</h3>
+          <p>R$ 422,53 por mês em ferramentas de trabalho (Claude, ChatGPT, Microsoft, Picsart, Google) estão no cartão pessoal. Passar isso para a conta do MEI mostra quanto a agência realmente dá de lucro e evita misturar as contas.</p>
+          <p class="meta">Guardar o DAS do mês junto com esse dinheiro, para não pesar na sobra pessoal.</p>
+        </li>
+        <li class="step">
+          <h3>Definir um teto para a próxima fatura</h3>
+          <p>Sem contar parcelamentos, os gastos novos deste mês foram R$ 3.195,44. Combinar um valor menor que isso e olhar o app uma vez por semana já evita surpresa no fechamento.</p>
+          <p class="meta">Evitar parcelar compras novas até os parcelamentos atuais terminarem.</p>
+        </li>
+        <li class="step">
+          <h3>Só então investir para objetivos de prazo mais longo</h3>
+          <p>Com faturas pagas, contas fixas separadas e reserva no lugar, o que sobrar pode ir para objetivos com prazo definido. Escolher o produto pelo prazo do objetivo, não pela rentabilidade do momento.</p>
+        </li>
+      </ol>
+      <p class="note">São princípios gerais de organização financeira. Não sou consultor financeiro e isso não é recomendação de investimento.</p>
+    </section>
+
+    <!-- Cortes -->
+    <section class="tile span-4" aria-labelledby="h-cortes">
+      <div>
+        <p class="eyebrow">Vazamentos da fatura</p>
+        <h2 id="h-cortes">Economia possível por mês</h2>
+      </div>
+      <div class="cut-sum num">até R$ 268,57</div>
+      <div class="list" id="cortes"></div>
+      <p class="note">O total considera cancelar a IA mais cara. Se a internet não estiver em dobro, tire R$ 99,90.</p>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="h-libera">
+      <div>
+        <p class="eyebrow">Parcelamentos terminando</p>
+        <h2 id="h-libera">O que libera nos próximos meses</h2>
+      </div>
+      <div class="list">
+        <div class="li"><span class="who"><span>Jo Calçados</span><span class="tag good">última agora</span></span><span class="amt num">R$ 149,99</span></div>
+        <div class="li"><span class="who"><span>Ótica Simpatia</span><span class="tag warn">termina em dezembro</span></span><span class="amt num">R$ 99,80</span></div>
+        <div class="li"><span class="who"><span>Greenn</span><span class="tag mute">faltam 8</span></span><span class="amt num">R$ 4,83</span></div>
+        <div class="li"><span class="who"><span>Wellington, Shopee, Mercado Livre, Jim, Easybuilder</span><span class="tag mute">ver no app</span></span><span class="amt num">R$ 876,26</span></div>
+      </div>
+      <p class="note">As parcelas do BTG não mostram quantas faltam. Vale anotar no app para saber quando cada uma libera espaço.</p>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="h-regras">
+      <div>
+        <p class="eyebrow">Regras simples</p>
+        <h2 id="h-regras">Para o mês não fugir do controle</h2>
+      </div>
+      <div class="alerts">
+        <div class="alert"><span class="pill good">Sempre</span><strong>Fatura paga inteira</strong><span>Pagamento mínimo ou parcelamento de fatura só em emergência real.</span></div>
+        <div class="alert"><span class="pill crit">Evitar</span><strong>Pix no crédito</strong><span>Paga taxa de cerca de 7% sobre o valor e ainda entra na próxima fatura.</span></div>
+        <div class="alert"><span class="pill info">Mensal</span><strong>Revisar assinaturas</strong><span>Uma vez por mês, conferir o que foi cobrado e cancelar o que não foi usado.</span></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>Fontes: fatura BTG em aberto (R$ 2.707,47), CSV da fatura Nubank (lançamentos de 27/09 a 23/10; pagamentos de 28/09 do ciclo anterior não entram), PicPay informado sem detalhe (R$ 332,00), extratos de conta Nubank, Itaú e BTG de outubro. Faturas ainda abertas podem receber lançamentos até o fechamento.</footer>
+</div>
+
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const ENTRADA = 12258.21;
+const CARDS = [
+  {k:'btg', n:'BTG', v:2707.47, d:'Fecha 28/10 · vence 01/11 · 35 compras', c:'var(--s-btg)'},
+  {k:'nu',  n:'Nubank', v:1286.85, d:'Vence 04/11 · 36 compras + IOF', c:'var(--s-nu)'},
+  {k:'pp',  n:'PicPay', v:332.00, d:'Sem lançamentos detalhados', c:'var(--s-pp)'},
+];
+const FATURAS = CARDS.reduce((s,c)=>s+c.v,0);
+const CATS = [
+  {n:'Parcelamentos', btg:876.26, nu:254.62, pp:0, h:'Wellington, Shopee, Mercado Livre, Jim, Easybuilder, Ótica, Jo Calçados, Greenn'},
+  {n:'Compras / casa / pessoal', btg:665.39, nu:0, pp:0, h:'Magalu R$ 469,95, Americanas, relojoeiro, flores, Lia Eventos'},
+  {n:'Saúde / farmácia', btg:476.09, nu:122.28, pp:0, h:'CVS, Farmacampos, Raia, radiologia odontológica'},
+  {n:'Assinaturas e software', btg:205.65, nu:325.46, pp:0, h:'Claude, ChatGPT, Microsoft, Picsart, streaming'},
+  {n:'Alimentação', btg:349.67, nu:49.84, pp:0, h:'Outback, Cacau Show, padarias, lanches, mercado'},
+  {n:'PicPay (sem detalhe)', btg:0, nu:0, pp:332.00, h:'Valor informado, sem lançamentos para categorizar'},
+  {n:'Pix no crédito', btg:0, nu:254.93, pp:0, h:'4 envios, já com a taxa embutida'},
+  {n:'Pet', btg:134.41, nu:99.00, pp:0, h:'Popular Pet, Poli Pet, Agro Pet, Lifeplan'},
+  {n:'Transporte', btg:0, nu:180.72, pp:0, h:'Uber, 99 e estacionamento'},
+];
+const TOTAL = CATS.reduce((s,c)=>s+c.btg+c.nu+c.pp,0);
+const store = {
+  get(k,d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const esc = s => String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- Estado: contas extras ---------- */
+let extras = store.get('fat-extras', []);
+if(!Array.isArray(extras)) extras = [];
+extras = extras.filter(x=>x && typeof x.n==='string' && typeof x.v==='number' && isFinite(x.v));
+const extrasSum = () => extras.reduce((s,x)=>s+x.v,0);
+const sobraAtual = () => ENTRADA - FATURAS - extrasSum();
+
+/* ---------- Abas ---------- */
+const tabs = {visao:document.getElementById('tab-visao'), plano:document.getElementById('tab-plano')};
+const panels = {visao:document.getElementById('painel-visao'), plano:document.getElementById('painel-plano')};
+function openTab(key, focus){
+  Object.keys(tabs).forEach(k=>{
+    const on = k===key;
+    tabs[k].setAttribute('aria-selected', String(on));
+    tabs[k].tabIndex = on ? 0 : -1;
+    panels[k].hidden = !on;
+  });
+  if(focus) tabs[key].focus();
+  try{ history.replaceState(null,'','#'+key); }catch(e){}
+  tip.classList.remove('on');
+}
+tabs.visao.addEventListener('click',()=>openTab('visao'));
+tabs.plano.addEventListener('click',()=>openTab('plano'));
+document.querySelector('.tabs').addEventListener('keydown',e=>{
+  if(e.key!=='ArrowRight' && e.key!=='ArrowLeft') return;
+  openTab(tabs.visao.getAttribute('aria-selected')==='true' ? 'plano' : 'visao', true);
+});
+document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>{
+  openTab(b.dataset.goto);
+  window.scrollTo({top:0});
+  setTimeout(()=>document.getElementById('x-nome').focus(),50);
+}));
+
+/* ---------- Hero ---------- */
+const flow = document.getElementById('flow'), flowLeg = document.getElementById('flow-legend');
+function renderHero(){
+  const ex = extrasSum();
+  const parts = CARDS.map(c=>({n:c.n,v:c.v,c:c.c}));
+  if(ex>0) parts.push({n:'Contas extras',v:ex,c:'var(--s-other)'});
+  const gastos = parts.reduce((s,p)=>s+p.v,0), sobra = ENTRADA - gastos;
+  flow.innerHTML = parts.map(p=>`<div style="flex-grow:${p.v};background:${p.c}" title="${p.n}: ${brl(p.v)}"></div>`).join('')
+    + (sobra>0 ? `<div class="left" style="flex-grow:${sobra}" title="Sobra: ${brl(sobra)}"></div>` : '');
+  flowLeg.innerHTML = parts.map(p=>`<span><i class="sw" style="background:${p.c}"></i>${p.n} <b class="num">${brl(p.v)}</b></span>`).join('')
+    + `<span><i class="sw left"></i>Sobra <b class="num">${brl(sobra)}</b></span>`;
+  const el = document.getElementById('sobra');
+  el.textContent = brl(sobra); el.classList.toggle('neg', sobra<0);
+  document.getElementById('total-faturas').textContent = brl(gastos);
+  document.getElementById('total-lbl').textContent = ex>0 ? 'Faturas e contas extras' : 'Faturas somadas';
+  document.getElementById('sobra-pct').textContent = sobra>=0 ? `${Math.round(sobra/ENTRADA*100)}% do que entra fica livre` : 'As contas passam do que entra';
+  document.getElementById('extras-txt').innerHTML = extras.length
+    ? `<b class="num">${extras.length} ${extras.length===1?'conta extra':'contas extras'}</b> somadas: <b class="num">${brl(ex)}</b>`
+    : 'Nenhuma conta extra somada ainda.';
+  const cnt = document.getElementById('tab-count');
+  cnt.hidden = !extras.length; cnt.textContent = extras.length;
+}
+
+/* ---------- Cartões ---------- */
+document.getElementById('split').innerHTML = CARDS.map(c=>`<div style="flex-grow:${c.v};background:${c.c}"></div>`).join('');
+document.getElementById('cards').innerHTML = CARDS.map(c=>`
+  <div class="card-row"><i class="sw" style="background:${c.c}"></i><span class="n">${c.n}</span><span class="v num">${brl(c.v)}</span>
+  <span class="d">${(c.v/FATURAS*100).toFixed(1).replace('.',',')}% do total · ${c.d}</span></div>`).join('');
+
+/* ---------- Categorias ---------- */
+const max = Math.max(...CATS.map(c=>c.btg+c.nu+c.pp));
+const tip = document.getElementById('tip');
+const graf = document.getElementById('view-graf');
+graf.innerHTML = CATS.map((c,i)=>{
+  const t = c.btg+c.nu+c.pp;
+  const seg = [[c.btg,'var(--s-btg)'],[c.nu,'var(--s-nu)'],[c.pp,'var(--s-pp)']].filter(s=>s[0]>0)
+    .map(s=>`<i style="width:${s[0]/max*100}%;background:${s[1]}"></i>`).join('');
+  return `<div class="cat" tabindex="0" data-i="${i}"><span class="lbl">${c.n}</span><span class="track">${seg}</span>
+    <span class="val num">${brl(t)}</span><span class="pct num">${(t/TOTAL*100).toFixed(1).replace('.',',')}%</span></div>`;
+}).join('');
+function showTip(el, x, y){
+  const c = CATS[+el.dataset.i], t = c.btg+c.nu+c.pp;
+  let rows = '';
+  if(c.btg) rows += `BTG: <b>${brl(c.btg)}</b><br>`;
+  if(c.nu) rows += `Nubank: <b>${brl(c.nu)}</b><br>`;
+  if(c.pp) rows += `PicPay: <b>${brl(c.pp)}</b><br>`;
+  tip.innerHTML = `<b>${c.n}</b> · ${brl(t)}<br>${rows}<span style="opacity:.75">${c.h}</span>`;
+  tip.classList.add('on');
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - w - 12)) + 'px';
+  tip.style.top = Math.max(8, Math.min(y + 14, innerHeight - h - 12)) + 'px';
+}
+graf.querySelectorAll('.cat').forEach(el=>{
+  el.addEventListener('mousemove',e=>showTip(el,e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+  el.addEventListener('focus',()=>{const r=el.getBoundingClientRect();showTip(el,r.left+r.width/3,r.bottom-8)});
+  el.addEventListener('blur',()=>tip.classList.remove('on'));
+});
+document.getElementById('view-tab').innerHTML = `<table class="num"><thead><tr><th>Categoria</th><th>BTG</th><th>Nubank</th><th>PicPay</th><th>Total</th><th>%</th></tr></thead><tbody>`
+  + CATS.map(c=>{const t=c.btg+c.nu+c.pp;return `<tr><td>${c.n}</td><td>${c.btg?brl(c.btg):'–'}</td><td>${c.nu?brl(c.nu):'–'}</td><td>${c.pp?brl(c.pp):'–'}</td><td>${brl(t)}</td><td>${(t/TOTAL*100).toFixed(1).replace('.',',')}%</td></tr>`}).join('')
+  + `</tbody><tfoot><tr><td>Total</td><td>${brl(2707.47)}</td><td>${brl(1286.85)}</td><td>${brl(332)}</td><td>${brl(TOTAL)}</td><td>100%</td></tr></tfoot></table>`;
+const bG = document.getElementById('btn-graf'), bT = document.getElementById('btn-tab');
+function setView(tab){
+  bG.setAttribute('aria-pressed', String(!tab)); bT.setAttribute('aria-pressed', String(tab));
+  document.getElementById('view-graf').hidden = tab; document.getElementById('view-tab').hidden = !tab;
+  store.set('fat-view', tab ? 'tab' : 'graf');
+}
+bG.addEventListener('click',()=>setView(false)); bT.addEventListener('click',()=>setView(true));
+if(store.get('fat-view','graf')==='tab') setView(true);
+
+/* ---------- Listas da visão geral ---------- */
+const ASS = [
+  ['Trabalho','R$ 422,53',[['Claude',116.65,'btg'],['ChatGPT (com IOF)',107.89,'nu'],['Microsoft',99.00,'nu'],['Picsart',89.00,'btg'],['Google',9.99,'nu']]],
+  ['Entretenimento e outros','R$ 108,58',[['Amazon Prime Canais',34.90,'nu'],['YouTube Premium',26.90,'nu'],['Crunchyroll',24.90,'nu'],['YouTube membro',7.99,'nu'],['Ponto',7.99,'nu'],['Apple',5.90,'nu']]],
+];
+const dotC = {btg:'var(--s-btg)',nu:'var(--s-nu)',pp:'var(--s-pp)'};
+document.getElementById('assin').innerHTML = ASS.map(([t,v,items])=>
+  `<div class="subhead"><span>${t}</span><span class="num">${v}</span></div>` + items.map(([n,v,k])=>
+    `<div class="li"><span class="who"><i class="dot" style="background:${dotC[k]}"></i><span>${n}</span></span><span class="amt num">${brl(v)}</span></div>`).join('')
+).join('');
+const PARC = [
+  ['Wellington',275.00,'btg',null],['Shopee',239.55,'btg',null],['Mercado Livre',237.25,'btg',null],
+  ['Jo Calçados',149.99,'nu',['good','última · 2/2']],['Ótica Simpatia',99.80,'nu',['warn','falta 1 · 4/5']],
+  ['Jim',78.00,'btg',null],['Easybuilder',46.46,'btg',null],['Greenn',4.83,'nu',['mute','4/12']],
+];
+document.getElementById('parc').innerHTML = PARC.map(([n,v,k,t])=>
+  `<div class="li"><span class="who"><i class="dot" style="background:${dotC[k]}"></i><span>${n}</span>${t?`<span class="tag ${t[0]}">${t[1]}</span>`:'<span class="tag mute">ver no app</span>'}</span><span class="amt num">${brl(v)}</span></div>`).join('');
+const TOP = [
+  ['Magalu',469.95,'1 compra'],['CVS',357.75,'8 compras'],['Wellington (parcela)',275.00,'parcelado'],
+  ['Outback',181.10,'1 compra'],['Uber e 99',160.72,'10 corridas'],['Radiologia odontológica',150.00,'1 compra'],
+];
+document.getElementById('top').innerHTML = TOP.map(([n,v,d])=>
+  `<div class="li"><span class="who"><span>${n}</span><span class="tag mute">${d}</span></span><span class="amt num">${brl(v)}</span></div>`).join('');
+
+/* ---------- Cortes ---------- */
+const CORTES = [
+  ['Uma das IAs (Claude ou ChatGPT)',116.65,'escolher uma'],
+  ['Internet possivelmente em dobro',99.90,'conferir'],
+  ['Taxa do Pix no crédito',17.85,'parar de usar'],
+  ['YouTube Premium repetido',16.90,'conferir'],
+  ['Seguro do cartão Itaú',10.28,'cancelar'],
+  ['Pix protegido',6.99,'cancelar'],
+];
+document.getElementById('cortes').innerHTML = CORTES.map(([n,v,t])=>
+  `<div class="li"><span class="who"><span>${n}</span><span class="tag mute">${t}</span></span><span class="amt num">${brl(v)}</span></div>`).join('');
+
+/* ---------- Calculadora ---------- */
+function parseValor(s){
+  s = String(s).trim().replace(/[R$\s]/g,'');
+  if(!s) return NaN;
+  if(s.includes(',')) s = s.replace(/\./g,'').replace(',','.');
+  else if(/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g,'');
+  const v = Number(s);
+  return isFinite(v) ? Math.round(v*100)/100 : NaN;
+}
+const fNome = document.getElementById('x-nome'), fValor = document.getElementById('x-valor'), fErr = document.getElementById('x-err');
+document.getElementById('calc-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n = fNome.value.trim(), v = parseValor(fValor.value);
+  if(!n){ fErr.textContent = 'Dê um nome para a conta, por exemplo "Água".'; fNome.focus(); return; }
+  if(!(v>0)){ fErr.textContent = 'Digite um valor maior que zero, por exemplo 150,00.'; fValor.focus(); return; }
+  fErr.textContent = '';
+  extras.push({n:n.slice(0,80), v, id:Date.now()+Math.random()});
+  fNome.value=''; fValor.value=''; fNome.focus();
+  saveAll();
+});
+document.querySelectorAll('.qchip').forEach(b=>b.addEventListener('click',()=>{
+  const v = parseFloat(b.dataset.v);
+  if(v>0){ extras.push({n:b.dataset.n, v, id:Date.now()+Math.random()}); saveAll(); }
+  else { fNome.value = b.dataset.n; fValor.focus(); }
+}));
+function renderCalc(){
+  const list = document.getElementById('xlist');
+  list.innerHTML = extras.length
+    ? extras.map((x,i)=>`<div class="xrow"><span>${esc(x.n)}</span><span style="display:flex;align-items:center;gap:6px"><b class="num">${brl(x.v)}</b><button type="button" class="rm" data-i="${i}" aria-label="Remover ${esc(x.n)}">Remover</button></span></div>`).join('')
+    : '<div class="empty">Nenhuma conta extra. Use o campo acima ou um atalho para somar.</div>';
+  list.querySelectorAll('.rm').forEach(b=>b.addEventListener('click',()=>{ extras.splice(+b.dataset.i,1); saveAll(); }));
+  document.getElementById('c-extras').textContent = '− ' + brl(extrasSum());
+  const s = sobraAtual(), cs = document.getElementById('c-sobra');
+  cs.textContent = brl(s); cs.classList.toggle('good', s>=0); cs.classList.toggle('neg', s<0);
+  document.getElementById('clear-wrap').hidden = !extras.length;
+}
+const askBtn = document.getElementById('clear-ask'), conf = document.getElementById('clear-confirm');
+askBtn.addEventListener('click',()=>{ conf.hidden=false; askBtn.hidden=true; document.getElementById('clear-no').focus(); });
+document.getElementById('clear-no').addEventListener('click',()=>{ conf.hidden=true; askBtn.hidden=false; askBtn.focus(); });
+document.getElementById('clear-yes').addEventListener('click',()=>{ extras=[]; conf.hidden=true; askBtn.hidden=false; saveAll(); });
+
+/* ---------- Divisão da sobra ---------- */
+const ALLOC_DEF = [
+  {k:'res', n:'Reserva de emergência', p:50, c:'var(--s-btg)'},
+  {k:'fix', n:'Colchão para as contas de dezembro', p:30, c:'var(--s-nu)'},
+  {k:'liv', n:'Uso livre e lazer', p:20, c:'var(--s-pp)'},
+];
+let alloc = store.get('fat-alloc', null);
+if(!Array.isArray(alloc) || alloc.length!==3) alloc = ALLOC_DEF.map(a=>a.p);
+const allocEl = document.getElementById('alloc');
+allocEl.innerHTML = ALLOC_DEF.map((a,i)=>`<div class="arow"><label for="al-${a.k}" style="display:flex;align-items:center;gap:8px"><i class="sw" style="background:${a.c}"></i>${a.n}</label>
+  <span style="display:flex;align-items:center;gap:4px"><input type="number" id="al-${a.k}" min="0" max="100" step="5" value="${alloc[i]}" class="num" aria-label="Percentual para ${a.n}"><span style="color:var(--ink-3)">%</span></span>
+  <span class="amt num" id="am-${a.k}"></span></div>`).join('');
+ALLOC_DEF.forEach((a,i)=>document.getElementById('al-'+a.k).addEventListener('input',e=>{
+  const v = Math.max(0, Math.min(100, Number(e.target.value)||0)); alloc[i]=v; store.set('fat-alloc',alloc); renderAlloc();
+}));
+function renderAlloc(){
+  const base = Math.max(0, sobraAtual());
+  document.getElementById('alloc-base').textContent = brl(base);
+  const sum = alloc.reduce((s,v)=>s+v,0);
+  ALLOC_DEF.forEach((a,i)=>document.getElementById('am-'+a.k).textContent = brl(base*alloc[i]/100));
+  document.getElementById('abar').innerHTML = ALLOC_DEF.map((a,i)=>alloc[i]>0?`<i style="flex-grow:${alloc[i]};background:${a.c}"></i>`:'').join('')
+    + (sum<100 ? `<i style="flex-grow:${100-sum};background:transparent"></i>` : '');
+  document.getElementById('alloc-err').textContent = sum===100 ? '' : (sum<100 ? `Faltam ${100-sum}% para fechar 100%.` : `Os percentuais passam de 100% em ${sum-100}%.`);
+}
+
+function saveAll(){ store.set('fat-extras', extras); renderHero(); renderCalc(); renderAlloc(); }
+renderHero(); renderCalc(); renderAlloc();
+
+/* Aba inicial pelo link */
+const h = (location.hash||'').replace('#','');
+if(h==='plano') openTab('plano');
+</script>
+
+</body>
+</html>

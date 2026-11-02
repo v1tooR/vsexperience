@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 import { PAGES, SITE, loadDict, translatePage, toEnPath } from './i18n-servicos-lib.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -51,3 +52,6 @@ if (missing.size) {
   console.log(`\n${missing.size} texto(s) sem tradução (ficaram em português):`);
   [...missing].slice(0, 30).forEach((s) => console.log(' -', s.slice(0, 100)));
 }
+
+// Category content has its own PT/EN source; restore it after legacy-page translation.
+execFileSync(process.execPath, [path.join(root, 'scripts/catalog/build.cjs')], { cwd: root, stdio: 'inherit' });

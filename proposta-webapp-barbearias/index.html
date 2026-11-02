@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para Duarte: WebApp de barbearias em que visitantes encontram barbearias próximas no mapa e pedem horário, cada barbeiro cuida da própria agenda e o proprietário administra a plataforma.">
+  <title>Proposta · WebApp de barbearias · Duarte | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · WebApp de barbearias · Duarte">
+  <meta property="og:description" content="As barbearias da cidade em um só lugar, com mapa e agendamento, direto no navegador.">
+  <link rel="icon" href="../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta · WebApp de barbearias
+       Só o que é desta página: mockup do WebApp (--c-*), perfis,
+       fluxo do agendamento, pagamentos por etapa e responsabilidades.
+       ============================================================ */
+
+    /* ---------- Palco: celular no navegador + agenda do barbeiro ---------- */
+    .stage.bb-stage { min-height: 630px; }
+    .bb-phone { position: absolute; z-index: 3; left: 0; top: 8px; width: 262px; height: 548px; padding: 8px; border-radius: 40px; background: var(--grafite); box-shadow: 0 40px 70px -30px rgba(33, 33, 33, .6), inset 0 0 0 1px rgba(239, 239, 239, .14); }
+    .bb-notch { position: absolute; z-index: 4; top: 17px; left: 50%; width: 66px; height: 18px; margin-left: -33px; border-radius: 99px; background: var(--grafite); }
+    .screen.bb {
+      --c-accent: hsl(22 62% 32%);
+      --c-on-accent: #fff;
+      --c-tint: hsl(28 50% 94%);
+      --c-ok: hsl(152 62% 27%);
+      --c-ok-soft: hsl(152 45% 92%);
+      --c-warn: hsl(32 92% 32%);
+      --c-warn-soft: hsl(40 90% 91%);
+      --c-no: hsl(0 60% 40%);
+      --c-no-soft: hsl(0 70% 95%);
+      background: var(--m-surface);
+    }
+    .bb-phone .screen.bb { height: 100%; min-height: 0; border-radius: 32px; }
+    .bb-status { display: flex; justify-content: space-between; align-items: center; height: 38px; padding: 4px 24px 0; font-size: 8px; font-weight: 700; }
+    .bb-status i { width: 22px; height: 7px; border-radius: 2px; background: var(--m-ink); opacity: .8; }
+    .bb-url { display: flex; align-items: center; justify-content: center; gap: 4px; height: 20px; margin: 0 14px; border-radius: 99px; background: var(--m-canvas); color: var(--m-soft); font-size: 7px; font-weight: 600; }
+    .bb-url svg { width: 8px; height: 8px; }
+    .bb-page { position: absolute; inset: 64px 0 0; padding: 8px 16px 70px; overflow: hidden; }
+    .bb-tabbar { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr); padding: 8px 14px 18px; border-top: 1px solid var(--m-line); background: #fff; color: var(--m-muted); font-size: 6.5px; font-weight: 700; text-align: center; }
+    .bb-tabbar svg { width: 14px; height: 14px; margin: 0 auto 3px; }
+    .bb-tabbar .is-on { color: var(--c-accent); }
+
+    .bb-hello { margin: 0; color: var(--m-muted); font-size: 7.5px; font-weight: 600; }
+    .bb-h { margin: 2px 0 9px; font-size: 15px; font-weight: 750; line-height: 1.1; letter-spacing: -.03em; }
+    .bb-kicker { margin: 4px 0 0; color: var(--c-accent); font-size: 6.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .bb-search { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 8px; background: var(--m-canvas); color: var(--m-muted); font-size: 7.5px; }
+    .bb-search svg { width: 10px; height: 10px; }
+    .bb-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0 9px; }
+    .bb-chips span { padding: 4px 8px; border-radius: 99px; border: 1px solid var(--m-line); color: var(--m-soft); font-size: 6.5px; font-weight: 700; }
+    .bb-chips .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+
+    .bb-map { position: relative; height: 104px; margin: 0 0 10px; border-radius: 9px; overflow: hidden;
+      background:
+        linear-gradient(24deg, transparent 47%, #fff 47%, #fff 53%, transparent 53%),
+        linear-gradient(-58deg, transparent 46%, rgba(255, 255, 255, .9) 46%, rgba(255, 255, 255, .9) 50%, transparent 50%),
+        repeating-linear-gradient(0deg, transparent 0 24px, rgba(255, 255, 255, .65) 24px 26px),
+        repeating-linear-gradient(90deg, transparent 0 34px, rgba(255, 255, 255, .65) 34px 36px),
+        hsl(96 20% 87%); }
+    .bb-map::after { content: ''; position: absolute; right: -14px; top: -10px; width: 70px; height: 46px; border-radius: 40%; background: hsl(200 45% 82%); }
+    .bb-pin { position: absolute; z-index: 1; width: 15px; height: 15px; border-radius: 50% 50% 50% 0; background: var(--c-accent); transform: rotate(-45deg); box-shadow: 0 3px 6px -2px rgba(0, 0, 0, .4); }
+    .bb-pin::after { content: ''; position: absolute; inset: 4.5px; border-radius: 50%; background: #fff; }
+    .bb-pin.is-sel { width: 19px; height: 19px; }
+    .bb-pin.is-sel::after { inset: 6px; }
+    .bb-me { position: absolute; z-index: 1; width: 10px; height: 10px; border-radius: 50%; background: hsl(214 80% 50%); box-shadow: 0 0 0 4px hsl(214 80% 50% / .22), 0 0 0 1.5px #fff inset; }
+    .bb-maptag { position: absolute; z-index: 2; padding: 3px 6px; border-radius: 4px; background: #fff; color: var(--m-ink); font-size: 6.2px; font-weight: 700; box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .3); }
+
+    .bb-sec { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 8px; font-weight: 700; }
+    .bb-sec span { color: var(--c-accent); font-size: 6.5px; }
+    .bb-card { display: grid; grid-template-columns: 46px 1fr auto; gap: 9px; align-items: center; padding: 7px; margin-bottom: 7px; border: 1px solid var(--m-line); border-radius: 10px; }
+    .bb-img { width: 46px; height: 46px; border-radius: 7px; }
+    .bb-img.is-a, .bb-cover.is-a { background: linear-gradient(140deg, hsl(22 40% 30%), hsl(30 52% 62%)); }
+    .bb-img.is-b { background: linear-gradient(140deg, hsl(210 18% 26%), hsl(206 20% 60%)); }
+    .bb-img.is-c { background: linear-gradient(140deg, hsl(352 36% 34%), hsl(14 50% 66%)); }
+    .bb-card strong { display: block; font-size: 8px; }
+    .bb-card span { display: block; color: var(--m-muted); font-size: 6.5px; }
+    .bb-card em { display: block; margin-top: 2px; color: var(--c-ok); font-size: 6.3px; font-style: normal; font-weight: 700; }
+    .bb-card .m-btn { padding: 5px 8px; font-size: 6.5px; }
+
+    .bb-cover { position: relative; height: 104px; margin: -8px -16px 12px; }
+    .bb-tag { position: absolute; left: 14px; bottom: 10px; padding: 3px 7px; border-radius: 99px; background: rgba(255, 255, 255, .92); color: var(--m-ink); font-size: 6.3px; font-weight: 700; }
+    .bb-sub { margin: -5px 0 8px; color: var(--m-muted); font-size: 7px; }
+    .bb-svc { margin: 0 0 12px; border-top: 1px solid var(--m-line); }
+    .bb-svc div { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; padding: 7px 0; border-bottom: 1px solid var(--m-line); }
+    .bb-svc strong { font-size: 7.5px; }
+    .bb-svc span { color: var(--m-muted); font-size: 6.5px; }
+    .bb-svc b { font-size: 7.5px; }
+    .bb-wide { width: 100%; padding: 9px; font-size: 7.5px; }
+
+    .bb-field { margin-bottom: 8px; }
+    .bb-field small, .bb-lbl { display: block; margin-bottom: 3px; color: var(--m-muted); font-size: 6.5px; font-weight: 700; }
+    .bb-field > span { display: flex; justify-content: space-between; align-items: center; padding: 7px 9px; border: 1px solid var(--m-line); border-radius: 7px; font-size: 7.5px; }
+    .bb-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-bottom: 9px; }
+    .bb-days span { padding: 5px 0; border: 1px solid var(--m-line); border-radius: 6px; text-align: center; font-size: 6px; font-weight: 600; color: var(--m-muted); }
+    .bb-days b { display: block; color: var(--m-ink); font-size: 9px; }
+    .bb-days .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .bb-days .is-on b { color: #fff; }
+    .bb-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 10px; }
+    .bb-slots span { padding: 6px 0; border: 1px solid var(--m-line); border-radius: 6px; text-align: center; font-size: 7px; font-weight: 700; }
+    .bb-slots .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .bb-slots .is-off { background: var(--m-canvas); color: var(--m-muted); text-decoration: line-through; }
+    .bb-foot { margin: 8px 0 0; color: var(--m-muted); font-size: 6.5px; text-align: center; }
+
+    .bb-res { padding: 9px 10px; margin-bottom: 7px; border: 1px solid var(--m-line); border-radius: 10px; }
+    .bb-res-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; }
+    .bb-res strong { display: block; font-size: 8px; }
+    .bb-res-h span { display: block; color: var(--m-muted); font-size: 6.5px; }
+    .bb-pill { flex: 0 0 auto; padding: 3px 7px; border-radius: 99px; background: var(--m-canvas); color: var(--m-soft); font-size: 6.2px; font-weight: 700; font-style: normal; }
+    .bb-pill.is-ok { background: var(--c-ok-soft); color: var(--c-ok); }
+    .bb-pill.is-warn { background: var(--c-warn-soft); color: var(--c-warn); }
+    .bb-pill.is-no { background: var(--c-no-soft); color: var(--c-no); }
+    .bb-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 9px 0 8px; }
+    .bb-track span { padding-top: 5px; border-top: 2px solid var(--m-line); color: var(--m-muted); font-size: 6px; font-weight: 600; }
+    .bb-track .is-done { border-color: var(--c-accent); color: var(--m-ink); }
+    .bb-res .m-btn { padding: 5px 8px; font-size: 6.5px; }
+
+    .bb-browser { width: min(470px, 68%); top: 44px; }
+    .screen.bb-panel { min-height: 0; padding: 16px 18px 20px; background: var(--m-canvas); }
+    .bb-ph { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-bottom: 12px; }
+    .bb-ph small { display: block; color: var(--m-muted); font-size: 7px; font-weight: 600; }
+    .bb-ph p { margin: 2px 0 0; font-size: 13px; font-weight: 750; letter-spacing: -.03em; }
+    .bb-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+    .bb-kpis div { padding: 9px 10px; border: 1px solid var(--m-line); border-radius: 7px; background: #fff; }
+    .bb-kpis span { display: block; color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .bb-kpis strong { display: block; margin-top: 2px; font-size: 16px; letter-spacing: -.03em; }
+    .bb-kpis div:last-child strong { color: var(--c-ok); }
+    .bb-th { margin: 0 0 6px; font-size: 8.5px; font-weight: 700; }
+    .bb-table { border: 1px solid var(--m-line); border-radius: 7px; overflow: hidden; background: #fff; }
+    .bb-row { display: grid; grid-template-columns: .85fr 1fr .7fr 1.15fr; gap: 8px; align-items: center; padding: 8px 10px; border-top: 1px solid var(--m-line); font-size: 7px; }
+    .bb-row.is-head { border-top: 0; background: var(--m-canvas); color: var(--m-muted); font-size: 6.2px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .bb-row.is-new { box-shadow: inset 2px 0 0 var(--c-accent); background: var(--c-tint); }
+    .bb-row strong { font-size: 7.5px; }
+    .bb-row > :last-child { justify-self: start; }
+    .bb-acts { display: flex; gap: 4px; }
+    .bb-acts i { padding: 4px 7px; border-radius: 4px; background: var(--c-ok); color: #fff; font-size: 6.3px; font-style: normal; font-weight: 700; }
+    .bb-acts i + i { background: transparent; color: var(--m-soft); box-shadow: inset 0 0 0 1px var(--m-line); }
+
+    .bb-stage .stage-badge { width: 172px; }
+    .bb-float { right: 18px; bottom: 78px; }
+    .bb-float .float-icon { background: hsl(28 50% 90%); color: hsl(22 62% 32%); }
+    .bb-caption { position: absolute; left: 0; bottom: 8px; margin: 0; color: var(--text-muted); font-size: 12px; }
+
+    /* ---------- Perfis (faixa Grafite) ---------- */
+    .modules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--dark-line-strong); }
+    .module { display: flex; flex-direction: column; padding: 32px 30px 36px 0; }
+    .module + .module { padding-left: 30px; border-left: 1px solid var(--dark-line); }
+    .module-who { display: flex; align-items: center; gap: 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .module-who svg { width: 20px; }
+    .module h3 { margin: 14px 0 10px; font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 34px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.02; letter-spacing: -.02em; }
+    .module > p { margin-bottom: 22px; color: var(--text-soft); font-size: 15px; }
+    .module .plan-features { margin-bottom: 0; }
+    .privacy-line { display: flex; gap: 12px; align-items: flex-start; margin-top: clamp(40px, 5vw, 56px); padding-top: 22px; border-top: 1px solid var(--dark-line); color: var(--text-soft); font-size: 15px; max-width: 80ch; }
+    .privacy-line svg { width: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--cadmio); }
+
+    /* ---------- Fluxo do agendamento ---------- */
+    .loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: clamp(56px, 7vw, 88px); border-top: 1px solid var(--grafite); }
+    .loop-step { position: relative; padding: 26px 26px 30px 0; }
+    .loop-step + .loop-step { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .loop-step::after { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 2px; background: var(--carmim); }
+    .loop-step + .loop-step::after { left: -5px; }
+    .loop-step span { display: block; margin-bottom: 10px; color: var(--carmim); font-size: 13px; font-weight: 700; }
+    .loop-step h3 { margin-bottom: 10px; font-family: var(--font-display); font-size: clamp(22px, 2vw, 27px); font-weight: 720; font-variation-settings: "wdth" 110; line-height: 1.05; letter-spacing: -.02em; }
+    .loop-step p { margin: 0; color: var(--text-soft); font-size: 15px; }
+    .fit-col.is-alt .fit-list { margin-bottom: 26px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note strong { color: var(--text); }
+
+    /* ---------- Pagamento por etapa (painel Carmim) ---------- */
+    .milestones { display: grid; grid-template-columns: 25fr 25fr 30fr 20fr; gap: 6px; }
+    .ms { position: relative; padding-top: 22px; }
+    .ms::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 10px; border-radius: 2px; background: var(--linho); transform-origin: left; transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 120ms + 200ms); }
+    .motion-ready .milestones:not(.is-visible) .ms::before { transform: scaleX(0); }
+    .ms b { display: block; color: var(--text-soft); font-size: 13px; font-weight: 700; }
+    .ms strong { display: block; margin: 4px 0 6px; font-family: var(--font-display); font-size: clamp(20px, 1.9vw, 26px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
+    .ms span { display: block; color: var(--text-soft); font-size: 13px; line-height: 1.35; }
+    .pricing-notes .note { margin: 18px 0 0; color: var(--text-muted); font-size: 14px; }
+
+    /* ---------- Cronograma ---------- */
+    .process-total strong { font-size: clamp(56px, 6.4vw, 88px); }
+    .process-step .step-pay { display: inline-flex; flex-wrap: wrap; gap: 0 8px; margin: 12px 0 0; padding: 7px 12px; border-radius: 4px; background: var(--grafite); color: var(--linho); font-size: 13px; font-weight: 600; }
+    .step-pay b { color: #ff7a7b; font-weight: 700; }
+    .deadline { margin-top: 36px; }
+    .deadline h3 { margin-bottom: 14px; font-family: var(--font-display); font-size: 20px; font-weight: 720; font-variation-settings: "wdth" 110; }
+    .deadline .fit-list { margin-bottom: 16px; }
+    .deadline .fit-list li { padding: 11px 0; font-size: 14px; }
+    .deadline .fit-list svg { color: var(--carmim); }
+    .deadline .fit-note { padding-top: 0; border-top: 0; }
+
+    /* ---------- Quem faz o quê ---------- */
+    .care-block .care-who { margin: -20px 0 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .base-note { margin-top: 28px; color: var(--text-muted); font-size: 14px; max-width: 70ch; }
+
+    /* ---------- Perguntas ---------- */
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1040px) {
+      .loop { grid-template-columns: 1fr 1fr; }
+      .loop-step:nth-child(3) { padding-left: 0; border-left: 0; }
+      .loop-step:nth-child(3)::after { left: 0; }
+      .loop-step:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
+      .faq-aside { position: static; }
+    }
+    @media (max-width: 860px) {
+      .modules { grid-template-columns: 1fr; }
+      .module, .module + .module { padding-left: 0; border-left: 0; }
+      .module + .module { border-top: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 780px) {
+      .stage.bb-stage { min-height: 640px; }
+      .bb-browser { display: none; }
+      .bb-phone { left: 50%; margin-left: -131px; }
+      .bb-float { right: 0; bottom: 150px; }
+      .loop { grid-template-columns: 1fr; }
+      .loop-step, .loop-step + .loop-step { padding-left: 0; border-left: 0; }
+      .loop-step::after, .loop-step + .loop-step::after { left: 0; }
+      .loop-step + .loop-step { border-top: 1px solid var(--dark-line); }
+      .milestones { grid-template-columns: 1fr 1fr; gap: 24px 12px; }
+    }
+    @media (max-width: 540px) {
+      .stage.bb-stage { min-height: 610px; margin-bottom: 30px; }
+      .bb-phone { left: 0; margin-left: 0; }
+      .bb-stage .stage-badge { display: none; }
+      .bb-caption { bottom: -30px; }
+    }
+    @media print {
+      .ms::before { background: #212121; }
+      .process-step .step-pay { background: #fff; color: #212121; box-shadow: inset 0 0 0 1px #212121; }
+      .step-pay b { color: #aa1f23; }
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Aqui é o Duarte. Li a proposta do WebApp de barbearias e quero avançar.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Duarte</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#webapp" data-spy-link="webapp">O WebApp</a>
+        <a href="#agenda" data-spy-link="agenda">Agenda</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#cronograma" data-spy-link="cronograma">Prazos</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Barbearias</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para Duarte</span> <span class="display">As barbearias da cidade em um só lugar. <em>Achou no mapa, escolheu o horário, agendou.</em></span></h1>
+          <p class="hero-lead">Uma plataforma que abre direto no navegador, no celular ou no computador. O visitante encontra barbearias perto dele, vê os serviços e pede um horário. Cada barbeiro organiza a própria agenda, e o dono da plataforma aprova quem anuncia e acompanha tudo. Sem baixar aplicativo e sem taxas de loja.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#webapp">O que será construído</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 1º de novembro de 2026 · válida até 16 de novembro de 2026.</span></div>
+        </div>
+
+        <div class="stage bb-stage" data-nosnippet role="group" aria-label="Exemplo das telas do WebApp e da agenda do barbeiro">
+          <div class="stage-inner">
+
+            <div class="browser bb-browser" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">Painel do barbeiro</span><span class="browser-live">Online</span></div>
+              <div class="screen bb bb-panel">
+                <div class="bb-ph"><div><small>Agenda da semana</small><p>Barbearia Vila Nova</p></div><span class="bb-pill is-ok">Perfil publicado</span></div>
+                <div class="bb-kpis">
+                  <div><span>Pedidos hoje</span><strong>6</strong></div>
+                  <div><span>Aguardando resposta</span><strong>2</strong></div>
+                  <div><span>Confirmados na semana</span><strong>38</strong></div>
+                </div>
+                <p class="bb-th">Pedidos de horário</p>
+                <div class="bb-table">
+                  <div class="bb-row is-head"><span>Cliente</span><span>Serviço</span><span>Horário</span><span>Resposta</span></div>
+                  <div class="bb-row is-new"><strong>Lucas M.</strong><span>Corte e barba</span><span>Sáb · 10h</span><span class="bb-acts"><i>Confirmar</i><i>Recusar</i></span></div>
+                  <div class="bb-row"><strong>Diego A.</strong><span>Corte</span><span>Sáb · 9h</span><span class="bb-pill is-ok">Confirmado</span></div>
+                  <div class="bb-row"><strong>Bruno S.</strong><span>Barba</span><span>Sex · 18h</span><span class="bb-pill is-ok">Confirmado</span></div>
+                  <div class="bb-row"><strong>Felipe R.</strong><span>Corte</span><span>Sex · 19h</span><span class="bb-pill is-no">Cancelado</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bb-phone">
+              <span class="bb-notch" aria-hidden="true"></span>
+              <div class="screen bb">
+                <div class="bb-status" aria-hidden="true"><span>9:41</span><i></i></div>
+                <div class="bb-url" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>seudominio.com.br</div>
+
+                <div class="mock-page bb-page" id="bb-buscar" role="tabpanel" aria-labelledby="bb-tab-buscar">
+                  <p class="bb-hello">Olá, Lucas</p>
+                  <p class="bb-h">Barbearias perto de você</p>
+                  <div class="bb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar por nome, cidade ou bairro</div>
+                  <div class="bb-chips"><span class="is-on">Perto de mim</span><span>Centro</span><span>Vila Nova</span></div>
+                  <div class="bb-map">
+                    <span class="bb-me" style="left: 46%; top: 54%"></span>
+                    <span class="bb-pin is-sel" style="left: 28%; top: 22%"></span>
+                    <span class="bb-maptag" style="left: 36%; top: 18%">Vila Nova · 600 m</span>
+                    <span class="bb-pin" style="left: 70%; top: 58%"></span>
+                    <span class="bb-pin" style="left: 16%; top: 66%"></span>
+                  </div>
+                  <p class="bb-sec">Mais próximas <span>Ver lista</span></p>
+                  <div class="bb-card"><span class="bb-img is-a"></span><div><strong>Barbearia Vila Nova</strong><span>Corte e barba · 600 m</span><em>Horários livres hoje</em></div><span class="m-btn">Ver</span></div>
+                  <div class="bb-card"><span class="bb-img is-b"></span><div><strong>Corte Fino</strong><span>Corte · Centro · 1,2 km</span><em>Abre às 9h</em></div><span class="m-btn is-ghost">Ver</span></div>
+                  <div class="bb-card"><span class="bb-img is-c"></span><div><strong>Barbearia do Largo</strong><span>Barba e navalha · 2 km</span><em>Horários livres amanhã</em></div><span class="m-btn is-ghost">Ver</span></div>
+                </div>
+
+                <div class="mock-page bb-page" id="bb-barbearia" role="tabpanel" aria-labelledby="bb-tab-barbearia" hidden>
+                  <div class="bb-cover is-a"><span class="bb-tag">600 m de você</span></div>
+                  <p class="bb-h">Barbearia Vila Nova</p>
+                  <p class="bb-sub">Rua das Palmeiras, 85 · Vila Nova</p>
+                  <p class="bb-lbl">Serviços</p>
+                  <div class="bb-svc">
+                    <div><span><strong>Corte</strong> · 40 min</span><b>R$ 45</b></div>
+                    <div><span><strong>Barba</strong> · 30 min</span><b>R$ 35</b></div>
+                    <div><span><strong>Corte e barba</strong> · 1 h</span><b>R$ 70</b></div>
+                    <div><span><strong>Sobrancelha</strong> · 15 min</span><b>R$ 15</b></div>
+                  </div>
+                  <p class="bb-lbl">Atendimento</p>
+                  <p class="bb-sub" style="margin: 0 0 12px">Terça a sábado · 9h às 20h</p>
+                  <span class="m-btn bb-wide">Ver horários livres</span>
+                </div>
+
+                <div class="mock-page bb-page" id="bb-horario" role="tabpanel" aria-labelledby="bb-tab-horario" hidden>
+                  <p class="bb-kicker">Pedir horário</p>
+                  <p class="bb-h">Barbearia Vila Nova</p>
+                  <div class="bb-field"><small>Serviço</small><span>Corte e barba · 1 h</span></div>
+                  <small class="bb-lbl">Dia</small>
+                  <div class="bb-days"><span>Ter<b>8</b></span><span>Qua<b>9</b></span><span>Qui<b>10</b></span><span>Sex<b>11</b></span><span class="is-on">Sáb<b>12</b></span></div>
+                  <small class="bb-lbl">Horários livres</small>
+                  <div class="bb-slots"><span class="is-off">9h</span><span class="is-on">10h</span><span>11h</span><span class="is-off">13h</span><span>14h</span><span>15h</span><span class="is-off">16h</span><span>17h</span></div>
+                  <span class="m-btn bb-wide">Pedir este horário</span>
+                  <p class="bb-foot">A barbearia confirma pelo painel. Nada é pago pelo site.</p>
+                </div>
+
+                <div class="mock-page bb-page" id="bb-status" role="tabpanel" aria-labelledby="bb-tab-status" hidden>
+                  <p class="bb-h">Meus agendamentos</p>
+                  <div class="bb-res">
+                    <div class="bb-res-h"><div><strong>Barbearia Vila Nova</strong><span>Sáb 12 · 10h · Corte e barba</span></div><em class="bb-pill is-warn">Aguardando</em></div>
+                    <div class="bb-track"><span class="is-done">Enviado</span><span class="is-done">Com o barbeiro</span><span>Resposta</span></div>
+                    <span class="m-btn">Ver pedido</span>
+                  </div>
+                  <div class="bb-res">
+                    <div class="bb-res-h"><div><strong>Corte Fino</strong><span>Sáb 28 · 15h · Corte</span></div><em class="bb-pill is-ok">Confirmado</em></div>
+                  </div>
+                  <div class="bb-res">
+                    <div class="bb-res-h"><div><strong>Barbearia Vila Nova</strong><span>Sáb 14 · 11h · Barba</span></div><em class="bb-pill">Concluído</em></div>
+                  </div>
+                </div>
+
+                <div class="bb-tabbar" aria-hidden="true">
+                  <span class="is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Explorar</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Agendamentos</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Conta</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-card bb-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+              <div><strong>Novo pedido de horário</strong><span>Barbearia Vila Nova</span><small>Corte e barba · sábado, 10h</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 4.000</strong><span>valor fechado, pago em 4 etapas</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Telas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="bb-tab-buscar" aria-controls="bb-buscar" aria-selected="true">Buscar</button>
+            <button class="mockup-tab" type="button" role="tab" id="bb-tab-barbearia" aria-controls="bb-barbearia" aria-selected="false">Barbearia</button>
+            <button class="mockup-tab" type="button" role="tab" id="bb-tab-horario" aria-controls="bb-horario" aria-selected="false">Horário</button>
+            <button class="mockup-tab" type="button" role="tab" id="bb-tab-status" aria-controls="bb-status" aria-selected="false">Status</button>
+          </div>
+          <p class="bb-caption">Telas ilustrativas · nomes e endereços fictícios</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Investimento</span><strong>R$ 4.000</strong></div>
+        <div class="spec-item"><span>Pagamento</span><strong>4 etapas</strong></div>
+        <div class="spec-item"><span>No ar</span><strong>Até 22 de dezembro</strong></div>
+        <div class="spec-item"><span>Formato</span><strong>WebApp, sem lojas</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ ENTREGAS ============ -->
+    <section class="section" id="entregas" aria-labelledby="entregas-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="entregas-titulo">O que você recebe.</h2>
+          <p class="reveal delay-1">Quatro peças ligadas ao mesmo sistema. O que um barbeiro atualiza no painel é o que o visitante vê na hora, no perfil e no mapa.</p>
+        </div>
+        <ul class="outcomes">
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="14" height="11" rx="1.5"/><path d="M6 19h6"/><rect x="16" y="9" width="6" height="12" rx="1.5"/></svg></span>
+            <h3>WebApp para celular, tablet e computador</h3>
+            <p>Abre direto no navegador, no domínio da plataforma. Ninguém precisa baixar nada, e não há aplicativo nas lojas nem taxas de publicação.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></svg></span>
+            <h3>Painel do barbeiro</h3>
+            <p>Cada barbearia aprovada cuida do próprio perfil, abre os horários de atendimento e responde aos pedidos.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>
+            <h3>Painel do proprietário</h3>
+            <p>Aprovação de quem anuncia, liberação dos acessos e os números gerais de todas as barbearias.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <h3>Mapa e sistema na sua hospedagem</h3>
+            <p>Google Maps integrado para localizar as barbearias, com banco de dados e serviços instalados na sua hospedagem. Os dados e o código-fonte ficam com você.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PERFIS ============ -->
+    <section class="section anatomy" id="webapp" data-spy="webapp" aria-labelledby="webapp-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="webapp-titulo">O que cada pessoa consegue fazer.</h2>
+          <p class="reveal delay-1">Três perfis de acesso, cada um com as próprias telas. É o que entra nesta versão inicial.</p>
+        </div>
+        <div class="modules">
+          <article class="module reveal">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>No WebApp</span>
+            <h3>Visitante</h3>
+            <p>Quem procura uma barbearia para cortar o cabelo ou fazer a barba.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Busca barbearias por nome, cidade e bairro</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Encontra as mais próximas pela localização, ou pesquisa manualmente</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vê as barbearias em lista e no mapa, com endereço, fotos, horários e serviços</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Consulta os horários livres e pede um agendamento</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cria uma conta simples e acompanha o status e o histórico dos pedidos</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-1">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>No painel do barbeiro</span>
+            <h3>Barbeiro anunciante</h3>
+            <p>Quem anuncia a própria barbearia na plataforma.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pede para participar e recebe acesso individual depois da aprovação</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Edita o perfil: nome, endereço, descrição, fotos, contatos, horários e serviços</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Define os dias e horários de atendimento</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Confirma, cancela e atualiza o status dos agendamentos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vê um resumo dos agendamentos e do perfil anunciado</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-2">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>No painel administrativo</span>
+            <h3>Barbeiro dono da plataforma</h3>
+            <p>Quem administra a operação e também atende na própria barbearia.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tudo o que o barbeiro faz, para a própria barbearia</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acompanha todas as outras barbearias da plataforma</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aprova, recusa, ativa ou suspende participantes e anúncios</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Organiza os cadastros de barbearias e usuários</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vê barbearias ativas, anúncios publicados e volume de agendamentos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Libera ou bloqueia acessos conforme a situação comercial de cada barbeiro</li>
+            </ul>
+          </article>
+        </div>
+        <p class="privacy-line reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Tudo funciona no navegador, com login. Cada barbeiro vê só a própria barbearia; só o dono da plataforma vê todas.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ AGENDA ============ -->
+    <section class="section" id="agenda" data-spy="agenda" aria-labelledby="agenda-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="agenda-titulo">Horário pedido, confirmado pelo barbeiro.</h2>
+          <p class="section-lead reveal delay-1">O barbeiro abre os horários em que atende. O visitante escolhe um deles e envia o pedido, e a confirmação aparece no WebApp. Nada é pago pela plataforma.</p>
+        </div>
+
+        <ol class="loop">
+          <li class="loop-step reveal"><span>01</span><h3>Barbeiro abre a agenda</h3><p>Define no painel os dias e horários em que atende.</p></li>
+          <li class="loop-step reveal delay-1"><span>02</span><h3>Visitante pede</h3><p>Escolhe a barbearia, o serviço e um dos horários livres.</p></li>
+          <li class="loop-step reveal delay-2"><span>03</span><h3>Barbeiro responde</h3><p>Confirma ou recusa pelo painel e pode cancelar ou atualizar depois.</p></li>
+          <li class="loop-step reveal delay-3"><span>04</span><h3>Visitante acompanha</h3><p>O status aparece na conta dele, e o pedido fica no histórico.</p></li>
+        </ol>
+
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Como a agenda funciona</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Uma agenda principal por barbearia</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>O barbeiro define os dias e os horários disponíveis</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>O mesmo horário não pode ser confirmado duas vezes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cada pedido tem status: aguardando, confirmado, cancelado ou concluído</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Se o visitante não liberar a localização, ele pesquisa por cidade ou bairro</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Fora desta versão</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Pagamento do serviço ou de assinaturas pela plataforma</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Agendas separadas para vários barbeiros ou cadeiras na mesma barbearia</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Lembretes automáticos por WhatsApp ou SMS</li>
+            </ul>
+            <p class="fit-note"><strong>Participação dos barbeiros:</strong> quem quer anunciar fala direto com o dono da plataforma para combinar a contratação e o pagamento. O sistema não cobra nada; o dono libera, renova ou bloqueia o acesso manualmente pelo painel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Valor fechado, pago conforme as entregas.</h2>
+          <p class="section-lead reveal delay-1">Um único valor para tudo o que está nesta proposta: os dois painéis com permissões diferentes, o perfil do visitante, o mapa com Google Maps e a agenda. Cada parte é paga quando a etapa correspondente é aprovada ou entregue.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Investimento total</span>
+            <strong class="num">R$ 4.000</strong>
+            <small>Quatro mil reais, em 4 pagamentos ligados às etapas do projeto.</small>
+          </div>
+          <div class="milestones reveal" role="list" aria-label="Divisão do pagamento">
+            <div class="ms" role="listitem" style="--i:0"><b>1º · 25%</b><strong class="num">R$ 1.000</strong><span>Na aprovação da proposta</span></div>
+            <div class="ms" role="listitem" style="--i:1"><b>2º · 25%</b><strong class="num">R$ 1.000</strong><span>Na aprovação das telas</span></div>
+            <div class="ms" role="listitem" style="--i:2"><b>3º · 30%</b><strong class="num">R$ 1.200</strong><span>Na versão de testes</span></div>
+            <div class="ms" role="listitem" style="--i:3"><b>4º · 20%</b><strong class="num">R$ 800</strong><span>Na entrega final</span></div>
+          </div>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Condições</h3>
+            <p>O que está combinado dentro do valor fechado.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Ajustes nas telas</span><strong>Até 2 rodadas nos wireframes</strong></div>
+              <div class="pay-row"><span>Ajustes visuais</span><strong>1 rodada antes da entrega</strong></div>
+              <div class="pay-row"><span>Novas funções ou mudanças de estrutura</span><strong>Orçamento complementar</strong></div>
+              <div class="pay-row"><span>Garantia</span><strong>30 dias de correção de defeitos</strong></div>
+              <div class="pay-row"><span>Código-fonte e acessos</span><strong>Seus, após o pagamento integral</strong></div>
+              <div class="pay-row"><span>Suporte e manutenção contínuos</span><strong>Combinados à parte</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Custos que ficam com você</h3>
+            <p>Pagos direto aos fornecedores, fora do valor desta proposta.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Hospedagem (VPS)</span><strong>Mensalidade do provedor escolhido</strong></div>
+              <div class="pay-row"><span>Domínio e certificado de segurança</span><strong>Anual</strong></div>
+              <div class="pay-row"><span>Google Maps Platform</span><strong>Conforme o uso, cobrado pelo Google</strong></div>
+              <div class="pay-row"><span>Lojas de aplicativos</span><strong>Não se aplica</strong></div>
+            </div>
+            <p class="note">A conta do Google Maps fica em seu nome, com o seu cartão de faturamento. Se você já tem uma VPS, verifico a configuração antes da instalação.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CRONOGRAMA ============ -->
+    <section class="section" id="cronograma" data-spy="cronograma" aria-labelledby="cronograma-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="cronograma-titulo">Da aprovação ao ar.</h2>
+          <p class="section-lead reveal delay-1">Quatro etapas, cerca de seis semanas. Primeiro desenhamos e validamos as telas com você; só depois o sistema é programado. Assim, ninguém descobre no fim que algo não era o esperado.</p>
+          <div class="process-total reveal delay-2">
+            <strong>22 dez</strong>
+            <span>WebApp no ar no seu domínio, antes do Natal, começando em 9 de novembro.</span>
+          </div>
+          <div class="deadline reveal delay-3">
+            <h3>Para cumprir este prazo</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proposta aprovada até 6 de novembro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Respostas e aprovações em até 2 dias úteis</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Marca, textos e dados das barbearias entregues até 24 de novembro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Hospedagem, domínio e conta do Google Maps ativos até 4 de dezembro</li>
+            </ul>
+            <p class="fit-note">Se o início passar de 9 de novembro, as datas andam na mesma proporção.</p>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">9 a 13 de novembro</span>
+              <h3>Imersão</h3>
+              <p>Reunião para definir os três perfis, as regras de entrada dos barbeiros, como a agenda funciona, os fluxos e as prioridades.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> documento de escopo e fluxo das funcionalidades.</p>
+              <p class="step-pay"><b>25% · R$ 1.000</b><span>na aprovação da proposta</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">16 a 24 de novembro</span>
+              <h3>Desenho das telas</h3>
+              <p>As páginas e jornadas em versão simples (wireframes), navegáveis: busca no mapa, perfil da barbearia, agendamento e os dois painéis. Até duas rodadas de ajustes.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> wireframes e navegação aprovados por você.</p>
+              <p class="step-pay"><b>25% · R$ 1.000</b><span>na aprovação das telas</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">25 de novembro a 15 de dezembro</span>
+              <h3>Versão 1 funcionando</h3>
+              <p>Construção do WebApp, do banco de dados, do login, do controle de acesso, do mapa, da lista de barbearias e dos agendamentos. O visual ainda é simples: aqui o foco é tudo funcionar.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> versão de testes com as operações principais funcionando.</p>
+              <p class="step-pay"><b>30% · R$ 1.200</b><span>na liberação para testes</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">16 a 22 de dezembro</span>
+              <h3>Acabamento e entrega</h3>
+              <p>Acabamento visual, ajustes para cada tamanho de tela, testes, correções e instalação na sua hospedagem. Uma rodada de ajustes visuais e orientação para usar os painéis.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> WebApp finalizado e no ar no seu domínio.</p>
+              <p class="step-pay"><b>20% · R$ 800</b><span>na entrega final</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">30 dias após a entrega</span>
+              <h3>Garantia de correções</h3>
+              <p>Qualquer defeito que possa ser reproduzido, no que foi contratado, é corrigido sem custo.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ QUEM FAZ O QUÊ ============ -->
+    <section class="section section-tight" id="responsabilidades" aria-labelledby="responsabilidades-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="responsabilidades-titulo">Quem cuida do quê.</h2>
+          <p class="section-lead reveal delay-1">O projeto anda no ritmo combinado quando as duas partes entregam a sua parte no prazo.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <p class="care-who">VS Experience</p>
+            <h3>Projeto e construção</h3>
+            <p>Do primeiro desenho ao WebApp no ar.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Imersão e definição do escopo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Wireframes e fluxos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WebApp responsivo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painéis do barbeiro e do proprietário</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mapa e agendamento</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Banco de dados e login</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instalação na sua hospedagem</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Orientação para usar os painéis</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>30 dias de correção de defeitos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Entrega do código-fonte e dos acessos</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <p class="care-who">Duarte</p>
+            <h3>Contas, conteúdo e regras</h3>
+            <p>O que só quem é dono da plataforma pode fornecer ou decidir.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Hospedagem e domínio</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Conta e faturamento do Google Maps</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Marca e identidade visual</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Textos, imagens e dados das barbearias</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Termos de uso e política de privacidade</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Regras e cobrança dos barbeiros anunciantes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acessos, testes e aprovações nos prazos</li>
+            </ul>
+          </div>
+        </div>
+        <p class="base-note reveal">O código-fonte e os acessos são entregues após o pagamento integral, respeitando as licenças de bibliotecas e serviços de terceiros.</p>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Fora desta versão</h3>
+          <ul class="factor-list reveal">
+            <li>Pagamentos internos</li>
+            <li>Mensalidade automática</li>
+            <li>Integração bancária</li>
+            <li>Avisos por WhatsApp ou SMS</li>
+            <li>App nas lojas</li>
+            <li>Vários barbeiros por barbearia</li>
+            <li>Comissões</li>
+            <li>Chat interno</li>
+            <li>Clube de fidelidade</li>
+            <li>Inteligência artificial</li>
+            <li>Relatórios avançados</li>
+            <li>Agendas externas</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Por que WebApp e não um aplicativo nas lojas? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Porque o visitante usa na hora, só abrindo um link, sem baixar nada. Não há taxas das lojas nem espera pela aprovação da Apple e do Google, e uma única versão funciona no celular, no tablet e no computador. É isso que mantém o valor e o prazo desta proposta.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E se o visitante não liberar a localização? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Ele pesquisa por cidade ou bairro, normalmente. A busca por proximidade depende da autorização do visitante, de um navegador compatível e de conexão segura (HTTPS), que já faz parte da instalação.</p>
+          </details>
+          <details class="faq-item">
+            <summary>O Google Maps tem custo? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>A integração está incluída no desenvolvimento. O uso do mapa é cobrado pelo Google conforme a quantidade de acessos, em uma conta de faturamento em seu nome. Na imersão, combinamos o nível de informação mostrado no mapa para manter esse custo sob controle.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Como os barbeiros pagam para anunciar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Direto com você, fora da plataforma. O sistema não cobra assinaturas e não tem pagamento online. Quando o barbeiro acerta a contratação, você libera o acesso dele pelo painel, e pode renovar ou bloquear quando precisar.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E se a barbearia tiver vários barbeiros? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Nesta versão, cada barbearia tem uma agenda principal. Agendas separadas por profissional, cadeira ou escala precisam de um módulo adicional, que pode ser orçado depois, sem refazer o que já existe.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Posso pedir mudanças depois de aprovar as telas? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Estão incluídas até duas rodadas de ajustes nos wireframes e uma rodada de ajustes visuais antes da entrega, dentro do escopo aprovado. Mudanças de estrutura, novas funções ou integrações não previstas são apresentadas em orçamento complementar.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E se aparecer um erro depois da entrega? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Nos 30 dias seguintes à entrega, corrijo qualquer defeito que possa ser reproduzido no que foi contratado. Suporte contínuo, melhorias e manutenção depois desse período são combinados à parte.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Onde ficam os dados e de quem é o código? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Tudo fica na hospedagem contratada por você. Depois do pagamento integral, você recebe o código-fonte, os acessos e as orientações essenciais para operar a plataforma.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos colocar as barbearias <span>no mapa?</span></h2>
+            <p>Com a aprovação, marcamos a reunião de imersão para confirmar como a agenda funciona, o que cada perfil pode fazer, como os barbeiros contratam a participação e o que aparece no mapa. Ela vira a base para o desenho das telas.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Duarte</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>WebApp de barbearias</strong></div>
+            <div class="meta-row"><span>Formato</span><strong>No navegador, sem lojas</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 4.000 em 4 etapas</strong></div>
+            <div class="meta-row"><span>No ar</span><strong>Até 22 de dezembro de 2026</strong></div>
+            <div class="meta-row"><span>Garantia</span><strong>30 dias de correções</strong></div>
+            <div class="meta-row"><span>Validade</span><strong>16 de novembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 1º de novembro de 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>

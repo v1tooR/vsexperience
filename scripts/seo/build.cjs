@@ -136,5 +136,7 @@ function schema(html, p) {
   Object.assign(config.social, { 'og:image': pages[0].image, 'og:image:type': 'image/jpeg' });
   config.build.lastUpdated = date;
   write('config/config.json', JSON.stringify(config, null, 2) + '\n');
+  // Keep category content and its static English links in sync after legacy SEO generation.
+  require('../catalog/build.cjs');
   console.log('Built SEO for ' + pages.length + ' canonical pages, including static /en/.');
 })().catch(err => { console.error(err); process.exitCode = 1; });

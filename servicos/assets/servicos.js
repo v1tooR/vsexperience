@@ -195,6 +195,7 @@
   $$('[role="tablist"]').forEach(function (list) {
     var tabs = $$('[role="tab"]', list);
     var stage = list.closest('.stage');
+    if (stage) stage.classList.add('tabs-ready');
     var api = { onUser: null };
     function activate(tab, focus) {
       tabs.forEach(function (item) {
@@ -231,6 +232,7 @@
     var timers = [];
     var inView = false;
     var paused = false;
+    var userPaused = false;
 
     function clearTimers() { timers.forEach(clearTimeout); timers = []; }
     function current() { return tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]; }
@@ -271,13 +273,26 @@
       }, TAB_MS));
     }
     function pause() { paused = true; clearTimers(); stage.classList.add('is-paused'); cursor.classList.remove('is-on'); }
-    function resume() { paused = false; stage.classList.remove('is-paused'); cycle(); }
+    function resume() {
+      if (userPaused || stage.matches(':hover') && finePointer || stage.contains(document.activeElement)) return;
+      paused = false; stage.classList.remove('is-paused'); cycle();
+    }
     api.onUser = function () { if (!paused) cycle(); };
+
+    var pauseButton = stage.querySelector('[data-stage-pause]');
+    if (pauseButton) pauseButton.addEventListener('click', function () {
+      userPaused = !userPaused;
+      pauseButton.setAttribute('aria-pressed', String(userPaused));
+      pauseButton.setAttribute('aria-label', pauseButton.getAttribute(userPaused ? 'data-play-label' : 'data-pause-label'));
+      stage.classList.toggle('motion-paused', userPaused);
+      if (userPaused) pause();
+      else { paused = false; stage.classList.remove('is-paused'); cycle(); }
+    });
 
     stage.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pause(); });
     stage.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') resume(); });
-    list.addEventListener('focusin', pause);
-    list.addEventListener('focusout', function (e) { if (!list.contains(e.relatedTarget)) resume(); });
+    stage.addEventListener('focusin', pause);
+    stage.addEventListener('focusout', function (e) { if (!stage.contains(e.relatedTarget)) resume(); });
     new IntersectionObserver(function (entries) {
       inView = entries[0].isIntersecting;
       if (inView) { setTimeout(cycle, 1200); } else { clearTimers(); stage.classList.remove('is-auto'); cursor.classList.remove('is-on'); }
