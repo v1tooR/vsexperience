@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para Erica: e-commerce completo para a gráfica, com configurador de produtos, envio de arte, pagamento, frete para todo o Brasil, integração com o Bling e pedidos ligados à produção.">
+  <title>Proposta · E-commerce da gráfica · Erica | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · E-commerce da gráfica · Erica">
+  <meta property="og:description" content="A gráfica aberta 24 horas, vendendo para todo o Brasil. Do pedido à produção, e da produção à porta do cliente.">
+  <link rel="icon" href="../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta · E-commerce da gráfica
+       Só o que é desta página: mockup da loja (--c-*), plataforma,
+       fluxo do pedido até a produção, pagamentos por etapa e responsabilidades.
+       ============================================================ */
+
+    /* ---------- Palco: loja no celular + fila da produção ---------- */
+    .stage.gr-stage { min-height: 630px; }
+    .gr-phone { position: absolute; z-index: 3; left: 0; top: 8px; width: 262px; height: 548px; padding: 8px; border-radius: 40px; background: var(--grafite); box-shadow: 0 40px 70px -30px rgba(33, 33, 33, .6), inset 0 0 0 1px rgba(239, 239, 239, .14); }
+    .gr-notch { position: absolute; z-index: 4; top: 17px; left: 50%; width: 66px; height: 18px; margin-left: -33px; border-radius: 99px; background: var(--grafite); }
+    .screen.gr {
+      --c-accent: hsl(198 78% 28%);
+      --c-on-accent: #fff;
+      --c-tint: hsl(195 60% 94%);
+      --c-ok: hsl(152 62% 27%);
+      --c-ok-soft: hsl(152 45% 92%);
+      --c-warn: hsl(32 92% 32%);
+      --c-warn-soft: hsl(40 90% 91%);
+      --c-no: hsl(0 60% 40%);
+      --c-no-soft: hsl(0 70% 95%);
+      background: var(--m-surface);
+    }
+    .gr-phone .screen.gr { height: 100%; min-height: 0; border-radius: 32px; }
+    .gr-status { display: flex; justify-content: space-between; align-items: center; height: 38px; padding: 4px 24px 0; font-size: 8px; font-weight: 700; }
+    .gr-status i { width: 22px; height: 7px; border-radius: 2px; background: var(--m-ink); opacity: .8; }
+    .gr-url { display: flex; align-items: center; justify-content: center; gap: 4px; height: 20px; margin: 0 14px; border-radius: 99px; background: var(--m-canvas); color: var(--m-soft); font-size: 7px; font-weight: 600; }
+    .gr-url svg { width: 8px; height: 8px; }
+    .gr-page { position: absolute; inset: 64px 0 0; padding: 8px 16px 70px; overflow: hidden; }
+    .gr-tabbar { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr); padding: 8px 14px 18px; border-top: 1px solid var(--m-line); background: #fff; color: var(--m-muted); font-size: 6.5px; font-weight: 700; text-align: center; }
+    .gr-tabbar svg { width: 14px; height: 14px; margin: 0 auto 3px; }
+    .gr-tabbar .is-on { color: var(--c-accent); }
+
+    .gr-hello { margin: 0; color: var(--m-muted); font-size: 7.5px; font-weight: 600; }
+    .gr-h { margin: 2px 0 9px; font-size: 15px; font-weight: 750; line-height: 1.1; letter-spacing: -.03em; }
+    .gr-kicker { margin: 4px 0 0; color: var(--c-accent); font-size: 6.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .gr-search { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 8px; background: var(--m-canvas); color: var(--m-muted); font-size: 7.5px; }
+    .gr-search svg { width: 10px; height: 10px; }
+
+    /* Cores de processo (CMYK) só como fundo das miniaturas */
+    .is-c { background: linear-gradient(140deg, hsl(198 80% 26%), hsl(190 70% 50%)); }
+    .is-m { background: linear-gradient(140deg, hsl(326 60% 30%), hsl(336 64% 58%)); }
+    .is-y { background: linear-gradient(140deg, hsl(32 85% 34%), hsl(46 90% 54%)); }
+    .is-k { background: linear-gradient(140deg, hsl(220 12% 16%), hsl(220 10% 42%)); }
+    .gr-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 9px 0 10px; }
+    .gr-cats span { display: flex; align-items: flex-end; height: 48px; padding: 6px 7px; border-radius: 8px; color: #fff; font-size: 7px; font-weight: 750; text-shadow: 0 1px 2px rgba(0, 0, 0, .25); }
+
+    .gr-sec { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 8px; font-weight: 700; }
+    .gr-sec span { color: var(--c-accent); font-size: 6.5px; }
+    .gr-card { display: grid; grid-template-columns: 46px 1fr auto; gap: 9px; align-items: center; padding: 7px; margin-bottom: 7px; border: 1px solid var(--m-line); border-radius: 10px; }
+    .gr-img { width: 46px; height: 46px; border-radius: 7px; }
+    .gr-card strong { display: block; font-size: 8px; }
+    .gr-card span { display: block; color: var(--m-muted); font-size: 6.5px; }
+    .gr-card em { display: block; margin-top: 2px; color: var(--c-ok); font-size: 6.3px; font-style: normal; font-weight: 700; }
+    .gr-card .m-btn { padding: 5px 8px; color: var(--c-on-accent); font-size: 6.5px; }
+    .gr-card .m-btn.is-ghost { color: var(--m-ink); }
+
+    .gr-cover { position: relative; height: 84px; margin: -8px -16px 12px; }
+    .gr-cover::after { content: ''; position: absolute; right: 30px; top: 18px; width: 74px; height: 42px; border-radius: 3px; background: #fff; box-shadow: 8px 8px 0 -1px rgba(255, 255, 255, .45), 0 10px 18px -8px rgba(0, 0, 0, .45); transform: rotate(-8deg); }
+    .gr-tag { position: absolute; left: 14px; bottom: 10px; padding: 3px 7px; border-radius: 99px; background: rgba(255, 255, 255, .92); color: var(--m-ink); font-size: 6.3px; font-weight: 700; }
+    .gr-sub { margin: -5px 0 8px; color: var(--m-muted); font-size: 7px; }
+    .gr-wide { width: 100%; padding: 9px; font-size: 7.5px; }
+    .gr-field { margin-bottom: 8px; }
+    .gr-field small, .gr-lbl { display: block; margin-bottom: 3px; color: var(--m-muted); font-size: 6.5px; font-weight: 700; }
+    .gr-field > span { display: flex; justify-content: space-between; align-items: center; padding: 7px 9px; border: 1px solid var(--m-line); border-radius: 7px; font-size: 7.5px; }
+    .gr-field > span svg { width: 9px; height: 9px; color: var(--m-muted); }
+    .gr-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 9px; }
+    .gr-chips span { padding: 4px 8px; border-radius: 99px; border: 1px solid var(--m-line); color: var(--m-soft); font-size: 6.5px; font-weight: 700; }
+    .gr-chips .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .gr-qty { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 9px; }
+    .gr-qty span { padding: 5px 0; border: 1px solid var(--m-line); border-radius: 6px; text-align: center; font-size: 7px; font-weight: 700; }
+    .gr-qty small { display: block; color: var(--m-muted); font-size: 5.6px; font-weight: 600; }
+    .gr-qty .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .gr-qty .is-on small { color: rgba(255, 255, 255, .8); }
+    .gr-total { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0 9px; border-top: 1px solid var(--m-line); }
+    .gr-total strong { font-size: 14px; letter-spacing: -.03em; }
+    .gr-total span { color: var(--m-muted); font-size: 6.5px; }
+
+    .gr-ship { margin-bottom: 9px; border: 1px solid var(--m-line); border-radius: 9px; overflow: hidden; }
+    .gr-ship div { display: grid; grid-template-columns: 9px 1fr auto; gap: 7px; align-items: center; padding: 7px 9px; font-size: 7px; }
+    .gr-ship div + div { border-top: 1px solid var(--m-line); }
+    .gr-ship i { width: 9px; height: 9px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--m-line); }
+    .gr-ship .is-on { background: var(--c-tint); }
+    .gr-ship .is-on i { box-shadow: inset 0 0 0 3px var(--c-accent); }
+    .gr-ship strong { display: block; font-size: 7.5px; }
+    .gr-ship span { display: block; color: var(--m-muted); font-size: 6.3px; }
+    .gr-ship b { font-size: 7.5px; }
+    .gr-file { display: flex; align-items: center; gap: 7px; padding: 7px 9px; margin-bottom: 9px; border: 1px dashed var(--c-accent); border-radius: 8px; background: var(--c-tint); font-size: 7px; font-weight: 600; }
+    .gr-file svg { flex: 0 0 auto; width: 12px; height: 12px; color: var(--c-accent); }
+    .gr-file em { margin-left: auto; color: var(--c-ok); font-size: 6.3px; font-style: normal; font-weight: 700; }
+    .gr-foot { margin: 8px 0 0; color: var(--m-muted); font-size: 6.5px; text-align: center; }
+
+    .gr-res { padding: 9px 10px; margin-bottom: 7px; border: 1px solid var(--m-line); border-radius: 10px; }
+    .gr-res-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; }
+    .gr-res strong { display: block; font-size: 8px; }
+    .gr-res-h span { display: block; color: var(--m-muted); font-size: 6.5px; }
+    .gr-pill { flex: 0 0 auto; padding: 3px 7px; border-radius: 99px; background: var(--m-canvas); color: var(--m-soft); font-size: 6.2px; font-weight: 700; font-style: normal; white-space: nowrap; }
+    .gr-pill.is-ok { background: var(--c-ok-soft); color: var(--c-ok); }
+    .gr-pill.is-warn { background: var(--c-warn-soft); color: var(--c-warn); }
+    .gr-pill.is-info { background: var(--c-tint); color: var(--c-accent); }
+    .gr-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 9px 0 8px; }
+    .gr-track span { padding-top: 5px; border-top: 2px solid var(--m-line); color: var(--m-muted); font-size: 6px; font-weight: 600; }
+    .gr-track .is-done { border-color: var(--c-accent); color: var(--m-ink); }
+    .gr-res .m-btn { padding: 5px 8px; font-size: 6.5px; }
+    .gr-code { margin: 6px 0 0; color: var(--m-soft); font-size: 6.5px; }
+    .gr-code b { color: var(--m-ink); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 6.5px; }
+
+    .gr-browser { width: min(470px, 68%); top: 44px; }
+    .screen.gr-panel { min-height: 0; padding: 16px 18px 20px; background: var(--m-canvas); }
+    .gr-ph { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-bottom: 12px; }
+    .gr-ph small { display: block; color: var(--m-muted); font-size: 7px; font-weight: 600; }
+    .gr-ph p { margin: 2px 0 0; font-size: 13px; font-weight: 750; letter-spacing: -.03em; }
+    .gr-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+    .gr-kpis div { padding: 9px 10px; border: 1px solid var(--m-line); border-radius: 7px; background: #fff; }
+    .gr-kpis span { display: block; color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .gr-kpis strong { display: block; margin-top: 2px; font-size: 16px; letter-spacing: -.03em; }
+    .gr-kpis div:last-child strong { color: var(--c-ok); }
+    .gr-th { margin: 0 0 6px; font-size: 8.5px; font-weight: 700; }
+    .gr-table { border: 1px solid var(--m-line); border-radius: 7px; overflow: hidden; background: #fff; }
+    .gr-row { display: grid; grid-template-columns: .6fr 1.25fr .95fr 1.15fr; gap: 8px; align-items: center; padding: 8px 10px; border-top: 1px solid var(--m-line); font-size: 7px; }
+    .gr-row.is-head { border-top: 0; background: var(--m-canvas); color: var(--m-muted); font-size: 6.2px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .gr-row.is-new { box-shadow: inset 2px 0 0 var(--c-accent); background: var(--c-tint); }
+    .gr-row strong { font-size: 7.5px; }
+    .gr-row > :last-child { justify-self: start; }
+    .gr-acts { display: flex; gap: 4px; }
+    .gr-acts i { padding: 4px 7px; border-radius: 4px; background: var(--c-accent); color: #fff; font-size: 6.3px; font-style: normal; font-weight: 700; white-space: nowrap; }
+
+    .gr-stage .stage-badge { width: 172px; }
+    .gr-float { right: 18px; bottom: 78px; }
+    .gr-float .float-icon { background: hsl(195 60% 90%); color: hsl(198 78% 28%); }
+    .gr-caption { position: absolute; left: 0; bottom: 8px; margin: 0; color: var(--text-muted); font-size: 12px; }
+
+    /* ---------- Plataforma (faixa Grafite) ---------- */
+    .modules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--dark-line-strong); }
+    .module { display: flex; flex-direction: column; padding: 32px 30px 36px 0; }
+    .module + .module { padding-left: 30px; border-left: 1px solid var(--dark-line); }
+    .module-who { display: flex; align-items: center; gap: 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .module-who svg { width: 20px; }
+    .module h3 { margin: 14px 0 10px; font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 34px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.02; letter-spacing: -.02em; }
+    .module > p { margin-bottom: 22px; color: var(--text-soft); font-size: 15px; }
+    .module .plan-features { margin-bottom: 0; }
+    .privacy-line { display: flex; gap: 12px; align-items: flex-start; margin-top: clamp(40px, 5vw, 56px); padding-top: 22px; border-top: 1px solid var(--dark-line); color: var(--text-soft); font-size: 15px; max-width: 80ch; }
+    .privacy-line svg { width: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--cadmio); }
+
+    /* ---------- Fluxo do pedido ---------- */
+    .loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: clamp(56px, 7vw, 88px); border-top: 1px solid var(--grafite); }
+    .loop-step { position: relative; padding: 26px 26px 30px 0; }
+    .loop-step + .loop-step { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .loop-step::after { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 2px; background: var(--carmim); }
+    .loop-step + .loop-step::after { left: -5px; }
+    .loop-step span { display: block; margin-bottom: 10px; color: var(--carmim); font-size: 13px; font-weight: 700; }
+    .loop-step h3 { margin-bottom: 10px; font-family: var(--font-display); font-size: clamp(22px, 2vw, 27px); font-weight: 720; font-variation-settings: "wdth" 110; line-height: 1.05; letter-spacing: -.02em; }
+    .loop-step p { margin: 0; color: var(--text-soft); font-size: 15px; }
+    .fit-col.is-alt .fit-list { margin-bottom: 26px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note strong { color: var(--text); }
+
+    /* ---------- Pagamento por etapa (painel Carmim) ---------- */
+    .milestones { display: grid; grid-template-columns: 25fr 25fr 30fr 20fr; gap: 6px; }
+    .ms { position: relative; padding-top: 22px; }
+    .ms::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 10px; border-radius: 2px; background: var(--linho); transform-origin: left; transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 120ms + 200ms); }
+    .motion-ready .milestones:not(.is-visible) .ms::before { transform: scaleX(0); }
+    .ms b { display: block; color: var(--text-soft); font-size: 13px; font-weight: 700; }
+    .ms strong { display: block; margin: 4px 0 6px; font-family: var(--font-display); font-size: clamp(20px, 1.9vw, 26px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
+    .ms span { display: block; color: var(--text-soft); font-size: 13px; line-height: 1.35; }
+    .pricing-notes .note { margin: 18px 0 0; color: var(--text-muted); font-size: 14px; }
+
+    /* ---------- Cronograma ---------- */
+    .process-total strong { font-size: clamp(56px, 6.4vw, 88px); }
+    .process-step .step-pay { display: inline-flex; flex-wrap: wrap; gap: 0 8px; margin: 12px 0 0; padding: 7px 12px; border-radius: 4px; background: var(--grafite); color: var(--linho); font-size: 13px; font-weight: 600; }
+    .step-pay b { color: #ff7a7b; font-weight: 700; }
+    .deadline { margin-top: 36px; }
+    .deadline h3 { margin-bottom: 14px; font-family: var(--font-display); font-size: 20px; font-weight: 720; font-variation-settings: "wdth" 110; }
+    .deadline .fit-list { margin-bottom: 16px; }
+    .deadline .fit-list li { padding: 11px 0; font-size: 14px; }
+    .deadline .fit-list svg { color: var(--carmim); }
+    .deadline .fit-note { padding-top: 0; border-top: 0; }
+
+    /* ---------- Quem faz o quê ---------- */
+    .care-block .care-who { margin: -20px 0 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .base-note { margin-top: 28px; color: var(--text-muted); font-size: 14px; max-width: 70ch; }
+
+    /* ---------- Perguntas ---------- */
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1040px) {
+      .loop { grid-template-columns: 1fr 1fr; }
+      .loop-step:nth-child(3) { padding-left: 0; border-left: 0; }
+      .loop-step:nth-child(3)::after { left: 0; }
+      .loop-step:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
+      .faq-aside { position: static; }
+    }
+    @media (max-width: 860px) {
+      .modules { grid-template-columns: 1fr; }
+      .module, .module + .module { padding-left: 0; border-left: 0; }
+      .module + .module { border-top: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 780px) {
+      .stage.gr-stage { min-height: 640px; }
+      .gr-browser { display: none; }
+      .gr-phone { left: 50%; margin-left: -131px; }
+      .gr-float { right: 0; bottom: 150px; }
+      .loop { grid-template-columns: 1fr; }
+      .loop-step, .loop-step + .loop-step { padding-left: 0; border-left: 0; }
+      .loop-step::after, .loop-step + .loop-step::after { left: 0; }
+      .loop-step + .loop-step { border-top: 1px solid var(--dark-line); }
+      .milestones { grid-template-columns: 1fr 1fr; gap: 24px 12px; }
+    }
+    @media (max-width: 540px) {
+      .stage.gr-stage { min-height: 610px; margin-bottom: 30px; }
+      .gr-phone { left: 0; margin-left: 0; }
+      .gr-stage .stage-badge { display: none; }
+      .gr-caption { bottom: -30px; }
+    }
+    @media print {
+      .ms::before { background: #212121; }
+      .process-step .step-pay { background: #fff; color: #212121; box-shadow: inset 0 0 0 1px #212121; }
+      .step-pay b { color: #aa1f23; }
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Aqui é a Erica. Li a proposta do e-commerce da gráfica e quero avançar.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Erica</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#plataforma" data-spy-link="plataforma">Plataforma</a>
+        <a href="#operacao" data-spy-link="operacao">Operação</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#cronograma" data-spy-link="cronograma">Prazos</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Gráfica</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para Erica</span> <span class="display">A gráfica aberta 24 horas, para todo o Brasil. <em>Montou o pedido, enviou a arte, pagou. Já está na produção.</em></span></h1>
+          <p class="hero-lead">Uma loja virtual completa, com a cara da gráfica e pronta para crescer. O cliente escolhe papel, acabamento e quantidade, envia a arte, calcula o frete e paga. O pedido entra no painel, segue para a produção e sai com etiqueta e código de rastreio para qualquer lugar do país.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#plataforma">Plataforma recomendada</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 3 de novembro de 2026 · válida até 18 de novembro de 2026.</span></div>
+        </div>
+
+        <div class="stage gr-stage" data-nosnippet role="group" aria-label="Exemplo das telas da loja e do painel de pedidos da gráfica">
+          <div class="stage-inner">
+
+            <div class="browser gr-browser" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">Painel da loja · Pedidos</span><span class="browser-live">Online</span></div>
+              <div class="screen gr gr-panel">
+                <div class="gr-ph"><div><small>Hoje, 14h20</small><p>Fila da produção</p></div><span class="gr-pill is-ok">Loja no ar</span></div>
+                <div class="gr-kpis">
+                  <div><span>Pedidos pagos hoje</span><strong>14</strong></div>
+                  <div><span>Em produção</span><strong>9</strong></div>
+                  <div><span>Despachados na semana</span><strong>63</strong></div>
+                </div>
+                <p class="gr-th">Pedidos por etapa</p>
+                <div class="gr-table">
+                  <div class="gr-row is-head"><span>Pedido</span><span>Produto</span><span>Destino</span><span>Etapa</span></div>
+                  <div class="gr-row is-new"><strong>#10491</strong><span>Cartão de visita · 1.000</span><span>Curitiba/PR</span><span class="gr-acts"><i>Enviar à produção</i></span></div>
+                  <div class="gr-row"><strong>#10488</strong><span>Folder A4 · 2.500</span><span>Recife/PE</span><span class="gr-pill is-warn">Em produção</span></div>
+                  <div class="gr-row"><strong>#10485</strong><span>Banner 90 × 120 cm</span><span>Belo Horizonte/MG</span><span class="gr-pill is-info">Despachado</span></div>
+                  <div class="gr-row"><strong>#10479</strong><span>Bloco de notas · 50</span><span>São Paulo/SP</span><span class="gr-pill is-ok">Entregue</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gr-phone">
+              <span class="gr-notch" aria-hidden="true"></span>
+              <div class="screen gr">
+                <div class="gr-status" aria-hidden="true"><span>9:41</span><i></i></div>
+                <div class="gr-url" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>suagrafica.com.br</div>
+
+                <div class="mock-page gr-page" id="gr-loja" role="tabpanel" aria-labelledby="gr-tab-loja">
+                  <p class="gr-hello">Entrega para todo o Brasil</p>
+                  <p class="gr-h">O que vamos imprimir hoje?</p>
+                  <div class="gr-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar cartões, folders, banners…</div>
+                  <div class="gr-cats"><span class="is-c">Cartões de visita</span><span class="is-m">Folders e panfletos</span><span class="is-y">Banners e lonas</span><span class="is-k">Papelaria</span></div>
+                  <p class="gr-sec">Mais pedidos <span>Ver todos</span></p>
+                  <div class="gr-card"><span class="gr-img is-c"></span><div><strong>Cartão de visita</strong><span>Couché 300 g · 4 × 4 cores</span><em>A partir de R$ 89</em></div><span class="m-btn">Montar</span></div>
+                  <div class="gr-card"><span class="gr-img is-m"></span><div><strong>Folder A4</strong><span>Duas dobras · 4 × 4 cores</span><em>Produção em 4 dias úteis</em></div><span class="m-btn is-ghost">Montar</span></div>
+                </div>
+
+                <div class="mock-page gr-page" id="gr-produto" role="tabpanel" aria-labelledby="gr-tab-produto" hidden>
+                  <div class="gr-cover is-c"><span class="gr-tag">Produção em 3 dias úteis</span></div>
+                  <p class="gr-h">Cartão de visita</p>
+                  <p class="gr-sub">9 × 5 cm · frente e verso colorido</p>
+                  <div class="gr-field"><small>Papel</small><span>Couché fosco 300 g <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></div>
+                  <small class="gr-lbl">Acabamento</small>
+                  <div class="gr-chips"><span class="is-on">Laminação fosca</span><span>Verniz localizado</span><span>Cantos arredondados</span></div>
+                  <small class="gr-lbl">Quantidade</small>
+                  <div class="gr-qty"><span>250<small>R$ 89</small></span><span>500<small>R$ 99</small></span><span class="is-on">1.000<small>R$ 129</small></span><span>2.000<small>R$ 189</small></span></div>
+                  <div class="gr-total"><span>1.000 unidades</span><strong>R$ 129,00</strong></div>
+                  <span class="m-btn gr-wide">Enviar arte e comprar</span>
+                </div>
+
+                <div class="mock-page gr-page" id="gr-entrega" role="tabpanel" aria-labelledby="gr-tab-entrega" hidden>
+                  <p class="gr-kicker">Finalizar pedido</p>
+                  <p class="gr-h">Arte e entrega</p>
+                  <div class="gr-file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>arte-cartao-final.pdf<em>Enviado</em></div>
+                  <div class="gr-field"><small>CEP de entrega</small><span>80010-000 · Curitiba/PR</span></div>
+                  <small class="gr-lbl">Frete</small>
+                  <div class="gr-ship">
+                    <div class="is-on"><i></i><span><strong>Jadlog .Package</strong>5 dias úteis</span><b>R$ 22,80</b></div>
+                    <div><i></i><span><strong>Correios PAC</strong>7 dias úteis</span><b>R$ 24,90</b></div>
+                    <div><i></i><span><strong>Correios SEDEX</strong>3 dias úteis</span><b>R$ 41,50</b></div>
+                    <div><i></i><span><strong>Retirar na gráfica</strong>Após a produção</span><b>Grátis</b></div>
+                  </div>
+                  <span class="m-btn gr-wide">Pagar com Pix ou cartão</span>
+                  <p class="gr-foot">Pix, cartão em até 12× ou boleto.</p>
+                </div>
+
+                <div class="mock-page gr-page" id="gr-pedido" role="tabpanel" aria-labelledby="gr-tab-pedido" hidden>
+                  <p class="gr-h">Meus pedidos</p>
+                  <div class="gr-res">
+                    <div class="gr-res-h"><div><strong>#10491 · Cartão de visita</strong><span>1.000 un · Couché fosco 300 g</span></div><em class="gr-pill is-warn">Em produção</em></div>
+                    <div class="gr-track"><span class="is-done">Pago</span><span class="is-done">Arte aprovada</span><span class="is-done">Produção</span><span>Enviado</span></div>
+                    <span class="m-btn">Ver pedido</span>
+                  </div>
+                  <div class="gr-res">
+                    <div class="gr-res-h"><div><strong>#10377 · Folder A4</strong><span>2.500 un · duas dobras</span></div><em class="gr-pill is-info">Enviado</em></div>
+                    <p class="gr-code">Rastreio <b>AB123456789BR</b></p>
+                  </div>
+                  <div class="gr-res">
+                    <div class="gr-res-h"><div><strong>#10212 · Banner 90 × 120</strong><span>Lona 440 g · com bastão</span></div><em class="gr-pill is-ok">Entregue</em></div>
+                  </div>
+                </div>
+
+                <div class="gr-tabbar" aria-hidden="true">
+                  <span class="is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18l-1.5 11a2 2 0 0 1-2 1.7h-11a2 2 0 0 1-2-1.7z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>Loja</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>Pedidos</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Conta</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-card gr-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+              <div><strong>Pedido pago · #10491</strong><span>Cartão de visita · 1.000 un</span><small>Arte recebida · pronto para a produção</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 4.500</strong><span>valor fechado, pago em 4 etapas</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Telas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="gr-tab-loja" aria-controls="gr-loja" aria-selected="true">Loja</button>
+            <button class="mockup-tab" type="button" role="tab" id="gr-tab-produto" aria-controls="gr-produto" aria-selected="false">Produto</button>
+            <button class="mockup-tab" type="button" role="tab" id="gr-tab-entrega" aria-controls="gr-entrega" aria-selected="false">Frete</button>
+            <button class="mockup-tab" type="button" role="tab" id="gr-tab-pedido" aria-controls="gr-pedido" aria-selected="false">Pedido</button>
+          </div>
+          <p class="gr-caption">Telas ilustrativas · produtos, preços e pedidos fictícios</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Investimento</span><strong>R$ 4.500</strong></div>
+        <div class="spec-item"><span>Pagamento</span><strong>4 etapas</strong></div>
+        <div class="spec-item"><span>No ar</span><strong>Até 18 de dezembro</strong></div>
+        <div class="spec-item"><span>Plataforma</span><strong>WooCommerce + Bling</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ ENTREGAS ============ -->
+    <section class="section" id="entregas" aria-labelledby="entregas-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="entregas-titulo">O que a gráfica recebe.</h2>
+          <p class="reveal delay-1">Quatro frentes ligadas ao mesmo sistema. O que a equipe atualiza no painel é o que o cliente vê na loja e no acompanhamento do pedido.</p>
+        </div>
+        <ul class="outcomes">
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h18l-1.5 11a2 2 0 0 1-2 1.7h-11a2 2 0 0 1-2-1.7z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg></span>
+            <h3>Loja virtual completa</h3>
+            <p>Home, categorias, página de produto com configurador de opções, carrinho, checkout e área do cliente. Funciona no celular e no computador.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>
+            <h3>Pagamento e frete integrados</h3>
+            <p>Pix, cartão e boleto pelo Mercado Pago. Frete pelo CEP com Correios e transportadoras via Melhor Envio, com etiqueta e rastreio.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 9V2h12v7"/><rect x="2" y="9" width="20" height="9" rx="2"/><path d="M6 14h12v8H6z"/></svg></span>
+            <h3>Pedido ligado à produção</h3>
+            <p>Etapas de produção no painel, ordem de produção com as especificações e a arte anexada, integração com o Bling e aviso automático ao cliente a cada etapa.</p>
+          </li>
+          <li class="outcome reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+            <h3>No ar, encontrável e com a equipe pronta</h3>
+            <p>Domínio, hospedagem e certificado configurados, SEO básico com Google Search Console e Analytics, e treinamento gravado para a gestão da loja.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PLATAFORMA ============ -->
+    <section class="section anatomy" id="plataforma" data-spy="plataforma" aria-labelledby="plataforma-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="plataforma-titulo">A plataforma que eu recomendo.</h2>
+          <p class="reveal delay-1">WooCommerce para a loja, Bling para a gestão, Mercado Pago e Melhor Envio para receber e entregar. Peças que conversam entre si e crescem com a gráfica sem precisar trocar de casa.</p>
+        </div>
+        <div class="modules">
+          <article class="module reveal">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9h18l-1.5 11a2 2 0 0 1-2 1.7h-11a2 2 0 0 1-2-1.7z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>Na vitrine</span>
+            <h3>WooCommerce</h3>
+            <p>A loja. Lida bem com produtos que têm muitas combinações e precisam receber arquivo.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Home, categorias e páginas de produto com a identidade da gráfica</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Configurador com papel, gramatura, acabamento e quantidade, com o preço atualizado na hora</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Envio do arquivo da arte junto com o pedido</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Área do cliente com histórico, status e recompra</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cupons, frete grátis por valor ou região e botão de WhatsApp</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-1">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Nos bastidores</span>
+            <h3>Bling</h3>
+            <p>A central de gestão. Todo pedido passa por ela, venha de onde vier.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pedidos da loja entram no Bling automaticamente</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nota fiscal (NF-e) emitida a partir do pedido</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Produtos, clientes e vendas organizados em um só lugar</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relatórios de vendas e financeiro</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Base pronta para ligar Mercado Livre, Shopee e Amazon depois</li>
+            </ul>
+          </article>
+          <article class="module reveal delay-2">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="6" width="14" height="11" rx="1"/><path d="M15 10h4l3 3v4h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>No checkout</span>
+            <h3>Mercado Pago e Melhor Envio</h3>
+            <p>Dinheiro e entrega. O cliente paga como prefere e escolhe como receber.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pix, cartão em até 12× e boleto</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pagamento aprovado muda o status do pedido sozinho</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Frete calculado pelo CEP no produto e no carrinho</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Correios e transportadoras como Jadlog, Loggi e J&amp;T em uma só conta</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Etiqueta gerada no painel e rastreio enviado ao cliente</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Opção de retirada na gráfica</li>
+            </ul>
+          </article>
+        </div>
+        <p class="privacy-line reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Sem mensalidade de plataforma e sem comissão sobre as vendas da loja. Tudo fica na hospedagem e nas contas da gráfica: os dados de clientes e pedidos são seus.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ OPERAÇÃO ============ -->
+    <section class="section" id="operacao" data-spy="operacao" aria-labelledby="operacao-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="operacao-titulo">Do pedido à porta do cliente.</h2>
+          <p class="section-lead reveal delay-1">Sim, a operação fica estruturada assim. Cada pedido pago vira uma ordem de produção com todas as especificações, anda por etapas que a equipe atualiza no painel e sai com etiqueta e rastreio. O cliente é avisado por e-mail a cada mudança.</p>
+        </div>
+
+        <ol class="loop">
+          <li class="loop-step reveal"><span>01</span><h3>Cliente compra</h3><p>Monta o produto, envia a arte, escolhe o frete e paga pela loja.</p></li>
+          <li class="loop-step reveal delay-1"><span>02</span><h3>Gráfica confere</h3><p>A equipe confere a arte. Se houver problema, o cliente é avisado antes de imprimir.</p></li>
+          <li class="loop-step reveal delay-2"><span>03</span><h3>Produção imprime</h3><p>A ordem de produção sai com papel, acabamento, quantidade e o arquivo da arte.</p></li>
+          <li class="loop-step reveal delay-3"><span>04</span><h3>Despacho</h3><p>Etiqueta gerada no painel, nota pelo Bling e rastreio enviado ao cliente.</p></li>
+        </ol>
+
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Como cada pedido anda</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Etapas próprias da gráfica: aguardando arte, arte aprovada, em produção, pronto para envio, despachado e entregue</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ordem de produção em PDF, pronta para imprimir e levar ao setor</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pedidos filtrados por etapa, para cada setor ver só a sua fila</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>E-mail automático ao cliente a cada etapa, com o rastreio no despacho</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Prazo de produção de cada produto somado ao prazo do frete no checkout</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Fica para a próxima fase</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Venda no Mercado Livre, Shopee e Amazon, ligada pelo Bling</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Área do revendedor, com preço próprio e envio direto ao cliente final</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Preço por medida livre (m²) para banners e lonas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Editor de arte online, direto no site</li>
+            </ul>
+            <p class="fit-note"><strong>Preparada para crescer:</strong> a loja nasce separando consumidor e empresa, e o Bling já fica no centro da operação. Marketplaces e revendedores entram depois como módulos, sem refazer o que já existe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Valor fechado, pago conforme as entregas.</h2>
+          <p class="section-lead reveal delay-1">Um único valor para tudo o que está nesta proposta: a loja, o configurador de produtos, pagamento, frete, Bling, etapas de produção, domínio, SEO básico e treinamento. Cada parte é paga quando a etapa correspondente é aprovada ou entregue.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Investimento total</span>
+            <strong class="num">R$ 4.500</strong>
+            <small>Quatro mil e quinhentos reais, em 4 pagamentos ligados às etapas do projeto.</small>
+          </div>
+          <div class="milestones reveal" role="list" aria-label="Divisão do pagamento">
+            <div class="ms" role="listitem" style="--i:0"><b>1º · 25%</b><strong class="num">R$ 1.125</strong><span>Na aprovação da proposta</span></div>
+            <div class="ms" role="listitem" style="--i:1"><b>2º · 25%</b><strong class="num">R$ 1.125</strong><span>Na aprovação do layout</span></div>
+            <div class="ms" role="listitem" style="--i:2"><b>3º · 30%</b><strong class="num">R$ 1.350</strong><span>Na loja em testes</span></div>
+            <div class="ms" role="listitem" style="--i:3"><b>4º · 20%</b><strong class="num">R$ 900</strong><span>Na publicação</span></div>
+          </div>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Condições</h3>
+            <p>O que está combinado dentro do valor fechado.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Ajustes no layout</span><strong>Até 2 rodadas</strong></div>
+              <div class="pay-row"><span>Cadastro de produtos</span><strong>Até 40 produtos-base, com variações</strong></div>
+              <div class="pay-row"><span>Treinamento</span><strong>2 encontros online, gravados</strong></div>
+              <div class="pay-row"><span>Suporte após a publicação</span><strong>30 dias de dúvidas e correções</strong></div>
+              <div class="pay-row"><span>Novas funções ou integrações</span><strong>Orçamento complementar</strong></div>
+              <div class="pay-row"><span>Manutenção mensal</span><strong>Plano opcional, à parte</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Custos que ficam com a gráfica</h3>
+            <p>Pagos direto aos fornecedores, fora do valor desta proposta.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Hospedagem para WordPress</span><strong>Mensal ou anual</strong></div>
+              <div class="pay-row"><span>Domínio (.com.br)</span><strong>Anual</strong></div>
+              <div class="pay-row"><span>Bling</span><strong>Mensalidade do plano</strong></div>
+              <div class="pay-row"><span>Mercado Pago</span><strong>Taxa por venda aprovada</strong></div>
+              <div class="pay-row"><span>Frete (Melhor Envio)</span><strong>Por envio, pago pelo comprador</strong></div>
+              <div class="pay-row"><span>Plugins pagos, se necessários</span><strong>Licença anual, aprovada antes</strong></div>
+            </div>
+            <p class="note">As contas ficam em nome da gráfica. Se já existir domínio ou hospedagem, verifico se atendem à loja antes de começar. A emissão de nota depende do certificado digital e da configuração fiscal feita com o contador.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CRONOGRAMA ============ -->
+    <section class="section" id="cronograma" data-spy="cronograma" aria-labelledby="cronograma-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="cronograma-titulo">Da aprovação ao ar.</h2>
+          <p class="section-lead reveal delay-1">Quatro etapas, cerca de seis semanas. Primeiro organizamos o catálogo e o caminho do pedido até a produção; depois vem o layout; só então a loja é montada. Assim, ninguém descobre no fim que algo não era o esperado.</p>
+          <div class="process-total reveal delay-2">
+            <strong>18 dez</strong>
+            <span>Loja no ar no seu domínio, a tempo das vendas de fim de ano, começando em 9 de novembro.</span>
+          </div>
+          <div class="deadline reveal delay-3">
+            <h3>Para cumprir este prazo</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proposta aprovada até 6 de novembro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Respostas e aprovações em até 2 dias úteis</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lista de produtos, preços, prazos e fotos entregue até 20 de novembro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Contas do Bling, Mercado Pago e Melhor Envio ativas até 27 de novembro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Domínio e hospedagem com acesso liberado até 4 de dezembro</li>
+            </ul>
+            <p class="fit-note">Se o início passar de 9 de novembro, as datas andam na mesma proporção.</p>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">9 a 13 de novembro</span>
+              <h3>Imersão</h3>
+              <p>Reunião para mapear o catálogo, as variações e as regras de preço de cada produto, os prazos de produção, as regras de frete e como o pedido chega hoje à produção.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> mapa do catálogo, fluxo do pedido e escopo fechado.</p>
+              <p class="step-pay"><b>25% · R$ 1.125</b><span>na aprovação da proposta</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">16 a 24 de novembro</span>
+              <h3>Layout da loja</h3>
+              <p>O visual da loja no celular e no computador: home, categoria, página de produto com o configurador, carrinho, checkout e área do cliente. Até duas rodadas de ajustes.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> layout aprovado por você.</p>
+              <p class="step-pay"><b>25% · R$ 1.125</b><span>na aprovação do layout</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">25 de novembro a 11 de dezembro</span>
+              <h3>Loja montada</h3>
+              <p>Instalação do WooCommerce, cadastro dos produtos, configurador de opções, envio de arte, Mercado Pago, Melhor Envio, integração com o Bling e as etapas de produção. Compras de teste de ponta a ponta, do pagamento à etiqueta.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> loja completa em ambiente de testes.</p>
+              <p class="step-pay"><b>30% · R$ 1.350</b><span>na liberação para testes</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">14 a 18 de dezembro</span>
+              <h3>Publicação e treinamento</h3>
+              <p>Domínio, certificado de segurança, SEO básico (títulos, descrições, sitemap, Search Console e Analytics), testes finais e publicação. Dois encontros de treinamento, gravados, para você e a equipe.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> loja no ar no seu domínio.</p>
+              <p class="step-pay"><b>20% · R$ 900</b><span>na publicação</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">30 dias após a publicação</span>
+              <h3>Suporte e correções</h3>
+              <p>Dúvidas do dia a dia e correção de qualquer defeito no que foi contratado, sem custo. Depois desse período, a manutenção pode seguir em um plano mensal.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ QUEM FAZ O QUÊ ============ -->
+    <section class="section section-tight" id="responsabilidades" aria-labelledby="responsabilidades-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="responsabilidades-titulo">Quem cuida do quê.</h2>
+          <p class="section-lead reveal delay-1">O projeto anda no ritmo combinado quando as duas partes entregam a sua parte no prazo.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <p class="care-who">VS Experience</p>
+            <h3>Projeto e implantação</h3>
+            <p>Do mapa do catálogo à loja no ar.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Imersão e mapa do catálogo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Layout da loja</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instalação e configuração do WooCommerce</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cadastro de até 40 produtos-base</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mercado Pago, Melhor Envio e Bling</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Etapas de produção e e-mails automáticos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Domínio, hospedagem e certificado</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO básico, Search Console e Analytics</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Treinamento gravado</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>30 dias de suporte e correções</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <p class="care-who">Erica · Gráfica</p>
+            <h3>Contas, catálogo e regras</h3>
+            <p>O que só a gráfica pode fornecer ou decidir.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Domínio e hospedagem contratados</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Contas no Bling, Mercado Pago e Melhor Envio</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Certificado digital e configuração fiscal com o contador</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo e identidade visual</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Produtos, preços, prazos de produção e fotos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Peso e medidas das embalagens, para o frete</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Políticas de troca, entrega e privacidade</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Testes e aprovações nos prazos</li>
+            </ul>
+          </div>
+        </div>
+        <p class="base-note reveal">Todos os acessos de administrador são entregues após o pagamento integral, respeitando as licenças de plugins e serviços de terceiros.</p>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Fora desta versão</h3>
+          <ul class="factor-list reveal">
+            <li>Integração com marketplaces</li>
+            <li>Área do revendedor</li>
+            <li>Preço por m²</li>
+            <li>Editor de arte online</li>
+            <li>App nas lojas</li>
+            <li>Sistema de produção (PCP)</li>
+            <li>Mais de 40 produtos</li>
+            <li>Fotos de produtos</li>
+            <li>Criação de marca</li>
+            <li>Tráfego pago</li>
+            <li>Gestão de redes sociais</li>
+            <li>Avisos por WhatsApp</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Por que WooCommerce e não Nuvemshop ou Shopify? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Produtos gráficos têm muitas combinações (papel, gramatura, acabamento, quantidade) e precisam receber o arquivo da arte. No WooCommerce isso se resolve sem improviso, sem mensalidade de plataforma e sem taxa sobre as vendas, e a loja é da gráfica: dá para levá-la para outra hospedagem quando quiser. As plataformas prontas funcionam bem para catálogos simples, mas limitam justamente o que uma gráfica mais precisa.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Como o cliente envia a arte? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Na própria página do produto, antes de pagar, em PDF, JPG ou PNG. O arquivo fica anexado ao pedido e sai junto com a ordem de produção. Se a arte vier com problema, a equipe avisa o cliente e só manda para a produção depois da correção. Arquivos muito pesados podem ser enviados por link, em um campo do pedido.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E o frete de banners e peças grandes? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Cada produto é cadastrado com o peso e as medidas da embalagem, e o Melhor Envio cota Correios e transportadoras com esses dados. O que não cabe nos Correios aparece só com as transportadoras. A retirada na gráfica também fica disponível no checkout.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Dá para vender no Mercado Livre, Shopee e Amazon depois? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. Com o Bling no centro, os marketplaces são conectados a ele e os pedidos de todos os canais chegam no mesmo lugar, seguindo o mesmo fluxo até a produção. A conexão e a configuração dos anúncios são orçadas quando a gráfica decidir abrir esses canais.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E a rede de revendedores? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Entra na próxima fase, como módulo. O WooCommerce permite cadastro de revendedor com aprovação, tabela de preço própria, pedido mínimo e envio direto ao cliente final em nome do revendedor. Como a loja já nasce separando consumidor e empresa, o módulo entra sem refazer nada.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Quantos produtos estão incluídos? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Até 40 produtos-base, cada um com as variações combinadas na imersão. Por exemplo: o cartão de visita é um produto, com várias opções de papel, acabamento e quantidade. Depois do treinamento, a própria equipe consegue cadastrar novos produtos; um cadastro maior pode ser orçado à parte.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Como funcionam o suporte e a manutenção? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Nos 30 dias seguintes à publicação, tiro dúvidas e corrijo qualquer defeito no que foi contratado, sem custo. Depois, a gráfica pode seguir com um plano mensal: atualizações do WordPress e dos plugins, backups, segurança e pequenos ajustes. Apresento o plano antes do fim desse período.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Onde ficam os dados e de quem é a loja? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Tudo fica na hospedagem e nas contas da gráfica. Depois do pagamento integral, você recebe todos os acessos de administrador, e a loja, os clientes e o histórico de pedidos são da gráfica.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos abrir a gráfica <span>para o Brasil inteiro?</span></h2>
+            <p>Com a aprovação, marcamos a reunião de imersão para mapear o catálogo, as regras de preço e o caminho de cada pedido até a produção. Ela vira a base para o layout da loja.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Erica</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>E-commerce da gráfica</strong></div>
+            <div class="meta-row"><span>Plataforma</span><strong>WooCommerce + Bling</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 4.500 em 4 etapas</strong></div>
+            <div class="meta-row"><span>No ar</span><strong>Até 18 de dezembro de 2026</strong></div>
+            <div class="meta-row"><span>Suporte</span><strong>30 dias inclusos</strong></div>
+            <div class="meta-row"><span>Validade</span><strong>18 de novembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 3 de novembro de 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>
