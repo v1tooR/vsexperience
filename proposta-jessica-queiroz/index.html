@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para Jessica Queiroz: site institucional com home, podcast, jornal e contato, responsivo e com painel para publicar notícias e episódios.">
+  <title>Proposta · Site institucional Jessica Queiroz | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · Site institucional Jessica Queiroz">
+  <meta property="og:description" content="Podcast, jornal e contato reunidos em um só endereço, com painel para publicar novos conteúdos.">
+  <link rel="icon" href="../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta Jessica Queiroz · site institucional
+       Só o que é desta página: mockup do site (--c-*), as quatro
+       páginas, itens inclusos e formas de pagamento.
+       ============================================================ */
+
+    /* ---------- Mockup do site ---------- */
+    .screen.jq {
+      --c-accent: hsl(262 38% 32%);
+      --c-on-accent: #fff;
+      --c-tint: hsl(262 40% 96%);
+      --c-warm: hsl(24 78% 52%);
+      --c-wa: hsl(142 62% 30%);
+      background: #fff;
+    }
+    .jq .m-logo { color: var(--c-accent); }
+    .jq .m-logo i { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, var(--c-warm), var(--c-accent) 70%); }
+    .jq .m-links .is-on { color: var(--c-accent); }
+    .jq-sec { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 7px; font-size: 8.5px; font-weight: 700; letter-spacing: -.01em; }
+    .jq-sec span { color: var(--c-accent); font-size: 6.5px; font-weight: 700; }
+
+    .jq-hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; align-items: center; padding: 22px 22px 18px; }
+    .jq-hero .m-title { font-size: 21px; }
+    .jq-actions { display: flex; gap: 6px; margin-top: 12px; }
+    .jq-art { position: relative; height: 128px; border-radius: 10px; background: linear-gradient(150deg, hsl(262 38% 32%), hsl(300 30% 40%) 55%, hsl(24 78% 58%)); overflow: hidden; }
+    .jq-art::before { content: ''; position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: rgba(255, 255, 255, .16); box-shadow: 0 0 0 14px rgba(255, 255, 255, .07), 0 0 0 30px rgba(255, 255, 255, .04); }
+    .jq-art span { position: absolute; left: 10px; bottom: 9px; padding: 3px 7px; border-radius: 99px; background: rgba(255, 255, 255, .92); color: var(--m-ink); font-size: 6.3px; font-weight: 700; }
+    .jq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 12px 22px 20px; border-top: 1px solid var(--m-line); background: var(--m-canvas); }
+    .jq-item { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: center; padding: 6px; margin-bottom: 5px; border: 1px solid var(--m-line); border-radius: 7px; background: #fff; }
+    .jq-thumb { width: 34px; height: 34px; border-radius: 5px; background: linear-gradient(140deg, hsl(262 34% 40%), hsl(300 30% 62%)); }
+    .jq-thumb.is-b { background: linear-gradient(140deg, hsl(24 70% 56%), hsl(40 80% 76%)); }
+    .jq-thumb.is-c { background: linear-gradient(140deg, hsl(200 34% 42%), hsl(190 40% 74%)); }
+    .jq-thumb.is-d { background: linear-gradient(140deg, hsl(150 24% 40%), hsl(96 26% 72%)); }
+    .jq-item strong { display: block; font-size: 7.5px; line-height: 1.25; }
+    .jq-item span { display: block; color: var(--m-muted); font-size: 6.3px; }
+
+    .jq-page { padding: 18px 22px 20px; }
+    .jq-page .m-title { margin: 4px 0 4px; font-size: 18px; }
+    .jq-page > .m-text { margin-bottom: 12px; }
+    .jq-player { display: grid; grid-template-columns: 74px 1fr; gap: 12px; align-items: center; padding: 10px; margin-bottom: 12px; border-radius: 9px; background: var(--c-accent); color: #fff; }
+    .jq-player .jq-art { height: 74px; border-radius: 6px; }
+    .jq-player .jq-art::before { width: 26px; height: 26px; margin: -13px 0 0 -13px; box-shadow: 0 0 0 8px rgba(255, 255, 255, .07); }
+    .jq-player small { display: block; color: rgba(255, 255, 255, .72); font-size: 6.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .jq-player strong { display: block; margin: 2px 0 7px; font-size: 10px; letter-spacing: -.02em; }
+    .jq-bar { position: relative; height: 3px; margin-bottom: 4px; border-radius: 3px; background: rgba(255, 255, 255, .25); }
+    .jq-bar::before { content: ''; position: absolute; inset: 0 62% 0 0; border-radius: 3px; background: #fff; }
+    .jq-time { display: flex; justify-content: space-between; color: rgba(255, 255, 255, .72); font-size: 6px; }
+    .jq-plat { display: flex; gap: 4px; margin-top: 8px; }
+    .jq-plat span { padding: 3px 7px; border-radius: 99px; background: rgba(255, 255, 255, .14); font-size: 6.2px; font-weight: 700; }
+    .jq-ep { display: grid; grid-template-columns: 42px 1fr auto; gap: 10px; align-items: center; padding: 7px 0; border-top: 1px solid var(--m-line); }
+    .jq-ep .jq-thumb { width: 42px; height: 42px; }
+    .jq-ep strong { display: block; font-size: 8px; }
+    .jq-ep span { display: block; color: var(--m-muted); font-size: 6.5px; }
+    .jq-ep .m-btn { padding: 5px 8px; font-size: 6.5px; }
+
+    .jq-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 12px; }
+    .jq-chips span { padding: 4px 9px; border-radius: 99px; border: 1px solid var(--m-line); color: var(--m-soft); font-size: 6.5px; font-weight: 700; }
+    .jq-chips .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .jq-news { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 10px; }
+    .jq-card { display: flex; flex-direction: column; border: 1px solid var(--m-line); border-radius: 8px; overflow: hidden; }
+    .jq-card .jq-thumb { width: 100%; height: 62px; border-radius: 0; }
+    .jq-card:first-child .jq-thumb { height: 86px; }
+    .jq-card div { display: flex; flex-direction: column; flex: 1; padding: 8px 9px 10px; }
+    .jq-meta { color: var(--c-accent); font-size: 6px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .jq-meta em { color: var(--m-muted); font-style: normal; font-weight: 600; letter-spacing: 0; text-transform: none; }
+    .jq-card strong { display: block; margin: 3px 0 4px; font-size: 8px; line-height: 1.25; }
+    .jq-card p { margin: 0 0 8px; color: var(--m-muted); font-size: 6.5px; line-height: 1.45; }
+    .jq-card .m-btn { align-self: flex-start; margin-top: auto; padding: 5px 8px; font-size: 6.5px; }
+
+    .jq-contact { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; }
+    .jq-form { padding: 12px; border: 1px solid var(--m-line); border-radius: 8px; }
+    .jq-field { display: block; margin-bottom: 7px; }
+    .jq-field small { display: block; margin-bottom: 3px; color: var(--m-muted); font-size: 6.5px; font-weight: 700; }
+    .jq-field span { display: block; padding: 6px 8px; border: 1px solid var(--m-line); border-radius: 5px; font-size: 7.5px; }
+    .jq-field .is-multi { min-height: 40px; color: var(--m-soft); }
+    .jq-form .m-btn { width: 100%; padding: 8px; }
+    .jq-info { display: grid; gap: 8px; align-content: start; }
+    .jq-info dl { margin: 0; border-top: 1px solid var(--m-line); }
+    .jq-info dl div { padding: 6px 0; border-bottom: 1px solid var(--m-line); }
+    .jq-info dt { color: var(--m-muted); font-size: 6.3px; font-weight: 700; }
+    .jq-info dd { margin: 1px 0 0; font-size: 7.5px; }
+    .jq .m-btn.is-wa { background: var(--c-wa); }
+    .jq-social { display: flex; gap: 5px; }
+    .jq-social i { width: 18px; height: 18px; border-radius: 50%; background: var(--c-tint); box-shadow: inset 0 0 0 1px var(--m-line); }
+
+    .jq-caption { position: absolute; left: 0; bottom: 8px; margin: 0; color: var(--text-muted); font-size: 12px; }
+    .jq-float { left: -18px; bottom: 96px; }
+    .jq-stage .stage-badge { width: 178px; }
+    .jq-float .float-icon { background: hsl(262 40% 92%); color: hsl(262 38% 32%); }
+
+    /* ---------- As quatro páginas (faixa Grafite) ---------- */
+    .pages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--dark-line-strong); }
+    .page-card { display: flex; flex-direction: column; padding: 32px 26px 36px 0; }
+    .page-card + .page-card { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .page-num { color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .page-card h3 { margin: 12px 0 4px; font-family: var(--font-display); font-size: clamp(28px, 2.6vw, 36px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1; letter-spacing: -.02em; }
+    .page-card .page-sub { margin: 0 0 14px; color: var(--text-muted); font-size: 14px; font-weight: 600; }
+    .page-card > p:not(.page-sub):not(.page-goal) { margin-bottom: 20px; color: var(--text-soft); font-size: 15px; }
+    .page-card .plan-features { margin-bottom: 22px; }
+    .page-goal { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--dark-line-strong); color: var(--text-soft); font-size: 14px; }
+    .page-goal strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    .privacy-line { display: flex; gap: 12px; align-items: flex-start; margin-top: clamp(40px, 5vw, 56px); padding-top: 22px; border-top: 1px solid var(--dark-line); color: var(--text-soft); font-size: 15px; max-width: 80ch; }
+    .privacy-line svg { width: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--cadmio); }
+
+    /* ---------- O que está incluso ---------- */
+    .incl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--grafite); }
+    .incl li { padding: clamp(22px, 2.6vw, 30px) clamp(18px, 2.4vw, 32px) clamp(24px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--dark-line); }
+    .incl li:not(:nth-child(3n+1)) { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--dark-line); }
+    .incl .outcome-icon { width: 32px; height: 32px; margin-bottom: 14px; place-items: start; }
+    .incl .outcome-icon svg { width: 24px; }
+    .incl h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 700; font-variation-settings: "wdth" 108; line-height: 1.1; letter-spacing: -.015em; }
+    .incl p { margin: 0; color: var(--text-soft); font-size: 15px; }
+
+    /* ---------- Formas de pagamento (painel Carmim) ---------- */
+    .pay-opts { display: grid; border-top: 1px solid var(--dark-line-strong); }
+    .pay-opt { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; align-items: baseline; padding: 20px 0 22px; border-bottom: 1px solid var(--dark-line); }
+    .pay-opt b { grid-column: 1 / -1; color: var(--text-soft); font-size: 13px; font-weight: 700; }
+    .pay-opt h3 { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 740; font-variation-settings: "wdth" 112; line-height: 1.05; letter-spacing: -.02em; }
+    .pay-opt strong { font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 760; font-variation-settings: "wdth" 112; white-space: nowrap; }
+    .pay-opt p { grid-column: 1 / -1; margin: 0; color: var(--text-soft); font-size: 14px; }
+    .pricing-notes .note { margin: 18px 0 0; color: var(--text-muted); font-size: 14px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note strong { color: var(--text); }
+    .fit-col.is-alt .fit-list { margin-bottom: 26px; }
+
+    /* ---------- Etapas ---------- */
+    .process-total strong { font-size: clamp(56px, 6.4vw, 88px); }
+    .deadline { margin-top: 36px; }
+    .deadline h3 { margin-bottom: 14px; font-family: var(--font-display); font-size: 20px; font-weight: 720; font-variation-settings: "wdth" 110; }
+    .deadline .fit-list { margin-bottom: 16px; }
+    .deadline .fit-list li { padding: 11px 0; font-size: 14px; }
+    .deadline .fit-list svg { color: var(--carmim); }
+    .deadline .fit-note { padding-top: 0; border-top: 0; }
+    .process-step.is-external .step-dot { border-style: dashed; }
+
+    /* ---------- Por que a VS ---------- */
+    .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+    .why p { margin: 0 0 16px; color: var(--text-soft); font-size: 17px; }
+    .why-motto { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1.04; letter-spacing: -.02em; }
+    .why-motto span { display: block; color: var(--rose-soft); }
+
+    /* ---------- Quem cuida do quê / perguntas ---------- */
+    .care-block .care-who { margin: -20px 0 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .base-note { margin-top: 28px; color: var(--text-muted); font-size: 14px; max-width: 70ch; }
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1100px) {
+      .pages { grid-template-columns: 1fr 1fr; }
+      .page-card:nth-child(3) { padding-left: 0; border-left: 0; }
+      .page-card:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 1040px) {
+      .faq-aside { position: static; }
+      .incl { grid-template-columns: 1fr 1fr; }
+      .incl li:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+      .incl li:nth-child(even) { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 860px) {
+      .why { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .pages { grid-template-columns: 1fr; }
+      .page-card, .page-card + .page-card { padding-left: 0; border-left: 0; }
+      .page-card + .page-card { border-top: 1px solid var(--dark-line); }
+      .incl { grid-template-columns: 1fr; }
+      .incl li:nth-child(even) { padding-left: 0; border-left: 0; }
+    }
+    @media (max-width: 540px) {
+      .stage.jq-stage { min-height: 600px; margin-bottom: 30px; }
+      .jq-stage .stage-badge { width: 136px; }
+      .jq-caption { bottom: -30px; }
+      .jq .m-links span:not(.is-on) { display: none; }
+      .jq-hero { grid-template-columns: 1fr; padding: 16px 16px 12px; }
+      .jq-art { height: 70px; }
+      .jq-cols { grid-template-columns: 1fr; padding: 10px 16px 14px; gap: 6px; }
+      .jq-cols > div + div { display: none; }
+      .jq-page { padding: 14px 16px; }
+      .jq-news { grid-template-columns: 1fr 1fr; }
+      .jq-news .jq-card:last-child { display: none; }
+      .jq-contact { grid-template-columns: 1fr; }
+      .jq-info { display: none; }
+      .pay-opt { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Li a proposta do site institucional e quero avançar.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Jessica Queiroz</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#paginas" data-spy-link="paginas">Páginas</a>
+        <a href="#incluso" data-spy-link="incluso">O que inclui</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#etapas" data-spy-link="etapas">Prazo</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Site institucional</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para Jessica Queiroz</span> <span class="display">Podcast, jornal e contato. <em>Tudo em um só endereço.</em></span></h1>
+          <p class="hero-lead">Mais do que estar na internet, um site precisa comunicar com clareza, transmitir credibilidade e facilitar o acesso às informações. A proposta é um site institucional moderno e responsivo, que reúne a apresentação do projeto, os episódios do podcast, as publicações do jornal e os canais de contato, no computador e no celular.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#paginas">As quatro páginas</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 13 de novembro de 2026 · válida até 28 de novembro de 2026.</span></div>
+        </div>
+
+        <div class="stage jq-stage" data-nosnippet role="group" aria-label="Exemplo das páginas do site">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">seuprojeto.com.br</span><span class="browser-live">No ar</span></div>
+              <div class="screen jq">
+                <div class="m-nav" aria-hidden="true">
+                  <span class="m-logo"><i></i>Seu projeto</span>
+                  <span class="m-links"><span class="is-on">Início</span><span>Podcast</span><span>Jornal</span><span>Contato</span></span>
+                </div>
+
+                <div class="mock-page" id="jq-home" role="tabpanel" aria-labelledby="jq-tab-home">
+                  <div class="jq-hero">
+                    <div>
+                      <span class="m-label">Podcast e jornal</span>
+                      <p class="m-title">Histórias que merecem ser ouvidas e lidas.</p>
+                      <p class="m-text">Conversas, notícias e informação em um só lugar, para acompanhar de onde estiver.</p>
+                      <div class="jq-actions"><span class="m-btn">Ouvir episódios</span><span class="m-btn is-ghost">Ler o jornal</span></div>
+                    </div>
+                    <div class="jq-art"><span>Novo episódio</span></div>
+                  </div>
+                  <div class="jq-cols">
+                    <div>
+                      <p class="jq-sec">Episódios recentes <span>Ver todos</span></p>
+                      <div class="jq-item"><span class="jq-thumb"></span><div><strong>Ep. 12 · Vozes da cidade</strong><span>48 min · YouTube e Spotify</span></div></div>
+                      <div class="jq-item"><span class="jq-thumb is-b"></span><div><strong>Ep. 11 · Quem faz a cultura</strong><span>52 min · YouTube e Spotify</span></div></div>
+                    </div>
+                    <div>
+                      <p class="jq-sec">Últimas do jornal <span>Ver todas</span></p>
+                      <div class="jq-item"><span class="jq-thumb is-c"></span><div><strong>Feira de artesanato volta à praça</strong><span>Cidade · 12 nov</span></div></div>
+                      <div class="jq-item"><span class="jq-thumb is-d"></span><div><strong>Projeto leva leitura às escolas</strong><span>Educação · 10 nov</span></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page jq-page" id="jq-podcast" role="tabpanel" aria-labelledby="jq-tab-podcast" hidden>
+                  <span class="m-label">Podcast</span>
+                  <p class="m-title">Todos os episódios</p>
+                  <p class="m-text">Ouça aqui mesmo ou na sua plataforma preferida.</p>
+                  <div class="jq-player">
+                    <div class="jq-art"></div>
+                    <div>
+                      <small>Episódio 12</small>
+                      <strong>Vozes da cidade</strong>
+                      <div class="jq-bar"></div>
+                      <div class="jq-time"><span>18:04</span><span>48:12</span></div>
+                      <div class="jq-plat"><span>YouTube</span><span>Spotify</span></div>
+                    </div>
+                  </div>
+                  <div class="jq-ep"><span class="jq-thumb is-b"></span><div><strong>Ep. 11 · Quem faz a cultura</strong><span>Uma conversa sobre quem movimenta a cena local.</span></div><span class="m-btn">Ouvir</span></div>
+                  <div class="jq-ep"><span class="jq-thumb is-c"></span><div><strong>Ep. 10 · Bastidores do jornal</strong><span>Como uma notícia nasce, da pauta à publicação.</span></div><span class="m-btn is-ghost">Ouvir</span></div>
+                </div>
+
+                <div class="mock-page jq-page" id="jq-jornal" role="tabpanel" aria-labelledby="jq-tab-jornal" hidden>
+                  <span class="m-label">Jornal</span>
+                  <p class="m-title">Notícias e publicações</p>
+                  <div class="jq-chips"><span class="is-on">Todas</span><span>Cidade</span><span>Cultura</span><span>Educação</span><span>Entrevistas</span></div>
+                  <div class="jq-news">
+                    <div class="jq-card"><span class="jq-thumb is-c"></span><div><span class="jq-meta">Cidade <em>· 12 nov 2026</em></span><strong>Feira de artesanato volta à praça neste fim de semana</strong><p>Mais de quarenta expositores confirmados, com oficinas para crianças.</p><span class="m-btn">Ler matéria</span></div></div>
+                    <div class="jq-card"><span class="jq-thumb is-d"></span><div><span class="jq-meta">Educação <em>· 10 nov</em></span><strong>Projeto leva leitura às escolas</strong><p>Rodas de leitura chegam a seis escolas.</p></div></div>
+                    <div class="jq-card"><span class="jq-thumb is-b"></span><div><span class="jq-meta">Cultura <em>· 8 nov</em></span><strong>Festival anuncia programação</strong><p>Shows gratuitos ao longo de três dias.</p></div></div>
+                  </div>
+                </div>
+
+                <div class="mock-page jq-page" id="jq-contato" role="tabpanel" aria-labelledby="jq-tab-contato" hidden>
+                  <span class="m-label">Contato</span>
+                  <p class="m-title">Fale com a gente</p>
+                  <p class="m-text">Sugestões de pauta, convites e parcerias.</p>
+                  <div class="jq-contact">
+                    <div class="jq-form">
+                      <div class="jq-field"><small>Nome</small><span>Marina Souza</span></div>
+                      <div class="jq-field"><small>E-mail</small><span>marina@email.com</span></div>
+                      <div class="jq-field"><small>Mensagem</small><span class="is-multi">Tenho uma sugestão de pauta para o próximo episódio.</span></div>
+                      <span class="m-btn">Enviar mensagem</span>
+                    </div>
+                    <div class="jq-info">
+                      <dl>
+                        <div><dt>E-mail</dt><dd>contato@seuprojeto.com.br</dd></div>
+                        <div><dt>Atendimento</dt><dd>Segunda a sexta</dd></div>
+                      </dl>
+                      <span class="m-btn is-wa">Chamar no WhatsApp</span>
+                      <div class="jq-social" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-card jq-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2z"/><path d="M18 8h2v10a2 2 0 0 1-2 2M8 8h6M8 12h6M8 16h4"/></svg></span>
+              <div><strong>Matéria publicada</strong><span>Enviada pelo painel</span><small>Jornal · Cultura · agora</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 1.200</strong><span>valor fechado, no Pix ou em até 10x</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Páginas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="jq-tab-home" aria-controls="jq-home" aria-selected="true">Home</button>
+            <button class="mockup-tab" type="button" role="tab" id="jq-tab-podcast" aria-controls="jq-podcast" aria-selected="false">Podcast</button>
+            <button class="mockup-tab" type="button" role="tab" id="jq-tab-jornal" aria-controls="jq-jornal" aria-selected="false">Jornal</button>
+            <button class="mockup-tab" type="button" role="tab" id="jq-tab-contato" aria-controls="jq-contato" aria-selected="false">Contato</button>
+          </div>
+          <p class="jq-caption">Telas ilustrativas · conteúdos fictícios</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Investimento</span><strong>R$ 1.200</strong></div>
+        <div class="spec-item"><span>Estrutura</span><strong>4 páginas + painel</strong></div>
+        <div class="spec-item"><span>Prazo estimado</span><strong>15 a 30 dias úteis</strong></div>
+        <div class="spec-item"><span>Pagamento</span><strong>Pix ou até 10x</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ PÁGINAS ============ -->
+    <section class="section anatomy" id="paginas" data-spy="paginas" aria-labelledby="paginas-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="paginas-titulo">Quatro páginas, cada uma com uma função.</h2>
+          <p class="reveal delay-1">Uma navegação intuitiva e uma identidade visual consistente, ligando a apresentação do projeto ao podcast, ao jornal e ao contato.</p>
+        </div>
+        <div class="pages">
+          <article class="page-card reveal">
+            <span class="page-num">Página 01</span>
+            <h3>Home</h3>
+            <p class="page-sub">Página inicial</p>
+            <p>A porta de entrada: apresenta a identidade do projeto e leva o visitante ao que é mais relevante.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Banner principal com apresentação e mensagem de destaque</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Seção institucional com o projeto e seu propósito</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Destaque para os episódios mais recentes do podcast</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Últimas notícias publicadas no jornal</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Botões que direcionam para as outras páginas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Rodapé com contato e redes sociais</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Causar uma primeira impressão profissional e facilitar o acesso às principais informações.</p>
+          </article>
+          <article class="page-card reveal delay-1">
+            <span class="page-num">Página 02</span>
+            <h3>Podcast</h3>
+            <p class="page-sub">Conteúdo em áudio e vídeo</p>
+            <p>Os episódios organizados em um só lugar, fáceis de ouvir e de compartilhar.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Apresentação do podcast e da sua proposta</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lista de episódios com capa, título e descrição</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Players do YouTube ou do Spotify na própria página</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Links para ouvir nas plataformas digitais</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Estrutura pronta para novos episódios</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Centralizar os episódios e ampliar a visibilidade do podcast.</p>
+          </article>
+          <article class="page-card reveal delay-2">
+            <span class="page-num">Página 03</span>
+            <h3>Jornal</h3>
+            <p class="page-sub">Notícias e publicações</p>
+            <p>Notícias e artigos com organização editorial e uma leitura agradável.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lista de notícias com imagem, título e resumo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Conteúdos organizados por categoria</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Página individual para ler cada matéria completa</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Data de publicação e identificação dos conteúdos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Compartilhamento por link e redes sociais</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel para cadastrar, editar e publicar matérias</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Um canal de informação confiável, pronto para receber publicações de forma contínua.</p>
+          </article>
+          <article class="page-card reveal delay-3">
+            <span class="page-num">Página 04</span>
+            <h3>Contato</h3>
+            <p class="page-sub">Comunicação direta</p>
+            <p>Um caminho simples entre o público e os responsáveis pelo projeto.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Formulário com envio para o seu e-mail</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Informações institucionais de contato</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Botão de atendimento pelo WhatsApp</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Links para as redes sociais</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Layout simples, acessível e intuitivo</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Tornar a comunicação mais rápida, organizada e acessível.</p>
+          </article>
+        </div>
+        <p class="privacy-line reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Notícias e episódios são publicados por um painel com login, sem precisar saber programação. O que entra no painel aparece no site.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ INCLUSO ============ -->
+    <section class="section" id="incluso" data-spy="incluso" aria-labelledby="incluso-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="incluso-titulo">O que vem junto com as páginas.</h2>
+          <p class="reveal delay-1">Além das quatro páginas, o investimento cobre tudo o que faz o site funcionar bem desde o primeiro dia.</p>
+        </div>
+        <ul class="incl">
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M12 22a10 10 0 1 1 10-10c0 2-1.5 3-3 3"/></svg></span>
+            <h3>Design personalizado</h3>
+            <p>Interface moderna, alinhada à identidade visual do projeto.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="14" height="11" rx="1.5"/><rect x="15" y="9" width="7" height="12" rx="1.5"/><path d="M6 19h6"/></svg></span>
+            <h3>Responsividade</h3>
+            <p>Funciona bem no celular, no tablet e no computador.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m4 4 7 17 2.5-7.5L21 11z"/></svg></span>
+            <h3>Experiência de uso</h3>
+            <p>Navegação clara e informações organizadas para quem visita.</p>
+          </li>
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>
+            <h3>Painel administrativo</h3>
+            <p>Notícias e episódios gerenciados sem conhecimento de programação.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+            <h3>SEO básico</h3>
+            <p>Títulos, descrições e estrutura inicial para os buscadores.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+            <h3>Desempenho</h3>
+            <p>Boas práticas para o site carregar rápido e funcionar bem.</p>
+          </li>
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+            <h3>Redes sociais</h3>
+            <p>Conexão com os canais digitais do projeto.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3>Testes e validação</h3>
+            <p>Revisão da navegação e das funcionalidades antes de publicar.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></svg></span>
+            <h3>Orientação inicial</h3>
+            <p>Instruções básicas para atualizar os conteúdos por conta própria.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ESCOPO ============ -->
+    <section class="section" id="escopo" aria-labelledby="escopo-titulo" style="padding-top: 0">
+      <div class="container">
+        <h2 class="sr-only" id="escopo-titulo">O que está e o que não está no escopo</h2>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Você recebe pronto para publicar</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>As quatro páginas, com design e funcionalidades descritos acima</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel para cadastrar, editar e publicar notícias e episódios</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Organização e adaptação dos seus textos, logotipo e imagens às páginas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Site publicado no domínio definido por você</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Uma rodada de revisão consolidada dentro do escopo aprovado</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Fora deste investimento</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Domínio e hospedagem</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Produção contínua de notícias e episódios</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Serviços pagos de terceiros, hospedagem de áudio, licenças e integrações adicionais</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Novas páginas ou funcionalidades não previstas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Suporte contínuo e manutenção após a entrega</li>
+            </ul>
+            <p class="fit-note"><strong>Precisa de algo a mais?</strong> Novas páginas, funcionalidades, suporte e manutenção podem ser orçados à parte, quando fizer sentido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Um valor fechado, três formas de pagar.</h2>
+          <p class="section-lead reveal delay-1">O investimento cobre o planejamento, o design e o desenvolvimento das quatro páginas, com todas as funcionalidades desta proposta. Você escolhe a forma de pagamento que for mais confortável.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Investimento total</span>
+            <strong class="num">R$ 1.200</strong>
+            <small>Mil e duzentos reais pelo projeto completo, sem mensalidade.</small>
+          </div>
+          <div class="pay-opts" role="list" aria-label="Formas de pagamento">
+            <div class="pay-opt" role="listitem">
+              <b>Opção 01</b>
+              <h3>Pix em duas etapas</h3>
+              <strong class="num">2 × R$ 600</strong>
+              <p>50% na aprovação e início do projeto; 50% na conclusão e entrega.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 02</b>
+              <h3>Pix à vista</h3>
+              <strong class="num">R$ 1.200</strong>
+              <p>Pagamento integral na aprovação do projeto.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 03</b>
+              <h3>Cartão de crédito</h3>
+              <strong>Até 10x</strong>
+              <p>Por link de pagamento. As taxas de parcelamento da operadora são informadas antes da confirmação.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Condições</h3>
+            <p>O que está combinado dentro do valor fechado.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Páginas</span><strong>Home, Podcast, Jornal e Contato</strong></div>
+              <div class="pay-row"><span>Painel de conteúdos</span><strong>Notícias e episódios</strong></div>
+              <div class="pay-row"><span>Ajustes</span><strong>1 rodada de revisão consolidada</strong></div>
+              <div class="pay-row"><span>Orientação</span><strong>Instruções para atualizar o site</strong></div>
+              <div class="pay-row"><span>Depois da entrega</span><strong>Suporte e manutenção à parte</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Custos que ficam com você</h3>
+            <p>Pagos direto aos fornecedores, fora do valor desta proposta.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Domínio</span><strong>Registro anual</strong></div>
+              <div class="pay-row"><span>Hospedagem</span><strong>Plano do provedor escolhido</strong></div>
+              <div class="pay-row"><span>Serviços de terceiros</span><strong>Somente se forem necessários</strong></div>
+              <div class="pay-row"><span>Parcelamento no cartão</span><strong>Taxas da operadora</strong></div>
+            </div>
+            <p class="note">Se ainda não tiver domínio e hospedagem, eu indico as opções na etapa de planejamento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ETAPAS ============ -->
+    <section class="section" id="etapas" data-spy="etapas" aria-labelledby="etapas-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="etapas-titulo">Da aprovação ao site no ar.</h2>
+          <p class="section-lead reveal delay-1">Quatro etapas. Primeiro organizamos o conteúdo e o visual; depois o site é construído, testado e publicado.</p>
+          <div class="process-total reveal delay-2">
+            <strong>15–30</strong>
+            <span>dias úteis após a aprovação e o recebimento dos materiais necessários.</span>
+          </div>
+          <div class="deadline reveal delay-3">
+            <h3>Para começar</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proposta aprovada e forma de pagamento escolhida</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Textos, logotipo e imagens do projeto</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Links do podcast no YouTube ou no Spotify e das redes sociais</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Domínio e hospedagem contratados até a publicação</li>
+            </ul>
+            <p class="fit-note">O prazo começa a contar quando os materiais chegam.</p>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">Etapa 01</span>
+              <h3>Planejamento e estrutura</h3>
+              <p>Alinhamento dos objetivos, levantamento dos materiais e definição da organização das páginas.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> estrutura das quatro páginas e lista do que entra em cada uma.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">Etapa 02</span>
+              <h3>Design e experiência</h3>
+              <p>Criação da interface visual, considerando a identidade do projeto, a hierarquia das informações e a navegação.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> visual das páginas para sua aprovação.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">Etapa 03</span>
+              <h3>Desenvolvimento</h3>
+              <p>Construção das páginas, configuração do painel de conteúdos e implementação das funcionalidades previstas.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> site funcionando, com o painel pronto para receber notícias e episódios.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">Etapa 04</span>
+              <h3>Revisão e publicação</h3>
+              <p>Testes, a rodada de revisão consolidada, ajustes finais e publicação do site no domínio definido.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> site no ar e orientação para atualizar os conteúdos.</p>
+            </div>
+          </li>
+          <li class="process-step is-external">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">Depois da entrega</span>
+              <h3>Seus conteúdos no ar</h3>
+              <p>Com o painel, você publica notícias e episódios quando quiser. Suporte contínuo e manutenção podem ser contratados à parte.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ QUEM CUIDA DO QUÊ ============ -->
+    <section class="section section-tight" id="responsabilidades" aria-labelledby="responsabilidades-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="responsabilidades-titulo">Quem cuida do quê.</h2>
+          <p class="section-lead reveal delay-1">O projeto anda no ritmo combinado quando cada parte entrega a sua no prazo.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <p class="care-who">VS Experience</p>
+            <h3>Projeto e construção</h3>
+            <p>Do planejamento ao site publicado.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Planejamento e estrutura das páginas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design personalizado e responsivo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Desenvolvimento das quatro páginas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel de notícias e episódios</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Adaptação dos materiais às páginas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO básico e otimização de desempenho</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Testes, publicação e orientação inicial</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <p class="care-who">Jessica Queiroz</p>
+            <h3>Conteúdo e contas</h3>
+            <p>O que só quem é dono do projeto pode fornecer ou decidir.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Textos institucionais</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo e imagens</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Links do podcast e das redes sociais</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Domínio e hospedagem</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>E-mail e WhatsApp de contato</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Novas notícias e episódios depois da entrega</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Retornos e aprovações nos prazos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POR QUE A VS ============ -->
+    <section class="section anatomy" id="por-que" aria-labelledby="por-que-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="por-que-titulo">Por que a VS Experience.</h2>
+          <p class="reveal delay-1">Design e tecnologia trabalhando juntos para construir experiências digitais que fazem sentido para o público e para o projeto.</p>
+        </div>
+        <div class="why">
+          <div class="reveal">
+            <p>Cada projeto parte de um objetivo claro: transformar informações em uma experiência organizada, intuitiva e profissional.</p>
+            <p>Não se trata apenas de desenvolver páginas, e sim de construir uma presença digital que comunique confiança, valorize os conteúdos e acompanhe o crescimento do projeto.</p>
+          </div>
+          <p class="why-motto reveal delay-1">Clareza para comunicar. <span>Estratégia para construir.</span> Experiência para conectar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Não incluso no valor</h3>
+          <ul class="factor-list reveal">
+            <li>Domínio</li>
+            <li>Hospedagem</li>
+            <li>Hospedagem de áudio</li>
+            <li>Produção de conteúdo</li>
+            <li>Licenças pagas</li>
+            <li>Integrações adicionais</li>
+            <li>Novas páginas</li>
+            <li>Manutenção contínua</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Consigo publicar notícias e episódios sem programar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. O site vem com um painel administrativo para cadastrar, editar e publicar matérias e adicionar novos episódios, sem precisar de conhecimento em programação. Na entrega, você recebe instruções básicas para fazer essas atualizações.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Onde ficam os áudios do podcast? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Os episódios continuam no YouTube ou no Spotify, e o site mostra os players dessas plataformas na própria página, com links para ouvir em cada uma. Hospedagem de áudio paga não está inclusa.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Domínio e hospedagem estão inclusos? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. Eles ficam em seu nome e são pagos direto ao provedor. Se ainda não tiver, indico as opções na etapa de planejamento, e a publicação é feita no domínio que você definir.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Posso pedir ajustes? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. O desenvolvimento inclui uma rodada de revisão consolidada dentro do escopo aprovado: você reúne todos os pontos de uma vez e eu aplico os ajustes. Novas páginas ou funcionalidades fora do escopo são orçadas à parte.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Quando o prazo começa a contar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Depois da aprovação da proposta e do recebimento dos materiais: textos, logotipo e imagens. A partir daí, o prazo estimado é de 15 a 30 dias úteis.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E depois que o site estiver no ar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Você segue publicando pelo painel. Se quiser apoio contínuo, como manutenção, atualizações ou novas funcionalidades, isso pode ser contratado à parte.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos colocar o projeto <span>no ar?</span></h2>
+            <p>Com a aprovação, começamos pelo planejamento: alinhamos os objetivos, reunimos os materiais e definimos a organização das quatro páginas.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Jessica Queiroz</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>Site institucional</strong></div>
+            <div class="meta-row"><span>Páginas</span><strong>Home, Podcast, Jornal e Contato</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 1.200 · Pix ou até 10x</strong></div>
+            <div class="meta-row"><span>Prazo estimado</span><strong>15 a 30 dias úteis</strong></div>
+            <div class="meta-row"><span>Validade</span><strong>28 de novembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 13 de novembro de 2026 · sujeita à aprovação do escopo e das condições comerciais</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>
