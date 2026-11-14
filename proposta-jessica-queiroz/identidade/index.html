@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para Jessica Queiroz: logomarca, identidade visual, Design System essencial e manual de identidade.">
+  <title>Proposta · Identidade visual Jessica Queiroz | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · Identidade visual e Design System">
+  <meta property="og:description" content="Uma marca reconhecível e um sistema de padrões para manter tudo coerente, do digital ao impresso.">
+  <link rel="icon" href="../../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta Jessica Queiroz · identidade visual e Design System
+       Só o que é desta página: mockup do manual da marca (--c-*),
+       entregáveis, arquivos, pagamento e propostas irmãs.
+       ============================================================ */
+
+    /* ---------- Mockup do manual da marca ---------- */
+    .screen.bd {
+      --b-primary: #1f3a5f;
+      --b-accent: #e8654a;
+      --b-sand: #f4efe6;
+      --b-ink: #1b1b1f;
+      --b-gray: #6b7a8f;
+      --c-accent: var(--b-primary);
+      --c-on-accent: #fff;
+      background: #fff;
+    }
+    .bd-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 20px; border-bottom: 1px solid var(--m-line); }
+    .bd-top p { margin: 0; font-size: 9px; font-weight: 700; letter-spacing: -.01em; }
+    .bd-top small { color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .bd-steps { display: flex; gap: 10px; color: var(--m-muted); font-size: 6.5px; font-weight: 700; }
+    .bd-steps .is-on { color: var(--b-primary); }
+    .bd-page { padding: 16px 20px 18px; }
+    .bd-page .m-title { margin: 3px 0 10px; font-size: 16px; }
+
+    .bd-mark { display: inline-flex; align-items: center; gap: 8px; }
+    .bd-sym { position: relative; width: 30px; height: 30px; flex: 0 0 auto; }
+    .bd-sym::before { content: ''; position: absolute; inset: 0; border-radius: 50% 50% 50% 4px; background: var(--b-primary); }
+    .bd-sym::after { content: ''; position: absolute; right: 0; top: 0; width: 13px; height: 13px; border-radius: 50%; background: var(--b-accent); }
+    .bd-word { font-size: 18px; font-weight: 700; letter-spacing: -.04em; color: var(--b-primary); line-height: 1; }
+    .bd-word small { display: block; margin-top: 2px; color: var(--b-gray); font-size: 6px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .bd-logos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .bd-tile { display: grid; place-items: center; height: 110px; border-radius: 8px; border: 1px solid var(--m-line); position: relative; }
+    .bd-tile > .bd-lbl { position: absolute; left: 8px; bottom: 6px; color: var(--m-muted); font-size: 6px; font-weight: 700; }
+    .bd-tile.is-neg { background: var(--b-primary); border-color: var(--b-primary); }
+    .bd-tile.is-neg .bd-word, .bd-tile.is-neg .bd-word small { color: #fff; }
+    .bd-tile.is-neg .bd-sym::before { background: #fff; }
+    .bd-tile.is-neg > .bd-lbl { color: rgba(255, 255, 255, .78); }
+    .bd-vars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .bd-vars .bd-tile { height: 70px; }
+    .bd-tile.is-sand { background: var(--b-sand); border-color: var(--b-sand); }
+    .bd-tile.is-mono .bd-sym::before, .bd-tile.is-mono .bd-sym::after { background: var(--b-ink); }
+    .bd-tile.is-mono .bd-sym::after { box-shadow: 0 0 0 2px #fff; }
+    .bd-tile.is-mono .bd-word { color: var(--b-ink); }
+    .bd-tile .bd-word.is-sm { font-size: 12px; }
+
+    .bd-swatches { display: grid; grid-template-columns: 1.4fr 1.4fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+    .bd-sw { border: 1px solid var(--m-line); border-radius: 8px; overflow: hidden; }
+    .bd-sw i { display: block; height: 96px; }
+    .bd-sw div { padding: 6px 7px 7px; }
+    .bd-sw strong { display: block; font-size: 7.5px; }
+    .bd-sw code { display: block; color: var(--m-soft); font-family: ui-monospace, Consolas, monospace; font-size: 6.5px; }
+    .bd-sw span { display: block; color: var(--m-muted); font-size: 6px; }
+    .bd-pairs { display: flex; gap: 6px; }
+    .bd-pair { display: flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 6px; font-size: 7px; font-weight: 700; }
+    .bd-pair em { font-style: normal; font-weight: 600; opacity: .8; }
+
+    .bd-type { display: grid; grid-template-columns: .8fr 1.2fr; gap: 14px; }
+    .bd-aa { display: flex; flex-direction: column; justify-content: space-between; padding: 12px; border-radius: 8px; background: var(--b-sand); }
+    .bd-aa b { font-size: 54px; line-height: .9; letter-spacing: -.05em; color: var(--b-primary); }
+    .bd-aa span { color: var(--b-ink); font-size: 7px; font-weight: 700; }
+    .bd-aa small { color: var(--b-gray); font-size: 6.3px; }
+    .bd-scale div { display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--m-line); }
+    .bd-scale small { color: var(--m-muted); font-size: 6.2px; font-weight: 700; }
+    .bd-scale p { margin: 0; color: var(--b-ink); line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .bd-comp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .bd-box { padding: 10px; border: 1px solid var(--m-line); border-radius: 8px; }
+    .bd-box > small { display: block; margin-bottom: 7px; color: var(--m-muted); font-size: 6.2px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .bd-btns { display: flex; flex-wrap: wrap; gap: 5px; }
+    .bd .m-btn { padding: 6px 10px; border-radius: 6px; font-size: 7px; }
+    .bd .m-btn.is-sec { background: var(--b-sand); color: var(--b-primary); }
+    .bd .m-btn.is-off { background: var(--m-canvas); color: var(--m-muted); }
+    .bd .m-btn.is-hover { background: hsl(213 50% 18%); }
+    .bd-input { display: block; margin-bottom: 6px; }
+    .bd-input small { display: block; margin-bottom: 3px; color: var(--b-ink); font-size: 6.5px; font-weight: 700; }
+    .bd-input span { display: block; padding: 6px 8px; border: 1px solid var(--m-line); border-radius: 6px; font-size: 7px; }
+    .bd-input.is-focus span { border-color: var(--b-primary); box-shadow: 0 0 0 2px hsl(213 50% 90%); }
+    .bd-input.is-err span { border-color: hsl(6 70% 48%); }
+    .bd-input.is-err em { display: block; margin-top: 2px; color: hsl(6 70% 40%); font-size: 6px; font-style: normal; font-weight: 600; }
+    .bd-card { padding: 9px; border-radius: 8px; background: var(--b-sand); }
+    .bd-card strong { display: block; color: var(--b-primary); font-size: 8.5px; }
+    .bd-card p { margin: 2px 0 6px; color: var(--b-gray); font-size: 6.5px; }
+    .bd-space { display: flex; align-items: flex-end; gap: 6px; margin-top: 8px; }
+    .bd-space i { display: block; background: var(--b-accent); border-radius: 2px; opacity: .85; }
+    .bd-space span { color: var(--m-muted); font-size: 6px; font-weight: 700; }
+
+    .bd-caption { position: absolute; left: 0; bottom: 8px; margin: 0; color: var(--text-muted); font-size: 12px; }
+    .bd-float { left: -18px; bottom: 96px; }
+    .bd-float .float-icon { background: hsl(213 50% 92%); color: #1f3a5f; }
+    .bd-stage .stage-badge { width: 178px; }
+
+    /* ---------- Entregáveis (faixa Grafite) ---------- */
+    .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 44px); }
+    .mod { display: flex; flex-direction: column; padding: 30px 0 40px; border-top: 1px solid var(--dark-line-strong); }
+    .mod-num { color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .mod h3 { margin: 12px 0 10px; font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 30px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.04; letter-spacing: -.02em; }
+    .mod > p { margin-bottom: 20px; color: var(--text-soft); font-size: 15px; }
+    .mod .plan-features { margin-bottom: 20px; }
+    .mod-goal { margin: auto 0 0; color: var(--text-soft); font-size: 14px; }
+    .mod-goal strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    .mod-note { margin: 0 0 18px; padding-left: 12px; border-left: 2px solid var(--cadmio); color: var(--text-soft); font-size: 14px; }
+
+    /* ---------- Arquivos ---------- */
+    .files { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--grafite); }
+    .file { padding: 24px 22px 28px 0; border-bottom: 1px solid var(--dark-line); }
+    .file:not(:nth-child(4n+1)) { padding-left: 22px; border-left: 1px solid var(--dark-line); }
+    .file-fmt { display: inline-block; margin-bottom: 14px; padding: 4px 9px; border-radius: 4px; background: var(--grafite); color: var(--linho); font-size: 12px; font-weight: 750; letter-spacing: .04em; }
+    .file h3 { margin: 0 0 6px; font-family: var(--font-display); font-size: clamp(19px, 1.6vw, 22px); font-weight: 700; font-variation-settings: "wdth" 108; line-height: 1.12; letter-spacing: -.015em; }
+    .file p { margin: 0; color: var(--text-soft); font-size: 14px; }
+    .fit-col.is-alt .fit-list { margin-bottom: 26px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note strong { color: var(--text); }
+
+    /* ---------- Formas de pagamento (painel Carmim) ---------- */
+    .pay-opts { display: grid; border-top: 1px solid var(--dark-line-strong); }
+    .pay-opt { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; align-items: baseline; padding: 20px 0 22px; border-bottom: 1px solid var(--dark-line); }
+    .pay-opt b { grid-column: 1 / -1; color: var(--text-soft); font-size: 13px; font-weight: 700; }
+    .pay-opt h3 { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 740; font-variation-settings: "wdth" 112; line-height: 1.05; letter-spacing: -.02em; }
+    .pay-opt strong { font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 760; font-variation-settings: "wdth" 112; white-space: nowrap; }
+    .pay-opt p { grid-column: 1 / -1; margin: 0; color: var(--text-soft); font-size: 14px; }
+    .pricing-notes .note { margin: 18px 0 0; color: var(--text-muted); font-size: 14px; }
+
+    /* ---------- Etapas ---------- */
+    .process-total strong { font-size: clamp(56px, 6.4vw, 88px); }
+    .deadline { margin-top: 36px; }
+    .deadline h3 { margin-bottom: 14px; font-family: var(--font-display); font-size: 20px; font-weight: 720; font-variation-settings: "wdth" 110; }
+    .deadline .fit-list { margin-bottom: 16px; }
+    .deadline .fit-list li { padding: 11px 0; font-size: 14px; }
+    .deadline .fit-list svg { color: var(--carmim); }
+    .deadline .fit-note { padding-top: 0; border-top: 0; }
+
+    /* ---------- Compromisso ---------- */
+    .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+    .why p { margin: 0 0 16px; color: var(--text-soft); font-size: 17px; }
+    .why-motto { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1.04; letter-spacing: -.02em; }
+    .why-motto span { display: block; color: var(--rose-soft); }
+
+    /* ---------- Quem cuida do quê / perguntas ---------- */
+    .care-block .care-who { margin: -20px 0 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Propostas irmãs ---------- */
+    .others { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--grafite); }
+    .other { display: flex; flex-direction: column; padding: 26px 26px 30px 0; color: inherit; text-decoration: none; }
+    .other + .other { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .other-k { color: var(--carmim); font-size: 13px; font-weight: 700; }
+    .other h3 { margin: 10px 0 8px; font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.05; letter-spacing: -.02em; transition: color .3s var(--ease); }
+    .other p { margin: 0 0 18px; color: var(--text-soft); font-size: 15px; }
+    .other-foot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--dark-line); }
+    .other-foot strong { font-family: var(--font-display); font-size: 22px; font-weight: 760; font-variation-settings: "wdth" 112; }
+    .other-foot span { color: var(--text-muted); font-size: 14px; font-weight: 600; }
+    a.other .other-foot span { color: var(--carmim); }
+    a.other:hover h3 { color: var(--carmim); }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1040px) {
+      .faq-aside { position: static; }
+      .mods { grid-template-columns: 1fr 1fr; }
+      .files { grid-template-columns: 1fr 1fr; }
+      .file:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; }
+      .file:nth-child(even) { padding-left: 22px; border-left: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 860px) {
+      .why { grid-template-columns: 1fr; }
+      .others { grid-template-columns: 1fr; }
+      .other, .other + .other { padding-left: 0; border-left: 0; }
+      .other + .other { border-top: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 720px) {
+      .mods { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .stage.bd-stage { min-height: 600px; margin-bottom: 30px; }
+      .bd-stage .stage-badge { width: 136px; }
+      .bd-caption { bottom: -30px; }
+      .bd-steps { display: none; }
+      .bd-page { padding: 14px 16px; }
+      .bd-logos { grid-template-columns: 1fr; }
+      .bd-logos .bd-tile { height: 84px; }
+      .bd-vars { grid-template-columns: 1fr 1fr; }
+      .bd-swatches { grid-template-columns: 1fr 1fr 1fr; }
+      .bd-swatches .bd-sw:nth-child(n+4) { display: none; }
+      .bd-sw i { height: 60px; }
+      .bd-type { grid-template-columns: 1fr; }
+      .bd-aa { flex-direction: row; align-items: flex-end; }
+      .bd-aa b { font-size: 40px; }
+      .bd-comp { grid-template-columns: 1fr; }
+      .bd-comp .bd-box:nth-child(n+3) { display: none; }
+      .files { grid-template-columns: 1fr; }
+      .file:nth-child(even) { padding-left: 0; border-left: 0; }
+      .pay-opt { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Li a proposta de identidade visual e Design System e quero avançar.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Jessica Queiroz</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#entregas" data-spy-link="entregas">Entregas</a>
+        <a href="#arquivos" data-spy-link="arquivos">Arquivos</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#etapas" data-spy-link="etapas">Prazo</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Identidade visual</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para Jessica Queiroz</span> <span class="display">Uma marca para ser lembrada. <em>E um sistema para mantê-la coerente.</em></span></h1>
+          <p class="hero-lead">Uma marca vai muito além de um logotipo: ela representa a identidade, os valores e a forma como o projeto se apresenta ao público. A proposta é criar a logomarca, a linguagem visual e um Design System essencial, com padrões para as aplicações digitais e os materiais de comunicação.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#entregas">O que será criado</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 14 de novembro de 2026 · válida até 29 de novembro de 2026.</span></div>
+        </div>
+
+        <div class="stage bd-stage" data-nosnippet role="group" aria-label="Exemplo do manual de identidade visual">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">Manual de identidade · Sua marca</span><span class="browser-live">v1.0</span></div>
+              <div class="screen bd">
+                <div class="bd-top" aria-hidden="true">
+                  <p>Manual de identidade <small>· Sua marca</small></p>
+                  <span class="bd-steps"><span class="is-on">Marca</span><span>Cores</span><span>Tipografia</span><span>Componentes</span></span>
+                </div>
+
+                <div class="mock-page bd-page" id="bd-logo" role="tabpanel" aria-labelledby="bd-tab-logo">
+                  <span class="m-label">01 · Logomarca</span>
+                  <p class="m-title">Versões oficiais</p>
+                  <div class="bd-logos">
+                    <div class="bd-tile"><span class="bd-mark"><span class="bd-sym"></span><span class="bd-word">sua marca<small>comunidade</small></span></span><span class="bd-lbl">Principal · positiva</span></div>
+                    <div class="bd-tile is-neg"><span class="bd-mark"><span class="bd-sym"></span><span class="bd-word">sua marca<small>comunidade</small></span></span><span class="bd-lbl">Principal · negativa</span></div>
+                  </div>
+                  <div class="bd-vars">
+                    <div class="bd-tile is-sand"><span class="bd-sym"></span><span class="bd-lbl">Símbolo</span></div>
+                    <div class="bd-tile"><span class="bd-mark"><span class="bd-sym" style="width:20px;height:20px"></span><span class="bd-word is-sm">sua marca</span></span><span class="bd-lbl">Reduzida</span></div>
+                    <div class="bd-tile is-mono"><span class="bd-sym"></span><span class="bd-lbl">Monocromática</span></div>
+                    <div class="bd-tile"><span class="m-btn">Baixar SVG</span><span class="bd-lbl">Arquivos</span></div>
+                  </div>
+                </div>
+
+                <div class="mock-page bd-page" id="bd-cores" role="tabpanel" aria-labelledby="bd-tab-cores" hidden>
+                  <span class="m-label">02 · Cores</span>
+                  <p class="m-title">Paleta e tokens</p>
+                  <div class="bd-swatches">
+                    <div class="bd-sw"><i style="background:#1f3a5f"></i><div><strong>Primária</strong><code>#1F3A5F</code><span>color.primary</span></div></div>
+                    <div class="bd-sw"><i style="background:#e8654a"></i><div><strong>Destaque</strong><code>#E8654A</code><span>color.accent</span></div></div>
+                    <div class="bd-sw"><i style="background:#f4efe6"></i><div><strong>Areia</strong><code>#F4EFE6</code><span>color.surface</span></div></div>
+                    <div class="bd-sw"><i style="background:#1b1b1f"></i><div><strong>Grafite</strong><code>#1B1B1F</code><span>color.ink</span></div></div>
+                    <div class="bd-sw"><i style="background:#6b7a8f"></i><div><strong>Neutro</strong><code>#6B7A8F</code><span>color.muted</span></div></div>
+                  </div>
+                  <span class="m-label" style="margin-bottom:6px">Combinações aprovadas</span>
+                  <div class="bd-pairs">
+                    <span class="bd-pair" style="background:#1f3a5f;color:#fff">Aa <em>texto sobre primária</em></span>
+                    <span class="bd-pair" style="background:#f4efe6;color:#1f3a5f">Aa <em>primária sobre areia</em></span>
+                    <span class="m-btn">Copiar tokens</span>
+                  </div>
+                </div>
+
+                <div class="mock-page bd-page" id="bd-tipo" role="tabpanel" aria-labelledby="bd-tab-tipo" hidden>
+                  <span class="m-label">03 · Tipografia</span>
+                  <p class="m-title">Escala tipográfica</p>
+                  <div class="bd-type">
+                    <div class="bd-aa"><b>Aa</b><div><span>Família principal</span><br><small>Regular · Semibold · Bold</small></div></div>
+                    <div class="bd-scale">
+                      <div><small>Display · 48</small><p style="font-size:20px;font-weight:700">Conecte-se</p></div>
+                      <div><small>Título · 32</small><p style="font-size:15px;font-weight:700">Benefícios para você</p></div>
+                      <div><small>Subtítulo · 20</small><p style="font-size:11px;font-weight:650">Departamentos e vouchers</p></div>
+                      <div><small>Corpo · 16</small><p style="font-size:8.5px">Participe das conversas e acesse benefícios.</p></div>
+                      <div><small>Legenda · 13</small><p style="font-size:7px;color:#6b7a8f">Atualizado em 14 de novembro</p></div>
+                    </div>
+                  </div>
+                  <p style="margin:10px 0 0"><span class="m-btn is-ghost">Ver hierarquia completa</span></p>
+                </div>
+
+                <div class="mock-page bd-page" id="bd-comp" role="tabpanel" aria-labelledby="bd-tab-comp" hidden>
+                  <span class="m-label">04 · Design System</span>
+                  <p class="m-title">Componentes essenciais</p>
+                  <div class="bd-comp">
+                    <div class="bd-box"><small>Botões e estados</small><div class="bd-btns"><span class="m-btn">Primário</span><span class="m-btn is-hover">Hover</span><span class="m-btn is-sec">Secundário</span><span class="m-btn is-off">Desabilitado</span></div></div>
+                    <div class="bd-box"><small>Formulário</small><span class="bd-input is-focus"><small>E-mail</small><span>marina@email.com</span></span><span class="bd-input is-err"><small>Senha</small><span>••••</span><em>Mínimo de 8 caracteres</em></span></div>
+                    <div class="bd-box"><small>Card</small><div class="bd-card"><strong>20% em consultas</strong><p>Departamento de Saúde</p><span class="m-btn">Resgatar</span></div></div>
+                    <div class="bd-box"><small>Espaçamento e bordas</small><div class="bd-space"><i style="width:4px;height:4px"></i><i style="width:8px;height:8px"></i><i style="width:16px;height:16px"></i><i style="width:24px;height:24px"></i><i style="width:32px;height:32px"></i><span>4 · 8 · 16 · 24 · 32</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-card bd-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
+              <div><strong>Arquivos finais</strong><span>SVG · PDF · PNG · Figma</span><small>Para digital e impressão</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 1.800</strong><span>valor fechado, no Pix ou em até 10x</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Seções do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="bd-tab-logo" aria-controls="bd-logo" aria-selected="true">Marca</button>
+            <button class="mockup-tab" type="button" role="tab" id="bd-tab-cores" aria-controls="bd-cores" aria-selected="false">Cores</button>
+            <button class="mockup-tab" type="button" role="tab" id="bd-tab-tipo" aria-controls="bd-tipo" aria-selected="false">Tipografia</button>
+            <button class="mockup-tab" type="button" role="tab" id="bd-tab-comp" aria-controls="bd-comp" aria-selected="false">Componentes</button>
+          </div>
+          <p class="bd-caption">Exemplo ilustrativo · a marca real nasce no projeto</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Investimento</span><strong>R$ 1.800</strong></div>
+        <div class="spec-item"><span>Conceitos de logo</span><strong>Até 2 propostas</strong></div>
+        <div class="spec-item"><span>Prazo estimado</span><strong>10 a 15 dias úteis</strong></div>
+        <div class="spec-item"><span>Arquivos</span><strong>SVG, PDF, PNG e Figma</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ ENTREGAS ============ -->
+    <section class="section anatomy" id="entregas" data-spy="entregas" aria-labelledby="entregas-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="entregas-titulo">Cinco entregas, da estratégia ao manual.</h2>
+          <p class="reveal delay-1">Uma identidade profissional e estratégica, que transmite confiança, personalidade e consistência em todos os pontos de contato da marca.</p>
+        </div>
+        <div class="mods">
+          <article class="mod reveal">
+            <span class="mod-num">Entrega 01</span>
+            <h3>Diagnóstico e direcionamento visual</h3>
+            <p>Um alinhamento para entender o negócio, suas características e seu público antes de criar.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Levantamento do posicionamento da marca</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Análise dos objetivos e do público-alvo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Definição de atributos visuais</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pesquisa de referências</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Direcionamento criativo</li>
+            </ul>
+            <p class="mod-goal"><strong>Objetivo</strong>Uma identidade alinhada ao propósito do projeto, e não apenas a uma escolha estética.</p>
+          </article>
+          <article class="mod reveal delay-1">
+            <span class="mod-num">Entrega 02</span>
+            <h3>Criação da logomarca</h3>
+            <p>A identidade principal que representa a marca visualmente.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até duas propostas conceituais</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Refinamento da proposta escolhida</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo principal e versão secundária ou reduzida</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Símbolo independente, quando fizer sentido</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Versões positiva, negativa e monocromáticas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Arquivos para digital e impressão</li>
+            </ul>
+            <p class="mod-goal"><strong>Objetivo</strong>Uma marca reconhecível, versátil e coerente com o posicionamento desejado.</p>
+          </article>
+          <article class="mod reveal delay-2">
+            <span class="mod-num">Entrega 03</span>
+            <h3>Identidade visual</h3>
+            <p>Os elementos que mantêm a consistência em diferentes materiais e canais.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Paleta de cores principal e secundária</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tipografias e hierarquia tipográfica</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Elementos gráficos de apoio</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diretrizes de composição e espaçamento</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Padrões de aplicação da marca</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Exemplos de uso em diferentes contextos</li>
+            </ul>
+            <p class="mod-goal"><strong>Objetivo</strong>Comunicação visual profissional e consistente, em qualquer meio.</p>
+          </article>
+          <article class="mod reveal">
+            <span class="mod-num">Entrega 04</span>
+            <h3>Design System essencial</h3>
+            <p>Uma biblioteca inicial de padrões para criar interfaces digitais e expandir o projeto.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tokens de cores e escala tipográfica</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Espaçamentos, bordas e arredondamentos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Hierarquia de botões</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Componentes básicos de formulário</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Estilos de cards e containers</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Estados visuais essenciais dos componentes</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Princípios de consistência e acessibilidade visual</li>
+            </ul>
+            <p class="mod-note">Documentado para orientar designers e desenvolvedores. Cobre os fundamentos e os componentes essenciais, não uma biblioteca com todos os componentes possíveis da plataforma.</p>
+          </article>
+          <article class="mod reveal delay-1">
+            <span class="mod-num">Entrega 05</span>
+            <h3>Manual de identidade visual</h3>
+            <p>Um guia digital para usar a marca do jeito certo.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Conceito visual da marca</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Versões oficiais do logotipo</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Códigos e combinações de cores</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tipografias definidas</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recomendações de aplicação e usos a evitar</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fundamentos do Design System</li>
+            </ul>
+            <p class="mod-goal"><strong>Objetivo</strong>Autonomia para futuras aplicações, preservando a identidade construída.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARQUIVOS ============ -->
+    <section class="section" id="arquivos" data-spy="arquivos" aria-labelledby="arquivos-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="arquivos-titulo">O que você recebe no final.</h2>
+          <p class="reveal delay-1">Arquivos organizados e prontos para usar em telas, redes sociais e impressão.</p>
+        </div>
+        <ul class="files">
+          <li class="file reveal"><span class="file-fmt">PNG</span><h3>Logomarca com fundo transparente</h3><p>Para usar direto em telas e redes sociais.</p></li>
+          <li class="file reveal delay-1"><span class="file-fmt">SVG · PDF</span><h3>Arquivos vetoriais</h3><p>Ampliam sem perder qualidade, para digital e impressão.</p></li>
+          <li class="file reveal delay-2"><span class="file-fmt">Claro · escuro</span><h3>Versões para cada fundo</h3><p>A marca legível em fundos claros e escuros.</p></li>
+          <li class="file reveal delay-3"><span class="file-fmt">Variações</span><h3>Variações oficiais da marca</h3><p>Principal, reduzida, símbolo e monocromática.</p></li>
+          <li class="file reveal"><span class="file-fmt">HEX</span><h3>Paleta de cores</h3><p>Com os códigos de cada cor.</p></li>
+          <li class="file reveal delay-1"><span class="file-fmt">Tipografia</span><h3>Especificação tipográfica</h3><p>Famílias, pesos e hierarquia.</p></li>
+          <li class="file reveal delay-2"><span class="file-fmt">PDF</span><h3>Manual de identidade visual</h3><p>O guia de uso da marca.</p></li>
+          <li class="file reveal delay-3"><span class="file-fmt">Figma</span><h3>Biblioteca do Design System</h3><p>Os fundamentos e componentes essenciais.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ESCOPO ============ -->
+    <section class="section" id="escopo" aria-labelledby="escopo-titulo" style="padding-top: 0">
+      <div class="container">
+        <h2 class="sr-only" id="escopo-titulo">O que está e o que não está no escopo</h2>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>Dentro do valor</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico e direcionamento criativo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Até duas propostas conceituais de logomarca</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Duas rodadas de ajustes na proposta escolhida</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Identidade visual e Design System essencial</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Manual de identidade e todos os arquivos finais</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Fora deste investimento</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Registro da marca no INPI</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Licenças de tipografias comerciais, quando necessárias</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Peças publicitárias e materiais impressos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Telas completas da aplicação</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Novos conceitos ou mudança completa de direcionamento</li>
+            </ul>
+            <p class="fit-note"><strong>Precisa de algo a mais?</strong> Novos conceitos, peças e materiais podem ser orçados separadamente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Um valor fechado, três formas de pagar.</h2>
+          <p class="section-lead reveal delay-1">O investimento cobre todo o processo de criação, desenvolvimento e documentação da identidade visual, incluindo o Design System essencial.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Investimento total</span>
+            <strong class="num">R$ 1.800</strong>
+            <small>Mil e oitocentos reais pela identidade completa, com manual e Design System.</small>
+          </div>
+          <div class="pay-opts" role="list" aria-label="Formas de pagamento">
+            <div class="pay-opt" role="listitem">
+              <b>Opção 01</b>
+              <h3>Pix em duas etapas</h3>
+              <strong class="num">2 × R$ 900</strong>
+              <p>50% na aprovação; 50% na conclusão.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 02</b>
+              <h3>Pix à vista</h3>
+              <strong class="num">R$ 1.800</strong>
+              <p>Pagamento integral na aprovação do projeto.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 03</b>
+              <h3>Cartão de crédito</h3>
+              <strong>Até 10x</strong>
+              <p>Parcelamento sujeito às taxas da operadora.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Condições</h3>
+            <p>O que está combinado dentro do valor fechado.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Conceitos de logomarca</span><strong>Até 2 propostas</strong></div>
+              <div class="pay-row"><span>Ajustes</span><strong>2 rodadas na proposta escolhida</strong></div>
+              <div class="pay-row"><span>Novos conceitos</span><strong>Orçados separadamente</strong></div>
+              <div class="pay-row"><span>Arquivos finais</span><strong>Após a quitação integral</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Custos que ficam com você</h3>
+            <p>Pagos direto aos fornecedores, fora do valor desta proposta.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Registro no INPI</span><strong>Taxas do órgão</strong></div>
+              <div class="pay-row"><span>Tipografias comerciais</span><strong>Somente se forem necessárias</strong></div>
+              <div class="pay-row"><span>Parcelamento no cartão</span><strong>Taxas da operadora</strong></div>
+            </div>
+            <p class="note">Sempre que possível, priorizo tipografias de uso livre. Se alguma fonte paga fizer sentido, ela é apresentada antes, com o custo da licença.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ETAPAS ============ -->
+    <section class="section" id="etapas" data-spy="etapas" aria-labelledby="etapas-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="etapas-titulo">Da conversa inicial aos arquivos finais.</h2>
+          <p class="section-lead reveal delay-1">Cinco etapas. A criação só começa depois de entendermos o projeto e definirmos juntos o direcionamento.</p>
+          <div class="process-total reveal delay-2">
+            <strong>10–15</strong>
+            <span>dias úteis após o briefing e a aprovação do direcionamento criativo.</span>
+          </div>
+          <div class="deadline reveal delay-3">
+            <h3>Para começar</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proposta aprovada e forma de pagamento escolhida</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Briefing respondido: propósito, público e valores</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Referências de marcas que você admira, se houver</li>
+            </ul>
+            <p class="fit-note">O Design System serve de base para as telas da <a class="text-link" href="../plataforma/">plataforma de comunidade</a> e do <a class="text-link" href="../">site institucional</a>.</p>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">Etapa 01</span>
+              <h3>Imersão</h3>
+              <p>Briefing, levantamento das informações e direcionamento estratégico.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> direcionamento criativo para sua aprovação.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">Etapa 02</span>
+              <h3>Conceituação</h3>
+              <p>Pesquisa, exploração visual e apresentação das propostas de logomarca.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> até duas propostas conceituais.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">Etapa 03</span>
+              <h3>Refinamento</h3>
+              <p>Ajustes da proposta escolhida, definição da identidade e criação dos elementos gráficos. Até duas rodadas de ajustes.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> logomarca aprovada e identidade definida.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">Etapa 04</span>
+              <h3>Design System e documentação</h3>
+              <p>Organização dos padrões digitais, criação dos componentes essenciais e desenvolvimento do manual de identidade visual.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> biblioteca no Figma e manual em PDF.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">Etapa 05</span>
+              <h3>Entrega</h3>
+              <p>Preparação, organização e envio dos arquivos finais, após a quitação integral.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> pacote completo de arquivos.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ QUEM CUIDA DO QUÊ ============ -->
+    <section class="section section-tight" id="responsabilidades" aria-labelledby="responsabilidades-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="responsabilidades-titulo">Quem cuida do quê.</h2>
+          <p class="section-lead reveal delay-1">Uma boa marca nasce de uma boa conversa. Sua participação nas aprovações faz o prazo andar.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M12 22a10 10 0 1 1 10-10c0 2-1.5 3-3 3"/></svg></span>
+            <p class="care-who">VS Experience</p>
+            <h3>Estratégia e criação</h3>
+            <p>Do diagnóstico aos arquivos finais.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico e direcionamento</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Propostas de logomarca e refinamento</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Paleta, tipografia e elementos gráficos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design System essencial no Figma</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Manual de identidade em PDF</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Arquivos finais organizados</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <p class="care-who">Jessica Queiroz</p>
+            <h3>Informações e decisões</h3>
+            <p>O que só quem conhece o projeto por dentro pode dar.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Briefing com propósito, público e valores</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Referências e preferências</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Escolha de uma das propostas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Retornos consolidados em cada rodada</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Registro no INPI, se desejar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMPROMISSO ============ -->
+    <section class="section anatomy" id="compromisso" aria-labelledby="compromisso-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="compromisso-titulo">Nosso compromisso.</h2>
+          <p class="reveal delay-1">Uma identidade visual bem construída une estratégia, estética e funcionalidade.</p>
+        </div>
+        <div class="why">
+          <div class="reveal">
+            <p>O trabalho da VS Experience é transformar a essência de cada projeto em uma linguagem visual clara, reconhecível e preparada para crescer.</p>
+          </div>
+          <p class="why-motto reveal delay-1">Uma marca não precisa apenas ser vista. <span>Precisa ser compreendida, reconhecida e lembrada.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Não incluso no valor</h3>
+          <ul class="factor-list reveal">
+            <li>Registro no INPI</li>
+            <li>Fontes comerciais</li>
+            <li>Peças publicitárias</li>
+            <li>Materiais impressos</li>
+            <li>Telas completas</li>
+            <li>Novos conceitos</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Quantas opções de logomarca vou ver? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Até duas propostas conceituais, criadas a partir do direcionamento aprovado na imersão. Você escolhe uma, e ela é refinada até a versão final.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Posso pedir ajustes? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. Estão incluídas duas rodadas de ajustes na proposta escolhida. Novos conceitos ou uma mudança completa de direcionamento podem ser orçados separadamente.</p>
+          </details>
+          <details class="faq-item">
+            <summary>O Design System já inclui as telas do site ou da plataforma? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. Ele define os fundamentos (cores, tipografia, espaçamentos, bordas) e os componentes essenciais, como botões, formulários e cards. As telas completas da aplicação não estão inclusas; o Design System serve de base para criá-las com consistência.</p>
+          </details>
+          <details class="faq-item">
+            <summary>A marca será registrada? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>O registro no INPI não está incluso. Você pode fazê-lo depois com os arquivos finais, diretamente ou com o apoio de um profissional da área.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Quando recebo os arquivos? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Na etapa final, após a quitação integral do projeto: logomarca em PNG, SVG e PDF, versões para fundos claros e escuros, paleta com códigos HEX, especificação tipográfica, manual em PDF e a biblioteca do Design System no Figma.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROPOSTAS ============ -->
+    <section class="section section-tight" id="propostas" aria-labelledby="propostas-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="propostas-titulo">As propostas para você.</h2>
+          <p class="section-lead reveal delay-1">Cada uma com escopo, prazo e investimento próprios.</p>
+        </div>
+        <div class="others">
+          <a class="other reveal" href="../">
+            <span class="other-k">Proposta 01</span>
+            <h3>Site institucional</h3>
+            <p>Home, podcast, jornal e contato, com painel para publicar notícias e episódios.</p>
+            <div class="other-foot"><strong>R$ 1.200</strong><span>Ver proposta →</span></div>
+          </a>
+          <a class="other reveal delay-1" href="../plataforma/">
+            <span class="other-k">Proposta 02</span>
+            <h3>Plataforma de comunidade</h3>
+            <p>Fórum, departamentos, vouchers e dashboard administrativo.</p>
+            <div class="other-foot"><strong>R$ 3.200</strong><span>Ver proposta →</span></div>
+          </a>
+          <div class="other is-current reveal delay-2" aria-current="page">
+            <span class="other-k">Proposta 03</span>
+            <h3>Identidade visual e Design System</h3>
+            <p>Logomarca, identidade, Design System essencial e manual da marca.</p>
+            <div class="other-foot"><strong>R$ 1.800</strong><span>Você está aqui</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos dar forma <span>à sua marca?</span></h2>
+            <p>Com a aprovação, começamos pela imersão: um briefing para entender o propósito, o público e o posicionamento do projeto.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Jessica Queiroz</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>Identidade visual e Design System</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 1.800 · Pix ou até 10x</strong></div>
+            <div class="meta-row"><span>Prazo estimado</span><strong>10 a 15 dias úteis</strong></div>
+            <div class="meta-row"><span>Ajustes</span><strong>2 rodadas na proposta escolhida</strong></div>
+            <div class="meta-row"><span>Validade</span><strong>29 de novembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 14 de novembro de 2026 · sujeita à aprovação do escopo e das condições comerciais</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>

@@ -233,6 +233,78 @@
         ],
         "createdAt": "2026-11-13T19:20:25.076Z",
         "reason": "proposal page: hits are inside the miniature fictional site mockup (.browser/.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-educakids"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/plataforma/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:43.472Z",
+        "reason": "same template as proposta-jessica-queiroz/index.html: static scan resolves --text/--rose-soft from :root instead of the dark .anatomy/.closing/.care-block.is-accent/.avg-panel contexts and counts .process-total (88px display) as body text; rendered-contrast audit (Chrome, 1440/768/390, all visible non-mockup text) found 0 failures"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/plataforma/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:43.701Z",
+        "reason": "proposal page: body/section.hero clip the decorative hero stage (badge, float card) as in the shared servicos.css template; same sanctioned pattern as proposta-mmk-midia; verified in screenshots at 1440/768/390 with 0px horizontal overflow"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/plataforma/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:44.031Z",
+        "reason": "proposal page: hits are inside the miniature fictional mockup (.browser/.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-educakids"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/plataforma/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:44.350Z",
+        "reason": "proposal page: hits are inside the miniature fictional mockup (.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-educakids"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/identidade/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:44.642Z",
+        "reason": "same template as proposta-jessica-queiroz/index.html: static scan resolves --text/--rose-soft from :root instead of the dark .anatomy/.closing/.care-block.is-accent/.avg-panel contexts and counts .process-total (88px display) as body text; rendered-contrast audit (Chrome, 1440/768/390, all visible non-mockup text) found 0 failures"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/identidade/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:44.930Z",
+        "reason": "proposal page: body/section.hero clip the decorative hero stage (badge, float card) as in the shared servicos.css template; same sanctioned pattern as proposta-mmk-midia; verified in screenshots at 1440/768/390 with 0px horizontal overflow"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/identidade/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:45.248Z",
+        "reason": "proposal page: hits are inside the miniature fictional mockup (.browser/.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-educakids"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "proposta-jessica-queiroz/identidade/index.html"
+        ],
+        "createdAt": "2026-11-14T09:18:45.482Z",
+        "reason": "proposal page: hits are inside the miniature fictional mockup (.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-educakids"
       }
     ]
   }

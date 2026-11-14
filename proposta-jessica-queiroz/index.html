@@ -172,6 +172,19 @@
     .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
     .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
 
+    /* ---------- Propostas irmãs ---------- */
+    .others { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--grafite); }
+    .other { display: flex; flex-direction: column; padding: 26px 26px 30px 0; color: inherit; text-decoration: none; }
+    .other + .other { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .other-k { color: var(--carmim); font-size: 13px; font-weight: 700; }
+    .other h3 { margin: 10px 0 8px; font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 28px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.05; letter-spacing: -.02em; transition: color .3s var(--ease); }
+    .other p { margin: 0 0 18px; color: var(--text-soft); font-size: 15px; }
+    .other-foot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--dark-line); }
+    .other-foot strong { font-family: var(--font-display); font-size: 22px; font-weight: 760; font-variation-settings: "wdth" 112; }
+    .other-foot span { color: var(--text-muted); font-size: 14px; font-weight: 600; }
+    a.other .other-foot span { color: var(--carmim); }
+    a.other:hover h3 { color: var(--carmim); }
+
     /* ---------- Responsivo ---------- */
     @media (max-width: 1100px) {
       .pages { grid-template-columns: 1fr 1fr; }
@@ -186,6 +199,9 @@
     }
     @media (max-width: 860px) {
       .why { grid-template-columns: 1fr; }
+      .others { grid-template-columns: 1fr; }
+      .other, .other + .other { padding-left: 0; border-left: 0; }
+      .other + .other { border-top: 1px solid var(--dark-line); }
     }
     @media (max-width: 720px) {
       .pages { grid-template-columns: 1fr; }
@@ -754,6 +770,36 @@
             <summary>E depois que o site estiver no ar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
             <p>Você segue publicando pelo painel. Se quiser apoio contínuo, como manutenção, atualizações ou novas funcionalidades, isso pode ser contratado à parte.</p>
           </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROPOSTAS ============ -->
+    <section class="section section-tight" id="propostas" aria-labelledby="propostas-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="propostas-titulo">As propostas para você.</h2>
+          <p class="section-lead reveal delay-1">Cada uma com escopo, prazo e investimento próprios.</p>
+        </div>
+        <div class="others">
+          <div class="other is-current reveal" aria-current="page">
+            <span class="other-k">Proposta 01</span>
+            <h3>Site institucional</h3>
+            <p>Home, podcast, jornal e contato, com painel para publicar notícias e episódios.</p>
+            <div class="other-foot"><strong>R$ 1.200</strong><span>Você está aqui</span></div>
+          </div>
+          <a class="other reveal delay-1" href="plataforma/">
+            <span class="other-k">Proposta 02</span>
+            <h3>Plataforma de comunidade</h3>
+            <p>Fórum, departamentos, vouchers e dashboard administrativo.</p>
+            <div class="other-foot"><strong>R$ 3.200</strong><span>Ver proposta →</span></div>
+          </a>
+          <a class="other reveal delay-2" href="identidade/">
+            <span class="other-k">Proposta 03</span>
+            <h3>Identidade visual e Design System</h3>
+            <p>Logomarca, identidade, Design System essencial e manual da marca.</p>
+            <div class="other-foot"><strong>R$ 1.800</strong><span>Ver proposta →</span></div>
+          </a>
         </div>
       </div>
     </section>
