@@ -305,6 +305,33 @@
         ],
         "createdAt": "2026-11-14T09:18:45.482Z",
         "reason": "proposal page: hits are inside the miniature fictional mockup (.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-educakids"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-interpoint/index.html"
+        ],
+        "createdAt": "2026-11-24T12:21:53.733Z",
+        "reason": "same template as proposta-jessica-queiroz/index.html: static scan resolves --text/--rose-soft from :root instead of the dark .anatomy/.closing/.care-block.is-accent/.avg-panel contexts and flags the closing .button-secondary hover; identical findings were rendered-audited on the Jessica page; this page's desktop hero render checked in headless Chrome"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "proposta-interpoint/index.html"
+        ],
+        "createdAt": "2026-11-24T12:21:54.005Z",
+        "reason": "proposal page: body/section.hero clip the decorative hero stage (badge, float card) as in the shared servicos.css template; same sanctioned pattern as proposta-jessica-queiroz and proposta-mmk-midia"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "proposta-interpoint/index.html"
+        ],
+        "createdAt": "2026-11-24T12:21:54.257Z",
+        "reason": "proposal page: hits are inside the miniature fictional site mockup (.browser/.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-jessica-queiroz"
       }
     ]
   }

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para a Interpoint: site institucional com Home, Sistema de Ponto, Controle de Acesso e Sobre, responsivo, com vitrine de equipamentos, WhatsApp em todas as páginas e painel para atualizar.">
+  <title>Proposta · Site institucional Interpoint | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · Site institucional Interpoint">
+  <meta property="og:description" content="32 anos de ponto e acesso no Vale do Paraíba. Um site à altura dessa história.">
+  <link rel="icon" href="../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta Interpoint · site institucional
+       Só o que é desta página: mockup do site (--c-*), comparação
+       com o site atual, as quatro páginas, itens inclusos, preço de
+       Black Friday e formas de pagamento.
+       ============================================================ */
+
+    /* ---------- Mockup do site ---------- */
+    .screen.ip {
+      --c-accent: hsl(214 70% 30%);
+      --c-on-accent: #fff;
+      --c-tint: hsl(214 60% 95%);
+      --c-ok: hsl(152 62% 27%);
+      --c-ok-soft: hsl(152 45% 92%);
+      --c-no: hsl(0 60% 40%);
+      --c-no-soft: hsl(0 70% 95%);
+      --c-wa: hsl(142 62% 30%);
+      background: #fff;
+    }
+    .ip .m-logo { color: var(--c-accent); }
+    .ip .m-logo i { width: 16px; height: 16px; border-radius: 4px; background: linear-gradient(140deg, var(--c-accent), hsl(200 70% 46%)); }
+    .ip .m-links .is-on { color: var(--c-accent); }
+    .ip .m-btn.is-wa { background: var(--c-wa); }
+    .ip-sec { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 7px; font-size: 8.5px; font-weight: 700; letter-spacing: -.01em; }
+    .ip-sec span { color: var(--c-accent); font-size: 6.5px; font-weight: 700; }
+
+    /* Terminal facial, usado como "foto" ilustrativa */
+    .ip-device { position: relative; height: 128px; border-radius: 10px; background: linear-gradient(150deg, hsl(214 62% 20%), hsl(214 50% 36%) 60%, hsl(200 60% 48%)); overflow: hidden; }
+    .ip-device::before { content: ''; position: absolute; left: 50%; top: 18px; width: 54px; height: 76px; margin-left: -27px; border-radius: 9px; background: hsl(214 40% 12%); box-shadow: 0 14px 24px -10px rgba(0, 0, 0, .55), inset 0 0 0 1.5px rgba(255, 255, 255, .14); }
+    .ip-device::after { content: ''; position: absolute; left: 50%; top: 30px; width: 24px; height: 30px; margin-left: -12px; border-radius: 50%; box-shadow: 0 0 0 1.5px hsl(152 60% 60%); }
+    .ip-device span { position: absolute; left: 10px; bottom: 9px; padding: 3px 7px; border-radius: 99px; background: rgba(255, 255, 255, .92); color: var(--c-ok); font-size: 6.3px; font-weight: 700; }
+
+    .ip-hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; align-items: center; padding: 22px 22px 18px; }
+    .ip-hero .m-title { font-size: 20px; }
+    .ip-actions { display: flex; gap: 6px; margin-top: 12px; }
+    .ip-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 22px 10px; border-top: 1px solid var(--m-line); background: var(--m-canvas); }
+    .ip-sol { padding: 9px 10px; border: 1px solid var(--m-line); border-radius: 7px; background: #fff; }
+    .ip-sol small { display: block; color: var(--c-accent); font-size: 6px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .ip-sol strong { display: block; margin: 2px 0 3px; font-size: 9px; letter-spacing: -.01em; }
+    .ip-sol span { display: block; color: var(--m-muted); font-size: 6.5px; line-height: 1.45; }
+    .ip-trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 22px 16px; background: var(--m-canvas); }
+    .ip-trust div { padding-top: 6px; border-top: 2px solid var(--c-accent); }
+    .ip-trust strong { display: block; font-size: 10px; letter-spacing: -.02em; }
+    .ip-trust span { display: block; color: var(--m-muted); font-size: 6.2px; }
+
+    .ip-page { padding: 18px 22px 20px; }
+    .ip-page .m-title { margin: 4px 0 4px; font-size: 17px; }
+    .ip-page > .m-text { margin-bottom: 11px; }
+    .ip-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 11px; }
+    .ip-chips span { padding: 4px 9px; border-radius: 99px; border: 1px solid var(--m-line); color: var(--m-soft); font-size: 6.5px; font-weight: 700; }
+    .ip-chips .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .ip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .ip-card { display: flex; flex-direction: column; border: 1px solid var(--m-line); border-radius: 8px; overflow: hidden; }
+    .ip-thumb { position: relative; height: 54px; background: linear-gradient(150deg, hsl(214 62% 22%), hsl(214 50% 40%)); }
+    .ip-thumb::before { content: ''; position: absolute; left: 50%; top: 9px; width: 22px; height: 36px; margin-left: -11px; border-radius: 4px; background: hsl(214 40% 12%); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
+    .ip-thumb.is-soft { background: linear-gradient(150deg, hsl(200 40% 40%), hsl(196 46% 70%)); }
+    .ip-thumb.is-soft::before { width: 40px; height: 28px; margin-left: -20px; top: 13px; border-radius: 3px; background: #fff; box-shadow: 0 6px 10px -6px rgba(0, 0, 0, .4); }
+    .ip-thumb.is-warm { background: linear-gradient(150deg, hsl(24 60% 46%), hsl(38 76% 70%)); }
+    .ip-thumb.is-warm::before { width: 22px; height: 30px; margin-left: -11px; top: 12px; border-radius: 3px; background: #fff; }
+    .ip-thumb.is-gate::before { width: 50px; height: 6px; margin-left: -25px; top: 24px; border-radius: 3px; background: hsl(0 0% 96%); box-shadow: 0 0 0 1px rgba(0, 0, 0, .1); }
+    .ip-thumb.is-gate::after { content: ''; position: absolute; left: 50%; top: 14px; width: 10px; height: 30px; margin-left: -31px; border-radius: 2px; background: hsl(214 40% 12%); }
+    .ip-card div { display: flex; flex-direction: column; flex: 1; padding: 7px 8px 9px; }
+    .ip-meta { color: var(--c-accent); font-size: 5.8px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .ip-card strong { display: block; margin: 2px 0 3px; font-size: 8px; line-height: 1.2; }
+    .ip-card p { margin: 0 0 7px; color: var(--m-muted); font-size: 6.3px; line-height: 1.45; }
+    .ip-card .m-btn { align-self: flex-start; margin-top: auto; padding: 5px 8px; font-size: 6.3px; }
+    .ip-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .ip-pills span { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 99px; background: var(--c-tint); color: var(--c-accent); font-size: 6.3px; font-weight: 700; }
+    .ip-pills svg { width: 8px; height: 8px; }
+
+    .ip-log { margin-top: 10px; border: 1px solid var(--m-line); border-radius: 7px; overflow: hidden; }
+    .ip-log p { margin: 0; padding: 6px 9px; background: var(--m-canvas); font-size: 7px; font-weight: 700; }
+    .ip-log div { display: grid; grid-template-columns: 30px 1fr auto; gap: 8px; align-items: center; padding: 5px 9px; border-top: 1px solid var(--m-line); font-size: 6.6px; }
+    .ip-log b { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 6.4px; color: var(--m-soft); }
+    .ip-pill { padding: 2px 7px; border-radius: 99px; font-size: 6px; font-weight: 700; font-style: normal; }
+    .ip-pill.is-ok { background: var(--c-ok-soft); color: var(--c-ok); }
+    .ip-pill.is-no { background: var(--c-no-soft); color: var(--c-no); }
+
+    .ip-about { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; }
+    .ip-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+    .ip-nums div { padding-top: 6px; border-top: 2px solid var(--c-accent); }
+    .ip-nums strong { display: block; font-size: 11px; letter-spacing: -.02em; }
+    .ip-nums span { display: block; color: var(--m-muted); font-size: 6.2px; line-height: 1.35; }
+    .ip-info { display: grid; gap: 8px; align-content: start; }
+    .ip-info dl { margin: 0; border-top: 1px solid var(--m-line); }
+    .ip-info dl div { padding: 6px 0; border-bottom: 1px solid var(--m-line); }
+    .ip-info dt { color: var(--m-muted); font-size: 6.3px; font-weight: 700; }
+    .ip-info dd { margin: 1px 0 0; font-size: 7.3px; line-height: 1.35; }
+    .ip-map { position: relative; height: 52px; border-radius: 7px; background:
+      linear-gradient(90deg, transparent 46%, #fff 46%, #fff 50%, transparent 50%),
+      linear-gradient(0deg, transparent 58%, #fff 58%, #fff 62%, transparent 62%),
+      linear-gradient(28deg, transparent 70%, #fff 70%, #fff 73%, transparent 73%),
+      hsl(150 18% 88%); box-shadow: inset 0 0 0 1px var(--m-line); }
+    .ip-map::after { content: ''; position: absolute; left: 47%; top: 30%; width: 10px; height: 10px; border-radius: 50% 50% 50% 0; background: var(--c-no); transform: rotate(-45deg); }
+
+    .ip-caption { position: absolute; left: 0; bottom: 8px; margin: 0; color: var(--text-muted); font-size: 12px; }
+    .ip-float { left: -18px; bottom: 96px; }
+    .ip-float .float-icon { background: hsl(142 45% 90%); color: hsl(142 62% 30%); }
+    .ip-stage .stage-badge { width: 184px; }
+    .stage-badge s { color: #f6d3d4; }
+
+    /* ---------- Do site atual para o novo ---------- */
+    .shift { border-top: 1px solid var(--grafite); }
+    .shift-head, .shift-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); }
+    .shift-head { padding: 16px 0 14px; color: var(--text-muted); font-size: 13px; font-weight: 700; }
+    .shift-head span:last-child { color: var(--carmim); }
+    .shift-row { padding: 18px 0; border-top: 1px solid var(--dark-line); }
+    .shift-row p { display: flex; gap: 12px; align-items: flex-start; margin: 0; font-size: 15px; }
+    .shift-row svg { width: 18px; flex: 0 0 auto; margin-top: 3px; }
+    .shift-row .was { color: var(--text-muted); }
+    .shift-row .now { color: var(--text); font-weight: 600; }
+    .shift-row .now svg { color: var(--carmim); }
+    .shift-k { display: none; }
+    .shift-note { margin: 24px 0 0; color: var(--text-muted); font-size: 14px; max-width: 72ch; }
+
+    /* ---------- As quatro páginas (faixa Grafite) ---------- */
+    .pages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--dark-line-strong); }
+    .page-card { display: flex; flex-direction: column; padding: 32px 26px 36px 0; }
+    .page-card + .page-card { padding-left: 26px; border-left: 1px solid var(--dark-line); }
+    .page-num { color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .page-card h3 { margin: 12px 0 4px; font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 34px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1; letter-spacing: -.02em; }
+    .page-card .page-sub { margin: 0 0 14px; color: var(--text-muted); font-size: 14px; font-weight: 600; }
+    .page-card > p:not(.page-sub):not(.page-goal) { margin-bottom: 20px; color: var(--text-soft); font-size: 15px; }
+    .page-card .plan-features { margin-bottom: 22px; }
+    .page-goal { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--dark-line-strong); color: var(--text-soft); font-size: 14px; }
+    .page-goal strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    .privacy-line { display: flex; gap: 12px; align-items: flex-start; margin-top: clamp(40px, 5vw, 56px); padding-top: 22px; border-top: 1px solid var(--dark-line); color: var(--text-soft); font-size: 15px; max-width: 80ch; }
+    .privacy-line svg { width: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--cadmio); }
+
+    /* ---------- O que está incluso ---------- */
+    .incl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--grafite); }
+    .incl li { padding: clamp(22px, 2.6vw, 30px) clamp(18px, 2.4vw, 32px) clamp(24px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--dark-line); }
+    .incl li:not(:nth-child(3n+1)) { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--dark-line); }
+    .incl .outcome-icon { width: 32px; height: 32px; margin-bottom: 14px; place-items: start; }
+    .incl .outcome-icon svg { width: 24px; }
+    .incl h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 700; font-variation-settings: "wdth" 108; line-height: 1.1; letter-spacing: -.015em; }
+    .incl p { margin: 0; color: var(--text-soft); font-size: 15px; }
+
+    /* ---------- Preço de Black Friday e formas de pagamento (painel Carmim) ---------- */
+    .bf-tag { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 5px 11px; border-radius: 99px; background: var(--linho); color: var(--carmim); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .bf-tag svg { width: 13px; }
+    .avg-value .was { display: block; margin-top: 14px; color: var(--text-soft); font-family: var(--font-display); font-size: clamp(20px, 2vw, 26px); font-weight: 600; font-variation-settings: "wdth" 110; }
+    .avg-value .was s { text-decoration-thickness: 2px; }
+    .avg-value .was + strong { margin-top: 4px; }
+    .pay-opts { display: grid; border-top: 1px solid var(--dark-line-strong); }
+    .pay-opt { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; align-items: baseline; padding: 20px 0 22px; border-bottom: 1px solid var(--dark-line); }
+    .pay-opt b { grid-column: 1 / -1; color: var(--text-soft); font-size: 13px; font-weight: 700; }
+    .pay-opt h3 { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 740; font-variation-settings: "wdth" 112; line-height: 1.05; letter-spacing: -.02em; }
+    .pay-opt strong { font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 760; font-variation-settings: "wdth" 112; white-space: nowrap; }
+    .pay-opt p { grid-column: 1 / -1; margin: 0; color: var(--text-soft); font-size: 14px; }
+    .pricing-notes .note { margin: 18px 0 0; color: var(--text-muted); font-size: 14px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note strong { color: var(--text); }
+    .fit-col.is-alt .fit-list { margin-bottom: 26px; }
+
+    /* ---------- Etapas ---------- */
+    .process-total strong { font-size: clamp(56px, 6.4vw, 88px); }
+    .deadline { margin-top: 36px; }
+    .deadline h3 { margin-bottom: 14px; font-family: var(--font-display); font-size: 20px; font-weight: 720; font-variation-settings: "wdth" 110; }
+    .deadline .fit-list { margin-bottom: 16px; }
+    .deadline .fit-list li { padding: 11px 0; font-size: 14px; }
+    .deadline .fit-list svg { color: var(--carmim); }
+    .deadline .fit-note { padding-top: 0; border-top: 0; }
+    .process-step.is-external .step-dot { border-style: dashed; }
+
+    /* ---------- Por que a VS ---------- */
+    .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+    .why p { margin: 0 0 16px; color: var(--text-soft); font-size: 17px; }
+    .why-motto { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); font-weight: 760; font-variation-settings: "wdth" 112; line-height: 1.04; letter-spacing: -.02em; }
+    .why-motto span { display: block; color: var(--rose-soft); }
+
+    /* ---------- Quem cuida do quê / perguntas ---------- */
+    .care-block .care-who { margin: -20px 0 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .base-note { margin-top: 28px; color: var(--text-muted); font-size: 14px; max-width: 70ch; }
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1100px) {
+      .pages { grid-template-columns: 1fr 1fr; }
+      .page-card:nth-child(3) { padding-left: 0; border-left: 0; }
+      .page-card:nth-child(n+3) { border-top: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 1040px) {
+      .faq-aside { position: static; }
+      .incl { grid-template-columns: 1fr 1fr; }
+      .incl li:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+      .incl li:nth-child(even) { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 860px) {
+      .why { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .pages { grid-template-columns: 1fr; }
+      .page-card, .page-card + .page-card { padding-left: 0; border-left: 0; }
+      .page-card + .page-card { border-top: 1px solid var(--dark-line); }
+      .incl { grid-template-columns: 1fr; }
+      .incl li:nth-child(even) { padding-left: 0; border-left: 0; }
+      .shift-head { display: none; }
+      .shift-row { grid-template-columns: 1fr; gap: 10px; }
+      .shift-k { display: block; margin-bottom: 2px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+      .shift-row .now .shift-k { color: var(--carmim); }
+    }
+    @media (max-width: 540px) {
+      .stage.ip-stage { min-height: 600px; margin-bottom: 30px; }
+      .ip-stage .stage-badge { width: 142px; }
+      .ip-caption { bottom: -30px; }
+      .ip .m-links span:not(.is-on) { display: none; }
+      .ip-hero { grid-template-columns: 1fr; padding: 16px 16px 12px; }
+      .ip-device { height: 70px; }
+      .ip-device::before { top: 8px; width: 34px; height: 54px; margin-left: -17px; }
+      .ip-device::after { top: 15px; width: 16px; height: 20px; margin-left: -8px; }
+      .ip-cols { grid-template-columns: 1fr; padding: 10px 16px 8px; gap: 6px; }
+      .ip-trust { padding: 0 16px 12px; }
+      .ip-page { padding: 14px 16px; }
+      .ip-grid { grid-template-columns: 1fr 1fr; }
+      .ip-grid .ip-card:last-child { display: none; }
+      .ip-about { grid-template-columns: 1fr; }
+      .ip-info { display: none; }
+      .pay-opt { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+      .bf-tag { box-shadow: inset 0 0 0 1px #aa1f23; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Aqui é da Interpoint. Li a proposta do novo site e quero aproveitar o valor de Black Friday.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Interpoint</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#paginas" data-spy-link="paginas">Páginas</a>
+        <a href="#incluso" data-spy-link="incluso">O que inclui</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#etapas" data-spy-link="etapas">Prazo</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>Site institucional</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para a Interpoint</span> <span class="display">32 anos de ponto e acesso. <em>Um site à altura dessa história.</em></span></h1>
+          <p class="hero-lead">Um site institucional novo, com uma página própria para o sistema de ponto, outra para o controle de acesso e uma página Sobre que conta a trajetória da Interpoint desde 1994 no Vale do Paraíba. Os equipamentos bem apresentados, a Portaria 671 explicada em linguagem simples e o WhatsApp a um toque em qualquer página, no computador e no celular.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#paginas">As quatro páginas</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 24 de novembro de 2026 · valor de Black Friday para aprovação até 30 de novembro de 2026.</span></div>
+        </div>
+
+        <div class="stage ip-stage" data-nosnippet role="group" aria-label="Exemplo das páginas do novo site da Interpoint">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">interpointrelogios.com.br</span><span class="browser-live">No ar</span></div>
+              <div class="screen ip">
+                <div class="m-nav" aria-hidden="true">
+                  <span class="m-logo"><i></i>Interpoint</span>
+                  <span class="m-links"><span class="is-on">Início</span><span>Sistema de Ponto</span><span>Controle de Acesso</span><span>Sobre</span><span>Loja</span></span>
+                </div>
+
+                <div class="mock-page" id="ip-home" role="tabpanel" aria-labelledby="ip-tab-home">
+                  <div class="ip-hero">
+                    <div>
+                      <span class="m-label">Desde 1994 · Vale do Paraíba</span>
+                      <p class="m-title">Controle de ponto e acesso para a sua empresa.</p>
+                      <p class="m-text">Relógios, catracas, software e crachás, com instalação, treinamento e suporte do começo ao pós-venda.</p>
+                      <div class="ip-actions"><span class="m-btn">Pedir orçamento</span><span class="m-btn is-ghost">Ver soluções</span></div>
+                    </div>
+                    <div class="ip-device"><span>Rosto reconhecido · 08:01</span></div>
+                  </div>
+                  <div class="ip-cols">
+                    <div class="ip-sol"><small>Sistema de ponto</small><strong>Ponto dentro da lei</strong><span>Relógio facial e software adequados à Portaria 671.</span></div>
+                    <div class="ip-sol"><small>Controle de acesso</small><strong>Entrada sob controle</strong><span>Catracas, totens e cancelas para pessoas e veículos.</span></div>
+                  </div>
+                  <div class="ip-trust">
+                    <div><strong>1994</strong><span>no mercado</span></div>
+                    <div><strong>Portaria 671</strong><span>em conformidade</span></div>
+                    <div><strong>Pós-venda</strong><span>manutenção e suporte</span></div>
+                  </div>
+                </div>
+
+                <div class="mock-page ip-page" id="ip-ponto" role="tabpanel" aria-labelledby="ip-tab-ponto" hidden>
+                  <span class="m-label">Sistema de ponto</span>
+                  <p class="m-title">Ponto eletrônico dentro da Portaria 671.</p>
+                  <p class="m-text">Relógio, software e crachás do mesmo fornecedor, com instalação e suporte.</p>
+                  <div class="ip-chips"><span class="is-on">Todos</span><span>Relógios de ponto</span><span>Software</span><span>Crachás</span></div>
+                  <div class="ip-grid">
+                    <div class="ip-card"><span class="ip-thumb"></span><div><span class="ip-meta">Relógio de ponto</span><strong>Relógio facial</strong><p>Detecção de rosto vivo, cartão, senha e QR Code.</p><span class="m-btn">Pedir orçamento</span></div></div>
+                    <div class="ip-card"><span class="ip-thumb is-soft"></span><div><span class="ip-meta">Software</span><strong>Gestão de ponto</strong><p>Horas extras, faltas e relatórios em PDF ou Excel.</p><span class="m-btn is-ghost">Saiba mais</span></div></div>
+                    <div class="ip-card"><span class="ip-thumb is-warm"></span><div><span class="ip-meta">Acessórios</span><strong>Crachás e cordões</strong><p>PVC com película cristal, personalizados.</p><span class="m-btn is-ghost">Saiba mais</span></div></div>
+                  </div>
+                  <div class="ip-pills">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Portaria 671/2021</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Acesso remoto pela nuvem</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>Comodato de equipamento</span>
+                  </div>
+                </div>
+
+                <div class="mock-page ip-page" id="ip-acesso" role="tabpanel" aria-labelledby="ip-tab-acesso" hidden>
+                  <span class="m-label">Controle de acesso</span>
+                  <p class="m-title">Quem entra, quando e por onde.</p>
+                  <p class="m-text">Para empresas, condomínios, academias e instituições.</p>
+                  <div class="ip-grid">
+                    <div class="ip-card"><span class="ip-thumb is-gate"></span><div><span class="ip-meta">Pedestres</span><strong>Catracas</strong><p>Wi-Fi integrado, facial, cartão ou QR Code.</p><span class="m-btn">Pedir orçamento</span></div></div>
+                    <div class="ip-card"><span class="ip-thumb is-soft"></span><div><span class="ip-meta">Veículos</span><strong>Totens e cancelas</strong><p>Entrada de carros e visitantes agendados.</p><span class="m-btn is-ghost">Saiba mais</span></div></div>
+                    <div class="ip-card"><span class="ip-thumb"></span><div><span class="ip-meta">Leitores</span><strong>Facial e biometria</strong><p>Liberação por rosto, digital, senha ou RFID.</p><span class="m-btn is-ghost">Saiba mais</span></div></div>
+                  </div>
+                  <div class="ip-log">
+                    <p>Acessos de hoje</p>
+                    <div><b>08:02</b><span>Portaria principal · colaborador</span><em class="ip-pill is-ok">Liberado</em></div>
+                    <div><b>08:05</b><span>Visitante agendado · recepção</span><em class="ip-pill is-ok">Liberado</em></div>
+                    <div><b>22:40</b><span>Academia · fora do horário do plano</span><em class="ip-pill is-no">Bloqueado</em></div>
+                  </div>
+                </div>
+
+                <div class="mock-page ip-page" id="ip-sobre" role="tabpanel" aria-labelledby="ip-tab-sobre" hidden>
+                  <div class="ip-about">
+                    <div>
+                      <span class="m-label">Sobre a Interpoint</span>
+                      <p class="m-title">Desde 1994 no controle de ponto e acesso.</p>
+                      <p class="m-text">Venda, instalação, comodato, manutenção e treinamento, priorizando o cliente da negociação ao pós-venda.</p>
+                      <div class="ip-nums">
+                        <div><strong>32 anos</strong><span>de atuação</span></div>
+                        <div><strong>3 regiões</strong><span>Vale, Litoral e Serra</span></div>
+                        <div><strong>Autorizada</strong><span>assistência técnica</span></div>
+                      </div>
+                    </div>
+                    <div class="ip-info">
+                      <dl>
+                        <div><dt>Endereço</dt><dd>Av. Dr. Numa de Oliveira, 133 · São José dos Campos/SP</dd></div>
+                        <div><dt>Atendimento</dt><dd>Vale do Paraíba, Litoral e Serra da Mantiqueira</dd></div>
+                      </dl>
+                      <span class="ip-map" aria-hidden="true"></span>
+                      <span class="m-btn is-wa">Chamar no WhatsApp</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-card ip-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
+              <div><strong>Novo pedido de orçamento</strong><span>Relógio facial · via WhatsApp</span><small>Página Sistema de Ponto · agora</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 1.300</strong><span>de <s>R$ 1.500</s> · valor de Black Friday, no Pix ou em até 10x</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Páginas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="ip-tab-home" aria-controls="ip-home" aria-selected="true">Home</button>
+            <button class="mockup-tab" type="button" role="tab" id="ip-tab-ponto" aria-controls="ip-ponto" aria-selected="false">Ponto</button>
+            <button class="mockup-tab" type="button" role="tab" id="ip-tab-acesso" aria-controls="ip-acesso" aria-selected="false">Acesso</button>
+            <button class="mockup-tab" type="button" role="tab" id="ip-tab-sobre" aria-controls="ip-sobre" aria-selected="false">Sobre</button>
+          </div>
+          <p class="ip-caption">Telas ilustrativas · o visual final segue a identidade da Interpoint</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Investimento · Black Friday</span><strong>R$ 1.300</strong></div>
+        <div class="spec-item"><span>Estrutura</span><strong>4 páginas + painel</strong></div>
+        <div class="spec-item"><span>Prazo estimado</span><strong>15 a 30 dias úteis</strong></div>
+        <div class="spec-item"><span>Pagamento</span><strong>Pix ou até 10x</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ DO SITE ATUAL PARA O NOVO ============ -->
+    <section class="section" id="diagnostico" aria-labelledby="diagnostico-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="diagnostico-titulo">O que muda em relação ao site de hoje.</h2>
+          <p class="reveal delay-1">Li o site atual com calma. A Interpoint tem muito a mostrar: 32 anos de mercado, ponto e acesso, comodato, assistência autorizada e uma loja online. O novo site organiza tudo isso para quem chega pelo Google e já quer pedir um orçamento.</p>
+        </div>
+        <div class="shift reveal" role="table" aria-label="Comparação entre o site atual e o novo site">
+          <div class="shift-head" role="row"><span role="columnheader">Hoje</span><span role="columnheader">No novo site</span></div>
+          <div class="shift-row" role="row">
+            <p class="was" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/></svg><span><b class="shift-k">Hoje</b>Ponto e acesso dividem a mesma página de Soluções.</span></p>
+            <p class="now" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b class="shift-k">No novo site</b>Uma página para cada solução, que pode aparecer sozinha para quem busca “relógio de ponto” ou “catraca” na região.</span></p>
+          </div>
+          <div class="shift-row" role="row">
+            <p class="was" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/></svg><span><b class="shift-k">Hoje</b>Sobre e Contatos são trechos da página inicial.</span></p>
+            <p class="now" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b class="shift-k">No novo site</b>Uma página Sobre completa, com história, região atendida, clientes, mapa e contato.</span></p>
+          </div>
+          <div class="shift-row" role="row">
+            <p class="was" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/></svg><span><b class="shift-k">Hoje</b>Um dos banners fala em “soluções logísticas” e “transporte e automação”, fora do que a Interpoint faz.</span></p>
+            <p class="now" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b class="shift-k">No novo site</b>Textos revisados e escritos para ponto e acesso, sem erros de digitação no menu e nas perguntas.</span></p>
+          </div>
+          <div class="shift-row" role="row">
+            <p class="was" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/></svg><span><b class="shift-k">Hoje</b>Os equipamentos aparecem como lista de recursos, sem modelo para o cliente comparar.</span></p>
+            <p class="now" role="cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b class="shift-k">No novo site</b>Vitrine de equipamentos com foto, recursos principais e botão de orçamento em cada um.</span></p>
+          </div>
+        </div>
+        <p class="shift-note reveal">O endereço continua o mesmo, interpointrelogios.com.br, e a loja online segue no ar, ligada no menu e nas páginas de equipamentos.</p>
+      </div>
+    </section>
+
+    <!-- ============ PÁGINAS ============ -->
+    <section class="section anatomy" id="paginas" data-spy="paginas" aria-labelledby="paginas-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="paginas-titulo">Quatro páginas, cada uma com uma função.</h2>
+          <p class="reveal delay-1">Uma navegação direta: quem chega entende em segundos o que a Interpoint faz, encontra a solução que procura e pede um orçamento sem precisar procurar o telefone.</p>
+        </div>
+        <div class="pages">
+          <article class="page-card reveal">
+            <span class="page-num">Página 01</span>
+            <h3>Home</h3>
+            <p class="page-sub">Página inicial</p>
+            <p>A porta de entrada: mostra em uma tela o que a Interpoint faz, para quem e por que dá para confiar.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Banner principal com a mensagem da empresa e o botão de orçamento</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Atalhos para Sistema de Ponto e Controle de Acesso</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Números da empresa: anos de mercado, clientes e avaliação no Google</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Serviços: manutenção, comodato, treinamento e assistência autorizada</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logos de clientes e parceiros</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Perguntas frequentes e rodapé com contato e redes sociais</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Causar uma primeira impressão sólida e levar o visitante direto à solução certa.</p>
+          </article>
+          <article class="page-card reveal delay-1">
+            <span class="page-num">Página 02</span>
+            <h3>Sistema de Ponto</h3>
+            <p class="page-sub">Relógios, software e crachás</p>
+            <p>Tudo o que a empresa precisa para registrar a jornada dentro da lei, explicado sem juridiquês.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Relógios de ponto com foto, recursos e botão de orçamento</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Software de gestão: horas extras, faltas, relatórios e acesso remoto</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Bloco sobre a Portaria 671/2021 e o que ela exige da empresa</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Crachás, cordões e acessórios personalizados</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Comodato, teste gratuito e apresentação online</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Transformar quem pesquisa “relógio de ponto” em um pedido de orçamento.</p>
+          </article>
+          <article class="page-card reveal delay-2">
+            <span class="page-num">Página 03</span>
+            <h3>Controle de Acesso</h3>
+            <p class="page-sub">Catracas, totens e leitores</p>
+            <p>As soluções de entrada para pessoas e veículos, organizadas pelo tipo de espaço do cliente.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Catracas, totens, cancelas e leitores com foto e recursos</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Formas de liberação: facial, biometria, senha, cartão RFID e QR Code</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Gestão de acesso: níveis, horários, locais e visitantes agendados</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Blocos para empresas, condomínios e academias</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Instalação, manutenção e suporte em destaque</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Mostrar que a Interpoint resolve a portaria inteira, do equipamento ao suporte.</p>
+          </article>
+          <article class="page-card reveal delay-3">
+            <span class="page-num">Página 04</span>
+            <h3>Sobre</h3>
+            <p class="page-sub">Empresa e contato</p>
+            <p>A história, a região atendida e todos os caminhos para falar com a equipe.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Trajetória desde 1994 e os valores da empresa</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Região atendida: Vale do Paraíba, Litoral e Serra da Mantiqueira</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fotos da equipe e da estrutura, se houver</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Formulário de contato com envio para o e-mail da empresa</li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Endereço, mapa, telefone, WhatsApp e redes sociais</li>
+            </ul>
+            <p class="page-goal"><strong>Objetivo</strong>Passar a confiança de quem está há 32 anos na região e facilitar o primeiro contato.</p>
+          </article>
+        </div>
+        <p class="privacy-line reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Textos, fotos e equipamentos são atualizados por um painel com login, sem precisar saber programação. Um equipamento novo cadastrado no painel já aparece na página certa.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ INCLUSO ============ -->
+    <section class="section" id="incluso" data-spy="incluso" aria-labelledby="incluso-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="incluso-titulo">O que vem junto com as páginas.</h2>
+          <p class="reveal delay-1">Além das quatro páginas, o investimento cobre tudo o que faz o site funcionar bem desde o primeiro dia.</p>
+        </div>
+        <ul class="incl">
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M12 22a10 10 0 1 1 10-10c0 2-1.5 3-3 3"/></svg></span>
+            <h3>Design personalizado</h3>
+            <p>Interface moderna, feita a partir do logotipo e das cores da Interpoint.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="14" height="11" rx="1.5"/><rect x="15" y="9" width="7" height="12" rx="1.5"/><path d="M6 19h6"/></svg></span>
+            <h3>Responsividade</h3>
+            <p>Funciona bem no celular, no tablet e no computador.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
+            <h3>Orçamento em um toque</h3>
+            <p>Botão de WhatsApp fixo em todas as páginas e em cada equipamento.</p>
+          </li>
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></span>
+            <h3>Painel administrativo</h3>
+            <p>Textos, fotos e equipamentos gerenciados sem conhecimento de programação.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+            <h3>SEO local básico</h3>
+            <p>Títulos, descrições e estrutura pensados para buscas em São José dos Campos e região.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4h12a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2z"/><path d="M18 8h2v10a2 2 0 0 1-2 2M8 8h6M8 12h6M8 16h4"/></svg></span>
+            <h3>Textos revisados</h3>
+            <p>O conteúdo do site atual reorganizado, corrigido e adaptado às novas páginas.</p>
+          </li>
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>
+            <h3>Desempenho</h3>
+            <p>Imagens otimizadas e boas práticas para o site carregar rápido no celular.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3>Troca sem sair do ar</h3>
+            <p>Construído à parte e publicado no mesmo domínio, com os endereços antigos redirecionados.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></svg></span>
+            <h3>Orientação inicial</h3>
+            <p>Instruções para a equipe atualizar textos e equipamentos por conta própria.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ESCOPO ============ -->
+    <section class="section" id="escopo" aria-labelledby="escopo-titulo" style="padding-top: 0">
+      <div class="container">
+        <h2 class="sr-only" id="escopo-titulo">O que está e o que não está no escopo</h2>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>A Interpoint recebe pronto para publicar</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>As quatro páginas, com o design e as funcionalidades descritos acima</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vitrine com até 12 equipamentos cadastrados na entrega</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Painel para editar textos, fotos e equipamentos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Textos do site atual revisados e adaptados às páginas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Site publicado em interpointrelogios.com.br, com redirecionamentos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Uma rodada de revisão consolidada dentro do escopo aprovado</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>Fora deste investimento</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Domínio e hospedagem</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Alterações na loja online (loja.interpointrelogios.com.br)</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Sessão de fotos profissional e criação de logotipo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Novas páginas, páginas individuais de produto ou funcionalidades não previstas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Suporte contínuo e manutenção após a entrega</li>
+            </ul>
+            <p class="fit-note"><strong>Precisa de algo a mais?</strong> Novas páginas, uma página para cada equipamento, tráfego pago, suporte e manutenção podem ser orçados à parte, quando fizer sentido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Valor de Black Friday, três formas de pagar.</h2>
+          <p class="section-lead reveal delay-1">O investimento cobre o planejamento, o design e o desenvolvimento das quatro páginas, com todas as funcionalidades desta proposta. Aprovando até 30 de novembro, o projeto sai por R$ 1.300 em vez de R$ 1.500, em qualquer forma de pagamento.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Investimento total</span>
+            <span class="bf-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg>Black Friday</span>
+            <span class="was">de <s aria-label="Valor original: R$ 1.500">R$ 1.500</s></span>
+            <strong class="num">R$ 1.300</strong>
+            <small>Mil e trezentos reais pelo projeto completo, sem mensalidade. R$ 200 a menos para aprovações até 30 de novembro de 2026.</small>
+          </div>
+          <div class="pay-opts" role="list" aria-label="Formas de pagamento">
+            <div class="pay-opt" role="listitem">
+              <b>Opção 01</b>
+              <h3>Pix em duas etapas</h3>
+              <strong class="num">2 × R$ 650</strong>
+              <p>50% na aprovação e início do projeto; 50% na conclusão e entrega.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 02</b>
+              <h3>Pix à vista</h3>
+              <strong class="num">R$ 1.300</strong>
+              <p>Pagamento integral na aprovação do projeto.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 03</b>
+              <h3>Cartão de crédito</h3>
+              <strong>Até 10x</strong>
+              <p>Por link de pagamento. As taxas de parcelamento da operadora são informadas antes da confirmação.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Condições</h3>
+            <p>O que está combinado dentro do valor fechado.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Páginas</span><strong>Home, Sistema de Ponto, Controle de Acesso e Sobre</strong></div>
+              <div class="pay-row"><span>Equipamentos na entrega</span><strong>Até 12, com foto e recursos</strong></div>
+              <div class="pay-row"><span>Painel</span><strong>Textos, fotos e equipamentos</strong></div>
+              <div class="pay-row"><span>Ajustes</span><strong>1 rodada de revisão consolidada</strong></div>
+              <div class="pay-row"><span>Valor de Black Friday</span><strong>Aprovação até 30 de novembro de 2026</strong></div>
+              <div class="pay-row"><span>Depois da entrega</span><strong>Suporte e manutenção à parte</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Custos que ficam com a Interpoint</h3>
+            <p>Pagos direto aos fornecedores, fora do valor desta proposta.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Domínio</span><strong>Registro anual, já existente</strong></div>
+              <div class="pay-row"><span>Hospedagem</span><strong>Plano atual ou do provedor escolhido</strong></div>
+              <div class="pay-row"><span>Serviços de terceiros</span><strong>Somente se forem necessários</strong></div>
+              <div class="pay-row"><span>Parcelamento no cartão</span><strong>Taxas da operadora</strong></div>
+            </div>
+            <p class="note">O domínio interpointrelogios.com.br continua o mesmo. Na etapa de planejamento, verifico se a hospedagem atual atende ao novo site antes de qualquer mudança.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ETAPAS ============ -->
+    <section class="section" id="etapas" data-spy="etapas" aria-labelledby="etapas-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="etapas-titulo">Da aprovação ao site no ar.</h2>
+          <p class="section-lead reveal delay-1">Quatro etapas. Primeiro organizamos o conteúdo e o visual; depois o site é construído, testado e publicado no lugar do atual.</p>
+          <div class="process-total reveal delay-2">
+            <strong>15–30</strong>
+            <span>dias úteis após a aprovação e o recebimento dos materiais necessários.</span>
+          </div>
+          <div class="deadline reveal delay-3">
+            <h3>Para começar</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proposta aprovada até 30 de novembro, para garantir o valor de Black Friday</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo em boa resolução e as cores da marca</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lista dos equipamentos que vão para a vitrine, com fotos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logos de clientes e números da empresa que podem ser divulgados</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acesso ao domínio e à hospedagem até a publicação</li>
+            </ul>
+            <p class="fit-note">O prazo começa a contar quando os materiais chegam. Aprovando agora, o novo site pode estar no ar ainda em dezembro.</p>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">Etapa 01</span>
+              <h3>Planejamento e estrutura</h3>
+              <p>Reunião para alinhar os objetivos, levantar os materiais, revisar o conteúdo do site atual e definir o que entra em cada página.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> estrutura das quatro páginas e lista de equipamentos da vitrine.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">Etapa 02</span>
+              <h3>Design e experiência</h3>
+              <p>Criação da interface visual a partir da identidade da Interpoint, com a hierarquia das informações e o caminho até o orçamento.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> visual das páginas para sua aprovação.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">Etapa 03</span>
+              <h3>Desenvolvimento</h3>
+              <p>Construção das páginas em ambiente separado, configuração do painel, cadastro dos equipamentos, formulário e WhatsApp. O site atual continua no ar durante todo o processo.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> site funcionando em um link de testes.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">Etapa 04</span>
+              <h3>Revisão e publicação</h3>
+              <p>Testes, a rodada de revisão consolidada, ajustes finais, redirecionamento dos endereços antigos e publicação em interpointrelogios.com.br.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> site no ar e orientação para atualizar os conteúdos.</p>
+            </div>
+          </li>
+          <li class="process-step is-external">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">Depois da entrega</span>
+              <h3>A equipe no comando</h3>
+              <p>Com o painel, a Interpoint atualiza textos e equipamentos quando quiser. Suporte contínuo e manutenção podem ser contratados à parte.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ QUEM CUIDA DO QUÊ ============ -->
+    <section class="section section-tight" id="responsabilidades" aria-labelledby="responsabilidades-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="responsabilidades-titulo">Quem cuida do quê.</h2>
+          <p class="section-lead reveal delay-1">O projeto anda no ritmo combinado quando cada parte entrega a sua no prazo.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <p class="care-who">VS Experience</p>
+            <h3>Projeto e construção</h3>
+            <p>Do planejamento ao site publicado.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Planejamento e estrutura das páginas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Revisão e adaptação dos textos atuais</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Design personalizado e responsivo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Desenvolvimento das quatro páginas e do painel</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cadastro de até 12 equipamentos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SEO local básico e otimização de desempenho</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Testes, publicação, redirecionamentos e orientação</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <p class="care-who">Interpoint</p>
+            <h3>Conteúdo e acessos</h3>
+            <p>O que só a empresa pode fornecer ou decidir.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo e cores da marca</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fotos dos equipamentos, da equipe e da estrutura</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lista de equipamentos e serviços em destaque</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Números e clientes autorizados para divulgação</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acesso ao domínio e à hospedagem</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Retornos e aprovações nos prazos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POR QUE A VS ============ -->
+    <section class="section anatomy" id="por-que" aria-labelledby="por-que-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="por-que-titulo">Por que a VS Experience.</h2>
+          <p class="reveal delay-1">Design e tecnologia trabalhando juntos para construir experiências digitais que fazem sentido para o público e para o negócio.</p>
+        </div>
+        <div class="why">
+          <div class="reveal">
+            <p>Cada projeto parte de um objetivo claro. Aqui, é fazer o site trabalhar como um bom vendedor: explicar a solução, mostrar o equipamento e levar o cliente até o orçamento.</p>
+            <p>Não se trata apenas de trocar o visual, e sim de construir uma presença digital que transmita a mesma confiança que a Interpoint conquistou em 32 anos atendendo empresas da região.</p>
+          </div>
+          <p class="why-motto reveal delay-1">Clareza para comunicar. <span>Estratégia para construir.</span> Experiência para conectar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Não incluso no valor</h3>
+          <ul class="factor-list reveal">
+            <li>Domínio</li>
+            <li>Hospedagem</li>
+            <li>Loja online</li>
+            <li>Fotos profissionais</li>
+            <li>Criação de logotipo</li>
+            <li>Tráfego pago</li>
+            <li>Novas páginas</li>
+            <li>Manutenção contínua</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>O site atual sai do ar durante a construção? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. O novo site é construído em um link de testes, separado. Só depois da sua aprovação ele substitui o atual em interpointrelogios.com.br, e os endereços antigos, como a página de Soluções, são redirecionados para as páginas novas.</p>
+          </details>
+          <details class="faq-item">
+            <summary>E a loja online? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Continua funcionando no endereço atual. O novo site leva até ela pelo menu e pelas páginas de equipamentos. Mudanças na própria loja não fazem parte desta proposta e podem ser orçadas à parte.</p>
+          </details>
+          <details class="faq-item">
+            <summary>A equipe consegue cadastrar novos equipamentos? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. O painel permite adicionar, editar e retirar equipamentos, trocar fotos e atualizar textos, sem conhecimento de programação. Entrego até 12 equipamentos cadastrados e as instruções para a equipe seguir daí.</p>
+          </details>
+          <details class="faq-item">
+            <summary>O site vai aparecer no Google? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>O site sai com SEO básico: títulos, descrições e a estrutura das páginas pensados para buscas como “relógio de ponto em São José dos Campos” e “catraca para condomínio”. Ter páginas separadas para ponto e acesso ajuda. Posição no Google depende também de tempo, concorrência e do perfil da empresa no Google, então não prometo colocação.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Até quando vale o valor de Black Friday? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>R$ 1.300 para propostas aprovadas até 30 de novembro de 2026, em qualquer uma das três formas de pagamento. Depois dessa data, o mesmo escopo volta para R$ 1.500.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Posso pedir ajustes? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Sim. O desenvolvimento inclui uma rodada de revisão consolidada dentro do escopo aprovado: a Interpoint reúne todos os pontos de uma vez e eu aplico os ajustes. Novas páginas ou funcionalidades fora do escopo são orçadas à parte.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Quando o prazo começa a contar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Depois da aprovação da proposta e do recebimento dos materiais: logotipo, fotos e a lista de equipamentos. A partir daí, o prazo estimado é de 15 a 30 dias úteis.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos renovar o site <span>da Interpoint?</span></h2>
+            <p>Com a aprovação até 30 de novembro, o valor de Black Friday fica garantido e começamos pelo planejamento: revisamos o conteúdo atual, reunimos os materiais e definimos o que entra em cada uma das quatro páginas.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Interpoint</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>Site institucional</strong></div>
+            <div class="meta-row"><span>Páginas</span><strong>Home, Sistema de Ponto, Controle de Acesso e Sobre</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 1.300 (de R$ 1.500) · Pix ou até 10x</strong></div>
+            <div class="meta-row"><span>Prazo estimado</span><strong>15 a 30 dias úteis</strong></div>
+            <div class="meta-row"><span>Valor de Black Friday</span><strong>Até 30 de novembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 24 de novembro de 2026 · sujeita à aprovação do escopo e das condições comerciais</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>
