@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efefef">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="author" content="Victor Santos">
+  <meta name="description" content="Proposta para a Drypeu Conceito: reestruturação estratégica do e-commerce na Nuvemshop, com nova home, navegação, página de produto e jornada de compra focadas em marca, usabilidade e conversão.">
+  <title>Proposta · Reestruturação do e-commerce · Drypeu Conceito | VS Experience</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="VS Experience">
+  <meta property="og:title" content="Proposta · Reestruturação do e-commerce · Drypeu Conceito">
+  <meta property="og:description" content="A mesma loja, a mesma Nuvemshop. Uma experiência de compra à altura da marca.">
+  <link rel="icon" href="../assets/images/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/images/brand/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('motion-ready');</script>
+  <link rel="preload" href="../assets/fonts/roboto-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Roboto Flex'; font-style: normal; font-weight: 100 1000; font-stretch: 25% 151%; font-display: swap; src: url(../assets/fonts/roboto-flex-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../assets/fonts/plus-jakarta-sans-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
+  <link rel="stylesheet" href="../servicos/assets/servicos.css?v=dd113124">
+  <style>
+    /* ============================================================
+       Proposta Drypeu Conceito · reestruturação do e-commerce
+       Só o que é desta página: mockup da loja (--c-*), referência,
+       escopo em três frentes, diferenciais, formas de pagamento
+       e cronograma.
+       ============================================================ */
+
+    /* ---------- Mockup da loja ---------- */
+    .screen.dp {
+      --c-accent: hsl(30 8% 13%);
+      --c-on-accent: #fff;
+      --c-tint: hsl(36 30% 95%);
+      --c-sale: hsl(4 64% 42%);
+      --c-ok: hsl(152 62% 27%);
+      --c-ok-soft: hsl(152 45% 92%);
+      background: #fff;
+    }
+    .dp-bar { padding: 5px 0; background: var(--c-accent); color: rgba(255, 255, 255, .86); font-size: 6.5px; font-weight: 600; letter-spacing: .02em; text-align: center; }
+    .dp .m-nav { gap: 12px; }
+    .dp .m-logo { font-size: 11px; font-weight: 800; letter-spacing: .22em; }
+    .dp .m-links { margin-left: 18px; gap: 12px; }
+    .dp .m-links .is-on { color: var(--m-ink); text-decoration: underline; text-underline-offset: 3px; }
+    .dp-icons { display: flex; gap: 9px; margin-left: auto; color: var(--m-ink); }
+    .dp-icons svg { width: 11px; height: 11px; }
+    .dp-icons b { position: relative; }
+    .dp-icons b::after { content: '2'; position: absolute; top: -4px; right: -5px; display: grid; place-items: center; width: 8px; height: 8px; border-radius: 50%; background: var(--c-sale); color: #fff; font-size: 5px; font-weight: 800; }
+
+    /* Miniaturas de produto: tons neutros, sem fotos reais */
+    .dp-img { position: relative; display: block; border-radius: 4px; background: linear-gradient(160deg, hsl(36 22% 90%), hsl(30 14% 78%)); overflow: hidden; }
+    .dp-img::after { content: ''; position: absolute; left: 50%; top: 50%; width: 38%; height: 46%; border-radius: 40% 40% 12px 12px; background: linear-gradient(160deg, hsl(30 8% 22%), hsl(30 8% 10%)); transform: translate(-50%, -44%); box-shadow: 0 10px 14px -8px rgba(0, 0, 0, .45); }
+    .dp-img.is-b { background: linear-gradient(160deg, hsl(24 20% 84%), hsl(20 18% 70%)); }
+    .dp-img.is-b::after { background: linear-gradient(160deg, hsl(36 30% 96%), hsl(36 14% 82%)); }
+    .dp-img.is-c { background: linear-gradient(160deg, hsl(200 8% 86%), hsl(210 6% 72%)); }
+    .dp-img.is-c::after { border-radius: 50%; width: 40%; height: 40%; background: linear-gradient(160deg, hsl(36 40% 62%), hsl(30 40% 38%)); }
+    .dp-img.is-d { background: linear-gradient(160deg, hsl(30 8% 24%), hsl(30 8% 12%)); }
+    .dp-img.is-d::after { background: linear-gradient(160deg, hsl(36 26% 88%), hsl(36 12% 70%)); }
+    .dp-tag { position: absolute; z-index: 1; left: 5px; top: 5px; padding: 2px 5px; border-radius: 2px; background: #fff; color: var(--m-ink); font-size: 5.6px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-style: normal; }
+    .dp-tag.is-sale { background: var(--c-sale); color: #fff; }
+
+    .dp-hero { position: relative; display: grid; grid-template-columns: 1fr .9fr; align-items: center; min-height: 150px; padding: 18px 22px; background: linear-gradient(120deg, hsl(30 8% 11%), hsl(30 10% 22%)); color: #fff; overflow: hidden; }
+    .dp-hero .m-label { color: hsl(36 40% 72%); }
+    .dp-hero .m-title { margin: 6px 0 6px; font-size: 21px; color: #fff; }
+    .dp-hero .m-text { color: rgba(255, 255, 255, .72); }
+    .dp-hero .m-btn { margin-top: 11px; background: #fff; color: var(--m-ink); }
+    .dp-hero .dp-img { height: 118px; background: linear-gradient(160deg, hsl(36 22% 84%), hsl(30 14% 64%)); }
+    .dp-dots { position: absolute; left: 22px; bottom: 10px; display: flex; gap: 4px; }
+    .dp-dots i { width: 12px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .3); }
+    .dp-dots i:first-child { background: #fff; }
+    .dp-shelf { padding: 13px 22px 16px; }
+    .dp-sec { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 8px; font-size: 9px; font-weight: 750; letter-spacing: -.01em; }
+    .dp-sec span { color: var(--m-soft); font-size: 6.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .dp-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .dp-prod .dp-img { height: 62px; margin-bottom: 5px; }
+    .dp-prod strong { display: block; font-size: 7px; font-weight: 650; line-height: 1.25; }
+    .dp-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 4px; margin-top: 2px; font-size: 7.5px; font-weight: 750; }
+    .dp-price s { color: var(--m-muted); font-size: 6px; font-weight: 500; }
+    .dp-inst { display: block; color: var(--m-muted); font-size: 5.8px; }
+
+    .dp-page { padding: 14px 22px 18px; }
+    .dp-crumb { margin: 0 0 4px; color: var(--m-muted); font-size: 6.2px; }
+    .dp-page .m-title { margin: 0 0 9px; font-size: 16px; }
+    .dp-filters { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 11px; }
+    .dp-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .dp-chips span { padding: 4px 8px; border-radius: 99px; border: 1px solid var(--m-line); color: var(--m-soft); font-size: 6.4px; font-weight: 700; }
+    .dp-chips .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .dp-sort { color: var(--m-soft); font-size: 6.4px; font-weight: 700; }
+    .dp-cat .dp-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .dp-cat .dp-img { height: 92px; }
+    .dp-cat .m-btn { width: 100%; margin-top: 5px; padding: 5px; font-size: 6.3px; }
+
+    .dp-pdp { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px 22px 18px; }
+    .dp-gallery .dp-img { height: 150px; }
+    .dp-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 5px; }
+    .dp-thumbs .dp-img { height: 30px; }
+    .dp-thumbs .dp-img::after { width: 34%; }
+    .dp-thumbs .is-on { box-shadow: 0 0 0 1.5px var(--c-accent); }
+    .dp-pdp .m-title { margin: 2px 0 4px; font-size: 14px; }
+    .dp-stars { display: flex; align-items: center; gap: 4px; color: var(--m-muted); font-size: 6.3px; font-weight: 600; }
+    .dp-stars i { color: hsl(40 88% 44%); font-style: normal; letter-spacing: 1px; font-size: 7px; }
+    .dp-big { margin: 8px 0 1px; font-size: 15px; font-weight: 800; letter-spacing: -.03em; }
+    .dp-big s { margin-left: 4px; color: var(--m-muted); font-size: 8px; font-weight: 500; letter-spacing: 0; }
+    .dp-pix { display: inline-block; margin-top: 4px; padding: 2px 6px; border-radius: 3px; background: var(--c-ok-soft); color: var(--c-ok); font-size: 6.2px; font-weight: 700; }
+    .dp-lbl { display: block; margin: 9px 0 4px; color: var(--m-muted); font-size: 6.3px; font-weight: 700; }
+    .dp-size { display: flex; gap: 4px; }
+    .dp-size span { display: grid; place-items: center; width: 20px; height: 18px; border: 1px solid var(--m-line); border-radius: 3px; font-size: 6.5px; font-weight: 700; }
+    .dp-size .is-on { border-color: var(--c-accent); background: var(--c-accent); color: #fff; }
+    .dp-size .is-off { color: var(--m-muted); text-decoration: line-through; }
+    .dp-buy { width: 100%; margin-top: 10px; padding: 8px; font-size: 7px; }
+    .dp-trust { display: grid; gap: 4px; margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--m-line); }
+    .dp-trust span { display: flex; align-items: center; gap: 5px; color: var(--m-soft); font-size: 6.4px; font-weight: 600; }
+    .dp-trust svg { width: 9px; height: 9px; flex: 0 0 auto; color: var(--m-ink); }
+
+    .dp-cartwrap { display: grid; grid-template-columns: 1fr 1.05fr; min-height: 290px; }
+    .dp-dim { background: linear-gradient(rgba(20, 18, 16, .42), rgba(20, 18, 16, .42)), linear-gradient(160deg, hsl(36 22% 90%), hsl(30 14% 80%)); }
+    .dp-cart { padding: 14px 16px 16px; border-left: 1px solid var(--m-line); background: #fff; }
+    .dp-cart-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; font-size: 10px; font-weight: 750; }
+    .dp-cart-h span { color: var(--m-muted); font-size: 6.5px; font-weight: 600; }
+    .dp-free { margin-bottom: 9px; padding: 6px 8px; border-radius: 5px; background: var(--c-tint); font-size: 6.4px; font-weight: 600; }
+    .dp-free i { position: relative; display: block; height: 3px; margin-top: 4px; border-radius: 3px; background: rgba(0, 0, 0, .1); }
+    .dp-free i::before { content: ''; position: absolute; inset: 0 14% 0 0; border-radius: 3px; background: var(--c-ok); }
+    .dp-item { display: grid; grid-template-columns: 34px 1fr auto; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--m-line); }
+    .dp-item .dp-img { height: 38px; }
+    .dp-item strong { display: block; font-size: 7px; }
+    .dp-item span { display: block; color: var(--m-muted); font-size: 6px; }
+    .dp-item b { font-size: 7px; }
+    .dp-sum { display: grid; gap: 3px; margin: 8px 0 9px; font-size: 6.6px; }
+    .dp-sum div { display: flex; justify-content: space-between; color: var(--m-soft); }
+    .dp-sum .is-total { margin-top: 3px; padding-top: 5px; border-top: 1px solid var(--m-line); color: var(--m-ink); font-size: 9px; font-weight: 800; }
+    .dp-cart .m-btn { width: 100%; padding: 8px; font-size: 7px; }
+    .dp-pay { display: flex; justify-content: center; gap: 4px; margin-top: 7px; }
+    .dp-pay span { padding: 2px 6px; border: 1px solid var(--m-line); border-radius: 3px; color: var(--m-soft); font-size: 5.8px; font-weight: 700; }
+
+    .dp-caption { position: absolute; left: 0; bottom: 8px; margin: 0; color: var(--text-muted); font-size: 12px; }
+    .dp-float { left: -18px; bottom: 96px; }
+    .dp-float .float-icon { background: hsl(152 45% 90%); color: hsl(152 62% 27%); }
+    .dp-stage .stage-badge { width: 176px; }
+
+    /* ---------- Referência ---------- */
+    .ref-note { margin: 24px 0 0; color: var(--text-muted); font-size: 14px; max-width: 72ch; }
+
+    /* ---------- Escopo em três frentes (faixa Grafite) ---------- */
+    .modules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--dark-line-strong); }
+    .module { display: flex; flex-direction: column; padding: 32px 30px 36px 0; }
+    .module + .module { padding-left: 30px; border-left: 1px solid var(--dark-line); }
+    .module-who { display: flex; align-items: center; gap: 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .module-who svg { width: 20px; }
+    .module h3 { margin: 14px 0 10px; font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 34px); font-weight: 740; font-variation-settings: "wdth" 110; line-height: 1.02; letter-spacing: -.02em; }
+    .module > p { margin-bottom: 22px; color: var(--text-soft); font-size: 15px; }
+    .module .plan-features { margin-bottom: 0; }
+    .module .plan-feature strong { color: var(--text); font-weight: 700; }
+    .privacy-line { display: flex; gap: 12px; align-items: flex-start; margin-top: clamp(40px, 5vw, 56px); padding-top: 22px; border-top: 1px solid var(--dark-line); color: var(--text-soft); font-size: 15px; max-width: 80ch; }
+    .privacy-line svg { width: 20px; flex: 0 0 auto; margin-top: 2px; color: var(--cadmio); }
+
+    /* ---------- Diferenciais ---------- */
+    .incl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--grafite); }
+    .incl li { padding: clamp(22px, 2.6vw, 30px) clamp(18px, 2.4vw, 32px) clamp(24px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--dark-line); }
+    .incl li:not(:nth-child(3n+1)) { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--dark-line); }
+    .incl .outcome-icon { width: 32px; height: 32px; margin-bottom: 14px; place-items: start; }
+    .incl .outcome-icon svg { width: 24px; }
+    .incl h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 700; font-variation-settings: "wdth" 108; line-height: 1.1; letter-spacing: -.015em; }
+    .incl p { margin: 0; color: var(--text-soft); font-size: 15px; }
+
+    /* ---------- Formas de pagamento (painel Carmim) ---------- */
+    .pay-opts { display: grid; border-top: 1px solid var(--dark-line-strong); }
+    .pay-opt { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 24px; align-items: baseline; padding: 18px 0 20px; border-bottom: 1px solid var(--dark-line); }
+    .pay-opt b { grid-column: 1 / -1; color: var(--text-soft); font-size: 13px; font-weight: 700; }
+    .pay-opt h3 { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 740; font-variation-settings: "wdth" 112; line-height: 1.05; letter-spacing: -.02em; }
+    .pay-opt strong { font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 760; font-variation-settings: "wdth" 112; white-space: nowrap; }
+    .pay-opt p { grid-column: 1 / -1; margin: 0; color: var(--text-soft); font-size: 14px; }
+    .pricing-notes .note { margin: 18px 0 0; color: var(--text-muted); font-size: 14px; }
+    .fit-note { margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-line); color: var(--text-muted); font-size: 14px; }
+    .fit-note strong { color: var(--text); }
+    .fit-col.is-alt .fit-list { margin-bottom: 26px; }
+
+    /* ---------- Cronograma ---------- */
+    .process-total strong { font-size: clamp(56px, 6.4vw, 88px); }
+    .process-step .step-pay { display: inline-flex; flex-wrap: wrap; gap: 0 8px; margin: 12px 0 0; padding: 7px 12px; border-radius: 4px; background: var(--grafite); color: var(--linho); font-size: 13px; font-weight: 600; }
+    .step-pay b { color: #ff7a7b; font-weight: 700; }
+    .deadline { margin-top: 36px; }
+    .deadline h3 { margin-bottom: 14px; font-family: var(--font-display); font-size: 20px; font-weight: 720; font-variation-settings: "wdth" 110; }
+    .deadline .fit-list { margin-bottom: 16px; }
+    .deadline .fit-list li { padding: 11px 0; font-size: 14px; }
+    .deadline .fit-list svg { color: var(--carmim); }
+    .deadline .fit-note { padding-top: 0; border-top: 0; }
+    .process-step.is-external .step-dot { border-style: dashed; }
+
+    /* ---------- Quem cuida do quê / perguntas ---------- */
+    .care-block .care-who { margin: -20px 0 10px; color: var(--rose-soft); font-size: 13px; font-weight: 700; }
+    .base-note { margin-top: 28px; color: var(--text-muted); font-size: 14px; max-width: 70ch; }
+    .faq-aside .section-title { position: static; }
+    .faq-aside { position: sticky; top: calc(var(--header-h) + 32px); }
+    .faq-aside h3 { margin: 40px 0 14px; font-family: var(--font-display); font-size: 22px; font-weight: 720; font-variation-settings: "wdth" 110; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 1040px) {
+      .faq-aside { position: static; }
+      .incl { grid-template-columns: 1fr 1fr; }
+      .incl li:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+      .incl li:nth-child(even) { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 860px) {
+      .modules { grid-template-columns: 1fr; }
+      .module, .module + .module { padding-left: 0; border-left: 0; }
+      .module + .module { border-top: 1px solid var(--dark-line); }
+    }
+    @media (max-width: 720px) {
+      .incl { grid-template-columns: 1fr; }
+      .incl li:nth-child(even) { padding-left: 0; border-left: 0; }
+    }
+    @media (max-width: 540px) {
+      .stage.dp-stage { min-height: 600px; margin-bottom: 30px; }
+      .dp-stage .stage-badge { width: 138px; }
+      .dp-caption { bottom: -30px; }
+      .dp .m-links { display: none; }
+      .dp-hero { grid-template-columns: 1fr; min-height: 0; padding: 14px 16px 22px; }
+      .dp-hero .dp-img { display: none; }
+      .dp-shelf, .dp-page { padding-left: 16px; padding-right: 16px; }
+      .dp-row { grid-template-columns: repeat(2, 1fr); }
+      .dp-row .dp-prod:nth-child(n+3) { display: none; }
+      .dp-cat .dp-row { grid-template-columns: repeat(2, 1fr); }
+      .dp-pdp { grid-template-columns: 1fr; padding: 12px 16px 14px; gap: 10px; }
+      .dp-gallery .dp-img { height: 100px; }
+      .dp-thumbs { display: none; }
+      .dp-cartwrap { grid-template-columns: 1fr; }
+      .dp-dim { display: none; }
+      .dp-cart { border-left: 0; }
+      .pay-opt { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .process-step .step-pay { background: #fff; color: #212121; box-shadow: inset 0 0 0 1px #212121; }
+      .step-pay b { color: #aa1f23; }
+      .faq-item::details-content { height: auto; }
+      .faq-aside { position: static; }
+    }
+  </style>
+</head>
+<body data-whatsapp="Olá, Victor! Aqui é da Drypeu Conceito. Li a proposta de reestruturação do e-commerce e quero avançar.">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="../" aria-label="Victor Santos · VS Experience, página inicial"><img src="../assets/images/brand/logotipo-grafite.svg" alt="" width="198" height="24"></a>
+      <p class="client-chip">Proposta · <span aria-current="page">Drypeu Conceito</span></p>
+      <nav class="nav-links" aria-label="Navegação da proposta">
+        <a href="#escopo" data-spy-link="escopo">Escopo</a>
+        <a href="#diferenciais" data-spy-link="diferenciais">Diferenciais</a>
+        <a href="#investimento" data-spy-link="investimento">Investimento</a>
+        <a href="#cronograma" data-spy-link="cronograma">Prazo</a>
+        <a class="nav-cta" href="#contato"><span>Aprovar proposta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container"><p class="svc-word" data-svc-word>E-commerce</p></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <h1 class="hero-title"><span class="context-line">Proposta para a Drypeu Conceito</span> <span class="display">Mesma loja, mesma Nuvemshop. <em>Outra experiência de compra.</em></span></h1>
+          <p class="hero-lead">Uma reestruturação estratégica do e-commerce da Drypeu Conceito: experiência de compra mais moderna, intuitiva e profissional, com foco no posicionamento da marca, na usabilidade e na conversão. O catálogo, os pedidos e a operação continuam na Nuvemshop, sem migração.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#investimento">Ver investimento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-secondary" href="#escopo">O que será feito</a>
+          </div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Enviada em 25 de novembro de 2026 · válida até 10 de dezembro de 2026.</span></div>
+        </div>
+
+        <div class="stage dp-stage" data-nosnippet role="group" aria-label="Exemplo das telas da loja reestruturada">
+          <div class="stage-inner">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">drypeuconceito.com.br</span><span class="browser-live">No ar</span></div>
+              <div class="screen dp">
+                <p class="dp-bar" aria-hidden="true">Frete grátis acima de R$ 299 · até 6x sem juros</p>
+                <div class="m-nav" aria-hidden="true">
+                  <span class="m-logo">DRYPEU</span>
+                  <span class="m-links"><span class="is-on">Novidades</span><span>Coleções</span><span>Mais vendidos</span><span>Sobre</span></span>
+                  <span class="dp-icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1.2 12a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></b></span>
+                </div>
+
+                <div class="mock-page" id="dp-home" role="tabpanel" aria-labelledby="dp-tab-home">
+                  <div class="dp-hero">
+                    <div>
+                      <span class="m-label">Nova coleção</span>
+                      <p class="m-title">Conceito em cada detalhe.</p>
+                      <p class="m-text">Peças pensadas para durar, com envio para todo o Brasil.</p>
+                      <span class="m-btn">Comprar agora</span>
+                    </div>
+                    <span class="dp-img"></span>
+                    <span class="dp-dots"><i></i><i></i><i></i></span>
+                  </div>
+                  <div class="dp-shelf">
+                    <p class="dp-sec">Mais vendidos <span>Ver todos</span></p>
+                    <div class="dp-row">
+                      <div class="dp-prod"><span class="dp-img"><em class="dp-tag">Novo</em></span><strong>Essencial Preto</strong><span class="dp-price">R$ 189,90</span><span class="dp-inst">6x de R$ 31,65</span></div>
+                      <div class="dp-prod"><span class="dp-img is-b"></span><strong>Clássico Areia</strong><span class="dp-price">R$ 169,90</span><span class="dp-inst">6x de R$ 28,32</span></div>
+                      <div class="dp-prod"><span class="dp-img is-c"><em class="dp-tag is-sale">−20%</em></span><strong>Edição Dourada</strong><span class="dp-price">R$ 159,90 <s>R$ 199,90</s></span><span class="dp-inst">6x de R$ 26,65</span></div>
+                      <div class="dp-prod"><span class="dp-img is-d"></span><strong>Linha Noir</strong><span class="dp-price">R$ 209,90</span><span class="dp-inst">6x de R$ 34,98</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page dp-page dp-cat" id="dp-categoria" role="tabpanel" aria-labelledby="dp-tab-categoria" hidden>
+                  <p class="dp-crumb">Início / Coleções / Mais vendidos</p>
+                  <p class="m-title">Mais vendidos</p>
+                  <div class="dp-filters"><div class="dp-chips"><span class="is-on">Todos</span><span>Novidades</span><span>Linha Noir</span><span>Ofertas</span></div><span class="dp-sort">Ordenar: mais vendidos ▾</span></div>
+                  <div class="dp-row">
+                    <div class="dp-prod"><span class="dp-img"><em class="dp-tag">Novo</em></span><strong>Essencial Preto</strong><span class="dp-price">R$ 189,90</span><span class="dp-inst">6x de R$ 31,65 sem juros</span><span class="m-btn">Comprar</span></div>
+                    <div class="dp-prod"><span class="dp-img is-c"><em class="dp-tag is-sale">−20%</em></span><strong>Edição Dourada</strong><span class="dp-price">R$ 159,90 <s>R$ 199,90</s></span><span class="dp-inst">6x de R$ 26,65 sem juros</span><span class="m-btn is-ghost">Comprar</span></div>
+                    <div class="dp-prod"><span class="dp-img is-b"></span><strong>Clássico Areia</strong><span class="dp-price">R$ 169,90</span><span class="dp-inst">6x de R$ 28,32 sem juros</span><span class="m-btn is-ghost">Comprar</span></div>
+                  </div>
+                </div>
+
+                <div class="mock-page dp-pdp" id="dp-produto" role="tabpanel" aria-labelledby="dp-tab-produto" hidden>
+                  <div class="dp-gallery">
+                    <span class="dp-img"><em class="dp-tag">Mais vendido</em></span>
+                    <div class="dp-thumbs"><span class="dp-img is-on"></span><span class="dp-img is-b"></span><span class="dp-img is-c"></span><span class="dp-img is-d"></span></div>
+                  </div>
+                  <div>
+                    <p class="dp-crumb">Coleções / Essencial</p>
+                    <p class="m-title">Essencial Preto</p>
+                    <span class="dp-stars"><i>★★★★★</i>4,9 · 128 avaliações</span>
+                    <p class="dp-big">R$ 189,90<s>R$ 229,90</s></p>
+                    <span class="dp-inst">ou 6x de R$ 31,65 sem juros</span>
+                    <span class="dp-pix">5% off no Pix · R$ 180,40</span>
+                    <span class="dp-lbl">Tamanho</span>
+                    <div class="dp-size"><span class="is-off">P</span><span class="is-on">M</span><span>G</span><span>GG</span></div>
+                    <span class="m-btn dp-buy">Adicionar ao carrinho</span>
+                    <div class="dp-trust">
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="14" height="11" rx="1"/><path d="M15 10h4l3 3v4h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Frete calculado pelo CEP</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Primeira troca grátis em 30 dias</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra 100% segura</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mock-page dp-cartwrap" id="dp-carrinho" role="tabpanel" aria-labelledby="dp-tab-carrinho" hidden>
+                  <span class="dp-dim" aria-hidden="true"></span>
+                  <div class="dp-cart">
+                    <p class="dp-cart-h">Seu carrinho <span>2 itens</span></p>
+                    <div class="dp-free">Faltam R$ 40,00 para o frete grátis<i></i></div>
+                    <div class="dp-item"><span class="dp-img"></span><div><strong>Essencial Preto</strong><span>Tamanho M · 1 un</span></div><b>R$ 189,90</b></div>
+                    <div class="dp-item"><span class="dp-img is-c"></span><div><strong>Edição Dourada</strong><span>Único · 1 un</span></div><b>R$ 159,90</b></div>
+                    <div class="dp-sum">
+                      <div><span>Subtotal</span><span>R$ 349,80</span></div>
+                      <div><span>Frete</span><span>Calcular pelo CEP</span></div>
+                      <div class="is-total"><span>Total</span><span>R$ 349,80</span></div>
+                    </div>
+                    <span class="m-btn">Finalizar compra</span>
+                    <div class="dp-pay"><span>Pix</span><span>Cartão 6x</span><span>Boleto</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="float-card dp-float" aria-hidden="true">
+              <span class="float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><strong>Pedido confirmado · #1042</strong><span>2 itens · Pix aprovado</span><small>Mais vendidos · agora</small></div>
+            </div>
+            <div class="stage-badge"><strong>R$ 4.700</strong><span>valor fechado, no Pix, no cartão ou em etapas</span></div>
+          </div>
+          <div class="mockup-tabs" role="tablist" aria-label="Telas do exemplo">
+            <button class="mockup-tab" type="button" role="tab" id="dp-tab-home" aria-controls="dp-home" aria-selected="true">Home</button>
+            <button class="mockup-tab" type="button" role="tab" id="dp-tab-categoria" aria-controls="dp-categoria" aria-selected="false">Categoria</button>
+            <button class="mockup-tab" type="button" role="tab" id="dp-tab-produto" aria-controls="dp-produto" aria-selected="false">Produto</button>
+            <button class="mockup-tab" type="button" role="tab" id="dp-tab-carrinho" aria-controls="dp-carrinho" aria-selected="false">Carrinho</button>
+          </div>
+          <p class="dp-caption">Telas ilustrativas · produtos, preços e visual fictícios</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA ============ -->
+    <section class="spec-band" aria-label="Resumo da proposta">
+      <div class="container spec-grid">
+        <div class="spec-item"><span>Investimento</span><strong>R$ 4.700</strong></div>
+        <div class="spec-item"><span>Pagamento</span><strong>Pix, cartão ou etapas</strong></div>
+        <div class="spec-item"><span>Prazo estimado</span><strong>20 a 30 dias úteis</strong></div>
+        <div class="spec-item"><span>Plataforma</span><strong>Nuvemshop</strong></div>
+      </div>
+    </section>
+
+    <!-- ============ OBJETIVO E REFERÊNCIA ============ -->
+    <section class="section" id="objetivo" aria-labelledby="objetivo-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="objetivo-titulo">A referência é a Saint Germain. A marca continua sendo a Drypeu.</h2>
+          <p class="reveal delay-1">A Saint Germain é uma das lojas mais bem resolvidas da Nuvemshop, e serve de referência visual e funcional para este projeto. A ideia é trazer a clareza e a lógica de venda dela sem copiar a aparência, preservando a autenticidade e a identidade da Drypeu Conceito.</p>
+        </div>
+        <div class="fit-grid">
+          <div class="fit-col reveal">
+            <h3>O que vem da referência</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Home organizada em vitrines, coleções e destaques comerciais</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Navegação direta: menus e categorias que levam ao produto em poucos cliques</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Página de produto que responde às dúvidas antes da compra</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Jornada de compra enxuta, com CTAs claros e sinais de confiança</li>
+            </ul>
+          </div>
+          <div class="fit-col is-alt reveal delay-1">
+            <h3>O que continua sendo da Drypeu</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo, cores, tom de voz e o jeito próprio da marca</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Catálogo, clientes e histórico de pedidos, sem recadastro</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>A operação na Nuvemshop: pagamentos, frete e integrações existentes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>O endereço da loja e o que já foi construído nele</li>
+            </ul>
+            <p class="fit-note"><strong>Referência não é cópia:</strong> o diagnóstico define o que faz sentido trazer para o público da Drypeu e o que precisa ser diferente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESCOPO ============ -->
+    <section class="section anatomy" id="escopo" data-spy="escopo" aria-labelledby="escopo-titulo">
+      <div class="container">
+        <div class="anatomy-head">
+          <h2 class="section-title reveal" id="escopo-titulo">O que será feito, em três frentes.</h2>
+          <p class="reveal delay-1">Doze entregas que vão da estratégia à publicação. Primeiro se decide o que a loja precisa comunicar e vender; depois isso vira design; só então é implementado no tema da Nuvemshop.</p>
+        </div>
+        <div class="modules">
+          <article class="module reveal">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M12 22a10 10 0 1 1 10-10c0 2-1.5 3-3 3"/></svg>Antes do código</span>
+            <h3>Estratégia e design</h3>
+            <p>Entender a loja de hoje e desenhar a de amanhã.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Estratégia e planejamento.</strong> Diagnóstico da loja atual, benchmarking e definição da nova estrutura comercial.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>UX/UI Design.</strong> Nova direção visual, prototipação das principais interfaces, tipografia, cores e componentes.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Identidade digital.</strong> Padronização visual dos elementos do e-commerce e desenvolvimento de banners.</span></li>
+            </ul>
+          </article>
+          <article class="module reveal delay-1">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1.2 12a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Na vitrine</span>
+            <h3>A loja</h3>
+            <p>O que o cliente vê e o caminho até a compra.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Página inicial.</strong> Reestruturação completa da home, vitrines, banners, coleções e destaques comerciais.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Navegação.</strong> Reformulação do cabeçalho, menus, categorias e rodapé.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Página de produtos.</strong> Melhor apresentação dos produtos, informações, benefícios e elementos de conversão.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Conversão.</strong> Jornada de compra, CTAs e elementos de credibilidade revisados.</span></li>
+            </ul>
+          </article>
+          <article class="module reveal delay-2">
+            <span class="module-who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>Nos bastidores</span>
+            <h3>Implementação</h3>
+            <p>O design aplicado no tema, funcionando em qualquer tela.</p>
+            <ul class="plan-features">
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Desenvolvimento.</strong> Implementação e personalização do tema na Nuvemshop.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Responsividade.</strong> Adequação para computadores, tablets e smartphones.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>SEO.</strong> Otimização básica da estrutura, títulos, metadados e hierarquia de informações.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Performance.</strong> Carregamento otimizado dentro das possibilidades da plataforma.</span></li>
+              <li class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Testes e publicação.</strong> Validação das funcionalidades e das integrações existentes, e publicação do novo layout.</span></li>
+            </ul>
+          </article>
+        </div>
+        <p class="privacy-line reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Sem migração de plataforma. Produtos, clientes, pedidos, meios de pagamento e frete continuam onde estão; o que muda é a experiência de quem compra.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ DIFERENCIAIS ============ -->
+    <section class="section" id="diferenciais" data-spy="diferenciais" aria-labelledby="diferenciais-titulo">
+      <div class="container">
+        <div class="intro-head">
+          <h2 class="section-title reveal" id="diferenciais-titulo">Como o projeto é conduzido.</h2>
+          <p class="reveal delay-1">Seis compromissos que valem do diagnóstico ao fim do suporte.</p>
+        </div>
+        <ul class="incl">
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></span>
+            <h3>Foco em experiência e conversão</h3>
+            <p>Cada decisão de layout parte de como o cliente navega, escolhe e compra.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/><path d="M12 22a10 10 0 1 1 10-10c0 2-1.5 3-3 3"/></svg></span>
+            <h3>Design alinhado à marca</h3>
+            <p>A loja passa a comunicar o posicionamento da Drypeu em cada tela.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+            <h3>Operação preservada</h3>
+            <p>Catálogo e operação comercial seguem intactos durante e depois do projeto.</p>
+          </li>
+          <li class="reveal">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3>Validado antes de publicar</h3>
+            <p>O novo layout é desenvolvido e testado antes de substituir o atual.</p>
+          </li>
+          <li class="reveal delay-1">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span>
+            <h3>Até duas rodadas de ajustes</h3>
+            <p>Espaço para refinar o design e a implementação com o seu retorno.</p>
+          </li>
+          <li class="reveal delay-2">
+            <span class="outcome-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
+            <h3>30 dias de suporte</h3>
+            <p>Correções relacionadas ao projeto, sem custo, depois da entrega.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ INVESTIMENTO ============ -->
+    <section class="section plans-section" id="investimento" data-spy="investimento" aria-labelledby="investimento-titulo" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="investimento-titulo">Um valor fechado, quatro formas de pagar.</h2>
+          <p class="section-lead reveal delay-1">Um único valor para tudo o que está nesta proposta: diagnóstico, design, desenvolvimento no tema, SEO básico, testes, publicação e 30 dias de suporte. Você escolhe a forma de pagamento que for mais confortável para o caixa da loja.</p>
+        </div>
+
+        <div class="avg-panel reveal">
+          <div class="avg-value">
+            <span>Investimento total</span>
+            <strong class="num">R$ 4.700</strong>
+            <small>Quatro mil e setecentos reais pelo projeto completo, sem mensalidade.</small>
+          </div>
+          <div class="pay-opts" role="list" aria-label="Formas de pagamento">
+            <div class="pay-opt" role="listitem">
+              <b>Opção 01</b>
+              <h3>Duas etapas</h3>
+              <strong class="num">2 × R$ 2.350</strong>
+              <p>50% na contratação e 50% na entrega, por Pix ou transferência.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 02</b>
+              <h3>Três etapas</h3>
+              <strong class="num">R$ 1.880 + 2 × R$ 1.410</strong>
+              <p>40% na contratação, 30% na aprovação do layout e 30% na entrega.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 03</b>
+              <h3>Pix à vista</h3>
+              <strong class="num">R$ 4.700</strong>
+              <p>Pagamento integral na contratação.</p>
+            </div>
+            <div class="pay-opt" role="listitem">
+              <b>Opção 04</b>
+              <h3>Cartão de crédito</h3>
+              <strong>Até 10x</strong>
+              <p>Por link de pagamento. As taxas de parcelamento da operadora são informadas antes da confirmação.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-notes">
+          <div class="reveal">
+            <h3>Condições</h3>
+            <p>O que está combinado dentro do valor fechado.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Plataforma</span><strong>Nuvemshop, sem migração</strong></div>
+              <div class="pay-row"><span>Parcelamento no cartão</span><strong>Taxas da operadora</strong></div>
+              <div class="pay-row"><span>Ajustes</span><strong>Até 2 rodadas</strong></div>
+              <div class="pay-row"><span>Suporte após a entrega</span><strong>30 dias de correções</strong></div>
+              <div class="pay-row"><span>Prazo estimado</span><strong>20 a 30 dias úteis</strong></div>
+              <div class="pay-row"><span>Novas funções ou integrações</span><strong>Orçamento complementar</strong></div>
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <h3>Não estão inclusos</h3>
+            <p>Fora do valor desta proposta.</p>
+            <div class="pay-rows">
+              <div class="pay-row"><span>Mensalidades da plataforma, temas e aplicativos pagos</span><strong>Pagos à Nuvemshop e aos fornecedores</strong></div>
+              <div class="pay-row"><span>Criação ou reformulação da identidade visual</span><strong>Projeto à parte</strong></div>
+              <div class="pay-row"><span>Fotografias e vídeos</span><strong>Produção à parte</strong></div>
+              <div class="pay-row"><span>Recadastro integral de produtos</span><strong>Não incluso</strong></div>
+              <div class="pay-row"><span>Funcionalidades exclusivas ou integrações complexas</span><strong>Orçamento à parte</strong></div>
+              <div class="pay-row"><span>Tema inteiramente do zero</span><strong>Não incluso</strong></div>
+              <div class="pay-row"><span>Gestão contínua após o suporte</span><strong>Plano à parte</strong></div>
+            </div>
+            <p class="note">A personalização está condicionada aos recursos técnicos do plano contratado na Nuvemshop. No diagnóstico, confiro o que o plano atual permite antes de fechar o layout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CRONOGRAMA ============ -->
+    <section class="section" id="cronograma" data-spy="cronograma" aria-labelledby="cronograma-titulo" style="padding-top: 0">
+      <div class="container process-layout">
+        <div class="process-aside">
+          <h2 class="section-title reveal" id="cronograma-titulo">Da contratação à loja nova no ar.</h2>
+          <p class="section-lead reveal delay-1">Quatro etapas. Primeiro o diagnóstico e o design; depois a implementação no tema; por fim os testes e a publicação. A loja atual segue vendendo até a troca.</p>
+          <div class="process-total reveal delay-2">
+            <strong>20–30</strong>
+            <span>dias úteis, contados a partir da contratação e do recebimento dos acessos e materiais.</span>
+          </div>
+          <div class="deadline reveal delay-3">
+            <h3>Para começar</h3>
+            <ul class="fit-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proposta aprovada e forma de pagamento escolhida</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acesso de administrador à loja na Nuvemshop</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo, cores e materiais da marca</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fotos de produtos e campanhas para banners</li>
+            </ul>
+            <p class="fit-note">O prazo considera os períodos de aprovação do cliente. Retornos mais rápidos encurtam o projeto.</p>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li class="process-step">
+            <span class="step-dot">01</span>
+            <div>
+              <span class="step-time">3 a 5 dias úteis</span>
+              <h3>Diagnóstico e planejamento</h3>
+              <p>Análise da loja atual e dos dados de navegação, benchmarking com a Saint Germain e outras referências, e definição da nova estrutura comercial: home, menus, categorias e página de produto.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> diagnóstico e estrutura da nova loja.</p>
+              <p class="step-pay"><b>Contratação</b><span>entrada ou valor integral, conforme a forma escolhida</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">02</span>
+            <div>
+              <span class="step-time">5 a 7 dias úteis</span>
+              <h3>Design e aprovação visual</h3>
+              <p>Nova direção visual e protótipo das principais interfaces no computador e no celular: home, categoria, produto e carrinho, com tipografia, cores, componentes e banners.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> layout aprovado por você.</p>
+              <p class="step-pay"><b>Opção 02</b><span>30% na aprovação do layout</span></p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">03</span>
+            <div>
+              <span class="step-time">8 a 12 dias úteis</span>
+              <h3>Desenvolvimento e implementação</h3>
+              <p>Personalização do tema na Nuvemshop, responsividade, SEO básico, otimização de carregamento e elementos de conversão, sem mexer na loja que está no ar.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> nova loja pronta para validação.</p>
+            </div>
+          </li>
+          <li class="process-step">
+            <span class="step-dot">04</span>
+            <div>
+              <span class="step-time">4 a 6 dias úteis</span>
+              <h3>Testes, ajustes e publicação</h3>
+              <p>Validação das funcionalidades e das integrações existentes, compras de teste, ajustes finais e publicação do novo layout.</p>
+              <p class="step-deliverable"><strong>Entrega:</strong> loja reestruturada no ar.</p>
+              <p class="step-pay"><b>Entrega</b><span>saldo final, nas formas em etapas</span></p>
+            </div>
+          </li>
+          <li class="process-step is-external">
+            <span class="step-dot">05</span>
+            <div>
+              <span class="step-time">30 dias após a entrega</span>
+              <h3>Suporte técnico</h3>
+              <p>Correções relacionadas ao projeto, sem custo. Depois desse período, a gestão contínua da loja pode seguir em um plano à parte.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ QUEM CUIDA DO QUÊ ============ -->
+    <section class="section section-tight" id="responsabilidades" aria-labelledby="responsabilidades-titulo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title reveal" id="responsabilidades-titulo">Quem cuida do quê.</h2>
+          <p class="section-lead reveal delay-1">O projeto anda no ritmo combinado quando cada parte entrega a sua no prazo.</p>
+        </div>
+        <div class="care-grid">
+          <div class="care-block reveal">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+            <p class="care-who">VS Experience</p>
+            <h3>Projeto e implementação</h3>
+            <p>Do diagnóstico à loja nova no ar.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico, benchmarking e nova estrutura</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Direção visual, protótipos e banners</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Personalização do tema na Nuvemshop</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Responsividade, SEO básico e performance</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Testes, publicação e até 2 rodadas de ajustes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>30 dias de suporte técnico</li>
+            </ul>
+          </div>
+          <div class="care-block is-accent reveal delay-1">
+            <span class="care-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+            <p class="care-who">Drypeu Conceito</p>
+            <h3>Acessos, marca e conteúdo</h3>
+            <p>O que só a marca pode fornecer ou decidir.</p>
+            <ul class="care-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acesso de administrador à Nuvemshop</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Plano da Nuvemshop, temas e apps pagos ativos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logotipo e identidade visual da marca</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fotos e vídeos de produtos e campanhas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Coleções, destaques e informações dos produtos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Retornos e aprovações nos prazos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERGUNTAS ============ -->
+    <section class="section section-tight" id="perguntas" aria-labelledby="perguntas-titulo">
+      <div class="container faq-layout">
+        <div class="faq-aside">
+          <h2 class="section-title reveal" id="perguntas-titulo">Antes de decidir.</h2>
+          <h3 class="reveal">Fora desta proposta</h3>
+          <ul class="factor-list reveal">
+            <li>Mensalidades e apps</li>
+            <li>Identidade visual</li>
+            <li>Fotos e vídeos</li>
+            <li>Recadastro de produtos</li>
+            <li>Integrações complexas</li>
+            <li>Tema do zero</li>
+            <li>Gestão contínua</li>
+          </ul>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>A loja sai do ar durante o projeto? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. O novo layout é desenvolvido e validado separado da loja publicada. A loja atual continua vendendo normalmente, e a troca acontece só na publicação, depois da sua aprovação.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Vou perder produtos, clientes ou pedidos? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. A loja continua na mesma Nuvemshop, com o mesmo catálogo, clientes, histórico de pedidos, meios de pagamento e frete. O que muda é a camada visual e a experiência de compra.</p>
+          </details>
+          <details class="faq-item">
+            <summary>A loja vai ficar igual à da Saint Germain? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Não. A Saint Germain é referência de organização, navegação e conversão. O visual nasce da identidade da Drypeu Conceito, para que a loja seja reconhecida como sua, e não como uma versão de outra marca.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Por que personalizar um tema e não criar um do zero? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Partir de um tema da Nuvemshop mantém a loja compatível com as atualizações e os aplicativos da plataforma, encurta o prazo e reduz o custo. A personalização cobre o que a experiência precisa, dentro dos recursos do plano contratado.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Preciso trocar de plano na Nuvemshop? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Depende do que o diagnóstico apontar. Alguns recursos de personalização variam conforme o plano. Se algo importante exigir outro plano, aviso antes de fechar o layout, com as alternativas.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Os produtos serão recadastrados? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>O recadastro integral não está incluso. A página de produto ganha uma nova apresentação para todos os itens; ajustes pontuais em descrições e destaques combinados no diagnóstico fazem parte do projeto.</p>
+          </details>
+          <details class="faq-item">
+            <summary>O que cobre o suporte de 30 dias? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <p>Correções de qualquer problema relacionado ao que foi entregue no projeto, sem custo, nos 30 dias seguintes à publicação. Novas funções, campanhas e a gestão contínua da loja podem ser contratadas à parte.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FECHAMENTO ============ -->
+    <section class="closing" id="contato" aria-labelledby="contato-titulo">
+      <canvas class="closing-canvas" data-gradient="cortina" data-curtain="300" aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="container">
+        <div class="closing-grid">
+          <div class="closing-copy reveal">
+            <h2 class="closing-title" id="contato-titulo">Vamos dar à Drypeu a loja <span>que a marca merece?</span></h2>
+            <p>Com a aprovação, começamos pelo diagnóstico: análise da loja atual, benchmarking e a nova estrutura comercial, que vira a base do design.</p>
+            <div class="closing-actions">
+              <a class="button button-primary" href="https://wa.me/5512991833641" data-whatsapp target="_blank" rel="noopener">Aprovar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></a>
+              <button class="button button-secondary" id="copyLink" type="button">Copiar link</button>
+            </div>
+          </div>
+          <div class="proposal-meta reveal delay-1">
+            <div class="meta-row"><span>Cliente</span><strong>Drypeu Conceito</strong></div>
+            <div class="meta-row"><span>Projeto</span><strong>Reestruturação estratégica do e-commerce</strong></div>
+            <div class="meta-row"><span>Plataforma</span><strong>Nuvemshop</strong></div>
+            <div class="meta-row"><span>Investimento</span><strong>R$ 4.700 · Pix, cartão ou em etapas</strong></div>
+            <div class="meta-row"><span>Prazo estimado</span><strong>20 a 30 dias úteis</strong></div>
+            <div class="meta-row"><span>Suporte</span><strong>30 dias após a entrega</strong></div>
+            <div class="meta-row"><span>Validade</span><strong>10 de dezembro de 2026</strong></div>
+          </div>
+        </div>
+        <div class="signature"><img src="../assets/images/brand/logotipo-linho.svg" alt="Victor Santos · VS Experience" width="198" height="24" loading="lazy"><span>Victor Santos · CNPJ 63.282.462/0001-69 · (12) 99183-3641</span><span>Proposta · 25 de novembro de 2026 · sujeita à aprovação do escopo e das condições comerciais</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Link copiado</div>
+  <script src="../assets/js/vendor/lenis.min.js?v=06586536"></script>
+  <script src="../assets/js/vs-gradient.js?v=ccf7558b"></script>
+  <script src="../servicos/assets/servicos.js?v=be2356e0"></script>
+</body>
+</html>

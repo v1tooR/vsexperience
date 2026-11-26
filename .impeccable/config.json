@@ -332,6 +332,42 @@
         ],
         "createdAt": "2026-11-24T12:21:54.257Z",
         "reason": "proposal page: hits are inside the miniature fictional site mockup (.browser/.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-jessica-queiroz"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "proposta-drypeu-conceito/index.html"
+        ],
+        "createdAt": "2026-11-26T03:02:19.202Z",
+        "reason": "same servicos.css proposal template as proposta-jessica-queiroz/index.html: identical three hits (static scan resolves --text/--rose-soft from :root instead of the dark .anatomy/.closing/.avg-panel/.step-pay contexts, plus the closing .button-secondary hover) already rendered-audited there; this page's desktop hero render checked in headless Chrome"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "proposta-drypeu-conceito/index.html"
+        ],
+        "createdAt": "2026-11-26T03:02:19.497Z",
+        "reason": "proposal page: body/section.hero clip the decorative hero stage (badge, float card) as in the shared servicos.css template; same sanctioned pattern as proposta-jessica-queiroz and proposta-interpoint"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "proposta-drypeu-conceito/index.html"
+        ],
+        "createdAt": "2026-11-26T03:02:19.778Z",
+        "reason": "proposal page: hits are inside the miniature fictional store mockup (.browser/.screen inside .stage, role=group, data-nosnippet) rendered at reduced scale by design, same sanctioned pattern as proposta-jessica-queiroz"
+      },
+      {
+        "rule": "repeated-container-text",
+        "value": "*",
+        "files": [
+          "proposta-drypeu-conceito/index.html"
+        ],
+        "createdAt": "2026-11-26T03:02:20.054Z",
+        "reason": "proposal page: hits are the fictional product cards (installment lines, Comprar buttons) inside the store mockup .screen, repeated on purpose to read as a real shelf; same sanctioned pattern as servicos/*/index.html mockups"
       }
     ]
   }
